@@ -1,58 +1,105 @@
-"""Detect "famous lab" affiliations on a Paper.
+"""Detect "famous lab" + "key author" badges on a Paper.
 
-For Phase 3 we don't have reliable affiliation metadata from arXiv directly,
-so we infer from author names by checking against a curated allow-list of
-common authors / first-letter prefixes. This is intentionally simple — false
-negatives are fine since the badge is a bonus, not a filter.
+The rule set lives in `config/famous_labs.yaml` so it can be tuned by the
+site owner without touching code. Two sections:
 
-The real signal comes from `affiliation` once we plug it in (e.g. via
-Semantic Scholar's author records). Until then, we look at the abstract for
-mentions of the lab name as a weak signal.
+  labs:    matched against affiliation + abstract
+  authors: matched against author names
+
+Match is case-insensitive substring (or regex, see `_match`). False
+negatives are fine — the badge is a bonus, not a filter.
 """
 from __future__ import annotations
 
+import logging
 import re
+from pathlib import Path
 from typing import Iterable
+
+import yaml
 
 from .models import Paper
 
-# Pattern → label. Lower-cased.
-LAB_PATTERNS: list[tuple[re.Pattern, str]] = [
-    (re.compile(r"\b(google|deepmind|google deepmind|google research)\b", re.I), "Google"),
-    (re.compile(r"\b(openai)\b", re.I), "OpenAI"),
-    (re.compile(r"\b(anthropic)\b", re.I), "Anthropic"),
-    (re.compile(r"\b(meta ai|fair|facebook ai)\b", re.I), "Meta"),
-    (re.compile(r"\b(microsoft research|microsoft)\b", re.I), "Microsoft"),
-    (re.compile(r"\b(mistral ai|mistral)\b", re.I), "Mistral"),
-    (re.compile(r"\b(cohere)\b", re.I), "Cohere"),
-    (re.compile(r"\b(stanford university|stanford)\b", re.I), "Stanford"),
-    (re.compile(r"\b(carnegie mellon university|cmu)\b", re.I), "CMU"),
-    (re.compile(r"\b(mit|massachusetts institute of technology)\b", re.I), "MIT"),
-    (re.compile(r"\b(eth zürich|eth zurich|eth)\b", re.I), "ETH"),
-    (re.compile(r"\b(tsinghua university|tsinghua|清华)\b", re.I), "清华"),
-    (re.compile(r"\b(peking university|pku|北京大学|北大)\b", re.I), "北大"),
-    (re.compile(r"\b(shanghai ai lab|shanghai artificial intelligence laboratory|上海人工智能实验室)\b", re.I), "上海 AI Lab"),
-    (re.compile(r"\b(byte|bytedance|tiktok|字节)\b", re.I), "字节"),
-    (re.compile(r"\b(deepseek)\b", re.I), "DeepSeek"),
-    (re.compile(r"\b(qwen|alibaba|tongyi|阿里)\b", re.I), "阿里"),
-    (re.compile(r"\b(zhipu|glm)\b", re.I), "智谱"),
-    (re.compile(r"\b(moonshot|kimi)\b", re.I), "Moonshot"),
-]
+log = logging.getLogger(__name__)
+
+_CONFIG_PATH = Path(__file__).resolve().parents[2] / "config" / "famous_labs.yaml"
+
+
+def _match(text: str, pattern: str) -> bool:
+    """Return True if `pattern` matches inside `text`.
+
+    Plain strings are matched as case-insensitive substrings. If the pattern
+    is surrounded by `/.../` it's treated as a (case-insensitive) regex.
+    """
+    if not text or not pattern:
+        return False
+    if pattern.startswith("/") and pattern.endswith("/") and len(pattern) > 2:
+        try:
+            return re.search(pattern[1:-1], text, re.IGNORECASE) is not None
+        except re.error:
+            return False
+    return pattern.lower() in text.lower()
+
+
+def _load_rules() -> tuple[list[dict], list[dict]]:
+    if not _CONFIG_PATH.exists():
+        log.warning("famous_labs.yaml not found at %s; no lab badges will fire", _CONFIG_PATH)
+        return [], []
+    try:
+        with _CONFIG_PATH.open("r", encoding="utf-8") as fh:
+            data = yaml.safe_load(fh) or {}
+    except Exception as e:
+        log.warning("Failed to parse famous_labs.yaml: %s", e)
+        return [], []
+    labs = data.get("labs") or []
+    authors = data.get("authors") or []
+    # Normalize entries: each is { label: str, patterns: [str, ...] }
+    def _norm(items):
+        out = []
+        for entry in items:
+            if not isinstance(entry, dict):
+                continue
+            label = (entry.get("label") or "").strip()
+            patterns = entry.get("patterns") or []
+            if not label or not patterns:
+                continue
+            out.append({"label": label, "patterns": [str(p) for p in patterns]})
+        return out
+    return _norm(labs), _norm(authors)
+
+
+# Cache the parsed config so we don't hit disk per-paper.
+_LAB_RULES: list[dict] | None = None
+_AUTHOR_RULES: list[dict] | None = None
+
+
+def _ensure_loaded() -> None:
+    global _LAB_RULES, _AUTHOR_RULES
+    if _LAB_RULES is None or _AUTHOR_RULES is None:
+        _LAB_RULES, _AUTHOR_RULES = _load_rules()
 
 
 def detect_labs(paper: Paper) -> list[str]:
-    """Return a deduped list of lab labels matched on this paper."""
+    """Return a deduped list of badge labels matched on this paper.
+
+    Combines both "famous lab" (affiliation/abstract scan) and
+    "key author" (author-name scan) hits.
+    """
+    _ensure_loaded()
     hay_parts: list[str] = []
     hay_parts.extend(a.affiliation for a in paper.authors if a.affiliation)
     hay_parts.append(paper.abstract or "")
-    # First few authors' names + paper title sometimes contain affiliations
-    # (rare but happens on arXiv).
-    hay = "\n".join(hay_parts).lower()
-    labs: list[str] = []
-    for rx, label in LAB_PATTERNS:
-        if rx.search(hay) and label not in labs:
-            labs.append(label)
-    return labs
+    aff_hay = "\n".join(hay_parts)
+    author_hay = "\n".join(a.name for a in paper.authors if a.name)
+
+    out: list[str] = []
+    for rule in _LAB_RULES or []:
+        if any(_match(aff_hay, p) for p in rule["patterns"]) and rule["label"] not in out:
+            out.append(rule["label"])
+    for rule in _AUTHOR_RULES or []:
+        if any(_match(author_hay, p) for p in rule["patterns"]) and rule["label"] not in out:
+            out.append(rule["label"])
+    return out
 
 
 def lab_badges(labs: Iterable[str]) -> list[dict[str, str]]:

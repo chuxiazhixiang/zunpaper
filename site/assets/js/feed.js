@@ -2,7 +2,10 @@
 
 import { Favorites, Reads, Theme } from './storage.js';
 import {
-  pickPalette,
+  pickCover,
+  pickStickers,
+  stickersHTML,
+  loadStickerManifest,
   escapeHTML,
   formatAuthors,
   paperUrl,
@@ -14,17 +17,20 @@ import {
 const STATE = {
   channels: [],
   papers: [],
+  stickers: [],
   activeChannel: 'all',
   searchQuery: '',
 };
 
 async function loadData() {
-  const [index, channelsResp] = await Promise.all([
+  const [index, channelsResp, stickers] = await Promise.all([
     fetch('data/index.json').then((r) => r.json()).catch(() => ({ papers: [] })),
     fetch('data/channels.json').then((r) => r.json()).catch(() => ({ channels: [] })),
+    loadStickerManifest(),
   ]);
   STATE.papers = index.papers || [];
   STATE.channels = channelsResp.channels || [];
+  STATE.stickers = stickers || [];
 }
 
 function buildChannelTabs() {
@@ -82,7 +88,7 @@ function badgeHTML(badge) {
 }
 
 function cardHTML(p) {
-  const palette = pickPalette(p.id);
+  const cover = pickCover(p.id);
   const titleZh = p.title_zh || p.title;
   // Use the Xiaohongshu-style headline if present; gracefully fall back so old
   // papers still render before the daily re-translate kicks in.
@@ -94,11 +100,14 @@ function cardHTML(p) {
   const source = (p.source || '').toUpperCase();
   const authors = formatAuthors(p.authors || []);
 
+  const stickerHtml = stickersHTML(pickStickers(p.id, STATE.stickers, 2));
+
   return `
     <a class="rp-card ${read ? 'is-read' : ''}" href="${paperUrl(p.id)}" data-id="${p.id}">
-      <div class="rp-cover p${palette}">
+      <div class="rp-cover ${cover.cls}">
         <span class="rp-cover__source">${escapeHTML(source)}</span>
         <p class="rp-cover__headline">${escapeHTML(headline)}</p>
+        ${stickerHtml}
       </div>
       <div class="rp-card__body">
         <h4 class="rp-card__title">${escapeHTML(titleZh)}</h4>

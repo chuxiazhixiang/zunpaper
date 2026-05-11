@@ -3,7 +3,10 @@
 
 import { Favorites, Theme } from './storage.js';
 import {
-  pickPalette,
+  pickCover,
+  pickStickers,
+  stickersHTML,
+  loadStickerManifest,
   escapeHTML,
   formatAuthors,
   paperUrl,
@@ -15,6 +18,7 @@ import {
 
 const STATE = {
   papers: [],          // master list from index.json
+  stickers: [],
   activeCategory: '',  // '' means "全部"
 };
 
@@ -23,18 +27,21 @@ async function loadIndex() {
 }
 
 function cardHTML(p) {
-  const palette = pickPalette(p.id);
+  const cover = pickCover(p.id);
   const titleZh = p.title_zh || p.title;
   const headline = p.cover_zh || p.tldr_zh || titleZh;
   const fav = Favorites.has(p.id);
   const source = (p.source || '').toUpperCase();
   const cats = Favorites.categoriesOf(p.id);
 
+  const stickers = stickersHTML(pickStickers(p.id, STATE.stickers, 2));
+
   return `
     <a class="rp-card" href="${paperUrl(p.id)}" data-id="${p.id}">
-      <div class="rp-cover p${palette}">
+      <div class="rp-cover ${cover.cls}">
         <span class="rp-cover__source">${escapeHTML(source)}</span>
         <p class="rp-cover__headline">${escapeHTML(headline)}</p>
+        ${stickers}
       </div>
       <div class="rp-card__body">
         <h4 class="rp-card__title">${escapeHTML(titleZh)}</h4>
@@ -177,8 +184,9 @@ async function main() {
     showToast(mode === 'auto' ? '跟随系统' : mode === 'dark' ? '暗色模式' : '亮色模式');
   });
 
-  const index = await loadIndex();
+  const [index, stickers] = await Promise.all([loadIndex(), loadStickerManifest()]);
   STATE.papers = index.papers || [];
+  STATE.stickers = stickers || [];
   renderAll();
 }
 

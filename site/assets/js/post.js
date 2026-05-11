@@ -7,9 +7,15 @@ import {
   paperUrl,
   showToast,
   attachSearchRedirect,
+  pickCover,
+  pickStickers,
+  stickersHTML,
+  loadStickerManifest,
   HEART_SVG_OUTLINE,
   HEART_SVG_FILL,
 } from './utils.js';
+
+let _stickers = [];
 
 function getId() {
   return new URLSearchParams(window.location.search).get('id');
@@ -96,55 +102,86 @@ function renderPaper(p, all) {
   const heart = Favorites.has(p.id) ? HEART_SVG_FILL : HEART_SVG_OUTLINE;
   const authorsText = (p.authors || []).map((a) => a.name).join('、');
   const badges = (p.badges || []).map(badgeHTML).join('');
+  const cover = pickCover(p.id);
+  const headline = p.cover_zh || p.tldr_zh || titleZh;
+  const source = (p.source || '').toUpperCase();
 
   document.title = `${titleZh} · redpaper`;
 
   const root = document.querySelector('#post-root');
   root.innerHTML = `
-    ${
-      p.cover_image
-        ? `<div class="rp-post__hero"><img src="${escapeHTML(p.cover_image)}" alt="论文首页"/></div>`
-        : ''
-    }
-    <h1 class="rp-post__title-zh">${escapeHTML(titleZh)}</h1>
-    <p class="rp-post__title-en">${escapeHTML(p.title || '')}</p>
-    <div class="rp-post__meta">
-      ${authorsText ? `<span>${escapeHTML(authorsText)}</span>` : ''}
-      ${p.published ? `<span>📅 ${escapeHTML(p.published)}</span>` : ''}
-      ${p.primary_category ? `<span>🏷 ${escapeHTML(p.primary_category)}</span>` : ''}
-      ${badges ? `<span>${badges}</span>` : ''}
+    <div class="rp-post-deck">
+      <button class="rp-post-deck__nav rp-post-deck__nav--prev" id="deck-prev" aria-label="上一页">‹</button>
+      <button class="rp-post-deck__nav rp-post-deck__nav--next" id="deck-next" aria-label="下一页">›</button>
+
+      <div class="rp-post-deck__viewport" id="post-viewport">
+        <article class="rp-post-slide rp-post-slide--cover">
+          <div class="rp-cover ${cover.cls}">
+            <span class="rp-cover__source">${escapeHTML(source)}</span>
+            <p class="rp-cover__headline">${escapeHTML(headline)}</p>
+            ${stickersHTML(pickStickers(p.id, _stickers, 2))}
+          </div>
+          <div class="rp-post-deck__peek" aria-hidden="true"></div>
+          <div class="rp-post-deck__hint">向右滑动看正文 →</div>
+        </article>
+
+        <article class="rp-post-slide rp-post-slide--body">
+          <div class="rp-post-slide__inner">
+            ${
+              p.cover_image
+                ? `<div class="rp-post__hero"><img src="${escapeHTML(p.cover_image)}" alt="论文首页"/></div>`
+                : ''
+            }
+            <h1 class="rp-post__title-zh">${escapeHTML(titleZh)}</h1>
+            <p class="rp-post__title-en">${escapeHTML(p.title || '')}</p>
+            <div class="rp-post__meta">
+              ${authorsText ? `<span>${escapeHTML(authorsText)}</span>` : ''}
+              ${p.published ? `<span>📅 ${escapeHTML(p.published)}</span>` : ''}
+              ${p.primary_category ? `<span>🏷 ${escapeHTML(p.primary_category)}</span>` : ''}
+              ${badges ? `<span>${badges}</span>` : ''}
+            </div>
+
+            <div class="rp-post__actions">
+              ${p.abs_url ? `<a class="rp-btn rp-btn--primary" href="${escapeHTML(p.abs_url)}" target="_blank" rel="noopener">打开 arXiv</a>` : ''}
+              ${p.pdf_url ? `<a class="rp-btn" href="${escapeHTML(p.pdf_url)}" target="_blank" rel="noopener">下载 PDF</a>` : ''}
+              <button class="rp-btn" id="bibtex-btn">复制 BibTeX</button>
+              <button class="rp-btn" id="share-btn">复制链接</button>
+              <button class="rp-btn ${Favorites.has(p.id) ? 'rp-btn--primary' : ''}" id="fav-btn">${heart} <span id="fav-label">${Favorites.has(p.id) ? '已收藏' : '收藏'}</span></button>
+              <button class="rp-btn" id="fav-cat-btn" title="分类管理">📁 分类</button>
+            </div>
+
+            ${
+              p.tldr_zh
+                ? `<section class="rp-section">
+                    <h3 class="rp-section__title">TL;DR</h3>
+                    <p class="rp-section__zh">${escapeHTML(p.tldr_zh)}</p>
+                  </section>`
+                : ''
+            }
+
+            <section class="rp-section">
+              <h3 class="rp-section__title">中文摘要</h3>
+              <p class="rp-section__zh">${escapeHTML(p.abstract_zh || p.abstract || '')}</p>
+              <details>
+                <summary>查看英文原文</summary>
+                <p class="rp-section__en">${escapeHTML(p.abstract || '')}</p>
+              </details>
+            </section>
+
+            ${relatedLinksHTML(p)}
+            ${relatedPapersHTML(p, all)}
+          </div>
+        </article>
+      </div>
+
+      <div class="rp-post-deck__dots" id="deck-dots">
+        <button class="rp-post-deck__dot is-active" data-slide="0" aria-label="封面"></button>
+        <button class="rp-post-deck__dot" data-slide="1" aria-label="正文"></button>
+      </div>
     </div>
-
-    <div class="rp-post__actions">
-      ${p.abs_url ? `<a class="rp-btn rp-btn--primary" href="${escapeHTML(p.abs_url)}" target="_blank" rel="noopener">打开 arXiv</a>` : ''}
-      ${p.pdf_url ? `<a class="rp-btn" href="${escapeHTML(p.pdf_url)}" target="_blank" rel="noopener">下载 PDF</a>` : ''}
-      <button class="rp-btn" id="bibtex-btn">复制 BibTeX</button>
-      <button class="rp-btn" id="share-btn">复制链接</button>
-      <button class="rp-btn ${Favorites.has(p.id) ? 'rp-btn--primary' : ''}" id="fav-btn">${heart} <span id="fav-label">${Favorites.has(p.id) ? '已收藏' : '收藏'}</span></button>
-      <button class="rp-btn" id="fav-cat-btn" title="分类管理">📁 分类</button>
-    </div>
-
-    ${
-      p.tldr_zh
-        ? `<section class="rp-section">
-            <h3 class="rp-section__title">TL;DR</h3>
-            <p class="rp-section__zh">${escapeHTML(p.tldr_zh)}</p>
-          </section>`
-        : ''
-    }
-
-    <section class="rp-section">
-      <h3 class="rp-section__title">中文摘要</h3>
-      <p class="rp-section__zh">${escapeHTML(p.abstract_zh || p.abstract || '')}</p>
-      <details>
-        <summary>查看英文原文</summary>
-        <p class="rp-section__en">${escapeHTML(p.abstract || '')}</p>
-      </details>
-    </section>
-
-    ${relatedLinksHTML(p)}
-    ${relatedPapersHTML(p, all)}
   `;
+
+  setupDeck();
 
   // Wire up actions
   const favBtn = document.querySelector('#fav-btn');
@@ -204,6 +241,75 @@ function renderPaper(p, all) {
       showToast('复制失败');
     }
   });
+}
+
+let _deckKeyHandler = null;
+
+function setupDeck() {
+  const deck = document.querySelector('.rp-post-deck');
+  if (!deck) return;
+  const dots = deck.querySelectorAll('.rp-post-deck__dot');
+  const hint = deck.querySelector('.rp-post-deck__hint');
+  const peek = deck.querySelector('.rp-post-deck__peek');
+
+  function setSlide(idx) {
+    const onBody = idx === 1;
+    deck.classList.toggle('is-on-body', onBody);
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+    if (hint) hint.style.opacity = onBody ? '0' : '1';
+    if (peek) peek.style.opacity = onBody ? '0' : '1';
+    // When entering the body slide for the first time, scroll it to top so
+    // the user lands on the title/PDF hero instead of wherever they left off.
+    if (onBody) {
+      const body = deck.querySelector('.rp-post-slide--body');
+      if (body && !body.dataset.touched) {
+        body.scrollTop = 0;
+        body.dataset.touched = '1';
+      }
+    }
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => setSlide(i));
+  });
+
+  deck.querySelector('#deck-prev')?.addEventListener('click', () => setSlide(0));
+  deck.querySelector('#deck-next')?.addEventListener('click', () => setSlide(1));
+
+  // Pointer / touch swipe (horizontal). Only triggers on the cover slide
+  // so we don't fight body's vertical scroll.
+  let startX = 0;
+  let startY = 0;
+  let tracking = false;
+  function onStart(e) {
+    const t = e.touches ? e.touches[0] : e;
+    startX = t.clientX;
+    startY = t.clientY;
+    tracking = true;
+  }
+  function onEnd(e) {
+    if (!tracking) return;
+    const t = e.changedTouches ? e.changedTouches[0] : e;
+    const dx = t.clientX - startX;
+    const dy = t.clientY - startY;
+    tracking = false;
+    if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+    if (dx < 0) setSlide(1);
+    else setSlide(0);
+  }
+  deck.addEventListener('touchstart', onStart, { passive: true });
+  deck.addEventListener('touchend', onEnd, { passive: true });
+
+  // Keyboard arrows
+  if (_deckKeyHandler) {
+    document.removeEventListener('keydown', _deckKeyHandler);
+  }
+  _deckKeyHandler = (e) => {
+    if (e.target.matches('input,textarea')) return;
+    if (e.key === 'ArrowRight') setSlide(1);
+    if (e.key === 'ArrowLeft') setSlide(0);
+  };
+  document.addEventListener('keydown', _deckKeyHandler);
 }
 
 function openCategoryPicker(paperId, onChange) {
@@ -295,7 +401,12 @@ async function main() {
   const id = getId();
   if (!id) return renderNotFound();
   try {
-    const [paper, index] = await Promise.all([loadPaper(id), loadIndex()]);
+    const [paper, index, stickers] = await Promise.all([
+      loadPaper(id),
+      loadIndex(),
+      loadStickerManifest(),
+    ]);
+    _stickers = stickers || [];
     renderPaper(paper, index.papers || []);
   } catch (e) {
     console.error(e);

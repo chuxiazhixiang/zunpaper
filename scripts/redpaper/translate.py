@@ -108,23 +108,48 @@ def _sanitize_for_llm(text: str) -> str:
 
 
 def translate(title: str, abstract: str) -> Translation:
-    backend = _resolve_backend()
-    fn = _BACKENDS.get(backend, _dryrun)
+    backends = _resolve_backend_chain()
     title = _sanitize_for_llm(title)
     abstract = _sanitize_for_llm(abstract)
-    try:
-        return fn(title, abstract)
-    except Exception as e:
-        log.warning("LLM backend %s failed: %s; falling back to dryrun", backend, e)
-        return _dryrun(title, abstract)
+    last_exc: Exception | None = None
+    for backend in backends:
+        fn = _BACKENDS.get(backend, _dryrun)
+        try:
+            t = fn(title, abstract)
+            if t.title_zh or backend == "dryrun":
+                return t
+            # Empty fields — treat as failure so we try the next backend.
+            last_exc = RuntimeError(f"{backend} returned empty translation")
+            log.warning("LLM backend %s returned empty fields; trying next", backend)
+        except Exception as e:
+            last_exc = e
+            log.warning("LLM backend %s failed: %s; trying next", backend, e)
+    log.error("All LLM backends failed (%s); falling back to dryrun", last_exc)
+    return _dryrun(title, abstract)
 
 
-def _resolve_backend() -> str:
-    # Lazy import to avoid circular references on package load.
+def _resolve_backend_chain() -> list[str]:
+    """Resolve an ordered list of backends to try.
+
+    Honors the env var (REDPAPER_LLM_BACKEND) or site.yaml default for the
+    primary backend. Then appends sensible fallbacks based on which API keys
+    are present in the environment — this lets us auto-recover when, e.g.,
+    the Gemini free-tier quota is 0 but a DeepSeek key is also available.
+    """
     from .config import load_site
     site = load_site()
     env_name = site.translation_backend_env
-    return os.environ.get(env_name, site.translation_default_backend).lower()
+    primary = os.environ.get(env_name, site.translation_default_backend).lower()
+
+    chain = [primary]
+    # Auto-add any other backend whose key is set, so we degrade gracefully.
+    if "gemini" not in chain and os.environ.get("GEMINI_API_KEY"):
+        chain.append("gemini")
+    if "deepseek" not in chain and os.environ.get("DEEPSEEK_API_KEY"):
+        chain.append("deepseek")
+    if "openai" not in chain and os.environ.get("OPENAI_API_KEY"):
+        chain.append("openai")
+    return chain
 
 
 def _extract_json(text: str) -> dict[str, Any]:

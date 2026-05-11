@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>封面三方案预览 · redpaper</title>
+    <link rel="icon" type="image/jpeg" href="assets/img/setsuna.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <style>
+      .preview-section {
+        padding: 24px 4px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .preview-section h2 {
+        font-family: var(--rp-font-serif);
+        margin: 24px 4px 12px;
+        font-size: 22px;
+      }
+      .preview-section p.hint {
+        color: var(--rp-text-dim);
+        margin: 0 4px 14px;
+        font-size: 13px;
+      }
+      .preview-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+      @media (max-width: 960px) {
+        .preview-grid { grid-template-columns: repeat(3, 1fr); }
+      }
+      @media (max-width: 720px) {
+        .preview-grid { grid-template-columns: repeat(2, 1fr); }
+      }
+      .preview-card {
+        border-radius: var(--rp-radius-lg);
+        overflow: hidden;
+        box-shadow: var(--rp-shadow);
+        background: var(--rp-surface);
+      }
+      .preview-card .rp-cover { min-height: 220px; }
+      .preview-card .preview-meta {
+        padding: 10px 12px;
+        font-size: 12px;
+        color: var(--rp-text-dim);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="rp-app-bar">
+      <div class="rp-app-bar__inner">
+        <a class="rp-brand" href="index.html">
+          <span class="rp-brand__logo"><img src="assets/img/setsuna.jpg" alt="" /></span>
+          <span>redpaper</span>
+          <span class="rp-brand__sub">封面方案对比</span>
+        </a>
+        <div class="rp-search"></div>
+        <a class="rp-nav-btn" href="index.html"><span class="rp-nav-btn__icon">←</span><span class="rp-nav-btn__label">回首页</span></a>
+      </div>
+    </header>
+    <main class="rp-container">
+      <p class="hint" style="padding: 16px 4px 0; color: var(--rp-text-soft);">
+        每个风格 6 种浅色变体（粉 / 蓝 / 绿 / 紫 / 黄 / 桃）。同一篇论文落到哪个组合是按 id hash 决定的，刷新不会变。
+      </p>
+
+      <section class="preview-section">
+        <h2>A · 手账纸（washi notebook）</h2>
+        <p class="hint">浅色纸面 + 手撕胶带 + 圆点纹理，warm 系，像「我把论文剪进了手帐本」。</p>
+        <div id="grid-washi" class="preview-grid"></div>
+      </section>
+
+      <section class="preview-section">
+        <h2>B · 撞色海报（poster）</h2>
+        <p class="hint">柔和单色块 + 高饱和度竖条 accent + 大字标题。最现代，最像 Spotify 海报。</p>
+        <div id="grid-poster" class="preview-grid"></div>
+      </section>
+    </main>
+
+    <script type="module">
+      import { escapeHTML } from './assets/js/utils.js';
+      const STYLES = ['washi', 'poster'];
+
+      async function main() {
+        const data = await fetch('data/index.json').then(r => r.json());
+        // Take 6 papers so all 6 color variants get displayed per style.
+        const sample = (data.papers || []).slice(0, 6);
+        for (const style of STYLES) {
+          const grid = document.getElementById(`grid-${style}`);
+          grid.innerHTML = sample.map((p, i) => {
+            const headline = p.cover_zh || p.tldr_zh || p.title_zh || p.title;
+            const source = (p.source || '').toUpperCase();
+            return `
+              <div class="preview-card">
+                <div class="rp-cover rp-cover--${style} c${i}">
+                  <span class="rp-cover__source">${escapeHTML(source)}</span>
+                  <p class="rp-cover__headline">${escapeHTML(headline)}</p>
+                </div>
+                <div class="preview-meta">${escapeHTML(p.title_zh || p.title)}</div>
+              </div>`;
+          }).join('');
+        }
+      }
+      main();
+    </script>
+  </body>
+</html>

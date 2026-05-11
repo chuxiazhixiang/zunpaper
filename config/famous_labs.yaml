@@ -1,0 +1,86 @@
+# =================================================================
+# 顶尖实验室 / 大组 / 关键作者 — 在帖子上打 ⭐ 徽章用
+# =================================================================
+# 这是 redpaper 的「贵宾名单」。每天 build 时 pipeline 会扫描所有
+# 论文的 affiliation 字段 + 摘要 + 作者名，命中任何一条 pattern
+# 就在卡片上挂一个 "⭐ <label>" 徽章。
+#
+# 匹配规则：
+# - 大小写不敏感
+# - 作为子串匹配（不是正则；如要正则，可在 pattern 前后加 / /，
+#   见 `_match` 里的解析逻辑）
+# - 任意 pattern 命中就算这一条 label 命中
+# - 同一张卡片不会重复同一个 label
+#
+# 文件改完后，重新跑 GitHub Action (或本地 `python scripts/build.py`)
+# 才会重新算徽章；前端代码不需要动。
+# =================================================================
+
+# ----- 顶尖实验室 / 公司 / 研究机构 ----------------------------------
+# 匹配 affiliation 和摘要里的关键词。是你想要的「Lab badge」。
+labs:
+  # 人形 / 通用机器人公司
+  - { label: "Boston Dynamics",  patterns: ["boston dynamics"] }
+  - { label: "Figure",           patterns: ["figure ai", "figure robotics"] }
+  - { label: "1X",               patterns: ["1x technologies", "1x tech"] }
+  - { label: "Tesla AI",         patterns: ["tesla", "optimus"] }
+  - { label: "Sanctuary AI",     patterns: ["sanctuary ai"] }
+  - { label: "Agility",          patterns: ["agility robotics", "digit robot"] }
+  - { label: "Apptronik",        patterns: ["apptronik", "apollo robot"] }
+  - { label: "Unitree",          patterns: ["unitree", "宇树"] }
+
+  # 大厂 / 大模型实验室
+  - { label: "Google DeepMind",  patterns: ["deepmind", "google research"] }
+  - { label: "OpenAI",           patterns: ["openai"] }
+  - { label: "Anthropic",        patterns: ["anthropic"] }
+  - { label: "Meta FAIR",        patterns: ["meta ai", "fair labs", "facebook ai"] }
+  - { label: "NVIDIA",           patterns: ["nvidia", "gear lab"] }
+  - { label: "Microsoft",        patterns: ["microsoft research"] }
+  - { label: "Toyota TRI / RAI", patterns: ["toyota research", "rai institute"] }
+  - { label: "Hugging Face",     patterns: ["hugging face", "huggingface"] }
+
+  # 高校机器人 / 大组
+  - { label: "Berkeley AI",      patterns: ["uc berkeley", "berkeley artificial intelligence", "bair lab"] }
+  - { label: "Stanford",         patterns: ["stanford university"] }
+  - { label: "CMU RI",           patterns: ["carnegie mellon", "cmu robotics", "robotics institute"] }
+  - { label: "MIT CSAIL",        patterns: ["csail", "massachusetts institute of technology"] }
+  - { label: "ETH",              patterns: ["eth zurich", "eth zürich", "anybotics"] }
+  - { label: "UCSD",             patterns: ["university of california, san diego", "ucsd"] }
+  - { label: "Princeton",        patterns: ["princeton university"] }
+
+  # 国内
+  - { label: "清华",              patterns: ["tsinghua university", "tsinghua", "清华"] }
+  - { label: "北大",              patterns: ["peking university", "北京大学", "北大"] }
+  - { label: "上海 AI Lab",       patterns: ["shanghai ai lab", "shanghai artificial intelligence laboratory", "上海人工智能实验室"] }
+  - { label: "字节",              patterns: ["bytedance", "byte dance", "字节"] }
+  - { label: "DeepSeek",         patterns: ["deepseek"] }
+  - { label: "阿里",              patterns: ["alibaba", "tongyi", "通义"] }
+  - { label: "智谱",              patterns: ["zhipu", "glm-"] }
+  - { label: "Moonshot",         patterns: ["moonshot", "kimi"] }
+
+# ----- 关键作者 ------------------------------------------------------
+# 在论文作者列表中做子串匹配（大小写不敏感）。命中后挂 "⭐ <label>"。
+# 想加自己的「师承八卦名单」就在下面拼。
+authors:
+  # 美东 / 美西大牛 — manipulation / RL
+  - { label: "Sergey Levine",    patterns: ["Sergey Levine"] }
+  - { label: "Chelsea Finn",     patterns: ["Chelsea Finn"] }
+  - { label: "Pieter Abbeel",    patterns: ["Pieter Abbeel"] }
+  - { label: "Russ Tedrake",     patterns: ["Russ Tedrake"] }
+  - { label: "Shuran Song",      patterns: ["Shuran Song"] }
+  - { label: "Jitendra Malik",   patterns: ["Jitendra Malik"] }
+  - { label: "Jeannette Bohg",   patterns: ["Jeannette Bohg"] }
+  - { label: "Tony Zhao",        patterns: ["Tony Z. Zhao", "Tony Zhao"] }
+  - { label: "Karol Hausman",    patterns: ["Karol Hausman"] }
+
+  # 双足 / 全身控制
+  - { label: "Marco Hutter",     patterns: ["Marco Hutter"] }
+  - { label: "Jemin Hwangbo",    patterns: ["Jemin Hwangbo"] }
+  - { label: "Joonho Lee",       patterns: ["Joonho Lee"] }
+
+  # VLA / Foundation policy
+  - { label: "Brian Ichter",     patterns: ["Brian Ichter"] }
+  - { label: "Ted Xiao",         patterns: ["Ted Xiao"] }
+
+  # 国内人形相关 — 自己挑你佩服的人填进来
+  # - { label: "<中文名/英文名>", patterns: ["<在论文里出现的拼写>"] }

@@ -2,75 +2,137 @@
 # 增删频道直接改这个文件，pipeline 会自动按频道拉取去重
 #
 # 字段说明：
-#   id          频道 ID（URL 用，英文小写）
-#   name        频道显示名（中文）
-#   emoji       Tab 上的小图标
+#   id                频道 ID（URL 用，英文小写）
+#   name              频道显示名（中文）
+#   emoji             Tab 上的小图标
 #   arxiv_categories  arXiv 分类码（https://arxiv.org/category_taxonomy）
-#   keywords    标题/摘要必须包含其中至少一个词才算命中（OR 关系，留空表示不过滤）
-#   exclude     标题/摘要包含任意一个就排除
-#   max_per_day 每天最多拉多少篇，超过的丢弃低分的
+#   keywords          标题/摘要必须包含其中至少一个词才算命中（OR 关系，留空 = 不过滤）
+#   exclude           标题/摘要包含任意一个就排除
+#   max_per_day       每天最多拉多少篇，超过的丢弃低分的
+#
+# 当前配置面向「人形机器人 / 通用机器人」方向。
+# 想再加方向（比如四足、医疗机器人）就在下面拼。
 
 channels:
-  - id: llm
-    name: 大模型
-    emoji: "🧠"
-    arxiv_categories: [cs.CL, cs.LG]
+  - id: locomotion
+    name: 运动控制
+    emoji: "🦿"
+    arxiv_categories: [cs.RO, cs.LG]
     keywords:
-      - large language model
-      - LLM
-      - llama
-      - chatgpt
-      - gpt
-      - reasoning
-      - RLHF
-      - alignment
-      - in-context learning
-      - prompt
-    exclude: []
-    max_per_day: 30
-
-  - id: cv
-    name: 视觉
-    emoji: "👁️"
-    arxiv_categories: [cs.CV]
-    keywords:
-      - diffusion
-      - generation
-      - segmentation
-      - detection
-      - 3D
-      - NeRF
-      - gaussian splatting
-      - video
-    exclude: []
-    max_per_day: 20
-
-  - id: agent
-    name: 智能体
-    emoji: "🤖"
-    arxiv_categories: [cs.AI, cs.LG, cs.MA]
-    keywords:
-      - agent
-      - tool use
-      - multi-agent
-      - planning
-      - world model
-      - embodied
-      - autonomous
-    exclude: []
-    max_per_day: 20
-
-  - id: rl
-    name: 强化学习
-    emoji: "🎮"
-    arxiv_categories: [cs.LG, cs.AI]
-    keywords:
-      - reinforcement learning
-      - RL
-      - policy
-      - reward
-      - PPO
-      - DPO
-      - exploration
+      - locomotion
+      - bipedal
+      - quadruped
+      - humanoid walk
+      - walking
+      - gait
+      - balance control
+      - legged robot
     exclude: []
     max_per_day: 15
+
+  - id: whole-body
+    name: 全身控制
+    emoji: "🤸"
+    arxiv_categories: [cs.RO, cs.SY, eess.SY]
+    keywords:
+      - whole-body control
+      - whole body control
+      - WBC
+      - dynamic balance
+      - centroidal
+      - MPC humanoid
+      - reactive control
+    exclude: []
+    max_per_day: 12
+
+  - id: manipulation
+    name: 操作 / 灵巧手
+    emoji: "🖐️"
+    arxiv_categories: [cs.RO, cs.CV]
+    keywords:
+      - manipulation
+      - dexterous
+      - grasp
+      - in-hand
+      - tactile
+      - bimanual
+      - imitation learning
+      - diffusion policy
+      - action chunking
+    exclude: []
+    max_per_day: 20
+
+  - id: loco-manip
+    name: 移动操作
+    emoji: "🛒"
+    arxiv_categories: [cs.RO]
+    keywords:
+      - loco-manipulation
+      - mobile manipulation
+      - whole-body manipulation
+      - mobile robot manipulation
+      - long-horizon manipulation
+    exclude: []
+    max_per_day: 12
+
+  - id: perception
+    name: 感知 / 导航
+    emoji: "🧭"
+    arxiv_categories: [cs.RO, cs.CV]
+    keywords:
+      - SLAM
+      - 3D scene
+      - occupancy
+      - point cloud
+      - depth estimation
+      - visual navigation
+      - exploration
+      - terrain
+    exclude: []
+    max_per_day: 12
+
+  - id: vla
+    name: VLA / 通用策略
+    emoji: "🤖"
+    arxiv_categories: [cs.RO, cs.LG, cs.CV]
+    keywords:
+      - vision-language-action
+      - VLA
+      - generalist policy
+      - foundation policy
+      - robot foundation model
+      - RT-2
+      - π0
+      - openvla
+      - octo
+    exclude: []
+    max_per_day: 15
+
+  - id: vln
+    name: 视觉语言导航
+    emoji: "🗺️"
+    arxiv_categories: [cs.RO, cs.CV, cs.CL]
+    keywords:
+      - vision-language navigation
+      - VLN
+      - instruction-following navigation
+      - embodied navigation
+      - habitat
+    exclude: []
+    max_per_day: 8
+
+  - id: llm
+    name: 大模型 (机器人相关)
+    emoji: "🧠"
+    arxiv_categories: [cs.CL, cs.LG, cs.AI]
+    keywords:
+      - large language model
+      - LLM agent
+      - tool use
+      - reasoning robotics
+      - code-as-policies
+      - embodied LLM
+      - SayCan
+      - chain-of-thought
+    exclude: []
+    max_per_day: 10

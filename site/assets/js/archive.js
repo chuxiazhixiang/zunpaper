@@ -2,13 +2,18 @@
 
 import { Theme } from './storage.js';
 import {
-  pickPalette,
+  pickCover,
+  pickStickers,
+  stickersHTML,
+  loadStickerManifest,
   escapeHTML,
   formatAuthors,
   paperUrl,
   attachSearchRedirect,
   showToast,
 } from './utils.js';
+
+let _stickers = [];
 
 async function loadDays() {
   return fetch('data/days.json').then((r) => r.json()).catch(() => ({ days: [] }));
@@ -19,15 +24,17 @@ async function loadDay(d) {
 }
 
 function cardHTML(p) {
-  const palette = pickPalette(p.id);
+  const cover = pickCover(p.id);
   const titleZh = p.title_zh || p.title;
   const headline = p.cover_zh || p.tldr_zh || titleZh;
   const source = (p.source || '').toUpperCase();
+  const stickers = stickersHTML(pickStickers(p.id, _stickers, 2));
   return `
     <a class="rp-card" href="${paperUrl(p.id)}">
-      <div class="rp-cover p${palette}">
+      <div class="rp-cover ${cover.cls}">
         <span class="rp-cover__source">${escapeHTML(source)}</span>
         <p class="rp-cover__headline">${escapeHTML(headline)}</p>
+        ${stickers}
       </div>
       <div class="rp-card__body">
         <h4 class="rp-card__title">${escapeHTML(titleZh)}</h4>
@@ -65,6 +72,7 @@ async function main() {
   });
 
   const params = new URLSearchParams(window.location.search);
+  _stickers = await loadStickerManifest();
   const { days } = await loadDays();
   const requested = params.get('date');
   const activeDay = requested || days[0];
