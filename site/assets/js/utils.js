@@ -15,7 +15,7 @@ export function pickPalette(id, n = 8) {
 /** Pick one of the two cover styles + one of 6 color variants.
  *  Deterministic on paper id so the same paper always renders the same way. */
 export function pickCover(id) {
-  const styles = ['washi', 'poster'];
+  const styles = ['washi', 'magazine'];
   const h = hashStr(id);
   const style = styles[h % styles.length];
   const color = Math.floor(h / 13) % 6;

@@ -10,6 +10,7 @@ from pathlib import Path
 from . import config as cfg
 from .digest import write_markdown_digest, write_rss
 from .labs import detect_labs, lab_badges
+from .scoring import score_paper
 from .models import Paper, load_paper, save_paper
 from .render import fetch_and_render
 from .sources import arxiv_source
@@ -62,10 +63,12 @@ def process_new_papers(
             paper = cached
 
         if not paper.cover_image and paper.pdf_url:
-            rel = fetch_and_render(paper.pdf_url, paper.id, cfg.COVER_DIR)
+            rel, pages = fetch_and_render(paper.pdf_url, paper.id, cfg.COVER_DIR)
             if rel:
                 paper.cover_image = rel
-                log.info("cover ready: %s", paper.id)
+                if pages > 0:
+                    paper.page_count = pages
+                log.info("cover ready: %s (%d pages)", paper.id, pages)
 
         if not _is_translated(paper):
             t = translate_with_retry(paper.title, paper.abstract)
@@ -98,19 +101,20 @@ class EnrichmentContext:
         # cheap to recompute.
         paper.badges = list(lab_badges(detect_labs(paper)))
         paper.related_links = list(paper.related_links or [])
+        paper.source_tags = list(paper.source_tags or [])
 
         aid = paper.arxiv_id
-        if not aid:
-            return
 
-        hf = self.hf_index.get(aid)
+        hf = self.hf_index.get(aid) if aid else None
         if hf:
             paper.badges.append({
                 "kind": "hot",
                 "label": f"🔥 HF · {hf.upvotes} 赞",
             })
+            if "hf_daily" not in paper.source_tags:
+                paper.source_tags.append("hf_daily")
 
-        ss = self.ss_index.get(aid)
+        ss = self.ss_index.get(aid) if aid else None
         if ss and ss.citation_count >= 20:
             paper.badges.append({
                 "kind": "hot",
@@ -128,16 +132,21 @@ class EnrichmentContext:
                 pass
 
         # News articles
-        seen_urls = {link.get("url") for link in paper.related_links}
-        for art in self.news_index.get(aid, []):
-            if art.url in seen_urls:
-                continue
-            paper.related_links.append({
-                "source": art.source,
-                "source_name": art.source_name,
-                "title": art.title,
-                "url": art.url,
-            })
+        if aid:
+            seen_urls = {link.get("url") for link in paper.related_links}
+            for art in self.news_index.get(aid, []):
+                if art.url in seen_urls:
+                    continue
+                paper.related_links.append({
+                    "source": art.source,
+                    "source_name": art.source_name,
+                    "title": art.title,
+                    "url": art.url,
+                })
+
+        # Compute "为啥今天选了它" — fires for every paper, with or without
+        # arxiv id. Runs last so HF / lab badges are already attached.
+        paper.score, paper.score_breakdown = score_paper(paper)
 
 
 def write_feed(all_papers: list[Paper]) -> None:
@@ -239,6 +248,7 @@ def _feed_entry(p: Paper) -> dict:
         "arxiv_id": p.arxiv_id,
         "abs_url": p.abs_url,
         "pdf_url": p.pdf_url,
+        "score": p.score,
     }
 
 

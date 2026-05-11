@@ -75,6 +75,39 @@ function relatedPapersHTML(current, allPapers) {
     </section>`;
 }
 
+/** Render the per-paper "为啥今天选了你" score breakdown.
+ *  The pipeline writes `p.score` and `p.score_breakdown` (array of items
+ *  `{ label, points, hint? }`). If neither is present we hide the section. */
+function scoreBreakdownHTML(p) {
+  const items = p.score_breakdown || [];
+  if (!items.length && p.score == null) return '';
+  const total = p.score != null ? p.score : items.reduce((s, x) => s + (x.points || 0), 0);
+  return `
+    <section class="rp-section rp-score">
+      <h3 class="rp-section__title">
+        为啥今天选了它
+        <span class="rp-score__total">总分 ${total}</span>
+      </h3>
+      ${items.length
+        ? `<ul class="rp-score__list">
+            ${items
+              .map(
+                (x) => `
+                  <li class="rp-score__row">
+                    <span class="rp-score__points ${x.points > 0 ? 'is-plus' : x.points < 0 ? 'is-minus' : ''}">${x.points > 0 ? '+' : ''}${x.points}</span>
+                    <div class="rp-score__body">
+                      <div class="rp-score__label">${escapeHTML(x.label || '')}</div>
+                      ${x.hint ? `<div class="rp-score__hint">${escapeHTML(x.hint)}</div>` : ''}
+                    </div>
+                  </li>`,
+              )
+              .join('')}
+          </ul>
+          <p class="rp-score__note">分数 = 命中条目相加（满分 100）。规则在 config/scoring.yaml 里改，自己想看哪类多就把对应权重调大。</p>`
+        : '<p class="rp-score__note">这篇论文还没跑过打分。下一次 daily build 会算上。</p>'}
+    </section>`;
+}
+
 function relatedLinksHTML(p) {
   const links = p.related_links || [];
   if (!links.length) return '';
@@ -105,9 +138,15 @@ function renderPaper(p, all) {
   const cover = pickCover(p.id);
   const headline = p.cover_zh || p.tldr_zh || titleZh;
   const source = (p.source || '').toUpperCase();
+  const stickerHtml = stickersHTML(pickStickers(p.id, _stickers, 2));
 
   document.title = `${titleZh} · redpaper`;
 
+  // The post layout = visual 2-slide carousel (cover + PDF preview) + a normal
+  // page-flow body section below. The body is ALWAYS in the document; the
+  // carousel is just decoration on top. This is the bug-fix for the earlier
+  // "below the post is gone" report — content is no longer hidden inside a
+  // nested scroll container.
   const root = document.querySelector('#post-root');
   root.innerHTML = `
     <div class="rp-post-deck">
@@ -119,66 +158,74 @@ function renderPaper(p, all) {
           <div class="rp-cover ${cover.cls}">
             <span class="rp-cover__source">${escapeHTML(source)}</span>
             <p class="rp-cover__headline">${escapeHTML(headline)}</p>
-            ${stickersHTML(pickStickers(p.id, _stickers, 2))}
+            ${stickerHtml}
           </div>
           <div class="rp-post-deck__peek" aria-hidden="true"></div>
-          <div class="rp-post-deck__hint">向右滑动看正文 →</div>
+          <div class="rp-post-deck__hint">向右滑动看论文首页 →</div>
         </article>
 
-        <article class="rp-post-slide rp-post-slide--body">
-          <div class="rp-post-slide__inner">
-            ${
-              p.cover_image
-                ? `<div class="rp-post__hero"><img src="${escapeHTML(p.cover_image)}" alt="论文首页"/></div>`
-                : ''
-            }
-            <h1 class="rp-post__title-zh">${escapeHTML(titleZh)}</h1>
-            <p class="rp-post__title-en">${escapeHTML(p.title || '')}</p>
-            <div class="rp-post__meta">
-              ${authorsText ? `<span>${escapeHTML(authorsText)}</span>` : ''}
-              ${p.published ? `<span>📅 ${escapeHTML(p.published)}</span>` : ''}
-              ${p.primary_category ? `<span>🏷 ${escapeHTML(p.primary_category)}</span>` : ''}
-              ${badges ? `<span>${badges}</span>` : ''}
-            </div>
-
-            <div class="rp-post__actions">
-              ${p.abs_url ? `<a class="rp-btn rp-btn--primary" href="${escapeHTML(p.abs_url)}" target="_blank" rel="noopener">打开 arXiv</a>` : ''}
-              ${p.pdf_url ? `<a class="rp-btn" href="${escapeHTML(p.pdf_url)}" target="_blank" rel="noopener">下载 PDF</a>` : ''}
-              <button class="rp-btn" id="bibtex-btn">复制 BibTeX</button>
-              <button class="rp-btn" id="share-btn">复制链接</button>
-              <button class="rp-btn ${Favorites.has(p.id) ? 'rp-btn--primary' : ''}" id="fav-btn">${heart} <span id="fav-label">${Favorites.has(p.id) ? '已收藏' : '收藏'}</span></button>
-              <button class="rp-btn" id="fav-cat-btn" title="分类管理">📁 分类</button>
-            </div>
-
-            ${
-              p.tldr_zh
-                ? `<section class="rp-section">
-                    <h3 class="rp-section__title">TL;DR</h3>
-                    <p class="rp-section__zh">${escapeHTML(p.tldr_zh)}</p>
-                  </section>`
-                : ''
-            }
-
-            <section class="rp-section">
-              <h3 class="rp-section__title">中文摘要</h3>
-              <p class="rp-section__zh">${escapeHTML(p.abstract_zh || p.abstract || '')}</p>
-              <details>
-                <summary>查看英文原文</summary>
-                <p class="rp-section__en">${escapeHTML(p.abstract || '')}</p>
-              </details>
-            </section>
-
-            ${relatedLinksHTML(p)}
-            ${relatedPapersHTML(p, all)}
-          </div>
+        <article class="rp-post-slide rp-post-slide--preview">
+          ${
+            p.cover_image
+              ? `<img class="rp-post-slide__hero" src="${escapeHTML(p.cover_image)}" alt="论文首页"/>`
+              : `<div class="rp-post-slide__noimg">
+                  <p>${escapeHTML(p.tldr_zh || p.abstract_zh || '').slice(0, 200)}</p>
+                </div>`
+          }
+          <button class="rp-post-deck__scroll-cta" id="deck-scroll-cta">
+            ↓ 滚下来看正文
+          </button>
         </article>
       </div>
 
       <div class="rp-post-deck__dots" id="deck-dots">
         <button class="rp-post-deck__dot is-active" data-slide="0" aria-label="封面"></button>
-        <button class="rp-post-deck__dot" data-slide="1" aria-label="正文"></button>
+        <button class="rp-post-deck__dot" data-slide="1" aria-label="首页图"></button>
       </div>
     </div>
+
+    <article class="rp-post__body" id="post-body">
+      <h1 class="rp-post__title-zh">${escapeHTML(titleZh)}</h1>
+      <p class="rp-post__title-en">${escapeHTML(p.title || '')}</p>
+      <div class="rp-post__meta">
+        ${authorsText ? `<span>${escapeHTML(authorsText)}</span>` : ''}
+        ${p.published ? `<span>📅 ${escapeHTML(p.published)}</span>` : ''}
+        ${p.primary_category ? `<span>🏷 ${escapeHTML(p.primary_category)}</span>` : ''}
+        ${badges ? `<span>${badges}</span>` : ''}
+      </div>
+
+      <div class="rp-post__actions">
+        ${p.abs_url ? `<a class="rp-btn rp-btn--primary" href="${escapeHTML(p.abs_url)}" target="_blank" rel="noopener">打开 arXiv</a>` : ''}
+        ${p.pdf_url ? `<a class="rp-btn" href="${escapeHTML(p.pdf_url)}" target="_blank" rel="noopener">下载 PDF</a>` : ''}
+        <button class="rp-btn" id="bibtex-btn">复制 BibTeX</button>
+        <button class="rp-btn" id="share-btn">复制链接</button>
+        <button class="rp-btn ${Favorites.has(p.id) ? 'rp-btn--primary' : ''}" id="fav-btn">${heart} <span id="fav-label">${Favorites.has(p.id) ? '已收藏' : '收藏'}</span></button>
+        <button class="rp-btn" id="fav-cat-btn" title="分类管理">📁 分类</button>
+      </div>
+
+      ${
+        p.tldr_zh
+          ? `<section class="rp-section">
+              <h3 class="rp-section__title">TL;DR</h3>
+              <p class="rp-section__zh">${escapeHTML(p.tldr_zh)}</p>
+            </section>`
+          : ''
+      }
+
+      <section class="rp-section">
+        <h3 class="rp-section__title">中文摘要</h3>
+        <p class="rp-section__zh">${escapeHTML(p.abstract_zh || p.abstract || '')}</p>
+        <details>
+          <summary>查看英文原文</summary>
+          <p class="rp-section__en">${escapeHTML(p.abstract || '')}</p>
+        </details>
+      </section>
+
+      ${scoreBreakdownHTML(p)}
+
+      ${relatedLinksHTML(p)}
+      ${relatedPapersHTML(p, all)}
+    </article>
   `;
 
   setupDeck();
@@ -253,20 +300,11 @@ function setupDeck() {
   const peek = deck.querySelector('.rp-post-deck__peek');
 
   function setSlide(idx) {
-    const onBody = idx === 1;
-    deck.classList.toggle('is-on-body', onBody);
+    const onPreview = idx === 1;
+    deck.classList.toggle('is-on-preview', onPreview);
     dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
-    if (hint) hint.style.opacity = onBody ? '0' : '1';
-    if (peek) peek.style.opacity = onBody ? '0' : '1';
-    // When entering the body slide for the first time, scroll it to top so
-    // the user lands on the title/PDF hero instead of wherever they left off.
-    if (onBody) {
-      const body = deck.querySelector('.rp-post-slide--body');
-      if (body && !body.dataset.touched) {
-        body.scrollTop = 0;
-        body.dataset.touched = '1';
-      }
-    }
+    if (hint) hint.style.opacity = onPreview ? '0' : '1';
+    if (peek) peek.style.opacity = onPreview ? '0' : '1';
   }
 
   dots.forEach((dot, i) => {
@@ -276,8 +314,13 @@ function setupDeck() {
   deck.querySelector('#deck-prev')?.addEventListener('click', () => setSlide(0));
   deck.querySelector('#deck-next')?.addEventListener('click', () => setSlide(1));
 
-  // Pointer / touch swipe (horizontal). Only triggers on the cover slide
-  // so we don't fight body's vertical scroll.
+  // CTA on the preview slide: scroll the page to the body article.
+  deck.querySelector('#deck-scroll-cta')?.addEventListener('click', () => {
+    const body = document.querySelector('#post-body');
+    body?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // Touch swipe — left/right only.
   let startX = 0;
   let startY = 0;
   let tracking = false;

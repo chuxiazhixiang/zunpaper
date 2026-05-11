@@ -1,0 +1,54 @@
+# =================================================================
+# 每篇论文的「为啥今天选了它」打分配置
+# =================================================================
+# 每天 build 跑完，pipeline 会按这里的规则给每篇论文打分，写到
+# paper.score 和 paper.score_breakdown，前端在详情页用「中文」
+# 展示给你看：哪几条命中，每条加多少分。
+#
+# 设计思路：每条规则只看一个维度，命中加固定分。各条加和 = 总分。
+# 调权重就是改 points。想加新维度就在下面 rules 里加一项，对应
+# 在 scripts/redpaper/scoring.py 里加一个 check_* 函数。
+#
+# 当前最大可能分 ~= 100（去掉 author 那条），所以把 100 当满分看。
+# =================================================================
+
+rules:
+  - id: famous_lab
+    label: "顶尖实验室出品"
+    points: 25
+    hint: "命中 config/famous_labs.yaml 里的 labs 名单"
+
+  - id: key_author
+    label: "关键作者上榜"
+    points: 20
+    hint: "命中 config/famous_labs.yaml 里的 authors 名单"
+
+  - id: hf_trending
+    label: "Hugging Face Daily 上榜"
+    points: 18
+    hint: "今天被 HF Daily 选出来了"
+
+  - id: keyword_density
+    label: "关键词命中密集"
+    points: 12  # capped — actual points = min(points, count*3)
+    hint: "标题/摘要里频道关键词出现的次数 × 3，上限 12"
+
+  - id: freshness
+    label: "刚出锅 (≤2 天)"
+    points: 10
+    hint: "arXiv 投递时间在 2 天以内"
+
+  - id: github_repo
+    label: "附带开源仓库"
+    points: 8
+    hint: "摘要里出现 github.com / huggingface.co 链接"
+
+  - id: longer_paper
+    label: "正经长 paper (≥8 页)"
+    points: 5
+    hint: "PDF 总页数 ≥ 8，过滤掉一句话 workshop demo"
+
+  - id: cross_channel
+    label: "跨多个方向"
+    points: 5
+    hint: "命中多个频道（说明跨子领域）"

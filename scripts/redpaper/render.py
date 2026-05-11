@@ -39,13 +39,14 @@ def download_pdf(url: str, dest: Path) -> bool:
         return False
 
 
-def render_first_page(pdf_path: Path, out_jpg: Path, max_width: int = 900, quality: int = 82) -> bool:
+def render_first_page(pdf_path: Path, out_jpg: Path, max_width: int = 900, quality: int = 82) -> tuple[bool, int]:
     """Render the first page of `pdf_path` to a JPEG.
 
-    Output is resized so width <= max_width to keep file size reasonable.
+    Returns (success, page_count).
     """
     try:
         doc = fitz.open(pdf_path)
+        page_count = doc.page_count
         page = doc.load_page(0)
         # 2x zoom for crisper text, then resize down
         pix = page.get_pixmap(matrix=fitz.Matrix(2, 2), alpha=False)
@@ -58,26 +59,30 @@ def render_first_page(pdf_path: Path, out_jpg: Path, max_width: int = 900, quali
         out_jpg.parent.mkdir(parents=True, exist_ok=True)
         img.save(out_jpg, "JPEG", quality=quality, optimize=True)
         doc.close()
-        return True
+        return True, page_count
     except Exception as e:
         log.warning("render_first_page failed for %s: %s", pdf_path, e)
-        return False
+        return False, 0
 
 
-def fetch_and_render(pdf_url: str, paper_id: str, covers_dir: Path) -> str | None:
-    """Download a PDF, render its first page, return the site-relative path or None."""
+def fetch_and_render(pdf_url: str, paper_id: str, covers_dir: Path) -> tuple[str | None, int]:
+    """Download a PDF, render its first page.
+    Returns (site_relative_path_or_None, page_count_or_0).
+    """
     out_jpg = covers_dir / f"{paper_id}.jpg"
     if out_jpg.exists():
-        return _to_site_rel(out_jpg)
+        # Cached image — page_count not known unless we re-open the pdf, return 0.
+        return _to_site_rel(out_jpg), 0
 
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
         tmp_path = Path(tmp.name)
     try:
         if not download_pdf(pdf_url, tmp_path):
-            return None
-        if not render_first_page(tmp_path, out_jpg):
-            return None
-        return _to_site_rel(out_jpg)
+            return None, 0
+        ok, pages = render_first_page(tmp_path, out_jpg)
+        if not ok:
+            return None, 0
+        return _to_site_rel(out_jpg), pages
     finally:
         try:
             tmp_path.unlink(missing_ok=True)

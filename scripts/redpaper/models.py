@@ -40,6 +40,10 @@ class Paper:
     channels: list[str] = field(default_factory=list)
     badges: list[dict[str, str]] = field(default_factory=list)         # {kind, label}
     related_links: list[dict[str, str]] = field(default_factory=list)  # {source, source_name, title, url}
+    page_count: int = 0
+    source_tags: list[str] = field(default_factory=list)                # extra source markers (e.g. "hf_daily")
+    score: int = 0
+    score_breakdown: list[dict] = field(default_factory=list)            # [{id, label, points, hint}]
 
     def to_dict(self) -> dict[str, Any]:
         d = asdict(self)
