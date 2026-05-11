@@ -548,6 +548,49 @@ img {
   font-weight: 700;
 }
 
+/* ---- Live2D mascot (站娘) ---- */
+#rp-mascot {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  width: 240px;
+  height: 320px;
+  z-index: 80;
+  pointer-events: none;      /* canvas itself opts back in */
+  user-select: none;
+}
+#rp-mascot-canvas {
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  cursor: pointer;           /* tap-to-trigger-expression */
+}
+.rp-mascot__close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  color: white;
+  border: none;
+  cursor: pointer;
+  pointer-events: auto;
+  font-size: 14px;
+  line-height: 1;
+  z-index: 2;
+  opacity: 0.55;
+  transition: opacity 0.2s, background 0.2s;
+}
+.rp-mascot__close:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.7);
+}
+@media (max-width: 768px) {
+  #rp-mascot { display: none; }
+}
+
 /* "Paper withdrawn" placeholder shown in 收藏夹 when a favorited id is no
  * longer in the master index. Greyscale + slightly faded to indicate it's a
  * dead link the user can clean up. */
