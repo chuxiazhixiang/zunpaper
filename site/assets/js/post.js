@@ -8,16 +8,12 @@ import {
   showToast,
   attachSearchRedirect,
   pickCover,
-  pickStickers,
-  stickersHTML,
-  loadStickerManifest,
   loadPalettes,
   coverStyleAttr,
   HEART_SVG_OUTLINE,
   HEART_SVG_FILL,
 } from './utils.js';
 
-let _stickers = [];
 let _palettes = [];
 
 function getId() {
@@ -151,7 +147,6 @@ function renderPaper(p, all) {
   const cover = pickCover(p.id);
   const headline = p.cover_zh || p.tldr_zh || titleZh;
   const source = (p.source || '').toUpperCase();
-  const stickerHtml = stickersHTML(pickStickers(p.id, _stickers, 2));
   const paletteStyle = coverStyleAttr(p.id, _palettes, cover.style);
 
   document.title = `${titleZh} · redpaper`;
@@ -161,41 +156,74 @@ function renderPaper(p, all) {
   // carousel is just decoration on top. This is the bug-fix for the earlier
   // "below the post is gone" report — content is no longer hidden inside a
   // nested scroll container.
+  // Build the slide list: cover + (page 1 image if any) + preview pages.
+  // For high-quality papers preview_pages usually contains pages 2/3/4 which
+  // hold the architecture / pipeline figure ("流程图").
+  const pdfSlides = [];
+  if (p.cover_image) {
+    pdfSlides.push({ src: p.cover_image, label: '首页' });
+  }
+  for (let i = 0; i < (p.preview_pages || []).length; i++) {
+    pdfSlides.push({ src: p.preview_pages[i], label: `第 ${i + 2} 页` });
+  }
+
+  const slidesHTML = [
+    `<article class="rp-post-slide rp-post-slide--cover" data-idx="0" style="transform: translateX(0%);">
+      <div class="rp-cover ${cover.cls}"${paletteStyle ? ` style="${paletteStyle}"` : ''}>
+        <span class="rp-cover__source">${escapeHTML(source)}</span>
+        <p class="rp-cover__headline">${escapeHTML(headline)}</p>
+      </div>
+      <div class="rp-post-deck__peek" aria-hidden="true"></div>
+      <div class="rp-post-deck__hint">向右滑动看论文内页 →</div>
+    </article>`,
+  ];
+  if (pdfSlides.length) {
+    pdfSlides.forEach((s, i) => {
+      const idx = i + 1;
+      const isLast = i === pdfSlides.length - 1;
+      slidesHTML.push(`
+        <article class="rp-post-slide rp-post-slide--preview" data-idx="${idx}"
+                 style="transform: translateX(${idx * 100}%);">
+          <img class="rp-post-slide__hero" src="${escapeHTML(s.src)}" alt="论文${escapeHTML(s.label)}" loading="lazy"/>
+          <span class="rp-post-deck__page-label">${escapeHTML(s.label)}</span>
+          ${
+            isLast
+              ? `<button class="rp-post-deck__scroll-cta" id="deck-scroll-cta">↓ 滚下来看正文</button>`
+              : ''
+          }
+        </article>`);
+    });
+  } else {
+    slidesHTML.push(`
+      <article class="rp-post-slide rp-post-slide--preview" data-idx="1" style="transform: translateX(100%);">
+        <div class="rp-post-slide__noimg">
+          <p>${escapeHTML(p.tldr_zh || p.abstract_zh || '').slice(0, 200)}</p>
+        </div>
+        <button class="rp-post-deck__scroll-cta" id="deck-scroll-cta">↓ 滚下来看正文</button>
+      </article>`);
+  }
+
+  const dotCount = slidesHTML.length;
+  const dotsHTML = Array.from({ length: dotCount })
+    .map(
+      (_, i) =>
+        `<button class="rp-post-deck__dot${i === 0 ? ' is-active' : ''}" data-slide="${i}" aria-label="${
+          i === 0 ? '封面' : `第 ${i} 页`
+        }"></button>`,
+    )
+    .join('');
+
   const root = document.querySelector('#post-root');
   root.innerHTML = `
-    <div class="rp-post-deck">
+    <div class="rp-post-deck" data-slide-count="${dotCount}">
       <button class="rp-post-deck__nav rp-post-deck__nav--prev" id="deck-prev" aria-label="上一页">‹</button>
       <button class="rp-post-deck__nav rp-post-deck__nav--next" id="deck-next" aria-label="下一页">›</button>
 
       <div class="rp-post-deck__viewport" id="post-viewport">
-        <article class="rp-post-slide rp-post-slide--cover">
-          <div class="rp-cover ${cover.cls}"${paletteStyle ? ` style="${paletteStyle}"` : ''}>
-            <span class="rp-cover__source">${escapeHTML(source)}</span>
-            <p class="rp-cover__headline">${escapeHTML(headline)}</p>
-            ${stickerHtml}
-          </div>
-          <div class="rp-post-deck__peek" aria-hidden="true"></div>
-          <div class="rp-post-deck__hint">向右滑动看论文首页 →</div>
-        </article>
-
-        <article class="rp-post-slide rp-post-slide--preview">
-          ${
-            p.cover_image
-              ? `<img class="rp-post-slide__hero" src="${escapeHTML(p.cover_image)}" alt="论文首页"/>`
-              : `<div class="rp-post-slide__noimg">
-                  <p>${escapeHTML(p.tldr_zh || p.abstract_zh || '').slice(0, 200)}</p>
-                </div>`
-          }
-          <button class="rp-post-deck__scroll-cta" id="deck-scroll-cta">
-            ↓ 滚下来看正文
-          </button>
-        </article>
+        ${slidesHTML.join('\n')}
       </div>
 
-      <div class="rp-post-deck__dots" id="deck-dots">
-        <button class="rp-post-deck__dot is-active" data-slide="0" aria-label="封面"></button>
-        <button class="rp-post-deck__dot" data-slide="1" aria-label="首页图"></button>
-      </div>
+      <div class="rp-post-deck__dots" id="deck-dots">${dotsHTML}</div>
     </div>
 
     <article class="rp-post__body" id="post-body">
@@ -309,26 +337,39 @@ let _deckKeyHandler = null;
 function setupDeck() {
   const deck = document.querySelector('.rp-post-deck');
   if (!deck) return;
-  const dots = deck.querySelectorAll('.rp-post-deck__dot');
+  const slides = Array.from(deck.querySelectorAll('.rp-post-slide'));
+  const dots = Array.from(deck.querySelectorAll('.rp-post-deck__dot'));
   const hint = deck.querySelector('.rp-post-deck__hint');
   const peek = deck.querySelector('.rp-post-deck__peek');
+  const total = slides.length;
+  let current = 0;
 
   function setSlide(idx) {
-    const onPreview = idx === 1;
-    deck.classList.toggle('is-on-preview', onPreview);
+    idx = Math.max(0, Math.min(total - 1, idx));
+    current = idx;
+    slides.forEach((sl, i) => {
+      const delta = i - idx;
+      sl.style.transform = `translateX(${delta * 100}%)`;
+      // Slight blur + dim on the previous slide for the "deck under cover" look
+      // that the original 2-slide design had.
+      if (i === idx - 1) {
+        sl.style.filter = 'blur(2px) brightness(0.92)';
+      } else {
+        sl.style.filter = '';
+      }
+    });
     dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
-    if (hint) hint.style.opacity = onPreview ? '0' : '1';
-    if (peek) peek.style.opacity = onPreview ? '0' : '1';
+    if (hint) hint.style.opacity = idx === 0 ? '1' : '0';
+    if (peek) peek.style.opacity = idx === 0 ? '1' : '0';
   }
 
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => setSlide(i));
   });
 
-  deck.querySelector('#deck-prev')?.addEventListener('click', () => setSlide(0));
-  deck.querySelector('#deck-next')?.addEventListener('click', () => setSlide(1));
+  deck.querySelector('#deck-prev')?.addEventListener('click', () => setSlide(current - 1));
+  deck.querySelector('#deck-next')?.addEventListener('click', () => setSlide(current + 1));
 
-  // CTA on the preview slide: scroll the page to the body article.
   deck.querySelector('#deck-scroll-cta')?.addEventListener('click', () => {
     const body = document.querySelector('#post-body');
     body?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -351,8 +392,7 @@ function setupDeck() {
     const dy = t.clientY - startY;
     tracking = false;
     if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
-    if (dx < 0) setSlide(1);
-    else setSlide(0);
+    setSlide(current + (dx < 0 ? 1 : -1));
   }
   deck.addEventListener('touchstart', onStart, { passive: true });
   deck.addEventListener('touchend', onEnd, { passive: true });
@@ -363,8 +403,8 @@ function setupDeck() {
   }
   _deckKeyHandler = (e) => {
     if (e.target.matches('input,textarea')) return;
-    if (e.key === 'ArrowRight') setSlide(1);
-    if (e.key === 'ArrowLeft') setSlide(0);
+    if (e.key === 'ArrowRight') setSlide(current + 1);
+    if (e.key === 'ArrowLeft') setSlide(current - 1);
   };
   document.addEventListener('keydown', _deckKeyHandler);
 }
@@ -458,13 +498,11 @@ async function main() {
   const id = getId();
   if (!id) return renderNotFound();
   try {
-    const [paper, index, stickers, palettes] = await Promise.all([
+    const [paper, index, palettes] = await Promise.all([
       loadPaper(id),
       loadIndex(),
-      loadStickerManifest(),
       loadPalettes(),
     ]);
-    _stickers = stickers || [];
     _palettes = palettes || [];
     renderPaper(paper, index.papers || []);
   } catch (e) {

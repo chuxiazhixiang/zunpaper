@@ -4,9 +4,6 @@
 import { Favorites, Theme } from './storage.js';
 import {
   pickCover,
-  pickStickers,
-  stickersHTML,
-  loadStickerManifest,
   loadPalettes,
   coverStyleAttr,
   escapeHTML,
@@ -20,7 +17,6 @@ import {
 
 const STATE = {
   papers: [],          // master list from index.json
-  stickers: [],
   palettes: [],
   activeCategory: '',  // '' means "全部"
 };
@@ -37,7 +33,6 @@ function cardHTML(p) {
   const source = (p.source || '').toUpperCase();
   const cats = Favorites.categoriesOf(p.id);
 
-  const stickers = stickersHTML(pickStickers(p.id, STATE.stickers, 2));
   const paletteStyle = coverStyleAttr(p.id, STATE.palettes, cover.style);
 
   return `
@@ -45,7 +40,6 @@ function cardHTML(p) {
       <div class="rp-cover ${cover.cls}"${paletteStyle ? ` style="${paletteStyle}"` : ''}>
         <span class="rp-cover__source">${escapeHTML(source)}</span>
         <p class="rp-cover__headline">${escapeHTML(headline)}</p>
-        ${stickers}
       </div>
       <div class="rp-card__body">
         <h4 class="rp-card__title">${escapeHTML(titleZh)}</h4>
@@ -146,14 +140,36 @@ function renderCategoryTabs() {
   });
 }
 
+/** Placeholder card for a favorited id that's no longer in the master index
+ *  (paper got pruned by retag_and_prune, or was withdrawn from arXiv). The
+ *  user can still see SOMETHING and click "从收藏夹移除" to clean it up. */
+function missingCardHTML(id) {
+  return `
+    <div class="rp-card rp-card--missing" data-id="${id}">
+      <div class="rp-cover rp-cover--missing">
+        <span class="rp-cover__source">已下架</span>
+        <p class="rp-cover__headline">📄 论文已下架</p>
+      </div>
+      <div class="rp-card__body">
+        <h4 class="rp-card__title">${escapeHTML(id)}</h4>
+        <p class="rp-card__tldr">站长把这篇从网站上撤掉了（可能是不符合机器人方向的过滤），但你之前点的收藏还留在浏览器里。</p>
+        <div class="rp-card__meta">
+          <span class="rp-card__authors">—</span>
+          <button class="rp-card__like is-liked" data-fav="${id}" title="从收藏移除" aria-label="从收藏移除">
+            ${HEART_SVG_FILL}
+          </button>
+        </div>
+      </div>
+    </div>`;
+}
+
 function renderFeed() {
   const feed = document.querySelector('#feed');
   const count = document.querySelector('#count');
-  const ids = new Set(Favorites.ids(STATE.activeCategory || undefined));
-  const list = STATE.papers.filter((p) => ids.has(p.id));
-  if (count) count.textContent = list.length;
+  const favIds = Favorites.ids(STATE.activeCategory || undefined);
+  if (count) count.textContent = favIds.length;
 
-  if (!list.length) {
+  if (!favIds.length) {
     feed.innerHTML = `
       <div class="rp-status">
         <p class="rp-status__title">${STATE.activeCategory ? `「${escapeHTML(STATE.activeCategory)}」还没有收藏` : '收藏夹空空如也'}</p>
@@ -161,7 +177,16 @@ function renderFeed() {
       </div>`;
     return;
   }
-  feed.innerHTML = list.map(cardHTML).join('');
+
+  // Index existing papers by id so we render real cards when we have data,
+  // and a "已下架" placeholder otherwise. Earlier this page would silently
+  // show nothing when the favorite count was >0 but no paper id matched.
+  const byId = new Map(STATE.papers.map((p) => [p.id, p]));
+  const html = favIds.map((id) => {
+    const p = byId.get(id);
+    return p ? cardHTML(p) : missingCardHTML(id);
+  });
+  feed.innerHTML = html.join('');
 
   feed.querySelectorAll('[data-fav]').forEach((btn) => {
     btn.addEventListener('click', (e) => {
@@ -188,13 +213,8 @@ async function main() {
     showToast(mode === 'auto' ? '跟随系统' : mode === 'dark' ? '暗色模式' : '亮色模式');
   });
 
-  const [index, stickers, palettes] = await Promise.all([
-    loadIndex(),
-    loadStickerManifest(),
-    loadPalettes(),
-  ]);
+  const [index, palettes] = await Promise.all([loadIndex(), loadPalettes()]);
   STATE.papers = index.papers || [];
-  STATE.stickers = stickers || [];
   STATE.palettes = palettes || [];
   renderAll();
 }

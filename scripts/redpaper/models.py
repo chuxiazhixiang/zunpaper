@@ -37,6 +37,7 @@ class Paper:
     pdf_url: str = ""
     abs_url: str = ""
     cover_image: str = ""       # site-relative path to first-page PNG
+    preview_pages: list[str] = field(default_factory=list)  # extra PDF page jpgs (page 2..N)
     channels: list[str] = field(default_factory=list)
     badges: list[dict[str, str]] = field(default_factory=list)         # {kind, label}
     related_links: list[dict[str, str]] = field(default_factory=list)  # {source, source_name, title, url}

@@ -1,4 +1,11 @@
-"""Render the first page of a paper PDF to a JPEG cover image."""
+"""Render the first few pages of a paper PDF to JPEGs.
+
+* Page 1 = the cover image (title + abstract + sometimes Figure 1)
+* Pages 2-4 are stored as additional preview images and surfaced as carousel
+  slides on the detail page. Architecture / pipeline figures usually appear
+  on page 2 or 3 of recent ML/robotics papers, so showing them inline lets
+  the reader judge a paper without leaving the site. ("流程图")
+"""
 from __future__ import annotations
 
 import io
@@ -15,6 +22,7 @@ log = logging.getLogger(__name__)
 
 USER_AGENT = "redpaper/0.1 (+https://github.com/Nangongyeee/redpaper)"
 TIMEOUT_SECONDS = 60
+PREVIEW_PAGES = 4  # how many pages to render in total (page 1 + 3 more)
 
 
 def download_pdf(url: str, dest: Path) -> bool:
@@ -39,50 +47,85 @@ def download_pdf(url: str, dest: Path) -> bool:
         return False
 
 
-def render_first_page(pdf_path: Path, out_jpg: Path, max_width: int = 900, quality: int = 82) -> tuple[bool, int]:
-    """Render the first page of `pdf_path` to a JPEG.
-
-    Returns (success, page_count).
-    """
+def _render_page(doc, page_idx: int, out_jpg: Path, max_width: int = 900, quality: int = 82) -> bool:
     try:
-        doc = fitz.open(pdf_path)
-        page_count = doc.page_count
-        page = doc.load_page(0)
-        # 2x zoom for crisper text, then resize down
+        page = doc.load_page(page_idx)
         pix = page.get_pixmap(matrix=fitz.Matrix(2, 2), alpha=False)
         img = Image.open(io.BytesIO(pix.tobytes("png")))
         if img.width > max_width:
             ratio = max_width / img.width
-            new_size = (max_width, int(img.height * ratio))
-            img = img.resize(new_size, Image.LANCZOS)
+            img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
         img = img.convert("RGB")
         out_jpg.parent.mkdir(parents=True, exist_ok=True)
         img.save(out_jpg, "JPEG", quality=quality, optimize=True)
-        doc.close()
-        return True, page_count
+        return True
     except Exception as e:
-        log.warning("render_first_page failed for %s: %s", pdf_path, e)
-        return False, 0
+        log.warning("render page %d failed: %s", page_idx, e)
+        return False
 
 
-def fetch_and_render(pdf_url: str, paper_id: str, covers_dir: Path) -> tuple[str | None, int]:
-    """Download a PDF, render its first page.
-    Returns (site_relative_path_or_None, page_count_or_0).
+def render_pages(pdf_path: Path, paper_id: str, covers_dir: Path) -> tuple[str | None, list[str], int]:
+    """Render up to PREVIEW_PAGES pages of `pdf_path` to JPEGs.
+
+    Returns:
+        cover_path: site-relative path to page 1 jpg (or None on failure)
+        preview_paths: site-relative paths to additional pages (pages 2..N),
+                       in document order. Empty list if the paper has <2 pages.
+        page_count: total pages in the PDF (0 on failure).
+
+    File layout:
+        site/assets/img/covers/{paper_id}.jpg        ← cover (page 1)
+        site/assets/img/covers/{paper_id}-p2.jpg     ← page 2
+        site/assets/img/covers/{paper_id}-p3.jpg     ← page 3
+        ...
     """
-    out_jpg = covers_dir / f"{paper_id}.jpg"
-    if out_jpg.exists():
-        # Cached image — page_count not known unless we re-open the pdf, return 0.
-        return _to_site_rel(out_jpg), 0
+    try:
+        doc = fitz.open(pdf_path)
+    except Exception as e:
+        log.warning("open pdf failed: %s", e)
+        return None, [], 0
+
+    page_count = doc.page_count
+    cover_jpg = covers_dir / f"{paper_id}.jpg"
+    cover_rel: str | None = None
+    if _render_page(doc, 0, cover_jpg):
+        cover_rel = _to_site_rel(cover_jpg)
+
+    preview_rels: list[str] = []
+    for idx in range(1, min(PREVIEW_PAGES, page_count)):
+        page_jpg = covers_dir / f"{paper_id}-p{idx + 1}.jpg"
+        if page_jpg.exists() or _render_page(doc, idx, page_jpg):
+            preview_rels.append(_to_site_rel(page_jpg))
+
+    doc.close()
+    return cover_rel, preview_rels, page_count
+
+
+def fetch_and_render(pdf_url: str, paper_id: str, covers_dir: Path) -> tuple[str | None, list[str], int]:
+    """Download a PDF, render its first few pages.
+
+    Returns (cover_path_or_None, preview_paths_list, page_count_or_0).
+    Caches against disk: if {paper_id}.jpg + {paper_id}-p{2..N}.jpg all exist
+    we skip the PDF download entirely.
+    """
+    cover_jpg = covers_dir / f"{paper_id}.jpg"
+    if cover_jpg.exists():
+        # Check which preview pages we already have on disk.
+        existing_previews: list[str] = []
+        for idx in range(2, PREVIEW_PAGES + 1):
+            p = covers_dir / f"{paper_id}-p{idx}.jpg"
+            if p.exists():
+                existing_previews.append(_to_site_rel(p))
+        # Cached: page_count unknown without re-opening pdf, return 0.
+        return _to_site_rel(cover_jpg), existing_previews, 0
 
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
         tmp_path = Path(tmp.name)
     try:
         if not download_pdf(pdf_url, tmp_path):
-            return None, 0
-        ok, pages = render_first_page(tmp_path, out_jpg)
-        if not ok:
-            return None, 0
-        return _to_site_rel(out_jpg), pages
+            return None, [], 0
+        cover_rel, preview_rels, pages = render_pages(tmp_path, paper_id, covers_dir)
+        return cover_rel, preview_rels, pages
     finally:
         try:
             tmp_path.unlink(missing_ok=True)

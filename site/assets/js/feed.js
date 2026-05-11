@@ -3,9 +3,6 @@
 import { Favorites, Reads, Theme } from './storage.js';
 import {
   pickCover,
-  pickStickers,
-  stickersHTML,
-  loadStickerManifest,
   loadPalettes,
   coverStyleAttr,
   escapeHTML,
@@ -19,22 +16,19 @@ import {
 const STATE = {
   channels: [],
   papers: [],
-  stickers: [],
   palettes: [],
   activeChannel: 'all',
   searchQuery: '',
 };
 
 async function loadData() {
-  const [index, channelsResp, stickers, palettes] = await Promise.all([
+  const [index, channelsResp, palettes] = await Promise.all([
     fetch('data/index.json').then((r) => r.json()).catch(() => ({ papers: [] })),
     fetch('data/channels.json').then((r) => r.json()).catch(() => ({ channels: [] })),
-    loadStickerManifest(),
     loadPalettes(),
   ]);
   STATE.papers = index.papers || [];
   STATE.channels = channelsResp.channels || [];
-  STATE.stickers = stickers || [];
   STATE.palettes = palettes || [];
 }
 
@@ -107,7 +101,6 @@ function cardHTML(p) {
   const source = (p.source || '').toUpperCase();
   const authors = formatAuthors(p.authors || []);
 
-  const stickerHtml = stickersHTML(pickStickers(p.id, STATE.stickers, 2));
   const paletteStyle = coverStyleAttr(p.id, STATE.palettes, cover.style);
 
   return `
@@ -115,7 +108,6 @@ function cardHTML(p) {
       <div class="rp-cover ${cover.cls}"${paletteStyle ? ` style="${paletteStyle}"` : ''}>
         <span class="rp-cover__source">${escapeHTML(source)}</span>
         <p class="rp-cover__headline">${escapeHTML(headline)}</p>
-        ${stickerHtml}
       </div>
       <div class="rp-card__body">
         <h4 class="rp-card__title">${escapeHTML(titleZh)}</h4>

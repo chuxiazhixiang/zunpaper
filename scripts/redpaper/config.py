@@ -68,14 +68,26 @@ def load_channels() -> list[Channel]:
 
 
 def load_sources() -> SourcesConfig:
+    import os
+
     raw = _load_yaml(CONFIG_DIR / "sources.yaml").get("sources", {})
 
     def get(name: str, key: str, default):
         return raw.get(name, {}).get(key, default)
 
+    lookback = get("arxiv", "lookback_days", 7)
+    # Allow env override for one-off backfills (workflow_dispatch input maps
+    # to REDPAPER_ARXIV_LOOKBACK_DAYS).
+    env_override = (os.environ.get("REDPAPER_ARXIV_LOOKBACK_DAYS") or "").strip()
+    if env_override:
+        try:
+            lookback = int(env_override)
+        except ValueError:
+            pass
+
     return SourcesConfig(
         arxiv_enabled=get("arxiv", "enabled", True),
-        arxiv_lookback_days=get("arxiv", "lookback_days", 2),
+        arxiv_lookback_days=lookback,
         arxiv_per_channel_limit=get("arxiv", "per_channel_limit", 60),
         hf_daily_enabled=get("hf_daily", "enabled", False),
         semantic_scholar_enabled=get("semantic_scholar", "enabled", False),

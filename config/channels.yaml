@@ -7,15 +7,35 @@
 #   emoji             Tab 上的小图标
 #   arxiv_categories  arXiv 分类码（https://arxiv.org/category_taxonomy）
 #   keywords          标题/摘要必须包含其中至少一个词才算命中（OR 关系，留空 = 不过滤）
-#   exclude           标题/摘要包含任意一个就排除
+#   exclude           标题/摘要包含任意一个就排除（兜底过滤生物医工等非感兴趣方向）
 #   max_per_day       每天最多拉多少篇，超过的丢弃低分的
 #
 # 当前配置面向「人形机器人 / 通用机器人」方向。
-# 想再加方向（比如四足、医疗机器人）就在下面拼。
+# 偏好顺序：whole-body > loco-manip > vla > 其他，max_per_day 倾斜过来。
+
+# 通用排除关键词 —— 出现这些任意一个就跳过整篇（生物医工 / 临床方向不要）
+_global_exclude: &MEDICAL_EXCLUDE
+  - surgical
+  - surgery
+  - clinical trial
+  - clinical
+  - patient
+  - medical imaging
+  - biomedical engineering
+  - prosthetic limb
+  - prosthesis
+  - rehabilitation robot
+  - exoskeleton therapy
+  - MRI
+  - electroencephalo
+  - EEG signal
+  - tumor
+  - diagnosis
+  - radiology
 
 channels:
   - id: locomotion
-    name: 运动控制
+    name: Locomotion
     emoji: "🦿"
     arxiv_categories: [cs.RO, cs.LG]
     keywords:
@@ -23,12 +43,13 @@ channels:
       - bipedal
       - quadruped
       - humanoid walk
-      - walking
-      - gait
-      - balance control
+      - walking gait
+      - gait generation
       - legged robot
-    exclude: []
-    max_per_day: 15
+      - balance control humanoid
+      - parkour
+    exclude: *MEDICAL_EXCLUDE
+    max_per_day: 12
 
   - id: whole-body
     name: 全身控制
@@ -37,30 +58,34 @@ channels:
     keywords:
       - whole-body control
       - whole body control
+      - whole-body manipulation
+      - whole body manipulation
       - WBC
       - dynamic balance
       - centroidal
       - MPC humanoid
-      - reactive control
-    exclude: []
-    max_per_day: 12
+      - reactive whole-body
+      - humanoid robot control
+      - whole-body policy
+    exclude: *MEDICAL_EXCLUDE
+    max_per_day: 30        # ←偏好方向：拉多一点
 
   - id: manipulation
     name: 操作 / 灵巧手
     emoji: "🖐️"
     arxiv_categories: [cs.RO, cs.CV]
     keywords:
-      - manipulation
-      - dexterous
-      - grasp
-      - in-hand
-      - tactile
-      - bimanual
+      - dexterous manipulation
+      - in-hand manipulation
+      - dexterous grasp
+      - tactile manipulation
+      - bimanual manipulation
       - imitation learning
       - diffusion policy
       - action chunking
-    exclude: []
-    max_per_day: 20
+      - manipulation skill
+    exclude: *MEDICAL_EXCLUDE
+    max_per_day: 12
 
   - id: loco-manip
     name: 移动操作
@@ -72,41 +97,45 @@ channels:
       - whole-body manipulation
       - mobile robot manipulation
       - long-horizon manipulation
-    exclude: []
-    max_per_day: 12
+      - mobile manipulator
+    exclude: *MEDICAL_EXCLUDE
+    max_per_day: 25        # ←偏好方向
 
   - id: perception
     name: 感知 / 导航
     emoji: "🧭"
     arxiv_categories: [cs.RO, cs.CV]
     keywords:
-      - SLAM
-      - 3D scene
-      - occupancy
-      - point cloud
-      - depth estimation
+      - robot SLAM
+      - 3D scene robot
+      - occupancy network
+      - depth estimation robot
       - visual navigation
-      - exploration
-      - terrain
-    exclude: []
-    max_per_day: 12
+      - exploration robot
+      - terrain robot
+      - tactile sensing
+    exclude: *MEDICAL_EXCLUDE
+    max_per_day: 8
 
   - id: vla
-    name: VLA / 通用策略
+    name: VLA / 全身策略
     emoji: "🤖"
     arxiv_categories: [cs.RO, cs.LG, cs.CV]
     keywords:
       - vision-language-action
-      - VLA
-      - generalist policy
+      - VLA model
+      - whole-body VLA
+      - whole body VLA
+      - generalist robot policy
       - foundation policy
       - robot foundation model
       - RT-2
       - π0
       - openvla
-      - octo
-    exclude: []
-    max_per_day: 15
+      - octo policy
+      - humanoid policy
+    exclude: *MEDICAL_EXCLUDE
+    max_per_day: 25        # ←偏好方向（含 Whole-body VLA）
 
   - id: vln
     name: 视觉语言导航
@@ -117,22 +146,23 @@ channels:
       - VLN
       - instruction-following navigation
       - embodied navigation
-      - habitat
-    exclude: []
-    max_per_day: 8
+      - habitat benchmark
+    exclude: *MEDICAL_EXCLUDE
+    max_per_day: 6
 
   - id: llm
-    name: 大模型 (机器人相关)
+    name: 机器人大模型
     emoji: "🧠"
     arxiv_categories: [cs.CL, cs.LG, cs.AI]
     keywords:
-      - large language model
-      - LLM agent
-      - tool use
-      - reasoning robotics
+      - LLM robot
+      - LLM for robot
+      - LLM agent robot
+      - tool use robot
       - code-as-policies
       - embodied LLM
       - SayCan
-      - chain-of-thought
-    exclude: []
-    max_per_day: 10
+      - reasoning robotics
+      - chain-of-thought robot
+    exclude: *MEDICAL_EXCLUDE
+    max_per_day: 6

@@ -64,12 +64,22 @@ def process_new_papers(
             paper = cached
 
         if not paper.cover_image and paper.pdf_url:
-            rel, pages = fetch_and_render(paper.pdf_url, paper.id, cfg.COVER_DIR)
+            rel, previews, pages = fetch_and_render(paper.pdf_url, paper.id, cfg.COVER_DIR)
             if rel:
                 paper.cover_image = rel
+                if previews:
+                    paper.preview_pages = previews
                 if pages > 0:
                     paper.page_count = pages
-                log.info("cover ready: %s (%d pages)", paper.id, pages)
+                log.info("cover ready: %s (%d pages, %d previews)", paper.id, pages, len(previews))
+        elif paper.cover_image and not paper.preview_pages and paper.pdf_url:
+            # Back-fill multi-page previews for papers that only had a cover
+            # before (the multi-page renderer is new). Re-runs fetch_and_render
+            # which is cache-aware: cover stays, only missing pages are rendered.
+            rel, previews, pages = fetch_and_render(paper.pdf_url, paper.id, cfg.COVER_DIR)
+            if previews:
+                paper.preview_pages = previews
+                log.info("backfilled previews: %s (+%d)", paper.id, len(previews))
 
         if not _is_translated(paper):
             t = translate_with_retry(paper.title, paper.abstract)
@@ -159,12 +169,16 @@ class EnrichmentContext:
 
 
 def write_feed(all_papers: list[Paper]) -> None:
-    """Write the master index, per-day digest, and channel list files."""
+    """Write the master index, per-day digest, and channel list files.
+
+    The master index is now sorted by (score DESC, published DESC) so the
+    homepage opens on the highest-quality papers regardless of when they
+    landed. Per-day pages still sort by score within the day.
+    """
     cfg.ensure_dirs()
     all_papers_sorted = sorted(
         all_papers,
-        key=lambda p: (p.published, p.id),
-        reverse=True,
+        key=lambda p: (-(p.score or 0), p.published or "", p.id),
     )
 
     index_entries = [_feed_entry(p) for p in all_papers_sorted]
@@ -213,13 +227,15 @@ def write_feed(all_papers: list[Paper]) -> None:
             indent=2,
         )
 
-    # Per-day file: papers published on that date.
+    # Per-day file: papers published on that date. Within a day we also
+    # rank by score so the daily digest is "best first" too.
     by_day: dict[str, list[Paper]] = {}
-    for p in all_papers_sorted:
+    for p in all_papers:
         if not p.published:
             continue
         by_day.setdefault(p.published, []).append(p)
     for day, items in by_day.items():
+        items.sort(key=lambda p: (-(p.score or 0), p.id))
         with (cfg.DAILY_DIR / f"{day}.json").open("w", encoding="utf-8") as f:
             json.dump(
                 {
@@ -254,6 +270,7 @@ def _feed_entry(p: Paper) -> dict:
         "channels": p.channels,
         "badges": p.badges,
         "cover_image": p.cover_image,
+        "preview_pages": p.preview_pages,
         "arxiv_id": p.arxiv_id,
         "abs_url": p.abs_url,
         "pdf_url": p.pdf_url,

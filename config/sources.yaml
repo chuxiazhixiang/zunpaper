@@ -2,12 +2,12 @@
 sources:
   arxiv:
     enabled: true
-    # 拉取最近 N 天内发布的论文（含当天）
-    # 5 天的窗口能保证周末没断更，也能在改动 channels.yaml 后让一轮 daily
-    # 把新关键词重新匹配到一批最近的论文上。
-    lookback_days: 5
+    # 拉取最近 N 天内发布的论文（含当天）。可以被环境变量 REDPAPER_ARXIV_LOOKBACK_DAYS
+    # 一次性覆盖（workflow_dispatch 里的 lookback_days_override 输入会注入这个环境变量）。
+    # 默认 7 天对应「每周跑一次」的节奏。
+    lookback_days: 7
     # 单次拉取上限（每个 channel），避免初次跑爆
-    per_channel_limit: 60
+    per_channel_limit: 120
 
   hf_daily:
     enabled: false
