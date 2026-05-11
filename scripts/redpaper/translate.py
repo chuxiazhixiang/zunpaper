@@ -71,9 +71,47 @@ USER_PROMPT_TEMPLATE = textwrap.dedent(
 )
 
 
+def _sanitize_for_llm(text: str) -> str:
+    """Strip LaTeX commands that confuse JSON-mode LLMs.
+
+    `\\cite{foo}` and bare math like `L_\\infty` force the model to emit a
+    backslash inside a JSON string, which some backends (notably DeepSeek
+    with response_format=json_object) silently turn into an empty response.
+    We replace the most common offenders with plain-text equivalents before
+    sending the prompt.
+    """
+    if not text:
+        return text
+    import re as _re
+    # \cite{foo}, \citep{foo}, \ref{foo} — just drop the command entirely.
+    text = _re.sub(r"\\cite[pt]?\*?\{[^}]*\}", "", text)
+    text = _re.sub(r"\\ref\{[^}]*\}", "", text)
+    text = _re.sub(r"\\label\{[^}]*\}", "", text)
+    # \infty, \alpha, \beta etc. — replace common symbols with unicode.
+    SYMS = {
+        r"\\infty": "∞",
+        r"\\alpha": "α", r"\\beta": "β", r"\\gamma": "γ", r"\\delta": "δ",
+        r"\\epsilon": "ε", r"\\theta": "θ", r"\\lambda": "λ", r"\\mu": "μ",
+        r"\\sigma": "σ", r"\\tau": "τ", r"\\phi": "φ", r"\\omega": "ω",
+        r"\\Sigma": "Σ", r"\\Omega": "Ω", r"\\Delta": "Δ",
+        r"\\rightarrow": "→", r"\\leftarrow": "←",
+        r"\\leq": "≤", r"\\geq": "≥", r"\\neq": "≠",
+        r"\\cdot": "·", r"\\times": "×", r"\\pm": "±",
+    }
+    for pat, rep in SYMS.items():
+        text = _re.sub(pat, rep, text)
+    # Collapse any remaining `\\foo` into `foo`
+    text = _re.sub(r"\\([a-zA-Z]+)", r"\1", text)
+    # Collapse double spaces left over
+    text = _re.sub(r"\s{2,}", " ", text)
+    return text.strip()
+
+
 def translate(title: str, abstract: str) -> Translation:
     backend = _resolve_backend()
     fn = _BACKENDS.get(backend, _dryrun)
+    title = _sanitize_for_llm(title)
+    abstract = _sanitize_for_llm(abstract)
     try:
         return fn(title, abstract)
     except Exception as e:
