@@ -1,0 +1,17 @@
+site:
+  title: redpaper
+  subtitle: 每日 AI 论文小红书
+  author: Nangongyeee
+  primary_color: "#FF2442"   # 小红书品牌红
+  accent_color: "#FF6B8A"
+  feed_page_size: 60
+  default_channel: llm
+
+translation:
+  # 模型抽象层；用环境变量选具体后端：
+  #   REDPAPER_LLM_BACKEND = gemini | deepseek | openai | dryrun
+  # dryrun 不调任何 API，把英文照搬当中文，方便本地无 key 调试
+  backend_env: REDPAPER_LLM_BACKEND
+  default_backend: deepseek
+  # 同一篇论文已翻译则跳过
+  cache_dir: site/data/papers

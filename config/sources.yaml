@@ -1,0 +1,34 @@
+# 数据源开关。Phase 1 只用 arxiv，其它源在 Phase 2 接入。
+sources:
+  arxiv:
+    enabled: true
+    # 拉取最近 N 天内发布的论文（含当天）
+    lookback_days: 2
+    # 单次拉取上限（每个 channel），避免初次跑爆
+    per_channel_limit: 60
+
+  hf_daily:
+    enabled: false
+    lookback_days: 2
+
+  semantic_scholar:
+    enabled: false
+
+  alphaxiv:
+    enabled: false
+
+  qbitai:           # 量子位
+    enabled: false
+    lookback_days: 3
+
+  jiqizhixin:       # 机器之心
+    enabled: false
+    lookback_days: 3
+
+  synced_review:    # 新智元
+    enabled: false
+    lookback_days: 3
+
+  manual_xhs:       # 手动维护的小红书 URL 列表
+    enabled: false
+    file: config/manual_xhs.json

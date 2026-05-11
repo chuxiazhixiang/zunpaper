@@ -1,0 +1,76 @@
+# 频道配置：每个频道 = 一组标签 / arXiv 分类 / 关键词
+# 增删频道直接改这个文件，pipeline 会自动按频道拉取去重
+#
+# 字段说明：
+#   id          频道 ID（URL 用，英文小写）
+#   name        频道显示名（中文）
+#   emoji       Tab 上的小图标
+#   arxiv_categories  arXiv 分类码（https://arxiv.org/category_taxonomy）
+#   keywords    标题/摘要必须包含其中至少一个词才算命中（OR 关系，留空表示不过滤）
+#   exclude     标题/摘要包含任意一个就排除
+#   max_per_day 每天最多拉多少篇，超过的丢弃低分的
+
+channels:
+  - id: llm
+    name: 大模型
+    emoji: "🧠"
+    arxiv_categories: [cs.CL, cs.LG]
+    keywords:
+      - large language model
+      - LLM
+      - llama
+      - chatgpt
+      - gpt
+      - reasoning
+      - RLHF
+      - alignment
+      - in-context learning
+      - prompt
+    exclude: []
+    max_per_day: 30
+
+  - id: cv
+    name: 视觉
+    emoji: "👁️"
+    arxiv_categories: [cs.CV]
+    keywords:
+      - diffusion
+      - generation
+      - segmentation
+      - detection
+      - 3D
+      - NeRF
+      - gaussian splatting
+      - video
+    exclude: []
+    max_per_day: 20
+
+  - id: agent
+    name: 智能体
+    emoji: "🤖"
+    arxiv_categories: [cs.AI, cs.LG, cs.MA]
+    keywords:
+      - agent
+      - tool use
+      - multi-agent
+      - planning
+      - world model
+      - embodied
+      - autonomous
+    exclude: []
+    max_per_day: 20
+
+  - id: rl
+    name: 强化学习
+    emoji: "🎮"
+    arxiv_categories: [cs.LG, cs.AI]
+    keywords:
+      - reinforcement learning
+      - RL
+      - policy
+      - reward
+      - PPO
+      - DPO
+      - exploration
+    exclude: []
+    max_per_day: 15

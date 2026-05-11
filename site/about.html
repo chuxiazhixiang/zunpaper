@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>关于 · redpaper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="rp-app-bar">
+      <div class="rp-app-bar__inner">
+        <a class="rp-brand" href="index.html">
+          <span class="rp-brand__logo">红</span>
+          <span>redpaper</span>
+        </a>
+        <div class="rp-search"></div>
+        <a class="rp-icon-btn" href="index.html" aria-label="首页">←</a>
+      </div>
+    </header>
+
+    <main class="rp-container" style="max-width: 720px;">
+      <article class="rp-section" style="padding: 28px 28px;">
+        <h1 style="margin-top: 0;">关于 redpaper</h1>
+        <p>把每日 AI 论文做成「小红书 feed」的小项目。每天定时抓 arXiv 等源、用 LLM 翻译标题与摘要、渲染 PDF 首页，最后用瀑布流呈现。</p>
+
+        <h2>数据源</h2>
+        <ul>
+          <li><b>arXiv</b>：通过官方 API 按分类拉取（Phase 1 已接入）</li>
+          <li><b>Hugging Face Daily Papers</b>：用作热度排序（Phase 2）</li>
+          <li><b>Semantic Scholar</b>：补充引用数与相关论文（Phase 2）</li>
+          <li><b>量子位 / 机器之心 / 新智元</b>：作为中文报道挂在对应论文下（Phase 2）</li>
+          <li><b>AlphaXiv</b>：相关讨论（Phase 2）</li>
+          <li><b>小红书</b>：手动维护链接（Phase 3，可选）</li>
+        </ul>
+
+        <h2>本地交互</h2>
+        <p>点赞、收藏、已读、暗色模式都存在浏览器本地，不需要登录、也不上传任何数据。</p>
+
+        <h2>怎么改配置</h2>
+        <p>仓库里改 <code>config/channels.yaml</code> 调整频道与关键词，<code>config/sources.yaml</code> 启停数据源。CI 每天自动跑一次。</p>
+
+        <h2>致谢</h2>
+        <p>arXiv 提供开放的论文 API；Noto Serif SC 提供漂亮的中文衬线字体；以及所有写论文的研究者。</p>
+      </article>
+    </main>
+
+    <footer class="rp-footer">
+      <p><a href="index.html">← 回到首页</a> · redpaper</p>
+    </footer>
+  </body>
+</html>
