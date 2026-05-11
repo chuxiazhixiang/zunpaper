@@ -83,15 +83,29 @@ def upload_blob(path: Path) -> str:
 
 
 def diff_against(remote_sha: str) -> tuple[list[str], list[str]]:
-    out = run(["git", "diff-tree", "-r", "--name-status", remote_sha, "HEAD"])
+    # Use -z so paths are NUL-separated and not octal-escaped (which would
+    # break unicode filenames like Chinese sticker names).
+    out = run([
+        "git", "-c", "core.quotePath=false",
+        "diff-tree", "-r", "-z", "--name-status",
+        remote_sha, "HEAD",
+    ])
     added: list[str] = []
     deleted: list[str] = []
-    for line in out.splitlines():
-        if not line.strip():
-            continue
-        parts = line.split("\t")
-        status = parts[0]
-        path = parts[-1]
+    # With -z, the output is:  STATUS \0 PATH \0 STATUS \0 PATH \0 ...
+    tokens = out.split("\0")
+    # Strip trailing empty token from the final \0
+    tokens = [t for t in tokens if t != ""]
+    i = 0
+    while i < len(tokens):
+        status = tokens[i]
+        if status.startswith("R") or status.startswith("C"):
+            # Renames/copies emit STATUS \0 OLD \0 NEW
+            path = tokens[i + 2] if i + 2 < len(tokens) else tokens[i + 1]
+            i += 3
+        else:
+            path = tokens[i + 1]
+            i += 2
         if status.startswith("D"):
             deleted.append(path)
         else:
