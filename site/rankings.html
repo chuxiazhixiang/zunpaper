@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#FF2442" />
+    <title>排行榜 · redpaper</title>
+    <link rel="icon" type="image/jpeg" href="assets/img/setsuna.jpg" />
+    <link rel="apple-touch-icon" href="assets/img/setsuna.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="rp-app-bar">
+      <div class="rp-app-bar__inner">
+        <a class="rp-brand" href="index.html">
+          <span class="rp-brand__logo"><img src="assets/img/setsuna.jpg" alt="" /></span>
+          <span>redpaper</span>
+        </a>
+        <div class="rp-search">
+          <span>🔍</span>
+          <input id="search-input" type="search" placeholder="搜索标题 / 摘要 / 作者，回车跳回首页" />
+        </div>
+        <a class="rp-nav-btn" href="index.html" title="首页">
+          <span class="rp-nav-btn__icon">←</span><span class="rp-nav-btn__label">首页</span>
+        </a>
+        <a class="rp-nav-btn" href="favorites.html" title="收藏夹">
+          <span class="rp-nav-btn__icon">❤</span><span class="rp-nav-btn__label">收藏</span>
+        </a>
+        <a class="rp-nav-btn" href="archive.html" title="每日归档">
+          <span class="rp-nav-btn__icon">📅</span><span class="rp-nav-btn__label">归档</span>
+        </a>
+        <button id="theme-toggle" class="rp-icon-btn" title="切换主题" aria-label="切换主题">◐</button>
+      </div>
+    </header>
+
+    <main class="rp-container">
+      <h2 class="rp-page-title">🏆 排行榜</h2>
+      <p class="rp-page-sub">
+        按分数倒排。分数 = 频道关键词命中 + 顶尖实验室 / 关键作者 / HF Daily 上榜 +
+        新鲜度 + 顶会 + 配套代码…（详细公式见每篇详情页的「为啥今天选了它」）
+      </p>
+
+      <nav class="rp-tabs rp-rank-tabs">
+        <div class="rp-tabs__scroll">
+          <button class="rp-tab is-active" data-window="all">🌐 总榜</button>
+          <button class="rp-tab" data-window="week">📅 周榜</button>
+          <button class="rp-tab" data-window="month">📚 月榜</button>
+        </div>
+      </nav>
+
+      <ol id="rank-list" class="rp-rank-list">
+        <li class="rp-status">加载中…</li>
+      </ol>
+    </main>
+
+    <footer class="rp-footer">
+      <p>
+        <a href="index.html">← 首页</a> · <a href="about.html">关于</a> · redpaper
+      </p>
+    </footer>
+
+    <script type="module" src="assets/js/rankings.js"></script>
+    <script src="assets/js/mascot.js" defer></script>
+  </body>
+</html>

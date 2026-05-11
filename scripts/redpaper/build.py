@@ -36,12 +36,24 @@ def _existing_papers() -> dict[str, Paper]:
     return out
 
 
+_CJK_RE = __import__("re").compile(r"[\u4e00-\u9fff]")
+
+
 def _is_translated(p: Paper) -> bool:
     """We treat a paper as fully translated only when every field the UI
-    depends on is present. Missing cover_zh (added later in the project)
-    forces a re-translate so old papers pick up the new Xiaohongshu-style
-    headline on the next CI run."""
-    return bool(p.abstract_zh and p.title_zh and p.cover_zh)
+    depends on is present *and* the title actually has Chinese characters
+    in it. If the source title is English and translation fell back to
+    dryrun (e.g. Gemini quota exhausted), title_zh stays English — those
+    papers must be retried on the next CI run."""
+    if not (p.abstract_zh and p.title_zh and p.cover_zh):
+        return False
+    src_title = p.title or ""
+    src_has_zh = bool(_CJK_RE.search(src_title))
+    tgt_has_zh = bool(_CJK_RE.search(p.title_zh))
+    # 原标题非中文却没翻译出中文 → 视为没翻
+    if not src_has_zh and not tgt_has_zh:
+        return False
+    return True
 
 
 def process_new_papers(
@@ -211,6 +223,7 @@ def write_feed(all_papers: list[Paper]) -> None:
 
     # site.json — site-wide settings the frontend may want (title, colors).
     site = cfg.load_site()
+    sources_cfg = cfg.load_sources()
     with (cfg.DATA_DIR / "site.json").open("w", encoding="utf-8") as f:
         json.dump(
             {
@@ -221,6 +234,11 @@ def write_feed(all_papers: list[Paper]) -> None:
                 "accent_color": site.accent_color,
                 "feed_page_size": site.feed_page_size,
                 "default_channel": site.default_channel,
+                # Crawl meta — let the homepage tell users which window
+                # was scraped this run. Used by the "今日抓取" banner.
+                "crawl_lookback_days": sources_cfg.arxiv_lookback_days,
+                "crawl_evergreen_fallback_days": sources_cfg.arxiv_evergreen_fallback_days,
+                "crawl_generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
             },
             f,
             ensure_ascii=False,
@@ -384,6 +402,23 @@ def run() -> None:
     if sources.arxiv_enabled:
         fresh.update(arxiv_source.fetch_all(channels, sources))
 
+        # Evergreen 回补：今日窗口太薄就放宽 lookback 再扫一遍。
+        # 不影响已经取到的论文（去重靠 dict key），只是把"过去 N 天"里
+        # 当前关键词能命中的高分论文也补进来。新进的论文同样进打分流程，
+        # 只有真的够分量的（高分 / 顶尖实验室）会浮到前面。
+        threshold = sources.arxiv_evergreen_min_papers or 0
+        if threshold > 0 and len(fresh) < threshold:
+            fallback_days = sources.arxiv_evergreen_fallback_days
+            log.info(
+                "evergreen fallback: only %d papers in %d-day window, expanding to %d days",
+                len(fresh), sources.arxiv_lookback_days, fallback_days,
+            )
+            from dataclasses import replace
+            wider = replace(sources, arxiv_lookback_days=fallback_days)
+            for pid, paper in arxiv_source.fetch_all(channels, wider).items():
+                if pid not in fresh:
+                    fresh[pid] = paper
+
     if sources.manual_xhs_enabled:
         for p in manual_xhs_source.load_posts():
             fresh[p.id] = p
@@ -394,6 +429,36 @@ def run() -> None:
             # override channels), but if both sources have the same id we
             # keep the manual-tagged copy.
             fresh[p.id] = p
+
+    # 公众号 / 行业自媒体 — 没引用 arxiv 的高质量原创科普文章也作为
+    # 独立卡片露出。中文已经是中文，跳过翻译；英文走 LLM 翻译。
+    # 所有源都用 channels.yaml 关键词过滤，不相关方向直接丢。
+    news_enabled = {
+        "qbitai": sources.qbitai_enabled,
+        "jiqizhixin": sources.jiqizhixin_enabled,
+        "leiphone": sources.leiphone_enabled,
+        "kr36": sources.kr36_enabled,
+        "ieee_spectrum": sources.ieee_spectrum_enabled,
+        "robohub": sources.robohub_enabled,
+        "therobotreport": sources.therobotreport_enabled,
+        "techcrunch_robotics": sources.techcrunch_robotics_enabled,
+        "synced_review": sources.synced_review_enabled,
+    }
+    # 用 qbitai_lookback_days 作为统一的 news age 上限（它们在 sources.yaml 里
+    # 都是同一个值；按需可以分源走，但目前先简化）。
+    news_max_age = sources.qbitai_lookback_days or 60
+    if any(news_enabled.values()):
+        try:
+            news_papers = cn_news.fetch_news_papers(
+                news_enabled, channels,
+                max_age_days=news_max_age,
+                translate_en=True,
+            )
+            for p in news_papers:
+                if p.id not in fresh:
+                    fresh[p.id] = p
+        except Exception as e:
+            log.warning("cn_news standalone fetch failed: %s", e)
 
     log.info("fetched %d unique papers", len(fresh))
 

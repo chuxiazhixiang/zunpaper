@@ -4,10 +4,15 @@ sources:
     enabled: true
     # 拉取最近 N 天内发布的论文（含当天）。可以被环境变量 REDPAPER_ARXIV_LOOKBACK_DAYS
     # 一次性覆盖（workflow_dispatch 里的 lookback_days_override 输入会注入这个环境变量）。
-    # 默认 7 天对应「每周跑一次」的节奏。
-    lookback_days: 7
+    # 默认 2 天对应「每天跑一次 + 留 1 天 buffer 防 arxiv 投递延迟」的节奏。
+    lookback_days: 2
     # 单次拉取上限（每个 channel），避免初次跑爆
     per_channel_limit: 120
+    # "evergreen 回补"：如果按 lookback_days 拉完一遍后，所有 channel 加起来
+    # 还没 evergreen_min_papers 篇，就放宽窗口到 evergreen_fallback_days
+    # 再拉一次，专门捞过去一段时间内的高质量论文。
+    evergreen_min_papers: 8
+    evergreen_fallback_days: 30
 
   hf_daily:
     enabled: false
@@ -19,17 +24,41 @@ sources:
   alphaxiv:
     enabled: false
 
-  qbitai:           # 量子位
+  qbitai:           # 量子位（RSS + HTML archive 深抓，~200 候选/次）
+    enabled: true
+    lookback_days: 60
+
+  jiqizhixin:       # 机器之心 — 2026-05 公开 RSS 接口已被关闭，留 false
     enabled: false
     lookback_days: 3
 
-  jiqizhixin:       # 机器之心
-    enabled: false
-    lookback_days: 3
+  leiphone:         # 雷峰网（RSS 20 条/次，混合内容，靠关键词过滤）
+    enabled: true
+    lookback_days: 60
 
-  synced_review:    # 新智元
-    enabled: false
-    lookback_days: 3
+  kr36:             # 36氪（RSS 30 条/次，混合内容）
+    enabled: true
+    lookback_days: 60
+
+  ieee_spectrum:    # IEEE Spectrum Robotics（30 条/次，专业，英文 → LLM 翻译）
+    enabled: true
+    lookback_days: 60
+
+  robohub:          # Robohub（75 条/次，机器人专业号）
+    enabled: true
+    lookback_days: 60
+
+  therobotreport:   # The Robot Report（15 条/次，行业新闻）
+    enabled: true
+    lookback_days: 60
+
+  techcrunch_robotics:  # TechCrunch Robotics（20 条/次，创业 / 融资新闻）
+    enabled: true
+    lookback_days: 60
+
+  synced_review:    # Synced Review（英文版机器之心，~10 条/次）
+    enabled: true
+    lookback_days: 60
 
   manual_xhs:       # 手动维护的小红书 URL 列表
     enabled: false

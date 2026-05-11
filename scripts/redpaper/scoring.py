@@ -112,6 +112,33 @@ def _check_hf_trending(paper: Paper, rule: dict) -> dict | int:
     return 0
 
 
+_MEDIA_SOURCES = {
+    "qbitai", "jiqizhixin", "synced_review",
+    "leiphone", "kr36",
+    "ieee_spectrum", "robohub", "therobotreport", "techcrunch_robotics",
+}
+
+_SOURCE_LABEL = {
+    "qbitai": "量子位",
+    "jiqizhixin": "机器之心",
+    "synced_review": "Synced Review",
+    "leiphone": "雷峰网",
+    "kr36": "36氪",
+    "ieee_spectrum": "IEEE Spectrum",
+    "robohub": "Robohub",
+    "therobotreport": "The Robot Report",
+    "techcrunch_robotics": "TechCrunch Robotics",
+}
+
+
+def _check_from_media(paper: Paper, rule: dict) -> dict | int:
+    src = (paper.source or "").lower()
+    if src in _MEDIA_SOURCES:
+        return {"points": rule["points"],
+                "hint": f"被 {_SOURCE_LABEL.get(src, src)} 选中转载"}
+    return 0
+
+
 def _check_keyword_density(paper: Paper, rule: dict) -> dict | int:
     text = ((paper.title or "") + " " + (paper.abstract or "")).lower()
     # Pull the actual channel keyword lists from channels.yaml and count
@@ -164,9 +191,35 @@ def _check_github_repo(paper: Paper, rule: dict) -> dict | int:
 
 def _check_longer_paper(paper: Paper, rule: dict) -> dict | int:
     n = getattr(paper, "page_count", 0) or 0
-    if n >= 8:
+    if n >= 4:
         return {"points": rule["points"], "hint": f"PDF {n} 页"}
     return 0
+
+
+_CONF_VENUE_RE = re.compile(
+    r"""\b(
+        ICRA |
+        IROS |
+        RSS |
+        CoRL |
+        RA-?L |          # RAL / RA-L
+        T-?RO |          # T-RO
+        Humanoids? |
+        IJRR |
+        ICLR |
+        NeurIPS |
+        ICML
+    )\b""",
+    re.IGNORECASE | re.VERBOSE,
+)
+
+
+def _check_conf_venue(paper: Paper, rule: dict) -> dict | int:
+    hay = f"{paper.title or ''}\n{paper.abstract or ''}"
+    m = _CONF_VENUE_RE.search(hay)
+    if not m:
+        return 0
+    return {"points": rule["points"], "hint": f'提到了「{m.group(0)}」'}
 
 
 def _check_cross_channel(paper: Paper, rule: dict) -> dict | int:
@@ -181,10 +234,12 @@ _EVALUATORS = {
     "famous_lab": _check_famous_lab,
     "key_author": _check_key_author,
     "hf_trending": _check_hf_trending,
+    "from_media": _check_from_media,
     "keyword_density": _check_keyword_density,
     "freshness": _check_freshness,
     "github_repo": _check_github_repo,
     "longer_paper": _check_longer_paper,
+    "conf_venue": _check_conf_venue,
     "cross_channel": _check_cross_channel,
 }
 

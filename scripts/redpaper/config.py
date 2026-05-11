@@ -33,12 +33,30 @@ class SourcesConfig:
     arxiv_enabled: bool = True
     arxiv_lookback_days: int = 2
     arxiv_per_channel_limit: int = 60
+    # "Evergreen 回补"：当今日窗口拉出来的论文数 < min_papers 时，
+    # 自动把 lookback 放大到 fallback_days 再补抓一次。
+    arxiv_evergreen_min_papers: int = 0
+    arxiv_evergreen_fallback_days: int = 30
     hf_daily_enabled: bool = False
     semantic_scholar_enabled: bool = False
     alphaxiv_enabled: bool = False
     qbitai_enabled: bool = False
+    qbitai_lookback_days: int = 30
     jiqizhixin_enabled: bool = False
+    leiphone_enabled: bool = False
+    leiphone_lookback_days: int = 60
+    kr36_enabled: bool = False
+    kr36_lookback_days: int = 60
+    ieee_spectrum_enabled: bool = False
+    ieee_spectrum_lookback_days: int = 60
+    robohub_enabled: bool = False
+    robohub_lookback_days: int = 60
+    therobotreport_enabled: bool = False
+    therobotreport_lookback_days: int = 60
+    techcrunch_robotics_enabled: bool = False
+    techcrunch_robotics_lookback_days: int = 60
     synced_review_enabled: bool = False
+    synced_review_lookback_days: int = 60
     manual_xhs_enabled: bool = False
     manual_arxiv_enabled: bool = False
 
@@ -89,12 +107,28 @@ def load_sources() -> SourcesConfig:
         arxiv_enabled=get("arxiv", "enabled", True),
         arxiv_lookback_days=lookback,
         arxiv_per_channel_limit=get("arxiv", "per_channel_limit", 60),
+        arxiv_evergreen_min_papers=get("arxiv", "evergreen_min_papers", 0),
+        arxiv_evergreen_fallback_days=get("arxiv", "evergreen_fallback_days", 30),
         hf_daily_enabled=get("hf_daily", "enabled", False),
         semantic_scholar_enabled=get("semantic_scholar", "enabled", False),
         alphaxiv_enabled=get("alphaxiv", "enabled", False),
         qbitai_enabled=get("qbitai", "enabled", False),
+        qbitai_lookback_days=get("qbitai", "lookback_days", 30),
         jiqizhixin_enabled=get("jiqizhixin", "enabled", False),
+        leiphone_enabled=get("leiphone", "enabled", False),
+        leiphone_lookback_days=get("leiphone", "lookback_days", 60),
+        kr36_enabled=get("kr36", "enabled", False),
+        kr36_lookback_days=get("kr36", "lookback_days", 60),
+        ieee_spectrum_enabled=get("ieee_spectrum", "enabled", False),
+        ieee_spectrum_lookback_days=get("ieee_spectrum", "lookback_days", 60),
+        robohub_enabled=get("robohub", "enabled", False),
+        robohub_lookback_days=get("robohub", "lookback_days", 60),
+        therobotreport_enabled=get("therobotreport", "enabled", False),
+        therobotreport_lookback_days=get("therobotreport", "lookback_days", 60),
+        techcrunch_robotics_enabled=get("techcrunch_robotics", "enabled", False),
+        techcrunch_robotics_lookback_days=get("techcrunch_robotics", "lookback_days", 60),
         synced_review_enabled=get("synced_review", "enabled", False),
+        synced_review_lookback_days=get("synced_review", "lookback_days", 60),
         manual_xhs_enabled=get("manual_xhs", "enabled", False),
         manual_arxiv_enabled=get("manual_arxiv", "enabled", False),
     )

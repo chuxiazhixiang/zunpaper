@@ -1,12 +1,23 @@
 """Chinese AI media: 量子位 / 机器之心 / 新智元.
 
-For each source we fetch the recent article list, peek at each article for a
-mention of an arXiv ID, and attach the article as a "related link" on that
-paper. Articles without an arXiv mention become standalone news cards
-(future Phase 2.5; for now we drop them).
+Two roles:
+1. Enrich existing arXiv papers — scan recent articles for arXiv-id mentions
+   and attach the article as a "related link" on that paper (already done by
+   build_arxiv_index).
+2. Stand-alone news cards (added 2026-05) — articles without an arXiv mention
+   are converted to Paper objects and shown as cards on the homepage, scoped
+   to channels whose keywords appear in the title/description. See
+   `fetch_news_papers()`.
 
 The HTML/RSS endpoints are public, so no key needed. They are best-effort —
 selectors will rot, and a failure of one source must not break the pipeline.
+
+Known RSS health as of 2026-05:
+- qbitai /feed                       OK (~10 latest items, mixed topics)
+- qbitai /category/robot/feed        empty
+- jiqizhixin /rss                    parses OK but body is empty
+- aiera.com.cn /feed (新智元)         timeout / down
+So in practice only 量子位 is producing live news cards right now.
 """
 from __future__ import annotations
 
@@ -79,18 +90,54 @@ def _scan_articles(article_urls: list[tuple[str, str, str]], source: str, source
 
 # Each fetcher returns a list of (title, url, date) tuples, then delegates to _scan_articles.
 
-QBITAI_LIST = "https://www.qbitai.com/category/ai/feed"
-QBITAI_ITEM_RE = re.compile(
-    r"<item>.*?<title><!\[CDATA\[(.*?)\]\]></title>.*?<link>(.*?)</link>.*?<pubDate>(.*?)</pubDate>",
-    re.DOTALL,
-)
+QBITAI_LIST = "https://www.qbitai.com/feed"  # /category/ai/feed 已空，主 feed 还活
+# 2026-05: 量子位 title 不再用 CDATA 包裹，所以这里用更宽松的解析路径，
+# 一次抓出整个 <item> 块，再分别提取字段。
+QBITAI_ITEM_BLOCK_RE = re.compile(r"<item>(.*?)</item>", re.DOTALL)
+
+
+def _field(block: str, name: str) -> str:
+    """Extract `<name>...</name>` from an RSS item block, stripping optional
+    CDATA wrappers. Empty string if absent."""
+    m = re.search(rf"<{name}[^>]*>(.*?)</{name}>", block, re.DOTALL)
+    if not m:
+        return ""
+    raw = m.group(1).strip()
+    cd = re.match(r"<!\[CDATA\[(.*?)\]\]>", raw, re.DOTALL)
+    return (cd.group(1) if cd else raw).strip()
 
 
 def fetch_qbitai(limit: int = 20) -> list[NewsArticle]:
+    """Old arxiv-id-extraction path — kept for `build_arxiv_index`."""
     feed = _safe_get(QBITAI_LIST)
-    items = QBITAI_ITEM_RE.findall(feed)
-    triples = [(t.strip(), u.strip(), d.strip()[:16]) for t, u, d in items]
+    triples: list[tuple[str, str, str]] = []
+    for block in QBITAI_ITEM_BLOCK_RE.findall(feed):
+        title = _field(block, "title")
+        url = _field(block, "link")
+        pubdate = _field(block, "pubDate")
+        if title and url:
+            triples.append((title, url, pubdate[:16]))
     return _scan_articles(triples, "qbitai", "量子位", limit)
+
+
+def _parse_qbitai_items() -> list[dict]:
+    """Lightweight parse — no per-article fetch. Used by news-card path."""
+    feed = _safe_get(QBITAI_LIST)
+    out = []
+    for block in QBITAI_ITEM_BLOCK_RE.findall(feed):
+        title = _field(block, "title")
+        url = _field(block, "link")
+        if not title or not url:
+            continue
+        pubdate = _field(block, "pubDate")
+        desc = re.sub(r"<[^>]+>", " ", _field(block, "description")).strip()
+        out.append({
+            "title": title,
+            "url": url,
+            "pubdate": pubdate,
+            "desc": desc,
+        })
+    return out
 
 
 JIQI_LIST = "https://www.jiqizhixin.com/rss"
@@ -150,4 +197,476 @@ def build_arxiv_index(articles: Iterable[NewsArticle]) -> dict[str, list[NewsArt
     for a in articles:
         for aid in a.arxiv_ids:
             out.setdefault(aid, []).append(a)
+    return out
+
+
+# ----------------------------------------------------------------------
+# News-as-card path: produce Paper objects from media articles so they show
+# up on the homepage alongside arXiv papers.
+# ----------------------------------------------------------------------
+from email.utils import parsedate_to_datetime
+from pathlib import Path
+from urllib.parse import urlparse, urljoin
+import datetime as _dt
+import hashlib
+
+from ..models import Paper
+from .. import config as _cfg
+
+
+def _slug(source: str, url: str) -> str:
+    h = hashlib.sha1(url.encode("utf-8")).hexdigest()[:10]
+    return f"{source}-{h}"
+
+
+def _parse_rfc822(s: str) -> str:
+    """RSS pubDate (RFC 822) -> 'YYYY-MM-DD'. Empty string on parse failure."""
+    try:
+        return parsedate_to_datetime(s).date().isoformat()
+    except Exception:
+        return ""
+
+
+# ----- Article image extraction -----------------------------------------
+# 公众号文章里基本上是「头图 + 正文穿插」结构，第一张正文图（不算 logo /
+# nav / 二维码）往往就是论文 pipeline 或者标题图。我们直接 grep 最大概率
+# 的几个 selector，命中就用，命中不到留空让前端走 CSS 兜底。
+
+_IMG_RE = re.compile(
+    r'<img[^>]+(?:data-src|data-original|src)\s*=\s*["\']([^"\']+)["\']',
+    re.IGNORECASE,
+)
+# 各家正文容器：<article>、.post-content、.article（量子位）、#js_content（公众号）等
+_ARTICLE_BLOCK_RE = re.compile(
+    r'<article[^>]*>(.*?)</article>'
+    r'|<div[^>]+(?:class|id)="[^"]*\b(?:post[-_]content|article[-_]content|article|js_content|main[-_]content|content[-_]body|article-body|entry-content|single-content|post-body)\b[^"]*"[^>]*>(.*?)</div>',
+    re.IGNORECASE | re.DOTALL,
+)
+
+# 站内静态资源 / logo / 二维码 / 默认头像 / 占位图 —— 一律不要
+_IMG_SKIP_RE = re.compile(
+    r'(?:logo|qrcode|qr_code|avatar|spinner|emoji|widget|gravatar|footer|advert|'
+    r'/themes?/|imagesnew/|/head\.|nologin|sprite|favicon|placeholder|blank\.|1x1\.)',
+    re.IGNORECASE,
+)
+
+# 网站头像/默认头图也常用 1x1 占位 → URL 里有 transparent / blank 字样
+def _looks_like_real_image(src: str) -> bool:
+    if not src:
+        return False
+    if _IMG_SKIP_RE.search(src):
+        return False
+    # data URI / base64 不要
+    if src.startswith("data:"):
+        return False
+    return True
+
+
+def _img_score(src: str, base_host: str) -> int:
+    """Heuristic score: higher = more likely the article hero image.
+
+    Signals: + on dedicated image CDNs / uploads paths
+             + on JPG/PNG with year/month folder
+             - on site-template paths
+             - on tiny WP-generated thumbnail variants (filename has -WxH)
+             - on filenames matching size patterns like 100x100"""
+    s = src.lower()
+    score = 0
+    if "wp-content/uploads/" in s or "/uploads/20" in s:
+        score += 5  # 文章自上传图，强信号
+    if any(cdn in s for cdn in ("i.qbitai.com", "img.36krcdn.com", "p1.itc.cn",
+                                  "img.jiqizhixin.com", "static.leiphone.com",
+                                  "media-library", "wp-content/uploads")):
+        score += 3
+    # 网站主域 + theme 静态资源 → 大概率是 logo / banner
+    if "/themes/" in s or "imagesnew" in s:
+        score -= 10
+    # WP 自动缩略图：filename-WxH 后缀（一般是 banner / 头像缩略）
+    m = re.search(r"-(\d+)x(\d+)\.(?:jpe?g|png|webp)", s)
+    if m:
+        w, h = int(m.group(1)), int(m.group(2))
+        if max(w, h) < 400:
+            score -= 4  # 小缩略图，大概率不是首图
+        elif max(w, h) < 700:
+            score -= 1
+    # 同时包含 RoboReport / report-header 之类的 banner 文件名
+    if any(b in s for b in ("roboreport-", "header-", "banner-", "logo-")):
+        score -= 5
+    return score
+
+
+def _extract_first_image(html: str, base_url: str) -> str:
+    """Return the absolute URL of the most-likely article hero image, or ''.
+
+    Strategy: scan ALL <img> on the page (regex 是出了名的对嵌套 div 不友
+    好，硬要圈正文块经常落空)；先用黑名单剔掉明显是 logo / 二维码 / 主
+    题资源的图片；再按启发式打分挑出最像首图的那张。
+    """
+    if not html:
+        return ""
+    base_host = urlparse(base_url).netloc
+    scored: list[tuple[int, int, str]] = []  # (score, index, src)
+    seen: set[str] = set()
+    for idx, src in enumerate(_IMG_RE.findall(html)):
+        if src in seen:
+            continue
+        seen.add(src)
+        if not _looks_like_real_image(src):
+            continue
+        scored.append((_img_score(src, base_host), idx, src))
+    if not scored:
+        return ""
+    # 高分优先；同分时取顺序靠前的那张（一般是首图）
+    scored.sort(key=lambda t: (-t[0], t[1]))
+    src = scored[0][2]
+    if src.startswith("//"):
+        src = "https:" + src
+    elif src.startswith("/"):
+        parsed = urlparse(base_url)
+        src = f"{parsed.scheme}://{parsed.netloc}{src}"
+    elif not src.startswith(("http://", "https://")):
+        src = urljoin(base_url, src)
+    return src
+
+
+def _download_image(url: str, out_path: Path) -> bool:
+    """Best-effort: download `url` and save as JPEG at `out_path`.
+    Resizes oversize images down to 1200px on the long edge to keep covers
+    light. Returns True on success."""
+    try:
+        r = requests.get(
+            url,
+            timeout=TIMEOUT,
+            headers={"User-Agent": USER_AGENT, "Accept": "image/*"},
+            stream=True,
+        )
+        r.raise_for_status()
+        body = r.content
+    except Exception as e:
+        log.debug("image fetch %s failed: %s", url, e)
+        return False
+    try:
+        from io import BytesIO
+        from PIL import Image  # already a dep via render.py
+        im = Image.open(BytesIO(body)).convert("RGB")
+        # downscale only
+        max_side = 1200
+        w, h = im.size
+        if max(w, h) > max_side:
+            scale = max_side / max(w, h)
+            im = im.resize((int(w * scale), int(h * scale)), Image.LANCZOS)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        im.save(out_path, "JPEG", quality=85, optimize=True)
+        return True
+    except Exception as e:
+        log.debug("image save %s failed: %s", url, e)
+        return False
+
+
+def _to_site_rel(p: Path) -> str:
+    return str(p.relative_to(_cfg.SITE_DIR))
+
+
+def _channels_for(text: str, channels) -> list[str]:
+    """Run the user's channel keyword filter against a text blob. Returns
+    every channel id whose keyword list matches (and whose exclude list
+    doesn't match). Empty list = topic doesn't belong on this site."""
+    low = text.lower()
+    matched: list[str] = []
+    for ch in channels:
+        if ch.exclude and any(kw.lower() in low for kw in ch.exclude):
+            continue
+        if not ch.keywords:
+            continue
+        if any(kw.lower() in low for kw in ch.keywords):
+            matched.append(ch.id)
+    return matched
+
+
+def _has_chinese(s: str) -> bool:
+    return bool(re.search(r"[\u4e00-\u9fff]", s or ""))
+
+
+# ----------------------------------------------------------------------
+# Multi-source parsers (RSS + qbitai HTML deep crawl)
+# ----------------------------------------------------------------------
+# Each parser returns: list[dict(title, url, pubdate, desc, lang)]
+# - pubdate: best-effort string (RFC822 / ISO)
+# - lang: 'zh' or 'en' — controls whether we run translate.translate()
+# ----------------------------------------------------------------------
+
+_ITEM_BLOCK_RE = re.compile(r"<item>(.*?)</item>", re.DOTALL)
+_ENTRY_BLOCK_RE = re.compile(r"<entry[^>]*>(.*?)</entry>", re.DOTALL)
+
+
+def _rss_items(feed: str) -> list[str]:
+    return _ITEM_BLOCK_RE.findall(feed)
+
+
+def _atom_entries(feed: str) -> list[str]:
+    return _ENTRY_BLOCK_RE.findall(feed)
+
+
+def _strip_tags(s: str) -> str:
+    return re.sub(r"<[^>]+>", " ", s).strip()
+
+
+def _generic_rss(url: str, lang: str) -> list[dict]:
+    feed = _safe_get(url)
+    if not feed:
+        return []
+    out = []
+    blocks = _rss_items(feed) or _atom_entries(feed)
+    for block in blocks:
+        title = _field(block, "title")
+        # <link> 在 RSS 里是文本，但 Atom 里是 <link href="..."/>
+        link = _field(block, "link")
+        if not link:
+            m = re.search(r'<link[^>]+href="([^"]+)"', block)
+            if m:
+                link = m.group(1)
+        pubdate = _field(block, "pubDate") or _field(block, "published") or _field(block, "updated")
+        desc = _field(block, "description") or _field(block, "summary") or _field(block, "content")
+        desc = _strip_tags(desc)[:400]
+        if not title or not link:
+            continue
+        out.append({"title": title, "url": link, "pubdate": pubdate, "desc": desc, "lang": lang})
+    return out
+
+
+# ----- 量子位 -----------------------------------------------------------
+
+def _parse_qbitai_rss() -> list[dict]:
+    feed = _safe_get(QBITAI_LIST)
+    out = []
+    for block in QBITAI_ITEM_BLOCK_RE.findall(feed):
+        title = _field(block, "title")
+        url = _field(block, "link")
+        if not title or not url:
+            continue
+        pubdate = _field(block, "pubDate")
+        desc = _strip_tags(_field(block, "description"))
+        out.append({"title": title, "url": url, "pubdate": pubdate, "desc": desc, "lang": "zh"})
+    return out
+
+
+_QBITAI_POST_HREF_RE = re.compile(
+    r'<a[^>]+href="(https://www\.qbitai\.com/\d{4}/\d{2}/\d+\.html)"[^>]*>(.*?)</a>',
+    re.DOTALL,
+)
+
+
+def _parse_qbitai_archive(pages: int = 8) -> list[dict]:
+    """Walk qbitai HTML pagination (/page/2 … /page/N) for older posts.
+    The RSS only carries ~10 latest; this gets us back ~25 posts per page
+    so ~200 candidates over 8 pages = roughly 25-40 days back."""
+    seen: dict[str, dict] = {}
+    for p in range(1, pages + 1):
+        url = f"https://www.qbitai.com/page/{p}"
+        html = _safe_get(url)
+        if not html:
+            continue
+        for purl, inner in _QBITAI_POST_HREF_RE.findall(html):
+            text = _strip_tags(inner)
+            text = re.sub(r"\s+", " ", text)
+            if len(text) < 3:
+                continue
+            if purl in seen:
+                continue
+            seen[purl] = {"title": text, "url": purl, "pubdate": "", "desc": "", "lang": "zh"}
+        time.sleep(0.4)
+    return list(seen.values())
+
+
+def _parse_qbitai() -> list[dict]:
+    """Combined: RSS (recent) + HTML archive (older). Dedup by URL."""
+    by_url: dict[str, dict] = {}
+    for it in _parse_qbitai_rss():
+        by_url[it["url"]] = it
+    for it in _parse_qbitai_archive(pages=8):
+        if it["url"] not in by_url:
+            by_url[it["url"]] = it
+    return list(by_url.values())
+
+
+# ----- 雷峰网 -----------------------------------------------------------
+def _parse_leiphone() -> list[dict]:
+    return _generic_rss("https://www.leiphone.com/feed", lang="zh")
+
+
+# ----- 36kr -------------------------------------------------------------
+def _parse_36kr() -> list[dict]:
+    return _generic_rss("https://36kr.com/feed", lang="zh")
+
+
+# ----- IEEE Spectrum Robotics ------------------------------------------
+def _parse_ieee_spectrum() -> list[dict]:
+    return _generic_rss("https://spectrum.ieee.org/feeds/topic/robotics.rss", lang="en")
+
+
+# ----- Robohub ----------------------------------------------------------
+def _parse_robohub() -> list[dict]:
+    return _generic_rss("https://robohub.org/feed/", lang="en")
+
+
+# ----- The Robot Report -------------------------------------------------
+def _parse_therobotreport() -> list[dict]:
+    return _generic_rss("https://www.therobotreport.com/feed/", lang="en")
+
+
+# ----- TechCrunch Robotics ---------------------------------------------
+def _parse_techcrunch_robotics() -> list[dict]:
+    return _generic_rss("https://techcrunch.com/category/robotics/feed/", lang="en")
+
+
+# ----- Synced Review (English 新智元 sibling) --------------------------
+def _parse_syncedreview() -> list[dict]:
+    return _generic_rss("https://syncedreview.com/feed/", lang="en")
+
+
+def _build_fetchers(enabled: dict[str, bool]) -> list[tuple[str, str, callable]]:
+    """Return (source_id, display_name, parser) for each enabled source.
+    Order = display order in logs; doesn't affect scoring."""
+    chain: list[tuple[str, str, callable]] = []
+    if enabled.get("qbitai"):
+        chain.append(("qbitai", "量子位", _parse_qbitai))
+    if enabled.get("leiphone"):
+        chain.append(("leiphone", "雷峰网", _parse_leiphone))
+    if enabled.get("kr36"):
+        chain.append(("kr36", "36氪", _parse_36kr))
+    if enabled.get("ieee_spectrum"):
+        chain.append(("ieee_spectrum", "IEEE Spectrum", _parse_ieee_spectrum))
+    if enabled.get("robohub"):
+        chain.append(("robohub", "Robohub", _parse_robohub))
+    if enabled.get("therobotreport"):
+        chain.append(("therobotreport", "The Robot Report", _parse_therobotreport))
+    if enabled.get("techcrunch_robotics"):
+        chain.append(("techcrunch_robotics", "TechCrunch Robotics", _parse_techcrunch_robotics))
+    if enabled.get("synced_review"):
+        chain.append(("synced_review", "Synced Review", _parse_syncedreview))
+    return chain
+
+
+def _max_age_days(s: str, days: int) -> bool:
+    """Returns True if the pubdate is within `days` of today, OR we cannot
+    parse the date (then we keep the item to be safe — better some noise
+    than dropping good content because of a date-format edge case)."""
+    if not s or days <= 0:
+        return True
+    iso = _parse_rfc822(s)
+    if not iso:
+        return True
+    try:
+        d = _dt.date.fromisoformat(iso)
+    except Exception:
+        return True
+    return (_dt.date.today() - d).days <= days
+
+
+def fetch_news_papers(enabled: dict[str, bool], channels,
+                       limit_per_source: int = 200,
+                       fetch_covers: bool = True,
+                       max_age_days: int = 0,
+                       translate_en: bool = False) -> list[Paper]:
+    """Produce stand-alone news Paper cards from enabled media sources.
+
+    Args:
+        enabled: dict of {source_id: bool}
+        channels: list of Channel — used for keyword filtering
+        limit_per_source: max items per source after parsing (before filter)
+        fetch_covers: download first article image as cover
+        max_age_days: drop items older than N days (0 = no age filter)
+        translate_en: 已废弃 — 英文条目交给主 pipeline 的 translate_with_retry 处理，
+                      这里只设置 source 信息，避免被认成"已翻译过"。Chinese
+                      条目则直接复用原文（中文翻成中文徒劳无功）。
+    """
+    out: list[Paper] = []
+    fetchers = _build_fetchers(enabled)
+    covers_dir = _cfg.COVER_DIR
+
+    for source, source_name, parser in fetchers:
+        try:
+            items = parser()[:limit_per_source]
+        except Exception as e:
+            log.warning("%s news fetch failed: %s", source, e)
+            continue
+
+        kept = 0
+        skipped_age = 0
+        skipped_topic = 0
+        for it in items:
+            title = it.get("title", "").strip()
+            url = it.get("url", "").strip()
+            desc = it.get("desc", "").strip()
+            lang = it.get("lang", "zh")
+            pubdate_raw = it.get("pubdate", "")
+            if not title or not url:
+                continue
+
+            if max_age_days and not _max_age_days(pubdate_raw, max_age_days):
+                skipped_age += 1
+                continue
+
+            channel_ids = _channels_for(title + "\n" + desc, channels)
+            if not channel_ids:
+                skipped_topic += 1
+                continue
+
+            pub = _parse_rfc822(pubdate_raw)
+            slug = _slug(source, url)
+
+            # 中文条目：跳过 LLM 翻译，title_zh / abstract_zh 直接复用原文。
+            # 英文条目：保持 zh 字段为空，让主 pipeline 的 translate_with_retry
+            #          后续帮忙翻成中文（自带重试/多 backend fallback）。
+            if lang == "zh":
+                title_zh = title
+                abstract_zh = desc
+                tldr_zh = (desc or title)[:80]
+                cover_zh = tldr_zh
+            else:
+                title_zh = ""
+                abstract_zh = ""
+                tldr_zh = ""
+                cover_zh = ""
+
+            cover_rel = ""
+            if fetch_covers:
+                cover_path = covers_dir / f"{slug}.jpg"
+                if cover_path.exists():
+                    cover_rel = _to_site_rel(cover_path)
+                else:
+                    html = _safe_get(url)
+                    img_url = _extract_first_image(html, url) if html else ""
+                    if img_url and _download_image(img_url, cover_path):
+                        cover_rel = _to_site_rel(cover_path)
+                        log.info("news cover saved: %s ← %s", slug, img_url[:80])
+
+            p = Paper(
+                id=slug,
+                source=source,
+                title=title,
+                abstract=desc or title,
+                title_zh=title_zh,
+                abstract_zh=abstract_zh,
+                tldr_zh=tldr_zh,
+                cover_zh=cover_zh,
+                authors=[],
+                primary_category="",
+                categories=[],
+                published=pub,
+                updated=pub,
+                arxiv_id="",
+                pdf_url="",
+                abs_url=url,
+                cover_image=cover_rel,
+                channels=channel_ids,
+                source_tags=[source],
+            )
+            out.append(p)
+            kept += 1
+
+        log.info("news[%s]: %d kept / %d total (skipped: %d off-topic, %d too-old)",
+                 source, kept, len(items), skipped_topic, skipped_age)
+
+    log.info("fetched %d news papers total", len(out))
     return out

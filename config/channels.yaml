@@ -10,8 +10,11 @@
 #   exclude           标题/摘要包含任意一个就排除（兜底过滤生物医工等非感兴趣方向）
 #   max_per_day       软上限：每个频道每次拉多少，超过的按分数排弃
 #
-# 当前配置面向「人形机器人 / 通用机器人」方向，偏好顺序：
-#     whole-body > loco-manip > vla > 其他
+# 关键词来源：站长 Zotero 库 282 篇人形机器人论文挖掘 +
+#             2024–2026 ICRA/IROS/CoRL/RSS/RA-L 顶会标题。
+#             所有关键词都聚焦在留下的 5 个频道方向，不再扩到通用 AI。
+#
+# 当前偏好顺序：whole-body ≈ vla ≈ loco-manip > manipulation > locomotion
 
 # 通用排除：临床 / 医疗器械 / 康复方向不要
 _global_exclude: &MEDICAL_EXCLUDE
@@ -36,25 +39,75 @@ channels:
     emoji: "🦿"
     arxiv_categories: [cs.RO, cs.LG]
     keywords:
+      # 基础术语
       - locomotion
       - bipedal
       - quadruped
-      - humanoid
-      - walking
+      - humanoid walking
+      - walking robot
       - gait
       - legged robot
+      - legged locomotion
       - parkour
       - balance control
       - jumping robot
       - running robot
+      # 论文常见动作 / 任务
+      - agile locomotion
+      - dynamic locomotion
+      - reactive locomotion
+      - perceptive locomotion
+      - whole-body parkour
+      - terrain traversal
+      - rough terrain
+      - footwear-aware
+      - foothold
+      - footstep planning
+      - ground reaction force
+      - soccer robot
+      - striker skills
+      - kicking robot
+      - sim-to-real locomotion
+      - robust locomotion
+      - blind locomotion
+      # 经典平台 / 硬件名（直接出现在标题里就大概率是 locomotion 工作）
+      - ANYmal
+      - Cassie
+      - Digit robot
+      - Spot robot
+      - Aliengo
+      - Unitree G1
+      - Unitree H1
+      - Unitree B2
+      - Unitree A1
+      - Unitree Go
+      - Booster T1
+      # 中文别名（用于匹配公众号 / 中文摘要）
+      - 双足
+      - 四足
+      - 步态
+      - 行走机器人
+      - 跑酷
+      - 腿足
+      - 宇树
+      - 跳跃机器人
+      # 公众号常见的"行业 / 平台"词：本来落在 robotics 大伞下但没匹配
+      # 任何具体频道，加在这里让 locomotion 兜底
+      - quadruped robot
+      - robot dog
+      - 机器狗
+      - 四足机器人
+      - 双足机器人
+      - 步行机器人
     exclude: *MEDICAL_EXCLUDE
-    max_per_day: 15
+    max_per_day: 18
 
   - id: whole-body
     name: 全身控制
     emoji: "🤸"
     arxiv_categories: [cs.RO, cs.SY, eess.SY]
     keywords:
+      # 基础术语
       - whole-body
       - whole body
       - WBC
@@ -63,27 +116,195 @@ channels:
       - reactive control
       - humanoid control
       - humanoid policy
-      - MPC
+      - MPC humanoid
       - full-body
+      # Zotero 高频方向词
+      - whole-body control
+      - whole-body humanoid
+      - humanoid whole-body
+      - shared whole-body
+      - whole-body tracking
+      - whole-body parkour
+      - human-humanoid
+      - humanoid-object interaction
+      - humanoid soccer
+      - humanoid loco
+      - perceptive humanoid
+      - human-scene interaction
+      - human motion synthesis
+      - human motion diffusion
+      - motion imitation
+      - motion tracking
+      - motion retargeting
+      - retargeting
+      - omniretarget
+      - root-guided
+      - hindsight perturbation
+      - adaptive compliance
+      - adversarial differential
+      - physics-based motion
+      - physics-based character
+      - SMPL
+      - SMPL-X
+      - sim2real humanoid
+      # 知名系统名（出现就基本是全身控制方向）
+      - HumanPlus
+      - DreamControl
+      - FRoM-W1
+      - OmniRetarget
+      - PvP humanoid
+      - CHIP humanoid
+      - UniPhys
+      - HiWET
+      - Pro-HOI
+      # 中文别名
+      - 全身控制
+      - 全身策略
+      - 人形机器人
+      - 人形控制
+      - 类人机器人
+      - 类人控制
+      - 运动模仿
+      - 动作模仿
+      - 动作重定向
+      - 全身追踪
+      - 全身策略
+      - 物理仿真控制
+      - 物理推理
+      - 具身大模型
+      - 具身智能
+      # 2025–2026 一线人形机器人平台 / 公司（公众号高频词）
+      - humanoid robot
+      - humanoids
+      - Boston Dynamics
+      - Atlas robot
+      - Atlas humanoid
+      - Spot robot
+      - Spot reasoning
+      - Digit robot
+      - Figure 01
+      - Figure 02
+      - Figure AI
+      - Figure humanoid
+      - 1X NEO
+      - 1X humanoid
+      - Tesla Optimus
+      - Tesla bot
+      - Apptronik
+      - Apollo humanoid
+      - Apollo robot
+      - GR-1
+      - GR-2
+      - GR1
+      - Optimus Prime
+      - "Unitree H1"
+      - "Unitree G1"
+      - "Unitree H2"
+      - 宇树科技
+      - 宇树 H1
+      - 宇树 G1
+      - 魔法原子
+      - 智元
+      - 智元机器人
+      - 傅利叶
+      - 鹿明
+      - 鹿明机器人
+      - 星动纪元
+      - 星海
+      - 银河通用
+      - 灵宝CASBOT
+      - 灵宝
+      - 众擎
+      - 深圳人形
+      - 深圳机器人
+      - 字节具身
+      - 自进化具身
+      - 自进化具身大脑
+      - 具身大脑
+      - 类人形
+      - 类人形机器人
+      - 人形产线
+      - 人形量产
+      - humanoid production
+      - humanoid manufacturing
+      - iRobot
+      - household humanoid
+      - companion robot
     exclude: *MEDICAL_EXCLUDE
-    max_per_day: 30        # ← 偏好方向：多拉一点
+    max_per_day: 35        # ← 站长 Zotero 里最多的方向
 
   - id: manipulation
     name: 操作 / 灵巧手
     emoji: "🖐️"
     arxiv_categories: [cs.RO, cs.CV]
     keywords:
+      # 基础术语
       - manipulation
       - dexterous
+      - dexterous manipulation
+      - dexterous hand
       - grasp
+      - grasping
       - in-hand
-      - tactile
+      - in-hand manipulation
+      - tactile manipulation
       - bimanual
+      - bimanual manipulation
+      - dual-arm
+      - dual arm
       - imitation learning
       - diffusion policy
       - action chunking
+      - action chunking transformer
+      # 系统 / 数据集 / 平台名
+      - ALOHA
+      - mobile ALOHA
+      - ACT policy
+      - residual policy
+      - DROID dataset
+      - Open X-Embodiment
+      - RT-X
+      - RoboCasa
+      - RoboTwin
+      - manipulation foundation
+      - large behavior model
+      - contact-rich
+      - long-horizon manipulation
+      - tool use
+      - pick-and-place
+      - assembly
+      - peg-in-hole
+      - cloth manipulation
+      - deformable manipulation
+      - fine-grained manipulation
+      - object motion guided
+      # 中文别名
+      - 灵巧手
+      - 抓取
+      - 双臂操作
+      - 模仿学习
+      - 扩散策略
+      - 双手协调
+      - 触觉操作
+      - 操作策略
+      - 操控
+      - LIBERO
+      # 表演 / 服务场景里的"手"也算 manipulation
+      - robot hand
+      - robot hands
+      - dexterity
+      - hand-like dexterity
+      - ping pong robot
+      - ping-pong robot
+      - table tennis robot
+      - Reachy
+      - Reachy Mini
+      - cooking robot
+      - kitchen robot
+      - 包饺子机器人
+      - 双手机器人
     exclude: *MEDICAL_EXCLUDE
-    max_per_day: 15
+    max_per_day: 20
 
   - id: loco-manip
     name: 移动操作
@@ -97,73 +318,165 @@ channels:
       - long-horizon manipulation
       - mobile manipulator
       - humanoid manipulation
+      # 新加
+      - whole-body loco-manipulation
+      - loco-manip
+      - locomanipulation
+      - end-effector tracking
+      - long-horizon humanoid
+      - scene interaction
+      - box rearrangement
+      - rearrangement task
+      - mobile humanoid
+      - humanoid loco-manipulation
+      - bimanual mobile
+      - household humanoid
+      - kitchen task
+      - door opening robot
+      # 中文别名
+      - 移动操作
+      - 全身操作
+      - 长时序操作
+      - 长时序任务
+      - 移动机器人
+      - 移动操控
+      - 移动机械臂
+      # 仓储 / 物流 / 楼宇配送场景 — 都属于 loco-manip 大伞
+      - warehouse robot
+      - warehouse robotics
+      - warehouse logistics
+      - logistics robot
+      - lights-out warehouse
+      - mobile robot guide
+      - 仓储机器人
+      - 物流机器人
+      - 配送机器人
+      - 楼宇配送
     exclude: *MEDICAL_EXCLUDE
-    max_per_day: 25        # ← 偏好方向
-
-  - id: perception
-    name: 感知 / 导航
-    emoji: "🧭"
-    arxiv_categories: [cs.RO, cs.CV]
-    keywords:
-      - SLAM
-      - 3D scene
-      - occupancy
-      - point cloud
-      - depth estimation
-      - visual navigation
-      - exploration
-      - terrain
-      - tactile sensing
-      - robot perception
-    exclude: *MEDICAL_EXCLUDE
-    max_per_day: 8
+    max_per_day: 28        # ← 偏好方向
 
   - id: vla
     name: VLA / 全身策略
     emoji: "🤖"
     arxiv_categories: [cs.RO, cs.LG, cs.CV]
     keywords:
+      # 基础术语
       - vision-language-action
-      - VLA
+      - VLA model
+      - VLA policy
+      - VLA for
       - whole-body VLA
       - generalist policy
+      - generalist robot
       - foundation policy
       - robot foundation model
-      - RT-2
-      - π0
-      - openvla
-      - octo
+      - foundation model robot
       - humanoid policy
       - embodied policy
+      - embodied agent
+      # 2024–26 一线系统名
+      - RT-1
+      - RT-2
+      - π0
+      - π_0
+      - Pi-0
+      - "π 0.6"
+      - "pi 0.6"
+      - π*
+      - OpenVLA
+      - Octo policy
+      - GR00T
+      - NVIDIA GR00T
+      - Helix VLA
+      - Figure Helix
+      - WholeBodyVLA
+      - unified latent VLA
+      - latent VLA
+      - dual-system VLA
+      - chain-of-action
+      - PaLI-Gemma
+      - PaLM-E
+      - large behavior model
+      - generative robot policy
+      - generative robotic control
+      - generative manipulation policy
+      # 中文别名
+      - 视觉语言动作
+      - 具身基础模型
+      - 通用策略
+      - 通用机器人模型
+      - 机器人大模型
+      - 具身大模型
+      - 具身智能
+      - 双系统
+      # 中文公众号常见说法
+      - 具身大脑
+      - 具身机器人
+      - 自进化具身
+      - 具身世界模型
+      - 物理智能
+      # 2025–2026 知名通用机器人 startups
+      - embodied AGI
+      - embodied AI
+      - embodied agents
+      - Physical Intelligence
+      - Skild AI
+      - Genesis AI
+      - Scout AI
+      - Generalist Robotics
+      - Generalist policy
+      - Covariant
+      - Sanctuary AI
+      - Sanctuary Phoenix
+      - Hugging Face robotics
+      - HF robotics
     exclude: *MEDICAL_EXCLUDE
-    max_per_day: 25        # ← 偏好方向（含 whole-body VLA）
+    max_per_day: 28        # ← 偏好方向（含 whole-body VLA）
 
-  - id: vln
-    name: 视觉语言导航
-    emoji: "🗺️"
-    arxiv_categories: [cs.RO, cs.CV, cs.CL]
-    keywords:
-      - vision-language navigation
-      - VLN
-      - instruction-following navigation
-      - embodied navigation
-      - habitat
-    exclude: *MEDICAL_EXCLUDE
-    max_per_day: 6
+  # - id: perception
+  #   name: 感知 / 导航
+  #   emoji: "🧭"
+  #   arxiv_categories: [cs.RO, cs.CV]
+  #   keywords:
+  #     - SLAM
+  #     - 3D scene
+  #     - occupancy
+  #     - point cloud
+  #     - depth estimation
+  #     - visual navigation
+  #     - exploration
+  #     - terrain
+  #     - tactile sensing
+  #     - robot perception
+  #   exclude: *MEDICAL_EXCLUDE
+  #   max_per_day: 8
 
-  - id: llm
-    name: 机器人大模型
-    emoji: "🧠"
-    arxiv_categories: [cs.CL, cs.LG, cs.AI]
-    keywords:
-      - LLM agent
-      - LLM robot
-      - tool use
-      - code-as-policies
-      - embodied LLM
-      - SayCan
-      - reasoning robot
-      - chain-of-thought robot
-      - planning LLM robot
-    exclude: *MEDICAL_EXCLUDE
-    max_per_day: 6
+  # - id: vln
+  #   name: 视觉语言导航
+  #   emoji: "🗺️"
+  #   arxiv_categories: [cs.RO, cs.CV, cs.CL]
+  #   keywords:
+  #     - vision-language navigation
+  #     - VLN
+  #     - instruction-following navigation
+  #     - embodied navigation
+  #     - habitat
+  #   exclude: *MEDICAL_EXCLUDE
+  #   max_per_day: 6
+
+  # - id: llm
+  #   name: 机器人大模型
+  #   emoji: "🧠"
+  #   arxiv_categories: [cs.CL, cs.LG, cs.AI]
+  #   keywords:
+  #     - LLM agent
+  #     - LLM robot
+  #     - tool use
+  #     - code-as-policies
+  #     - embodied LLM
+  #     - SayCan
+  #     - reasoning robot
+  #     - chain-of-thought robot
+  #     - planning LLM robot
+  #   exclude: *MEDICAL_EXCLUDE
+  #   max_per_day: 6

@@ -9,7 +9,9 @@
 //   <script src="assets/js/mascot.js" defer></script>
 // 就行。其它依赖会按顺序异步注入。
 //
-// 用户随时可以点 × 收起，状态记在 localStorage(rp-mascot)；下次刷新还是收起态。
+// 交互：右上角小箭头 = 隐藏（不卸载，只把整个挂件折成一个角落小气泡）；
+// 点小气泡 = 把站娘叫回来。状态记在 localStorage(rp-mascot)：
+//   'shown' (默认) | 'hidden'
 
 (function () {
   const STORAGE_KEY = 'rp-mascot';
@@ -26,8 +28,12 @@
   if (typeof window === 'undefined' || !window.document) return;
   if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
   if (window.innerWidth < MIN_VIEWPORT_WIDTH) return;
-  if (localStorage.getItem(STORAGE_KEY) === 'off') return;
   if (document.getElementById('rp-mascot')) return;  // already mounted
+
+  // 一旦写过 'off'（旧版本的"永久关闭"），自动升级为隐藏态，给用户一次复活机会。
+  if (localStorage.getItem(STORAGE_KEY) === 'off') {
+    localStorage.setItem(STORAGE_KEY, 'hidden');
+  }
 
   function loadScript(src) {
     return new Promise((resolve, reject) => {
@@ -41,18 +47,48 @@
     });
   }
 
-  function injectDOM() {
+  let _modelLoaded = false;
+  let _loadingModel = false;
+
+  function applyVisibility(state) {
+    const wrap = document.getElementById('rp-mascot');
+    const bubble = document.getElementById('rp-mascot-bubble');
+    const hidden = state === 'hidden';
+    if (wrap) wrap.classList.toggle('is-hidden', hidden);
+    if (bubble) bubble.classList.toggle('is-active', hidden);
+    localStorage.setItem(STORAGE_KEY, hidden ? 'hidden' : 'shown');
+    // 第一次从「隐藏」切到「显示」时再加载 PIXI + 模型，避免给关掉的用户白挂 ~400KB JS。
+    if (!hidden && !_modelLoaded && !_loadingModel) {
+      _loadingModel = true;
+      init().finally(() => { _loadingModel = false; });
+    }
+  }
+
+  function injectBubble() {
+    if (document.getElementById('rp-mascot-bubble')) return;
+    const b = document.createElement('button');
+    b.id = 'rp-mascot-bubble';
+    b.type = 'button';
+    b.title = '叫站娘出来';
+    b.setAttribute('aria-label', '叫站娘出来');
+    b.textContent = '🫧';
+    b.addEventListener('click', () => applyVisibility('shown'));
+    document.body.appendChild(b);
+  }
+
+  function injectShell() {
+    if (document.getElementById('rp-mascot')) return;
     const wrap = document.createElement('div');
     wrap.id = 'rp-mascot';
     wrap.innerHTML = `
-      <button class="rp-mascot__close" aria-label="收起站娘" title="收起">×</button>
+      <button class="rp-mascot__close" aria-label="隐藏站娘" title="隐藏（右下角小气泡可叫回）">－</button>
       <canvas id="rp-mascot-canvas" width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}"></canvas>
     `;
     document.body.appendChild(wrap);
 
-    wrap.querySelector('.rp-mascot__close').addEventListener('click', () => {
-      wrap.remove();
-      localStorage.setItem(STORAGE_KEY, 'off');
+    wrap.querySelector('.rp-mascot__close').addEventListener('click', (e) => {
+      e.stopPropagation();
+      applyVisibility('hidden');
     });
   }
 
@@ -72,6 +108,7 @@
   }
 
   async function init() {
+    if (_modelLoaded) return;
     try {
       await loadScript('assets/live2d/core/live2dcubismcore.min.js');
       await loadScript('https://cdn.jsdelivr.net/npm/pixi.js@6.5.10/dist/browser/pixi.min.js');
@@ -86,7 +123,7 @@
       return;
     }
 
-    injectDOM();
+    injectShell();
     const canvas = document.getElementById('rp-mascot-canvas');
 
     const app = new window.PIXI.Application({
@@ -164,13 +201,36 @@
       clearInterval(exprTimer);
       document.removeEventListener('mousemove', onMouseMove);
     });
+
+    _modelLoaded = true;
+    // 在 init 完成后再把可见性 class 同步上去（防止用户在加载过程中又点了隐藏）
+    if (localStorage.getItem(STORAGE_KEY) === 'hidden') {
+      applyVisibility('hidden');
+    } else {
+      applyVisibility('shown');
+    }
+  }
+
+  // Boot: always inject the bubble so the user can call her back if hidden.
+  // Then decide whether to eagerly load PIXI+model based on saved visibility.
+  function boot() {
+    injectBubble();
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved === 'hidden') {
+      // 站娘默认隐藏，让小气泡显出来等用户召唤；不下载 PIXI
+      const b = document.getElementById('rp-mascot-bubble');
+      if (b) b.classList.add('is-active');
+      return;
+    }
+    // 默认 / 'shown'：异步预热 PIXI + 模型
+    init();
   }
 
   // Defer to next macrotask so we don't compete with critical site JS for
   // network in the first 200ms (PIXI bundle is ~400KB gzip).
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(init, 600);
+    setTimeout(boot, 600);
   } else {
-    window.addEventListener('DOMContentLoaded', () => setTimeout(init, 600));
+    window.addEventListener('DOMContentLoaded', () => setTimeout(boot, 600));
   }
 })();

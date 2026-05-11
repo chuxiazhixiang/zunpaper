@@ -105,24 +105,51 @@ def fetch_and_render(pdf_url: str, paper_id: str, covers_dir: Path) -> tuple[str
     """Download a PDF, render its first few pages.
 
     Returns (cover_path_or_None, preview_paths_list, page_count_or_0).
-    Caches against disk: if {paper_id}.jpg + {paper_id}-p{2..N}.jpg all exist
-    we skip the PDF download entirely.
+
+    Caching:
+    - If the cover AND all PREVIEW_PAGES-1 page jpgs exist on disk, skip the
+      PDF download entirely (full hit).
+    - If only the cover exists but some/all preview pages are missing, we
+      STILL download the PDF and render the missing pages. This is the case
+      that bit us before: papers cached in the cover-only era were never
+      getting multi-page previews even after the feature shipped, because
+      we early-returned as soon as the cover jpg existed.
     """
     cover_jpg = covers_dir / f"{paper_id}.jpg"
+    expected_preview_count = max(0, PREVIEW_PAGES - 1)
+
     if cover_jpg.exists():
-        # Check which preview pages we already have on disk.
         existing_previews: list[str] = []
+        missing_any = False
         for idx in range(2, PREVIEW_PAGES + 1):
             p = covers_dir / f"{paper_id}-p{idx}.jpg"
             if p.exists():
                 existing_previews.append(_to_site_rel(p))
-        # Cached: page_count unknown without re-opening pdf, return 0.
-        return _to_site_rel(cover_jpg), existing_previews, 0
+            else:
+                missing_any = True
+
+        if not missing_any or expected_preview_count == 0:
+            # Full hit — no need to re-download the PDF.
+            return _to_site_rel(cover_jpg), existing_previews, 0
+
+        # Partial hit: cover present but at least one preview page is missing.
+        # Re-fetch the PDF and render the missing pages. render_pages itself
+        # is idempotent (it overwrites existing files / re-renders missing ones).
+        log.info("partial cache for %s: cover ok, %d/%d previews missing — re-fetching",
+                 paper_id, expected_preview_count - len(existing_previews), expected_preview_count)
 
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
         tmp_path = Path(tmp.name)
     try:
         if not download_pdf(pdf_url, tmp_path):
+            # Couldn't fetch — fall back to whatever we have on disk.
+            if cover_jpg.exists():
+                existing_previews = []
+                for idx in range(2, PREVIEW_PAGES + 1):
+                    p = covers_dir / f"{paper_id}-p{idx}.jpg"
+                    if p.exists():
+                        existing_previews.append(_to_site_rel(p))
+                return _to_site_rel(cover_jpg), existing_previews, 0
             return None, [], 0
         cover_rel, preview_rels, pages = render_pages(tmp_path, paper_id, covers_dir)
         return cover_rel, preview_rels, pages

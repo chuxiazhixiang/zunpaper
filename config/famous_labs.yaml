@@ -12,76 +12,180 @@
 # - 任意 pattern 命中就算这一条 label 命中
 # - 同一张卡片不会重复同一个 label
 #
-# 文件改完后，重新跑 GitHub Action (或本地 `python scripts/build.py`)
-# 才会重新算徽章；前端代码不需要动。
+# 名单来源：站长 Zotero 库 282 篇里出现频率最高的「通讯/末作者」+
+#          2024–2026 人形机器人圈活跃的公司与高校组。
 # =================================================================
 
 # ----- 顶尖实验室 / 公司 / 研究机构 ----------------------------------
 # 匹配 affiliation 和摘要里的关键词。是你想要的「Lab badge」。
 labs:
-  # 人形 / 通用机器人公司
-  - { label: "Boston Dynamics",  patterns: ["boston dynamics"] }
-  - { label: "Figure",           patterns: ["figure ai", "figure robotics"] }
-  - { label: "1X",               patterns: ["1x technologies", "1x tech"] }
+  # ---- 人形 / 通用机器人公司（2025–26 一线）---------------------------
+  - { label: "Boston Dynamics",  patterns: ["boston dynamics", "atlas robot"] }
+  - { label: "Figure",           patterns: ["figure ai", "figure robotics", "figure helix"] }
+  - { label: "1X",               patterns: ["1x technologies", "1x tech", "1X NEO"] }
   - { label: "Tesla AI",         patterns: ["tesla", "optimus"] }
   - { label: "Sanctuary AI",     patterns: ["sanctuary ai"] }
   - { label: "Agility",          patterns: ["agility robotics", "digit robot"] }
   - { label: "Apptronik",        patterns: ["apptronik", "apollo robot"] }
   - { label: "Unitree",          patterns: ["unitree", "宇树"] }
+  - { label: "Booster Robotics", patterns: ["booster robotics", "booster t1"] }
+  - { label: "Fourier",          patterns: ["fourier intelligence", "傅利叶"] }
+  - { label: "UBTech",           patterns: ["ubtech", "ubtech robotics", "walker x"] }
+  - { label: "XPENG Robotics",   patterns: ["xpeng robotics", "xpeng iron", "小鹏机器人"] }
+  - { label: "Engineered Arts",  patterns: ["engineered arts", "ameca"] }
+  - { label: "K-Scale Labs",     patterns: ["k-scale labs"] }
+  - { label: "RobotEra",         patterns: ["robotera"] }
+  - { label: "Galbot",           patterns: ["galbot", "银河通用"] }
+  - { label: "Limx Dynamics",    patterns: ["limx dynamics", "逐际动力"] }
+  - { label: "AgiBot",           patterns: ["agibot", "智元", "agibot robot"] }
+  - { label: "LeapMotor / 朱萧木", patterns: ["leapmotor"] }
+  - { label: "Astribot",         patterns: ["astribot"] }
+  - { label: "Sirius",           patterns: ["sirius robotics"] }
 
-  # 大厂 / 大模型实验室
-  - { label: "Google DeepMind",  patterns: ["deepmind", "google research"] }
+  # ---- VLA / Foundation-policy 创业（2024+）---------------------------
+  - { label: "Physical Intelligence (π)", patterns: ["physical intelligence", "physicalintelligence.company", "π_{0", "pi_0", "π zero"] }
+  - { label: "Skild AI",         patterns: ["skild ai"] }
+  - { label: "Covariant",        patterns: ["covariant.ai", "covariant ai"] }
+  - { label: "Robust AI",        patterns: ["robust.ai", "robust ai"] }
+  - { label: "Robotic AI",       patterns: ["robotic.ai"] }
+  - { label: "Symbiotic Labs",   patterns: ["symbiotic labs"] }
+
+  # ---- 大厂 / 大模型实验室 -------------------------------------------
+  - { label: "Google DeepMind",  patterns: ["deepmind", "google research", "google robotics", "google brain"] }
   - { label: "OpenAI",           patterns: ["openai"] }
   - { label: "Anthropic",        patterns: ["anthropic"] }
-  - { label: "Meta FAIR",        patterns: ["meta ai", "fair labs", "facebook ai"] }
-  - { label: "NVIDIA",           patterns: ["nvidia", "gear lab"] }
+  - { label: "Meta FAIR",        patterns: ["meta ai", "fair labs", "facebook ai", "meta fair"] }
+  - { label: "NVIDIA",           patterns: ["nvidia", "gear lab", "nvidia gear", "nvidia research"] }
   - { label: "Microsoft",        patterns: ["microsoft research"] }
-  - { label: "Toyota TRI / RAI", patterns: ["toyota research", "rai institute"] }
+  - { label: "Toyota TRI / RAI", patterns: ["toyota research", "rai institute", "tri robotics"] }
+  - { label: "Apple Robotics",   patterns: ["apple machine learning research"] }
   - { label: "Hugging Face",     patterns: ["hugging face", "huggingface"] }
+  - { label: "DeepMind Robotics",patterns: ["deepmind robotics", "deepmind embodied"] }
 
-  # 高校机器人 / 大组
-  - { label: "Berkeley AI",      patterns: ["uc berkeley", "berkeley artificial intelligence", "bair lab"] }
-  - { label: "Stanford",         patterns: ["stanford university"] }
+  # ---- 高校机器人 / 大组 ---------------------------------------------
+  - { label: "Berkeley (BAIR)",  patterns: ["uc berkeley", "berkeley artificial intelligence", "bair lab", "berkeley ai research"] }
+  - { label: "Stanford",         patterns: ["stanford university", "stanford ai", "stanford iris", "stanford robotics"] }
   - { label: "CMU RI",           patterns: ["carnegie mellon", "cmu robotics", "robotics institute"] }
-  - { label: "MIT CSAIL",        patterns: ["csail", "massachusetts institute of technology"] }
-  - { label: "ETH",              patterns: ["eth zurich", "eth zürich", "anybotics"] }
+  - { label: "MIT CSAIL",        patterns: ["csail", "massachusetts institute of technology", "mit csail"] }
+  - { label: "ETH (RSL)",        patterns: ["eth zurich", "eth zürich", "anybotics", "robotic systems lab"] }
   - { label: "UCSD",             patterns: ["university of california, san diego", "ucsd"] }
   - { label: "Princeton",        patterns: ["princeton university"] }
-  - { label: "ZJU",              patterns: ["zhejiang university"] }
+  - { label: "UPenn GRASP",      patterns: ["upenn", "grasp lab"] }
+  - { label: "Cornell",          patterns: ["cornell university"] }
+  - { label: "Caltech AMBER",    patterns: ["california institute of technology", "amber lab", "caltech"] }
+  - { label: "KAIST",            patterns: ["kaist", "korea advanced institute"] }
+  - { label: "SFU",              patterns: ["simon fraser university"] }
+  - { label: "EPFL",             patterns: ["epfl"] }
+  - { label: "TUM",              patterns: ["technical university of munich", "tu munich"] }
+  - { label: "IIT (Italy)",      patterns: ["istituto italiano di tecnologia", "italian institute of technology"] }
 
-  # 国内
+  # ---- 国内高校 / Lab -------------------------------------------------
   - { label: "清华",              patterns: ["tsinghua university", "tsinghua", "清华"] }
   - { label: "北大",              patterns: ["peking university", "北京大学", "北大"] }
-  - { label: "上海 AI Lab",       patterns: ["shanghai ai lab", "shanghai artificial intelligence laboratory", "上海人工智能实验室"] }
+  - { label: "上海 AI Lab",       patterns: ["shanghai ai lab", "shanghai artificial intelligence laboratory", "上海人工智能实验室", "openrobotlab"] }
+  - { label: "ZJU",              patterns: ["zhejiang university", "浙江大学"] }
+  - { label: "SJTU",             patterns: ["shanghai jiao tong", "上海交通大学"] }
+  - { label: "HKUST",            patterns: ["hong kong university of science and technology", "hkust"] }
+  - { label: "HKU",              patterns: ["university of hong kong", "the hong kong"] }
+  - { label: "USTC",             patterns: ["university of science and technology of china", "ustc"] }
+  - { label: "ShanghaiTech",     patterns: ["shanghaitech"] }
+  - { label: "TeleAI",           patterns: ["teleai", "电信 ai", "中国电信"] }
+  - { label: "Beihang (BUAA)",   patterns: ["beihang university", "buaa", "北航"] }
+  - { label: "NWPU",             patterns: ["northwestern polytechnical", "nwpu", "西北工业"] }
+  - { label: "NUS",              patterns: ["national university of singapore"] }
+  - { label: "NTU",              patterns: ["nanyang technological"] }
+
+  # ---- 中国大厂 -------------------------------------------------------
   - { label: "字节",              patterns: ["bytedance", "byte dance", "字节"] }
   - { label: "DeepSeek",         patterns: ["deepseek"] }
   - { label: "阿里",              patterns: ["alibaba", "tongyi", "通义"] }
   - { label: "智谱",              patterns: ["zhipu", "glm-"] }
   - { label: "Moonshot",         patterns: ["moonshot", "kimi"] }
+  - { label: "百度",              patterns: ["baidu research"] }
+  - { label: "腾讯",              patterns: ["tencent ai", "tencent robotics"] }
 
 # ----- 关键作者 ------------------------------------------------------
 # 在论文作者列表中做子串匹配（大小写不敏感）。命中后挂 "⭐ <label>"。
-# 想加自己的「师承八卦名单」就在下面拼。
+# 名单按 Zotero 282 篇库的「通讯/末作者频次」+ 圈内活跃度排，重点优先。
 authors:
-  # 美东 / 美西大牛 — manipulation / RL
+  # ---- 站长 Zotero 里出现最多的通讯（机器人 + 全身控制 + VLA）-------
+  - { label: "Guanya Shi",       patterns: ["Guanya Shi"] }
+  - { label: "Yuke Zhu",         patterns: ["Yuke Zhu"] }
+  - { label: "C. Karen Liu",     patterns: ["C. Karen Liu", "Karen Liu"] }
+  - { label: "Xue Bin Peng",     patterns: ["Xue Bin Peng", "Jason Peng"] }
+  - { label: "Xiaolong Wang",    patterns: ["Xiaolong Wang"] }
+  - { label: "Jingbo Wang",      patterns: ["Jingbo Wang"] }
+  - { label: "Jiangmiao Pang",   patterns: ["Jiangmiao Pang"] }
+  - { label: "Siyuan Huang",     patterns: ["Siyuan Huang"] }
+  - { label: "Xuelong Li",       patterns: ["Xuelong Li"] }
+  - { label: "Hongyang Li",      patterns: ["Hongyang Li"] }
+  - { label: "Linxi (Jim) Fan",  patterns: ["Linxi Fan", "Jim Fan"] }
+  - { label: "Zhengyi Luo",      patterns: ["Zhengyi Luo"] }
+  - { label: "Tairan He",        patterns: ["Tairan He"] }
+  - { label: "Wenli Xiao",       patterns: ["Wenli Xiao"] }
+  - { label: "Xuxin Cheng",      patterns: ["Xuxin Cheng"] }
+  - { label: "Tony Zhao",        patterns: ["Tony Z. Zhao", "Tony Zhao"] }
+  - { label: "Brianna Zitkovich",patterns: ["Brianna Zitkovich"] }
+  - { label: "Yijie Guo",        patterns: ["Yijie Guo"] }
+  - { label: "Yue Wang (USC)",   patterns: ["Yue Wang"] }
+  - { label: "Li Yi",            patterns: ["Li Yi"] }
+  - { label: "Hongyang Li (SAIL)", patterns: ["Hongyang Li"] }
+
+  # ---- 全身控制 / Locomotion 顶组 ----------------------------------
+  - { label: "Marco Hutter",     patterns: ["Marco Hutter"] }
+  - { label: "Jemin Hwangbo",    patterns: ["Jemin Hwangbo"] }
+  - { label: "Joonho Lee",       patterns: ["Joonho Lee"] }
+  - { label: "Aaron Ames",       patterns: ["Aaron D. Ames", "Aaron Ames"] }
+  - { label: "Koushil Sreenath", patterns: ["Koushil Sreenath"] }
+  - { label: "Sangbae Kim",      patterns: ["Sangbae Kim"] }
+  - { label: "Hae-Won Park",     patterns: ["Hae-Won Park"] }
+  - { label: "Max Simchowitz",   patterns: ["Max Simchowitz"] }
+  - { label: "Pulkit Agrawal",   patterns: ["Pulkit Agrawal"] }
+  - { label: "Alan Fern",        patterns: ["Alan Fern"] }
+
+  # ---- Manipulation / Imitation 顶组 -------------------------------
   - { label: "Sergey Levine",    patterns: ["Sergey Levine"] }
   - { label: "Chelsea Finn",     patterns: ["Chelsea Finn"] }
   - { label: "Pieter Abbeel",    patterns: ["Pieter Abbeel"] }
   - { label: "Russ Tedrake",     patterns: ["Russ Tedrake"] }
   - { label: "Shuran Song",      patterns: ["Shuran Song"] }
-  - { label: "Jitendra Malik",   patterns: ["Jitendra Malik"] }
   - { label: "Jeannette Bohg",   patterns: ["Jeannette Bohg"] }
-  - { label: "Tony Zhao",        patterns: ["Tony Z. Zhao", "Tony Zhao"] }
-  - { label: "Karol Hausman",    patterns: ["Karol Hausman"] }
+  - { label: "Lerrel Pinto",     patterns: ["Lerrel Pinto"] }
+  - { label: "Jiajun Wu",        patterns: ["Jiajun Wu"] }
+  - { label: "Dorsa Sadigh",     patterns: ["Dorsa Sadigh"] }
+  - { label: "Yunzhu Li",        patterns: ["Yunzhu Li"] }
+  - { label: "Angjoo Kanazawa",  patterns: ["Angjoo Kanazawa"] }
+  - { label: "Roberto Calandra", patterns: ["Roberto Calandra"] }
+  - { label: "Peter Stone",      patterns: ["Peter Stone"] }
+  - { label: "Animesh Garg",     patterns: ["Animesh Garg"] }
+  - { label: "Jitendra Malik",   patterns: ["Jitendra Malik"] }
 
-  # 双足 / 全身控制
-  - { label: "Marco Hutter",     patterns: ["Marco Hutter"] }
-  - { label: "Jemin Hwangbo",    patterns: ["Jemin Hwangbo"] }
-  - { label: "Joonho Lee",       patterns: ["Joonho Lee"] }
-
-  # VLA / Foundation policy
+  # ---- VLA / Foundation policy --------------------------------------
   - { label: "Brian Ichter",     patterns: ["Brian Ichter"] }
   - { label: "Ted Xiao",         patterns: ["Ted Xiao"] }
+  - { label: "Karol Hausman",    patterns: ["Karol Hausman"] }
+  - { label: "Karl Pertsch",     patterns: ["Karl Pertsch"] }
+  - { label: "Quan Vuong",       patterns: ["Quan Vuong"] }
+  - { label: "Danny Driess",     patterns: ["Danny Driess"] }
+  - { label: "Andy Zeng",        patterns: ["Andy Zeng"] }
+  - { label: "Suraj Nair",       patterns: ["Suraj Nair"] }
+  - { label: "Fei Xia",          patterns: ["Fei Xia"] }
+  - { label: "Mohit Shridhar",   patterns: ["Mohit Shridhar"] }
+  - { label: "Sudeep Dasari",    patterns: ["Sudeep Dasari"] }
+  - { label: "Boyuan Chen",      patterns: ["Boyuan Chen"] }
+  - { label: "Yifeng Zhu",       patterns: ["Yifeng Zhu"] }
+  - { label: "Zhenjia Xu",       patterns: ["Zhenjia Xu"] }
 
-  # 国内人形相关 — 自己挑你佩服的人填进来
-  # - { label: "<中文名/英文名>", patterns: ["<在论文里出现的拼写>"] }
+  # ---- 国内人形 / 通用机器人通讯 -----------------------------------
+  - { label: "Yang Gao (清华)",   patterns: ["Yang Gao"] }
+  - { label: "Huazhe Xu",        patterns: ["Huazhe Xu"] }
+  - { label: "Hao Su",           patterns: ["Hao Su"] }
+  - { label: "Ping Luo",         patterns: ["Ping Luo"] }
+  - { label: "Wenping Wang",     patterns: ["Wenping Wang"] }
+  - { label: "Wenjun Zeng",      patterns: ["Wenjun Zeng"] }
+  - { label: "Xinge Zhu",        patterns: ["Xinge Zhu"] }
+  - { label: "Hang Zhao",        patterns: ["Hang Zhao"] }
+  - { label: "Wei-Shi Zheng",    patterns: ["Wei-Shi Zheng"] }
+  - { label: "Yue Gao",          patterns: ["Yue Gao"] }
+  - { label: "Xipeng Qiu",       patterns: ["Xipeng Qiu"] }
+  - { label: "Kris Chen",        patterns: ["Kris Chen"] }

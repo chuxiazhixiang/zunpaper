@@ -237,7 +237,13 @@ function renderPaper(p, all) {
       </div>
 
       <div class="rp-post__actions">
-        ${p.abs_url ? `<a class="rp-btn rp-btn--primary" href="${escapeHTML(p.abs_url)}" target="_blank" rel="noopener">打开 arXiv</a>` : ''}
+        ${p.abs_url ? `<a class="rp-btn rp-btn--primary" href="${escapeHTML(p.abs_url)}" target="_blank" rel="noopener">${
+          (p.source || '').toLowerCase() === 'arxiv' ? '打开 arXiv'
+            : (p.source || '').toLowerCase() === 'qbitai' ? '阅读 · 量子位'
+            : (p.source || '').toLowerCase() === 'jiqizhixin' ? '阅读 · 机器之心'
+            : (p.source || '').toLowerCase() === 'synced_review' ? '阅读 · 新智元'
+            : '阅读原文'
+        }</a>` : ''}
         ${p.pdf_url ? `<a class="rp-btn" href="${escapeHTML(p.pdf_url)}" target="_blank" rel="noopener">下载 PDF</a>` : ''}
         <button class="rp-btn" id="bibtex-btn">复制 BibTeX</button>
         <button class="rp-btn" id="share-btn">复制链接</button>

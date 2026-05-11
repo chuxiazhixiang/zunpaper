@@ -2,9 +2,10 @@ name: Daily build & deploy
 
 on:
   schedule:
-    # 每周一 UTC 00:00 = 北京时间周一 08:00 自动跑一次
-    # (站长偏好按周拉，不再每天打扰)
-    - cron: "0 0 * * MON"
+    # 每天 UTC 23:00 = 北京时间次日 07:00 自动跑一次
+    # （arXiv 在 UTC 1:00 左右刷出当天投递，等够 22h 保证新论文都进来；
+    #   早上推送，刚好早饭时间能看到当日新内容。）
+    - cron: "0 23 * * *"
   workflow_dispatch:
     inputs:
       llm_backend:
