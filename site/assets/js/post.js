@@ -6,6 +6,7 @@ import {
   formatAuthors,
   paperUrl,
   showToast,
+  attachSearchRedirect,
   HEART_SVG_OUTLINE,
   HEART_SVG_FILL,
 } from './utils.js';
@@ -284,6 +285,7 @@ function renderNotFound() {
 
 async function main() {
   Theme.init();
+  attachSearchRedirect();
   const themeBtn = document.querySelector('#theme-toggle');
   themeBtn?.addEventListener('click', () => {
     const mode = Theme.cycle();

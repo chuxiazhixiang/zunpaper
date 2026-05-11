@@ -65,6 +65,23 @@ export function paperUrl(id) {
   return `post.html?id=${encodeURIComponent(id)}`;
 }
 
+/** Wire up a search input that submits by jumping back to the home page with
+ *  `?q=` in the URL. The home page feed.js reads that on load. */
+export function attachSearchRedirect(selector = '#search-input') {
+  const input = document.querySelector(selector);
+  if (!input) return;
+  function go() {
+    const q = input.value.trim();
+    if (!q) return;
+    window.location.href = `index.html?q=${encodeURIComponent(q)}`;
+  }
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') go();
+  });
+  const btn = document.querySelector(`${selector} + .rp-search__go, .rp-search__go`);
+  btn?.addEventListener('click', go);
+}
+
 // Heart icon (svg, color follows currentColor)
 export const HEART_SVG_OUTLINE =
   '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';

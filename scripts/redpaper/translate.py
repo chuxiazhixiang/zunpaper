@@ -218,14 +218,30 @@ _BACKENDS: dict[str, Callable[[str, str], Translation]] = {
 
 
 def translate_with_retry(title: str, abstract: str, retries: int = 2, backoff: float = 2.0) -> Translation:
-    """Helper that retries transient errors with exponential backoff."""
+    """Helper that retries transient errors with exponential backoff.
+
+    Some backends (notably DeepSeek on math-heavy abstracts) occasionally
+    return valid JSON with all empty fields — JSON mode strips invalid
+    output instead of erroring. Treat that as a soft failure and retry
+    instead of silently falling back to English text.
+    """
     last_exc: Exception | None = None
     for attempt in range(retries + 1):
         try:
-            return translate(title, abstract)
+            t = translate(title, abstract)
+            if t.title_zh and t.cover_zh:
+                return t
+            log.warning(
+                "translate attempt %d returned empty fields (title_zh=%r cover_zh=%r); retrying",
+                attempt + 1, t.title_zh, t.cover_zh,
+            )
         except Exception as e:  # pragma: no cover
             last_exc = e
-            if attempt < retries:
-                time.sleep(backoff * (2 ** attempt))
-    log.error("translate failed after %d attempts: %s", retries + 1, last_exc)
+            log.warning("translate attempt %d errored: %s", attempt + 1, e)
+        if attempt < retries:
+            time.sleep(backoff * (2 ** attempt))
+    log.error(
+        "translate failed after %d attempts (last_exc=%s); using dryrun fallback",
+        retries + 1, last_exc,
+    )
     return _dryrun(title, abstract)

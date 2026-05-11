@@ -167,6 +167,14 @@ function wireUpChrome() {
 async function main() {
   Theme.init();
   wireUpChrome();
+  // Pre-fill the search box from ?q= so search-on-subpages round-trips here.
+  const params = new URLSearchParams(window.location.search);
+  const initialQ = params.get('q');
+  if (initialQ) {
+    STATE.searchQuery = initialQ;
+    const el = document.querySelector('#search-input');
+    if (el) el.value = initialQ;
+  }
   await loadData();
   buildChannelTabs();
   renderFeed();

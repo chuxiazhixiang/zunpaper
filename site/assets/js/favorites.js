@@ -7,6 +7,7 @@ import {
   escapeHTML,
   formatAuthors,
   paperUrl,
+  attachSearchRedirect,
   HEART_SVG_OUTLINE,
   HEART_SVG_FILL,
   showToast,
@@ -170,6 +171,7 @@ function renderAll() {
 
 async function main() {
   Theme.init();
+  attachSearchRedirect();
   document.querySelector('#theme-toggle')?.addEventListener('click', () => {
     const mode = Theme.cycle();
     showToast(mode === 'auto' ? '跟随系统' : mode === 'dark' ? '暗色模式' : '亮色模式');

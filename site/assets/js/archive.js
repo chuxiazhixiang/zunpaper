@@ -6,6 +6,7 @@ import {
   escapeHTML,
   formatAuthors,
   paperUrl,
+  attachSearchRedirect,
   showToast,
 } from './utils.js';
 
@@ -57,6 +58,7 @@ function renderDayList(days, activeDay) {
 
 async function main() {
   Theme.init();
+  attachSearchRedirect();
   document.querySelector('#theme-toggle')?.addEventListener('click', () => {
     const mode = Theme.cycle();
     showToast(mode === 'auto' ? '跟随系统' : mode === 'dark' ? '暗色模式' : '亮色模式');

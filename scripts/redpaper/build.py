@@ -17,7 +17,7 @@ from .sources import hf_daily as hf_daily_source
 from .sources import semantic_scholar as ss_source
 from .sources import cn_news
 from .sources import manual_xhs as manual_xhs_source
-from .translate import translate_with_retry, _dryrun as _translate_dryrun  # noqa: F401
+from .translate import translate_with_retry
 
 log = logging.getLogger(__name__)
 
@@ -69,16 +69,6 @@ def process_new_papers(
 
         if not _is_translated(paper):
             t = translate_with_retry(paper.title, paper.abstract)
-            # If the LLM came back empty (some math/edge papers occasionally
-            # do this), backfill with the English text so at least the UI
-            # has *something* to show instead of a blank cover.
-            if not t.title_zh or not t.cover_zh:
-                fb = _translate_dryrun(paper.title, paper.abstract)
-                t.title_zh = t.title_zh or fb.title_zh
-                t.abstract_zh = t.abstract_zh or fb.abstract_zh
-                t.tldr_zh = t.tldr_zh or fb.tldr_zh
-                t.cover_zh = t.cover_zh or fb.cover_zh
-                log.warning("translate returned empty for %s; using dryrun fallback", paper.id)
             paper.title_zh = t.title_zh or paper.title_zh or paper.title
             paper.abstract_zh = t.abstract_zh or paper.abstract_zh or paper.abstract
             paper.tldr_zh = t.tldr_zh or paper.tldr_zh
@@ -319,13 +309,6 @@ def run() -> None:
 
         if not _is_translated(paper):
             t = translate_with_retry(paper.title, paper.abstract)
-            if not t.title_zh or not t.cover_zh:
-                fb = _translate_dryrun(paper.title, paper.abstract)
-                t.title_zh = t.title_zh or fb.title_zh
-                t.abstract_zh = t.abstract_zh or fb.abstract_zh
-                t.tldr_zh = t.tldr_zh or fb.tldr_zh
-                t.cover_zh = t.cover_zh or fb.cover_zh
-                log.warning("back-fill empty for %s; using dryrun fallback", paper.id)
             paper.title_zh = t.title_zh or paper.title_zh or paper.title
             paper.abstract_zh = t.abstract_zh or paper.abstract_zh or paper.abstract
             paper.tldr_zh = t.tldr_zh or paper.tldr_zh
