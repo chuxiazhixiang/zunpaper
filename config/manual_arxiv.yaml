@@ -1,0 +1,19 @@
+# 用户精选论文 —— 「贴 arxiv 链接就上墙」
+#
+# 每加一行就能让一篇论文直接出现在首页（无视频道关键词过滤），并默认获得
+# 「📌 用户精选」徽章 + 「scoring.yaml 的 manual_pin」分数加成。
+#
+# 支持的格式（任选其一，每条都可独立写）：
+#   - "https://arxiv.org/abs/2501.12345"
+#   - "https://arxiv.org/pdf/2501.12345"
+#   - "2501.12345"
+#   - "2501.12345v2"          # 版本号会被自动剥掉
+#   - { id: "2501.12345", note: "我觉得这篇很 cool", channels: ["manipulation"] }
+#
+# 删一行不会自动从网站上撤掉论文 —— 那已经被 cache 在 site/data/papers/。
+# 如果想撤掉，直接删掉 site/data/papers/arxiv-XXXX-XXXXX.json 然后下一次 daily
+# 重建即可（手动 push 也行）。
+#
+# Tip: 可以 `python scripts/add_paper.py https://arxiv.org/abs/xxx` 自动追加。
+
+papers: []

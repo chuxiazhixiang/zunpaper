@@ -6,6 +6,8 @@ import {
   pickStickers,
   stickersHTML,
   loadStickerManifest,
+  loadPalettes,
+  coverStyleAttr,
   escapeHTML,
   formatAuthors,
   paperUrl,
@@ -14,6 +16,7 @@ import {
 } from './utils.js';
 
 let _stickers = [];
+let _palettes = [];
 
 async function loadDays() {
   return fetch('data/days.json').then((r) => r.json()).catch(() => ({ days: [] }));
@@ -29,9 +32,10 @@ function cardHTML(p) {
   const headline = p.cover_zh || p.tldr_zh || titleZh;
   const source = (p.source || '').toUpperCase();
   const stickers = stickersHTML(pickStickers(p.id, _stickers, 2));
+  const paletteStyle = coverStyleAttr(p.id, _palettes, cover.style);
   return `
     <a class="rp-card" href="${paperUrl(p.id)}">
-      <div class="rp-cover ${cover.cls}">
+      <div class="rp-cover ${cover.cls}"${paletteStyle ? ` style="${paletteStyle}"` : ''}>
         <span class="rp-cover__source">${escapeHTML(source)}</span>
         <p class="rp-cover__headline">${escapeHTML(headline)}</p>
         ${stickers}
@@ -72,7 +76,7 @@ async function main() {
   });
 
   const params = new URLSearchParams(window.location.search);
-  _stickers = await loadStickerManifest();
+  [_stickers, _palettes] = await Promise.all([loadStickerManifest(), loadPalettes()]);
   const { days } = await loadDays();
   const requested = params.get('date');
   const activeDay = requested || days[0];

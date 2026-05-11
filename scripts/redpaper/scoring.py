@@ -74,6 +74,15 @@ def _rules() -> list[dict]:
 #   - dict { "points": int, "hint": str }   to override the hint with paper-
 #                     specific info (e.g. which lab matched)
 
+def _check_manual_pin(paper: Paper, rule: dict) -> dict | int:
+    """User manually pinned this paper via config/manual_arxiv.yaml."""
+    if (paper.source or "").lower() == "manual_arxiv":
+        return rule["points"]
+    if "manual_pin" in (paper.source_tags or []):
+        return rule["points"]
+    return 0
+
+
 def _check_famous_lab(paper: Paper, rule: dict) -> dict | int:
     labs_mod._ensure_loaded()
     aff_hay = "\n".join(a.affiliation for a in paper.authors if a.affiliation)
@@ -168,6 +177,7 @@ def _check_cross_channel(paper: Paper, rule: dict) -> dict | int:
 
 
 _EVALUATORS = {
+    "manual_pin": _check_manual_pin,
     "famous_lab": _check_famous_lab,
     "key_author": _check_key_author,
     "hf_trending": _check_hf_trending,

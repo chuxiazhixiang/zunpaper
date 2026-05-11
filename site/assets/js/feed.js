@@ -6,6 +6,8 @@ import {
   pickStickers,
   stickersHTML,
   loadStickerManifest,
+  loadPalettes,
+  coverStyleAttr,
   escapeHTML,
   formatAuthors,
   paperUrl,
@@ -18,19 +20,22 @@ const STATE = {
   channels: [],
   papers: [],
   stickers: [],
+  palettes: [],
   activeChannel: 'all',
   searchQuery: '',
 };
 
 async function loadData() {
-  const [index, channelsResp, stickers] = await Promise.all([
+  const [index, channelsResp, stickers, palettes] = await Promise.all([
     fetch('data/index.json').then((r) => r.json()).catch(() => ({ papers: [] })),
     fetch('data/channels.json').then((r) => r.json()).catch(() => ({ channels: [] })),
     loadStickerManifest(),
+    loadPalettes(),
   ]);
   STATE.papers = index.papers || [];
   STATE.channels = channelsResp.channels || [];
   STATE.stickers = stickers || [];
+  STATE.palettes = palettes || [];
 }
 
 function buildChannelTabs() {
@@ -83,6 +88,8 @@ function badgeHTML(badge) {
       ? 'rp-badge rp-badge--fresh'
       : badge.kind === 'lab'
       ? 'rp-badge rp-badge--lab'
+      : badge.kind === 'pin'
+      ? 'rp-badge rp-badge--pin'
       : 'rp-badge';
   return `<span class="${cls}">${escapeHTML(badge.label)}</span>`;
 }
@@ -101,10 +108,11 @@ function cardHTML(p) {
   const authors = formatAuthors(p.authors || []);
 
   const stickerHtml = stickersHTML(pickStickers(p.id, STATE.stickers, 2));
+  const paletteStyle = coverStyleAttr(p.id, STATE.palettes, cover.style);
 
   return `
     <a class="rp-card ${read ? 'is-read' : ''}" href="${paperUrl(p.id)}" data-id="${p.id}">
-      <div class="rp-cover ${cover.cls}">
+      <div class="rp-cover ${cover.cls}"${paletteStyle ? ` style="${paletteStyle}"` : ''}>
         <span class="rp-cover__source">${escapeHTML(source)}</span>
         <p class="rp-cover__headline">${escapeHTML(headline)}</p>
         ${stickerHtml}

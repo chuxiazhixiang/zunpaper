@@ -7,6 +7,8 @@ import {
   pickStickers,
   stickersHTML,
   loadStickerManifest,
+  loadPalettes,
+  coverStyleAttr,
   escapeHTML,
   formatAuthors,
   paperUrl,
@@ -19,6 +21,7 @@ import {
 const STATE = {
   papers: [],          // master list from index.json
   stickers: [],
+  palettes: [],
   activeCategory: '',  // '' means "全部"
 };
 
@@ -35,10 +38,11 @@ function cardHTML(p) {
   const cats = Favorites.categoriesOf(p.id);
 
   const stickers = stickersHTML(pickStickers(p.id, STATE.stickers, 2));
+  const paletteStyle = coverStyleAttr(p.id, STATE.palettes, cover.style);
 
   return `
     <a class="rp-card" href="${paperUrl(p.id)}" data-id="${p.id}">
-      <div class="rp-cover ${cover.cls}">
+      <div class="rp-cover ${cover.cls}"${paletteStyle ? ` style="${paletteStyle}"` : ''}>
         <span class="rp-cover__source">${escapeHTML(source)}</span>
         <p class="rp-cover__headline">${escapeHTML(headline)}</p>
         ${stickers}
@@ -184,9 +188,14 @@ async function main() {
     showToast(mode === 'auto' ? '跟随系统' : mode === 'dark' ? '暗色模式' : '亮色模式');
   });
 
-  const [index, stickers] = await Promise.all([loadIndex(), loadStickerManifest()]);
+  const [index, stickers, palettes] = await Promise.all([
+    loadIndex(),
+    loadStickerManifest(),
+    loadPalettes(),
+  ]);
   STATE.papers = index.papers || [];
   STATE.stickers = stickers || [];
+  STATE.palettes = palettes || [];
   renderAll();
 }
 

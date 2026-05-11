@@ -3,7 +3,9 @@ sources:
   arxiv:
     enabled: true
     # 拉取最近 N 天内发布的论文（含当天）
-    lookback_days: 2
+    # 5 天的窗口能保证周末没断更，也能在改动 channels.yaml 后让一轮 daily
+    # 把新关键词重新匹配到一批最近的论文上。
+    lookback_days: 5
     # 单次拉取上限（每个 channel），避免初次跑爆
     per_channel_limit: 60
 
@@ -32,3 +34,7 @@ sources:
   manual_xhs:       # 手动维护的小红书 URL 列表
     enabled: false
     file: config/manual_xhs.json
+
+  manual_arxiv:     # 「贴 arxiv 链接就上墙」的精选清单
+    enabled: true
+    file: config/manual_arxiv.yaml

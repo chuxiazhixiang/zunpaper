@@ -11,11 +11,14 @@ import {
   pickStickers,
   stickersHTML,
   loadStickerManifest,
+  loadPalettes,
+  coverStyleAttr,
   HEART_SVG_OUTLINE,
   HEART_SVG_FILL,
 } from './utils.js';
 
 let _stickers = [];
+let _palettes = [];
 
 function getId() {
   return new URLSearchParams(window.location.search).get('id');
@@ -33,7 +36,17 @@ async function loadIndex() {
 }
 
 function badgeHTML(b) {
-  return `<span class="rp-badge ${b.kind === 'hot' ? 'rp-badge--hot' : b.kind === 'fresh' ? 'rp-badge--fresh' : b.kind === 'lab' ? 'rp-badge--lab' : ''}">${escapeHTML(b.label)}</span>`;
+  const cls =
+    b.kind === 'hot'
+      ? 'rp-badge--hot'
+      : b.kind === 'fresh'
+      ? 'rp-badge--fresh'
+      : b.kind === 'lab'
+      ? 'rp-badge--lab'
+      : b.kind === 'pin'
+      ? 'rp-badge--pin'
+      : '';
+  return `<span class="rp-badge ${cls}">${escapeHTML(b.label)}</span>`;
 }
 
 function bibtex(p) {
@@ -139,6 +152,7 @@ function renderPaper(p, all) {
   const headline = p.cover_zh || p.tldr_zh || titleZh;
   const source = (p.source || '').toUpperCase();
   const stickerHtml = stickersHTML(pickStickers(p.id, _stickers, 2));
+  const paletteStyle = coverStyleAttr(p.id, _palettes, cover.style);
 
   document.title = `${titleZh} · redpaper`;
 
@@ -155,7 +169,7 @@ function renderPaper(p, all) {
 
       <div class="rp-post-deck__viewport" id="post-viewport">
         <article class="rp-post-slide rp-post-slide--cover">
-          <div class="rp-cover ${cover.cls}">
+          <div class="rp-cover ${cover.cls}"${paletteStyle ? ` style="${paletteStyle}"` : ''}>
             <span class="rp-cover__source">${escapeHTML(source)}</span>
             <p class="rp-cover__headline">${escapeHTML(headline)}</p>
             ${stickerHtml}
@@ -444,12 +458,14 @@ async function main() {
   const id = getId();
   if (!id) return renderNotFound();
   try {
-    const [paper, index, stickers] = await Promise.all([
+    const [paper, index, stickers, palettes] = await Promise.all([
       loadPaper(id),
       loadIndex(),
       loadStickerManifest(),
+      loadPalettes(),
     ]);
     _stickers = stickers || [];
+    _palettes = palettes || [];
     renderPaper(paper, index.papers || []);
   } catch (e) {
     console.error(e);

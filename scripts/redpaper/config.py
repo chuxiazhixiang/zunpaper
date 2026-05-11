@@ -40,6 +40,7 @@ class SourcesConfig:
     jiqizhixin_enabled: bool = False
     synced_review_enabled: bool = False
     manual_xhs_enabled: bool = False
+    manual_arxiv_enabled: bool = False
 
 
 @dataclass
@@ -83,6 +84,7 @@ def load_sources() -> SourcesConfig:
         jiqizhixin_enabled=get("jiqizhixin", "enabled", False),
         synced_review_enabled=get("synced_review", "enabled", False),
         manual_xhs_enabled=get("manual_xhs", "enabled", False),
+        manual_arxiv_enabled=get("manual_arxiv", "enabled", False),
     )
 
 

@@ -18,6 +18,7 @@ from .sources import hf_daily as hf_daily_source
 from .sources import semantic_scholar as ss_source
 from .sources import cn_news
 from .sources import manual_xhs as manual_xhs_source
+from .sources import manual_arxiv as manual_arxiv_source
 from .translate import translate_with_retry
 
 log = logging.getLogger(__name__)
@@ -102,6 +103,14 @@ class EnrichmentContext:
         paper.badges = list(lab_badges(detect_labs(paper)))
         paper.related_links = list(paper.related_links or [])
         paper.source_tags = list(paper.source_tags or [])
+
+        # 📌 Pinned-by-owner badge — fires for manual_arxiv source OR papers
+        # that already have the `manual_pin` source_tag (so a paper pinned
+        # once stays pinned even after the YAML entry is deleted).
+        if (paper.source or "").lower() == "manual_arxiv" or "manual_pin" in paper.source_tags:
+            if "manual_pin" not in paper.source_tags:
+                paper.source_tags.append("manual_pin")
+            paper.badges.append({"kind": "pin", "label": "📌 站长精选"})
 
         aid = paper.arxiv_id
 
@@ -285,6 +294,61 @@ def _build_enrichment_context(sources: cfg.SourcesConfig, fresh: dict[str, Paper
     return ctx
 
 
+def _matches_channel(title: str, abstract: str, channel: cfg.Channel) -> bool:
+    """Mirror of arxiv_source._matches_filters used for the channel-retag step."""
+    text = f"{title}\n{abstract}".lower()
+    if channel.exclude and any(kw.lower() in text for kw in channel.exclude):
+        return False
+    if not channel.keywords:
+        return False  # don't auto-assign to keyword-less channels
+    return any(kw.lower() in text for kw in channel.keywords)
+
+
+def retag_and_prune(channels: list[cfg.Channel]) -> None:
+    """Realign every cached paper with the CURRENT channels.yaml.
+
+    Why: channels.yaml is the contract — when the owner changes it, the feed
+    should reflect that on the next daily run. Papers that no longer match
+    *any* current channel get deleted from disk (their cover image stays,
+    cheap to leave). Manually-pinned papers are NEVER dropped; if they don't
+    match any keyword we leave their existing channels alone.
+    """
+    if not cfg.PAPERS_DIR.exists():
+        return
+    valid_ch_ids = {c.id for c in channels}
+    kept = 0
+    dropped: list[str] = []
+    for p in cfg.PAPERS_DIR.glob("*.json"):
+        try:
+            paper = load_paper(p)
+        except Exception:
+            continue
+
+        pinned = (paper.source or "").lower() in ("manual_arxiv", "manual_xhs") \
+                 or "manual_pin" in (paper.source_tags or [])
+
+        matches = [c.id for c in channels if _matches_channel(paper.title, paper.abstract, c)]
+
+        if matches:
+            if set(paper.channels) != set(matches):
+                paper.channels = matches
+                save_paper(paper, cfg.PAPERS_DIR)
+            kept += 1
+        elif pinned:
+            # Keep but trim to channels that still exist in config.
+            paper.channels = [c for c in (paper.channels or []) if c in valid_ch_ids] or [channels[0].id]
+            save_paper(paper, cfg.PAPERS_DIR)
+            kept += 1
+        else:
+            try:
+                p.unlink()
+                dropped.append(paper.id)
+            except OSError:
+                pass
+
+    log.info("retag_and_prune: kept %d, dropped %d (%s)", kept, len(dropped), ", ".join(dropped[:5]))
+
+
 def run() -> None:
     logging.basicConfig(
         level=logging.INFO,
@@ -294,12 +358,24 @@ def run() -> None:
     channels = cfg.load_channels()
     sources = cfg.load_sources()
 
+    # 1) Realign existing cached papers with the current channels.yaml BEFORE
+    #    fetching anything. Off-topic papers are pruned so the feed stays
+    #    aligned with what the owner currently cares about.
+    retag_and_prune(channels)
+
     fresh: dict[str, Paper] = {}
     if sources.arxiv_enabled:
         fresh.update(arxiv_source.fetch_all(channels, sources))
 
     if sources.manual_xhs_enabled:
         for p in manual_xhs_source.load_posts():
+            fresh[p.id] = p
+
+    if sources.manual_arxiv_enabled:
+        for p in manual_arxiv_source.load_papers(channels):
+            # Manual paper wins over an arxiv re-fetch (so the owner can
+            # override channels), but if both sources have the same id we
+            # keep the manual-tagged copy.
             fresh[p.id] = p
 
     log.info("fetched %d unique papers", len(fresh))

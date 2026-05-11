@@ -22,6 +22,87 @@ export function pickCover(id) {
   return { style, color, cls: `rp-cover--${style} c${color}` };
 }
 
+// ---- Color Hunt palette integration ---------------------------------------
+//
+// We ship ~80 hand-curated light palettes scraped from https://colorhunt.co/
+// in site/assets/data/palettes.json. Each palette = [c1,c2,c3,c4] hex (no #).
+// pickCoverStyleAttr below picks one deterministically per paper id and
+// outputs an inline `style="..."` snippet that overrides the cover's CSS
+// custom properties — so the legacy c0..c5 hardcoded variants still work as
+// a fallback when the JSON hasn't loaded yet.
+
+let _palettesCache = null;
+let _palettesPromise = null;
+export function loadPalettes() {
+  if (_palettesCache) return Promise.resolve(_palettesCache);
+  if (_palettesPromise) return _palettesPromise;
+  _palettesPromise = fetch('assets/data/palettes.json')
+    .then((r) => (r.ok ? r.json() : { palettes: [] }))
+    .then((d) => {
+      _palettesCache = Array.isArray(d?.palettes) ? d.palettes : [];
+      return _palettesCache;
+    })
+    .catch(() => {
+      _palettesCache = [];
+      return _palettesCache;
+    });
+  return _palettesPromise;
+}
+
+function _luminance(hex) {
+  const r = parseInt(hex.slice(0, 2), 16);
+  const g = parseInt(hex.slice(2, 4), 16);
+  const b = parseInt(hex.slice(4, 6), 16);
+  return 0.299 * r + 0.587 * g + 0.114 * b;
+}
+
+function _sortLightToDark(colors) {
+  return [...colors].sort((a, b) => _luminance(b) - _luminance(a));
+}
+
+/** Mix a CSS rgba() from #hex + alpha (0..1). */
+function _alpha(hex, a) {
+  const r = parseInt(hex.slice(0, 2), 16);
+  const g = parseInt(hex.slice(2, 4), 16);
+  const b = parseInt(hex.slice(4, 6), 16);
+  return `rgba(${r},${g},${b},${a})`;
+}
+
+/** Build an inline style="..." override for `.rp-cover--{style}` given a paper id
+ *  and the loaded palettes list. Returns '' if palettes are missing — the
+ *  legacy `c0..c5` class on the cover then takes over.
+ *
+ *  The 4 colors are sorted lightest -> darkest before assignment so each
+ *  palette consistently maps the lightest tone to the background and darkest
+ *  to the accent / text. This keeps text readable across the 80 palettes
+ *  without per-palette manual tuning. */
+export function coverStyleAttr(id, palettes, style) {
+  if (!palettes || !palettes.length) return '';
+  const h = hashStr(id + ':palette-v1');
+  const p = palettes[h % palettes.length];
+  if (!p?.colors || p.colors.length < 4) return '';
+  const [c1, c2, c3, c4] = _sortLightToDark(p.colors); // lightest -> darkest
+  const bg = `#${c1}`;
+  const tint = `#${c2}`;
+  const accent = `#${c3}`;
+  const text = `#${c4}`;
+  if (style === 'washi') {
+    return [
+      `--rp-washi-bg:${bg}`,
+      `--rp-washi-tape:${accent}`,
+      `--rp-washi-text:${text}`,
+      `--rp-washi-grid:${_alpha(c4, 0.10)}`,
+    ].join(';');
+  }
+  // magazine (the only other style currently)
+  return [
+    `--rp-mag-bg:${bg}`,
+    `--rp-mag-accent:${accent}`,
+    `--rp-mag-text:${text}`,
+    `--rp-mag-soft:${tint}`,
+  ].join(';');
+}
+
 /** Sticker placement (anime emoji). Picks 0-2 stickers and randomized corners
  *  per paper id, again deterministic. Returns array of { src, corner, rotate }.
  *
