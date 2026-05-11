@@ -8,30 +8,27 @@
 #   arxiv_categories  arXiv 分类码（https://arxiv.org/category_taxonomy）
 #   keywords          标题/摘要必须包含其中至少一个词才算命中（OR 关系，留空 = 不过滤）
 #   exclude           标题/摘要包含任意一个就排除（兜底过滤生物医工等非感兴趣方向）
-#   max_per_day       每天最多拉多少篇，超过的丢弃低分的
+#   max_per_day       软上限：每个频道每次拉多少，超过的按分数排弃
 #
-# 当前配置面向「人形机器人 / 通用机器人」方向。
-# 偏好顺序：whole-body > loco-manip > vla > 其他，max_per_day 倾斜过来。
+# 当前配置面向「人形机器人 / 通用机器人」方向，偏好顺序：
+#     whole-body > loco-manip > vla > 其他
 
-# 通用排除关键词 —— 出现这些任意一个就跳过整篇（生物医工 / 临床方向不要）
+# 通用排除：临床 / 医疗器械 / 康复方向不要
 _global_exclude: &MEDICAL_EXCLUDE
   - surgical
   - surgery
   - clinical trial
-  - clinical
-  - patient
+  - patient outcome
   - medical imaging
   - biomedical engineering
   - prosthetic limb
-  - prosthesis
   - rehabilitation robot
   - exoskeleton therapy
-  - MRI
   - electroencephalo
   - EEG signal
   - tumor
-  - diagnosis
   - radiology
+  - cancer
 
 channels:
   - id: locomotion
@@ -42,50 +39,51 @@ channels:
       - locomotion
       - bipedal
       - quadruped
-      - humanoid walk
-      - walking gait
-      - gait generation
+      - humanoid
+      - walking
+      - gait
       - legged robot
-      - balance control humanoid
       - parkour
+      - balance control
+      - jumping robot
+      - running robot
     exclude: *MEDICAL_EXCLUDE
-    max_per_day: 12
+    max_per_day: 15
 
   - id: whole-body
     name: 全身控制
     emoji: "🤸"
     arxiv_categories: [cs.RO, cs.SY, eess.SY]
     keywords:
-      - whole-body control
-      - whole body control
-      - whole-body manipulation
-      - whole body manipulation
+      - whole-body
+      - whole body
       - WBC
-      - dynamic balance
       - centroidal
-      - MPC humanoid
-      - reactive whole-body
-      - humanoid robot control
-      - whole-body policy
+      - dynamic balance
+      - reactive control
+      - humanoid control
+      - humanoid policy
+      - MPC
+      - full-body
     exclude: *MEDICAL_EXCLUDE
-    max_per_day: 30        # ←偏好方向：拉多一点
+    max_per_day: 30        # ← 偏好方向：多拉一点
 
   - id: manipulation
     name: 操作 / 灵巧手
     emoji: "🖐️"
     arxiv_categories: [cs.RO, cs.CV]
     keywords:
-      - dexterous manipulation
-      - in-hand manipulation
-      - dexterous grasp
-      - tactile manipulation
-      - bimanual manipulation
+      - manipulation
+      - dexterous
+      - grasp
+      - in-hand
+      - tactile
+      - bimanual
       - imitation learning
       - diffusion policy
       - action chunking
-      - manipulation skill
     exclude: *MEDICAL_EXCLUDE
-    max_per_day: 12
+    max_per_day: 15
 
   - id: loco-manip
     name: 移动操作
@@ -98,22 +96,25 @@ channels:
       - mobile robot manipulation
       - long-horizon manipulation
       - mobile manipulator
+      - humanoid manipulation
     exclude: *MEDICAL_EXCLUDE
-    max_per_day: 25        # ←偏好方向
+    max_per_day: 25        # ← 偏好方向
 
   - id: perception
     name: 感知 / 导航
     emoji: "🧭"
     arxiv_categories: [cs.RO, cs.CV]
     keywords:
-      - robot SLAM
-      - 3D scene robot
-      - occupancy network
-      - depth estimation robot
+      - SLAM
+      - 3D scene
+      - occupancy
+      - point cloud
+      - depth estimation
       - visual navigation
-      - exploration robot
-      - terrain robot
+      - exploration
+      - terrain
       - tactile sensing
+      - robot perception
     exclude: *MEDICAL_EXCLUDE
     max_per_day: 8
 
@@ -123,19 +124,19 @@ channels:
     arxiv_categories: [cs.RO, cs.LG, cs.CV]
     keywords:
       - vision-language-action
-      - VLA model
+      - VLA
       - whole-body VLA
-      - whole body VLA
-      - generalist robot policy
+      - generalist policy
       - foundation policy
       - robot foundation model
       - RT-2
       - π0
       - openvla
-      - octo policy
+      - octo
       - humanoid policy
+      - embodied policy
     exclude: *MEDICAL_EXCLUDE
-    max_per_day: 25        # ←偏好方向（含 Whole-body VLA）
+    max_per_day: 25        # ← 偏好方向（含 whole-body VLA）
 
   - id: vln
     name: 视觉语言导航
@@ -146,7 +147,7 @@ channels:
       - VLN
       - instruction-following navigation
       - embodied navigation
-      - habitat benchmark
+      - habitat
     exclude: *MEDICAL_EXCLUDE
     max_per_day: 6
 
@@ -155,14 +156,14 @@ channels:
     emoji: "🧠"
     arxiv_categories: [cs.CL, cs.LG, cs.AI]
     keywords:
+      - LLM agent
       - LLM robot
-      - LLM for robot
-      - LLM agent robot
-      - tool use robot
+      - tool use
       - code-as-policies
       - embodied LLM
       - SayCan
-      - reasoning robotics
+      - reasoning robot
       - chain-of-thought robot
+      - planning LLM robot
     exclude: *MEDICAL_EXCLUDE
     max_per_day: 6
