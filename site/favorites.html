@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>收藏夹 · redpaper</title>
+    <link rel="icon" type="image/jpeg" href="assets/img/setsuna.jpg" />
+    <link rel="apple-touch-icon" href="assets/img/setsuna.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,26 +18,38 @@
     <header class="rp-app-bar">
       <div class="rp-app-bar__inner">
         <a class="rp-brand" href="index.html">
-          <span class="rp-brand__logo">红</span>
+          <span class="rp-brand__logo"><img src="assets/img/setsuna.jpg" alt="" /></span>
           <span>redpaper</span>
         </a>
         <div class="rp-search"></div>
-        <a class="rp-icon-btn" href="index.html" aria-label="首页">←</a>
-        <button id="theme-toggle" class="rp-icon-btn" aria-label="切换主题">◐</button>
+        <a class="rp-nav-btn" href="index.html" title="首页">
+          <span class="rp-nav-btn__icon">←</span><span class="rp-nav-btn__label">首页</span>
+        </a>
+        <a class="rp-nav-btn" href="archive.html" title="每日归档">
+          <span class="rp-nav-btn__icon">📅</span><span class="rp-nav-btn__label">归档</span>
+        </a>
+        <button id="theme-toggle" class="rp-icon-btn" title="切换主题" aria-label="切换主题">◐</button>
       </div>
     </header>
 
     <main class="rp-container">
-      <h2 style="margin: 8px 4px 16px; font-size: 20px;">
+      <h2 style="margin: 8px 4px 8px; font-size: 20px;">
         ❤ 收藏夹 <span id="count" style="color: var(--rp-text-dim); font-size: 14px;">0</span>
       </h2>
+      <p style="color: var(--rp-text-dim); font-size: 12px; margin: 0 4px 12px;">
+        分类、勾选都只存在你这台浏览器，不会同步到任何服务器。
+        <span style="color: var(--rp-text-soft);">双击分类名可重命名，「默认」不可改。</span>
+      </p>
+      <div id="category-tabs" class="rp-cat-tabs"></div>
       <section id="feed" class="rp-feed">
         <div class="rp-status">加载中…</div>
       </section>
     </main>
 
     <footer class="rp-footer">
-      <p><a href="index.html">← 回到首页</a> · redpaper</p>
+      <p>
+        <a href="index.html">← 首页</a> · <a href="about.html">关于</a> · redpaper
+      </p>
     </footer>
 
     <script type="module" src="assets/js/favorites.js"></script>

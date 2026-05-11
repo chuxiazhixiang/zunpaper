@@ -35,7 +35,11 @@ def _existing_papers() -> dict[str, Paper]:
 
 
 def _is_translated(p: Paper) -> bool:
-    return bool(p.abstract_zh and p.title_zh)
+    """We treat a paper as fully translated only when every field the UI
+    depends on is present. Missing cover_zh (added later in the project)
+    forces a re-translate so old papers pick up the new Xiaohongshu-style
+    headline on the next CI run."""
+    return bool(p.abstract_zh and p.title_zh and p.cover_zh)
 
 
 def process_new_papers(
@@ -65,9 +69,10 @@ def process_new_papers(
 
         if not _is_translated(paper):
             t = translate_with_retry(paper.title, paper.abstract)
-            paper.title_zh = t.title_zh or paper.title
-            paper.abstract_zh = t.abstract_zh or paper.abstract
-            paper.tldr_zh = t.tldr_zh
+            paper.title_zh = t.title_zh or paper.title_zh or paper.title
+            paper.abstract_zh = t.abstract_zh or paper.abstract_zh or paper.abstract
+            paper.tldr_zh = t.tldr_zh or paper.tldr_zh
+            paper.cover_zh = t.cover_zh or paper.cover_zh or paper.tldr_zh
             log.info("translated: %s", paper.id)
 
         if enrich_ctx is not None:
@@ -223,6 +228,7 @@ def _feed_entry(p: Paper) -> dict:
         "title": p.title,
         "title_zh": p.title_zh or p.title,
         "tldr_zh": p.tldr_zh,
+        "cover_zh": p.cover_zh or p.tldr_zh,
         "abstract_zh": p.abstract_zh,
         "authors": [a.name for a in p.authors[:3]],
         "primary_category": p.primary_category,
@@ -294,11 +300,21 @@ def run() -> None:
     process_new_papers(fresh, existing, ctx)
 
     # Re-enrich existing papers too (so badges/news stay fresh even if the paper
-    # was fetched on an earlier day).
+    # was fetched on an earlier day). Also back-fill translation fields the
+    # current model expects (e.g. cover_zh was added later).
     all_papers = list(_existing_papers().values())
     for paper in all_papers:
         if paper.id in fresh:
             continue  # already enriched in process_new_papers
+
+        if not _is_translated(paper):
+            t = translate_with_retry(paper.title, paper.abstract)
+            paper.title_zh = t.title_zh or paper.title_zh or paper.title
+            paper.abstract_zh = t.abstract_zh or paper.abstract_zh or paper.abstract
+            paper.tldr_zh = t.tldr_zh or paper.tldr_zh
+            paper.cover_zh = t.cover_zh or paper.cover_zh or paper.tldr_zh
+            log.info("back-fill translation: %s", paper.id)
+
         ctx.apply(paper)
         save_paper(paper, cfg.PAPERS_DIR)
 

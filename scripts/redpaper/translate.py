@@ -34,15 +34,28 @@ class Translation:
     title_zh: str = ""
     abstract_zh: str = ""
     tldr_zh: str = ""
+    cover_zh: str = ""
 
 
 SYSTEM_PROMPT = (
-    "你是一名 AI 顶会论文编辑，把英文论文的标题和摘要翻译成自然的中文，"
-    "并产出一句不超过 30 字的中文 TL;DR。"
-    "严格输出 JSON：{\"title_zh\": \"...\", \"abstract_zh\": \"...\", \"tldr_zh\": \"...\"}，"
-    "不要添加额外说明、不要使用 Markdown 代码块。"
-    "翻译要求：保留专有名词（如 LLM、Transformer、RLHF、CLIP）原文，"
-    "公式或符号原样保留，语言简洁自然。"
+    "你是一名 AI 顶会论文编辑，要把英文论文的标题和摘要翻译成自然的中文，"
+    "并额外产出两段中文短文案。\n"
+    "严格输出 JSON，4 个字段：\n"
+    "{\n"
+    '  "title_zh": "中文标题（直译，专有名词如 LLM/Transformer/RLHF/CLIP 保留原文）",\n'
+    '  "abstract_zh": "中文摘要（自然流畅，公式符号原样保留）",\n'
+    '  "tldr_zh": "30 字以内、不带 emoji 的客观一句话总结",\n'
+    '  "cover_zh": "20-35 字的小红书风格封面文案，要抓眼球、像爆款帖子标题"\n'
+    "}\n"
+    "cover_zh 风格示范（参考节奏与语气）：\n"
+    " - “让 LLM 自己改 LLM｜AutoTTS 一夜节省 99% 推理算力？”\n"
+    " - “终于！多模态自驾数据再也不用手工对齐”\n"
+    " - “RLHF 不够用？这个新算法把推理效率干翻倍”\n"
+    "要求：\n"
+    " - 必须基于原文事实，不能虚构\n"
+    " - 突出最反直觉、最让人想点进来读的一个点\n"
+    " - 可以用 ｜ ? ！ 等标点，但每条最多 2 个 emoji，最好 0 个\n"
+    " - 不要使用 Markdown 代码块。"
 )
 
 USER_PROMPT_TEMPLATE = textwrap.dedent(
@@ -100,10 +113,12 @@ def _extract_json(text: str) -> dict[str, Any]:
 def _dryrun(title: str, abstract: str) -> Translation:
     """No-op backend that just echoes English back. Lets local devs render the
     site without an API key."""
+    short = abstract[:60].replace("\n", " ").strip()
     return Translation(
         title_zh=title,
         abstract_zh=abstract,
-        tldr_zh=abstract[:60].replace("\n", " ").strip(),
+        tldr_zh=short,
+        cover_zh=short,
     )
 
 
@@ -139,6 +154,7 @@ def _gemini(title: str, abstract: str) -> Translation:
         title_zh=obj.get("title_zh", "").strip(),
         abstract_zh=obj.get("abstract_zh", "").strip(),
         tldr_zh=obj.get("tldr_zh", "").strip(),
+        cover_zh=obj.get("cover_zh", "").strip(),
     )
 
 
@@ -169,6 +185,7 @@ def _openai_compat(title: str, abstract: str, base_url: str, api_key: str, model
         title_zh=obj.get("title_zh", "").strip(),
         abstract_zh=obj.get("abstract_zh", "").strip(),
         tldr_zh=obj.get("tldr_zh", "").strip(),
+        cover_zh=obj.get("cover_zh", "").strip(),
     )
 
 

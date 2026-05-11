@@ -1,6 +1,6 @@
 // Detail page: load /data/papers/{id}.json, render hero + bilingual content.
 
-import { Favorites, Likes, Reads, Theme } from './storage.js';
+import { Favorites, Reads, Theme } from './storage.js';
 import {
   escapeHTML,
   formatAuthors,
@@ -119,7 +119,8 @@ function renderPaper(p, all) {
       ${p.pdf_url ? `<a class="rp-btn" href="${escapeHTML(p.pdf_url)}" target="_blank" rel="noopener">下载 PDF</a>` : ''}
       <button class="rp-btn" id="bibtex-btn">复制 BibTeX</button>
       <button class="rp-btn" id="share-btn">复制链接</button>
-      <button class="rp-btn ${Favorites.has(p.id) ? 'rp-btn--primary' : ''}" id="fav-btn">${heart} 收藏</button>
+      <button class="rp-btn ${Favorites.has(p.id) ? 'rp-btn--primary' : ''}" id="fav-btn">${heart} <span id="fav-label">${Favorites.has(p.id) ? '已收藏' : '收藏'}</span></button>
+      <button class="rp-btn" id="fav-cat-btn" title="分类管理">📁 分类</button>
     </div>
 
     ${
@@ -146,11 +147,19 @@ function renderPaper(p, all) {
 
   // Wire up actions
   const favBtn = document.querySelector('#fav-btn');
+  function refreshFavBtn() {
+    const on = Favorites.has(p.id);
+    favBtn.classList.toggle('rp-btn--primary', on);
+    favBtn.innerHTML = `${on ? HEART_SVG_FILL : HEART_SVG_OUTLINE} <span id="fav-label">${on ? '已收藏' : '收藏'}</span>`;
+  }
   favBtn?.addEventListener('click', () => {
     const fav = Favorites.toggle(p.id);
-    favBtn.classList.toggle('rp-btn--primary', fav);
-    favBtn.innerHTML = `${fav ? HEART_SVG_FILL : HEART_SVG_OUTLINE} 收藏`;
-    showToast(fav ? '已收藏' : '取消收藏');
+    refreshFavBtn();
+    showToast(fav ? '已加入「默认」' : '已取消收藏');
+  });
+
+  document.querySelector('#fav-cat-btn')?.addEventListener('click', () => {
+    openCategoryPicker(p.id, refreshFavBtn);
   });
 
   document.querySelector('#share-btn')?.addEventListener('click', async () => {
@@ -192,6 +201,75 @@ function renderPaper(p, all) {
       showToast('BibTeX 已复制');
     } catch {
       showToast('复制失败');
+    }
+  });
+}
+
+function openCategoryPicker(paperId, onChange) {
+  const existing = document.querySelector('.rp-modal');
+  existing?.remove();
+
+  const cats = Favorites.categories();
+  const checked = new Set(Favorites.categoriesOf(paperId));
+
+  const wrap = document.createElement('div');
+  wrap.className = 'rp-modal';
+  wrap.innerHTML = `
+    <div class="rp-modal__sheet">
+      <div class="rp-modal__header">
+        <h3>分类管理</h3>
+        <button class="rp-icon-btn" data-close>×</button>
+      </div>
+      <p class="rp-modal__hint">勾选这篇论文要进入哪些分类。分类都存在你的浏览器里。</p>
+      <div class="rp-modal__list">
+        ${cats
+          .map(
+            (c) => `
+              <label class="rp-modal__row">
+                <input type="checkbox" data-cat="${escapeHTML(c)}" ${checked.has(c) ? 'checked' : ''}/>
+                <span>${escapeHTML(c)}</span>
+              </label>`,
+          )
+          .join('')}
+      </div>
+      <div class="rp-modal__create">
+        <input id="new-cat" type="text" placeholder="新建分类，例如「必读」" maxlength="20" />
+        <button class="rp-btn" id="new-cat-btn">添加</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(wrap);
+
+  function close() {
+    wrap.remove();
+  }
+  wrap.addEventListener('click', (e) => {
+    if (e.target === wrap || e.target.matches('[data-close]')) close();
+  });
+
+  function commit() {
+    const picked = [...wrap.querySelectorAll('input[type="checkbox"][data-cat]')]
+      .filter((el) => el.checked)
+      .map((el) => el.dataset.cat);
+    Favorites.setCategoriesOf(paperId, picked);
+    onChange?.();
+  }
+  wrap.querySelectorAll('input[type="checkbox"][data-cat]').forEach((el) => {
+    el.addEventListener('change', commit);
+  });
+
+  wrap.querySelector('#new-cat-btn').addEventListener('click', () => {
+    const input = wrap.querySelector('#new-cat');
+    const name = input.value.trim();
+    if (!name) return;
+    if (Favorites.addCategory(name)) {
+      Favorites.setCategoriesOf(paperId, [...Favorites.categoriesOf(paperId), name]);
+      onChange?.();
+      // Re-render the modal so the new category shows up and is checked.
+      close();
+      openCategoryPicker(paperId, onChange);
+    } else {
+      showToast('分类已存在或名字为空');
     }
   });
 }

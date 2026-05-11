@@ -1,11 +1,10 @@
 // Homepage feed: load papers, render Xiaohongshu-style masonry.
 
-import { Likes, Favorites, Reads, Theme } from './storage.js';
+import { Favorites, Reads, Theme } from './storage.js';
 import {
   pickPalette,
   escapeHTML,
   formatAuthors,
-  clip,
   paperUrl,
   HEART_SVG_OUTLINE,
   HEART_SVG_FILL,
@@ -85,10 +84,12 @@ function badgeHTML(badge) {
 function cardHTML(p) {
   const palette = pickPalette(p.id);
   const titleZh = p.title_zh || p.title;
-  const coverText = clip(p.abstract_zh || p.abstract || '', 90);
-  const liked = Likes.has(p.id);
+  // Use the Xiaohongshu-style headline if present; gracefully fall back so old
+  // papers still render before the daily re-translate kicks in.
+  const headline = p.cover_zh || p.tldr_zh || titleZh;
+  const fav = Favorites.has(p.id);
   const read = Reads.has(p.id);
-  const heart = liked ? HEART_SVG_FILL : HEART_SVG_OUTLINE;
+  const heart = fav ? HEART_SVG_FILL : HEART_SVG_OUTLINE;
   const badges = (p.badges || []).map(badgeHTML).join('');
   const source = (p.source || '').toUpperCase();
   const authors = formatAuthors(p.authors || []);
@@ -97,8 +98,7 @@ function cardHTML(p) {
     <a class="rp-card ${read ? 'is-read' : ''}" href="${paperUrl(p.id)}" data-id="${p.id}">
       <div class="rp-cover p${palette}">
         <span class="rp-cover__source">${escapeHTML(source)}</span>
-        <h3 class="rp-cover__title">${escapeHTML(titleZh)}</h3>
-        <p class="rp-cover__body">${escapeHTML(coverText)}</p>
+        <p class="rp-cover__headline">${escapeHTML(headline)}</p>
       </div>
       <div class="rp-card__body">
         <h4 class="rp-card__title">${escapeHTML(titleZh)}</h4>
@@ -106,7 +106,7 @@ function cardHTML(p) {
         ${badges ? `<div class="rp-card__badges">${badges}</div>` : ''}
         <div class="rp-card__meta">
           <span class="rp-card__authors">${escapeHTML(authors)}</span>
-          <button class="rp-card__like ${liked ? 'is-liked' : ''}" data-like="${p.id}" aria-label="点赞">
+          <button class="rp-card__like ${fav ? 'is-liked' : ''}" data-fav="${p.id}" title="${fav ? '取消收藏' : '收藏'}" aria-label="收藏">
             ${heart}
           </button>
         </div>
@@ -127,16 +127,18 @@ function renderFeed() {
     return;
   }
   feed.innerHTML = list.map(cardHTML).join('');
-  // Wire up like buttons (inside the card link, so we need to stopPropagation)
-  feed.querySelectorAll('[data-like]').forEach((btn) => {
+  // Heart on the card = favorite. We toggle it in place and show a toast so
+  // the user sees the result without leaving the feed.
+  feed.querySelectorAll('[data-fav]').forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      const id = btn.dataset.like;
-      const liked = Likes.toggle(id);
-      btn.classList.toggle('is-liked', liked);
-      btn.innerHTML = liked ? HEART_SVG_FILL : HEART_SVG_OUTLINE;
-      showToast(liked ? '已点赞' : '取消点赞');
+      const id = btn.dataset.fav;
+      const fav = Favorites.toggle(id);
+      btn.classList.toggle('is-liked', fav);
+      btn.innerHTML = fav ? HEART_SVG_FILL : HEART_SVG_OUTLINE;
+      btn.title = fav ? '取消收藏' : '收藏';
+      showToast(fav ? '已加入收藏夹' : '已取消收藏');
     });
   });
 }

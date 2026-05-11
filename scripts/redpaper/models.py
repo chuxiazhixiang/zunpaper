@@ -27,6 +27,7 @@ class Paper:
     abstract: str = ""
     abstract_zh: str = ""
     tldr_zh: str = ""
+    cover_zh: str = ""           # Xiaohongshu-style headline for the card cover
     authors: list[Author] = field(default_factory=list)
     primary_category: str = ""
     categories: list[str] = field(default_factory=list)
@@ -48,7 +49,10 @@ class Paper:
     @classmethod
     def from_dict(cls, d: dict[str, Any]) -> "Paper":
         authors = [Author(**a) for a in d.get("authors", [])]
-        clean = {k: v for k, v in d.items() if k != "authors"}
+        # Be forgiving: drop unknown keys so the model can evolve without
+        # blowing up on older on-disk JSON.
+        valid = {f.name for f in cls.__dataclass_fields__.values()} - {"authors"}
+        clean = {k: v for k, v in d.items() if k in valid}
         return cls(authors=authors, **clean)
 
 

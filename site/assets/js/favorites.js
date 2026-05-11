@@ -1,16 +1,21 @@
-// Favorites page: filter the global index to favorited papers.
+// Favorites page: filter the global index to favorited papers, grouped by
+// user-defined categories. All state is local to this browser.
 
-import { Favorites, Likes, Reads, Theme } from './storage.js';
+import { Favorites, Theme } from './storage.js';
 import {
   pickPalette,
   escapeHTML,
   formatAuthors,
-  clip,
   paperUrl,
   HEART_SVG_OUTLINE,
   HEART_SVG_FILL,
   showToast,
 } from './utils.js';
+
+const STATE = {
+  papers: [],          // master list from index.json
+  activeCategory: '',  // '' means "全部"
+};
 
 async function loadIndex() {
   return fetch('data/index.json').then((r) => r.json()).catch(() => ({ papers: [] }));
@@ -19,27 +24,148 @@ async function loadIndex() {
 function cardHTML(p) {
   const palette = pickPalette(p.id);
   const titleZh = p.title_zh || p.title;
-  const coverText = clip(p.abstract_zh || p.abstract || '', 90);
-  const liked = Likes.has(p.id);
+  const headline = p.cover_zh || p.tldr_zh || titleZh;
+  const fav = Favorites.has(p.id);
   const source = (p.source || '').toUpperCase();
+  const cats = Favorites.categoriesOf(p.id);
+
   return `
     <a class="rp-card" href="${paperUrl(p.id)}" data-id="${p.id}">
       <div class="rp-cover p${palette}">
         <span class="rp-cover__source">${escapeHTML(source)}</span>
-        <h3 class="rp-cover__title">${escapeHTML(titleZh)}</h3>
-        <p class="rp-cover__body">${escapeHTML(coverText)}</p>
+        <p class="rp-cover__headline">${escapeHTML(headline)}</p>
       </div>
       <div class="rp-card__body">
         <h4 class="rp-card__title">${escapeHTML(titleZh)}</h4>
         ${p.tldr_zh ? `<p class="rp-card__tldr">${escapeHTML(p.tldr_zh)}</p>` : ''}
+        ${
+          cats.length
+            ? `<div class="rp-card__badges">${cats
+                .map(
+                  (c) =>
+                    `<span class="rp-badge">${escapeHTML(c)}</span>`,
+                )
+                .join('')}</div>`
+            : ''
+        }
         <div class="rp-card__meta">
           <span class="rp-card__authors">${escapeHTML(formatAuthors(p.authors || []))}</span>
-          <button class="rp-card__like ${liked ? 'is-liked' : ''}" data-like="${p.id}">
-            ${liked ? HEART_SVG_FILL : HEART_SVG_OUTLINE}
+          <button class="rp-card__like ${fav ? 'is-liked' : ''}" data-fav="${p.id}" title="从收藏移除">
+            ${fav ? HEART_SVG_FILL : HEART_SVG_OUTLINE}
           </button>
         </div>
       </div>
     </a>`;
+}
+
+function renderCategoryTabs() {
+  const wrap = document.querySelector('#category-tabs');
+  if (!wrap) return;
+  const cats = Favorites.categories();
+  const counts = {};
+  counts[''] = Favorites.ids().length;
+  for (const c of cats) counts[c] = Favorites.ids(c).length;
+
+  const tabs = [{ id: '', label: '全部' }, ...cats.map((c) => ({ id: c, label: c }))];
+  wrap.innerHTML = `
+    ${tabs
+      .map((t) => {
+        const active = t.id === STATE.activeCategory;
+        const removable = t.id && t.id !== Favorites.DEFAULT_CATEGORY;
+        return `
+          <span class="rp-cat-tab ${active ? 'is-active' : ''}" data-cat="${escapeHTML(t.id)}">
+            <span class="rp-cat-tab__label" data-cat-label="${escapeHTML(t.id)}">${escapeHTML(t.label)}</span>
+            <span class="rp-cat-tab__count">${counts[t.id] || 0}</span>
+            ${removable ? `<button class="rp-cat-tab__remove" data-remove="${escapeHTML(t.id)}" title="删除分类">×</button>` : ''}
+          </span>`;
+      })
+      .join('')}
+    <button class="rp-cat-tab rp-cat-tab--add" id="cat-add">+ 新建分类</button>
+  `;
+
+  wrap.querySelectorAll('.rp-cat-tab[data-cat]').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      if (e.target.closest('[data-remove]')) return;
+      STATE.activeCategory = el.dataset.cat;
+      renderAll();
+    });
+  });
+  wrap.querySelectorAll('[data-remove]').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const name = btn.dataset.remove;
+      if (!confirm(`删除分类「${name}」？已收藏的论文若只属于该分类，会从收藏夹移除。`)) return;
+      if (Favorites.removeCategory(name)) {
+        if (STATE.activeCategory === name) STATE.activeCategory = '';
+        renderAll();
+        showToast('分类已删除');
+      }
+    });
+  });
+
+  // Double-click on the label of a non-default category renames it.
+  wrap.querySelectorAll('[data-cat-label]').forEach((el) => {
+    if (!el.dataset.catLabel || el.dataset.catLabel === Favorites.DEFAULT_CATEGORY) return;
+    el.title = '双击重命名';
+    el.addEventListener('dblclick', (e) => {
+      e.stopPropagation();
+      const old = el.dataset.catLabel;
+      const next = prompt('重命名分类：', old);
+      if (next && next.trim() && next.trim() !== old) {
+        if (Favorites.renameCategory(old, next.trim())) {
+          if (STATE.activeCategory === old) STATE.activeCategory = next.trim();
+          renderAll();
+        } else {
+          showToast('名字已存在或无效');
+        }
+      }
+    });
+  });
+
+  document.querySelector('#cat-add')?.addEventListener('click', () => {
+    const name = prompt('新建分类名（最多 20 字）：');
+    if (!name) return;
+    if (Favorites.addCategory(name.trim())) {
+      STATE.activeCategory = name.trim();
+      renderAll();
+    } else {
+      showToast('分类已存在');
+    }
+  });
+}
+
+function renderFeed() {
+  const feed = document.querySelector('#feed');
+  const count = document.querySelector('#count');
+  const ids = new Set(Favorites.ids(STATE.activeCategory || undefined));
+  const list = STATE.papers.filter((p) => ids.has(p.id));
+  if (count) count.textContent = list.length;
+
+  if (!list.length) {
+    feed.innerHTML = `
+      <div class="rp-status">
+        <p class="rp-status__title">${STATE.activeCategory ? `「${escapeHTML(STATE.activeCategory)}」还没有收藏` : '收藏夹空空如也'}</p>
+        <p>在首页或详情页点 ❤ 就会出现在这里。所有收藏只存在你这台浏览器，不会同步到服务器。</p>
+      </div>`;
+    return;
+  }
+  feed.innerHTML = list.map(cardHTML).join('');
+
+  feed.querySelectorAll('[data-fav]').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const id = btn.dataset.fav;
+      Favorites.toggle(id);
+      renderAll();
+      showToast('已从收藏移除');
+    });
+  });
+}
+
+function renderAll() {
+  renderCategoryTabs();
+  renderFeed();
 }
 
 async function main() {
@@ -50,30 +176,8 @@ async function main() {
   });
 
   const index = await loadIndex();
-  const favs = new Set(Favorites.all());
-  const list = (index.papers || []).filter((p) => favs.has(p.id));
-
-  const feed = document.querySelector('#feed');
-  document.querySelector('#count').textContent = list.length;
-  if (!list.length) {
-    feed.innerHTML = `
-      <div class="rp-status">
-        <p class="rp-status__title">收藏夹空空如也</p>
-        <p>在论文详情页点「收藏」就会出现在这里。</p>
-      </div>`;
-    return;
-  }
-  feed.innerHTML = list.map(cardHTML).join('');
-  feed.querySelectorAll('[data-like]').forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const id = btn.dataset.like;
-      const liked = Likes.toggle(id);
-      btn.classList.toggle('is-liked', liked);
-      btn.innerHTML = liked ? HEART_SVG_FILL : HEART_SVG_OUTLINE;
-    });
-  });
+  STATE.papers = index.papers || [];
+  renderAll();
 }
 
 document.addEventListener('DOMContentLoaded', main);

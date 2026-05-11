@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>关于 · redpaper</title>
+    <link rel="icon" type="image/jpeg" href="assets/img/setsuna.jpg" />
+    <link rel="apple-touch-icon" href="assets/img/setsuna.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,11 +18,13 @@
     <header class="rp-app-bar">
       <div class="rp-app-bar__inner">
         <a class="rp-brand" href="index.html">
-          <span class="rp-brand__logo">红</span>
+          <span class="rp-brand__logo"><img src="assets/img/setsuna.jpg" alt="" /></span>
           <span>redpaper</span>
         </a>
         <div class="rp-search"></div>
-        <a class="rp-icon-btn" href="index.html" aria-label="首页">←</a>
+        <a class="rp-nav-btn" href="index.html" title="首页">
+          <span class="rp-nav-btn__icon">←</span><span class="rp-nav-btn__label">首页</span>
+        </a>
       </div>
     </header>
 
@@ -39,11 +43,40 @@
           <li><b>小红书</b>：手动维护链接（Phase 3，可选）</li>
         </ul>
 
-        <h2>本地交互</h2>
-        <p>点赞、收藏、已读、暗色模式都存在浏览器本地，不需要登录、也不上传任何数据。</p>
+        <h2>本地交互（所有访客都适用）</h2>
+        <p>
+          收藏、自定义分类、已读、暗色模式都只存在你这台浏览器的
+          <code>localStorage</code>。哪怕这个站是 public 的，你在 A 浏览器收藏的论文
+          不会跟 B 用户的收藏夹合并，也不会回流到我的仓库 — 后端就是几份静态 JSON，
+          没有任何接收用户写入的接口。
+        </p>
+        <p>
+          这也意味着：换设备 / 清缓存 = 你的收藏夹清零。如果想长期保留，建议给浏览器
+          做同步，或在每篇详情页把 BibTeX 复制下来。
+        </p>
 
-        <h2>怎么改配置</h2>
-        <p>仓库里改 <code>config/channels.yaml</code> 调整频道与关键词，<code>config/sources.yaml</code> 启停数据源。CI 每天自动跑一次。</p>
+        <h2>谁能改「频道标签」？</h2>
+        <p>
+          频道（首页那一排「全部 / 大模型 / 视觉…」）来自仓库里的
+          <code>config/channels.yaml</code>，只有有 push 权限的人能改。也就是说：
+        </p>
+        <ul>
+          <li><b>部署者</b>（拥有这个 GitHub 仓库的人）：改 yaml 提交后，CI 重新抓取并发布</li>
+          <li><b>访客</b>：可以筛选 / 搜索 / 本地收藏，但不能新增频道标签</li>
+        </ul>
+        <p>
+          所以如果你看到的标签不符合你的口味，最干净的做法是：fork 一份这个仓库，
+          改你自己的 <code>channels.yaml</code>，部署到 <code>你的名字.github.io/redpaper</code>，
+          就有一个完全个性化的「我的 AI 论文小红书」。
+        </p>
+
+        <h2>怎么改配置（部署者）</h2>
+        <p>
+          仓库里改 <code>config/channels.yaml</code> 调整频道与关键词，
+          <code>config/sources.yaml</code> 启停数据源，
+          <code>config/site.yaml</code> 改站点元信息和 LLM 后端。
+          CI 每天 UTC 0 点（北京 8 点）自动跑一次，你也可以从 Actions 页手动触发。
+        </p>
 
         <h2>致谢</h2>
         <p>arXiv 提供开放的论文 API；Noto Serif SC 提供漂亮的中文衬线字体；以及所有写论文的研究者。</p>

@@ -5,7 +5,6 @@ import {
   pickPalette,
   escapeHTML,
   formatAuthors,
-  clip,
   paperUrl,
   showToast,
 } from './utils.js';
@@ -21,14 +20,13 @@ async function loadDay(d) {
 function cardHTML(p) {
   const palette = pickPalette(p.id);
   const titleZh = p.title_zh || p.title;
-  const coverText = clip(p.abstract_zh || p.abstract || '', 90);
+  const headline = p.cover_zh || p.tldr_zh || titleZh;
   const source = (p.source || '').toUpperCase();
   return `
     <a class="rp-card" href="${paperUrl(p.id)}">
       <div class="rp-cover p${palette}">
         <span class="rp-cover__source">${escapeHTML(source)}</span>
-        <h3 class="rp-cover__title">${escapeHTML(titleZh)}</h3>
-        <p class="rp-cover__body">${escapeHTML(coverText)}</p>
+        <p class="rp-cover__headline">${escapeHTML(headline)}</p>
       </div>
       <div class="rp-card__body">
         <h4 class="rp-card__title">${escapeHTML(titleZh)}</h4>
