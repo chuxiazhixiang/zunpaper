@@ -4,6 +4,7 @@ from __future__ import annotations
 import datetime as dt
 import logging
 import re
+import time
 from typing import Iterable
 
 import arxiv
@@ -46,6 +47,9 @@ def fetch_channel(channel: Channel, cfg: SourcesConfig) -> list[Paper]:
     The arxiv API doesn't filter by date directly, so we fetch the latest
     `per_channel_limit` papers (sorted by submission date desc) and then
     filter to the lookback window + keyword matches client-side.
+
+    HTTP 429 from arXiv (common on shared CI IPs) is caught and logged;
+    the channel just returns no results rather than aborting the pipeline.
     """
     query = _build_query(channel)
     if not query:
@@ -53,7 +57,8 @@ def fetch_channel(channel: Channel, cfg: SourcesConfig) -> list[Paper]:
 
     cutoff = dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=cfg.arxiv_lookback_days)
 
-    client = arxiv.Client(page_size=50, delay_seconds=3.0, num_retries=3)
+    # Larger delay + more retries reduce 429s on GitHub Actions runners.
+    client = arxiv.Client(page_size=50, delay_seconds=8.0, num_retries=5)
     search = arxiv.Search(
         query=query,
         max_results=cfg.arxiv_per_channel_limit,
@@ -62,7 +67,23 @@ def fetch_channel(channel: Channel, cfg: SourcesConfig) -> list[Paper]:
     )
 
     out: list[Paper] = []
-    for result in client.results(search):
+    try:
+        results_iter = client.results(search)
+    except Exception as e:
+        log.warning("arxiv[%s] search init failed: %s", channel.id, e)
+        return []
+
+    while True:
+        try:
+            result = next(results_iter)
+        except StopIteration:
+            break
+        except arxiv.HTTPError as e:
+            log.warning("arxiv[%s] HTTP %s: aborting this channel", channel.id, getattr(e, "status", "?"))
+            break
+        except Exception as e:
+            log.warning("arxiv[%s] iter error: %s", channel.id, e)
+            break
         published = result.published
         if published.tzinfo is None:
             published = published.replace(tzinfo=dt.timezone.utc)
@@ -102,7 +123,8 @@ def fetch_channel(channel: Channel, cfg: SourcesConfig) -> list[Paper]:
 def fetch_all(channels: Iterable[Channel], cfg: SourcesConfig) -> dict[str, Paper]:
     """Fetch for all channels and merge by paper id (one paper may appear in multiple channels)."""
     merged: dict[str, Paper] = {}
-    for ch in channels:
+    channels = list(channels)
+    for i, ch in enumerate(channels):
         for paper in fetch_channel(ch, cfg):
             if paper.id in merged:
                 # union channels
@@ -111,4 +133,7 @@ def fetch_all(channels: Iterable[Channel], cfg: SourcesConfig) -> dict[str, Pape
                         merged[paper.id].channels.append(c)
             else:
                 merged[paper.id] = paper
+        # Sleep between channels to ease arXiv rate limiting on shared IPs.
+        if i + 1 < len(channels):
+            time.sleep(10)
     return merged
