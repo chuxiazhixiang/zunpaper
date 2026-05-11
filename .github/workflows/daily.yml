@@ -54,10 +54,19 @@ jobs:
           git add site/data site/assets/img/covers || true
           if git diff --cached --quiet; then
             echo "No changes to commit."
-          else
-            git commit -m "chore(data): daily refresh $(date -u +%Y-%m-%d)"
-            git push
+            exit 0
           fi
+          git commit -m "chore(data): daily refresh $(date -u +%Y-%m-%d)"
+          # Retry-with-rebase in case a human push landed while we were
+          # translating: pull --rebase, replay our generated-data commit on
+          # top, push again. Up to 3 attempts before giving up.
+          for i in 1 2 3; do
+            if git push; then exit 0; fi
+            echo "push attempt $i failed; rebasing and retrying"
+            git pull --rebase --autostash origin main || exit 1
+          done
+          echo "push failed after 3 retries"
+          exit 1
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
