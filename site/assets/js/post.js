@@ -1,6 +1,6 @@
 // Detail page: load /data/papers/{id}.json, render hero + bilingual content.
 
-import { Favorites, Reads, Theme } from './storage.js?v=086fce10';
+import { Favorites, Reads, Theme } from './storage.js?v=4fa5391c';
 import {
   escapeHTML,
   formatAuthors,
@@ -13,7 +13,7 @@ import {
   HEART_SVG_OUTLINE,
   HEART_SVG_FILL,
   fetchJSON,
-} from './utils.js?v=086fce10';
+} from './utils.js?v=4fa5391c';
 
 let _palettes = [];
 
@@ -118,21 +118,59 @@ function postStructuredHTML(p) {
   return `<div class="rp-factbox">${cells}</div>`;
 }
 
-// P0: demo 视频嵌入区。优先 YouTube / Bilibili iframe，缺则 mp4 video。
-// 多个视频做横向列表，但实际抓取通常 ≤2 个就够用了。
+// P0: demo 视频嵌入区。
+// YouTube 的 153 错误 = 父页面 origin 拿不到或视频只允许特定 host 嵌入。两招治：
+//   1. 改走 youtube-nocookie.com（privacy-enhanced，研究项目视频默认放行）
+//   2. 不要 referrerpolicy="no-referrer" —— YouTube 必须看到来源才肯播
+function ytEmbed(embedUrl) {
+  // embedUrl 形如 https://www.youtube.com/embed/<11位 id>。把 host 换成
+  // youtube-nocookie；附加 rel=0 / modestbranding 让 UI 干净一些。
+  const m = /youtube\.com\/embed\/([A-Za-z0-9_-]{11})/.exec(embedUrl || '');
+  if (!m) return embedUrl;
+  const id = m[1];
+  return `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&playsinline=1`;
+}
+
+function videoBlockHTML(v) {
+  const title = escapeHTML(v.title || 'Demo 视频');
+  if (v.kind === 'youtube') {
+    const src = ytEmbed(v.embed_url || v.url);
+    // 注意：故意不写 referrerpolicy。YouTube 服务端要靠 Referer 校验嵌入域名，
+    // 设成 no-referrer 等于亲手告诉它"这个嵌入非法"，触发 错误 153。
+    return `<figure class="rp-video">
+      <iframe src="${escapeHTML(src)}"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+              allowfullscreen
+              loading="lazy"></iframe>
+      <figcaption>${title} · <a href="${escapeHTML(v.url)}" target="_blank" rel="noopener">在 YouTube 打开 ↗</a></figcaption>
+    </figure>`;
+  }
+  if (v.kind === 'bilibili') {
+    return `<figure class="rp-video">
+      <iframe src="${escapeHTML(v.embed_url || v.url)}"
+              scrolling="no"
+              border="0"
+              frameborder="no"
+              framespacing="0"
+              allowfullscreen
+              loading="lazy"></iframe>
+      <figcaption>${title} · <a href="${escapeHTML(v.url)}" target="_blank" rel="noopener">在 B 站打开 ↗</a></figcaption>
+    </figure>`;
+  }
+  if (v.kind === 'mp4') {
+    return `<figure class="rp-video">
+      <video controls preload="metadata" src="${escapeHTML(v.url)}"></video>
+      <figcaption>${title}</figcaption>
+    </figure>`;
+  }
+  return `<p><a href="${escapeHTML(v.url)}" target="_blank" rel="noopener">${title} ↗</a></p>`;
+}
+
 function postVideosHTML(p) {
   const vids = p.demo_videos || [];
   if (!vids.length) return '';
-  const blocks = vids.slice(0, 3).map((v) => {
-    const title = escapeHTML(v.title || 'Demo 视频');
-    if (v.kind === 'youtube' || v.kind === 'bilibili') {
-      return `<figure class="rp-video"><iframe src="${escapeHTML(v.embed_url || v.url)}" frameborder="0" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="no-referrer"></iframe><figcaption>${title}</figcaption></figure>`;
-    }
-    if (v.kind === 'mp4') {
-      return `<figure class="rp-video"><video controls preload="metadata" src="${escapeHTML(v.url)}"></video><figcaption>${title}</figcaption></figure>`;
-    }
-    return `<p><a href="${escapeHTML(v.url)}" target="_blank" rel="noopener">${title} ↗</a></p>`;
-  }).join('');
+  const blocks = vids.slice(0, 3).map(videoBlockHTML).join('');
   return `<section class="rp-post__videos"><h3>🎬 Demo 视频</h3>${blocks}</section>`;
 }
 
