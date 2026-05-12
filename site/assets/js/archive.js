@@ -10,16 +10,17 @@ import {
   paperUrl,
   attachSearchRedirect,
   showToast,
+  fetchJSON,
 } from './utils.js';
 
 let _palettes = [];
 
 async function loadDays() {
-  return fetch('data/days.json').then((r) => r.json()).catch(() => ({ days: [] }));
+  return fetchJSON('data/days.json').then((r) => r.json()).catch(() => ({ days: [] }));
 }
 
 async function loadDay(d) {
-  return fetch(`data/daily/${d}.json`).then((r) => r.json());
+  return fetchJSON(`data/daily/${d}.json`).then((r) => r.json());
 }
 
 function cardHTML(p) {

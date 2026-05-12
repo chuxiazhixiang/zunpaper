@@ -12,6 +12,7 @@ import {
   coverStyleAttr,
   HEART_SVG_OUTLINE,
   HEART_SVG_FILL,
+  fetchJSON,
 } from './utils.js';
 
 let _palettes = [];
@@ -21,14 +22,14 @@ function getId() {
 }
 
 async function loadPaper(id) {
-  return fetch(`data/papers/${encodeURIComponent(id)}.json`).then((r) => {
+  return fetchJSON(`data/papers/${encodeURIComponent(id)}.json`).then((r) => {
     if (!r.ok) throw new Error('not found');
     return r.json();
   });
 }
 
 async function loadIndex() {
-  return fetch('data/index.json').then((r) => r.json()).catch(() => ({ papers: [] }));
+  return fetchJSON('data/index.json').then((r) => r.json()).catch(() => ({ papers: [] }));
 }
 
 function badgeHTML(b) {
@@ -509,11 +510,22 @@ function openCategoryPicker(paperId, onChange) {
 }
 
 function renderNotFound() {
+  // 99% 的 not-found 都是「这个 paper 被 judge 砍了 / 数据已更新」的旧浏
+  // 览器缓存遗留；剩下 1% 是用户手贴了一个完全无效的 id。两种情况都给一
+  // 个会话级 sessionStorage 清理按钮 —— 点了之后下次加载会拿到最新 index。
   document.querySelector('#post-root').innerHTML = `
     <div class="rp-status">
-      <p class="rp-status__title">论文不存在或还没拉取</p>
-      <p><a class="rp-btn" href="index.html">回到首页</a></p>
+      <p class="rp-status__title">这篇论文不在站上了</p>
+      <p class="rp-status__hint">可能是被 LLM 把关砍掉了 / 站长清理了，也可能是浏览器缓存还没刷新。</p>
+      <p style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
+        <a class="rp-btn" href="index.html">回到首页</a>
+        <button class="rp-btn rp-btn--ghost" id="post-bust-cache">强制刷新缓存重试</button>
+      </p>
     </div>`;
+  document.querySelector('#post-bust-cache')?.addEventListener('click', () => {
+    try { sessionStorage.removeItem('rp_data_v'); } catch (_) {}
+    location.reload();
+  });
 }
 
 async function main() {

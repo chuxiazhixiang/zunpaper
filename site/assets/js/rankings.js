@@ -9,6 +9,7 @@ import {
   paperUrl,
   attachSearchRedirect,
   showToast,
+  fetchJSON,
 } from './utils.js';
 
 const DAY_MS = 86400000;
@@ -19,7 +20,7 @@ const STATE = {
 };
 
 async function loadData() {
-  const r = await fetch('data/index.json').then((r) => r.json()).catch(() => ({ papers: [] }));
+  const r = await fetchJSON('data/index.json').then((r) => r.json()).catch(() => ({ papers: [] }));
   STATE.papers = r.papers || [];
 }
 

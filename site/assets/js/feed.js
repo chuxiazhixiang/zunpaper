@@ -13,6 +13,7 @@ import {
   HEART_SVG_OUTLINE,
   HEART_SVG_FILL,
   showToast,
+  fetchJSON,
 } from './utils.js';
 
 const STATE = {
@@ -32,9 +33,9 @@ const DAY_MS = 86400000;
 
 async function loadData() {
   const [index, channelsResp, siteResp, palettes] = await Promise.all([
-    fetch('data/index.json').then((r) => r.json()).catch(() => ({ papers: [] })),
-    fetch('data/channels.json').then((r) => r.json()).catch(() => ({ channels: [] })),
-    fetch('data/site.json').then((r) => r.json()).catch(() => ({})),
+    fetchJSON('data/index.json').then((r) => r.json()).catch(() => ({ papers: [] })),
+    fetchJSON('data/channels.json').then((r) => r.json()).catch(() => ({ channels: [] })),
+    fetchJSON('data/site.json').then((r) => r.json()).catch(() => ({})),
     loadPalettes(),
   ]);
   STATE.papers = index.papers || [];

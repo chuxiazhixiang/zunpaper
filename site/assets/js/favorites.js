@@ -13,6 +13,7 @@ import {
   HEART_SVG_OUTLINE,
   HEART_SVG_FILL,
   showToast,
+  fetchJSON,
 } from './utils.js';
 
 const STATE = {
@@ -22,7 +23,7 @@ const STATE = {
 };
 
 async function loadIndex() {
-  return fetch('data/index.json').then((r) => r.json()).catch(() => ({ papers: [] }));
+  return fetchJSON('data/index.json').then((r) => r.json()).catch(() => ({ papers: [] }));
 }
 
 function cardHTML(p) {
