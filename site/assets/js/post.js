@@ -1,6 +1,6 @@
 // Detail page: load /data/papers/{id}.json, render hero + bilingual content.
 
-import { Favorites, Reads, Theme } from './storage.js?v=6b929559';
+import { Favorites, Reads, Theme } from './storage.js?v=d33854d9';
 import {
   escapeHTML,
   formatAuthors,
@@ -13,7 +13,7 @@ import {
   HEART_SVG_OUTLINE,
   HEART_SVG_FILL,
   fetchJSON,
-} from './utils.js?v=6b929559';
+} from './utils.js?v=d33854d9';
 
 let _palettes = [];
 
@@ -135,22 +135,11 @@ function ytVideoId(v) {
   );
 }
 
-// 把懒加载 facade 升级成 iframe（用户点击时触发）。
-// autoplay=1 + 用户手势 → YouTube 信任，不再要求登录验证。
-function activateYouTubeFacade(btn) {
-  const id = btn.getAttribute('data-yt');
-  if (!id) return;
-  const iframe = document.createElement('iframe');
-  iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
-  iframe.setAttribute('frameborder', '0');
-  iframe.setAttribute(
-    'allow',
-    'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen',
-  );
-  iframe.setAttribute('allowfullscreen', '');
-  btn.replaceWith(iframe);
-}
-
+// YouTube 反 bot 是按 IP / 浏览器指纹判定的：哪怕用户手动点了"播放"，只要
+// YT 把当前网络判定为高风险，iframe 一加载就会弹「请登录确认不是机器人」。
+// 客户端没办法绕过这个判断。最稳的 UX 是直接把 facade 做成 <a>，点了就在
+// 新标签页跳 YouTube。本机能正常访问 YT 的用户体验损失很小；网络受限的
+// 用户也不再被卡在永远转圈的嵌入框里。
 function ytFacadeHTML(v) {
   const id = ytVideoId(v);
   const title = escapeHTML(v.title || 'Demo 视频');
@@ -160,14 +149,15 @@ function ytFacadeHTML(v) {
   // hqdefault 几乎所有 YT 视频都有；maxres 有时 404 → CSS 多层 background 顺序回退。
   const thumb = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
   const thumbHD = `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+  const watchURL = `https://www.youtube.com/watch?v=${id}`;
   return `<figure class="rp-video">
-    <button type="button" class="rp-video__facade" data-yt="${id}"
-            style="background-image:url('${thumbHD}'),url('${thumb}')"
-            aria-label="播放视频：${title}">
+    <a class="rp-video__facade" href="${watchURL}" target="_blank" rel="noopener"
+       style="background-image:url('${thumbHD}'),url('${thumb}')"
+       aria-label="在 YouTube 上播放：${title}">
       <span class="rp-video__play" aria-hidden="true">▶</span>
       <span class="rp-video__brand" aria-hidden="true">YouTube</span>
-    </button>
-    <figcaption>${title} · <a href="${escapeHTML(v.url)}" target="_blank" rel="noopener">在 YouTube 打开 ↗</a></figcaption>
+    </a>
+    <figcaption>${title} · <a class="rp-video__cap-link" href="${watchURL}" target="_blank" rel="noopener">在 YouTube 打开 ↗</a></figcaption>
   </figure>`;
 }
 
@@ -423,12 +413,6 @@ function renderPaper(p, all) {
   `;
 
   setupDeck();
-
-  // P0: 把 demo 视频区里所有 facade 按钮挂上"点击 → 升级成 autoplay iframe"。
-  // YouTube 把"用户手势触发的 autoplay 嵌入"判定为真人行为，不再弹登录验证。
-  document.querySelectorAll('.rp-video__facade').forEach((btn) => {
-    btn.addEventListener('click', () => activateYouTubeFacade(btn), { once: true });
-  });
 
   // Wire up actions
   const favBtn = document.querySelector('#fav-btn');

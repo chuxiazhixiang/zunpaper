@@ -1,10 +1,10 @@
 # redpaper
 
-> 把每天看不完的 AI 论文整理成「小红书 feed」的静态站。
+> 把每天看不完的论文整理成「小红书 feed」的静态站。
 > arXiv + 中文公众号 → DeepSeek 把关 + 抽机构 / 方法 tag → 中文翻译 → 渲染 PDF 首页 → GitHub Pages 部署。
 > 全部跑在 GitHub Actions 免费层，零服务器、零运营成本。
 
-在线 Demo：<https://Nangongyeee.github.io/redpaper/>
+在线 Demo：[https://Nangongyeee.github.io/redpaper/](https://Nangongyeee.github.io/redpaper/)
 
 ---
 
@@ -75,11 +75,13 @@
 
 **三层缓存**贯穿全程，让重跑近乎免费：
 
-| 缓存文件 | 谁写 | 命中后省什么 |
-|---|---|---|
-| `data/judge_cache.json` | judge.py | DeepSeek 判官调用 |
-| `data/enrich_cache.json` | enrich.py | DeepSeek 抽 tag 调用 |
-| `site/data/papers/{id}.json` | translate.py | LLM 翻译 + PDF 重渲 |
+
+| 缓存文件                         | 谁写           | 命中后省什么            |
+| ---------------------------- | ------------ | ----------------- |
+| `data/judge_cache.json`      | judge.py     | DeepSeek 判官调用     |
+| `data/enrich_cache.json`     | enrich.py    | DeepSeek 抽 tag 调用 |
+| `site/data/papers/{id}.json` | translate.py | LLM 翻译 + PDF 重渲   |
+
 
 跑完一轮的全部产出（commit 回 git）：
 
@@ -92,9 +94,7 @@
 
 ---
 
-## 别人拿过来怎么用
-
-把这个仓库当成「论文 feed 模板」克隆走，5 步就能跑出一个**只推你方向论文**的私人小红书。
+## 把这个仓库当成「论文 feed 模板」克隆走，5 步就能跑出一个**只推你方向论文**的私人小红书。
 
 ### 1. Fork / 用作 Template
 
@@ -105,11 +105,13 @@ GitHub 右上角 **Use this template** → Create a new repository。
 
 至少加一个：
 
-| Secret | 用途 | 申请 |
-|---|---|---|
+
+| Secret             | 用途                                            | 申请                                                     |
+| ------------------ | --------------------------------------------- | ------------------------------------------------------ |
 | `DEEPSEEK_API_KEY` | 推荐：**判官 + 抽 tag** 都靠它；翻译也能兜底。 国内免费充值 ¥10 够跑半年 | [platform.deepseek.com](https://platform.deepseek.com) |
-| `GEMINI_API_KEY` | 可选：翻译首选，免费 1500 次 / 天 | [aistudio.google.com](https://aistudio.google.com) |
-| `OPENAI_API_KEY` | 可选：兜底；可配 `OPENAI_BASE_URL` 走中转 | — |
+| `GEMINI_API_KEY`   | 可选：翻译首选，免费 1500 次 / 天                         | [aistudio.google.com](https://aistudio.google.com)     |
+| `OPENAI_API_KEY`   | 可选：兜底；可配 `OPENAI_BASE_URL` 走中转                | —                                                      |
+
 
 只配 `DEEPSEEK_API_KEY` 也能跑全套，不会卡住。
 
@@ -287,23 +289,27 @@ site/                    # GitHub Pages 服务的全部静态产物
 
 ## 常用脚本
 
-| 命令 | 作用 |
-|---|---|
-| `python scripts/build.py` | 完整跑一轮：抓取 → 判官 → enrich → 翻译 → 渲染 → 写 feed |
-| `python scripts/audit_judge.py --apply` | 对已上站论文全跑一遍 judge，砍掉不达标的，写 `tmp/judge-drops.md` |
-| `python scripts/import_awesome.py --year 2026` | 从 `awesome_papers.md` 批量导入指定年份的论文 |
-| `python scripts/migrate_channels.py --apply` | 改完 channels.yaml 后跑一次，把已有 paper 的 channels 字段重映射 + 关键词扫描补充 |
-| `python scripts/api_push.py` | `git push` 因 TLS 失败时的兜底（走 gh api） |
+
+| 命令                                             | 作用                                                         |
+| ---------------------------------------------- | ---------------------------------------------------------- |
+| `python scripts/build.py`                      | 完整跑一轮：抓取 → 判官 → enrich → 翻译 → 渲染 → 写 feed                  |
+| `python scripts/audit_judge.py --apply`        | 对已上站论文全跑一遍 judge，砍掉不达标的，写 `tmp/judge-drops.md`             |
+| `python scripts/import_awesome.py --year 2026` | 从 `awesome_papers.md` 批量导入指定年份的论文                          |
+| `python scripts/migrate_channels.py --apply`   | 改完 channels.yaml 后跑一次，把已有 paper 的 channels 字段重映射 + 关键词扫描补充 |
+| `python scripts/api_push.py`                   | `git push` 因 TLS 失败时的兜底（走 gh api）                          |
+
 
 ---
 
 ## 成本估算（DeepSeek V4-Flash + V3）
 
-| 阶段 | 模型 | 单价 | 单篇 token | 单篇成本 |
-|---|---|---|---|---|
-| 判官 (judge) | V4-Flash | ¥0.5 / 1M tok in | ~500 in + ~150 out | **¥0.0005** |
-| 二级 tag (enrich) | V4-Flash | 同上 | ~500 in + ~100 out | **¥0.0005** |
-| 翻译 (translate) | V3 / Gemini Free | ¥1 / 1M tok（或免费） | ~600 in + ~500 out | **¥0.0011** |
+
+| 阶段              | 模型               | 单价               | 单篇 token           | 单篇成本        |
+| --------------- | ---------------- | ---------------- | ------------------ | ----------- |
+| 判官 (judge)      | V4-Flash         | ¥0.5 / 1M tok in | ~500 in + ~150 out | **¥0.0005** |
+| 二级 tag (enrich) | V4-Flash         | 同上               | ~500 in + ~100 out | **¥0.0005** |
+| 翻译 (translate)  | V3 / Gemini Free | ¥1 / 1M tok（或免费） | ~600 in + ~500 out | **¥0.0011** |
+
 
 每天 30 篇新论文 × 三步 ≈ **¥0.06 / 天**，**¥2 / 月**。配上 Gemini 免费层兜底，常态下连一毛钱都不到。
 
@@ -322,14 +328,14 @@ site/                    # GitHub Pages 服务的全部静态产物
 
 ## 路线图
 
-- [x] 5 大频道 + LLM 把关 + 机构/方法二级 tag + awesome 批量导入
-- [x] DeepSeek-V4-Flash 判官 + V3 翻译双后端
-- [x] PDF 多页预览、KaTeX、本地收藏分类、深色模式
-- [x] 总 / 周 / 月排行榜
-- [x] Mascot Live2D 立绘开关
-- [ ] HF Daily / Semantic Scholar 热度自动接入
-- [ ] 邮件 / 飞书每日推送
-- [ ] 多人共享收藏（不打算做——会破坏「私人 feed」的纯粹）
+- 5 大频道 + LLM 把关 + 机构/方法二级 tag + awesome 批量导入
+- DeepSeek-V4-Flash 判官 + V3 翻译双后端
+- PDF 多页预览、KaTeX、本地收藏分类、深色模式
+- 总 / 周 / 月排行榜
+- Mascot Live2D 立绘开关
+- HF Daily / Semantic Scholar 热度自动接入
+- 邮件 / 飞书每日推送
+- 多人共享收藏（不打算做——会破坏「私人 feed」的纯粹）
 
 ---
 

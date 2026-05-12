@@ -1521,9 +1521,9 @@ img {
   background: #000;
 }
 
-/* P0: YouTube 懒加载 facade。一张缩略图 + 一个红色播放按钮，点击时被 JS
- * 替换成真正的 iframe（带 autoplay=1，YT 视为真人手势，不再弹反 bot）。
- * 跟 iframe 同样的 16:9，过渡无感。 */
+/* P0: YouTube 缩略图 facade。点击 → 在新标签页打开 YouTube（避开 YT 的
+ * 反 bot challenge——iframe 内嵌触发概率太高，干脆不嵌）。
+ * 同样的 16:9 占位，跟 Bilibili / mp4 iframe 视觉对齐。 */
 .rp-video__facade {
   position: relative;
   display: block;
@@ -1538,6 +1538,7 @@ img {
   background-repeat: no-repeat;
   cursor: pointer;
   overflow: hidden;
+  text-decoration: none;  /* <a> facade 不要默认下划线 */
 }
 .rp-video__facade::before {
   content: "";
@@ -1581,10 +1582,18 @@ img {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 .rp-video figcaption {
-  padding: 8px 12px;
-  font-size: 12.5px;
+  padding: 10px 14px;
+  font-size: 14.5px;
+  line-height: 1.45;
   color: var(--rp-text-soft);
   background: color-mix(in srgb, var(--rp-bg, #fff) 95%, var(--rp-text, #000));
+}
+.rp-video__cap-link {
+  font-weight: 600;
+  color: var(--rp-primary, #d44);
+}
+.rp-video__cap-link:hover {
+  text-decoration: underline;
 }
 
 /* P6: Monthly digest page ----------------------------------------------- */
