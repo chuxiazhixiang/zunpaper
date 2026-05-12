@@ -1,6 +1,6 @@
 // Detail page: load /data/papers/{id}.json, render hero + bilingual content.
 
-import { Favorites, Reads, Theme } from './storage.js?v=4fa5391c';
+import { Favorites, Reads, Theme } from './storage.js?v=6b929559';
 import {
   escapeHTML,
   formatAuthors,
@@ -13,7 +13,7 @@ import {
   HEART_SVG_OUTLINE,
   HEART_SVG_FILL,
   fetchJSON,
-} from './utils.js?v=4fa5391c';
+} from './utils.js?v=6b929559';
 
 let _palettes = [];
 
@@ -119,32 +119,62 @@ function postStructuredHTML(p) {
 }
 
 // P0: demo 视频嵌入区。
-// YouTube 的 153 错误 = 父页面 origin 拿不到或视频只允许特定 host 嵌入。两招治：
-//   1. 改走 youtube-nocookie.com（privacy-enhanced，研究项目视频默认放行）
-//   2. 不要 referrerpolicy="no-referrer" —— YouTube 必须看到来源才肯播
-function ytEmbed(embedUrl) {
-  // embedUrl 形如 https://www.youtube.com/embed/<11位 id>。把 host 换成
-  // youtube-nocookie；附加 rel=0 / modestbranding 让 UI 干净一些。
-  const m = /youtube\.com\/embed\/([A-Za-z0-9_-]{11})/.exec(embedUrl || '');
-  if (!m) return embedUrl;
-  const id = m[1];
-  return `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&playsinline=1`;
+// YouTube 直接 iframe 嵌入会触发两个常见拦截：
+//   - 错误 153：iframe 没带 Referer / 视频只允许 nocookie 嵌入
+//   - 「请登录，以便我们确认你不是机器人」：iframe 一加载就被 YT 反 bot 命中
+// 解法：**懒加载 facade**——平时只渲染 YouTube 官方缩略图 + 播放按钮，等
+// 用户真的点了再 swap 成 iframe（autoplay=1）。YT 把"用户主动点击"判定为
+// 真人，几乎不会再弹 challenge。Bilibili / mp4 没有这个问题，照旧嵌入。
+function ytVideoId(v) {
+  return (
+    /youtube\.com\/embed\/([A-Za-z0-9_-]{11})/.exec(v.embed_url || '')?.[1] ||
+    /[?&]v=([A-Za-z0-9_-]{11})/.exec(v.url || '')?.[1] ||
+    /youtu\.be\/([A-Za-z0-9_-]{11})/.exec(v.url || '')?.[1] ||
+    /shorts\/([A-Za-z0-9_-]{11})/.exec(v.url || '')?.[1] ||
+    ''
+  );
+}
+
+// 把懒加载 facade 升级成 iframe（用户点击时触发）。
+// autoplay=1 + 用户手势 → YouTube 信任，不再要求登录验证。
+function activateYouTubeFacade(btn) {
+  const id = btn.getAttribute('data-yt');
+  if (!id) return;
+  const iframe = document.createElement('iframe');
+  iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+  iframe.setAttribute('frameborder', '0');
+  iframe.setAttribute(
+    'allow',
+    'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen',
+  );
+  iframe.setAttribute('allowfullscreen', '');
+  btn.replaceWith(iframe);
+}
+
+function ytFacadeHTML(v) {
+  const id = ytVideoId(v);
+  const title = escapeHTML(v.title || 'Demo 视频');
+  if (!id) {
+    return `<p><a href="${escapeHTML(v.url)}" target="_blank" rel="noopener">${title} ↗</a></p>`;
+  }
+  // hqdefault 几乎所有 YT 视频都有；maxres 有时 404 → CSS 多层 background 顺序回退。
+  const thumb = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+  const thumbHD = `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+  return `<figure class="rp-video">
+    <button type="button" class="rp-video__facade" data-yt="${id}"
+            style="background-image:url('${thumbHD}'),url('${thumb}')"
+            aria-label="播放视频：${title}">
+      <span class="rp-video__play" aria-hidden="true">▶</span>
+      <span class="rp-video__brand" aria-hidden="true">YouTube</span>
+    </button>
+    <figcaption>${title} · <a href="${escapeHTML(v.url)}" target="_blank" rel="noopener">在 YouTube 打开 ↗</a></figcaption>
+  </figure>`;
 }
 
 function videoBlockHTML(v) {
   const title = escapeHTML(v.title || 'Demo 视频');
   if (v.kind === 'youtube') {
-    const src = ytEmbed(v.embed_url || v.url);
-    // 注意：故意不写 referrerpolicy。YouTube 服务端要靠 Referer 校验嵌入域名，
-    // 设成 no-referrer 等于亲手告诉它"这个嵌入非法"，触发 错误 153。
-    return `<figure class="rp-video">
-      <iframe src="${escapeHTML(src)}"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-              allowfullscreen
-              loading="lazy"></iframe>
-      <figcaption>${title} · <a href="${escapeHTML(v.url)}" target="_blank" rel="noopener">在 YouTube 打开 ↗</a></figcaption>
-    </figure>`;
+    return ytFacadeHTML(v);
   }
   if (v.kind === 'bilibili') {
     return `<figure class="rp-video">
@@ -393,6 +423,12 @@ function renderPaper(p, all) {
   `;
 
   setupDeck();
+
+  // P0: 把 demo 视频区里所有 facade 按钮挂上"点击 → 升级成 autoplay iframe"。
+  // YouTube 把"用户手势触发的 autoplay 嵌入"判定为真人行为，不再弹登录验证。
+  document.querySelectorAll('.rp-video__facade').forEach((btn) => {
+    btn.addEventListener('click', () => activateYouTubeFacade(btn), { once: true });
+  });
 
   // Wire up actions
   const favBtn = document.querySelector('#fav-btn');

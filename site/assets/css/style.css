@@ -1520,6 +1520,66 @@ img {
   border: 0;
   background: #000;
 }
+
+/* P0: YouTube 懒加载 facade。一张缩略图 + 一个红色播放按钮，点击时被 JS
+ * 替换成真正的 iframe（带 autoplay=1，YT 视为真人手势，不再弹反 bot）。
+ * 跟 iframe 同样的 16:9，过渡无感。 */
+.rp-video__facade {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background-color: #000;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  overflow: hidden;
+}
+.rp-video__facade::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.45) 100%);
+  transition: background 0.2s;
+}
+.rp-video__facade:hover::before {
+  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%);
+}
+.rp-video__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 68px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(220, 30, 35, 0.92);
+  color: #fff;
+  font-size: 22px;
+  line-height: 48px;
+  text-align: center;
+  padding-left: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  transition: transform 0.18s, background 0.18s;
+}
+.rp-video__facade:hover .rp-video__play {
+  background: rgba(255, 0, 0, 1);
+  transform: translate(-50%, -50%) scale(1.06);
+}
+.rp-video__brand {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
 .rp-video figcaption {
   padding: 8px 12px;
   font-size: 12.5px;

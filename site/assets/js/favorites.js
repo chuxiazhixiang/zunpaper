@@ -1,7 +1,7 @@
 // Favorites page: filter the global index to favorited papers, grouped by
 // user-defined categories. All state is local to this browser.
 
-import { Favorites, Theme } from './storage.js?v=4fa5391c';
+import { Favorites, Theme } from './storage.js?v=6b929559';
 import {
   pickCover,
   loadPalettes,
@@ -14,8 +14,8 @@ import {
   HEART_SVG_FILL,
   showToast,
   fetchJSON,
-} from './utils.js?v=4fa5391c';
-import { chipRowsHTML, videoBadgeHTML } from './feed.js?v=4fa5391c';
+} from './utils.js?v=6b929559';
+import { chipRowsHTML, videoBadgeHTML } from './feed.js?v=6b929559';
 
 const STATE = {
   papers: [],          // master list from index.json
