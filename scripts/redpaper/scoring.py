@@ -113,21 +113,15 @@ def _check_hf_trending(paper: Paper, rule: dict) -> dict | int:
 
 
 _MEDIA_SOURCES = {
-    "qbitai", "jiqizhixin", "synced_review",
-    "leiphone", "kr36",
-    "ieee_spectrum", "robohub", "therobotreport", "techcrunch_robotics",
+    "qbitai", "jiqizhixin",
+    "embodied_techdaily", "shenlan_embodied",
 }
 
 _SOURCE_LABEL = {
     "qbitai": "量子位",
     "jiqizhixin": "机器之心",
-    "synced_review": "Synced Review",
-    "leiphone": "雷峰网",
-    "kr36": "36氪",
-    "ieee_spectrum": "IEEE Spectrum",
-    "robohub": "Robohub",
-    "therobotreport": "The Robot Report",
-    "techcrunch_robotics": "TechCrunch Robotics",
+    "embodied_techdaily": "具身智能之心",
+    "shenlan_embodied": "深蓝具身智能",
 }
 
 

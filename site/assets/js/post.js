@@ -87,6 +87,28 @@ function relatedPapersHTML(current, allPapers) {
 /** Render the per-paper "为啥今天选了你" score breakdown.
  *  The pipeline writes `p.score` and `p.score_breakdown` (array of items
  *  `{ label, points, hint? }`). If neither is present we hide the section. */
+function judgeBlockHTML(p) {
+  const j = p.judge || {};
+  if (!j.model) return '';
+  const valueLabel = { high: '高', medium: '中', low: '低' }[j.research_value] || j.research_value || '';
+  const stamp = j.relevant ? '✅ 通过' : '❌ 被砍';
+  const channelLine = j.primary_channel && j.primary_channel !== 'none'
+    ? `<span class="rp-judge__chip">主方向：${escapeHTML(j.primary_channel)}</span>`
+    : '';
+  return `
+    <section class="rp-section rp-judge">
+      <h3 class="rp-section__title">LLM 把关 (${escapeHTML(j.model)})</h3>
+      <div class="rp-judge__meta">
+        <span class="rp-judge__chip rp-judge__chip--${j.relevant ? 'pass' : 'fail'}">${stamp}</span>
+        <span class="rp-judge__chip">科研价值：${escapeHTML(valueLabel)}</span>
+        ${channelLine}
+      </div>
+      ${j.reason ? `<p class="rp-judge__reason">${escapeHTML(j.reason)}</p>` : ''}
+    </section>
+  `;
+}
+
+
 function scoreBreakdownHTML(p) {
   const items = p.score_breakdown || [];
   if (!items.length && p.score == null) return '';
@@ -268,6 +290,8 @@ function renderPaper(p, all) {
           <p class="rp-section__en">${escapeHTML(p.abstract || '')}</p>
         </details>
       </section>
+
+      ${judgeBlockHTML(p)}
 
       ${scoreBreakdownHTML(p)}
 

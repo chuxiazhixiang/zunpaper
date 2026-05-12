@@ -1,0 +1,227 @@
+"""DeepSeek-V4-Flash 论文相关性 & 科研价值门禁。
+
+为什么要这玩意：
+    频道关键词命中只能保证「字面相关」，命中 humanoid / VLA / 具身 等词
+    并不代表「对我科研有帮助」。这里在 paper 上站之前，用一个便宜的 LLM
+    判断一下：
+      (1) 是否属于站长真正关心的方向？
+      (2) 是否有科研价值（而不是行业八卦 / 融资新闻 / 演示视频）？
+    只有 (1) ∩ (2) 都过的 paper 才上首页。
+
+为什么用 V4-Flash 而不是 V4-Pro：
+    判定本身是简单分类任务，不需要 reasoning。V4-Flash 价格只有 Pro 的
+    1/3（$0.14/M 输入 vs $0.435/M），延迟也低很多。
+
+用量估算：
+    每篇文章: ~400 token 输入 + ~100 token 输出
+    单次成本 ≈ 400×0.14/1M + 100×0.28/1M ≈ $0.000084 ≈ ¥0.0006
+    每天新文章上限按 100 算 → 单日 ≤ ¥0.06，单月 ≤ ¥1.8
+
+环境变量：
+    DEEPSEEK_API_KEY        必填
+    REDPAPER_JUDGE_MODEL    可选，默认 deepseek-v4-flash
+    REDPAPER_JUDGE_DISABLE  设为 "1" 时跳过 judge（按一律 relevant 处理）
+
+缓存：
+    站点根 data/judge_cache.json （id → judgment），跨次 build 复用，
+    避免重复付费。
+"""
+from __future__ import annotations
+
+import json
+import logging
+import os
+import re
+import time
+from dataclasses import dataclass, field, asdict
+from pathlib import Path
+
+import requests
+
+log = logging.getLogger(__name__)
+
+DEFAULT_MODEL = os.environ.get("REDPAPER_JUDGE_MODEL", "deepseek-v4-flash")
+DEEPSEEK_URL = "https://api.deepseek.com/chat/completions"
+
+JUDGE_TIMEOUT = 60
+
+SYSTEM_PROMPT = (
+    "你是一位严格的具身机器人方向研究员，要从「研究相关性 + 科研价值」两个角度给文章打分。\n"
+    "输入是一篇文章的标题 + 摘要 / 描述。\n"
+    "用户关心的方向：\n"
+    "  - whole-body：人形机器人全身控制、动作模仿、模仿学习、teleop\n"
+    "  - loco-manip：移动操作、双臂操作、长时序任务、家用 / 仓储\n"
+    "  - locomotion：双足 / 四足运动、parkour、gait、terrain\n"
+    "  - manipulation：灵巧手、抓取、双手协调、扩散策略、ACT\n"
+    "  - vla：VLA、generalist policy、foundation policy、具身大模型\n"
+    "**不要**接受的：\n"
+    "  - 纯医疗 / 手术 / 康复机器人\n"
+    "  - 工业流水线 SCARA / 机械臂自动化产线，缺乏算法新意\n"
+    "  - 公司融资 / 招聘 / 行业沙龙活动 / 课程广告 / 会议宣传\n"
+    "  - 自动驾驶车（不含轮式室外导航）\n"
+    "  - 单纯硬件评测，缺乏算法或 policy 创新\n"
+    "  - LLM-only / Agent / Computer-Use 等不涉及物理世界的工作\n"
+    "  - AIGC 漫剧、文生图、文生视频、合成人脸等娱乐方向\n"
+    "**接受**的：\n"
+    "  - 真机器人上跑的 RL / IL / imitation / VLA / VLN / world model\n"
+    "  - 仿真器、数据集、benchmark（针对上述方向）\n"
+    "  - 综述、教程（针对上述方向）\n"
+    "  - 知名实验室 / 公司 (Boston Dynamics, Figure, 1X, 宇树, 智元, 银河通用,\n"
+    "    Physical Intelligence, Skild AI, Generalist, BAIR, Stanford SAIL,\n"
+    "    NVIDIA GEAR, Google DeepMind robotics, MIT CSAIL...) 发布的论文 / 演示\n"
+    "  - 行业洞察类深度访谈，前提是受访者是上述方向的一线研究者 / 创始人\n"
+    "严格按 JSON 输出，schema：\n"
+    "{\n"
+    '  "relevant": true/false,                  // 是否值得上 redpaper\n'
+    '  "research_value": "high"/"medium"/"low", // 对一线科研者的参考价值\n'
+    '  "primary_channel": "whole-body|loco-manip|locomotion|manipulation|vla|none",\n'
+    '  "reason": "20-40 字中文简评，说明为什么留 / 砍"\n'
+    "}\n"
+    "判定原则：\n"
+    "  - 拿不准 → relevant=false 安全；宁缺勿滥。\n"
+    "  - 标题是「Episode XX」「Video Friday」「Robot Talk」等连载娱乐栏目 → false。\n"
+    "  - 仅有融资金额 / 估值 / 团队招聘信息 → false。\n"
+    "  - 学术综述 / 数据集 / benchmark / 仿真器（在用户方向） → relevant=true, research_value=high。\n"
+    "  - 单纯硬件展示 / 演示视频，无新算法 → low；relevant=true 仅当来自顶尖实验室且揭示新能力。\n"
+)
+
+
+@dataclass
+class Judgment:
+    relevant: bool = False
+    research_value: str = "low"     # high / medium / low
+    primary_channel: str = "none"
+    reason: str = ""
+    model: str = ""                  # 用了哪个模型
+    raw: str = ""                    # debug 用，可选
+
+
+# ---------- Public API ----------------------------------------------------
+
+class JudgeUnavailable(RuntimeError):
+    """Raised when judge is intentionally disabled (no API key / dryrun)."""
+
+
+def judge_paper(title: str, abstract: str, *, model: str = DEFAULT_MODEL,
+                api_key: str | None = None, timeout: float = JUDGE_TIMEOUT) -> Judgment:
+    """同步调用 DeepSeek，对一篇论文做相关性判定。
+
+    若环境变量 REDPAPER_JUDGE_DISABLE=1 直接 raise JudgeUnavailable。
+    若没有 DEEPSEEK_API_KEY 也直接 raise JudgeUnavailable。
+    """
+    if os.environ.get("REDPAPER_JUDGE_DISABLE") == "1":
+        raise JudgeUnavailable("REDPAPER_JUDGE_DISABLE=1")
+    key = api_key or os.environ.get("DEEPSEEK_API_KEY")
+    if not key:
+        raise JudgeUnavailable("DEEPSEEK_API_KEY not set")
+
+    user_msg = (
+        f"标题：{title.strip()}\n\n"
+        f"摘要 / 描述：\n{(abstract or '').strip()[:3000]}\n"
+    )
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user",   "content": user_msg},
+        ],
+        "response_format": {"type": "json_object"},
+        "temperature": 0.0,
+        # V4-Flash 默认开 reasoning（completion 里 reasoning_tokens 会吃掉很多
+        # 配额），导致剩下的 token 装不下 JSON 直接被截断 → 解析失败 →
+        # 我们误判为 relevant=False。判定本身是简单分类，不需要 CoT，关掉。
+        "thinking": {"type": "disabled"},
+        # 给 200 token 是为了「JSON 主体 + 中文 reason 30-40 字」留余地。
+        # 经验上一次完整响应 80-120 token，留 400 安全。
+        "max_tokens": 400,
+    }
+    headers = {
+        "Authorization": f"Bearer {key}",
+        "Content-Type": "application/json",
+    }
+    r = requests.post(DEEPSEEK_URL, json=payload, headers=headers, timeout=timeout)
+    r.raise_for_status()
+    raw = r.json()["choices"][0]["message"]["content"]
+    data = _parse_response(raw)
+    j = Judgment(
+        relevant=bool(data.get("relevant", False)),
+        research_value=str(data.get("research_value", "low")).lower(),
+        primary_channel=str(data.get("primary_channel", "none")).lower(),
+        reason=str(data.get("reason", "")).strip()[:200],
+        model=model,
+        raw="",  # 不存 raw，索引文件已经够大了
+    )
+    return j
+
+
+def _parse_response(raw: str) -> dict:
+    """LLM 偶尔会在 JSON 周围加 ```json fence；剥掉。"""
+    s = raw.strip()
+    s = re.sub(r"^```(?:json)?\s*|\s*```$", "", s)
+    try:
+        return json.loads(s)
+    except Exception:
+        # 兜底：找到第一段 {...}
+        m = re.search(r"\{.*\}", s, re.DOTALL)
+        if m:
+            try:
+                return json.loads(m.group(0))
+            except Exception:
+                pass
+    return {}
+
+
+# ---------- Cache ---------------------------------------------------------
+
+class JudgeCache:
+    """跨次 build 复用判定结果，避免重复付费。
+
+    存盘路径：data/judge_cache.json（仓库根，不在 site/ 里所以不会被
+    publish 暴露）。Schema：
+      {
+        "version": 1,
+        "model": "deepseek-v4-flash",
+        "entries": { "<paper_id>": { "relevant":bool, ... , "ts":int } }
+      }
+    """
+
+    VERSION = 1
+
+    def __init__(self, path: Path):
+        self.path = path
+        self._data = {"version": self.VERSION, "model": DEFAULT_MODEL, "entries": {}}
+        if path.exists():
+            try:
+                with open(path, encoding="utf-8") as f:
+                    self._data = json.load(f)
+            except Exception as e:
+                log.warning("judge cache load failed (%s); starting fresh", e)
+
+    @property
+    def entries(self) -> dict[str, dict]:
+        return self._data.setdefault("entries", {})
+
+    def get(self, pid: str) -> Judgment | None:
+        e = self.entries.get(pid)
+        if not e:
+            return None
+        # 老条目可能 schema 不全 / 不同模型；做个最低限度校验
+        return Judgment(
+            relevant=bool(e.get("relevant", False)),
+            research_value=e.get("research_value", "low"),
+            primary_channel=e.get("primary_channel", "none"),
+            reason=e.get("reason", ""),
+            model=e.get("model", ""),
+        )
+
+    def put(self, pid: str, j: Judgment) -> None:
+        d = asdict(j)
+        d["ts"] = int(time.time())
+        self.entries[pid] = d
+
+    def save(self) -> None:
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        tmp = self.path.with_suffix(".json.tmp")
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump(self._data, f, ensure_ascii=False, indent=2)
+        tmp.replace(self.path)

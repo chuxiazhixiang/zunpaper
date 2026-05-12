@@ -9,6 +9,7 @@ from pathlib import Path
 
 from . import config as cfg
 from .digest import write_markdown_digest, write_rss
+from .judge import judge_paper, JudgeUnavailable, JudgeCache
 from .labs import detect_labs, lab_badges
 from .scoring import score_paper
 from .models import Paper, load_paper, save_paper
@@ -37,6 +38,65 @@ def _existing_papers() -> dict[str, Paper]:
 
 
 _CJK_RE = __import__("re").compile(r"[\u4e00-\u9fff]")
+
+
+def _judge_filter(fresh: dict[str, Paper]) -> dict[str, Paper]:
+    """Run each new paper through the DeepSeek judge. Drop the irrelevant
+    ones. Pinned manual papers always pass.
+
+    Side effect: persists a `paper.judge` field on each kept paper so the
+    UI can show the LLM's reasoning later if we want. Cache is keyed by
+    paper id so re-runs don't repay for already-judged papers.
+    """
+    # 缓存放在仓库根目录 data/ 下，跟着 git 走，不会被 GitHub Pages 暴露
+    cache = JudgeCache(cfg.REPO_ROOT / "data" / "judge_cache.json")
+    kept: dict[str, Paper] = {}
+    skipped_irrelevant = 0
+    judge_calls = judge_cache_hits = 0
+    for pid, p in fresh.items():
+        # Pinned / manually-curated papers bypass the gate entirely
+        if "manual_pin" in (p.source_tags or []) or p.source == "manual_arxiv":
+            kept[pid] = p
+            continue
+
+        cached = cache.get(pid)
+        if cached is not None:
+            judge_cache_hits += 1
+            j = cached
+        else:
+            try:
+                j = judge_paper(p.title, p.abstract or p.tldr_zh or p.title)
+                judge_calls += 1
+                cache.put(pid, j)
+            except JudgeUnavailable as e:
+                # No API key / explicitly disabled — pass through (don't
+                # block the pipeline on a config issue).
+                log.warning("judge skipped (%s); keeping %s without check", e, pid)
+                kept[pid] = p
+                continue
+            except Exception as e:
+                # Transient API hiccup — keep the paper to avoid data loss.
+                log.warning("judge call failed for %s: %s; keeping", pid, e)
+                kept[pid] = p
+                continue
+
+        p.judge = {
+            "relevant": j.relevant,
+            "research_value": j.research_value,
+            "primary_channel": j.primary_channel,
+            "reason": j.reason,
+            "model": j.model,
+        }
+        if not j.relevant:
+            skipped_irrelevant += 1
+            log.info("judge[skip] %s «%s» → %s", pid, p.title[:50], j.reason[:80])
+            continue
+        kept[pid] = p
+
+    cache.save()
+    log.info("judge: %d called, %d cached, %d dropped as irrelevant",
+             judge_calls, judge_cache_hits, skipped_irrelevant)
+    return kept
 
 
 def _is_translated(p: Paper) -> bool:
@@ -293,6 +353,9 @@ def _feed_entry(p: Paper) -> dict:
         "abs_url": p.abs_url,
         "pdf_url": p.pdf_url,
         "score": p.score,
+        # DeepSeek-V4-Flash 的相关性 / 科研价值评论；前端可在详情页展示
+        # `reason` 一行。空 dict 表示这条 paper 还没经过 judge（旧数据）。
+        "judge": p.judge or {},
     }
 
 
@@ -436,13 +499,8 @@ def run() -> None:
     news_enabled = {
         "qbitai": sources.qbitai_enabled,
         "jiqizhixin": sources.jiqizhixin_enabled,
-        "leiphone": sources.leiphone_enabled,
-        "kr36": sources.kr36_enabled,
-        "ieee_spectrum": sources.ieee_spectrum_enabled,
-        "robohub": sources.robohub_enabled,
-        "therobotreport": sources.therobotreport_enabled,
-        "techcrunch_robotics": sources.techcrunch_robotics_enabled,
-        "synced_review": sources.synced_review_enabled,
+        "embodied_techdaily": sources.embodied_techdaily_enabled,
+        "shenlan_embodied": sources.shenlan_embodied_enabled,
     }
     # 用 qbitai_lookback_days 作为统一的 news age 上限（它们在 sources.yaml 里
     # 都是同一个值；按需可以分源走，但目前先简化）。
@@ -461,6 +519,14 @@ def run() -> None:
             log.warning("cn_news standalone fetch failed: %s", e)
 
     log.info("fetched %d unique papers", len(fresh))
+
+    # ----- LLM 质量门禁（DeepSeek V4-Flash judge）----------------------
+    # 关键词命中 ≠ 真相关。在 paper 进入上站流水线之前，让 DeepSeek 判定
+    # (1) 是否真的属于站长方向，(2) 是否有科研价值。relevant=False 的直接
+    # 丢弃，并把判定缓存到 data/judge_cache.json，下一轮 build 不再重复付费。
+    # 钉过 manual_pin 的（重要论文）跳过 judge。
+    fresh = _judge_filter(fresh)
+    log.info("after judge: %d papers kept", len(fresh))
 
     ctx = _build_enrichment_context(sources, fresh)
 

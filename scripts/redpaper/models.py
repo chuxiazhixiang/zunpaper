@@ -45,6 +45,9 @@ class Paper:
     source_tags: list[str] = field(default_factory=list)                # extra source markers (e.g. "hf_daily")
     score: int = 0
     score_breakdown: list[dict] = field(default_factory=list)            # [{id, label, points, hint}]
+    # DeepSeek-V4-Flash judgment, set by build._judge_filter. None / {} = not judged yet
+    # (legacy papers). UI can opt to surface `judge.reason` on detail page.
+    judge: dict = field(default_factory=dict)                            # {relevant, research_value, primary_channel, reason, model}
 
     def to_dict(self) -> dict[str, Any]:
         d = asdict(self)

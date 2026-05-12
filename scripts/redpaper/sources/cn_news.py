@@ -489,61 +489,114 @@ def _parse_qbitai() -> list[dict]:
     return list(by_url.values())
 
 
-# ----- 雷峰网 -----------------------------------------------------------
-def _parse_leiphone() -> list[dict]:
-    return _generic_rss("https://www.leiphone.com/feed", lang="zh")
+# ----- jintiankansha 公众号镜像 -----------------------------------------
+# jintiankansha 是一个 WeChat 公众号 -> 文章列表镜像站，每个公众号都有一个
+# `/column/{ID}` 页面。前后端都是 SSR HTML，没有 RSS endpoint，只能 grep。
+# 列表页 ~20 条最新文章，详情页有正文 + 首图（mmbiz / sinaimg 域名）。
+
+# 列表页文章 URL 形如：http://www.jintiankansha.me/t/{10-char-hash}
+_JTKS_ITEM_RE = re.compile(
+    r'href="(http://www\.jintiankansha\.me/t/[A-Za-z0-9]+)"[^>]*>([^<]+)</a>',
+    re.DOTALL,
+)
+# 日期是中文相对时间："3 天前" / "1 周前" / "5 小时前"。我们能把它换算成 ISO。
+_JTKS_RELDATE_RE = re.compile(r'(\d+)\s*(小时|天|周|月)\s*前')
 
 
-# ----- 36kr -------------------------------------------------------------
-def _parse_36kr() -> list[dict]:
-    return _generic_rss("https://36kr.com/feed", lang="zh")
+def _jtks_reldate_to_iso(text: str, anchor: _dt.date | None = None) -> str:
+    m = _JTKS_RELDATE_RE.search(text or "")
+    if not m:
+        return ""
+    n = int(m.group(1))
+    unit = m.group(2)
+    delta = {
+        "小时": _dt.timedelta(hours=n),
+        "天":   _dt.timedelta(days=n),
+        "周":   _dt.timedelta(weeks=n),
+        "月":   _dt.timedelta(days=n * 30),  # 近似
+    }.get(unit, _dt.timedelta())
+    today = anchor or _dt.date.today()
+    when = today - _dt.timedelta(days=delta.days)
+    return when.isoformat()
 
 
-# ----- IEEE Spectrum Robotics ------------------------------------------
-def _parse_ieee_spectrum() -> list[dict]:
-    return _generic_rss("https://spectrum.ieee.org/feeds/topic/robotics.rss", lang="en")
+def _parse_jintiankansha(column_id: str, name: str) -> list[dict]:
+    """Scrape a 今天看啥 column. Pages are SSR HTML; we 30-item per fetch."""
+    url = f"http://www.jintiankansha.me/column/{column_id}"
+    html = _safe_get(url)
+    if not html:
+        return []
+    out: list[dict] = []
+    seen_urls: set[str] = set()
+    # 整张页面按 <tr> / <li> 分块再 grep 太脆弱；直接收所有 /t/xxx
+    # 链接对，再把附近的相对日期对应回去。
+    items_raw: list[tuple[str, str, int]] = []  # (url, title, position)
+    for m in _JTKS_ITEM_RE.finditer(html):
+        purl = m.group(1)
+        title = re.sub(r"\s+", " ", m.group(2)).strip()
+        if not title or purl in seen_urls:
+            continue
+        seen_urls.add(purl)
+        items_raw.append((purl, title, m.start()))
+
+    # 把页面上所有 "X 天前" 的位置取出来，按最近的一个匹配到上面的 link
+    reldate_positions: list[tuple[int, str]] = [
+        (m.start(), m.group(0)) for m in _JTKS_RELDATE_RE.finditer(html)
+    ]
+
+    for purl, title, pos in items_raw:
+        # 找到该 link 附近 (前后 1500 字符内) 最近的相对日期串
+        nearest = ""
+        for rpos, rtext in reldate_positions:
+            if abs(rpos - pos) <= 1500:
+                nearest = rtext
+                break
+        iso = _jtks_reldate_to_iso(nearest)
+        # 用 RFC822 风格存 pubdate，让下游 _parse_rfc822 一致处理
+        pubdate = ""
+        if iso:
+            try:
+                d = _dt.date.fromisoformat(iso)
+                pubdate = d.strftime("%a, %d %b %Y 00:00:00 +0800")
+            except Exception:
+                pubdate = ""
+        out.append({
+            "title": title,
+            "url": purl,
+            "pubdate": pubdate,
+            "desc": "",       # 列表页没摘要；详情页里会被 cover-extract 拉一次
+            "lang": "zh",
+        })
+    return out
 
 
-# ----- Robohub ----------------------------------------------------------
-def _parse_robohub() -> list[dict]:
-    return _generic_rss("https://robohub.org/feed/", lang="en")
+# 公众号 → 今天看啥 column id
+JTKS_TECHDAILY = "OyGGse6DLa"   # 具身智能之心 / 具身智能之心TechDaily
+JTKS_SHENLAN   = "ZF2cB1xCBa"   # 深蓝AI / 深蓝具身智能（已合并到主号，老 column 仍有近半年文章）
 
 
-# ----- The Robot Report -------------------------------------------------
-def _parse_therobotreport() -> list[dict]:
-    return _generic_rss("https://www.therobotreport.com/feed/", lang="en")
+def _parse_embodied_techdaily() -> list[dict]:
+    return _parse_jintiankansha(JTKS_TECHDAILY, "具身智能之心")
 
 
-# ----- TechCrunch Robotics ---------------------------------------------
-def _parse_techcrunch_robotics() -> list[dict]:
-    return _generic_rss("https://techcrunch.com/category/robotics/feed/", lang="en")
-
-
-# ----- Synced Review (English 新智元 sibling) --------------------------
-def _parse_syncedreview() -> list[dict]:
-    return _generic_rss("https://syncedreview.com/feed/", lang="en")
+def _parse_shenlan() -> list[dict]:
+    return _parse_jintiankansha(JTKS_SHENLAN, "深蓝具身智能")
 
 
 def _build_fetchers(enabled: dict[str, bool]) -> list[tuple[str, str, callable]]:
     """Return (source_id, display_name, parser) for each enabled source.
-    Order = display order in logs; doesn't affect scoring."""
+
+    用户精选的高质量公众号 / 镜像站。删掉了之前的雷峰网 / 36kr / IEEE Spectrum /
+    Robohub / TheRobotReport / TechCrunch / Synced Review —— 它们大多是行业广告
+    / 融资八卦 / Disrupt 会议宣传，学术含量低。
+    """
     chain: list[tuple[str, str, callable]] = []
     if enabled.get("qbitai"):
         chain.append(("qbitai", "量子位", _parse_qbitai))
-    if enabled.get("leiphone"):
-        chain.append(("leiphone", "雷峰网", _parse_leiphone))
-    if enabled.get("kr36"):
-        chain.append(("kr36", "36氪", _parse_36kr))
-    if enabled.get("ieee_spectrum"):
-        chain.append(("ieee_spectrum", "IEEE Spectrum", _parse_ieee_spectrum))
-    if enabled.get("robohub"):
-        chain.append(("robohub", "Robohub", _parse_robohub))
-    if enabled.get("therobotreport"):
-        chain.append(("therobotreport", "The Robot Report", _parse_therobotreport))
-    if enabled.get("techcrunch_robotics"):
-        chain.append(("techcrunch_robotics", "TechCrunch Robotics", _parse_techcrunch_robotics))
-    if enabled.get("synced_review"):
-        chain.append(("synced_review", "Synced Review", _parse_syncedreview))
+    if enabled.get("embodied_techdaily"):
+        chain.append(("embodied_techdaily", "具身智能之心", _parse_embodied_techdaily))
+    if enabled.get("shenlan_embodied"):
+        chain.append(("shenlan_embodied", "深蓝具身智能", _parse_shenlan))
     return chain
 
 
