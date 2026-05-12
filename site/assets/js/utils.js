@@ -94,14 +94,22 @@ export function paperUrl(id) {
 
 // ---- Cache-busted data fetch ---------------------------------------------
 //
-// 历史 bug：CI 每天重写 site/data/*.json，但浏览器会用 7-day cache
-// 缓存这些 JSON，导致已下架 paper 的 id 还停留在用户那张 index.json
-// 副本里 —— 点进去 papers/<id>.json 当然 404 → 渲染「论文不存在」。
-// 这里给所有 data fetch 加一个 cache-bust 版本号；版本号每次 reload 都换，
-// 浏览器一定会去拉新的。
-const _DATA_VERSION = (() => {
-  // 用 sessionStorage 保证同一会话内多个页面（feed/post/archive）共用一个版本，
-  // 防止 feed 看到 paper A 而点进 post 时 cache miss 看不到 A。
+// 历史 bug：CI 每天重写 site/data/*.json，但浏览器会按 max-age 把这些 JSON
+// cache 住，导致已下架 paper 的 id 还停留在用户那张 index.json 副本里
+// —— 点进去 papers/<id>.json 当然 404 → 「论文不存在」。
+//
+// 治本方案：build.py 在每次构建尾巴上跑 stamp_assets()，把当前 git short
+// SHA 写进 HTML 的 <script src="...?v=abc123"> 和 JS 之间的 import URL。
+// 所以我们的 import.meta.url 里就带着 ?v=...。
+//
+// fetchJSON 把这个版本号从 import.meta.url 里抠出来，append 到所有 data
+// URL 上 —— 版本号一变浏览器就一定去拉新的，不会用任何老的 cache。
+const _BUILD_VERSION = (() => {
+  try {
+    const v = new URL(import.meta.url).searchParams.get('v');
+    if (v) return v;
+  } catch (_) {}
+  // dev / 未 stamp 的情况：用 sessionStorage 维持「同一 tab 内一致」。
   const KEY = 'rp_data_v';
   let v = null;
   try { v = sessionStorage.getItem(KEY); } catch (_) {}
@@ -115,7 +123,7 @@ const _DATA_VERSION = (() => {
 /** Fetch a JSON file under data/, bypassing stale browser cache. */
 export function fetchJSON(path) {
   const sep = path.includes('?') ? '&' : '?';
-  return fetch(`${path}${sep}_v=${_DATA_VERSION}`, { cache: 'no-cache' });
+  return fetch(`${path}${sep}_v=${_BUILD_VERSION}`, { cache: 'no-cache' });
 }
 
 /** Wire up a search input that submits by jumping back to the home page with

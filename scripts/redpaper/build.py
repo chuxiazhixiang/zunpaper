@@ -341,6 +341,70 @@ def write_feed(all_papers: list[Paper]) -> None:
     with (cfg.DATA_DIR / "days.json").open("w", encoding="utf-8") as f:
         json.dump({"days": days_sorted}, f, ensure_ascii=False, indent=2)
 
+    # 最后一步：给所有 HTML / JS 资源打上版本戳，绕开浏览器缓存。
+    # 必须放在 write_feed 末尾才能确保部署时一定被执行。
+    stamp_assets()
+
+
+# ----- Asset cache-busting ------------------------------------------------
+
+_ASSET_TAG_RE = __import__("re").compile(
+    r'((?:src|href)\s*=\s*"assets/(?:js|css)/[^"?]+\.(?:js|css))(?:\?v=[^"]*)?(?=")'
+)
+_JS_IMPORT_RE = __import__("re").compile(
+    r"((?:from|import)\s+['\"]\./[^'\"]+\.js)(?:\?v=[^'\"]*)?(?=['\"])"
+)
+
+
+def _compute_build_version() -> str:
+    """Use the current git short SHA so each CI commit invalidates browser
+    cache. Fallback to a timestamp for dirty / detached states (dev builds)."""
+    import subprocess
+    try:
+        out = subprocess.check_output(
+            ["git", "rev-parse", "--short=8", "HEAD"],
+            cwd=cfg.REPO_ROOT, stderr=subprocess.DEVNULL,
+        ).decode().strip()
+        if out:
+            return out
+    except Exception:
+        pass
+    return dt.datetime.utcnow().strftime("%Y%m%d%H%M%S")
+
+
+def stamp_assets(version: str | None = None) -> str:
+    """Append `?v=<version>` to every `<script src=...>` / `<link href=...>`
+    in site/*.html, and to every `import './X.js'` / `from './X.js'` in
+    site/assets/js/*.js. Idempotent — existing `?v=...` is stripped first.
+
+    Why both HTML AND JS imports:
+      - HTML 引用的 entry script (feed.js, post.js…) 被 stamp 后 URL 变化
+        → 浏览器一定下载新版本。
+      - 但新版本 feed.js 内部 `import './utils.js'` 如果不带 ?v=，浏览器会
+        用 cache 里的老 utils.js → 缺 fetchJSON / BUILD_VERSION 等新逻辑。
+        所以 JS-to-JS 的 import 也要 stamp。
+    """
+    v = version or _compute_build_version()
+    log.info("stamping assets with version: %s", v)
+
+    n_html = n_js = 0
+    for path in cfg.SITE_DIR.glob("*.html"):
+        src = path.read_text(encoding="utf-8")
+        new = _ASSET_TAG_RE.sub(lambda m: f"{m.group(1)}?v={v}", src)
+        if new != src:
+            path.write_text(new, encoding="utf-8")
+            n_html += 1
+
+    for path in (cfg.SITE_DIR / "assets" / "js").glob("*.js"):
+        src = path.read_text(encoding="utf-8")
+        new = _JS_IMPORT_RE.sub(lambda m: f"{m.group(1)}?v={v}", src)
+        if new != src:
+            path.write_text(new, encoding="utf-8")
+            n_js += 1
+
+    log.info("stamped %d html + %d js files", n_html, n_js)
+    return v
+
 
 def _feed_entry(p: Paper) -> dict:
     """Slim representation used in feed JSON to keep it lightweight."""
