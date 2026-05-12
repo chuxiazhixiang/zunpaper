@@ -10,48 +10,83 @@
 
 ## 工作流
 
-每天早上 07:00 北京时间，GitHub Actions 自动跑一次完整流水线：
+每天北京时间 07:00，GitHub Actions 自动跑一次完整流水线。10 步走完：
 
-```mermaid
-flowchart LR
-    %% ============ Sources ============
-    subgraph SRC["数据源<br/>(可在 sources.yaml 开关)"]
-        direction TB
-        A1[arXiv API<br/>近 N 天 + evergreen 回补]
-        A2[量子位 RSS]
-        A3[具身智能之心<br/>jintiankansha 镜像]
-        A4[深蓝具身智能]
-        A5[manual_arxiv.yaml<br/>站长精选钉论文]
-    end
-
-    %% ============ Pipeline ============
-    SRC --> KW{关键词过滤<br/>channels.yaml}
-    KW --> JUDGE["🛡 DeepSeek V4-Flash<br/>质量门禁 (judge.py)<br/>相关性 + 科研价值"]
-    JUDGE -- "relevant=false<br/>砍掉" --> X((🗑))
-    JUDGE -- "relevant=true" --> ENRICH["🏷 DeepSeek V4-Flash<br/>抽机构 + 方法 tag (enrich.py)"]
-    ENRICH --> TR["✍ LLM 翻译<br/>(gemini → deepseek → openai → dryrun)"]
-    TR --> COVER["🖼 渲染 PDF 前 3 页"]
-    COVER --> SCORE["⚡ 评分<br/>(顶会 / 知名 lab / HF / 引用)"]
-    SCORE --> WRITE["📦 写 site/data/*.json + 封面"]
-
-    %% ============ Cache ============
-    JUDGE -.-> JC[("data/judge_cache.json<br/>不重复付费")]
-    ENRICH -.-> EC[("data/enrich_cache.json")]
-    TR -.-> TC[("site/data/papers/*.json<br/>已翻译跳过")]
-
-    %% ============ Deploy ============
-    WRITE --> STAMP["🔖 stamp_assets()<br/>HTML/JS 加 ?v=&lt;git-sha&gt;"]
-    STAMP --> CI["GitHub Actions<br/>commit data + 推 main"]
-    CI --> PAGES["🌐 GitHub Pages 部署"]
-    PAGES --> USER([📱 你打开网页])
+```text
+┌── ① 抓取 ────────────────────────────────────────────────┐
+│  arXiv API（近 2 天 + 不够就回补 30 天 evergreen）        │
+│  + 量子位 / 具身智能之心 / 深蓝具身智能（公众号镜像）     │
+│  + config/manual_arxiv.yaml（站长钉论文，绕过判官）       │
+└──────────────────────────────────────────────────────────┘
+                            ↓
+┌── ② 关键词过滤 (config/channels.yaml) ───────────────────┐
+│  标题/摘要命中任一 keyword，且不命中 exclude → 入候选池   │
+│  ⚠ 关键词宁多勿少，后面有 LLM 把关，漏召回比误召回更糟    │
+└──────────────────────────────────────────────────────────┘
+                            ↓
+┌── ③ 🛡 DeepSeek V4-Flash 质量门禁 (judge.py) ─────────────┐
+│  输入 ：标题 + 摘要                                       │
+│  输出 ：{ relevant, research_value, primary_channel,      │
+│            reason(中文 30 字) }                            │
+│  relevant=false → 砍掉，写 tmp/judge-drops.md             │
+│  → 结果缓存 data/judge_cache.json（同一篇不重复付费）     │
+└──────────────────────────────────────────────────────────┘
+                            ↓
+┌── ④ 🏷 DeepSeek V4-Flash 抽二级 tag (enrich.py) ──────────┐
+│  抽 ≤3 个机构（MIT / Boston Dynamics / 宇树 …）           │
+│  + ≤3 个方法/问题 tag（DAgger / VAE / sim2real / 特技…）  │
+│  → 缓存 data/enrich_cache.json                             │
+└──────────────────────────────────────────────────────────┘
+                            ↓
+┌── ⑤ ✍ LLM 翻译标题 + 摘要 + TL;DR (translate.py) ─────────┐
+│  后端链：gemini → deepseek → openai → dryrun（依次兜底）  │
+│  已翻译的跳过（site/data/papers/{id}.json 存盘）          │
+└──────────────────────────────────────────────────────────┘
+                            ↓
+┌── ⑥ 🖼 渲染封面 (render.py) ──────────────────────────────┐
+│  下载 PDF → PyMuPDF 转 JPG → 取首页 + 第 2/3/4 页内页轮播  │
+│  存 site/assets/img/covers/{id}.jpg                       │
+└──────────────────────────────────────────────────────────┘
+                            ↓
+┌── ⑦ ⚡ 评分 (scoring.py) ─────────────────────────────────┐
+│  顶会(ICRA/IROS/CoRL/RSS) + 知名 lab + HF Daily 上榜 +     │
+│  Semantic Scholar 高引 + 长 paper + 来自公众号策展加分    │
+└──────────────────────────────────────────────────────────┘
+                            ↓
+┌── ⑧ 📦 写产出 (build.write_feed) ─────────────────────────┐
+│  site/data/index.json       主 feed（按分数倒序）          │
+│  site/data/daily/*.json     每日归档                       │
+│  site/data/papers/*.json    每篇完整数据                   │
+│  site/data/channels.json    主页 tab 元数据                │
+│  site/rss.xml               RSS 订阅                       │
+└──────────────────────────────────────────────────────────┘
+                            ↓
+┌── ⑨ 🔖 cache-busting (build.stamp_assets) ────────────────┐
+│  给所有 HTML/JS 链接加 ?v=<git-sha>                       │
+│  保证 Pages 部署后浏览器不会卡在旧版数据                  │
+└──────────────────────────────────────────────────────────┘
+                            ↓
+┌── ⑩ 🌐 部署 (.github/workflows/daily.yml) ────────────────┐
+│  Actions commit 生成的 data → push main → Pages 自动发布   │
+└──────────────────────────────────────────────────────────┘
+                            ↓
+                  📱 你打开 redpaper.github.io
 ```
 
-跑完一轮的产出：
+**三层缓存**贯穿全程，让重跑近乎免费：
 
-- `site/data/index.json` — 主 feed，瀑布流首页用
+| 缓存文件 | 谁写 | 命中后省什么 |
+|---|---|---|
+| `data/judge_cache.json` | judge.py | DeepSeek 判官调用 |
+| `data/enrich_cache.json` | enrich.py | DeepSeek 抽 tag 调用 |
+| `site/data/papers/{id}.json` | translate.py | LLM 翻译 + PDF 重渲 |
+
+跑完一轮的全部产出（commit 回 git）：
+
+- `site/data/index.json` — 主 feed
 - `site/data/daily/YYYY-MM-DD.json` — 每日归档
-- `site/data/papers/{id}.json` — 每篇论文的完整数据
-- `site/assets/img/covers/{id}.jpg` + `-p2/p3/p4.jpg` — PDF 首页 + 内页预览
+- `site/data/papers/{id}.json` — 每篇论文完整数据
+- `site/assets/img/covers/{id}.jpg` + `-p2/p3/p4.jpg` — 首页 + 内页预览
 - `site/rss.xml` — RSS 订阅
 - `tmp/judge-drops.md`（本地 audit 时）— 被 LLM 砍掉的清单
 
