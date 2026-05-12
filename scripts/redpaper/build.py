@@ -312,6 +312,16 @@ def write_feed(all_papers: list[Paper]) -> None:
         if not p.published:
             continue
         by_day.setdefault(p.published, []).append(p)
+
+    # 清理「整天 paper 都被砍光」的 daily 文件 —— 否则 archive 页面会列出
+    # 那一天，点进去 daily/<day>.json 还指着已经下架的 paper，进而 post.html
+    # 报「论文不存在或还没拉取」。
+    surviving_days = set(by_day.keys())
+    for old in cfg.DAILY_DIR.glob("*.json"):
+        if old.stem not in surviving_days:
+            old.unlink()
+            log.info("daily: removed stale %s.json (no surviving papers)", old.stem)
+
     for day, items in by_day.items():
         items.sort(key=lambda p: (-(p.score or 0), p.id))
         with (cfg.DAILY_DIR / f"{day}.json").open("w", encoding="utf-8") as f:
