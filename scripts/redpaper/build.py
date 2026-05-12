@@ -10,6 +10,7 @@ from pathlib import Path
 from . import config as cfg
 from .digest import write_markdown_digest, write_rss
 from .judge import judge_paper, JudgeUnavailable, JudgeCache
+from .enrich import enrich_paper, EnrichUnavailable, EnrichCache
 from .labs import detect_labs, lab_badges
 from .scoring import score_paper
 from .models import Paper, load_paper, save_paper
@@ -97,6 +98,38 @@ def _judge_filter(fresh: dict[str, Paper]) -> dict[str, Paper]:
     log.info("judge: %d called, %d cached, %d dropped as irrelevant",
              judge_calls, judge_cache_hits, skipped_irrelevant)
     return kept
+
+
+def _enrich_papers(fresh: dict[str, Paper]) -> dict[str, Paper]:
+    """Add `institutions` + `method_tags` chips to each paper via DeepSeek.
+
+    Called after `_judge_filter`. Pinned manual papers go through enrich too
+    (we still want their institution / method chips to show up). Cache the
+    result so we don't re-pay on every build.
+    """
+    cache = EnrichCache(cfg.REPO_ROOT / "data" / "enrich_cache.json")
+    enrich_calls = enrich_cache_hits = 0
+    for pid, p in fresh.items():
+        cached = cache.get(pid)
+        if cached is not None:
+            enrich_cache_hits += 1
+            p.institutions = cached.institutions
+            p.method_tags = cached.method_tags
+            continue
+        try:
+            authors_text = "、".join(a.name for a in (p.authors or [])[:8])
+            e = enrich_paper(p.title, p.abstract or p.tldr_zh or p.title, authors_text)
+            enrich_calls += 1
+            cache.put(pid, e)
+            p.institutions = e.institutions
+            p.method_tags = e.method_tags
+        except EnrichUnavailable as ex:
+            log.warning("enrich skipped (%s); leaving %s without chips", ex, pid)
+        except Exception as ex:
+            log.warning("enrich call failed for %s: %s", pid, ex)
+    cache.save()
+    log.info("enrich: %d called, %d cached", enrich_calls, enrich_cache_hits)
+    return fresh
 
 
 def _is_translated(p: Paper) -> bool:
@@ -430,6 +463,9 @@ def _feed_entry(p: Paper) -> dict:
         # DeepSeek-V4-Flash 的相关性 / 科研价值评论；前端可在详情页展示
         # `reason` 一行。空 dict 表示这条 paper 还没经过 judge（旧数据）。
         "judge": p.judge or {},
+        # 二级 chip：机构 + 方法 / 问题 tag
+        "institutions": p.institutions or [],
+        "method_tags": p.method_tags or [],
     }
 
 
@@ -454,7 +490,8 @@ def _build_enrichment_context(sources: cfg.SourcesConfig, fresh: dict[str, Paper
     enabled = {
         "qbitai": sources.qbitai_enabled,
         "jiqizhixin": sources.jiqizhixin_enabled,
-        "synced_review": sources.synced_review_enabled,
+        "embodied_techdaily": sources.embodied_techdaily_enabled,
+        "shenlan_embodied": sources.shenlan_embodied_enabled,
     }
     if any(enabled.values()):
         try:
@@ -601,6 +638,10 @@ def run() -> None:
     # 钉过 manual_pin 的（重要论文）跳过 judge。
     fresh = _judge_filter(fresh)
     log.info("after judge: %d papers kept", len(fresh))
+
+    # ----- 二级标签抽取（机构 + 方法 / 问题） --------------------------
+    # 在 judge 通过之后再 enrich，避免给被砍掉的 paper 浪费 token。
+    _enrich_papers(fresh)
 
     ctx = _build_enrichment_context(sources, fresh)
 

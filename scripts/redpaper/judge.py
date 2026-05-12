@@ -48,12 +48,13 @@ JUDGE_TIMEOUT = 60
 SYSTEM_PROMPT = (
     "你是一位严格的具身机器人方向研究员，要从「研究相关性 + 科研价值」两个角度给文章打分。\n"
     "输入是一篇文章的标题 + 摘要 / 描述。\n"
-    "用户关心的方向：\n"
-    "  - whole-body：人形机器人全身控制、动作模仿、模仿学习、teleop\n"
-    "  - loco-manip：移动操作、双臂操作、长时序任务、家用 / 仓储\n"
-    "  - locomotion：双足 / 四足运动、parkour、gait、terrain\n"
-    "  - manipulation：灵巧手、抓取、双手协调、扩散策略、ACT\n"
-    "  - vla：VLA、generalist policy、foundation policy、具身大模型\n"
+    "用户关心的方向（5 大频道，一篇可属多个）：\n"
+    "  - loco-manip-wbc：Loco-Manipulation 与 Whole-Body Control。人形机器人全身控制、\n"
+    "      移动操作、动作模仿、动作重定向、VLA / 具身基础模型、长时序操作、人形 + 家用 / 仓储\n"
+    "  - manipulation：Manipulation。灵巧手、抓取、双臂操作、扩散策略、ACT、imitation learning\n"
+    "  - teleop：Teleoperation。VR / 主从 / 力反馈 / 沉浸式遥操作；human-in-the-loop 控制\n"
+    "  - locomotion：Locomotion。双足 / 四足运动、parkour、gait、terrain、跳跃 / 奔跑\n"
+    "  - sim2real：Sim-to-Real。仿真到真机迁移、域随机化、residual / 域适应、Isaac Sim/Lab\n"
     "**不要**接受的：\n"
     "  - 纯医疗 / 手术 / 康复机器人\n"
     "  - 工业流水线 SCARA / 机械臂自动化产线，缺乏算法新意\n"
@@ -74,7 +75,7 @@ SYSTEM_PROMPT = (
     "{\n"
     '  "relevant": true/false,                  // 是否值得上 redpaper\n'
     '  "research_value": "high"/"medium"/"low", // 对一线科研者的参考价值\n'
-    '  "primary_channel": "whole-body|loco-manip|locomotion|manipulation|vla|none",\n'
+    '  "primary_channel": "loco-manip-wbc|manipulation|teleop|locomotion|sim2real|none",\n'
     '  "reason": "20-40 字中文简评，说明为什么留 / 砍"\n'
     "}\n"
     "判定原则：\n"

@@ -1,7 +1,7 @@
 // Favorites page: filter the global index to favorited papers, grouped by
 // user-defined categories. All state is local to this browser.
 
-import { Favorites, Theme } from './storage.js?v=a7301820';
+import { Favorites, Theme } from './storage.js?v=5feb16d2';
 import {
   pickCover,
   loadPalettes,
@@ -14,7 +14,7 @@ import {
   HEART_SVG_FILL,
   showToast,
   fetchJSON,
-} from './utils.js?v=a7301820';
+} from './utils.js?v=5feb16d2';
 
 const STATE = {
   papers: [],          // master list from index.json
@@ -24,6 +24,15 @@ const STATE = {
 
 async function loadIndex() {
   return fetchJSON('data/index.json').then((r) => r.json()).catch(() => ({ papers: [] }));
+}
+
+function chipsHTML(p) {
+  const insts = (p.institutions || []).slice(0, 3);
+  const methods = (p.method_tags || []).slice(0, 3);
+  if (!insts.length && !methods.length) return '';
+  const i = insts.map((t) => `<span class="rp-chip rp-chip--inst">🏛 ${escapeHTML(t)}</span>`).join('');
+  const m = methods.map((t) => `<span class="rp-chip rp-chip--method">${escapeHTML(t)}</span>`).join('');
+  return `<div class="rp-card__chips">${i}${m}</div>`;
 }
 
 function cardHTML(p) {
@@ -45,6 +54,7 @@ function cardHTML(p) {
       <div class="rp-card__body">
         <h4 class="rp-card__title">${escapeHTML(titleZh)}</h4>
         ${p.tldr_zh ? `<p class="rp-card__tldr">${escapeHTML(p.tldr_zh)}</p>` : ''}
+        ${chipsHTML(p)}
         ${
           cats.length
             ? `<div class="rp-card__badges">${cats

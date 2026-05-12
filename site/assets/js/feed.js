@@ -2,7 +2,7 @@
 // masonry one "week" at a time, and append older weeks via IntersectionObserver
 // before the user hits the bottom.
 
-import { Favorites, Reads, Theme } from './storage.js?v=a7301820';
+import { Favorites, Reads, Theme } from './storage.js?v=5feb16d2';
 import {
   pickCover,
   loadPalettes,
@@ -14,7 +14,7 @@ import {
   HEART_SVG_FILL,
   showToast,
   fetchJSON,
-} from './utils.js?v=a7301820';
+} from './utils.js?v=5feb16d2';
 
 const STATE = {
   channels: [],
@@ -139,6 +139,8 @@ function cardHTML(p) {
 
   const paletteStyle = coverStyleAttr(p.id, STATE.palettes, cover.style);
 
+  const chips = chipRowsHTML(p);
+
   return `
     <a class="rp-card ${read ? 'is-read' : ''}" href="${paperUrl(p.id)}" data-id="${p.id}">
       <div class="rp-cover ${cover.cls}"${paletteStyle ? ` style="${paletteStyle}"` : ''}>
@@ -148,6 +150,7 @@ function cardHTML(p) {
       <div class="rp-card__body">
         <h4 class="rp-card__title">${escapeHTML(titleZh)}</h4>
         ${p.tldr_zh ? `<p class="rp-card__tldr">${escapeHTML(p.tldr_zh)}</p>` : ''}
+        ${chips}
         ${badges ? `<div class="rp-card__badges">${badges}</div>` : ''}
         <div class="rp-card__meta">
           <span class="rp-card__authors">${escapeHTML(authors)}</span>
@@ -157,6 +160,18 @@ function cardHTML(p) {
         </div>
       </div>
     </a>`;
+}
+
+// 二级 chip 行：机构 + 方法 / 问题 tag。机构走 chip--inst（柔和的浅色边框），
+// 方法 / 问题走 chip--method（实色填充，更显眼）。两个列表都来自 enrich.py 的
+// DeepSeek 抽取，前端就照单全收，最多各显 3 个。
+export function chipRowsHTML(p) {
+  const insts = (p.institutions || []).slice(0, 3);
+  const methods = (p.method_tags || []).slice(0, 3);
+  if (!insts.length && !methods.length) return '';
+  const instHTML = insts.map((t) => `<span class="rp-chip rp-chip--inst">🏛 ${escapeHTML(t)}</span>`).join('');
+  const methodHTML = methods.map((t) => `<span class="rp-chip rp-chip--method">${escapeHTML(t)}</span>`).join('');
+  return `<div class="rp-card__chips">${instHTML}${methodHTML}</div>`;
 }
 
 // ----- Week bucketing ---------------------------------------------------

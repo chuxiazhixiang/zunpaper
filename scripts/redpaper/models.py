@@ -48,6 +48,10 @@ class Paper:
     # DeepSeek-V4-Flash judgment, set by build._judge_filter. None / {} = not judged yet
     # (legacy papers). UI can opt to surface `judge.reason` on detail page.
     judge: dict = field(default_factory=dict)                            # {relevant, research_value, primary_channel, reason, model}
+    # DeepSeek-V4-Flash enrichment, set by enrich.enrich_paper. 用来在卡片下面
+    # 展示「机构」和「方法 / 问题」二级标签。两个列表各 ≤3 项。
+    institutions: list[str] = field(default_factory=list)                # ["MIT CSAIL", "Boston Dynamics", ...]
+    method_tags: list[str] = field(default_factory=list)                 # ["DAgger", "VAE", "特技动作", ...]
 
     def to_dict(self) -> dict[str, Any]:
         d = asdict(self)

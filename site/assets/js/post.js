@@ -1,6 +1,6 @@
 // Detail page: load /data/papers/{id}.json, render hero + bilingual content.
 
-import { Favorites, Reads, Theme } from './storage.js?v=a7301820';
+import { Favorites, Reads, Theme } from './storage.js?v=5feb16d2';
 import {
   escapeHTML,
   formatAuthors,
@@ -13,7 +13,7 @@ import {
   HEART_SVG_OUTLINE,
   HEART_SVG_FILL,
   fetchJSON,
-} from './utils.js?v=a7301820';
+} from './utils.js?v=5feb16d2';
 
 let _palettes = [];
 
@@ -88,6 +88,17 @@ function relatedPapersHTML(current, allPapers) {
 /** Render the per-paper "为啥今天选了你" score breakdown.
  *  The pipeline writes `p.score` and `p.score_breakdown` (array of items
  *  `{ label, points, hint? }`). If neither is present we hide the section. */
+function postChipsHTML(p) {
+  // Detail 页的 chip 行：与 feed card 同款样式，机构 + 方法 / 问题 tag。
+  const insts = (p.institutions || []).slice(0, 3);
+  const methods = (p.method_tags || []).slice(0, 3);
+  if (!insts.length && !methods.length) return '';
+  const i = insts.map((t) => `<span class="rp-chip rp-chip--inst">🏛 ${escapeHTML(t)}</span>`).join('');
+  const m = methods.map((t) => `<span class="rp-chip rp-chip--method">${escapeHTML(t)}</span>`).join('');
+  return `<div class="rp-post__chips">${i}${m}</div>`;
+}
+
+
 function judgeBlockHTML(p) {
   const j = p.judge || {};
   if (!j.model) return '';
@@ -258,6 +269,8 @@ function renderPaper(p, all) {
         ${p.primary_category ? `<span>🏷 ${escapeHTML(p.primary_category)}</span>` : ''}
         ${badges ? `<span>${badges}</span>` : ''}
       </div>
+
+      ${postChipsHTML(p)}
 
       <div class="rp-post__actions">
         ${p.abs_url ? `<a class="rp-btn rp-btn--primary" href="${escapeHTML(p.abs_url)}" target="_blank" rel="noopener">${
