@@ -23,7 +23,7 @@ import logging
 import os
 import re
 import time
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, field
 from pathlib import Path
 
 import requests
@@ -35,37 +35,77 @@ DEEPSEEK_URL = "https://api.deepseek.com/chat/completions"
 ENRICH_TIMEOUT = 60
 
 SYSTEM_PROMPT = (
-    "你是一个机器人论文标签助手。读一篇 paper 的标题 + 摘要，给我两组短标签：\n"
-    "  (1) institutions：参与单位（公司或大学），从作者署名 / 摘要 / 项目名里推断。\n"
-    "       - 必须是真实存在的机构名，不要瞎编。\n"
-    "       - 大学用通用简称：MIT CSAIL / Stanford / Tsinghua / 清华 / 北大 / SJTU / CUHK ...\n"
-    "       - 公司用品牌名：Boston Dynamics / Figure / 1X / Tesla / 宇树 / 智元 / 银河通用 / "
-    "Physical Intelligence / Skild AI / Generalist / NVIDIA / Google DeepMind ...\n"
-    "       - 中文实验室 / 公司可以用中文。最多 3 个，按相关度排序。\n"
-    "       - 拿不准 → 留空，不要硬猜。\n"
-    "  (2) method_tags：这篇 paper 用的「方法」+ 「解决的问题」标签。\n"
-    "       - 方法侧：RL / Imitation Learning / DAgger / VAE / Diffusion Policy / "
-    "ACT / VLA / World Model / MPC / Adversarial Training / Curriculum / "
-    "Domain Randomization / Self-supervised / Foundation Model / GAIL / IRL / "
-    "Behavior Cloning / Test-Time Training / Distillation ...\n"
-    "       - 问题侧：sim-to-real / long-horizon / fall recovery / parkour / "
-    "灵巧抓取 / 双臂协调 / 跨本体迁移 / 视觉运动控制 / 特技动作 / 长时序操作 / "
-    "动作重定向 / 仿真训练 / 真机部署 / 接触丰富操作 / ...\n"
-    "       - 一般 2-3 个，少而精。\n"
-    "       - 中文 / 英文都行，跟摘要风格保持一致。\n"
-    "严格按 JSON 输出（不要任何 markdown 包裹），schema：\n"
+    "你是人形机器人论文标签助手。读一篇 paper 的标题 + 摘要 + 作者，输出 7 组结构化字段。\n"
+    "\n"
+    "(1) institutions：参与单位（公司或大学），从作者署名 / 摘要 / 项目名里推断。\n"
+    "    - 必须真实存在，不要瞎编。最多 3 个，按相关度排序。\n"
+    "    - 例：MIT CSAIL / Stanford / Tsinghua / 清华 / 北大 / SJTU / CUHK / 上海AI Lab /\n"
+    "      Boston Dynamics / Figure / 1X / Tesla / 宇树 / 智元 / 银河通用 / Physical Intelligence /\n"
+    "      Skild AI / Generalist / NVIDIA / Google DeepMind ...\n"
+    "    - 拿不准 → 留空 []。\n"
+    "\n"
+    "(2) method_tags：方法 + 问题混合标签，2-3 个，少而精。\n"
+    "    - 方法侧例：RL / Imitation Learning / DAgger / VAE / Diffusion Policy / ACT /\n"
+    "      VLA / World Model / MPC / Curriculum / Domain Randomization / Foundation Model /\n"
+    "      GAIL / Behavior Cloning / Test-Time Training / Distillation ...\n"
+    "    - 问题侧例：sim-to-real / long-horizon / fall recovery / parkour / 灵巧抓取 /\n"
+    "      双臂协调 / 跨本体迁移 / 视觉运动控制 / 特技动作 / 动作重定向 / 真机部署 ...\n"
+    "    - 中英文都行。\n"
+    "\n"
+    "(3) platform：用了哪些机器人硬件平台。最多 3 个。\n"
+    "    - 例：Unitree G1 / Unitree H1 / Booster T1 / Atlas / Figure 02 / GR-1 / GR-2 /\n"
+    "      Apollo / ANYmal / Spot / Cassie / Digit / ALOHA / Franka / Reachy / ...\n"
+    "    - 没在标题/摘要里提到具体型号 → 留空 []，不要硬猜。\n"
+    "\n"
+    "(4) sim_stack：用了哪些仿真器 / 仿真栈。最多 2 个。\n"
+    "    - 例：Isaac Lab / Isaac Sim / Isaac Gym / MuJoCo / Genesis / GenSim / RoboCasa /\n"
+    "      RoboTwin / SAPIEN / Habitat / DRAKE / PyBullet / Unity / ...\n"
+    "    - 没明确说 → 留空 []。\n"
+    "\n"
+    "(5) method_family：主方法家族，单选一个，从下列里挑（实在不属于任一就 \"\"）：\n"
+    "    \"RL\" | \"IL\" | \"VLA\" | \"MPC\" | \"Diffusion\" | \"WorldModel\" | \"Foundation\" |\n"
+    "    \"Hybrid\" | \"Hardware\" | \"Dataset\" | \"Benchmark\" | \"Survey\" | \"\"\n"
+    "\n"
+    "(6) real_robot：这篇有没有真机实验。\n"
+    "    \"yes\" = 摘要明确说在真机器人上验证 / 有真机视频；\n"
+    "    \"no\"  = 明确只是仿真 / 数据集 / 方法论文；\n"
+    "    \"\"   = 拿不准。\n"
+    "\n"
+    "(7) training_summary：训练规模 / 数据量的一句话摘要，0-25 字。\n"
+    "    - 例：\"30K env-steps × 5 GPU-days\" / \"100K human demos\" / \"1.2M motion clips\" /\n"
+    "      \"6h teleop data\" / \"4-stage curriculum\" / \"3000 SE(3) trajectories\"\n"
+    "    - 摘要没透露规模 → 留空 \"\"。\n"
+    "\n"
+    "严格按 JSON 输出（不要 markdown 包裹）：\n"
     "{\n"
-    '  "institutions": ["...", "...", "..."],\n'
-    '  "method_tags":  ["...", "...", "..."]\n'
+    '  "institutions": [],\n'
+    '  "method_tags": [],\n'
+    '  "platform": [],\n'
+    '  "sim_stack": [],\n'
+    '  "method_family": "",\n'
+    '  "real_robot": "",\n'
+    '  "training_summary": ""\n'
     "}\n"
-    "两个列表都最多 3 项；可以为空 `[]`。"
 )
+
+
+_METHOD_FAMILIES = {
+    "RL", "IL", "VLA", "MPC", "Diffusion", "WorldModel", "Foundation",
+    "Hybrid", "Hardware", "Dataset", "Benchmark", "Survey", "",
+}
+_REAL_ROBOT = {"yes", "no", ""}
 
 
 @dataclass
 class Enrichment:
     institutions: list[str]
     method_tags: list[str]
+    # P1: 领域专属结构化字段
+    platform: list[str] = field(default_factory=list)
+    sim_stack: list[str] = field(default_factory=list)
+    method_family: str = ""
+    real_robot: str = ""
+    training_summary: str = ""
     model: str = ""
 
 
@@ -98,8 +138,8 @@ def enrich_paper(title: str, abstract: str, authors_text: str = "",
         "temperature": 0.0,
         # 关掉 reasoning：单纯抽取任务用不上 CoT，开了会吃 max_tokens 配额。
         "thinking": {"type": "disabled"},
-        # 输出空间：两个列表 + 中文/英文，留宽一些防截断。
-        "max_tokens": 400,
+        # 输出空间：7 个字段（4 list + 3 string），留 600 token 防截断。
+        "max_tokens": 600,
     }
     r = requests.post(DEEPSEEK_URL, json=payload, headers={
         "Authorization": f"Bearer {key}",
@@ -111,7 +151,25 @@ def enrich_paper(title: str, abstract: str, authors_text: str = "",
 
     insts = _clean_list(data.get("institutions", []))[:3]
     methods = _clean_list(data.get("method_tags", []))[:3]
-    return Enrichment(institutions=insts, method_tags=methods, model=model)
+    platform = _clean_list(data.get("platform", []))[:3]
+    sim_stack = _clean_list(data.get("sim_stack", []))[:2]
+    mf = str(data.get("method_family", "") or "").strip()
+    if mf not in _METHOD_FAMILIES:
+        mf = ""
+    rr = str(data.get("real_robot", "") or "").strip().lower()
+    if rr not in _REAL_ROBOT:
+        rr = ""
+    ts = str(data.get("training_summary", "") or "").strip()[:80]
+    return Enrichment(
+        institutions=insts,
+        method_tags=methods,
+        platform=platform,
+        sim_stack=sim_stack,
+        method_family=mf,
+        real_robot=rr,
+        training_summary=ts,
+        model=model,
+    )
 
 
 def _parse_response(raw: str) -> dict:
@@ -171,11 +229,25 @@ class EnrichCache:
         e = self.entries.get(pid)
         if not e:
             return None
+        # 旧 cache 不一定有新字段；都用 .get(...) 容错。
         return Enrichment(
             institutions=list(e.get("institutions") or []),
             method_tags=list(e.get("method_tags") or []),
+            platform=list(e.get("platform") or []),
+            sim_stack=list(e.get("sim_stack") or []),
+            method_family=str(e.get("method_family") or ""),
+            real_robot=str(e.get("real_robot") or ""),
+            training_summary=str(e.get("training_summary") or ""),
             model=e.get("model", ""),
         )
+
+    def has_deep_fields(self, pid: str) -> bool:
+        """老缓存只有 institutions+method_tags，新字段缺失则需重抽。"""
+        e = self.entries.get(pid)
+        if not e:
+            return False
+        # 只要任何一个新字段已经存在（即使是空字符串/空列表）就算抽过
+        return any(k in e for k in ("platform", "sim_stack", "method_family"))
 
     def put(self, pid: str, j: Enrichment) -> None:
         d = asdict(j)

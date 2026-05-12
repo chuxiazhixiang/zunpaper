@@ -53,3 +53,13 @@ sources:
   manual_arxiv:     # 「贴 arxiv 链接就上墙」的精选清单
     enabled: true
     file: config/manual_arxiv.yaml
+
+  # ---------- P5: 视频频道源 ----------
+  # YouTube：Boston Dynamics / Unitree / Figure / 1X 等厂商官方 demo。
+  # Bilibili：宇树 / 智元 / 量子位 等国内具身机器人圈大号。
+  # 频道清单写死在 scripts/redpaper/sources/video_channels.py:BUILT_IN_CHANNELS。
+  # 每条视频包成一个 Paper 卡，跟新闻一样通过 from_media 评分上首页。
+  video_channels:
+    enabled: true
+    per_channel: 6            # 每个频道最多拿 N 条
+    lookback_days: 30         # 只要近 30 天的视频

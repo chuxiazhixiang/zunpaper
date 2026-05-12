@@ -1438,6 +1438,174 @@ img {
   color: color-mix(in srgb, var(--rp-primary, #d44) 70%, var(--rp-text));
   border: 1px solid color-mix(in srgb, var(--rp-primary, #ff6b6b) 30%, transparent);
 }
+/* P1 新增：机器人平台 / 仿真栈 chip，颜色与机构 / 方法刻意拉开。 */
+.rp-chip--plat {
+  background: color-mix(in srgb, #8b5cf6 16%, transparent);
+  color: color-mix(in srgb, #6b3fc4 70%, var(--rp-text));
+  border: 1px solid color-mix(in srgb, #8b5cf6 32%, transparent);
+}
+.rp-chip--sim {
+  background: color-mix(in srgb, #14b8a6 14%, transparent);
+  color: color-mix(in srgb, #0f8a7c 78%, var(--rp-text));
+  border: 1px solid color-mix(in srgb, #14b8a6 32%, transparent);
+}
+
+/* P0: 卡片角标——有 demo 视频时显示一个小🎬，告诉用户"点进去能看演示"。
+ * 绝对定位到 cover 右上角，跟 source label 互不打架。 */
+.rp-card__videoflag {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 13px;
+  backdrop-filter: blur(4px);
+}
+
+/* P1: 详情页结构化"事实卡片"——三栏 KV，把方法家族 / 真机 / 训练规模摆在最显眼处 */
+.rp-factbox {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin: 14px 0 18px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--rp-accent, #b8e0ff) 8%, var(--rp-bg, #fff));
+  border: 1px solid color-mix(in srgb, var(--rp-accent, #b8e0ff) 25%, transparent);
+}
+.rp-factbox__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.rp-factbox__k {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--rp-text-soft);
+  letter-spacing: 0.4px;
+}
+.rp-factbox__v {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--rp-text);
+}
+
+/* P0: 详情页 demo 视频区。YouTube/Bilibili 强制 16:9，mp4 同理。 */
+.rp-post__videos {
+  margin: 22px 0 28px;
+}
+.rp-post__videos h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+.rp-video {
+  margin: 0 0 16px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--rp-shadow);
+}
+.rp-video iframe,
+.rp-video video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  background: #000;
+}
+.rp-video figcaption {
+  padding: 8px 12px;
+  font-size: 12.5px;
+  color: var(--rp-text-soft);
+  background: color-mix(in srgb, var(--rp-bg, #fff) 95%, var(--rp-text, #000));
+}
+
+/* P6: Monthly digest page ----------------------------------------------- */
+.rp-monthly-tabs {
+  margin-bottom: 18px;
+}
+.rp-monthly-body {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 6px 4px 60px;
+}
+.rp-monthly-head {
+  margin-bottom: 24px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--rp-accent, #b8e0ff) 10%, var(--rp-bg, #fff));
+  border: 1px solid color-mix(in srgb, var(--rp-accent, #b8e0ff) 28%, transparent);
+}
+.rp-monthly-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 12.5px;
+  color: var(--rp-text-soft);
+  margin-bottom: 8px;
+}
+.rp-monthly-headline {
+  margin: 0 0 8px;
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--rp-text);
+}
+.rp-monthly-themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.rp-monthly-content {
+  font-size: 15.5px;
+  line-height: 1.85;
+  color: var(--rp-text);
+}
+.rp-monthly-content h2 {
+  margin: 28px 0 12px;
+  font-size: 19px;
+  font-weight: 700;
+  border-bottom: 2px solid color-mix(in srgb, var(--rp-primary, #ff6b6b) 30%, transparent);
+  padding-bottom: 4px;
+}
+.rp-monthly-content h3 {
+  margin: 22px 0 10px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--rp-primary, #d44);
+}
+.rp-monthly-content h4 {
+  margin: 16px 0 6px;
+  font-size: 15.5px;
+  font-weight: 600;
+}
+.rp-monthly-content p {
+  margin: 0 0 12px;
+}
+.rp-monthly-content ul {
+  margin: 0 0 14px;
+  padding-left: 22px;
+}
+.rp-monthly-content li {
+  margin: 4px 0;
+}
+.rp-monthly-content strong {
+  color: var(--rp-primary, #d44);
+  font-weight: 600;
+}
+.rp-monthly-content code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--rp-accent, #b8e0ff) 18%, transparent);
+  font-family: ui-monospace, "SF Mono", Consolas, monospace;
+  font-size: 92%;
+}
 
 /* DeepSeek judge "LLM 把关" 小卡片：通过 / 被砍 的 chip + 一句中文 reason */
 .rp-judge__meta {

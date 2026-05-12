@@ -2,7 +2,7 @@
 // masonry one "week" at a time, and append older weeks via IntersectionObserver
 // before the user hits the bottom.
 
-import { Favorites, Reads, Theme } from './storage.js?v=5feb16d2';
+import { Favorites, Reads, Theme } from './storage.js?v=086fce10';
 import {
   pickCover,
   loadPalettes,
@@ -14,7 +14,7 @@ import {
   HEART_SVG_FILL,
   showToast,
   fetchJSON,
-} from './utils.js?v=5feb16d2';
+} from './utils.js?v=086fce10';
 
 const STATE = {
   channels: [],
@@ -140,11 +140,13 @@ function cardHTML(p) {
   const paletteStyle = coverStyleAttr(p.id, STATE.palettes, cover.style);
 
   const chips = chipRowsHTML(p);
+  const videoFlag = videoBadgeHTML(p);
 
   return `
     <a class="rp-card ${read ? 'is-read' : ''}" href="${paperUrl(p.id)}" data-id="${p.id}">
       <div class="rp-cover ${cover.cls}"${paletteStyle ? ` style="${paletteStyle}"` : ''}>
         <span class="rp-cover__source">${escapeHTML(source)}</span>
+        ${videoFlag}
         <p class="rp-cover__headline">${escapeHTML(headline)}</p>
       </div>
       <div class="rp-card__body">
@@ -162,16 +164,30 @@ function cardHTML(p) {
     </a>`;
 }
 
-// 二级 chip 行：机构 + 方法 / 问题 tag。机构走 chip--inst（柔和的浅色边框），
-// 方法 / 问题走 chip--method（实色填充，更显眼）。两个列表都来自 enrich.py 的
-// DeepSeek 抽取，前端就照单全收，最多各显 3 个。
+// 二级 chip 行：四类，颜色区分。
+//   inst（🏛 浅蓝边框）= 机构（公司或大学）
+//   plat（🤖 紫底白字）= 机器人平台（Unitree G1 / Atlas / Figure ...）
+//   sim  （🎮 青底白字）= 仿真栈（Isaac Lab / MuJoCo / Genesis ...）
+//   method（红底白字） = 方法 / 问题 tag
+// 数据全部来自 enrich.py 的单次 DeepSeek 抽取，前端无业务判断，缺啥不显啥。
 export function chipRowsHTML(p) {
   const insts = (p.institutions || []).slice(0, 3);
+  const plats = (p.platform || []).slice(0, 3);
+  const sims = (p.sim_stack || []).slice(0, 2);
   const methods = (p.method_tags || []).slice(0, 3);
-  if (!insts.length && !methods.length) return '';
+  if (!insts.length && !plats.length && !sims.length && !methods.length) return '';
   const instHTML = insts.map((t) => `<span class="rp-chip rp-chip--inst">🏛 ${escapeHTML(t)}</span>`).join('');
+  const platHTML = plats.map((t) => `<span class="rp-chip rp-chip--plat">🤖 ${escapeHTML(t)}</span>`).join('');
+  const simHTML = sims.map((t) => `<span class="rp-chip rp-chip--sim">🎮 ${escapeHTML(t)}</span>`).join('');
   const methodHTML = methods.map((t) => `<span class="rp-chip rp-chip--method">${escapeHTML(t)}</span>`).join('');
-  return `<div class="rp-card__chips">${instHTML}${methodHTML}</div>`;
+  return `<div class="rp-card__chips">${platHTML}${simHTML}${instHTML}${methodHTML}</div>`;
+}
+
+// demo 视频角标：卡片右上角，告诉用户"这篇有 demo 视频可看"。
+export function videoBadgeHTML(p) {
+  const vids = p.demo_videos || [];
+  if (!vids.length) return '';
+  return `<span class="rp-card__videoflag" title="有 demo 视频">🎬</span>`;
 }
 
 // ----- Week bucketing ---------------------------------------------------

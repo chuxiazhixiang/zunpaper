@@ -52,6 +52,16 @@ class Paper:
     # 展示「机构」和「方法 / 问题」二级标签。两个列表各 ≤3 项。
     institutions: list[str] = field(default_factory=list)                # ["MIT CSAIL", "Boston Dynamics", ...]
     method_tags: list[str] = field(default_factory=list)                 # ["DAgger", "VAE", "特技动作", ...]
+    # 领域专属结构化字段（人形机器人圈关心的"看一眼就懂"信息），同一次 LLM 调
+    # 用里一并抽出，比让通用读者关心的 "research_value" 更有信息密度。
+    platform: list[str] = field(default_factory=list)                    # ["Unitree G1", "Booster T1"]
+    sim_stack: list[str] = field(default_factory=list)                   # ["Isaac Lab", "MuJoCo"]
+    method_family: str = ""                                              # "RL" | "IL" | "VLA" | "MPC" | "Diffusion" | "Hybrid" | ""
+    real_robot: str = ""                                                 # "yes" | "no" | "" (sim only / 无法判断)
+    training_summary: str = ""                                           # 任意短文 "30K env-steps × 5 GPU-days"
+    # demo 视频聚合：从 paper 项目主页 / abstract / awesome_papers 抽出来的
+    # YouTube / Bilibili / 自托管 mp4 嵌入，前端 cover carousel 第 0 张直接放视频。
+    demo_videos: list[dict] = field(default_factory=list)                # [{kind, url, embed_url, thumbnail, title}]
 
     def to_dict(self) -> dict[str, Any]:
         d = asdict(self)

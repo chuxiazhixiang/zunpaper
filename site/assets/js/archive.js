@@ -1,6 +1,6 @@
 // Archive page: pick a day, list papers from that day.
 
-import { Theme } from './storage.js?v=5feb16d2';
+import { Theme } from './storage.js?v=086fce10';
 import {
   pickCover,
   loadPalettes,
@@ -11,7 +11,8 @@ import {
   attachSearchRedirect,
   showToast,
   fetchJSON,
-} from './utils.js?v=5feb16d2';
+} from './utils.js?v=086fce10';
+import { chipRowsHTML, videoBadgeHTML } from './feed.js?v=086fce10';
 
 let _palettes = [];
 
@@ -21,15 +22,6 @@ async function loadDays() {
 
 async function loadDay(d) {
   return fetchJSON(`data/daily/${d}.json`).then((r) => r.json());
-}
-
-function chipsHTML(p) {
-  const insts = (p.institutions || []).slice(0, 3);
-  const methods = (p.method_tags || []).slice(0, 3);
-  if (!insts.length && !methods.length) return '';
-  const i = insts.map((t) => `<span class="rp-chip rp-chip--inst">🏛 ${escapeHTML(t)}</span>`).join('');
-  const m = methods.map((t) => `<span class="rp-chip rp-chip--method">${escapeHTML(t)}</span>`).join('');
-  return `<div class="rp-card__chips">${i}${m}</div>`;
 }
 
 function cardHTML(p) {
@@ -42,12 +34,13 @@ function cardHTML(p) {
     <a class="rp-card" href="${paperUrl(p.id)}">
       <div class="rp-cover ${cover.cls}"${paletteStyle ? ` style="${paletteStyle}"` : ''}>
         <span class="rp-cover__source">${escapeHTML(source)}</span>
+        ${videoBadgeHTML(p)}
         <p class="rp-cover__headline">${escapeHTML(headline)}</p>
       </div>
       <div class="rp-card__body">
         <h4 class="rp-card__title">${escapeHTML(titleZh)}</h4>
         ${p.tldr_zh ? `<p class="rp-card__tldr">${escapeHTML(p.tldr_zh)}</p>` : ''}
-        ${chipsHTML(p)}
+        ${chipRowsHTML(p)}
         <div class="rp-card__meta">
           <span class="rp-card__authors">${escapeHTML(formatAuthors(p.authors || []))}</span>
         </div>

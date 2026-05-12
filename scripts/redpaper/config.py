@@ -49,6 +49,10 @@ class SourcesConfig:
     shenlan_embodied_lookback_days: int = 60
     manual_xhs_enabled: bool = False
     manual_arxiv_enabled: bool = False
+    # P5: 视频频道源
+    video_channels_enabled: bool = True
+    video_per_channel: int = 6
+    video_lookback_days: int = 30
 
 
 @dataclass
@@ -111,6 +115,9 @@ def load_sources() -> SourcesConfig:
         shenlan_embodied_lookback_days=get("shenlan_embodied", "lookback_days", 60),
         manual_xhs_enabled=get("manual_xhs", "enabled", False),
         manual_arxiv_enabled=get("manual_arxiv", "enabled", False),
+        video_channels_enabled=get("video_channels", "enabled", True),
+        video_per_channel=get("video_channels", "per_channel", 6),
+        video_lookback_days=get("video_channels", "lookback_days", 30),
     )
 
 

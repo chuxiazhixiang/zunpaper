@@ -11,6 +11,7 @@ from . import config as cfg
 from .digest import write_markdown_digest, write_rss
 from .judge import judge_paper, JudgeUnavailable, JudgeCache
 from .enrich import enrich_paper, EnrichUnavailable, EnrichCache
+from .videos import VideoCache, enrich_paper_videos
 from .labs import detect_labs, lab_badges
 from .scoring import score_paper
 from .models import Paper, load_paper, save_paper
@@ -108,28 +109,69 @@ def _enrich_papers(fresh: dict[str, Paper]) -> dict[str, Paper]:
     result so we don't re-pay on every build.
     """
     cache = EnrichCache(cfg.REPO_ROOT / "data" / "enrich_cache.json")
-    enrich_calls = enrich_cache_hits = 0
+    enrich_calls = enrich_cache_hits = enrich_refresh = 0
     for pid, p in fresh.items():
         cached = cache.get(pid)
-        if cached is not None:
+        # 旧 cache 只有 institutions+method_tags，没有 platform/sim_stack 等 P1
+        # 字段——需要重新调一次让 LLM 把新字段补齐。
+        if cached is not None and cache.has_deep_fields(pid):
             enrich_cache_hits += 1
-            p.institutions = cached.institutions
-            p.method_tags = cached.method_tags
+            _apply_enrichment(p, cached)
             continue
+        if cached is not None:
+            enrich_refresh += 1
         try:
             authors_text = "、".join(a.name for a in (p.authors or [])[:8])
             e = enrich_paper(p.title, p.abstract or p.tldr_zh or p.title, authors_text)
             enrich_calls += 1
             cache.put(pid, e)
-            p.institutions = e.institutions
-            p.method_tags = e.method_tags
+            _apply_enrichment(p, e)
         except EnrichUnavailable as ex:
             log.warning("enrich skipped (%s); leaving %s without chips", ex, pid)
+            # 即使 LLM 不可用，老 cache 里的两个字段也别丢
+            if cached is not None:
+                _apply_enrichment(p, cached)
         except Exception as ex:
             log.warning("enrich call failed for %s: %s", pid, ex)
+            if cached is not None:
+                _apply_enrichment(p, cached)
     cache.save()
-    log.info("enrich: %d called, %d cached", enrich_calls, enrich_cache_hits)
+    log.info(
+        "enrich: %d called (incl. %d schema-refresh), %d cached",
+        enrich_calls, enrich_refresh, enrich_cache_hits,
+    )
     return fresh
+
+
+def _apply_enrichment(p: Paper, e) -> None:
+    """把 Enrichment 对象写回 Paper（避免到处重复 7 行赋值）。"""
+    p.institutions = list(e.institutions or [])
+    p.method_tags = list(e.method_tags or [])
+    p.platform = list(getattr(e, "platform", None) or [])
+    p.sim_stack = list(getattr(e, "sim_stack", None) or [])
+    p.method_family = getattr(e, "method_family", "") or ""
+    p.real_robot = getattr(e, "real_robot", "") or ""
+    p.training_summary = getattr(e, "training_summary", "") or ""
+
+
+def _scrape_demo_videos(fresh: dict[str, Paper]) -> None:
+    """P0: 给每篇 paper 扫一次项目主页 / 摘要找 YouTube / Bilibili / mp4 demo。
+    缓存在 `data/video_cache.json`，build pipeline 每天的增量只对没缓存过的
+    paper 真正发 HTTP 请求。"""
+    cache = VideoCache(cfg.REPO_ROOT / "data" / "video_cache.json")
+    hits = misses = 0
+    for pid, p in fresh.items():
+        try:
+            videos = enrich_paper_videos(p, cache)
+            p.demo_videos = videos
+            if videos:
+                hits += 1
+            else:
+                misses += 1
+        except Exception as ex:
+            log.warning("video extraction failed for %s: %s", pid, ex)
+    cache.save()
+    log.info("videos: %d papers got demo videos, %d papers had none", hits, misses)
 
 
 def _is_translated(p: Paper) -> bool:
@@ -466,6 +508,14 @@ def _feed_entry(p: Paper) -> dict:
         # 二级 chip：机构 + 方法 / 问题 tag
         "institutions": p.institutions or [],
         "method_tags": p.method_tags or [],
+        # P1: 领域专属结构化字段
+        "platform": p.platform or [],
+        "sim_stack": p.sim_stack or [],
+        "method_family": p.method_family or "",
+        "real_robot": p.real_robot or "",
+        "training_summary": p.training_summary or "",
+        # P0: demo 视频
+        "demo_videos": p.demo_videos or [],
     }
 
 
@@ -629,6 +679,23 @@ def run() -> None:
         except Exception as e:
             log.warning("cn_news standalone fetch failed: %s", e)
 
+    # ----- P5: 视频频道源（YouTube + Bilibili 厂商 demo） ---------------
+    # 用 sources.video_channels_enabled 总开关。每条视频包成 Paper 卡，跟
+    # cn_news 走同一个 score / enrich 流程。Bilibili API 偶尔风控，挂了不
+    # 影响 YouTube 那几个稳定厂商频道。
+    if getattr(sources, "video_channels_enabled", True):
+        try:
+            from .sources import video_channels as _video_channels
+            video_papers = _video_channels.fetch_all_video_channels(
+                limit_per_channel=getattr(sources, "video_per_channel", 6),
+                max_age_days=getattr(sources, "video_lookback_days", 30),
+            )
+            for p in video_papers:
+                if p.id not in fresh:
+                    fresh[p.id] = p
+        except Exception as e:
+            log.warning("video channel fetch failed: %s", e)
+
     log.info("fetched %d unique papers", len(fresh))
 
     # ----- LLM 质量门禁（DeepSeek V4-Flash judge）----------------------
@@ -639,9 +706,13 @@ def run() -> None:
     fresh = _judge_filter(fresh)
     log.info("after judge: %d papers kept", len(fresh))
 
-    # ----- 二级标签抽取（机构 + 方法 / 问题） --------------------------
+    # ----- 二级标签抽取（机构 + 方法 / 问题 + P1 结构化字段） ----------
     # 在 judge 通过之后再 enrich，避免给被砍掉的 paper 浪费 token。
     _enrich_papers(fresh)
+
+    # ----- P0: demo 视频抓取 --------------------------------------------
+    # 摘要 + 项目主页扫一遍，命中 YouTube / Bilibili / mp4 直接缓存。
+    _scrape_demo_videos(fresh)
 
     ctx = _build_enrichment_context(sources, fresh)
 
@@ -673,6 +744,64 @@ def run() -> None:
     write_markdown_digest(sorted_papers)
     write_rss(sorted_papers)
     log.info("feed written: %d papers total", len(all_papers))
+
+    # ----- P6: monthly digest（当前月）-------------------------------------
+    # 只重生成本月份，避免每天把所有月份都烧一遍 LLM。生成后写完 monthly_index。
+    _refresh_current_month_digest(sorted_papers)
+
+
+def _refresh_current_month_digest(all_papers: list[Paper]) -> None:
+    """重生成当前月份的 LLM 综述（如果当月已有 ≥5 篇 paper）。"""
+    try:
+        from datetime import date
+        from .monthly_digest import (
+            MonthlyDigestUnavailable,
+            generate_monthly_digest,
+            write_digest_files,
+            write_index,
+            MonthlyDigest,
+        )
+    except Exception as e:
+        log.warning("monthly_digest import failed: %s", e)
+        return
+
+    current_ym = date.today().strftime("%Y-%m")
+    month_papers = [p for p in all_papers
+                    if (p.published or "")[:7] == current_ym]
+    if len(month_papers) < 5:
+        log.info("monthly digest skipped: only %d papers in %s",
+                 len(month_papers), current_ym)
+        return
+    try:
+        d = generate_monthly_digest(current_ym, all_papers)
+    except MonthlyDigestUnavailable as e:
+        log.info("monthly digest unavailable: %s", e)
+        return
+    except Exception as e:
+        log.warning("monthly digest generation failed: %s", e)
+        return
+    write_digest_files(d)
+    log.info("monthly digest refreshed: %s (%d papers)", current_ym, d.paper_count)
+
+    # 重写 monthly_index.json：扫盘上所有月份 json
+    json_dir = cfg.REPO_ROOT / "site" / "data" / "digest" / "monthly"
+    all_digests: list[MonthlyDigest] = []
+    for fp in sorted(json_dir.glob("*.json")):
+        try:
+            j = json.loads(fp.read_text("utf-8"))
+            all_digests.append(MonthlyDigest(
+                year_month=j.get("year_month", ""),
+                headline=j.get("headline", ""),
+                summary_md=j.get("summary_md", ""),
+                themes=j.get("themes") or [],
+                paper_count=j.get("paper_count", 0),
+                paper_ids=j.get("paper_ids") or [],
+                model=j.get("model", ""),
+                generated_at=j.get("generated_at", ""),
+            ))
+        except Exception:
+            continue
+    write_index(all_digests)
 
 
 if __name__ == "__main__":

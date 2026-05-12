@@ -115,6 +115,9 @@ def _check_hf_trending(paper: Paper, rule: dict) -> dict | int:
 _MEDIA_SOURCES = {
     "qbitai", "jiqizhixin",
     "embodied_techdaily", "shenlan_embodied",
+    # P5: video channel sources also count as "high-signal curated" media —
+    # 这些都是厂商官方发布的 demo，跟公众号一样属于"圈内人筛过的"。
+    "video_youtube", "video_bilibili",
 }
 
 _SOURCE_LABEL = {
@@ -122,6 +125,8 @@ _SOURCE_LABEL = {
     "jiqizhixin": "机器之心",
     "embodied_techdaily": "具身智能之心",
     "shenlan_embodied": "深蓝具身智能",
+    "video_youtube": "YouTube 视频",
+    "video_bilibili": "B 站视频",
 }
 
 
@@ -129,7 +134,7 @@ def _check_from_media(paper: Paper, rule: dict) -> dict | int:
     src = (paper.source or "").lower()
     if src in _MEDIA_SOURCES:
         return {"points": rule["points"],
-                "hint": f"被 {_SOURCE_LABEL.get(src, src)} 选中转载"}
+                "hint": f"来自 {_SOURCE_LABEL.get(src, src)}"}
     return 0
 
 

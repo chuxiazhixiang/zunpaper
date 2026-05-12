@@ -1,6 +1,6 @@
 // Detail page: load /data/papers/{id}.json, render hero + bilingual content.
 
-import { Favorites, Reads, Theme } from './storage.js?v=5feb16d2';
+import { Favorites, Reads, Theme } from './storage.js?v=086fce10';
 import {
   escapeHTML,
   formatAuthors,
@@ -13,7 +13,7 @@ import {
   HEART_SVG_OUTLINE,
   HEART_SVG_FILL,
   fetchJSON,
-} from './utils.js?v=5feb16d2';
+} from './utils.js?v=086fce10';
 
 let _palettes = [];
 
@@ -89,13 +89,51 @@ function relatedPapersHTML(current, allPapers) {
  *  The pipeline writes `p.score` and `p.score_breakdown` (array of items
  *  `{ label, points, hint? }`). If neither is present we hide the section. */
 function postChipsHTML(p) {
-  // Detail 页的 chip 行：与 feed card 同款样式，机构 + 方法 / 问题 tag。
+  // Detail 页的 chip 行：与 feed card 同款样式，4 类 chip 都吃：
+  //   plat（🤖）/ sim（🎮）/ inst（🏛）/ method
   const insts = (p.institutions || []).slice(0, 3);
+  const plats = (p.platform || []).slice(0, 3);
+  const sims = (p.sim_stack || []).slice(0, 2);
   const methods = (p.method_tags || []).slice(0, 3);
-  if (!insts.length && !methods.length) return '';
-  const i = insts.map((t) => `<span class="rp-chip rp-chip--inst">🏛 ${escapeHTML(t)}</span>`).join('');
-  const m = methods.map((t) => `<span class="rp-chip rp-chip--method">${escapeHTML(t)}</span>`).join('');
-  return `<div class="rp-post__chips">${i}${m}</div>`;
+  if (!insts.length && !plats.length && !sims.length && !methods.length) return '';
+  const platHTML = plats.map((t) => `<span class="rp-chip rp-chip--plat">🤖 ${escapeHTML(t)}</span>`).join('');
+  const simHTML = sims.map((t) => `<span class="rp-chip rp-chip--sim">🎮 ${escapeHTML(t)}</span>`).join('');
+  const instHTML = insts.map((t) => `<span class="rp-chip rp-chip--inst">🏛 ${escapeHTML(t)}</span>`).join('');
+  const methodHTML = methods.map((t) => `<span class="rp-chip rp-chip--method">${escapeHTML(t)}</span>`).join('');
+  return `<div class="rp-post__chips">${platHTML}${simHTML}${instHTML}${methodHTML}</div>`;
+}
+
+// P1: 结构化"事实卡片"——把方法家族 / 是否真机 / 训练规模做成一行三栏 KV
+// 表格，让用户在最显眼的位置就能 1 秒判断这篇是不是要细读。
+function postStructuredHTML(p) {
+  const items = [];
+  if (p.method_family) items.push(['🔬 方法家族', escapeHTML(p.method_family)]);
+  if (p.real_robot === 'yes') items.push(['🤝 真机实验', '是']);
+  else if (p.real_robot === 'no') items.push(['🤝 真机实验', '否 (sim only)']);
+  if (p.training_summary) items.push(['📊 训练规模', escapeHTML(p.training_summary)]);
+  if (!items.length) return '';
+  const cells = items.map(([k, v]) =>
+    `<div class="rp-factbox__cell"><div class="rp-factbox__k">${k}</div><div class="rp-factbox__v">${v}</div></div>`
+  ).join('');
+  return `<div class="rp-factbox">${cells}</div>`;
+}
+
+// P0: demo 视频嵌入区。优先 YouTube / Bilibili iframe，缺则 mp4 video。
+// 多个视频做横向列表，但实际抓取通常 ≤2 个就够用了。
+function postVideosHTML(p) {
+  const vids = p.demo_videos || [];
+  if (!vids.length) return '';
+  const blocks = vids.slice(0, 3).map((v) => {
+    const title = escapeHTML(v.title || 'Demo 视频');
+    if (v.kind === 'youtube' || v.kind === 'bilibili') {
+      return `<figure class="rp-video"><iframe src="${escapeHTML(v.embed_url || v.url)}" frameborder="0" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="no-referrer"></iframe><figcaption>${title}</figcaption></figure>`;
+    }
+    if (v.kind === 'mp4') {
+      return `<figure class="rp-video"><video controls preload="metadata" src="${escapeHTML(v.url)}"></video><figcaption>${title}</figcaption></figure>`;
+    }
+    return `<p><a href="${escapeHTML(v.url)}" target="_blank" rel="noopener">${title} ↗</a></p>`;
+  }).join('');
+  return `<section class="rp-post__videos"><h3>🎬 Demo 视频</h3>${blocks}</section>`;
 }
 
 
@@ -271,6 +309,8 @@ function renderPaper(p, all) {
       </div>
 
       ${postChipsHTML(p)}
+      ${postStructuredHTML(p)}
+      ${postVideosHTML(p)}
 
       <div class="rp-post__actions">
         ${p.abs_url ? `<a class="rp-btn rp-btn--primary" href="${escapeHTML(p.abs_url)}" target="_blank" rel="noopener">${
