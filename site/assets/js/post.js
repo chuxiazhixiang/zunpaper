@@ -1,6 +1,6 @@
 // Detail page: load /data/papers/{id}.json, render hero + bilingual content.
 
-import { Favorites, Reads, Theme } from './storage.js?v=71d18994';
+import { Favorites, Reads, Theme } from './storage.js?v=2d00d30b';
 import {
   escapeHTML,
   formatAuthors,
@@ -13,7 +13,7 @@ import {
   HEART_SVG_OUTLINE,
   HEART_SVG_FILL,
   fetchJSON,
-} from './utils.js?v=71d18994';
+} from './utils.js?v=2d00d30b';
 
 let _palettes = [];
 
@@ -477,18 +477,23 @@ function renderPaper(p, all) {
 
 let _deckKeyHandler = null;
 
-// P0+: 详情页图片放大预览（轻量 lightbox）。
+// P0+: 详情页图片放大预览（轻量 lightbox），支持缩放和平移。
 //   - 点 PDF 预览页大图 → 弹出全屏蒙层 + 原图最大 95vw/95vh
-//   - ESC / 点蒙层 / 点 × → 关闭
-//   - ←/→ 在所有预览页之间切换；底部小圆点指示当前页
-//   - 不引入任何依赖，整套就一个 fixed div + 极简事件。
+//   - 滚轮：以鼠标位置为锚点缩放（0.8x ~ 6x）
+//   - 双击：在 1x / 2.5x 间切换，锚点是鼠标位置
+//   - 缩放 > 1 时鼠标拖拽 / 触屏单指拖动 → 平移
+//   - 触屏双指捏合 → 缩放
+//   - +/-/0 键盘缩放；ESC 关；←/→ 翻页
+//   - 切换图片时缩放/位移自动重置
+//   - 工具栏右下：放大 / 缩小 / 重置
+//   - 不引入任何依赖。
 function setupLightbox() {
   const targets = Array.from(document.querySelectorAll('.rp-post-slide__hero'));
   if (!targets.length) return;
   const srcs = targets.map((img) => img.getAttribute('src')).filter(Boolean);
   if (!srcs.length) return;
 
-  // 单例蒙层：每次打开切换 .is-open + 更新 img.src
+  // 单例蒙层
   let lb = document.querySelector('.rp-lightbox');
   if (!lb) {
     lb = document.createElement('div');
@@ -498,9 +503,15 @@ function setupLightbox() {
       <button class="rp-lightbox__nav rp-lightbox__nav--prev" aria-label="上一张">‹</button>
       <button class="rp-lightbox__nav rp-lightbox__nav--next" aria-label="下一张">›</button>
       <figure class="rp-lightbox__stage">
-        <img class="rp-lightbox__img" alt="" />
+        <img class="rp-lightbox__img" alt="" draggable="false" />
         <figcaption class="rp-lightbox__caption"></figcaption>
       </figure>
+      <div class="rp-lightbox__tools" aria-label="缩放工具">
+        <button class="rp-lightbox__tool" data-act="zoom-out" aria-label="缩小">−</button>
+        <button class="rp-lightbox__tool" data-act="reset" aria-label="重置">⤾</button>
+        <button class="rp-lightbox__tool" data-act="zoom-in" aria-label="放大">+</button>
+        <span class="rp-lightbox__zoom">100%</span>
+      </div>
       <div class="rp-lightbox__dots"></div>
     `;
     document.body.appendChild(lb);
@@ -508,7 +519,44 @@ function setupLightbox() {
   const imgEl = lb.querySelector('.rp-lightbox__img');
   const capEl = lb.querySelector('.rp-lightbox__caption');
   const dotsEl = lb.querySelector('.rp-lightbox__dots');
+  const zoomLabel = lb.querySelector('.rp-lightbox__zoom');
   let idx = 0;
+
+  // 变换状态。scale 是 CSS transform 的 scale，tx/ty 是平移（像素）。
+  const MIN_SCALE = 0.8;
+  const MAX_SCALE = 6;
+  let scale = 1;
+  let tx = 0;
+  let ty = 0;
+  function applyTransform() {
+    imgEl.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+    zoomLabel.textContent = `${Math.round(scale * 100)}%`;
+    lb.classList.toggle('is-zoomed', scale > 1.01);
+  }
+  function resetTransform() {
+    scale = 1; tx = 0; ty = 0;
+    applyTransform();
+  }
+  // 以容器内某一点为锚点缩放：保持该点在屏幕坐标系下不变。
+  // (cx, cy) 是蒙层（视口）坐标，imgRect 是 img 当前 boundingRect。
+  function zoomAt(targetScale, cx, cy) {
+    targetScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, targetScale));
+    if (Math.abs(targetScale - scale) < 1e-3) return;
+    const rect = imgEl.getBoundingClientRect();
+    // 图像中心
+    const ix = rect.left + rect.width / 2;
+    const iy = rect.top + rect.height / 2;
+    // 锚点相对图像中心的偏移（屏幕像素，已经包含当前 scale）
+    const dx = cx - ix;
+    const dy = cy - iy;
+    // 缩放因子
+    const k = targetScale / scale;
+    // 新平移：旧 tx + 偏移 - 偏移*k = 旧 tx + dx*(1-k)
+    tx += dx * (1 - k);
+    ty += dy * (1 - k);
+    scale = targetScale;
+    applyTransform();
+  }
 
   function go(i) {
     idx = (i + srcs.length) % srcs.length;
@@ -517,8 +565,8 @@ function setupLightbox() {
     dotsEl.querySelectorAll('span').forEach((d, k) => {
       d.classList.toggle('is-active', k === idx);
     });
-    // 单图时把 nav 按钮藏掉，免得碍眼
     lb.classList.toggle('is-single', srcs.length <= 1);
+    resetTransform();
   }
   function open(i) {
     go(i);
@@ -530,10 +578,8 @@ function setupLightbox() {
     document.body.style.overflow = '';
   }
 
-  // 圆点（多张时才有意义）
   dotsEl.innerHTML = srcs.map(() => '<span></span>').join('');
 
-  // 缩略图点击 → open 对应索引
   targets.forEach((img, i) => {
     img.style.cursor = 'zoom-in';
     img.addEventListener('click', (e) => {
@@ -542,7 +588,7 @@ function setupLightbox() {
     });
   });
 
-  // lightbox 自身的交互
+  // 顶层控件
   lb.querySelector('.rp-lightbox__close').addEventListener('click', close);
   lb.querySelector('.rp-lightbox__nav--prev').addEventListener('click', (e) => {
     e.stopPropagation();
@@ -552,18 +598,152 @@ function setupLightbox() {
     e.stopPropagation();
     go(idx + 1);
   });
-  // 点蒙层（不是图片本身）也关闭
+  // 工具栏：放大/缩小/重置
+  lb.querySelector('.rp-lightbox__tools').addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-act]');
+    if (!btn) return;
+    e.stopPropagation();
+    const act = btn.getAttribute('data-act');
+    const r = lb.getBoundingClientRect();
+    const cx = r.left + r.width / 2;
+    const cy = r.top + r.height / 2;
+    if (act === 'zoom-in') zoomAt(scale * 1.4, cx, cy);
+    else if (act === 'zoom-out') zoomAt(scale / 1.4, cx, cy);
+    else if (act === 'reset') resetTransform();
+  });
+
+  // 滚轮缩放（以鼠标位置为锚点）
+  lb.addEventListener(
+    'wheel',
+    (e) => {
+      if (!lb.classList.contains('is-open')) return;
+      e.preventDefault();
+      // deltaY 越大缩越快；trackpad pinch 在多数浏览器里也走 wheel + ctrlKey
+      const intensity = e.ctrlKey ? 0.02 : 0.0015;
+      const factor = Math.exp(-e.deltaY * intensity);
+      zoomAt(scale * factor, e.clientX, e.clientY);
+    },
+    { passive: false },
+  );
+
+  // 双击切 1x / 2.5x
+  imgEl.addEventListener('dblclick', (e) => {
+    e.stopPropagation();
+    if (scale > 1.01) resetTransform();
+    else zoomAt(2.5, e.clientX, e.clientY);
+  });
+
+  // 鼠标拖拽平移
+  let dragging = false;
+  let dragStartX = 0;
+  let dragStartY = 0;
+  let dragStartTx = 0;
+  let dragStartTy = 0;
+  imgEl.addEventListener('mousedown', (e) => {
+    if (e.button !== 0) return;
+    e.preventDefault();
+    dragging = true;
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
+    dragStartTx = tx;
+    dragStartTy = ty;
+    lb.classList.add('is-dragging');
+  });
+  window.addEventListener('mousemove', (e) => {
+    if (!dragging) return;
+    tx = dragStartTx + (e.clientX - dragStartX);
+    ty = dragStartTy + (e.clientY - dragStartY);
+    applyTransform();
+  });
+  window.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    lb.classList.remove('is-dragging');
+  });
+
+  // 触屏：单指拖拽 + 双指捏合缩放。
+  // 用 pointermove 也行，但 touch 事件下能直接拿到 touches 列表，捏合实现最简单。
+  let touchMode = null; // 'pan' | 'pinch' | null
+  let pinchStartDist = 0;
+  let pinchStartScale = 1;
+  let pinchCenter = { x: 0, y: 0 };
+  let panStartX = 0;
+  let panStartY = 0;
+  let panStartTx = 0;
+  let panStartTy = 0;
+  imgEl.addEventListener(
+    'touchstart',
+    (e) => {
+      if (e.touches.length === 1) {
+        touchMode = 'pan';
+        panStartX = e.touches[0].clientX;
+        panStartY = e.touches[0].clientY;
+        panStartTx = tx;
+        panStartTy = ty;
+      } else if (e.touches.length === 2) {
+        touchMode = 'pinch';
+        const [a, b] = e.touches;
+        pinchStartDist = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+        pinchStartScale = scale;
+        pinchCenter = { x: (a.clientX + b.clientX) / 2, y: (a.clientY + b.clientY) / 2 };
+      }
+    },
+    { passive: true },
+  );
+  imgEl.addEventListener(
+    'touchmove',
+    (e) => {
+      if (touchMode === 'pan' && e.touches.length === 1) {
+        e.preventDefault();
+        tx = panStartTx + (e.touches[0].clientX - panStartX);
+        ty = panStartTy + (e.touches[0].clientY - panStartY);
+        applyTransform();
+      } else if (touchMode === 'pinch' && e.touches.length === 2) {
+        e.preventDefault();
+        const [a, b] = e.touches;
+        const dist = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+        if (pinchStartDist > 0) {
+          zoomAt(pinchStartScale * (dist / pinchStartDist), pinchCenter.x, pinchCenter.y);
+        }
+      }
+    },
+    { passive: false },
+  );
+  imgEl.addEventListener('touchend', (e) => {
+    if (e.touches.length === 0) touchMode = null;
+    else if (e.touches.length === 1) {
+      // pinch 结束后过渡到 pan
+      touchMode = 'pan';
+      panStartX = e.touches[0].clientX;
+      panStartY = e.touches[0].clientY;
+      panStartTx = tx;
+      panStartTy = ty;
+    }
+  });
+
+  // 点蒙层空白 / stage 留白处关闭。但放大后不要误触关闭，所以仅在 scale==1 时生效。
   lb.addEventListener('click', (e) => {
+    if (scale > 1.01) return;
     if (e.target === lb || e.target.classList.contains('rp-lightbox__stage')) {
       close();
     }
   });
-  // 键盘导航：ESC 关，左右翻页
+
+  // 键盘
   document.addEventListener('keydown', (e) => {
     if (!lb.classList.contains('is-open')) return;
     if (e.key === 'Escape') close();
     else if (e.key === 'ArrowLeft') go(idx - 1);
     else if (e.key === 'ArrowRight') go(idx + 1);
+    else if (e.key === '+' || e.key === '=') {
+      const r = lb.getBoundingClientRect();
+      zoomAt(scale * 1.4, r.left + r.width / 2, r.top + r.height / 2);
+    } else if (e.key === '-' || e.key === '_') {
+      const r = lb.getBoundingClientRect();
+      zoomAt(scale / 1.4, r.left + r.width / 2, r.top + r.height / 2);
+    } else if (e.key === '0') {
+      resetTransform();
+    }
   });
 }
 
