@@ -1,7 +1,115 @@
 {
   "date": "2026-02-12",
-  "count": 2,
+  "count": 3,
   "papers": [
+    {
+      "id": "arxiv-2602-12063",
+      "source": "manual_arxiv",
+      "title": "VLAW: Iterative Co-Improvement of Vision-Language-Action Policy and World Model",
+      "title_zh": "VLAW：视觉-语言-动作策略与世界模型的迭代协同改进",
+      "tldr_zh": "用真实数据改进世界模型，再用其生成合成数据提升VLA策略，成功率提升39.2%",
+      "cover_zh": "真实数据不够？用世界模型生成合成数据，机器人成功率飙升39.2%！",
+      "abstract_zh": "本文的目标是通过迭代在线交互来提升视觉-语言-动作（VLA）模型的性能和可靠性。由于在真实世界中收集策略 rollout 数据成本高昂，我们研究是否可以使用学习到的模拟器——具体来说，是一个动作条件视频生成模型——来生成额外的 rollout 数据。不幸的是，现有的世界模型缺乏策略改进所需的物理保真度：它们主要是在演示数据集上训练的，这些数据集缺乏对许多不同物理交互（特别是失败案例）的覆盖，并且在接触丰富的物体操作中难以准确建模微小但关键的物理细节。我们提出一个简单的迭代改进算法，利用真实世界的 rollout 数据来提高世界模型的保真度，然后反过来使用该模型生成补充的合成数据来改进 VLA 模型。在真实机器人上的实验中，我们使用这种方法在多个下游任务上改进了最先进的 VLA 模型的性能。与基础策略相比，我们实现了 39.2% 的绝对成功率提升，并且通过使用生成的合成 rollout 进行训练，额外获得了 11.6% 的提升。视频可在匿名网站找到：https://sites.google.com/view/vla-w",
+      "authors": [
+        "Yanjiang Guo",
+        "Tony Lee",
+        "Lucy Xiaoyang Shi"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-02-12",
+      "channels": [
+        "world-model",
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Chelsea Finn"
+        },
+        {
+          "kind": "pin",
+          "label": "📌 站长精选"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2602-12063.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2602-12063-p2.jpg",
+        "assets/img/covers/arxiv-2602-12063-p3.jpg",
+        "assets/img/covers/arxiv-2602-12063-p4.jpg"
+      ],
+      "arxiv_id": "2602.12063",
+      "abs_url": "http://arxiv.org/abs/2602.12063v2",
+      "pdf_url": "https://arxiv.org/pdf/2602.12063v2",
+      "score": 70,
+      "judge": {},
+      "institutions": [
+        "Stanford University",
+        "UC Berkeley"
+      ],
+      "method_tags": [
+        "VLA",
+        "World Model",
+        "Iterative Improvement"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "Hybrid",
+      "real_robot": "yes",
+      "training_summary": "real-world rollouts + synthetic data from world model",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2602-11758",
+      "source": "arxiv",
+      "title": "HAIC: Humanoid Agile Object Interaction Control via Dynamics-Aware World Model",
+      "title_zh": "HAIC：基于动力学感知世界模型的人形机器人灵巧物体交互控制",
+      "tldr_zh": "提出HAIC框架，仅用本体感受预测物体状态，实现人形机器人对欠驱动物体的鲁棒交互。",
+      "cover_zh": "不靠视觉｜人形机器人仅凭本体感觉就能玩滑板推车？",
+      "abstract_zh": "人形机器人在非结构化环境中执行复杂全身任务具有潜力。尽管人-物交互（HOI）已取得进展，但大多数方法专注于与机器人刚性耦合的全驱动物体，忽略了具有独立动力学和非完整约束的欠驱动物体。这些物体引入耦合力和遮挡带来的控制挑战。我们提出HAIC，一个统一框架，无需外部状态估计即可实现跨不同物体动力学的鲁棒交互。我们的关键贡献是一个动力学预测器，仅从本体感受历史估计高阶物体状态（速度、加速度）。这些预测被投影到静态几何先验上，形成空间接地动态占用图，使策略能够推断盲区中的碰撞边界和接触可供性。我们使用非对称微调，其中世界模型持续适应学生策略的探索，确保在分布偏移下鲁棒的状态估计。在人形机器人上的实验表明，HAIC通过主动补偿惯性扰动，在灵巧任务（滑板、不同负载下的推/拉车）中实现了高成功率，并通过预测多个物体的动力学，掌握了跨多变地形搬运箱子等多物体长时域任务。",
+      "authors": [
+        "Dongting Li",
+        "Xingyu Chen",
+        "Qianyang Wu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-02-12",
+      "channels": [
+        "loco-manip-wbc",
+        "world-model"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2602-11758.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2602-11758-p2.jpg",
+        "assets/img/covers/arxiv-2602-11758-p3.jpg",
+        "assets/img/covers/arxiv-2602-11758-p4.jpg"
+      ],
+      "arxiv_id": "2602.11758",
+      "abs_url": "http://arxiv.org/abs/2602.11758v2",
+      "pdf_url": "https://arxiv.org/pdf/2602.11758v2",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出人形机器人敏捷物体交互框架，结合动力学预测与世界模型，实现滑板、推车等全身控制任务，创新性强且实验充分。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "World Model",
+        "Human-Object Interaction",
+        "Agile Control"
+      ],
+      "platform": [
+        "Humanoid Robot"
+      ],
+      "sim_stack": [],
+      "method_family": "WorldModel",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": []
+    },
     {
       "id": "arxiv-2602-11929",
       "source": "arxiv",
@@ -49,57 +157,6 @@
       "platform": [],
       "sim_stack": [],
       "method_family": "RL",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2602-11758",
-      "source": "arxiv",
-      "title": "HAIC: Humanoid Agile Object Interaction Control via Dynamics-Aware World Model",
-      "title_zh": "HAIC：基于动力学感知世界模型的人形机器人灵巧物体交互控制",
-      "tldr_zh": "提出HAIC框架，仅用本体感受预测物体状态，实现人形机器人对欠驱动物体的鲁棒交互。",
-      "cover_zh": "不靠视觉｜人形机器人仅凭本体感觉就能玩滑板推车？",
-      "abstract_zh": "人形机器人在非结构化环境中执行复杂全身任务具有潜力。尽管人-物交互（HOI）已取得进展，但大多数方法专注于与机器人刚性耦合的全驱动物体，忽略了具有独立动力学和非完整约束的欠驱动物体。这些物体引入耦合力和遮挡带来的控制挑战。我们提出HAIC，一个统一框架，无需外部状态估计即可实现跨不同物体动力学的鲁棒交互。我们的关键贡献是一个动力学预测器，仅从本体感受历史估计高阶物体状态（速度、加速度）。这些预测被投影到静态几何先验上，形成空间接地动态占用图，使策略能够推断盲区中的碰撞边界和接触可供性。我们使用非对称微调，其中世界模型持续适应学生策略的探索，确保在分布偏移下鲁棒的状态估计。在人形机器人上的实验表明，HAIC通过主动补偿惯性扰动，在灵巧任务（滑板、不同负载下的推/拉车）中实现了高成功率，并通过预测多个物体的动力学，掌握了跨多变地形搬运箱子等多物体长时域任务。",
-      "authors": [
-        "Dongting Li",
-        "Xingyu Chen",
-        "Qianyang Wu"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-02-12",
-      "channels": [
-        "loco-manip-wbc"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2602-11758.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2602-11758-p2.jpg",
-        "assets/img/covers/arxiv-2602-11758-p3.jpg",
-        "assets/img/covers/arxiv-2602-11758-p4.jpg"
-      ],
-      "arxiv_id": "2602.11758",
-      "abs_url": "http://arxiv.org/abs/2602.11758v2",
-      "pdf_url": "https://arxiv.org/pdf/2602.11758v2",
-      "score": 19,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "提出人形机器人敏捷物体交互框架，结合动力学预测与世界模型，实现滑板、推车等全身控制任务，创新性强且实验充分。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "World Model",
-        "Human-Object Interaction",
-        "Agile Control"
-      ],
-      "platform": [
-        "Humanoid Robot"
-      ],
-      "sim_stack": [],
-      "method_family": "WorldModel",
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": []

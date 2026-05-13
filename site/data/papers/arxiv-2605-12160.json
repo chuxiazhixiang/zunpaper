@@ -1,0 +1,91 @@
+{
+  "id": "arxiv-2605-12160",
+  "source": "arxiv",
+  "title": "Premover: Fast Vision-Language-Action Control by Acting Before Instructions Are Complete",
+  "title_zh": "Premover：在指令完成前就开始行动的快速视觉-语言-动作控制",
+  "abstract": "Vision-Language-Action (VLA) policies are typically evaluated as if the user had finished typing or speaking before the robot begins acting. In real deployment, however, users take several seconds to enter a request, leaving the policy idle for a substantial fraction of the interaction. We introduce Premover, a lightweight module that converts this idle window into useful precomputation. Premover keeps the VLA backbone frozen and attaches two small projection heads, one for image patches, one for language tokens, that map an intermediate layer of the backbone into a shared space. The resulting focus map is supervised by simulator-rendered target-object segmentation masks and applied as a per-patch reweighting of the next step's image tokens. A single scalar readiness threshold, trained jointly from streaming prefixes, decides when the policy should begin acting. On the LIBERO benchmark suite, Premover reduces mean wall-clock time from 34.0 to 29.4 seconds, a 13.6% reduction, while matching the full-prompt baseline's success rate (95.1% vs. 95.0%); naive premoving, by contrast, collapses to 66.4%.",
+  "abstract_zh": "视觉-语言-动作（VLA）策略通常在用户完成输入后才开始评估。然而在实际部署中，用户需要几秒钟来输入请求，导致策略在交互的大部分时间内处于空闲状态。我们提出Premover，一个轻量级模块，将这段空闲窗口转化为有用的预计算。Premover保持VLA骨干网络冻结，并附加两个小型投影头（一个用于图像块，一个用于语言标记），将骨干网络的中间层映射到共享空间。生成的焦点图由模拟器渲染的目标对象分割掩码监督，并作为下一步图像标记的逐块重加权。一个联合训练的标量就绪阈值从流式前缀中学习，决定策略何时开始行动。在LIBERO基准测试中，Premover将平均挂钟时间从34.0秒减少到29.4秒（降低13.6%），同时匹配完整提示基线的成功率（95.1% vs. 95.0%）；相比之下，朴素预行动策略的成功率降至66.4%。",
+  "tldr_zh": "Premover利用用户输入的空闲时间预计算，在不降低成功率的前提下将任务执行时间缩短13.6%。",
+  "cover_zh": "不等你说完就开干｜这个VLA模块让机器人提速13.6%",
+  "authors": [
+    {
+      "name": "Joonha Park",
+      "affiliation": ""
+    },
+    {
+      "name": "Jiseung Jeong",
+      "affiliation": ""
+    },
+    {
+      "name": "Taesik Gong",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.AI"
+  ],
+  "published": "2026-05-12",
+  "updated": "2026-05-12",
+  "arxiv_id": "2605.12160",
+  "pdf_url": "https://arxiv.org/pdf/2605.12160v1",
+  "abs_url": "http://arxiv.org/abs/2605.12160v1",
+  "cover_image": "assets/img/covers/arxiv-2605-12160.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2605-12160-p2.jpg",
+    "assets/img/covers/arxiv-2605-12160-p3.jpg",
+    "assets/img/covers/arxiv-2605-12160-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 15,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（libero）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 15 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "loco-manip-wbc",
+    "reason": "提出VLA预计算模块，提升效率且保持成功率，对具身基础模型有参考价值",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "KAIST"
+  ],
+  "method_tags": [
+    "VLA",
+    "precomputation",
+    "streaming"
+  ],
+  "platform": [],
+  "sim_stack": [
+    "LIBERO"
+  ],
+  "method_family": "VLA",
+  "real_robot": "no",
+  "training_summary": "LIBERO benchmark, 13.6% wall-clock reduction",
+  "demo_videos": []
+}
