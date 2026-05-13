@@ -1,8 +1,8 @@
-// Rankings page: 总榜 / 周榜 / 月榜 — pure score-desc, no week bucketing.
+// Rankings page: 日榜 / 周榜 / 月榜 / 总榜 — pure score-desc, no week bucketing.
 // Each ranking row is a slim list item (medal + score + title + meta)
 // so the user can scan top-N quickly.
 
-import { Theme } from './storage.js?v=d33854d9';
+import { Theme } from './storage.js?v=3c8a65ea';
 import {
   escapeHTML,
   formatAuthors,
@@ -10,13 +10,13 @@ import {
   attachSearchRedirect,
   showToast,
   fetchJSON,
-} from './utils.js?v=d33854d9';
+} from './utils.js?v=3c8a65ea';
 
 const DAY_MS = 86400000;
 
 const STATE = {
   papers: [],
-  window: 'all', // 'all' | 'week' | 'month'
+  window: 'day', // 'day' | 'week' | 'month' | 'all'
 };
 
 async function loadData() {
@@ -35,9 +35,23 @@ function withinWindow(p, days) {
 
 function papersForWindow(win) {
   let pool;
-  if (win === 'week') pool = STATE.papers.filter((p) => withinWindow(p, 7));
-  else if (win === 'month') pool = STATE.papers.filter((p) => withinWindow(p, 30));
-  else pool = STATE.papers.slice();
+  // 日榜：当前最新 published 日期那一批 paper。直接按 "今天日历日"过滤会
+  // 把 arxiv 还没投递新批次的早晨卡成空——所以这里用"最新日期当天"逻辑，
+  // 兜底永远有内容。
+  if (win === 'day') {
+    const dates = STATE.papers
+      .map((p) => (p.published || '').slice(0, 10))
+      .filter(Boolean);
+    if (!dates.length) return [];
+    const latest = dates.reduce((a, b) => (a > b ? a : b));
+    pool = STATE.papers.filter((p) => (p.published || '').slice(0, 10) === latest);
+  } else if (win === 'week') {
+    pool = STATE.papers.filter((p) => withinWindow(p, 7));
+  } else if (win === 'month') {
+    pool = STATE.papers.filter((p) => withinWindow(p, 30));
+  } else {
+    pool = STATE.papers.slice();
+  }
   pool.sort((a, b) => {
     const sa = a.score || 0;
     const sb = b.score || 0;
@@ -88,6 +102,16 @@ function render() {
   const list = document.querySelector('#rank-list');
   if (!list) return;
   const pool = papersForWindow(STATE.window);
+  const note = document.querySelector('#rank-note');
+  if (note) {
+    if (STATE.window === 'day' && pool.length) {
+      const dt = (pool[0].published || '').slice(0, 10);
+      note.textContent = `当日榜基于最新 published 日期：${dt}（arXiv 每天 UTC 20:00 公布新批次，因此早上看到的可能仍是昨日批次）`;
+      note.style.display = '';
+    } else {
+      note.style.display = 'none';
+    }
+  }
   if (!pool.length) {
     list.innerHTML = `<li class="rp-status">这个时段还没有论文，主页换个频道或等下次更新～</li>`;
     return;

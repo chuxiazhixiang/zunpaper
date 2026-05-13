@@ -2,7 +2,7 @@
 // masonry one "week" at a time, and append older weeks via IntersectionObserver
 // before the user hits the bottom.
 
-import { Favorites, Reads, Theme } from './storage.js?v=d33854d9';
+import { Favorites, Reads, Theme } from './storage.js?v=3c8a65ea';
 import {
   pickCover,
   loadPalettes,
@@ -14,7 +14,7 @@ import {
   HEART_SVG_FILL,
   showToast,
   fetchJSON,
-} from './utils.js?v=d33854d9';
+} from './utils.js?v=3c8a65ea';
 
 const STATE = {
   channels: [],
