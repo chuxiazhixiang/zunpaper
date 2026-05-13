@@ -1530,6 +1530,105 @@ img {
   background: #000;
 }
 
+/* P0+: 详情页图片放大预览 lightbox。极简实现：固定 fixed 蒙层 + 居中图。
+ * Mac/系统级深色蒙层，按钮全是白底圆形，无障碍标签齐全。 */
+.rp-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.86);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  cursor: zoom-out;
+}
+.rp-lightbox.is-open {
+  display: flex;
+}
+.rp-lightbox__stage {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: 95vw;
+  max-height: 95vh;
+}
+.rp-lightbox__img {
+  max-width: 95vw;
+  /* 留 60px 给 caption + 一点呼吸 */
+  max-height: calc(95vh - 60px);
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.55);
+  cursor: default;
+  background: #fff;
+}
+.rp-lightbox__caption {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+.rp-lightbox__close,
+.rp-lightbox__nav {
+  position: absolute;
+  appearance: none;
+  border: 0;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.15s, transform 0.15s;
+}
+.rp-lightbox__close:hover,
+.rp-lightbox__nav:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+.rp-lightbox__close {
+  top: 18px;
+  right: 18px;
+  width: 42px;
+  height: 42px;
+  font-size: 28px;
+  line-height: 1;
+}
+.rp-lightbox__nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  font-size: 32px;
+  line-height: 44px;
+  text-align: center;
+}
+.rp-lightbox__nav--prev { left: 18px; }
+.rp-lightbox__nav--next { right: 18px; }
+.rp-lightbox.is-single .rp-lightbox__nav,
+.rp-lightbox.is-single .rp-lightbox__dots {
+  display: none;
+}
+.rp-lightbox__dots {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+.rp-lightbox__dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transition: background 0.18s, transform 0.18s;
+}
+.rp-lightbox__dots span.is-active {
+  background: #fff;
+  transform: scale(1.15);
+}
+
 /* P0: YouTube 缩略图 facade。点击 → 在新标签页打开 YouTube（避开 YT 的
  * 反 bot challenge——iframe 内嵌触发概率太高，干脆不嵌）。
  * 同样的 16:9 占位，跟 Bilibili / mp4 iframe 视觉对齐。 */

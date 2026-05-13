@@ -1,6 +1,6 @@
 // Detail page: load /data/papers/{id}.json, render hero + bilingual content.
 
-import { Favorites, Reads, Theme } from './storage.js?v=3c8a65ea';
+import { Favorites, Reads, Theme } from './storage.js?v=71d18994';
 import {
   escapeHTML,
   formatAuthors,
@@ -13,7 +13,7 @@ import {
   HEART_SVG_OUTLINE,
   HEART_SVG_FILL,
   fetchJSON,
-} from './utils.js?v=3c8a65ea';
+} from './utils.js?v=71d18994';
 
 let _palettes = [];
 
@@ -413,6 +413,7 @@ function renderPaper(p, all) {
   `;
 
   setupDeck();
+  setupLightbox();
 
   // Wire up actions
   const favBtn = document.querySelector('#fav-btn');
@@ -475,6 +476,97 @@ function renderPaper(p, all) {
 }
 
 let _deckKeyHandler = null;
+
+// P0+: 详情页图片放大预览（轻量 lightbox）。
+//   - 点 PDF 预览页大图 → 弹出全屏蒙层 + 原图最大 95vw/95vh
+//   - ESC / 点蒙层 / 点 × → 关闭
+//   - ←/→ 在所有预览页之间切换；底部小圆点指示当前页
+//   - 不引入任何依赖，整套就一个 fixed div + 极简事件。
+function setupLightbox() {
+  const targets = Array.from(document.querySelectorAll('.rp-post-slide__hero'));
+  if (!targets.length) return;
+  const srcs = targets.map((img) => img.getAttribute('src')).filter(Boolean);
+  if (!srcs.length) return;
+
+  // 单例蒙层：每次打开切换 .is-open + 更新 img.src
+  let lb = document.querySelector('.rp-lightbox');
+  if (!lb) {
+    lb = document.createElement('div');
+    lb.className = 'rp-lightbox';
+    lb.innerHTML = `
+      <button class="rp-lightbox__close" aria-label="关闭">×</button>
+      <button class="rp-lightbox__nav rp-lightbox__nav--prev" aria-label="上一张">‹</button>
+      <button class="rp-lightbox__nav rp-lightbox__nav--next" aria-label="下一张">›</button>
+      <figure class="rp-lightbox__stage">
+        <img class="rp-lightbox__img" alt="" />
+        <figcaption class="rp-lightbox__caption"></figcaption>
+      </figure>
+      <div class="rp-lightbox__dots"></div>
+    `;
+    document.body.appendChild(lb);
+  }
+  const imgEl = lb.querySelector('.rp-lightbox__img');
+  const capEl = lb.querySelector('.rp-lightbox__caption');
+  const dotsEl = lb.querySelector('.rp-lightbox__dots');
+  let idx = 0;
+
+  function go(i) {
+    idx = (i + srcs.length) % srcs.length;
+    imgEl.src = srcs[idx];
+    capEl.textContent = targets[idx]?.getAttribute('alt') || `第 ${idx + 1} 张`;
+    dotsEl.querySelectorAll('span').forEach((d, k) => {
+      d.classList.toggle('is-active', k === idx);
+    });
+    // 单图时把 nav 按钮藏掉，免得碍眼
+    lb.classList.toggle('is-single', srcs.length <= 1);
+  }
+  function open(i) {
+    go(i);
+    lb.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    lb.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  // 圆点（多张时才有意义）
+  dotsEl.innerHTML = srcs.map(() => '<span></span>').join('');
+
+  // 缩略图点击 → open 对应索引
+  targets.forEach((img, i) => {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', (e) => {
+      e.preventDefault();
+      open(i);
+    });
+  });
+
+  // lightbox 自身的交互
+  lb.querySelector('.rp-lightbox__close').addEventListener('click', close);
+  lb.querySelector('.rp-lightbox__nav--prev').addEventListener('click', (e) => {
+    e.stopPropagation();
+    go(idx - 1);
+  });
+  lb.querySelector('.rp-lightbox__nav--next').addEventListener('click', (e) => {
+    e.stopPropagation();
+    go(idx + 1);
+  });
+  // 点蒙层（不是图片本身）也关闭
+  lb.addEventListener('click', (e) => {
+    if (e.target === lb || e.target.classList.contains('rp-lightbox__stage')) {
+      close();
+    }
+  });
+  // 键盘导航：ESC 关，左右翻页
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('is-open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') go(idx - 1);
+    else if (e.key === 'ArrowRight') go(idx + 1);
+  });
+}
+
 
 function setupDeck() {
   const deck = document.querySelector('.rp-post-deck');
