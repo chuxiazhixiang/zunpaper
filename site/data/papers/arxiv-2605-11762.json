@@ -1,0 +1,102 @@
+{
+  "id": "arxiv-2605-11762",
+  "source": "arxiv",
+  "title": "NavOL: Navigation Policy with Online Imitation Learning",
+  "title_zh": "NavOL：基于在线模仿学习的导航策略",
+  "abstract": "Learning robust navigation policies remains a core challenge in robotics. Offline imitation learning suffers from distribution shift and compounding errors at rollout, while reinforcement learning requires reward engineering and learns inefficiently. In this paper, we propose NavOL, an online imitation learning paradigm that interacts with a simulator and updates itself using expert demonstrations gathered online. Built upon a pretrained navigation diffusion policy that maps local observations to future waypoints, NavOL trains in a rollout update loop: during rollout, the policy acts in the simulator and queries a global planner which has privileged access to the global environment for the optimal path segment as ground truth trajectory labels; during update, the policy is trained on the online collected observation trajectory pairs. This online imitation loop removes the need for reward design, improves learning efficiency, and mitigates distribution shift by training on the policy own explored rollouts. Built on IsaacLab with fast, high-fidelity parallel rendering and domain randomization of camera pose and start-goal pairs, our system scales across 50 scenes on 8 RTX 4090 GPUs, collecting over 2,000 new trajectories per hour, each averaging more than 400 steps. We also introduce an indoor visual navigation benchmark with predefined start and goal positions for zero-shot generalization. Extensive evaluations on simulation benchmarks, including the NavDP benchmark and our proposed benchmark, as well as carefully designed real-world experiments, demonstrate the effectiveness of NavOL, showing consistent performance gains in online imitation learning.",
+  "abstract_zh": "学习鲁棒的导航策略仍是机器人学的核心挑战。离线模仿学习存在分布偏移和 rollout 时的累积误差，而强化学习需要奖励工程且学习效率低下。本文提出 NavOL，一种在线模仿学习范式，通过与模拟器交互并利用在线收集的专家演示来更新自身。基于预训练的导航扩散策略（将局部观测映射到未来航点），NavOL 在 rollout 更新循环中训练：rollout 时，策略在模拟器中行动，并查询一个拥有全局环境特权访问的全局规划器，以获取最优路径段作为真实轨迹标签；更新时，策略在在线收集的观测-轨迹对上进行训练。这种在线模仿循环消除了奖励设计的需求，提高了学习效率，并通过在策略自身探索的 rollout 上训练来缓解分布偏移。基于 IsaacLab 构建，利用快速高保真并行渲染以及相机姿态和起始-目标对的域随机化，我们的系统在 8 块 RTX 4090 GPU 上扩展到 50 个场景，每小时收集超过 2000 条新轨迹，每条轨迹平均超过 400 步。我们还引入了一个室内视觉导航基准，具有预定义的起始和目标位置，用于零样本泛化。在模拟基准（包括 NavDP 基准和我们提出的基准）以及精心设计的真实世界实验上的广泛评估，证明了 NavOL 的有效性，在在线模仿学习中显示出持续的性能提升。",
+  "tldr_zh": "提出在线模仿学习范式NavOL，通过交互式收集专家轨迹并更新策略，消除奖励设计并缓解分布偏移。",
+  "cover_zh": "不用奖励函数也能学会导航？这个在线模仿框架让机器人越走越稳",
+  "authors": [
+    {
+      "name": "Xiaofei Wei",
+      "affiliation": ""
+    },
+    {
+      "name": "Chun Gu",
+      "affiliation": ""
+    },
+    {
+      "name": "Li Zhang",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-05-12",
+  "updated": "2026-05-12",
+  "arxiv_id": "2605.11762",
+  "pdf_url": "https://arxiv.org/pdf/2605.11762v1",
+  "abs_url": "http://arxiv.org/abs/2605.11762v1",
+  "cover_image": "assets/img/covers/arxiv-2605-11762.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2605-11762-p2.jpg",
+    "assets/img/covers/arxiv-2605-11762-p3.jpg",
+    "assets/img/covers/arxiv-2605-11762-p4.jpg"
+  ],
+  "channels": [
+    "manipulation",
+    "sim2real"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 16,
+  "source_tags": [],
+  "score": 27,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（imitation learning、diffusion policy、domain randomization）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 16 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "locomotion",
+    "reason": "提出在线模仿学习导航策略，结合扩散模型与仿真器，解决分布偏移，具有高科研价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Fudan University"
+  ],
+  "method_tags": [
+    "Online Imitation Learning",
+    "Diffusion Policy",
+    "Navigation"
+  ],
+  "platform": [],
+  "sim_stack": [
+    "IsaacLab"
+  ],
+  "method_family": "IL",
+  "real_robot": "yes",
+  "training_summary": "2,000 trajectories/hour, 400+ steps each, 8 RTX 4090 GPUs",
+  "demo_videos": []
+}

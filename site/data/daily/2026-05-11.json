@@ -141,6 +141,56 @@
       "demo_videos": []
     },
     {
+      "id": "arxiv-2605-10485",
+      "source": "arxiv",
+      "title": "VEGA: Visual Encoder Grounding Alignment for Spatially-Aware Vision-Language-Action Models",
+      "title_zh": "VEGA：面向空间感知视觉-语言-动作模型的视觉编码器基础对齐",
+      "tldr_zh": "VEGA通过在视觉编码器输出层对齐3D特征，提升VLA模型的空间感知能力，无额外推理开销。",
+      "cover_zh": "机器人看不懂空间？这个新方法让VLA模型秒懂3D｜零额外计算开销",
+      "abstract_zh": "精确的空间推理是机器人操作的基础，然而当前视觉-语言-动作（VLA）模型的视觉骨干主要是在2D图像数据上预训练的，缺乏显式的3D几何监督，导致表征缺乏准确的空间感知能力。现有的隐式空间基础方法通过将VLA特征与3D感知基础模型的特征对齐来部分解决这一问题，但它们依赖于经验性的层搜索，并在LLM级别的视觉token上进行对齐，此时空间结构已与语言语义纠缠，限制了泛化性和几何可解释性。我们提出VEGA（视觉编码器基础对齐），一个简单而有效的框架，直接将VLA视觉编码器的输出与来自DINOv2-FiT3D的空间感知特征对齐，DINOv2-FiT3D是一个经过多视图一致3D高斯泼溅监督微调的DINOv2模型。通过在视觉编码器输出层面进行对齐，VEGA在语言纠缠发生之前就建立了空间感知，提供了更可解释和原则性的对齐目标。对齐通过一个轻量级投影器实现，该投影器使用余弦相似度损失和标准动作预测目标联合训练，并在推理时丢弃，不引入额外计算开销。在仿真基准和真实世界操作任务上的大量实验表明，VEGA持续优于现有的隐式空间基础基线，在VLA模型的隐式空间基础方法中建立了新的最先进水平。",
+      "authors": [
+        "Hao Wang",
+        "Xiaobao Wei",
+        "Jingyang He"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-11",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2605-10485.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-10485-p2.jpg",
+        "assets/img/covers/arxiv-2605-10485-p3.jpg",
+        "assets/img/covers/arxiv-2605-10485-p4.jpg"
+      ],
+      "arxiv_id": "2605.10485",
+      "abs_url": "http://arxiv.org/abs/2605.10485v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.10485v1",
+      "score": 27,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出VLA模型空间感知对齐方法，提升具身操作性能，有仿真和实物实验，科研价值高。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "VLA",
+        "spatial grounding",
+        "visual encoder alignment"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "VLA",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
       "id": "arxiv-2605-10819",
       "source": "arxiv",
       "title": "ALAM: Algebraically Consistent Latent Transitions for Vision-Language-Action Models",
@@ -435,55 +485,6 @@
       "sim_stack": [],
       "method_family": "Foundation",
       "real_robot": "",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-10485",
-      "source": "arxiv",
-      "title": "VEGA: Visual Encoder Grounding Alignment for Spatially-Aware Vision-Language-Action Models",
-      "title_zh": "VEGA：面向空间感知视觉-语言-动作模型的视觉编码器基础对齐",
-      "tldr_zh": "VEGA通过在视觉编码器输出层对齐3D特征，提升VLA模型的空间感知能力，无额外推理开销。",
-      "cover_zh": "机器人看不懂空间？这个新方法让VLA模型秒懂3D｜零额外计算开销",
-      "abstract_zh": "精确的空间推理是机器人操作的基础，然而当前视觉-语言-动作（VLA）模型的视觉骨干主要是在2D图像数据上预训练的，缺乏显式的3D几何监督，导致表征缺乏准确的空间感知能力。现有的隐式空间基础方法通过将VLA特征与3D感知基础模型的特征对齐来部分解决这一问题，但它们依赖于经验性的层搜索，并在LLM级别的视觉token上进行对齐，此时空间结构已与语言语义纠缠，限制了泛化性和几何可解释性。我们提出VEGA（视觉编码器基础对齐），一个简单而有效的框架，直接将VLA视觉编码器的输出与来自DINOv2-FiT3D的空间感知特征对齐，DINOv2-FiT3D是一个经过多视图一致3D高斯泼溅监督微调的DINOv2模型。通过在视觉编码器输出层面进行对齐，VEGA在语言纠缠发生之前就建立了空间感知，提供了更可解释和原则性的对齐目标。对齐通过一个轻量级投影器实现，该投影器使用余弦相似度损失和标准动作预测目标联合训练，并在推理时丢弃，不引入额外计算开销。在仿真基准和真实世界操作任务上的大量实验表明，VEGA持续优于现有的隐式空间基础基线，在VLA模型的隐式空间基础方法中建立了新的最先进水平。",
-      "authors": [
-        "Hao Wang",
-        "Xiaobao Wei",
-        "Jingyang He"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-11",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-10485.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-10485-p2.jpg",
-        "assets/img/covers/arxiv-2605-10485-p3.jpg",
-        "assets/img/covers/arxiv-2605-10485-p4.jpg"
-      ],
-      "arxiv_id": "2605.10485",
-      "abs_url": "http://arxiv.org/abs/2605.10485v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.10485v1",
-      "score": 16,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "提出VLA模型空间感知对齐方法，提升具身操作性能，有仿真和实物实验，科研价值高。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "VLA",
-        "spatial grounding",
-        "visual encoder alignment"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "VLA",
-      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": []
     }

@@ -1,0 +1,107 @@
+{
+  "id": "arxiv-2605-11567",
+  "source": "arxiv",
+  "title": "Dynamic Execution Commitment of Vision-Language-Action Models",
+  "title_zh": "视觉-语言-动作模型的动态执行承诺",
+  "abstract": "Vision-Language-Action (VLA) models predominantly adopt action chunking, i.e., predicting and committing to a short horizon of consecutive low-level actions in a single forward pass, to amortize the inference cost of large-scale backbones and reduce per-step latency. However, committing these multi-step predictions to real-world execution requires balancing success rate against inference efficiency, a decision typically governed by fixed execution horizons tuned per task. Such heuristics ignore the state-dependent nature of predictive reliability, leading to brittle performance in dynamic or out-of-distribution settings. In this paper, we introduce A3, an Adaptive Action Acceptance mechanism that reframes dynamic execution commitment as a self-speculative prefix verification problem. A3 first computes a trajectory-wise consensus score of actions via group sampling, then selects a representative draft and prioritizes downstream verification. Specifically, it enforces: (1) consensus-ordered conditional invariance, which validates low-consensus actions by judging whether they remain consistent when re-decoded conditioned on high-consensus actions; and (2) prefix-closed sequential consistency, which guarantees physical rollout integrity by accepting only the longest continuous sequence of verified actions starting from the beginning. Consequently, the execution horizon emerges as the longest verifiable prefix satisfying both internal model logic and sequential execution constraints. Experiments across diverse VLA models and benchmarks demonstrate that A3 eliminates the need for manual horizon tuning while achieving a superior trade-off between execution robustness and inference throughput.",
+  "abstract_zh": "视觉-语言-动作（VLA）模型主要采用动作分块策略，即在单次前向传播中预测并承诺执行一段连续的低级动作序列，以分摊大规模骨干网络的推理成本并降低每步延迟。然而，将这些多步预测承诺到真实世界执行需要在成功率与推理效率之间取得平衡，这一决策通常由针对每个任务调整的固定执行窗口决定。这种启发式方法忽略了预测可靠性的状态依赖性，导致在动态或分布外场景中性能脆弱。本文提出A3，一种自适应动作接受机制，将动态执行承诺重新定义为自推测前缀验证问题。A3首先通过组采样计算动作的轨迹级共识分数，然后选择代表性草案并优先进行下游验证。具体而言，它强制执行：（1）共识排序条件不变性，通过判断低共识动作在基于高共识动作重新解码时是否保持一致来验证它们；（2）前缀封闭序列一致性，通过仅接受从起始位置开始的最长连续已验证动作序列来保证物理执行完整性。因此，执行窗口自然成为满足内部模型逻辑和序列执行约束的最长可验证前缀。在多种VLA模型和基准上的实验表明，A3消除了手动调整窗口的需求，同时实现了执行鲁棒性与推理吞吐量之间的优越权衡。",
+  "tldr_zh": "提出自适应动作接受机制，自动确定执行窗口，无需手动调参。",
+  "cover_zh": "不用再手动调执行窗口｜这个新机制让机器人动作更稳更快",
+  "authors": [
+    {
+      "name": "Feng Chen",
+      "affiliation": ""
+    },
+    {
+      "name": "Xianghui Wang",
+      "affiliation": ""
+    },
+    {
+      "name": "Yuxuan Chen",
+      "affiliation": ""
+    },
+    {
+      "name": "Boying Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Yefei He",
+      "affiliation": ""
+    },
+    {
+      "name": "Zeyu Zhang",
+      "affiliation": ""
+    },
+    {
+      "name": "Yicheng Wu",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.CV",
+  "categories": [
+    "cs.CV"
+  ],
+  "published": "2026-05-12",
+  "updated": "2026-05-12",
+  "arxiv_id": "2605.11567",
+  "pdf_url": "https://arxiv.org/pdf/2605.11567v1",
+  "abs_url": "http://arxiv.org/abs/2605.11567v1",
+  "cover_image": "assets/img/covers/arxiv-2605-11567.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2605-11567-p2.jpg",
+    "assets/img/covers/arxiv-2605-11567-p3.jpg",
+    "assets/img/covers/arxiv-2605-11567-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 16,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（action chunking）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 16 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "loco-manip-wbc",
+    "reason": "提出VLA模型动态执行承诺机制，提升鲁棒性与效率，对具身基础模型有重要参考价值",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "VLA",
+    "action chunking",
+    "adaptive execution"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "VLA",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": []
+}
