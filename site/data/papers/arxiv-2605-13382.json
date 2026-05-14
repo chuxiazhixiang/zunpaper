@@ -1,0 +1,104 @@
+{
+  "id": "arxiv-2605-13382",
+  "source": "arxiv",
+  "title": "BlockVLA: Accelerating Autoregressive VLA via Block Diffusion Finetuning",
+  "title_zh": "BlockVLA：通过块扩散微调加速自回归VLA",
+  "abstract": "While autoregressive (AR) Vision-Language-Action (VLA) models have demonstrated formidable reasoning capabilities in robotic tasks, their sequential decoding process often incurs high inference latency and may amplify error accumulation during long-horizon execution. Discrete Diffusion Language Models (dLLMs) provide a promising alternative through parallel token refinement, but their practical deployment in robotics remains limited by repeated denoising function evaluations (NFEs) and the difficulty of directly applying standard KV caching to bidirectional iterative decoding. To bridge these paradigms, we propose BlockVLA, a framework that adapts pretrained AR backbones into an efficient discrete diffusion policy through a block diffusion paradigm. BlockVLA maintains autoregressive dependencies at the block level while enabling parallel denoising within each block, thereby combining global causal coherence with local parallel generation. This design enables prefix KV-cache reuse across completed blocks, reduces the effective cost of iterative denoising, and provides a smoother transition from AR pretraining to diffusion-based policy fine-tuning. We conduct extensive evaluations on the LIBERO and SimplerEnv benchmarks. Experimental results demonstrate that our BlockVLA achieves a 3.3$\\times$ inference acceleration over standard discrete diffusion baselines. Furthermore, our model exhibits superior training efficiency, with success rates converging substantially faster than baselines, a gain that is particularly pronounced in complex, long-horizon tasks, where BlockVLA achieves significant performance gains in the early stages of training. This work establishes Block Diffusion as a robust bridge between large-scale pretrained AR models and efficient, high-frequency real-time robotic control.",
+  "abstract_zh": "尽管自回归视觉-语言-动作（VLA）模型在机器人任务中展现了强大的推理能力，但其顺序解码过程通常导致高推理延迟，并可能在长程执行中加剧错误累积。离散扩散语言模型通过并行令牌精炼提供了一种有前景的替代方案，但在机器人领域的实际部署仍受限于重复的去噪函数评估以及将标准KV缓存直接应用于双向迭代解码的困难。为桥接这两种范式，我们提出BlockVLA，一种通过块扩散范式将预训练自回归骨干适配为高效离散扩散策略的框架。BlockVLA在块级别保持自回归依赖，同时允许块内并行去噪，从而结合全局因果一致性与局部并行生成。该设计使得已完成块的KV缓存前缀可复用，降低了迭代去噪的有效成本，并为从自回归预训练到基于扩散的策略微调提供了更平滑的过渡。我们在LIBERO和SimplerEnv基准上进行了广泛评估。实验结果表明，我们的BlockVLA相比标准离散扩散基线实现了3.3倍的推理加速。此外，我们的模型展现出优越的训练效率，成功率收敛速度显著快于基线，这一优势在复杂长程任务中尤为明显，BlockVLA在训练早期即取得显著性能提升。本工作将块扩散确立为大规模预训练自回归模型与高效高频实时机器人控制之间的稳健桥梁。",
+  "tldr_zh": "提出BlockVLA，通过块扩散微调实现自回归VLA模型的并行解码，加速推理3.3倍。",
+  "cover_zh": "自回归太慢？BlockVLA用块扩散微调，推理加速3.3倍，长程任务训练效率也飙升！",
+  "authors": [
+    {
+      "name": "Ruiheng Wang",
+      "affiliation": ""
+    },
+    {
+      "name": "Shuanghao Bai",
+      "affiliation": ""
+    },
+    {
+      "name": "Haoran Zhang",
+      "affiliation": ""
+    },
+    {
+      "name": "Badong Chen",
+      "affiliation": ""
+    },
+    {
+      "name": "Xiangyu Xu",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-05-13",
+  "updated": "2026-05-13",
+  "arxiv_id": "2605.13382",
+  "pdf_url": "https://arxiv.org/pdf/2605.13382v1",
+  "abs_url": "http://arxiv.org/abs/2605.13382v1",
+  "cover_image": "assets/img/covers/arxiv-2605-13382.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2605-13382-p2.jpg",
+    "assets/img/covers/arxiv-2605-13382-p3.jpg",
+    "assets/img/covers/arxiv-2605-13382-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 16,
+  "source_tags": [],
+  "score": 19,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 6,
+      "hint": "频道关键词命中 2 个（diffusion policy、libero）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 16 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "loco-manip-wbc",
+    "reason": "提出BlockVLA，结合自回归与离散扩散，加速VLA推理，在LIBERO等基准上验证，对具身基础模型有高价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Xi'an Jiaotong University"
+  ],
+  "method_tags": [
+    "Block Diffusion",
+    "Autoregressive VLA",
+    "Discrete Diffusion"
+  ],
+  "platform": [],
+  "sim_stack": [
+    "LIBERO",
+    "SimplerEnv"
+  ],
+  "method_family": "Diffusion",
+  "real_robot": "no",
+  "training_summary": "",
+  "demo_videos": []
+}
