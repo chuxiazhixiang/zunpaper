@@ -451,29 +451,51 @@ def _parse_qbitai_rss() -> list[dict]:
 
 
 _QBITAI_POST_HREF_RE = re.compile(
-    r'<a[^>]+href="(https://www\.qbitai\.com/\d{4}/\d{2}/\d+\.html)"[^>]*>(.*?)</a>',
+    r'<a[^>]+href="(https://www\.qbitai\.com/(\d{4})/(\d{2})/\d+\.html)"[^>]*>(.*?)</a>',
     re.DOTALL,
 )
+
+
+def _qbitai_url_to_pubdate(year: str, month: str) -> str:
+    """qbitai 的 URL 路径段携带 YYYY/MM；至少够日期分组 / 衰减分数用。
+    精确到月，日期取 15 号作为月份中点，免得月底文章被算到下个月。
+    输出 RFC822 字符串，与 RSS pubDate 路径对齐。"""
+    try:
+        d = _dt.date(int(year), int(month), 15)
+        return d.strftime("%a, %d %b %Y 00:00:00 +0800")
+    except Exception:
+        return ""
 
 
 def _parse_qbitai_archive(pages: int = 8) -> list[dict]:
     """Walk qbitai HTML pagination (/page/2 … /page/N) for older posts.
     The RSS only carries ~10 latest; this gets us back ~25 posts per page
-    so ~200 candidates over 8 pages = roughly 25-40 days back."""
+    so ~200 candidates over 8 pages = roughly 25-40 days back.
+
+    qbitai 的 article URL 形如 /2026/05/123456.html；archive 列表页不渲染
+    日期，但 URL 里就携带年月。提取出来当 pubdate，避免文章在前端显示
+    「无日期」、丢失日榜排序权重。
+    """
     seen: dict[str, dict] = {}
     for p in range(1, pages + 1):
         url = f"https://www.qbitai.com/page/{p}"
         html = _safe_get(url)
         if not html:
             continue
-        for purl, inner in _QBITAI_POST_HREF_RE.findall(html):
+        for purl, yr, mo, inner in _QBITAI_POST_HREF_RE.findall(html):
             text = _strip_tags(inner)
             text = re.sub(r"\s+", " ", text)
             if len(text) < 3:
                 continue
             if purl in seen:
                 continue
-            seen[purl] = {"title": text, "url": purl, "pubdate": "", "desc": "", "lang": "zh"}
+            seen[purl] = {
+                "title": text,
+                "url": purl,
+                "pubdate": _qbitai_url_to_pubdate(yr, mo),
+                "desc": "",
+                "lang": "zh",
+            }
         time.sleep(0.4)
     return list(seen.values())
 

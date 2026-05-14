@@ -208,6 +208,15 @@ def process_new_papers(
                     cached.channels.append(c)
             if paper.updated and paper.updated > (cached.updated or ""):
                 cached.updated = paper.updated
+            # 同步回填 published：以前 cn_news 解析失败时 published 会是空串，
+            # 之后修好 parser 后只更新 updated 又导致 published 永久为空。
+            # 这里如果 cached.published 是空且 fresh paper 有 published，
+            # 直接补上；如果两者都有，谁早听谁的（保留原始 first-publish 日期）。
+            if paper.published:
+                if not cached.published:
+                    cached.published = paper.published
+                elif paper.published < cached.published:
+                    cached.published = paper.published
             paper = cached
 
         if not paper.cover_image and paper.pdf_url:

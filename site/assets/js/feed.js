@@ -1,8 +1,12 @@
-// Homepage feed: load papers, bucket by 7-day window, render Xiaohongshu-style
-// masonry one "week" at a time, and append older weeks via IntersectionObserver
+// Homepage feed: load papers, bucket by period (day/week/year depending on
+// how far back), render Xiaohongshu-style masonry one bucket at a time, and
+// append older buckets via IntersectionObserver as user scrolls.
+// 站点切日更后，近 7 天按日分组（今天/昨天/前天/X月X日），让用户清晰看到
+// 每日产出节奏；7-90 天按周分组保留一定密度；>90 天按年分组防止上古论文
+// 把页面塞爆。
 // before the user hits the bottom.
 
-import { Favorites, Reads, Theme } from './storage.js?v=fc292035';
+import { Favorites, Reads, Theme } from './storage.js?v=b09ab243';
 import {
   pickCover,
   loadPalettes,
@@ -14,7 +18,7 @@ import {
   HEART_SVG_FILL,
   showToast,
   fetchJSON,
-} from './utils.js?v=fc292035';
+} from './utils.js?v=b09ab243';
 
 const STATE = {
   channels: [],
@@ -22,10 +26,12 @@ const STATE = {
   palettes: [],
   activeChannel: 'all',
   searchQuery: '',
-  // Filled per render: Map<weekIdx, Paper[]> + sorted list of week indices.
+  // Filled per render: bucket maps + ordered list of bucket keys.
+  // 桶 key 形如 "day:0"/"day:1"/"week:1"/"year:2025"，meta 含 emoji/label
   buckets: new Map(),
-  weekOrder: [],
-  renderedWeeks: new Set(),
+  metaMap: new Map(),
+  periodOrder: [],
+  renderedKeys: new Set(),
   observer: null,
 };
 
@@ -190,7 +196,13 @@ export function videoBadgeHTML(p) {
   return `<span class="rp-card__videoflag" title="有 demo 视频">🎬</span>`;
 }
 
-// ----- Week bucketing ---------------------------------------------------
+// ----- Period bucketing -------------------------------------------------
+// 三段分组策略（站点已切日更）：
+//   • 近 7 天          → 按「日」分组（今天 / 昨天 / 前天 / X月X日）
+//   • 7–90 天          → 按「周」分组（上周 / 两周前 / N 周前）
+//   • 90 天以上        → 按「年」分组（2026 年早期 / 2025 年 / ...）
+// 这样高频更新阶段每日见到清晰的"今天 vs 昨天"切片，老论文不至于把
+// 周块塞爆，更老的年代直接整年汇总。
 function todayMidnight() {
   const d = new Date();
   d.setHours(0, 0, 0, 0);
@@ -207,44 +219,85 @@ function paperDate(p) {
   return d;
 }
 
-function weekIndexOf(p, anchor) {
+function _fmtMD(d) {
+  return `${d.getMonth() + 1}月${d.getDate()}日`;
+}
+
+// 给一篇 paper 计算 bucket key + meta。返回 { key, meta }。
+//   meta = { kind, label, emoji, dateRange, sortKey }
+//   sortKey 越小越靠近今天，用于最终排序。
+function periodOf(p, anchor) {
   const d = paperDate(p);
-  if (!d) return 0; // 没日期的（手动收录）丢到本周
+  // 无日期：手动收录类，丢到「今天」桶。
+  if (!d) {
+    return periodMeta('day', 0, anchor);
+  }
   const days = Math.max(0, Math.floor((anchor - d) / DAY_MS));
-  return Math.floor(days / 7);
+  if (days < 7) {
+    return periodMeta('day', days, anchor, d);
+  }
+  if (days < 90) {
+    const weekIdx = Math.floor(days / 7);
+    return periodMeta('week', weekIdx, anchor, d);
+  }
+  return periodMeta('year', d.getFullYear(), anchor, d);
 }
 
-function weekDateRange(idx, anchor) {
-  // 第 idx 周 = 距今 idx*7 天 到 (idx+1)*7 - 1 天。
-  const end = new Date(anchor);
-  end.setDate(end.getDate() - idx * 7);
-  const start = new Date(end);
-  start.setDate(start.getDate() - 6);
-  const fmt = (d) => `${d.getMonth() + 1}月${d.getDate()}日`;
-  return `${fmt(start)} – ${fmt(end)}`;
+function periodMeta(kind, n, anchor, sourceDate) {
+  if (kind === 'day') {
+    const day = new Date(anchor);
+    day.setDate(day.getDate() - n);
+    const dayLabels = ['今天', '昨天', '前天'];
+    const dayEmojis = ['🔥', '✨', '🌟'];
+    const label = n < 3 ? dayLabels[n] : _fmtMD(day);
+    const emoji = n < 3 ? dayEmojis[n] : '📅';
+    return {
+      key: `day:${n}`,
+      kind: 'day',
+      sortKey: n,                 // 0..6
+      label,
+      emoji,
+      dateRange: _fmtMD(day),
+    };
+  }
+  if (kind === 'week') {
+    const end = new Date(anchor);
+    end.setDate(end.getDate() - n * 7);
+    const start = new Date(end);
+    start.setDate(start.getDate() - 6);
+    const labels = { 1: '上周精选', 2: '两周前' };
+    return {
+      key: `week:${n}`,
+      kind: 'week',
+      sortKey: 100 + n,           // 101..112 — 永远排在 day 之后
+      label: labels[n] || `${n} 周前`,
+      emoji: n <= 2 ? '📚' : '🗂',
+      dateRange: `${_fmtMD(start)} – ${_fmtMD(end)}`,
+    };
+  }
+  // year
+  const year = n;
+  return {
+    key: `year:${year}`,
+    kind: 'year',
+    sortKey: 10000 - year,        // 越早的年份 sortKey 越大 → 排在最末
+    label: `${year} 年`,
+    emoji: '📦',
+    dateRange: `${year}-01-01 – ${year}-12-31`,
+  };
 }
 
-function weekLabel(idx) {
-  if (idx === 0) return '本周精选';
-  if (idx === 1) return '上周精选';
-  if (idx === 2) return '两周前';
-  return `${idx} 周前`;
-}
-
-function weekEmoji(idx) {
-  if (idx === 0) return '🌟';
-  if (idx === 1) return '📅';
-  if (idx === 2) return '📚';
-  return '🗂';
-}
-
-function bucketByWeek(papers) {
+function bucketByPeriod(papers) {
   const anchor = todayMidnight();
-  const buckets = new Map();
+  const buckets = new Map();    // key → Paper[]
+  const metaMap = new Map();    // key → meta
   for (const p of papers) {
-    const w = weekIndexOf(p, anchor);
-    if (!buckets.has(w)) buckets.set(w, []);
-    buckets.get(w).push(p);
+    const meta = periodOf(p, anchor);
+    if (!buckets.has(meta.key)) {
+      buckets.set(meta.key, []);
+      metaMap.set(meta.key, meta);
+    }
+    buckets.get(meta.key).push(p);
   }
   for (const arr of buckets.values()) {
     arr.sort((a, b) => {
@@ -254,38 +307,44 @@ function bucketByWeek(papers) {
       return (b.published || '').localeCompare(a.published || '');
     });
   }
-  return { buckets, anchor };
+  // 排序：今天最前，年最后
+  const order = [...buckets.keys()].sort(
+    (a, b) => metaMap.get(a).sortKey - metaMap.get(b).sortKey,
+  );
+  return { buckets, metaMap, order, anchor };
 }
 
 // ----- Rendering --------------------------------------------------------
-function appendWeek(feed, weekIdx) {
-  if (STATE.renderedWeeks.has(weekIdx)) return;
-  const papers = STATE.buckets.get(weekIdx) || [];
-  if (!papers.length) {
-    STATE.renderedWeeks.add(weekIdx);
+// 渲染一个 period bucket（可以是 day/week/year）。CSS class 仍叫 rp-week*
+// 是因为只有 emoji + label 文本变了，视觉布局完全复用之前的「周精选」样式。
+function appendPeriod(feed, key) {
+  if (STATE.renderedKeys.has(key)) return;
+  const papers = STATE.buckets.get(key) || [];
+  const meta = STATE.metaMap.get(key);
+  if (!papers.length || !meta) {
+    STATE.renderedKeys.add(key);
     return;
   }
-  STATE.renderedWeeks.add(weekIdx);
+  STATE.renderedKeys.add(key);
 
   const section = document.createElement('section');
-  section.className = 'rp-week';
-  section.dataset.week = String(weekIdx);
+  section.className = `rp-week rp-week--${meta.kind}`;
+  section.dataset.bucket = key;
 
-  // 周间分隔条：跨周时（除第一个周块以外）打一条带药丸标签的虚线。
-  // 第一周也加一个 chip，但不带虚线 — 通过 :first-of-type 隐藏 ::before/::after。
+  // 分隔条 chip：「🔥 今天」、「📅 5月10日」、「📚 上周精选」、「📦 2025 年」
   const divider = document.createElement('div');
   divider.className = 'rp-week__divider';
   divider.innerHTML = `
     <span class="rp-week__chip">
-      <span class="rp-week__chip-emoji">${weekEmoji(weekIdx)}</span>
-      <span>${weekLabel(weekIdx)}</span>
+      <span class="rp-week__chip-emoji">${meta.emoji}</span>
+      <span>${meta.label}</span>
     </span>`;
   section.appendChild(divider);
 
   const title = document.createElement('h2');
   title.className = 'rp-week__title';
   title.innerHTML =
-    `<span class="rp-week__date">${weekDateRange(weekIdx, STATE.anchor)}</span>` +
+    `<span class="rp-week__date">${meta.dateRange}</span>` +
     `<em>${papers.length} 篇</em>`;
   section.appendChild(title);
 
@@ -317,7 +376,7 @@ function attachSentinel(feed) {
   STATE.observer = new IntersectionObserver(
     (entries) => {
       if (!entries.some((e) => e.isIntersecting)) return;
-      const next = STATE.weekOrder.find((w) => !STATE.renderedWeeks.has(w));
+      const next = STATE.periodOrder.find((k) => !STATE.renderedKeys.has(k));
       if (next === undefined) {
         teardownObserver();
         const end = document.createElement('div');
@@ -327,7 +386,7 @@ function attachSentinel(feed) {
         feed.appendChild(end);
         return;
       }
-      appendWeek(feed, next);
+      appendPeriod(feed, next);
       // Move the sentinel back to the bottom so it can fire again.
       feed.appendChild(sentinel);
     },
@@ -353,16 +412,18 @@ function renderFeed() {
     return;
   }
 
-  const { buckets, anchor } = bucketByWeek(list);
+  const { buckets, metaMap, order, anchor } = bucketByPeriod(list);
   STATE.buckets = buckets;
+  STATE.metaMap = metaMap;
   STATE.anchor = anchor;
-  STATE.weekOrder = [...buckets.keys()].sort((a, b) => a - b);
-  STATE.renderedWeeks = new Set();
+  STATE.periodOrder = order;
+  STATE.renderedKeys = new Set();
 
-  // 渲染第一个非空周，然后挂 sentinel；如果本周空就直接 fallback 到下一周。
-  const first = STATE.weekOrder.find((w) => (buckets.get(w) || []).length > 0);
+  // 渲染第一个非空 bucket（通常是「今天」），然后挂 sentinel 让用户向下滚动
+  // 时自动加载更老的桶。
+  const first = STATE.periodOrder.find((k) => (buckets.get(k) || []).length > 0);
   if (first === undefined) return;
-  appendWeek(feed, first);
+  appendPeriod(feed, first);
   attachSentinel(feed);
 }
 
