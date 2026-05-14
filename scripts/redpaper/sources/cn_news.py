@@ -458,10 +458,16 @@ _QBITAI_POST_HREF_RE = re.compile(
 
 def _qbitai_url_to_pubdate(year: str, month: str) -> str:
     """qbitai 的 URL 路径段携带 YYYY/MM；至少够日期分组 / 衰减分数用。
-    精确到月，日期取 15 号作为月份中点，免得月底文章被算到下个月。
-    输出 RFC822 字符串，与 RSS pubDate 路径对齐。"""
+    默认取月中 15 号，但当年月与今天一致时夹紧到今天（避免给当月文章
+    写出未来日期）。输出 RFC822 字符串，与 RSS pubDate 路径对齐。"""
     try:
-        d = _dt.date(int(year), int(month), 15)
+        y, m = int(year), int(month)
+        today = _dt.date.today()
+        d = _dt.date(y, m, 15)
+        if d > today:
+            # 当月还没过半时，写 15 号会变成未来日期 → 改成今天兜底。
+            # 老月份永远在过去，不会进这个分支。
+            d = today
         return d.strftime("%a, %d %b %Y 00:00:00 +0800")
     except Exception:
         return ""
