@@ -2,7 +2,7 @@
 // Each ranking row is a slim list item (medal + score + title + meta)
 // so the user can scan top-N quickly.
 
-import { Theme } from './storage.js?v=1216d5a7';
+import { Theme } from './storage.js?v=0ed20f9f';
 import {
   escapeHTML,
   formatAuthors,
@@ -10,7 +10,7 @@ import {
   attachSearchRedirect,
   showToast,
   fetchJSON,
-} from './utils.js?v=1216d5a7';
+} from './utils.js?v=0ed20f9f';
 
 const DAY_MS = 86400000;
 
@@ -35,16 +35,26 @@ function withinWindow(p, days) {
 
 function papersForWindow(win) {
   let pool;
-  // 日榜：当前最新 published 日期那一批 paper。直接按 "今天日历日"过滤会
-  // 把 arxiv 还没投递新批次的早晨卡成空——所以这里用"最新日期当天"逻辑，
-  // 兜底永远有内容。
+  // 日榜：最新有内容那一天为锚，paper 数 < 8 时往前合并直到凑够（最多合
+  // 并到 3 天）。原因：arxiv 偶尔 HTTP 429 把当天 cron 几乎打空（只剩个
+  // 位数 paper），用户进来日榜空得离谱；这种 sparse 兜底让用户至少能看
+  // 到最近 24-72h 的内容。
   if (win === 'day') {
     const dates = STATE.papers
       .map((p) => (p.published || '').slice(0, 10))
       .filter(Boolean);
     if (!dates.length) return [];
-    const latest = dates.reduce((a, b) => (a > b ? a : b));
-    pool = STATE.papers.filter((p) => (p.published || '').slice(0, 10) === latest);
+    const uniqDates = [...new Set(dates)].sort().reverse();  // 新→旧
+    const includeDates = new Set();
+    let pickedCount = 0;
+    for (const d of uniqDates.slice(0, 3)) {
+      includeDates.add(d);
+      pickedCount += dates.filter((x) => x === d).length;
+      if (pickedCount >= 8) break;
+    }
+    pool = STATE.papers.filter((p) =>
+      includeDates.has((p.published || '').slice(0, 10)),
+    );
   } else if (win === 'week') {
     pool = STATE.papers.filter((p) => withinWindow(p, 7));
   } else if (win === 'month') {
@@ -105,8 +115,14 @@ function render() {
   const note = document.querySelector('#rank-note');
   if (note) {
     if (STATE.window === 'day' && pool.length) {
-      const dt = (pool[0].published || '').slice(0, 10);
-      note.textContent = `当日榜基于最新 published 日期：${dt}（arXiv 每天 UTC 20:00 公布新批次，因此早上看到的可能仍是昨日批次）`;
+      const dates = [
+        ...new Set(pool.map((p) => (p.published || '').slice(0, 10)).filter(Boolean)),
+      ].sort().reverse();
+      if (dates.length === 1) {
+        note.textContent = `当日榜基于最新 published 日期：${dates[0]}（arXiv 每天 UTC 20:00 公布新批次，早上看到的可能仍是昨日批次）`;
+      } else {
+        note.textContent = `当日榜：${dates[dates.length - 1]} → ${dates[0]}（最新一天 paper 太少，自动合并最近 ${dates.length} 天兜底）`;
+      }
       note.style.display = '';
     } else {
       note.style.display = 'none';

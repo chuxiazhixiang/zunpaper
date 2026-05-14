@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 import datetime as dt
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -572,6 +573,48 @@ def _matches_channel(title: str, abstract: str, channel: cfg.Channel) -> bool:
     return any(kw.lower() in text for kw in channel.keywords)
 
 
+_TITLE_NORM_RE = re.compile(r"[\s\W_]+", re.UNICODE)
+
+
+def _normalize_title(title: str) -> str:
+    """同一篇 qbitai 文章经常被挂到两个 URL（如 /412577 + /412870），slug
+    哈希完全不同 → 当成两条独立 Paper。这里把标题归一化（去空白 / 标点 /
+    符号 + 大小写折叠）作为二级去重 key。"""
+    return _TITLE_NORM_RE.sub("", (title or "").lower())
+
+
+def dedup_by_title(
+    fresh: dict[str, Paper],
+    existing: dict[str, Paper] | None = None,
+) -> set[str]:
+    """对 fresh 字典做标题级二级去重，返回被丢弃的 paper id 集合。
+    保留策略：已存在缓存的优先，否则按 abs_url 字典序最小（qbitai URL 里
+    有递增 ID，字典序小 ≈ 更早发布）。标题太短（<8 字符）不去重避免误伤。
+    """
+    existing = existing or {}
+    by_title: dict[str, list[Paper]] = {}
+    for p in fresh.values():
+        k = _normalize_title(p.title)
+        if len(k) < 8:
+            continue
+        by_title.setdefault(k, []).append(p)
+    dropped: set[str] = set()
+    for k, group in by_title.items():
+        if len(group) < 2:
+            continue
+        cached_keepers = [p for p in group if p.id in existing]
+        keepers = cached_keepers or group
+        keeper = min(keepers, key=lambda p: (p.abs_url or "", p.id))
+        for p in group:
+            if p.id != keeper.id:
+                dropped.add(p.id)
+    for pid in dropped:
+        fresh.pop(pid, None)
+    if dropped:
+        log.info("title-dedup: dropped %d duplicates (kept 1 each title)", len(dropped))
+    return dropped
+
+
 def retag_and_prune(channels: list[cfg.Channel]) -> None:
     """Realign every cached paper with the CURRENT channels.yaml.
 
@@ -615,6 +658,38 @@ def retag_and_prune(channels: list[cfg.Channel]) -> None:
                 pass
 
     log.info("retag_and_prune: kept %d, dropped %d (%s)", kept, len(dropped), ", ".join(dropped[:5]))
+
+    # 同标题去重：扫一遍盘上的 paper，标题完全相同的只留一份。
+    by_title: dict[str, list[Paper]] = {}
+    for p in cfg.PAPERS_DIR.glob("*.json"):
+        try:
+            paper = load_paper(p)
+        except Exception:
+            continue
+        k = _normalize_title(paper.title)
+        if len(k) < 8:
+            continue
+        by_title.setdefault(k, []).append(paper)
+    title_dropped: list[str] = []
+    for k, group in by_title.items():
+        if len(group) < 2:
+            continue
+        # keep abs_url 字典序最小的（qbitai 数字 ID 小 ≈ 早发布）
+        keeper = min(group, key=lambda x: (x.abs_url or "", x.id))
+        for paper in group:
+            if paper.id == keeper.id:
+                continue
+            try:
+                (cfg.PAPERS_DIR / f"{paper.id}.json").unlink()
+                title_dropped.append(paper.id)
+            except OSError:
+                pass
+    if title_dropped:
+        log.info(
+            "retag_and_prune: title-dedup dropped %d (%s)",
+            len(title_dropped),
+            ", ".join(title_dropped[:5]),
+        )
 
 
 def run() -> None:
@@ -706,6 +781,11 @@ def run() -> None:
             log.warning("video channel fetch failed: %s", e)
 
     log.info("fetched %d unique papers", len(fresh))
+
+    # 标题级二级去重：qbitai 等公众号偶尔同篇内容挂多个 URL，slug 哈希不同
+    # 但标题完全一样。fresh 里靠 URL 哈希去重不掉这种，在这里做一次清理。
+    existing_pre = _existing_papers()
+    dedup_by_title(fresh, existing_pre)
 
     # ----- LLM 质量门禁（DeepSeek V4-Flash judge）----------------------
     # 关键词命中 ≠ 真相关。在 paper 进入上站流水线之前，让 DeepSeek 判定
