@@ -16,7 +16,6 @@
       "primary_category": "cs.RO",
       "published": "2026-05-08",
       "channels": [
-        "loco-manip-wbc",
         "manipulation",
         "teleop"
       ],
@@ -77,7 +76,6 @@
       "primary_category": "cs.CV",
       "published": "2026-05-08",
       "channels": [
-        "loco-manip-wbc",
         "manipulation",
         "world-model"
       ],
@@ -121,20 +119,22 @@
       "source": "video_youtube",
       "title": "Helix 02 Bedroom Tidy",
       "title_zh": "Helix 02 卧室整理",
-      "tldr_zh": "两台机器人自主在两分钟内完成房间清洁和铺床。",
-      "cover_zh": "两分钟搞定卧室｜机器人自主清洁铺床全自动",
-      "abstract_zh": "Figure 教会了两台 F.03 机器人在不到两分钟内自主完成房间清洁和铺床任务。了解更多：https://www.figure.ai/news/helix-02-bedroom-tidy",
+      "tldr_zh": "两台机器人自主清洁房间并铺床，用时不到两分钟。",
+      "cover_zh": "机器人2分钟搞定卧室清洁和铺床｜完全自主无需人类插手",
+      "abstract_zh": "Figure 教会了两台 F.03 机器人在不到 2 分钟内完成房间清洁和铺床——完全自主。了解更多：https://www.figure.ai/news/helix-02-bedroom-tidy",
       "authors": [],
       "primary_category": "video",
       "published": "2026-05-08",
-      "channels": [],
+      "channels": [
+        "loco-manip-wbc"
+      ],
       "badges": [],
       "cover_image": "",
       "preview_pages": [],
       "arxiv_id": "",
       "abs_url": "https://www.youtube.com/watch?v=8xEuFQz4E4A",
       "pdf_url": "",
-      "score": 15,
+      "score": 18,
       "judge": {
         "relevant": true,
         "research_value": "high",
@@ -187,58 +187,6 @@
           "url": "https://videos.ctfassets.net/qx5k8y1u9drj/6ruCQPzVCMVyngiPHFjkFr/2e6040a97d65a5cf006c5cf7ab4d5b92/BEDROOM_TIDY_3_VID_LONGER.mp4"
         }
       ]
-    },
-    {
-      "id": "arxiv-2605-07381",
-      "source": "arxiv",
-      "title": "Escaping the Diversity Trap in Robotic Manipulation via Anchor-Centric Adaptation",
-      "title_zh": "通过锚点中心适应逃离机器人操作中的多样性陷阱",
-      "tldr_zh": "发现多样性陷阱并提出锚点中心适应方法，提升机器人操作任务可靠性。",
-      "cover_zh": "别再盲目收集多样数据｜这个新方法让机器人学习效率翻倍",
-      "abstract_zh": "尽管视觉-语言-动作（VLA）模型具有广泛的通用能力，但在特定硬件上部署时，需要现实世界的适应来弥合具身差距。由于机器人演示成本高昂，这种适应通常必须在严格的数据预算下进行。在这项工作中，我们识别出一个关键的多样性陷阱：通过收集多样化的单次演示来“最大化覆盖”的标准启发式方法，由于非消失的估计噪声，可能适得其反。我们将这一现象形式化为覆盖-密度权衡。通过将策略误差分解为估计（密度）和外推（覆盖）项，我们刻画了在固定预算下独特条件的最优内部分配。基于这一分析，我们提出了锚点中心适应（ACA），这是一个两阶段框架：首先通过核心锚点的重复演示稳定策略骨架，然后通过教师强制错误挖掘和约束残差更新，选择性地扩展到高风险边界。真实机器人实验验证了我们的权衡框架，并表明在相同预算下，ACA显著提高了任务可靠性和成功率，优于标准多样化采样策略。",
-      "authors": [
-        "Yanzhe Chen",
-        "Kevin Yuchen Ma",
-        "Qi Lv"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-08",
-      "channels": [
-        "manipulation",
-        "loco-manip-wbc"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-07381.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-07381-p2.jpg",
-        "assets/img/covers/arxiv-2605-07381-p3.jpg",
-        "assets/img/covers/arxiv-2605-07381-p4.jpg"
-      ],
-      "arxiv_id": "2605.07381",
-      "abs_url": "http://arxiv.org/abs/2605.07381v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.07381v1",
-      "score": 14,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出锚点中心适应方法解决多样性陷阱，对机器人操作泛化有重要价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "National University of Singapore"
-      ],
-      "method_tags": [
-        "VLA",
-        "Anchor-Centric Adaptation",
-        "data efficiency"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "VLA",
-      "real_robot": "yes",
-      "training_summary": "fixed budget, repeated anchor demos + selective expansion",
-      "demo_videos": []
     },
     {
       "id": "arxiv-2605-07605",
@@ -356,6 +304,57 @@
       "method_family": "RL",
       "real_robot": "no",
       "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-07381",
+      "source": "arxiv",
+      "title": "Escaping the Diversity Trap in Robotic Manipulation via Anchor-Centric Adaptation",
+      "title_zh": "通过锚点中心适应逃离机器人操作中的多样性陷阱",
+      "tldr_zh": "发现多样性陷阱并提出锚点中心适应方法，提升机器人操作任务可靠性。",
+      "cover_zh": "别再盲目收集多样数据｜这个新方法让机器人学习效率翻倍",
+      "abstract_zh": "尽管视觉-语言-动作（VLA）模型具有广泛的通用能力，但在特定硬件上部署时，需要现实世界的适应来弥合具身差距。由于机器人演示成本高昂，这种适应通常必须在严格的数据预算下进行。在这项工作中，我们识别出一个关键的多样性陷阱：通过收集多样化的单次演示来“最大化覆盖”的标准启发式方法，由于非消失的估计噪声，可能适得其反。我们将这一现象形式化为覆盖-密度权衡。通过将策略误差分解为估计（密度）和外推（覆盖）项，我们刻画了在固定预算下独特条件的最优内部分配。基于这一分析，我们提出了锚点中心适应（ACA），这是一个两阶段框架：首先通过核心锚点的重复演示稳定策略骨架，然后通过教师强制错误挖掘和约束残差更新，选择性地扩展到高风险边界。真实机器人实验验证了我们的权衡框架，并表明在相同预算下，ACA显著提高了任务可靠性和成功率，优于标准多样化采样策略。",
+      "authors": [
+        "Yanzhe Chen",
+        "Kevin Yuchen Ma",
+        "Qi Lv"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-08",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2605-07381.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-07381-p2.jpg",
+        "assets/img/covers/arxiv-2605-07381-p3.jpg",
+        "assets/img/covers/arxiv-2605-07381-p4.jpg"
+      ],
+      "arxiv_id": "2605.07381",
+      "abs_url": "http://arxiv.org/abs/2605.07381v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.07381v1",
+      "score": 9,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出锚点中心适应方法解决多样性陷阱，对机器人操作泛化有重要价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "National University of Singapore"
+      ],
+      "method_tags": [
+        "VLA",
+        "Anchor-Centric Adaptation",
+        "data efficiency"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "VLA",
+      "real_robot": "yes",
+      "training_summary": "fixed budget, repeated anchor demos + selective expansion",
       "demo_videos": []
     },
     {

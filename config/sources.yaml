@@ -63,3 +63,14 @@ sources:
     enabled: true
     per_channel: 6            # 每个频道最多拿 N 条
     lookback_days: 30         # 只要近 30 天的视频
+
+  # ---------- P7: LLM 联网发现 ----------
+  # discover.py 用 Gemini-2.0/2.5 flash 带 google_search grounding 主动找最近
+  # arxiv 论文，专门补 channels.yaml 关键词漏召回的工作（新工作命名 / 新平台）。
+  # 必须有 GEMINI_API_KEY 才会真联网；没 key 时回退 DeepSeek 知识推理（对最新
+  # 论文效果一般，因训练截止落后几个月）。
+  # 候选 ID 全部走 arxiv API 验证一遍，防 LLM 幻觉编 ID。
+  discover:
+    enabled: true
+    lookback_days: 14         # 让 LLM 限定在近 N 天内找
+    per_channel: 5            # 每个频道最多让 LLM 推 N 篇

@@ -767,6 +767,29 @@ def run() -> None:
         except Exception as e:
             log.warning("cn_news standalone fetch failed: %s", e)
 
+    # ----- P7: LLM 联网发现 -------------------------------------------
+    # 走 Gemini-2.0/2.5 flash 带 google_search grounding 主动找最近 arxiv 论文，
+    # 专门补 channels.yaml keyword 漏召回的（新工作命名 / 新平台名）。验证完
+    # arxiv ID 真实存在再入站，防止 LLM 幻觉编 ID。
+    if getattr(sources, "discover_enabled", True):
+        try:
+            from . import discover as _discover
+            existing_ids = set(fresh.keys())
+            for jp in cfg.PAPERS_DIR.glob("*.json"):
+                existing_ids.add(jp.stem)
+            disc_papers = _discover.discover_recent_papers(
+                channels,
+                existing_ids,
+                days=getattr(sources, "discover_lookback_days", 14),
+                per_channel=getattr(sources, "discover_per_channel", 5),
+            )
+            for p in disc_papers:
+                if p.id not in fresh:
+                    fresh[p.id] = p
+            log.info("discover: %d added (post-validation)", len(disc_papers))
+        except Exception as e:
+            log.warning("discover step failed: %s", e)
+
     # ----- P5: 视频频道源（YouTube + Bilibili 厂商 demo） ---------------
     # 用 sources.video_channels_enabled 总开关。每条视频包成 Paper 卡，跟
     # cn_news 走同一个 score / enrich 流程。Bilibili API 偶尔风控，挂了不

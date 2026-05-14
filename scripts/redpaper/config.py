@@ -53,6 +53,10 @@ class SourcesConfig:
     video_channels_enabled: bool = True
     video_per_channel: int = 6
     video_lookback_days: int = 30
+    # P7: LLM 联网发现（discover.py）—— Gemini grounded search 主动找新论文
+    discover_enabled: bool = True
+    discover_lookback_days: int = 14
+    discover_per_channel: int = 5
 
 
 @dataclass
@@ -118,6 +122,9 @@ def load_sources() -> SourcesConfig:
         video_channels_enabled=get("video_channels", "enabled", True),
         video_per_channel=get("video_channels", "per_channel", 6),
         video_lookback_days=get("video_channels", "lookback_days", 30),
+        discover_enabled=get("discover", "enabled", True),
+        discover_lookback_days=get("discover", "lookback_days", 14),
+        discover_per_channel=get("discover", "per_channel", 5),
     )
 
 
