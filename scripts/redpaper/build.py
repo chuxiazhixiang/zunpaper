@@ -262,7 +262,11 @@ class EnrichmentContext:
     hf_index: dict = field(default_factory=dict)
     ss_index: dict = field(default_factory=dict)
     news_index: dict = field(default_factory=dict)
-    fresh_threshold_hours: int = 36
+    # 「⚡ 新鲜出炉」徽章窗口：3 天 = 72 小时。
+    # 之前是 36h（1.5 天），刚过周末/工作日的 paper 在站点上常常一两天后
+    # 就不带「新鲜」标签了，体感更新太快 → 拉长到 3 天，跟主流 paper feed
+    # 的"最近 X 天"语义对齐。
+    fresh_threshold_hours: int = 72
 
     def apply(self, paper: Paper) -> None:
         # Recompute all badges. Labs come from heuristic detection so they're
