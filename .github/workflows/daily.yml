@@ -2,10 +2,19 @@ name: Daily build & deploy
 
 on:
   schedule:
-    # 每天 UTC 23:00 = 北京时间次日 07:00 自动跑一次
-    # （arXiv 在 UTC 1:00 左右刷出当天投递，等够 22h 保证新论文都进来；
-    #   早上推送，刚好早饭时间能看到当日新内容。）
-    - cron: "0 23 * * *"
+    # arXiv 投递时刻表（这个改过几次，留个完整记录免得下次又踩坑）：
+    #   • arXiv 每周一到五在美东时间 20:00 推送当天「新论文公告」(announcement)
+    #   • 夏令时 EDT = UTC-4 → 美东 20:00 = UTC 00:00 = 北京时间 08:00
+    #   • 冬令时 EST = UTC-5 → 美东 20:00 = UTC 01:00 = 北京时间 09:00
+    # 老的 `0 23 * * *` 在北京 07:00 跑，比 arXiv 还早 1-2 小时，每天稳定拿不到
+    # 当天 announcement 的 papers，所以日榜永远是"昨天"。
+    #
+    # 改成 UTC 03:00 = 北京 11:00（夏令时给 3h buffer / 冬令时给 2h buffer）：
+    # arXiv 推送完 + 写入扩散完毕，arXiv API 偶尔的 429/503 也有缓冲；
+    # 用户上午（北京 10-11 点）刷新就能看到当日新论文。
+    - cron: "0 3 * * *"
+    # 兜底：如果 arXiv 早高峰挂了或者主 cron 失败，UTC 06:00 (北京 14:00) 再跑一次
+    - cron: "0 6 * * *"
   workflow_dispatch:
     inputs:
       llm_backend:
