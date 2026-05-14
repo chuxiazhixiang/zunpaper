@@ -6,7 +6,7 @@
 // 把页面塞爆。
 // before the user hits the bottom.
 
-import { Favorites, Reads, Theme } from './storage.js?v=fb03cb5f';
+import { Favorites, Reads, Theme } from './storage.js?v=63f97cc9';
 import {
   pickCover,
   loadPalettes,
@@ -18,7 +18,7 @@ import {
   HEART_SVG_FILL,
   showToast,
   fetchJSON,
-} from './utils.js?v=fb03cb5f';
+} from './utils.js?v=63f97cc9';
 
 const STATE = {
   channels: [],
@@ -306,6 +306,36 @@ function bucketByPeriod(papers) {
       if (sb !== sa) return sb - sa;
       return (b.published || '').localeCompare(a.published || '');
     });
+  }
+  // 「今日新到」聚合 —— arxiv announce 节奏导致今天早上抓到的 papers
+  // published 字段往往是昨天（cs.RO 是 EST 20:00 announce = 北京 08-09:00），
+  // 严格按 published 分桶会把"今早上的 17 篇新论文"塞到「昨天」。当
+  // day:0 < 5 篇时把 day:0 + day:1 合并成一个「今日新到」桶顶在最前面，
+  // 用户一进主页就能看到完整的当日批次。
+  const day0 = buckets.get('day:0') || [];
+  const day1 = buckets.get('day:1') || [];
+  if (day0.length < 5 && day1.length >= 5) {
+    const merged = [...day0, ...day1];
+    merged.sort((a, b) => {
+      const sa = a.score || 0;
+      const sb = b.score || 0;
+      if (sb !== sa) return sb - sa;
+      return (b.published || '').localeCompare(a.published || '');
+    });
+    buckets.set('day:0', merged);
+    const today = new Date(anchor);
+    const yesterday = new Date(anchor);
+    yesterday.setDate(yesterday.getDate() - 1);
+    metaMap.set('day:0', {
+      key: 'day:0',
+      kind: 'day',
+      sortKey: 0,
+      label: '今日新到',
+      emoji: '🔥',
+      dateRange: `${_fmtMD(yesterday)} – ${_fmtMD(today)}`,
+    });
+    buckets.delete('day:1');
+    metaMap.delete('day:1');
   }
   // 排序：今天最前，年最后
   const order = [...buckets.keys()].sort(
