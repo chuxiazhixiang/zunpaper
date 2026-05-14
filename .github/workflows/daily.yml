@@ -67,7 +67,10 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add site/data site/assets/img/covers || true
+          # data/*.json 是 LLM 判定 / 翻译 / enrich 的累积缓存 ——
+          # 不 commit 回去的话每天 Actions 都得从零再付费判一遍 (DeepSeek + Gemini)。
+          # 跨日复用 cache 才是省钱 + 稳定输出的关键。
+          git add site/data site/assets/img/covers data/judge_cache.json data/enrich_cache.json data/video_cache.json || true
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
