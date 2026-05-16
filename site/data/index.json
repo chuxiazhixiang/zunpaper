@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-16T05:55:16.538045+00:00",
-  "count": 218,
+  "generated_at": "2026-05-16T08:23:46.090186+00:00",
+  "count": 219,
   "papers": [
     {
       "id": "arxiv-2503-15558",
@@ -7903,6 +7903,59 @@
       "demo_videos": []
     },
     {
+      "id": "arxiv-2605-03846",
+      "source": "arxiv_discover",
+      "title": "SigLoMa: Learning Open-World Quadrupedal Loco-Manipulation from Ego-Centric Vision",
+      "title_zh": "SigLoMa：从自我中心视觉学习开放世界四足机器人的移动操作",
+      "tldr_zh": "提出基于自我中心视觉的机载框架，实现四足机器人动态移动操作，性能媲美人类遥操作。",
+      "cover_zh": "不用外部动捕｜四足机器人仅靠自身视觉实现动态抓取，性能堪比人类遥控",
+      "abstract_zh": "设计一个开放世界的四足机器人移动操作系统极具挑战性。传统利用外部感知的强化学习框架通常面临极低的样本效率和巨大的仿真到现实差距。此外，视觉跟踪固有的延迟与精确浮动基座控制的高频需求根本冲突。因此，现有系统严重依赖昂贵的外部运动捕捉和离线计算。为消除这些依赖，我们提出了SigLoMa，一个完全机载、基于自我中心视觉的抓取放置框架。SigLoMa的核心是引入Sigma Points，一种轻量级的外部感知几何表示，保证高可扩展性和原生仿真到现实对齐。为弥合慢速感知与快速控制之间的频率鸿沟，我们设计了一个自我中心卡尔曼滤波器，提供鲁棒的高速率状态估计。在学习方面，我们通过基于提示姿态的主动采样课程缓解样本效率问题，并利用时间编码结合模拟随机游走漂移解决机器人结构视觉盲区。真实世界实验验证，仅依赖一个5Hz（200毫秒延迟）的开放词汇检测器，SigLoMa成功执行了多个任务的动态移动操作，性能与专家人类遥操作相当。",
+      "authors": [
+        "Shiyi Chen",
+        "Haiyi Liu",
+        "Mingye Yang"
+      ],
+      "primary_category": "",
+      "published": "2026-05-05",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation",
+        "teleop",
+        "locomotion",
+        "sim2real"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2605-03846.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-03846-p2.jpg",
+        "assets/img/covers/arxiv-2605-03846-p3.jpg",
+        "assets/img/covers/arxiv-2605-03846-p4.jpg"
+      ],
+      "arxiv_id": "2605.03846",
+      "abs_url": "http://arxiv.org/abs/2605.03846v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.03846v1",
+      "score": 20,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "四足移动操作，全身控制+视觉感知，创新方法，真实实验验证",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "RL",
+        "sim-to-real",
+        "loco-manipulation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "RL",
+      "real_robot": "yes",
+      "training_summary": "Active Sampling Curriculum with Hint Poses",
+      "demo_videos": []
+    },
+    {
       "id": "arxiv-2605-05925",
       "source": "arxiv",
       "title": "DexSynRefine: Synthesizing and Refining Human-Object Interaction Motion for Physically Feasible Dexterous Robot Actions",
@@ -9309,9 +9362,9 @@
       "source": "arxiv",
       "title": "VGGT-$Ω$",
       "title_zh": "VGGT-$Ω$",
-      "tldr_zh": "VGGT-$Ω$通过架构改进和自监督学习，以更低内存实现更高重建精度。",
-      "cover_zh": "内存砍掉70%！这个新模型重建精度反而飙升77%？",
-      "abstract_zh": "最近的馈送式重建模型（如VGGT）已被证明与传统基于优化的重建方法具有竞争力，同时还能提供对其他任务有用的几何感知特征。本文表明，这些模型的质量随模型和数据规模可预测地提升。为此，我们引入了VGGT-$Ω$，它显著提高了静态和动态场景的重建精度、效率和能力。为了以前所未有的规模训练该模型，我们引入了提高训练效率的架构改进、支持动态场景的高质量数据标注流水线以及自监督学习协议。我们简化了VGGT的架构，使用单一密集预测头进行多任务监督，并移除了昂贵的高分辨率卷积层。我们还使用寄存器将场景信息聚合为紧凑表示，并引入寄存器注意力，将帧间信息交换限制在这些寄存器上，部分取代了全局注意力。这样，在训练过程中，VGGT-$Ω$仅使用其前身约30%的GPU内存，使我们能够使用比先前工作多15倍的监督数据进行训练，并利用大量未标记的视频数据。VGGT-$Ω$在多个基准测试中实现了静态和动态场景重建的强结果，例如，在Sintel上将先前最佳相机估计精度提高了77%。我们还表明，学习到的寄存器可以改进视觉-语言-动作模型，并支持与语言的对齐，这表明重建可以成为空间理解的一个强大且可扩展的代理任务。项目页面：http://vggt-omega.github.io/",
+      "tldr_zh": "VGGT-$Ω$通过架构改进和自监督学习，以更低内存实现更高精度的静态与动态场景重建。",
+      "cover_zh": "内存砍掉70%！这个3D重建模型精度反而飙升77%？",
+      "abstract_zh": "最近的馈送式重建模型（如VGGT）已被证明与传统基于优化的重建器具有竞争力，同时还能提供对其他任务有用的几何感知特征。在此，我们表明这些模型的质量随模型和数据规模可预测地提升。为此，我们引入了VGGT-$Ω$，它显著提高了静态和动态场景的重建精度、效率和能力。为了以前所未有的规模训练该模型，我们引入了提高训练效率的架构变化、支持动态场景的高质量数据标注流程以及自监督学习协议。我们通过使用具有多任务监督的单一密集预测头并移除昂贵的高分辨率卷积层来简化VGGT的架构。我们还使用寄存器将场景信息聚合为紧凑表示，并引入寄存器注意力，将帧间信息交换限制在这些寄存器上，部分取代了全局注意力。这样，在训练过程中，VGGT-$Ω$仅使用其前身约30%的GPU内存，使我们能够使用比先前工作多15倍的监督数据进行训练，并利用大量未标记的视频数据。VGGT-$Ω$在多个基准测试中实现了静态和动态场景重建的强结果，例如，在Sintel上将先前最佳相机估计精度提高了77%。我们还表明，学习到的寄存器可以改进视觉-语言-动作模型并支持与语言的对齐，这表明重建可以成为空间理解的一个强大且可扩展的代理任务。项目页面：http://vggt-omega.github.io/",
       "authors": [
         "Jianyuan Wang",
         "Minghao Chen",
@@ -9408,6 +9461,54 @@
       "platform": [],
       "sim_stack": [],
       "method_family": "Hardware",
+      "real_robot": "no",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-00412",
+      "source": "arxiv_discover",
+      "title": "Physically Native World Models: A Hamiltonian Perspective on Generative World Modeling",
+      "title_zh": "物理原生世界模型：生成式世界建模的哈密顿视角",
+      "tldr_zh": "提出哈密顿世界模型，将物理结构引入生成式世界建模以提升可靠性和稳定性。",
+      "cover_zh": "世界模型只会生成视频？加入物理定律后，预测稳得离谱",
+      "abstract_zh": "世界模型最近重新成为具身智能、机器人、自动驾驶和基于模型的强化学习的核心范式。然而，当前的世界模型研究通常被三条部分分离的路线主导：强调视觉未来合成的2D视频生成模型、强调空间重建的3D场景中心模型，以及强调抽象预测表示的JEPA类潜在模型。尽管每条路线都取得了重要进展，但它们仍然难以提供物理上可靠、动作可控且长时域稳定的预测以支持具身决策。在本文中，我们认为世界模型的瓶颈不再仅仅是它们能否生成逼真的未来，而是这些未来是否在物理上有意义且对动作有用。我们提出哈密顿世界模型作为世界建模的一个物理基础视角。关键思想是将观测编码到一个结构化的潜在相空间中，通过带有控制、耗散和残差项的哈密顿启发动力学演化潜在状态，将预测轨迹解码为未来观测，并利用生成的轨迹进行规划。我们讨论了哈密顿结构如何提高可解释性、数据效率和长时域稳定性，同时也指出了在涉及摩擦、接触、非保守力和可变形物体的真实机器人场景中的实际挑战。",
+      "authors": [
+        "Sen Cui",
+        "Jingheng Ma"
+      ],
+      "primary_category": "",
+      "published": "2026-05-01",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2605-00412.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-00412-p2.jpg",
+        "assets/img/covers/arxiv-2605-00412-p3.jpg",
+        "assets/img/covers/arxiv-2605-00412-p4.jpg"
+      ],
+      "arxiv_id": "2605.00412",
+      "abs_url": "http://arxiv.org/abs/2605.00412v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.00412v1",
+      "score": 15,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出哈密顿世界模型，从物理视角改进生成式世界建模，具身智能核心方向",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "World Model",
+        "Hamiltonian Dynamics",
+        "Model-Based RL"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "WorldModel",
       "real_robot": "no",
       "training_summary": "",
       "demo_videos": []
@@ -10518,55 +10619,6 @@
       "method_family": "Diffusion",
       "real_robot": "no",
       "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-03846",
-      "source": "arxiv_discover",
-      "title": "SigLoMa: Learning Open-World Quadrupedal Loco-Manipulation from Ego-Centric Vision",
-      "title_zh": "SigLoMa：从自我中心视觉学习开放世界四足机器人的移动操作",
-      "tldr_zh": "提出基于自我中心视觉的机载框架，实现四足机器人动态移动操作，性能媲美人类遥操作。",
-      "cover_zh": "不用外部动捕｜四足机器人仅靠自身视觉实现动态抓取，性能堪比人类遥控",
-      "abstract_zh": "设计一个开放世界的四足机器人移动操作系统极具挑战性。传统利用外部感知的强化学习框架通常面临极低的样本效率和巨大的仿真到现实差距。此外，视觉跟踪固有的延迟与精确浮动基座控制的高频需求根本冲突。因此，现有系统严重依赖昂贵的外部运动捕捉和离线计算。为消除这些依赖，我们提出了SigLoMa，一个完全机载、基于自我中心视觉的抓取放置框架。SigLoMa的核心是引入Sigma Points，一种轻量级的外部感知几何表示，保证高可扩展性和原生仿真到现实对齐。为弥合慢速感知与快速控制之间的频率鸿沟，我们设计了一个自我中心卡尔曼滤波器，提供鲁棒的高速率状态估计。在学习方面，我们通过基于提示姿态的主动采样课程缓解样本效率问题，并利用时间编码结合模拟随机游走漂移解决机器人结构视觉盲区。真实世界实验验证，仅依赖一个5Hz（200毫秒延迟）的开放词汇检测器，SigLoMa成功执行了多个任务的动态移动操作，性能与专家人类遥操作相当。",
-      "authors": [
-        "Shiyi Chen",
-        "Haiyi Liu",
-        "Mingye Yang"
-      ],
-      "primary_category": "",
-      "published": "2026-05-05",
-      "channels": [
-        "loco-manip-wbc"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-03846.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-03846-p2.jpg",
-        "assets/img/covers/arxiv-2605-03846-p3.jpg",
-        "assets/img/covers/arxiv-2605-03846-p4.jpg"
-      ],
-      "arxiv_id": "2605.03846",
-      "abs_url": "http://arxiv.org/abs/2605.03846v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.03846v1",
-      "score": 9,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "四足移动操作，全身控制+视觉感知，创新方法，真实实验验证",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "RL",
-        "sim-to-real",
-        "loco-manipulation"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "RL",
-      "real_robot": "yes",
-      "training_summary": "Active Sampling Curriculum with Hint Poses",
       "demo_videos": []
     },
     {
