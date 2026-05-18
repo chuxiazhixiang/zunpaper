@@ -1,6 +1,6 @@
 {
   "date": "2026-05-14",
-  "count": 16,
+  "count": 17,
   "papers": [
     {
       "id": "arxiv-2605-14937",
@@ -760,9 +760,9 @@
       "source": "arxiv",
       "title": "VGGT-$Ω$",
       "title_zh": "VGGT-$Ω$",
-      "tldr_zh": "VGGT-$Ω$通过架构简化和寄存器注意力，用更少内存实现更优重建，精度提升77%。",
-      "cover_zh": "内存砍掉70%！这个3D重建模型精度反而飙升77%？",
-      "abstract_zh": "近期前馈式重建模型（如VGGT）已被证明与传统基于优化的重建方法具有竞争力，同时还能提供对其他任务有用的几何感知特征。本文中，我们展示了这些模型的质量随模型和数据规模可预测地提升。为此，我们引入了VGGT-$Ω$，它在静态和动态场景的重建精度、效率和能力上均有显著提升。为了以前所未有的规模训练该模型，我们引入了提升训练效率的架构改进、支持动态场景的高质量数据标注流水线，以及自监督学习协议。我们简化了VGGT的架构，使用单一密集预测头进行多任务监督，并移除了昂贵的高分辨率卷积层。我们还使用寄存器将场景信息聚合为紧凑表示，并引入寄存器注意力，将帧间信息交换限制在这些寄存器上，部分替代了全局注意力。通过这种方式，在训练过程中，VGGT-$Ω$仅使用其前身约30%的GPU内存，使我们能够使用比先前工作多15倍的监督数据进行训练，并利用大量未标记的视频数据。VGGT-$Ω$在多个基准测试中实现了静态和动态场景重建的强结果，例如，在Sintel上相机估计精度相比之前最佳方法提升了77%。我们还展示了学习到的寄存器可以改进视觉-语言-动作模型，并支持与语言的对齐，这表明重建可以成为空间理解的一个强大且可扩展的代理任务。项目页面：http://vggt-omega.github.io/",
+      "tldr_zh": "VGGT-$Ω$通过架构改进和自监督学习，以更低显存实现更高重建精度。",
+      "cover_zh": "内存砍掉70%！这个3D重建模型用寄存器替代全局注意力，精度还暴涨77%",
+      "abstract_zh": "近期前馈重建模型（如VGGT）已被证明与传统基于优化的重建方法具有竞争力，同时还能提供对其他任务有用的几何感知特征。本文表明，这些模型的质量随模型和数据规模可预测地提升。为此，我们引入了VGGT-$Ω$，它在静态和动态场景的重建精度、效率和能力上均有显著提升。为了以前所未有的规模训练该模型，我们引入了提升训练效率的架构改进、支持动态场景的高质量数据标注流水线，以及自监督学习协议。我们简化了VGGT的架构，采用单一密集预测头进行多任务监督，并移除了昂贵的高分辨率卷积层。我们还使用寄存器将场景信息聚合为紧凑表示，并引入寄存器注意力，将帧间信息交换限制在这些寄存器上，部分替代全局注意力。通过这种方式，在训练时，VGGT-$Ω$仅使用其前身约30%的GPU内存，使我们能够使用比先前工作多15倍的监督数据进行训练，并利用大量未标记视频数据。VGGT-$Ω$在多个基准测试中实现了静态和动态场景重建的强结果，例如，在Sintel上相机姿态估计精度相比先前最佳方法提升了77%。我们还展示了学习到的寄存器可以改进视觉-语言-动作模型，并支持与语言的对齐，这表明重建可以成为空间理解的一个强大且可扩展的代理任务。项目页面：http://vggt-omega.github.io/",
       "authors": [
         "Jianyuan Wang",
         "Minghao Chen",
@@ -805,6 +805,57 @@
       "method_family": "Foundation",
       "real_robot": "no",
       "training_summary": "15x more supervised data than prior work, plus unlabeled video",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-15352",
+      "source": "arxiv_discover",
+      "title": "Diffusion Policy for Coordinated Control of a Nonholonomic Mobile Base and Dual Arms in Door Opening and Passing",
+      "title_zh": "用于非完整移动基座与双臂协调控制开门并通行的扩散策略",
+      "tldr_zh": "用扩散策略实现移动基座与双臂协调开门通行，鲁棒性优于传统方法",
+      "cover_zh": "机器人开门也能这么丝滑？扩散策略让移动基座和双臂配合无间",
+      "abstract_zh": "打开沉重且自动关闭的门，尤其是需要拉开的门，仍然是机器人学中的一个长期挑战。人类自然地灵巧地使用双臂，旋转把手、扩大门缝、扶住门、必要时换手，并在保持间隙的同时通过。为了复制这种行为，机器人必须执行跨越多个阶段并与门不同部分交互的长序列动作。传统方法依赖于状态机，在手动定义的阶段之间转换（例如，旋钮旋转后拉动，间隙足够宽后通过）。虽然直观，但这些方法缺乏鲁棒性，因为手工设计的轨迹无法泛化到现实世界的多样性，除非进行大量工程工作。最近模仿学习的进展提供了一种可扩展的替代方案，但尚无现有的视觉动作模型能够同时协调非完整基座和双臂完成完整的开门和通行任务。在本文中，我们使用基于扩散的视觉运动控制策略来解决这个复杂且高度约束的问题。我们的结果表明，可以学习单个端到端策略来执行需要紧密协调操作和运动的长时域任务。所得策略不仅在打开和通过阻尼拉门方面实现了高成功率，而且表现出对干扰的强鲁棒性——这些能力用传统方法难以实现。",
+      "authors": [
+        "Shangqun Yu",
+        "Matthew En",
+        "Daniel Wu"
+      ],
+      "primary_category": "",
+      "published": "2026-05-14",
+      "channels": [
+        "loco-manip-wbc"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2605-15352.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-15352-p2.jpg",
+        "assets/img/covers/arxiv-2605-15352-p3.jpg",
+        "assets/img/covers/arxiv-2605-15352-p4.jpg"
+      ],
+      "arxiv_id": "2605.15352",
+      "abs_url": "http://arxiv.org/abs/2605.15352v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.15352v1",
+      "score": 3,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "移动基座+双臂协调开门穿越，扩散策略端到端学习，强相关且方法新颖",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Massachusetts Amherst"
+      ],
+      "method_tags": [
+        "Diffusion Policy",
+        "Imitation Learning",
+        "long-horizon"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "Diffusion",
+      "real_robot": "yes",
+      "training_summary": "",
       "demo_videos": []
     }
   ]
