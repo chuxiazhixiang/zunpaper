@@ -1,6 +1,6 @@
 {
   "date": "2026-05-14",
-  "count": 17,
+  "count": 18,
   "papers": [
     {
       "id": "arxiv-2605-14937",
@@ -398,6 +398,53 @@
         "RoboTwin2"
       ],
       "method_family": "VLA",
+      "real_robot": "no",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-15466",
+      "source": "arxiv_discover",
+      "title": "Entity-Centric World Models: Interaction-Aware Masking for Causal Video Prediction",
+      "title_zh": "以实体为中心的世界模型：面向因果视频预测的交互感知掩码",
+      "tldr_zh": "提出交互感知掩码策略，使视频预测模型在因果推理上大幅超越基线。",
+      "cover_zh": "视频预测总学不会物理？这个新掩码策略让AI秒懂碰撞因果",
+      "abstract_zh": "从无标注视频中学习预测性世界模型是人工智能的基础挑战。尽管联合嵌入预测架构（JEPA）在语义分类上树立了新标杆，但它们通常缺乏物理感知，无法捕捉下游推理所需的因果动态。我们假设这源于标准的基于块的掩码策略，该策略优先考虑视觉纹理而非罕见但信息丰富的运动学事件。我们提出交互感知JEPA（IA-JEPA），它利用自监督的运动中心掩码策略来优先处理物理交互。通过专门针对参与碰撞或动量传递的实体，我们迫使架构重建潜在轨迹而非静态背景特征。在CLEVRER基准上，IA-JEPA在因果推理任务上达到14.26%的准确率，显著领先于标准块掩码基线的3.22%。关键的是，我们证明IA-JEPA通过诱导更高熵、更具判别性的潜在空间（+10%熵增益）打破了标准自监督的“静态偏差”，该空间线性化了物理能量（R²=0.43）。我们表明这种交互偏差泛化到真实世界的人类动作（Something-Something V2）和零样本物理谜题（PHYRE-Lite）。我们的结果为构建开始内化物理世界因果结构的基础世界模型提供了一条可扩展的、完全自监督的路径。",
+      "authors": [
+        "Santosh Kumar Paidi"
+      ],
+      "primary_category": "",
+      "published": "2026-05-14",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2605-15466.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-15466-p2.jpg",
+        "assets/img/covers/arxiv-2605-15466-p3.jpg",
+        "assets/img/covers/arxiv-2605-15466-p4.jpg"
+      ],
+      "arxiv_id": "2605.15466",
+      "abs_url": "http://arxiv.org/abs/2605.15466v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.15466v1",
+      "score": 15,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出交互感知JEPA，改进因果视频预测，属于世界模型核心方向",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "JEPA",
+        "self-supervised learning",
+        "causal video prediction"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "WorldModel",
       "real_robot": "no",
       "training_summary": "",
       "demo_videos": []
@@ -812,9 +859,9 @@
       "source": "arxiv",
       "title": "VGGT-$Ω$",
       "title_zh": "VGGT-$Ω$",
-      "tldr_zh": "VGGT-$Ω$通过架构改进和自监督学习，以更低显存实现更高精度的静态与动态场景重建。",
-      "cover_zh": "显存砍掉70%！这个新模型重建精度反而飙升77%？",
-      "abstract_zh": "近期前馈式重建模型（如VGGT）已被证明与传统基于优化的重建方法具有竞争力，同时还能提供对其他任务有用的几何感知特征。本文中，我们展示了这些模型的质量随模型和数据规模可预测地提升。为此，我们引入了VGGT-$Ω$，它显著提高了静态和动态场景的重建精度、效率和能力。为了以前所未有的规模训练该模型，我们引入了提升训练效率的架构改进、支持动态场景的高质量数据标注流水线，以及自监督学习协议。我们简化了VGGT的架构，采用单一密集预测头进行多任务监督，并移除了昂贵的高分辨率卷积层。我们还使用寄存器将场景信息聚合为紧凑表示，并引入寄存器注意力，将帧间信息交换限制在这些寄存器上，部分替代了全局注意力。通过这种方式，在训练过程中，VGGT-$Ω$仅使用其前身约30%的GPU内存，使我们能够使用比先前工作多15倍的监督数据进行训练，并利用大量未标记的视频数据。VGGT-$Ω$在多个基准测试中实现了静态和动态场景重建的强结果，例如，在Sintel上相比之前最佳相机姿态估计精度提升了77%。我们还展示了学习到的寄存器可以改进视觉-语言-动作模型，并支持与语言的对齐，这表明重建可以成为空间理解的一个强大且可扩展的代理任务。项目页面：http://vggt-omega.github.io/",
+      "tldr_zh": "VGGT-$Ω$通过架构改进和更大规模训练，显著提升了静态与动态场景的重建精度和效率。",
+      "cover_zh": "GPU内存砍掉70%｜VGGT-$Ω$让动态场景重建精度飙升77%",
+      "abstract_zh": "最近的馈送式重建模型（如VGGT）已被证明与传统基于优化的重建方法具有竞争力，同时还能提供对其他任务有用的几何感知特征。在此，我们表明这些模型的质量随模型和数据规模可预测地提升。为此，我们引入了VGGT-$Ω$，它显著提高了静态和动态场景的重建精度、效率和能力。为了以前所未有的规模训练该模型，我们引入了提高训练效率的架构变化、支持动态场景的高质量数据标注流水线以及自监督学习协议。我们通过使用带有多个任务监督的单一密集预测头并移除昂贵的高分辨率卷积层，简化了VGGT的架构。我们还使用寄存器将场景信息聚合为紧凑表示，并引入寄存器注意力，将帧间信息交换限制在这些寄存器上，部分取代了全局注意力。这样，在训练过程中，VGGT-$Ω$仅使用其前身约30%的GPU内存，使我们能够使用比先前工作多15倍的监督数据进行训练，并利用大量未标记的视频数据。VGGT-$Ω$在多个基准测试中实现了静态和动态场景重建的强劲结果，例如，在Sintel上，相机估计精度比之前的最佳结果提高了77%。我们还表明，学习到的寄存器可以改进视觉-语言-动作模型并支持与语言的对齐，这表明重建可以成为空间理解的一个强大且可扩展的代理任务。项目页面：http://vggt-omega.github.io/",
       "authors": [
         "Jianyuan Wang",
         "Minghao Chen",
