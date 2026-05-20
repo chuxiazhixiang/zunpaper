@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-20T07:00:06.374509+00:00",
-  "count": 253,
+  "generated_at": "2026-05-20T10:04:34.705910+00:00",
+  "count": 254,
   "papers": [
     {
       "id": "arxiv-2503-15558",
@@ -1545,6 +1545,73 @@
       "method_family": "RL",
       "real_robot": "yes",
       "training_summary": "Trained in simulation, zero-shot transferred to real robot",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-19981",
+      "source": "arxiv",
+      "title": "CEER: Compliant End-Effector and Root Control as a Unified Interface for Hierarchical Humanoid Loco-Manipulation",
+      "title_zh": "CEER：将末端执行器与根部控制作为统一接口用于分层人形机器人移动操作",
+      "tldr_zh": "提出柔顺末端执行器-根部控制接口，实现人形机器人模块化移动操作，精度3.3厘米且加加速度降低。",
+      "cover_zh": "人形机器人也能精细操作？这个新接口让移动操作成功率飙升",
+      "abstract_zh": "人形机器人在运动方面取得了令人瞩目的性能，但接触丰富且长时域的操作仍是一个主要瓶颈。操作本质上是接触丰富的，需要柔顺的全身控制以实现稳定交互，而其多样性和长时域特性更倾向于模块化、与规划器兼容的接口，而非关节空间跟踪。我们提出CEER，一种柔顺的末端执行器-根部（EE-root）控制抽象，用于分层规划框架内的模块化人形机器人移动操作。CEER在由根部运动命令和末端执行器位姿目标定义的可解释任务空间中实现柔顺感知的全身控制，并支持与异构高层规划器的即插即用集成。采用教师-学生框架，将通用运动跟踪控制器蒸馏为仅消耗EE-root命令的低层策略。我们进一步构建了一个分层系统，通过EE-root接口集成异构规划器和任务模块，无需重新训练底层全身策略即可实现多样化的操作任务。仿真和硬件实验表明，与基线相比，末端执行器跟踪精度达到3.3厘米，且加加速度显著降低，在遥操作下实现稳定的接触丰富操作，在房间尺度环境中的模拟单物体移动操作任务中成功率高达70%。这些结果表明，柔顺的EE-root控制为人形机器人移动操作提供了一种实用的抽象，实现了多样化技能的模块化和可扩展集成。",
+      "authors": [
+        "Xinyuan Luo",
+        "Xingrui Chen",
+        "Xunjian Yin"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-19",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation",
+        "teleop",
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Boyuan Chen"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-19981.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-19981-p2.jpg",
+        "assets/img/covers/arxiv-2605-19981-p3.jpg",
+        "assets/img/covers/arxiv-2605-19981-p4.jpg"
+      ],
+      "arxiv_id": "2605.19981",
+      "abs_url": "http://arxiv.org/abs/2605.19981v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.19981v1",
+      "score": 60,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出人形机器人全身控制新接口，结合分层规划与教师-学生框架，实验验证有效",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Duke University"
+      ],
+      "method_tags": [
+        "Compliant Control",
+        "Hierarchical Loco-Manipulation",
+        "Teacher-Student Distillation"
+      ],
+      "platform": [
+        "Unitree H1"
+      ],
+      "sim_stack": [
+        "Isaac Gym"
+      ],
+      "method_family": "RL",
+      "real_robot": "yes",
+      "training_summary": "Teacher-student distillation with simulation and hardware experiments",
       "demo_videos": []
     },
     {
@@ -3110,55 +3177,6 @@
       ]
     },
     {
-      "id": "arxiv-2602-00096",
-      "source": "manual_arxiv",
-      "title": "Mirage2Matter: A Physically Grounded Gaussian World Model from Video",
-      "title_zh": "Mirage2Matter：基于视频的物理化高斯世界模型",
-      "tldr_zh": "仅用视频重建物理化世界模型，仿真数据训练VLA模型零样本性能媲美真实数据。",
-      "cover_zh": "不用真实数据也能训练机器人？这个框架用视频重建物理世界，零样本性能反杀真实数据！",
-      "abstract_zh": "具身智能的可扩展性从根本上受限于真实世界交互数据的稀缺性。虽然仿真平台提供了一种有前景的替代方案，但现有方法通常存在与真实环境之间的显著视觉和物理差距，并且依赖昂贵的传感器、精确的机器人标定或深度测量，限制了其大规模实用性。我们提出了Simulate Anything，一个图形驱动的世界建模与仿真框架，仅需多视角环境视频和现成资产即可高效生成高保真具身训练数据。我们的方法使用3D高斯泼溅（3DGS）将真实世界环境重建为逼真的场景表示，从视频中无缝捕获精细几何和外观。然后，我们利用生成模型恢复物理真实的表示，并通过精确标定目标将其集成到仿真环境中，实现重建场景与真实世界之间的精确尺度对齐。这些组件共同提供了一个统一、可编辑且物理化的世界模型。基于我们仿真数据训练的视觉语言动作（VLA）模型在下游任务中实现了强大的零样本性能，匹配甚至超越了使用真实世界数据获得的结果，突显了重建驱动世界模型在可扩展且实用的具身智能训练中的潜力。",
-      "authors": [
-        "Zhengqing Gao",
-        "Ziwen Li",
-        "Xin Wang"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-01-24",
-      "channels": [
-        "world-model",
-        "sim2real"
-      ],
-      "badges": [
-        {
-          "kind": "pin",
-          "label": "📌 站长精选"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2602-00096.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2602-00096-p2.jpg",
-        "assets/img/covers/arxiv-2602-00096-p3.jpg",
-        "assets/img/covers/arxiv-2602-00096-p4.jpg"
-      ],
-      "arxiv_id": "2602.00096",
-      "abs_url": "http://arxiv.org/abs/2602.00096v1",
-      "pdf_url": "https://arxiv.org/pdf/2602.00096v1",
-      "score": 50,
-      "judge": {},
-      "institutions": [],
-      "method_tags": [
-        "3D Gaussian Splatting",
-        "World Model",
-        "Sim-to-Real"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Foundation",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
       "id": "arxiv-2601-21998",
       "source": "manual_arxiv",
       "title": "Causal World Modeling for Robot Control",
@@ -4660,67 +4678,52 @@
       "demo_videos": []
     },
     {
-      "id": "arxiv-2605-19981",
-      "source": "arxiv",
-      "title": "CEER: Compliant End-Effector and Root Control as a Unified Interface for Hierarchical Humanoid Loco-Manipulation",
-      "title_zh": "CEER：将末端执行器与根部控制作为统一接口用于分层人形机器人移动操作",
-      "tldr_zh": "提出柔顺末端执行器-根部控制接口，实现人形机器人模块化移动操作，精度3.3厘米且加加速度降低。",
-      "cover_zh": "人形机器人也能精细操作？这个新接口让移动操作成功率飙升",
-      "abstract_zh": "人形机器人在运动方面取得了令人瞩目的性能，但接触丰富且长时域的操作仍是一个主要瓶颈。操作本质上是接触丰富的，需要柔顺的全身控制以实现稳定交互，而其多样性和长时域特性更倾向于模块化、与规划器兼容的接口，而非关节空间跟踪。我们提出CEER，一种柔顺的末端执行器-根部（EE-root）控制抽象，用于分层规划框架内的模块化人形机器人移动操作。CEER在由根部运动命令和末端执行器位姿目标定义的可解释任务空间中实现柔顺感知的全身控制，并支持与异构高层规划器的即插即用集成。采用教师-学生框架，将通用运动跟踪控制器蒸馏为仅消耗EE-root命令的低层策略。我们进一步构建了一个分层系统，通过EE-root接口集成异构规划器和任务模块，无需重新训练底层全身策略即可实现多样化的操作任务。仿真和硬件实验表明，与基线相比，末端执行器跟踪精度达到3.3厘米，且加加速度显著降低，在遥操作下实现稳定的接触丰富操作，在房间尺度环境中的模拟单物体移动操作任务中成功率高达70%。这些结果表明，柔顺的EE-root控制为人形机器人移动操作提供了一种实用的抽象，实现了多样化技能的模块化和可扩展集成。",
-      "authors": [
-        "Xinyuan Luo",
-        "Xingrui Chen",
-        "Xunjian Yin"
-      ],
-      "primary_category": "cs.RO",
+      "id": "vid-bilibili-BV1ewLz6uEJ8",
+      "source": "video_bilibili",
+      "title": "智元生成式运控模型：让机器人言出法随！",
+      "title_zh": "智元生成式运控模型：让机器人言出法随！",
+      "tldr_zh": "智元发布首个多模态生成式运控基座模型GCFM，实现任意模态生成动作。",
+      "cover_zh": "机器人听懂人话？智元新模型用语音直接生成动作！",
+      "abstract_zh": "让机器人言出法随！智元推出GCFM——首个多模态生成式运控基座模型，使用任意模态（语音、文本、轨迹）生成动作。",
+      "authors": [],
+      "primary_category": "video",
       "published": "2026-05-19",
-      "channels": [
-        "manipulation"
-      ],
+      "channels": [],
       "badges": [
         {
           "kind": "lab",
-          "label": "⭐ Boyuan Chen"
+          "label": "⭐ AgiBot"
         },
         {
           "kind": "fresh",
           "label": "⚡ 新鲜出炉"
         }
       ],
-      "cover_image": "assets/img/covers/arxiv-2605-19981.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-19981-p2.jpg",
-        "assets/img/covers/arxiv-2605-19981-p3.jpg",
-        "assets/img/covers/arxiv-2605-19981-p4.jpg"
-      ],
-      "arxiv_id": "2605.19981",
-      "abs_url": "http://arxiv.org/abs/2605.19981v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.19981v1",
-      "score": 49,
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "",
+      "abs_url": "https://www.bilibili.com/video/BV1ewLz6uEJ8",
+      "pdf_url": "",
+      "score": 50,
       "judge": {
         "relevant": true,
-        "research_value": "high",
+        "research_value": "medium",
         "primary_channel": "loco-manip-wbc",
-        "reason": "提出人形机器人全身控制新接口，结合分层规划与教师-学生框架，实验验证有效",
+        "reason": "智元机器人发布多模态生成式运控基座模型，涉及人形机器人全身控制，符合loco-manip-wbc频道。",
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Duke University"
+        "智元"
       ],
       "method_tags": [
-        "Compliant Control",
-        "Hierarchical Loco-Manipulation",
-        "Teacher-Student Distillation"
+        "多模态生成式模型",
+        "运动控制"
       ],
-      "platform": [
-        "Unitree H1"
-      ],
-      "sim_stack": [
-        "Isaac Gym"
-      ],
-      "method_family": "RL",
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "Foundation",
       "real_robot": "yes",
-      "training_summary": "Teacher-student distillation with simulation and hardware experiments",
+      "training_summary": "",
       "demo_videos": []
     },
     {
@@ -4816,8 +4819,7 @@
       "published": "2026-01-06",
       "channels": [
         "manipulation",
-        "sim2real",
-        "world-model"
+        "sim2real"
       ],
       "badges": [
         {
@@ -5033,6 +5035,54 @@
       "sim_stack": [],
       "method_family": "RL",
       "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2602-00096",
+      "source": "manual_arxiv",
+      "title": "Mirage2Matter: A Physically Grounded Gaussian World Model from Video",
+      "title_zh": "Mirage2Matter：基于视频的物理化高斯世界模型",
+      "tldr_zh": "仅用视频重建物理化世界模型，仿真数据训练VLA模型零样本性能媲美真实数据。",
+      "cover_zh": "不用真实数据也能训练机器人？这个框架用视频重建物理世界，零样本性能反杀真实数据！",
+      "abstract_zh": "具身智能的可扩展性从根本上受限于真实世界交互数据的稀缺性。虽然仿真平台提供了一种有前景的替代方案，但现有方法通常存在与真实环境之间的显著视觉和物理差距，并且依赖昂贵的传感器、精确的机器人标定或深度测量，限制了其大规模实用性。我们提出了Simulate Anything，一个图形驱动的世界建模与仿真框架，仅需多视角环境视频和现成资产即可高效生成高保真具身训练数据。我们的方法使用3D高斯泼溅（3DGS）将真实世界环境重建为逼真的场景表示，从视频中无缝捕获精细几何和外观。然后，我们利用生成模型恢复物理真实的表示，并通过精确标定目标将其集成到仿真环境中，实现重建场景与真实世界之间的精确尺度对齐。这些组件共同提供了一个统一、可编辑且物理化的世界模型。基于我们仿真数据训练的视觉语言动作（VLA）模型在下游任务中实现了强大的零样本性能，匹配甚至超越了使用真实世界数据获得的结果，突显了重建驱动世界模型在可扩展且实用的具身智能训练中的潜力。",
+      "authors": [
+        "Zhengqing Gao",
+        "Ziwen Li",
+        "Xin Wang"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-01-24",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "pin",
+          "label": "📌 站长精选"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2602-00096.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2602-00096-p2.jpg",
+        "assets/img/covers/arxiv-2602-00096-p3.jpg",
+        "assets/img/covers/arxiv-2602-00096-p4.jpg"
+      ],
+      "arxiv_id": "2602.00096",
+      "abs_url": "http://arxiv.org/abs/2602.00096v1",
+      "pdf_url": "https://arxiv.org/pdf/2602.00096v1",
+      "score": 45,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [
+        "3D Gaussian Splatting",
+        "World Model",
+        "Sim-to-Real"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "Foundation",
+      "real_robot": "",
       "training_summary": "",
       "demo_videos": []
     },
@@ -5477,57 +5527,6 @@
       "platform": [],
       "sim_stack": [],
       "method_family": "RL",
-      "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2406-10788",
-      "source": "manual_arxiv",
-      "title": "Physically Embodied Gaussian Splatting: A Realtime Correctable World Model for Robotics",
-      "title_zh": "物理具身高斯泼溅：一种用于机器人的实时可校正世界模型",
-      "tldr_zh": "提出双高斯-粒子表征，实现实时物理预测与视觉校正的机器人世界模型。",
-      "cover_zh": "机器人看世界｜实时预测+视觉校正，仅用3个摄像头就搞定",
-      "abstract_zh": "为了让机器人能够稳健地理解物理世界并与之交互，拥有一个综合表征——建模几何、物理和视觉观测——来指导感知、规划和控制算法是非常有益的。我们提出了一种新颖的双高斯-粒子表征，它在建模物理世界的同时，(i) 能够预测未来状态，(ii) 允许在动态世界中通过视觉观测进行在线校正。我们的表征包含捕捉世界中物体几何方面的粒子，并且可以与基于粒子的物理系统一起使用，以预测物理上合理的未来状态。附着在这些粒子上的是3D高斯体，它们通过泼溅过程从任意视角渲染图像，从而捕捉视觉状态。通过比较预测图像和观测图像，我们的方法生成视觉力，在尊重已知物理约束的同时校正粒子位置。通过将预测性物理建模与连续的视觉衍生校正相结合，我们的统一表征在同步现实的同时推理现在和未来。我们的系统仅使用3个摄像头即可实时运行，频率为30Hz。我们在2D和3D跟踪任务以及光度重建质量上验证了我们的方法。视频见https://embodied-gaussians.github.io/。",
-      "authors": [
-        "Jad Abou-Chakra",
-        "Krishan Rana",
-        "Feras Dayoub"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2024-06-16",
-      "channels": [
-        "world-model",
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "pin",
-          "label": "📌 站长精选"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2406-10788.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2406-10788-p2.jpg",
-        "assets/img/covers/arxiv-2406-10788-p3.jpg",
-        "assets/img/covers/arxiv-2406-10788-p4.jpg"
-      ],
-      "arxiv_id": "2406.10788",
-      "abs_url": "http://arxiv.org/abs/2406.10788v1",
-      "pdf_url": "https://arxiv.org/pdf/2406.10788v1",
-      "score": 41,
-      "judge": {},
-      "institutions": [
-        "Queensland University of Technology"
-      ],
-      "method_tags": [
-        "World Model",
-        "Gaussian Splatting",
-        "Particle-Based Physics"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "WorldModel",
       "real_robot": "no",
       "training_summary": "",
       "demo_videos": []
@@ -6178,6 +6177,56 @@
       "sim_stack": [],
       "method_family": "MPC",
       "real_robot": "",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2406-10788",
+      "source": "manual_arxiv",
+      "title": "Physically Embodied Gaussian Splatting: A Realtime Correctable World Model for Robotics",
+      "title_zh": "物理具身高斯泼溅：一种用于机器人的实时可校正世界模型",
+      "tldr_zh": "提出双高斯-粒子表征，实现实时物理预测与视觉校正的机器人世界模型。",
+      "cover_zh": "机器人看世界｜实时预测+视觉校正，仅用3个摄像头就搞定",
+      "abstract_zh": "为了让机器人能够稳健地理解物理世界并与之交互，拥有一个综合表征——建模几何、物理和视觉观测——来指导感知、规划和控制算法是非常有益的。我们提出了一种新颖的双高斯-粒子表征，它在建模物理世界的同时，(i) 能够预测未来状态，(ii) 允许在动态世界中通过视觉观测进行在线校正。我们的表征包含捕捉世界中物体几何方面的粒子，并且可以与基于粒子的物理系统一起使用，以预测物理上合理的未来状态。附着在这些粒子上的是3D高斯体，它们通过泼溅过程从任意视角渲染图像，从而捕捉视觉状态。通过比较预测图像和观测图像，我们的方法生成视觉力，在尊重已知物理约束的同时校正粒子位置。通过将预测性物理建模与连续的视觉衍生校正相结合，我们的统一表征在同步现实的同时推理现在和未来。我们的系统仅使用3个摄像头即可实时运行，频率为30Hz。我们在2D和3D跟踪任务以及光度重建质量上验证了我们的方法。视频见https://embodied-gaussians.github.io/。",
+      "authors": [
+        "Jad Abou-Chakra",
+        "Krishan Rana",
+        "Feras Dayoub"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2024-06-16",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "pin",
+          "label": "📌 站长精选"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2406-10788.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2406-10788-p2.jpg",
+        "assets/img/covers/arxiv-2406-10788-p3.jpg",
+        "assets/img/covers/arxiv-2406-10788-p4.jpg"
+      ],
+      "arxiv_id": "2406.10788",
+      "abs_url": "http://arxiv.org/abs/2406.10788v1",
+      "pdf_url": "https://arxiv.org/pdf/2406.10788v1",
+      "score": 36,
+      "judge": {},
+      "institutions": [
+        "Queensland University of Technology"
+      ],
+      "method_tags": [
+        "World Model",
+        "Gaussian Splatting",
+        "Particle-Based Physics"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "WorldModel",
+      "real_robot": "no",
       "training_summary": "",
       "demo_videos": []
     },
@@ -7527,6 +7576,123 @@
       "demo_videos": []
     },
     {
+      "id": "arxiv-2605-19957",
+      "source": "arxiv",
+      "title": "World-Ego Modeling for Long-Horizon Evolution in Hybrid Embodied Tasks",
+      "title_zh": "World-Ego 建模：面向混合具身任务的长时程演化",
+      "tldr_zh": "提出 World-Ego 建模解耦世界与自我，提升长时程混合具身任务性能。",
+      "cover_zh": "世界模型也有瓶颈？解耦世界与自我，长时程任务性能飙升！",
+      "abstract_zh": "世界模型在具身智能中被广泛探索，但它们通常在一个单一流中预测世界和自我的不同演化，其中世界捕捉持久的、与指令无关的场景规律，而自我捕捉以机器人为中心的、受指令调节的动态。这种世界-自我纠缠导致长时程具身场景性能下降，尤其是在交织导航与操作行为的混合任务中。本文提出 World-Ego 建模，一种将未来演化分解为世界和自我组件的新概念范式。我们从运动、语义和意图三个视角定义世界-自我边界，并分析了后解耦、预解耦和全解耦三种策略。进一步，我们将该范式实例化为 World-Ego 模型（WEM），一个统一的具身世界模型，它将隐式分离的世界-自我规划器与级联并行混合专家（CP-MoE）扩散生成器相结合。为了进行严格评估，我们构建了 HTEWorld，这是首个用于混合导航-操作任务的长时程世界建模基准，提供 125K 视频片段（超过 450 万帧）及细粒度动作标注和 300 条多轮评估轨迹（超过 2000 条指令）。大量实验表明，WEM 在 HTEWorld 上达到了最先进性能，同时在现有仅操作基准上保持竞争力。",
+      "authors": [
+        "Zuyao Lin",
+        "Jianhui Zhang",
+        "Peidong Jia"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-05-19",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-19957.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-19957-p2.jpg",
+        "assets/img/covers/arxiv-2605-19957-p3.jpg",
+        "assets/img/covers/arxiv-2605-19957-p4.jpg"
+      ],
+      "arxiv_id": "2605.19957",
+      "abs_url": "http://arxiv.org/abs/2605.19957v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.19957v1",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出世界-自我建模新范式，解耦世界与自我演化，构建混合任务长时域世界模型基准，创新性强",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Peking University",
+        "Beijing University of Posts and Telecommunications"
+      ],
+      "method_tags": [
+        "World Model",
+        "Diffusion",
+        "Long-Horizon"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "WorldModel",
+      "real_robot": "no",
+      "training_summary": "125K video clips (4.5M frames), 300 evaluation trajectories",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-19986",
+      "source": "arxiv",
+      "title": "Beyond Binary Success: A Diagnostic Meta-Evaluation Framework for Fine-Grained Manipulation",
+      "title_zh": "超越二元成功：面向细粒度操作的诊断性元评估框架",
+      "tldr_zh": "MetaFine框架通过三维诊断揭示细粒度操作瓶颈，将评估从排名转向修复。",
+      "cover_zh": "成功率虚高70%？新框架MetaFine拆解操作瓶颈，直击视觉编码器软肋",
+      "abstract_zh": "细粒度操作标志着全局场景上下文不再足够，成功依赖于局部属性定位、高保真空间感知和约束遵循的电机执行的紧密耦合。然而，当前的具身AI基准将这些能力压缩为二元成功率，系统性地将报告的能力夸大了高达70%，并掩盖了阻碍现实世界部署的架构瓶颈。我们引入了MetaFine，一个诊断性元评估框架，它沿着三个轴解开操作能力：理解、感知和控制行为。基于组合任务图，MetaFine吸收异构的外部基准，并在统一协议下将它们重构为不同复杂度的诊断场景。通过这个视角评估最先进的视觉-语言-动作（VLA）模型，暴露了传统指标无法看到的特定维度严重失败。通过有针对性的因果干预，我们识别出视觉编码器保留局部空间结构的能力是细粒度精度的关键瓶颈：改进它直接解锁了以前无法实现的操作能力，而无需修改下游策略。MetaFine进一步支持混合真实-模拟验证，使用有限的配对真实世界滚动来校准基于可扩展模拟的估计，以实现更稳定的物理基准测试。通过将评估从排名转向诊断，MetaFine将基准测试转变为修复真正物理灵巧性背后分层能力的可操作指南。MetaFine框架、基准和支持资源将在我们的项目页面公开发布：https://metafine.github.io/。",
+      "authors": [
+        "He-Yang Xu",
+        "Pengyuan Zhang",
+        "Zongyuan Ge"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-19",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-19986.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-19986-p2.jpg",
+        "assets/img/covers/arxiv-2605-19986-p3.jpg",
+        "assets/img/covers/arxiv-2605-19986-p4.jpg"
+      ],
+      "arxiv_id": "2605.19986",
+      "abs_url": "http://arxiv.org/abs/2605.19986v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.19986v1",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出细粒度操作诊断评估框架，揭示VLA模型瓶颈，对操作研究有高价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Nanjing University of Science and Technology",
+        "Cornell University",
+        "Monash University"
+      ],
+      "method_tags": [
+        "meta-evaluation",
+        "fine-grained manipulation",
+        "diagnostic framework"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "Benchmark",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
       "id": "vid-youtube-bgI1fp0TZIQ",
       "source": "video_youtube",
       "title": "How Does Stretch See? | Ask A Roboticist | Boston Dynamics",
@@ -8032,64 +8198,6 @@
       "method_family": "VLA",
       "real_robot": "no",
       "training_summary": "128 teleoperated episodes on LIBERO-Spatial",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-19986",
-      "source": "arxiv",
-      "title": "Beyond Binary Success: A Diagnostic Meta-Evaluation Framework for Fine-Grained Manipulation",
-      "title_zh": "超越二元成功：面向细粒度操作的诊断性元评估框架",
-      "tldr_zh": "MetaFine框架通过三维诊断揭示细粒度操作瓶颈，将评估从排名转向修复。",
-      "cover_zh": "成功率虚高70%？新框架MetaFine拆解操作瓶颈，直击视觉编码器软肋",
-      "abstract_zh": "细粒度操作标志着全局场景上下文不再足够，成功依赖于局部属性定位、高保真空间感知和约束遵循的电机执行的紧密耦合。然而，当前的具身AI基准将这些能力压缩为二元成功率，系统性地将报告的能力夸大了高达70%，并掩盖了阻碍现实世界部署的架构瓶颈。我们引入了MetaFine，一个诊断性元评估框架，它沿着三个轴解开操作能力：理解、感知和控制行为。基于组合任务图，MetaFine吸收异构的外部基准，并在统一协议下将它们重构为不同复杂度的诊断场景。通过这个视角评估最先进的视觉-语言-动作（VLA）模型，暴露了传统指标无法看到的特定维度严重失败。通过有针对性的因果干预，我们识别出视觉编码器保留局部空间结构的能力是细粒度精度的关键瓶颈：改进它直接解锁了以前无法实现的操作能力，而无需修改下游策略。MetaFine进一步支持混合真实-模拟验证，使用有限的配对真实世界滚动来校准基于可扩展模拟的估计，以实现更稳定的物理基准测试。通过将评估从排名转向诊断，MetaFine将基准测试转变为修复真正物理灵巧性背后分层能力的可操作指南。MetaFine框架、基准和支持资源将在我们的项目页面公开发布：https://metafine.github.io/。",
-      "authors": [
-        "He-Yang Xu",
-        "Pengyuan Zhang",
-        "Zongyuan Ge"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-19",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2605-19986.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-19986-p2.jpg",
-        "assets/img/covers/arxiv-2605-19986-p3.jpg",
-        "assets/img/covers/arxiv-2605-19986-p4.jpg"
-      ],
-      "arxiv_id": "2605.19986",
-      "abs_url": "http://arxiv.org/abs/2605.19986v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.19986v1",
-      "score": 25,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出细粒度操作诊断评估框架，揭示VLA模型瓶颈，对操作研究有高价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Nanjing University of Science and Technology",
-        "Cornell University",
-        "Monash University"
-      ],
-      "method_tags": [
-        "meta-evaluation",
-        "fine-grained manipulation",
-        "diagnostic framework"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Benchmark",
-      "real_robot": "",
-      "training_summary": "",
       "demo_videos": []
     },
     {
@@ -10502,63 +10610,6 @@
       "method_family": "RL",
       "real_robot": "yes",
       "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-19957",
-      "source": "arxiv",
-      "title": "World-Ego Modeling for Long-Horizon Evolution in Hybrid Embodied Tasks",
-      "title_zh": "World-Ego 建模：面向混合具身任务的长时程演化",
-      "tldr_zh": "提出 World-Ego 建模解耦世界与自我，提升长时程混合具身任务性能。",
-      "cover_zh": "世界模型也有瓶颈？解耦世界与自我，长时程任务性能飙升！",
-      "abstract_zh": "世界模型在具身智能中被广泛探索，但它们通常在一个单一流中预测世界和自我的不同演化，其中世界捕捉持久的、与指令无关的场景规律，而自我捕捉以机器人为中心的、受指令调节的动态。这种世界-自我纠缠导致长时程具身场景性能下降，尤其是在交织导航与操作行为的混合任务中。本文提出 World-Ego 建模，一种将未来演化分解为世界和自我组件的新概念范式。我们从运动、语义和意图三个视角定义世界-自我边界，并分析了后解耦、预解耦和全解耦三种策略。进一步，我们将该范式实例化为 World-Ego 模型（WEM），一个统一的具身世界模型，它将隐式分离的世界-自我规划器与级联并行混合专家（CP-MoE）扩散生成器相结合。为了进行严格评估，我们构建了 HTEWorld，这是首个用于混合导航-操作任务的长时程世界建模基准，提供 125K 视频片段（超过 450 万帧）及细粒度动作标注和 300 条多轮评估轨迹（超过 2000 条指令）。大量实验表明，WEM 在 HTEWorld 上达到了最先进性能，同时在现有仅操作基准上保持竞争力。",
-      "authors": [
-        "Zuyao Lin",
-        "Jianhui Zhang",
-        "Peidong Jia"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-05-19",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2605-19957.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-19957-p2.jpg",
-        "assets/img/covers/arxiv-2605-19957-p3.jpg",
-        "assets/img/covers/arxiv-2605-19957-p4.jpg"
-      ],
-      "arxiv_id": "2605.19957",
-      "abs_url": "http://arxiv.org/abs/2605.19957v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.19957v1",
-      "score": 16,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出世界-自我建模新范式，解耦世界与自我演化，构建混合任务长时域世界模型基准，创新性强",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Peking University",
-        "Beijing University of Posts and Telecommunications"
-      ],
-      "method_tags": [
-        "World Model",
-        "Diffusion",
-        "Long-Horizon"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "WorldModel",
-      "real_robot": "no",
-      "training_summary": "125K video clips (4.5M frames), 300 evaluation trajectories",
       "demo_videos": []
     },
     {
@@ -13663,9 +13714,9 @@
       "source": "arxiv",
       "title": "VGGT-$Ω$",
       "title_zh": "VGGT-$Ω$",
-      "tldr_zh": "VGGT-$Ω$通过架构改进和更大规模训练，在静态和动态场景重建上显著提升精度和效率。",
-      "cover_zh": "只用30%显存，重建精度却飙升77%？这个新模型把动态场景拿捏了",
-      "abstract_zh": "近期前馈式重建模型（如VGGT）已被证明与传统基于优化的重建方法具有竞争力，同时还能提供对其他任务有用的几何感知特征。本文表明，这些模型的质量随模型和数据规模可预测地提升。为此，我们引入了VGGT-$Ω$，它在静态和动态场景的重建精度、效率和能力上均有显著改进。为了以前所未有的规模训练该模型，我们引入了提升训练效率的架构改进、支持动态场景的高质量数据标注流水线，以及自监督学习协议。我们简化了VGGT的架构，采用单一密集预测头进行多任务监督，并移除了昂贵的高分辨率卷积层。我们还使用寄存器将场景信息聚合为紧凑表示，并引入寄存器注意力，将帧间信息交换限制在这些寄存器上，部分替代全局注意力。这样，在训练过程中，VGGT-$Ω$仅使用其前身约30%的GPU内存，使我们能够使用比先前工作多15倍的监督数据进行训练，并利用大量未标记的视频数据。VGGT-$Ω$在多个基准测试中实现了静态和动态场景重建的强结果，例如，在Sintel上相机姿态估计精度相比先前最佳方法提升了77%。我们还展示了学习到的寄存器可以改进视觉-语言-动作模型，并支持与语言的对齐，这表明重建可以作为空间理解的一个强大且可扩展的代理任务。项目页面：http://vggt-omega.github.io/",
+      "tldr_zh": "VGGT-$Ω$通过架构改进和更大规模训练，显著提升静态与动态场景重建精度和效率。",
+      "cover_zh": "GPU内存砍掉70%｜这个3D重建模型用更少资源实现更高精度",
+      "abstract_zh": "最近的馈送式重建模型（如VGGT）已被证明与传统基于优化的重建方法具有竞争力，同时还能提供对其他任务有用的几何感知特征。本文表明，这些模型的质量随模型和数据规模可预测地提升。为此，我们引入了VGGT-$Ω$，它显著提高了静态和动态场景的重建精度、效率和能力。为了以前所未有的规模训练该模型，我们引入了提高训练效率的架构变化、支持动态场景的高质量数据标注流水线以及自监督学习协议。我们简化了VGGT的架构，使用单个密集预测头进行多任务监督，并移除了昂贵的高分辨率卷积层。我们还使用寄存器将场景信息聚合为紧凑表示，并引入寄存器注意力，将帧间信息交换限制在这些寄存器上，部分替代了全局注意力。这样，在训练过程中，VGGT-$Ω$仅使用其前身约30%的GPU内存，使我们能够使用比先前工作多15倍的监督数据进行训练，并利用大量未标记的视频数据。VGGT-$Ω$在多个基准测试中实现了静态和动态场景重建的强结果，例如，在Sintel上将先前最佳相机估计精度提高了77%。我们还展示了学习到的寄存器可以改进视觉-语言-动作模型并支持与语言的对齐，这表明重建可以成为空间理解的一个强大且可扩展的代理任务。项目页面：http://vggt-omega.github.io/",
       "authors": [
         "Jianyuan Wang",
         "Minghao Chen",
