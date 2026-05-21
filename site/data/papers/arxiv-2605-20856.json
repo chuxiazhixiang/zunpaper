@@ -1,0 +1,103 @@
+{
+  "id": "arxiv-2605-20856",
+  "source": "arxiv",
+  "title": "DISC: Decoupling Instruction from State-Conditioned Control via Policy Generation",
+  "title_zh": "DISC：通过策略生成将指令与状态条件控制解耦",
+  "abstract": "Language-conditioned manipulation policies typically process instructions and observations through shared network parameters. This task-state entanglement provides a pathway for observation leakage -- networks learn scene-to-action shortcuts that bypass language grounding entirely. DISC eliminates this failure structurally. Rather than conditioning a universal policy on language, DISC uses a hypernetwork to generate the entire parameter set of a task-specific visuomotor policy from the instruction alone. The generated policy never directly accesses language; therefore, its task-awareness must come from the language. Consequently, observation leakage has no pathway to emerge. On the other hand, generating coherent high-dimensional policy weights is itself a challenging problem. We address it with a two-stage hypernetwork whose refinement stage embeds the structure of gradient-based optimization as a feed-forward inductive bias, producing globally consistent parameters without actual gradient computation. Trained entirely from scratch on standard data budgets, DISC outperforms all entangled baselines on LIBERO-90 and Meta-World, with advantages that widen on complex, long-horizon tasks -- and surpasses the large-scale pretrained $π_0$ despite using no external pretraining data. On a real-world benchmark where all tasks share identical visual context, DISC substantially outperforms entangled alternatives, directly confirming that language-generated policy parameters, not visual shortcuts, drive behavior. The hypernetwork further learns a semantically structured parameter manifold that enables few-shot adaptation from minimal demonstrations and robust generalization across paraphrased instructions. Our code is available at: {https://github.com/ReNginx/DISC}.",
+  "abstract_zh": "语言条件操控策略通常通过共享网络参数处理指令和观测。这种任务-状态纠缠为观测泄露提供了途径——网络学习场景到动作的捷径，完全绕过语言基础。DISC从结构上消除了这一失败模式。DISC不将通用策略条件化于语言，而是使用超网络仅从指令生成任务特定视觉运动策略的完整参数集。生成的策略从不直接访问语言；因此，其任务意识必须来自语言。结果，观测泄露没有途径出现。另一方面，生成连贯的高维策略权重本身就是一个挑战性问题。我们通过一个两阶段超网络来解决，其精炼阶段将基于梯度优化的结构嵌入为前馈归纳偏置，无需实际梯度计算即可产生全局一致的参数。在标准数据预算下从头训练，DISC在LIBERO-90和Meta-World上优于所有纠缠基线，在复杂、长时任务上优势扩大——并且超越大规模预训练的π₀，尽管未使用外部预训练数据。在一个所有任务共享相同视觉背景的真实世界基准上，DISC显著优于纠缠替代方案，直接证实是语言生成的策略参数而非视觉捷径驱动行为。超网络进一步学习了一个语义结构化的参数流形，使得从极少量演示中进行少样本适应和跨释义指令的鲁棒泛化成为可能。我们的代码可在：{https://github.com/ReNginx/DISC}获取。",
+  "tldr_zh": "DISC用超网络生成策略参数，解耦指令与状态，消除观测泄露，性能超越纠缠基线。",
+  "cover_zh": "指令与状态解耦｜新方法让机器人不再“偷看”场景，性能反超预训练大模型",
+  "authors": [
+    {
+      "name": "Hanxiang Ren",
+      "affiliation": ""
+    },
+    {
+      "name": "Pei Zhou",
+      "affiliation": ""
+    },
+    {
+      "name": "Xunzhe Zhou",
+      "affiliation": ""
+    },
+    {
+      "name": "Yanchao Yang",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.AI",
+    "cs.LG"
+  ],
+  "published": "2026-05-20",
+  "updated": "2026-05-20",
+  "arxiv_id": "2605.20856",
+  "pdf_url": "https://arxiv.org/pdf/2605.20856v1",
+  "abs_url": "http://arxiv.org/abs/2605.20856v1",
+  "cover_image": "assets/img/covers/arxiv-2605-20856.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2605-20856-p2.jpg",
+    "assets/img/covers/arxiv-2605-20856-p3.jpg",
+    "assets/img/covers/arxiv-2605-20856-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 22,
+  "source_tags": [],
+  "score": 30,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（π_0、manipulation、libero）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "github_repo",
+      "label": "附带开源仓库",
+      "points": 8,
+      "hint": "摘要里出现 github.com / huggingface.co 链接"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 22 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出解耦语言与状态条件的策略生成方法，在操作任务上显著提升性能，具有高科研价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "Hypernetwork",
+    "Language-conditioned manipulation",
+    "Policy generation"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "Hybrid",
+  "real_robot": "yes",
+  "training_summary": "Standard data budgets (LIBERO-90, Meta-World)",
+  "demo_videos": []
+}
