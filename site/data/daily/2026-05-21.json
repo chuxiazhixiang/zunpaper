@@ -7,9 +7,9 @@
       "source": "arxiv",
       "title": "Action with Visual Primitives",
       "title_zh": "Action with Visual Primitives",
-      "tldr_zh": "提出AVP，通过视觉基元接口解耦VLM与动作专家，提升机器人操作成功率。",
-      "cover_zh": "机器人操作新突破｜视觉基元让动作学习更高效",
-      "abstract_zh": "视觉-语言-动作（VLA）模型已成为通用机器人操作的一种有前景的范式。当前架构的常见设计是将语言指令和视觉观察映射到单次前向传播中的动作。虽然概念上简单，但这种表述将指令理解、空间场景理解和运动控制纠缠在单一学习目标中。因此，动作专家必须隐式地重新学习预训练VLM中已有的认知和感知能力，这可能限制学习效率和泛化能力。我们提出AVP（Action with Visual Primitives），一种端到端架构，实现了这种以视觉基元为中心的接口：VLM推断下一阶段目标并发出视觉基元标记，这些标记调节一个流匹配动作专家，其监督来自末端执行器运动学。在通用拾取和放置任务上的真实机器人实验表明，AVP相比pi_0.5将成功率提高了27.61%，并优于其他近期方法，在数据效率、空间组合泛化和物体级迁移方面具有一致的提升。",
+      "tldr_zh": "提出AVP，通过视觉基元解耦VLA模型，提升机器人操作成功率与泛化能力。",
+      "cover_zh": "机器人操作新突破｜AVP用视觉基元解耦动作，成功率飙升27.6%",
+      "abstract_zh": "视觉-语言-动作（VLA）模型已成为通用机器人操作的一种有前景的范式。当前架构的常见设计是将语言指令和视觉观察映射到单次前向传播中的动作。虽然概念上简单，但这种表述将指令理解、空间场景理解和运动控制纠缠在单一学习目标中。因此，动作专家必须隐式地重新学习预训练VLM中已有的认知和感知能力，这可能限制学习效率和泛化能力。我们提出AVP（Action with Visual Primitives），一种端到端架构，实现了这种以视觉基元为中心的接口：VLM推断下一阶段目标并发出视觉基元标记，这些标记条件化一个流匹配动作专家，其监督来自末端执行器运动学。在通用抓取和放置任务上的真实机器人实验表明，AVP相比pi_0.5将成功率提高了27.61%，并优于其他近期方法，在数据效率、空间组合泛化和物体级迁移方面具有一致的改进。",
       "authors": [
         "Weilong Guo",
         "Yuchen Wang",
@@ -76,7 +76,8 @@
       "primary_category": "cs.CV",
       "published": "2026-05-21",
       "channels": [
-        "manipulation"
+        "manipulation",
+        "sim2real"
       ],
       "badges": [
         {
@@ -97,7 +98,7 @@
       "arxiv_id": "2605.22671",
       "abs_url": "http://arxiv.org/abs/2605.22671v1",
       "pdf_url": "https://arxiv.org/pdf/2605.22671v1",
-      "score": 45,
+      "score": 50,
       "judge": {
         "relevant": true,
         "research_value": "high",
@@ -181,6 +182,233 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-22082",
+      "source": "arxiv",
+      "title": "CoRMA: Contrastive RMA for Contact-Rich Meta-Adaptation",
+      "title_zh": "CoRMA：面向接触丰富任务的对比式机器人运动自适应框架",
+      "tldr_zh": "提出CoRMA框架，用语义接触上下文替代仿真参数，实现无演示的在线自适应。",
+      "cover_zh": "不用演示也能自适应｜CoRMA让机器人装配在真实世界更可靠",
+      "abstract_zh": "我们提出CoRMA（对比式机器人运动自适应），一个基于上下文的元自适应框架，针对力主导的装配任务改进了RMA。CoRMA用紧凑的6维仅仿真语义接触上下文（描述接触起始、侧向啮合、引导过渡、接触方向和卡滞）替代了原始仿真器参数自适应。一个可部署的因果Transformer适配器通过语义回归和力状态对比目标，从力、本体感觉和动作历史中在线推断该上下文。部署时，移除真实上下文并由推断上下文替代，从而无需演示、特权输入或梯度更新即可实现回合内自适应。我们在Isaac Lab / Isaac Sim 5.0上的PegInsert、GearMesh和NutThread任务以及真实Marvin机械臂上评估了CoRMA。与在仿真中成功率高但在硬件上性能大幅下降的FORGE基线相比，CoRMA在受控目标位姿噪声下保持了更高的验证真实成功率。这些结果支持语义接触推断作为相关装配任务族内可复用的自适应接口，而更广泛的未见任务泛化和Real2Sim校准仍是未来工作。",
+      "authors": [
+        "Wentian Wang",
+        "Chutong Wen",
+        "Hongxu Ma"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-21",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-22082.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-22082-p2.jpg",
+        "assets/img/covers/arxiv-2605-22082-p3.jpg",
+        "assets/img/covers/arxiv-2605-22082-p4.jpg"
+      ],
+      "arxiv_id": "2605.22082",
+      "abs_url": "http://arxiv.org/abs/2605.22082v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.22082v1",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "sim2real",
+        "reason": "提出对比RMA框架，结合语义接触上下文和因果Transformer，在力控装配任务中实现sim2real迁移，具有方法创新和实验验证。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "meta-adaptation",
+        "contrastive learning",
+        "contact-rich assembly"
+      ],
+      "platform": [
+        "Marvin arm"
+      ],
+      "sim_stack": [
+        "Isaac Lab",
+        "Isaac Sim"
+      ],
+      "method_family": "RL",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-22164",
+      "source": "arxiv",
+      "title": "Beyond Euclidean Proximity: Repairing Latent World Models with Horizon-Matched Trajectory Reachability Metrics",
+      "title_zh": "超越欧几里得邻近性：用水平匹配的轨迹可达性度量修复潜在世界模型",
+      "tldr_zh": "提出轨迹可达性度量，通过水平感知监督修复潜在世界模型的终端排序，显著提升规划成功率。",
+      "cover_zh": "潜在世界模型排序总翻车？这个新度量让成功率从7%飙到97%",
+      "abstract_zh": "潜在世界模型可以包含控制所需的状态，但其终端代价接口可能向规划器暴露错误的决策相关信息。在常见的潜在MPC中，候选序列通过预测终端状态与目标潜在状态之间的欧几里得距离进行排序；这假设原始潜在距离正确加权了与可达性相关的变量。我们提出轨迹可达性度量（TRM），一种用于固定潜在世界模型的事后终端排序方法。TRM从记录的轨迹结构中训练一个小型成对头，并将其用作替代或混合代价；编码器、动力学、采样器、优化器和评估清单保持不变。关键设计选择是水平感知监督：该度量在广泛、平衡的时间间隔上训练，以匹配长水平终端候选排序问题。在困难的TwoRoom基准上，使用LeWorldModel（LeWM）的原始潜在规划达到7.0%的成功率，而全水平TRM达到97.0%；打乱时间标签的对照保持在0.0%。同样的方法将PLDM基线从32.7%提升到84.0%（三个种子），而短水平TRM变体在10万对预算下仅达到35.0%。在TwoRoom中，我们提供了TRM为何有效的机制证据：XY位置是线性可解码的（R²=0.998），但原始潜在MSE错误排序候选；XY探针行空间占终端目标潜在MSE的不到1%，但携带了大部分候选质量信号；SCSA审计显示TRM改善了规划器看到的排序和选定端点。在PushT go50/go75上，TRM风格的任务状态度量比闭环成功率更干净地改善了SCSA排序和选定的最终距离，这激发了连续操作中的辅助混合代价。TRM是面向规划器的修复，审计解释了何时终端可达性度量应替代或增强原始潜在邻近性。",
+      "authors": [
+        "Liangyu Li",
+        "Shengzhi Wang",
+        "Qingwen Liu"
+      ],
+      "primary_category": "cs.LG",
+      "published": "2026-05-21",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-22164.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-22164-p2.jpg",
+        "assets/img/covers/arxiv-2605-22164-p3.jpg",
+        "assets/img/covers/arxiv-2605-22164-p4.jpg"
+      ],
+      "arxiv_id": "2605.22164",
+      "abs_url": "http://arxiv.org/abs/2605.22164v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.22164v1",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出轨迹可达性度量修复潜世界模型，提升规划性能，方法新颖且实验充分。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "World Model",
+        "MPC",
+        "Trajectory Reachability"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "MPC",
+      "real_robot": "no",
+      "training_summary": "100,000 pair budget",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-22446",
+      "source": "arxiv",
+      "title": "Pre-VLA: Preemptive Runtime Verification for Reliable Vision-Language-Action and World-Model Rollouts",
+      "title_zh": "Pre-VLA：面向可靠视觉-语言-动作与世界模型推演的抢先运行时验证",
+      "tldr_zh": "提出Pre-VLA，在动作执行前抢先验证其有效性，提升VLA模型成功率并减少错误。",
+      "cover_zh": "动作还没做就先验一遍｜新方法让机器人成功率飙升",
+      "abstract_zh": "尽管大型视觉-语言-动作（VLA）模型和生成式世界模型（WM）推动了长时程具身智能的发展，但其实际部署仍受限于基于学习的动作生成中的不确定性。低质量动作可能导致执行过程中的物理故障，或引发带有冗余渲染成本的误导性世界模型推演。为解决这一问题，我们提出Pre-VLA，一种统一的运行时验证架构，在物理执行或世界模型想象之前进行抢先动作有效性评估。Pre-VLA利用高效的多模态主干网络，结合模态感知池化和轻量级双分支头，为候选动作块预测安全置信度和评论家导出的优势分数。为处理严重的类别不平衡和不稳定的边界决策，我们采用多任务目标训练Pre-VLA，结合焦点分类、优势回归和软阈值校准。在部署阶段，双模式抢先重采样调度器过滤低质量动作，并在有限计算预算下触发自适应重采样。在LIBERO基准上的实验表明，与RynnVLA-002相比，Pre-VLA将四个套件的平均闭环成功率从30.79%提升至37.62%，减少了任务执行步骤，每个动作块的平均前向验证时间为183.9毫秒，并缓解了世界模型推演中的误差累积。",
+      "authors": [
+        "Zhen Sun",
+        "Yongjian Guo",
+        "Haoran Sun"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-05-21",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-22446.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-22446-p2.jpg",
+        "assets/img/covers/arxiv-2605-22446-p3.jpg",
+        "assets/img/covers/arxiv-2605-22446-p4.jpg"
+      ],
+      "arxiv_id": "2605.22446",
+      "abs_url": "http://arxiv.org/abs/2605.22446v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.22446v1",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出VLA和世界模型rollout的运行时验证框架，提升可靠性和效率，具有科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "runtime verification",
+        "VLA",
+        "world model"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "Hybrid",
+      "real_robot": "no",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-22089",
+      "source": "arxiv",
+      "title": "LVDrive: Latent Visual Representation Enhanced Vision-Language-Action Autonomous Driving Model",
+      "title_zh": "LVDrive：潜在视觉表示增强的视觉-语言-动作自动驾驶模型",
+      "tldr_zh": "提出LVDrive，通过潜在空间未来预测增强VLA模型，提升自动驾驶闭环性能。",
+      "cover_zh": "告别像素级重建｜潜在空间预测让自动驾驶决策更聪明",
+      "abstract_zh": "视觉-语言-动作（VLA）模型已成为端到端自动驾驶的一种有前景的框架。然而，现有的VLA通常依赖于稀疏的动作监督，未能充分利用其强大的场景理解和推理能力。最近通过世界模型引入密集视觉监督的尝试往往过度强调像素级图像重建，忽略了语义上有意义的场景表示学习。在这项工作中，我们提出了LVDrive，一种用于自动驾驶的潜在视觉表示增强的VLA框架。LVDrive将未来场景预测任务引入VLA范式，其中未来表示完全在高层次潜在空间中学习，并受到预训练视觉骨干的辅助监督。不同于低效的自回归生成，我们在统一的嵌入空间中联合建模未来场景和运动预测，通过单次前向传播进行处理以进行未来感知推理。我们进一步设计了一种两阶段轨迹解码策略，显式利用学习到的潜在未来表示来优化轨迹生成。在具有挑战性的Bench2Drive基准上的大量实验表明，LVDrive在闭环驾驶性能上取得了显著提升，优于基于动作监督的方法和基于图像重建的世界模型方法。",
+      "authors": [
+        "Xiaodong Mei",
+        "Diankun Zhang",
+        "Hongwei Xie"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-05-21",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-22089.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-22089-p2.jpg",
+        "assets/img/covers/arxiv-2605-22089-p3.jpg",
+        "assets/img/covers/arxiv-2605-22089-p4.jpg"
+      ],
+      "arxiv_id": "2605.22089",
+      "abs_url": "http://arxiv.org/abs/2605.22089v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.22089v1",
+      "score": 27,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出LVDrive，将未来场景预测作为世界模型融入VLA，提升自动驾驶性能，属于world-model方向。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Hong Kong University of Science and Technology"
+      ],
+      "method_tags": [
+        "VLA",
+        "Latent Visual Representation",
+        "Future Scene Prediction"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "VLA",
+      "real_robot": "no",
       "training_summary": "",
       "demo_videos": []
     },
@@ -356,175 +584,6 @@
       "demo_videos": []
     },
     {
-      "id": "arxiv-2605-22082",
-      "source": "arxiv",
-      "title": "CoRMA: Contrastive RMA for Contact-Rich Meta-Adaptation",
-      "title_zh": "CoRMA：面向接触丰富任务的对比式机器人运动自适应框架",
-      "tldr_zh": "提出CoRMA框架，用语义接触上下文替代仿真参数，实现无演示的在线自适应。",
-      "cover_zh": "不用演示也能自适应｜CoRMA让机器人装配在真实世界更可靠",
-      "abstract_zh": "我们提出CoRMA（对比式机器人运动自适应），一个基于上下文的元自适应框架，针对力主导的装配任务改进了RMA。CoRMA用紧凑的6维仅仿真语义接触上下文（描述接触起始、侧向啮合、引导过渡、接触方向和卡滞）替代了原始仿真器参数自适应。一个可部署的因果Transformer适配器通过语义回归和力状态对比目标，从力、本体感觉和动作历史中在线推断该上下文。部署时，移除真实上下文并由推断上下文替代，从而无需演示、特权输入或梯度更新即可实现回合内自适应。我们在Isaac Lab / Isaac Sim 5.0上的PegInsert、GearMesh和NutThread任务以及真实Marvin机械臂上评估了CoRMA。与在仿真中成功率高但在硬件上性能大幅下降的FORGE基线相比，CoRMA在受控目标位姿噪声下保持了更高的验证真实成功率。这些结果支持语义接触推断作为相关装配任务族内可复用的自适应接口，而更广泛的未见任务泛化和Real2Sim校准仍是未来工作。",
-      "authors": [
-        "Wentian Wang",
-        "Chutong Wen",
-        "Hongxu Ma"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-21",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2605-22082.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-22082-p2.jpg",
-        "assets/img/covers/arxiv-2605-22082-p3.jpg",
-        "assets/img/covers/arxiv-2605-22082-p4.jpg"
-      ],
-      "arxiv_id": "2605.22082",
-      "abs_url": "http://arxiv.org/abs/2605.22082v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.22082v1",
-      "score": 19,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "sim2real",
-        "reason": "提出对比RMA框架，结合语义接触上下文和因果Transformer，在力控装配任务中实现sim2real迁移，具有方法创新和实验验证。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "meta-adaptation",
-        "contrastive learning",
-        "contact-rich assembly"
-      ],
-      "platform": [
-        "Marvin arm"
-      ],
-      "sim_stack": [
-        "Isaac Lab",
-        "Isaac Sim"
-      ],
-      "method_family": "RL",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-22446",
-      "source": "arxiv",
-      "title": "Pre-VLA: Preemptive Runtime Verification for Reliable Vision-Language-Action and World-Model Rollouts",
-      "title_zh": "Pre-VLA：面向可靠视觉-语言-动作与世界模型推演的抢先运行时验证",
-      "tldr_zh": "提出Pre-VLA，在动作执行前抢先验证其有效性，提升VLA模型成功率并减少错误。",
-      "cover_zh": "动作还没做就先验一遍｜新方法让机器人成功率飙升",
-      "abstract_zh": "尽管大型视觉-语言-动作（VLA）模型和生成式世界模型（WM）推动了长时程具身智能的发展，但其实际部署仍受限于基于学习的动作生成中的不确定性。低质量动作可能导致执行过程中的物理故障，或引发带有冗余渲染成本的误导性世界模型推演。为解决这一问题，我们提出Pre-VLA，一种统一的运行时验证架构，在物理执行或世界模型想象之前进行抢先动作有效性评估。Pre-VLA利用高效的多模态主干网络，结合模态感知池化和轻量级双分支头，为候选动作块预测安全置信度和评论家导出的优势分数。为处理严重的类别不平衡和不稳定的边界决策，我们采用多任务目标训练Pre-VLA，结合焦点分类、优势回归和软阈值校准。在部署阶段，双模式抢先重采样调度器过滤低质量动作，并在有限计算预算下触发自适应重采样。在LIBERO基准上的实验表明，与RynnVLA-002相比，Pre-VLA将四个套件的平均闭环成功率从30.79%提升至37.62%，减少了任务执行步骤，每个动作块的平均前向验证时间为183.9毫秒，并缓解了世界模型推演中的误差累积。",
-      "authors": [
-        "Zhen Sun",
-        "Yongjian Guo",
-        "Haoran Sun"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-05-21",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2605-22446.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-22446-p2.jpg",
-        "assets/img/covers/arxiv-2605-22446-p3.jpg",
-        "assets/img/covers/arxiv-2605-22446-p4.jpg"
-      ],
-      "arxiv_id": "2605.22446",
-      "abs_url": "http://arxiv.org/abs/2605.22446v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.22446v1",
-      "score": 19,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出VLA和世界模型rollout的运行时验证框架，提升可靠性和效率，具有科研价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "runtime verification",
-        "VLA",
-        "world model"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Hybrid",
-      "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-22089",
-      "source": "arxiv",
-      "title": "LVDrive: Latent Visual Representation Enhanced Vision-Language-Action Autonomous Driving Model",
-      "title_zh": "LVDrive：潜在视觉表示增强的视觉-语言-动作自动驾驶模型",
-      "tldr_zh": "提出LVDrive，通过潜在空间未来预测增强VLA模型，提升自动驾驶闭环性能。",
-      "cover_zh": "告别像素级重建｜潜在空间预测让自动驾驶决策更聪明",
-      "abstract_zh": "视觉-语言-动作（VLA）模型已成为端到端自动驾驶的一种有前景的框架。然而，现有的VLA通常依赖于稀疏的动作监督，未能充分利用其强大的场景理解和推理能力。最近通过世界模型引入密集视觉监督的尝试往往过度强调像素级图像重建，忽略了语义上有意义的场景表示学习。在这项工作中，我们提出了LVDrive，一种用于自动驾驶的潜在视觉表示增强的VLA框架。LVDrive将未来场景预测任务引入VLA范式，其中未来表示完全在高层次潜在空间中学习，并受到预训练视觉骨干的辅助监督。不同于低效的自回归生成，我们在统一的嵌入空间中联合建模未来场景和运动预测，通过单次前向传播进行处理以进行未来感知推理。我们进一步设计了一种两阶段轨迹解码策略，显式利用学习到的潜在未来表示来优化轨迹生成。在具有挑战性的Bench2Drive基准上的大量实验表明，LVDrive在闭环驾驶性能上取得了显著提升，优于基于动作监督的方法和基于图像重建的世界模型方法。",
-      "authors": [
-        "Xiaodong Mei",
-        "Diankun Zhang",
-        "Hongwei Xie"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-05-21",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2605-22089.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-22089-p2.jpg",
-        "assets/img/covers/arxiv-2605-22089-p3.jpg",
-        "assets/img/covers/arxiv-2605-22089-p4.jpg"
-      ],
-      "arxiv_id": "2605.22089",
-      "abs_url": "http://arxiv.org/abs/2605.22089v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.22089v1",
-      "score": 16,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出LVDrive，将未来场景预测作为世界模型融入VLA，提升自动驾驶性能，属于world-model方向。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Hong Kong University of Science and Technology"
-      ],
-      "method_tags": [
-        "VLA",
-        "Latent Visual Representation",
-        "Future Scene Prediction"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "VLA",
-      "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
       "id": "arxiv-2605-22123",
       "source": "arxiv",
       "title": "Beyond Pixels: Learning Invariant Rewards for Real-World Robotics From a Few Demonstrations",
@@ -582,60 +641,6 @@
       "method_family": "RL",
       "real_robot": "yes",
       "training_summary": "5 demonstrations per task",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-22164",
-      "source": "arxiv",
-      "title": "Beyond Euclidean Proximity: Repairing Latent World Models with Horizon-Matched Trajectory Reachability Metrics",
-      "title_zh": "超越欧几里得邻近性：用水平匹配的轨迹可达性度量修复潜在世界模型",
-      "tldr_zh": "提出轨迹可达性度量，通过水平感知监督修复潜在世界模型的终端排序，显著提升规划成功率。",
-      "cover_zh": "潜在世界模型排序总翻车？这个新度量让成功率从7%飙到97%",
-      "abstract_zh": "潜在世界模型可以包含控制所需的状态，但其终端代价接口可能向规划器暴露错误的决策相关信息。在常见的潜在MPC中，候选序列通过预测终端状态与目标潜在状态之间的欧几里得距离进行排序；这假设原始潜在距离正确加权了与可达性相关的变量。我们提出轨迹可达性度量（TRM），一种用于固定潜在世界模型的事后终端排序方法。TRM从记录的轨迹结构中训练一个小型成对头，并将其用作替代或混合代价；编码器、动力学、采样器、优化器和评估清单保持不变。关键设计选择是水平感知监督：该度量在广泛、平衡的时间间隔上训练，以匹配长水平终端候选排序问题。在困难的TwoRoom基准上，使用LeWorldModel（LeWM）的原始潜在规划达到7.0%的成功率，而全水平TRM达到97.0%；打乱时间标签的对照保持在0.0%。同样的方法将PLDM基线从32.7%提升到84.0%（三个种子），而短水平TRM变体在10万对预算下仅达到35.0%。在TwoRoom中，我们提供了TRM为何有效的机制证据：XY位置是线性可解码的（R²=0.998），但原始潜在MSE错误排序候选；XY探针行空间占终端目标潜在MSE的不到1%，但携带了大部分候选质量信号；SCSA审计显示TRM改善了规划器看到的排序和选定端点。在PushT go50/go75上，TRM风格的任务状态度量比闭环成功率更干净地改善了SCSA排序和选定的最终距离，这激发了连续操作中的辅助混合代价。TRM是面向规划器的修复，审计解释了何时终端可达性度量应替代或增强原始潜在邻近性。",
-      "authors": [
-        "Liangyu Li",
-        "Shengzhi Wang",
-        "Qingwen Liu"
-      ],
-      "primary_category": "cs.LG",
-      "published": "2026-05-21",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2605-22164.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-22164-p2.jpg",
-        "assets/img/covers/arxiv-2605-22164-p3.jpg",
-        "assets/img/covers/arxiv-2605-22164-p4.jpg"
-      ],
-      "arxiv_id": "2605.22164",
-      "abs_url": "http://arxiv.org/abs/2605.22164v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.22164v1",
-      "score": 16,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出轨迹可达性度量修复潜世界模型，提升规划性能，方法新颖且实验充分。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "World Model",
-        "MPC",
-        "Trajectory Reachability"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "MPC",
-      "real_robot": "no",
-      "training_summary": "100,000 pair budget",
       "demo_videos": []
     },
     {
