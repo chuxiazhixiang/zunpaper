@@ -1,0 +1,92 @@
+{
+  "id": "arxiv-2605-22164",
+  "source": "arxiv",
+  "title": "Beyond Euclidean Proximity: Repairing Latent World Models with Horizon-Matched Trajectory Reachability Metrics",
+  "title_zh": "超越欧几里得邻近性：用水平匹配的轨迹可达性度量修复潜在世界模型",
+  "abstract": "Latent world models can contain the state needed for control, yet their terminal-cost interface can expose the planner to the wrong decision-relevant information. In common latent MPC, candidate sequences are ranked by Euclidean distance between predicted terminal and goal latent states; this assumes that raw latent distance weights reachability-relevant variables correctly. We propose trajectory reachability metrics (TRM), a post-hoc terminal-ranking method for fixed latent world models. TRM trains a small pairwise head from logged trajectory structure and uses it as a replacement or hybrid cost; the encoder, dynamics, sampler, optimizer, and evaluation manifests remain fixed. The key design choice is horizon-aware supervision: the metric is trained on broad, balanced temporal separations to match the long-horizon terminal candidate ranking problem. On a hard TwoRoom benchmark, raw latent planning with LeWorldModel (LeWM) reaches 7.0% success, while full-horizon TRM reaches 97.0%; shuffled temporal-label controls stay at 0.0%. The same recipe improves a PLDM baseline from 32.7% to 84.0% across three seeds, and a short-horizon TRM variant reaches only 35.0% with the 100,000 pair budget. In TwoRoom, we provide mechanistic evidence for why TRM works: XY position is linearly decodable (R^2=0.998), yet raw latent MSE misranks candidates; the XY-probe rowspace accounts for less than 1% of terminal-goal latent MSE but carries most candidate-quality signal; and SCSA audits show that TRM improves the ordering and selected endpoint seen by the planner. On PushT go50/go75, TRM-style task-state metrics improve SCSA ranking and selected final distance more cleanly than closed-loop success, motivating auxiliary hybrid costs in continuous manipulation. TRM is the planner-facing repair, and audits explain when terminal reachability metrics should replace or augment raw latent proximity.",
+  "abstract_zh": "潜在世界模型可以包含控制所需的状态，但其终端代价接口可能向规划器暴露错误的决策相关信息。在常见的潜在MPC中，候选序列通过预测终端状态与目标潜在状态之间的欧几里得距离进行排序；这假设原始潜在距离正确加权了与可达性相关的变量。我们提出轨迹可达性度量（TRM），一种用于固定潜在世界模型的事后终端排序方法。TRM从记录的轨迹结构中训练一个小型成对头，并将其用作替代或混合代价；编码器、动力学、采样器、优化器和评估清单保持不变。关键设计选择是水平感知监督：该度量在广泛、平衡的时间间隔上训练，以匹配长水平终端候选排序问题。在困难的TwoRoom基准上，使用LeWorldModel（LeWM）的原始潜在规划达到7.0%的成功率，而全水平TRM达到97.0%；打乱时间标签的对照保持在0.0%。同样的方法将PLDM基线从32.7%提升到84.0%（三个种子），而短水平TRM变体在10万对预算下仅达到35.0%。在TwoRoom中，我们提供了TRM为何有效的机制证据：XY位置是线性可解码的（R²=0.998），但原始潜在MSE错误排序候选；XY探针行空间占终端目标潜在MSE的不到1%，但携带了大部分候选质量信号；SCSA审计显示TRM改善了规划器看到的排序和选定端点。在PushT go50/go75上，TRM风格的任务状态度量比闭环成功率更干净地改善了SCSA排序和选定的最终距离，这激发了连续操作中的辅助混合代价。TRM是面向规划器的修复，审计解释了何时终端可达性度量应替代或增强原始潜在邻近性。",
+  "tldr_zh": "提出轨迹可达性度量，通过水平感知监督修复潜在世界模型的终端排序，显著提升规划成功率。",
+  "cover_zh": "潜在世界模型排序总翻车？这个新度量让成功率从7%飙到97%",
+  "authors": [
+    {
+      "name": "Liangyu Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Shengzhi Wang",
+      "affiliation": ""
+    },
+    {
+      "name": "Qingwen Liu",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.LG",
+  "categories": [
+    "cs.LG",
+    "cs.RO"
+  ],
+  "published": "2026-05-21",
+  "updated": "2026-05-21",
+  "arxiv_id": "2605.22164",
+  "pdf_url": "https://arxiv.org/pdf/2605.22164v1",
+  "abs_url": "http://arxiv.org/abs/2605.22164v1",
+  "cover_image": "assets/img/covers/arxiv-2605-22164.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2605-22164-p2.jpg",
+    "assets/img/covers/arxiv-2605-22164-p3.jpg",
+    "assets/img/covers/arxiv-2605-22164-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 26,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（manipulation）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 26 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "world-model",
+    "reason": "提出轨迹可达性度量修复潜世界模型，提升规划性能，方法新颖且实验充分。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "World Model",
+    "MPC",
+    "Trajectory Reachability"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "MPC",
+  "real_robot": "no",
+  "training_summary": "100,000 pair budget",
+  "demo_videos": []
+}

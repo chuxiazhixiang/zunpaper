@@ -62,6 +62,67 @@
       "demo_videos": []
     },
     {
+      "id": "arxiv-2605-20811",
+      "source": "arxiv",
+      "title": "Demo-JEPA: Joint-Embedding Predictive Architecture for One-shot Cross-Embodiment Imitation",
+      "title_zh": "Demo-JEPA：面向一次性跨本体模仿的联合嵌入预测架构",
+      "tldr_zh": "Demo-JEPA通过预测未来状态而非模仿动作，实现跨本体的一次性模仿学习。",
+      "cover_zh": "不用对齐动作空间｜Demo-JEPA让机器人看一次演示就能跨本体模仿",
+      "abstract_zh": "机器人模仿学习通常被视为复现演示动作，但动作本质上具有本体特异性。当演示来自形态、运动学或动作空间不同的人或机器人时，这种以动作为中心的视角需要共享动作空间、启发式重定向或大规模多本体协同训练。相反，我们将演示视为未来目标的隐式规范：目标智能体应推断演示者试图实现的状态，而非演示者如何执行。我们提出Demo-JEPA，一种跨本体模仿框架，将演示意图与本体特异性执行解耦。基于JEPA世界模型，Demo-JEPA将源视觉演示转换为共享预测表示空间中与目标兼容的未来潜在轨迹。目标智能体随后将这些潜在轨迹作为子目标，并通过在其自身学习的前向动力学下进行规划来实现。由于Demo-JEPA避免了动作级对应，仅需视觉演示和目标智能体自身的交互经验，因此支持异构本体间的灵活模仿。在RLBench和真实世界操作任务上的实验表明，Demo-JEPA匹配了专门领域规划器，并泛化到先前方法失败的新任务和本体配置。",
+      "authors": [
+        "Jingyang He",
+        "Guangrun Li",
+        "Jieyu Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-20",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-20811.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-20811-p2.jpg",
+        "assets/img/covers/arxiv-2605-20811-p3.jpg",
+        "assets/img/covers/arxiv-2605-20811-p4.jpg"
+      ],
+      "arxiv_id": "2605.20811",
+      "abs_url": "http://arxiv.org/abs/2605.20811v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.20811v1",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出基于JEPA的世界模型实现跨本体模仿，核心贡献在world model，且涉及manipulation。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Peking University",
+        "Beijing University of Posts and Telecommunications"
+      ],
+      "method_tags": [
+        "Joint-Embedding Predictive Architecture",
+        "one-shot imitation",
+        "cross-embodiment"
+      ],
+      "platform": [],
+      "sim_stack": [
+        "RLBench"
+      ],
+      "method_family": "WorldModel",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
       "id": "arxiv-2605-20856",
       "source": "arxiv",
       "title": "DISC: Decoupling Instruction from State-Conditioned Control via Policy Generation",
@@ -113,6 +174,62 @@
       "method_family": "Hybrid",
       "real_robot": "yes",
       "training_summary": "Standard data budgets (LIBERO-90, Meta-World)",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-20894",
+      "source": "arxiv",
+      "title": "Mobile UMI: Cross-View Diffusion Policy with Decoupled Kinematics for Mobile Manipulation",
+      "title_zh": "Mobile UMI：面向移动操作任务的解耦运动学跨视角扩散策略",
+      "tldr_zh": "提出解耦运动学与异步状态匹配的移动模仿学习框架，无需硬件改造，成功率83.8%。",
+      "cover_zh": "机器人移动操作总翻车？试试解耦运动学+异步对齐，成功率飙升！",
+      "abstract_zh": "移动操作中的模仿学习面临两个耦合瓶颈：受运动污染的动作标签以及连续移动基座上推理引起的执行延迟。近期腕戴式接口降低了桌面数据采集成本，但单一腕部视角无法捕捉基座导航所需的全局上下文。添加身体安装的摄像头会将人类行走与手部运动纠缠在一起。同时，生成式策略引入数百毫秒的推理延迟，在此期间基座会越过预测路径点，导致动作拼接处出现向后修正。本文提出Mobile UMI，一种无需硬件的演示框架，通过三个组件解决上述问题。首先，双摄像头采集系统记录以胸部为中心的全局上下文和以腕部为中心的局部交互，无需机器人参与。其次，基于ChArUco的一次性空间锚点统一了胸部和手部视觉惯性坐标系；手部姿态相对于胸部重新表达，以提取解耦的SE(3)操作和SE(2)基座轨迹。最后，异步滚动时域执行器执行在线状态匹配：每个生成的动作块与当前物理姿态重新对齐，从而在执行前丢弃过期的路径点。该系统在四个长时域家庭任务上评估，每个任务100次试验的平均成功率为83.8%。与ACT和扩散策略的对比实验表明，仅使用胸部相对标签即可缩小大部分差距；在线状态匹配弥补了剩余差距。这些结果表明，在测试条件下，显式运动学分解结合状态级延迟对齐为移动模仿学习提供了有效解决方案，而无需对底层策略类进行架构更改。",
+      "authors": [
+        "Haoran Huang",
+        "Haonan Dong",
+        "Huixu Dong"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-20",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation",
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-20894.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-20894-p2.jpg",
+        "assets/img/covers/arxiv-2605-20894-p3.jpg",
+        "assets/img/covers/arxiv-2605-20894-p4.jpg"
+      ],
+      "arxiv_id": "2605.20894",
+      "abs_url": "http://arxiv.org/abs/2605.20894v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.20894v1",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出移动操作模仿学习框架，解耦基座与操作动作，解决延迟问题，实验验证有效。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "Diffusion Policy",
+        "Imitation Learning",
+        "mobile manipulation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "Diffusion",
+      "real_robot": "yes",
+      "training_summary": "",
       "demo_videos": []
     },
     {
@@ -398,119 +515,6 @@
       "sim_stack": [],
       "method_family": "RL",
       "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-20894",
-      "source": "arxiv",
-      "title": "Mobile UMI: Cross-View Diffusion Policy with Decoupled Kinematics for Mobile Manipulation",
-      "title_zh": "Mobile UMI：面向移动操作任务的解耦运动学跨视角扩散策略",
-      "tldr_zh": "提出解耦运动学与异步状态匹配的移动模仿学习框架，无需硬件改造，成功率83.8%。",
-      "cover_zh": "机器人移动操作总翻车？试试解耦运动学+异步对齐，成功率飙升！",
-      "abstract_zh": "移动操作中的模仿学习面临两个耦合瓶颈：受运动污染的动作标签以及连续移动基座上推理引起的执行延迟。近期腕戴式接口降低了桌面数据采集成本，但单一腕部视角无法捕捉基座导航所需的全局上下文。添加身体安装的摄像头会将人类行走与手部运动纠缠在一起。同时，生成式策略引入数百毫秒的推理延迟，在此期间基座会越过预测路径点，导致动作拼接处出现向后修正。本文提出Mobile UMI，一种无需硬件的演示框架，通过三个组件解决上述问题。首先，双摄像头采集系统记录以胸部为中心的全局上下文和以腕部为中心的局部交互，无需机器人参与。其次，基于ChArUco的一次性空间锚点统一了胸部和手部视觉惯性坐标系；手部姿态相对于胸部重新表达，以提取解耦的SE(3)操作和SE(2)基座轨迹。最后，异步滚动时域执行器执行在线状态匹配：每个生成的动作块与当前物理姿态重新对齐，从而在执行前丢弃过期的路径点。该系统在四个长时域家庭任务上评估，每个任务100次试验的平均成功率为83.8%。与ACT和扩散策略的对比实验表明，仅使用胸部相对标签即可缩小大部分差距；在线状态匹配弥补了剩余差距。这些结果表明，在测试条件下，显式运动学分解结合状态级延迟对齐为移动模仿学习提供了有效解决方案，而无需对底层策略类进行架构更改。",
-      "authors": [
-        "Haoran Huang",
-        "Haonan Dong",
-        "Huixu Dong"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-20",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2605-20894.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-20894-p2.jpg",
-        "assets/img/covers/arxiv-2605-20894-p3.jpg",
-        "assets/img/covers/arxiv-2605-20894-p4.jpg"
-      ],
-      "arxiv_id": "2605.20894",
-      "abs_url": "http://arxiv.org/abs/2605.20894v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.20894v1",
-      "score": 22,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "提出移动操作模仿学习框架，解耦基座与操作动作，解决延迟问题，实验验证有效。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "Diffusion Policy",
-        "Imitation Learning",
-        "mobile manipulation"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Diffusion",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-20811",
-      "source": "arxiv",
-      "title": "Demo-JEPA: Joint-Embedding Predictive Architecture for One-shot Cross-Embodiment Imitation",
-      "title_zh": "Demo-JEPA：面向一次性跨本体模仿的联合嵌入预测架构",
-      "tldr_zh": "Demo-JEPA通过预测未来状态而非模仿动作，实现跨本体的一次性模仿学习。",
-      "cover_zh": "不用对齐动作空间｜Demo-JEPA让机器人看一次演示就能跨本体模仿",
-      "abstract_zh": "机器人模仿学习通常被视为复现演示动作，但动作本质上具有本体特异性。当演示来自形态、运动学或动作空间不同的人或机器人时，这种以动作为中心的视角需要共享动作空间、启发式重定向或大规模多本体协同训练。相反，我们将演示视为未来目标的隐式规范：目标智能体应推断演示者试图实现的状态，而非演示者如何执行。我们提出Demo-JEPA，一种跨本体模仿框架，将演示意图与本体特异性执行解耦。基于JEPA世界模型，Demo-JEPA将源视觉演示转换为共享预测表示空间中与目标兼容的未来潜在轨迹。目标智能体随后将这些潜在轨迹作为子目标，并通过在其自身学习的前向动力学下进行规划来实现。由于Demo-JEPA避免了动作级对应，仅需视觉演示和目标智能体自身的交互经验，因此支持异构本体间的灵活模仿。在RLBench和真实世界操作任务上的实验表明，Demo-JEPA匹配了专门领域规划器，并泛化到先前方法失败的新任务和本体配置。",
-      "authors": [
-        "Jingyang He",
-        "Guangrun Li",
-        "Jieyu Zhang"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-20",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2605-20811.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-20811-p2.jpg",
-        "assets/img/covers/arxiv-2605-20811-p3.jpg",
-        "assets/img/covers/arxiv-2605-20811-p4.jpg"
-      ],
-      "arxiv_id": "2605.20811",
-      "abs_url": "http://arxiv.org/abs/2605.20811v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.20811v1",
-      "score": 19,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出基于JEPA的世界模型实现跨本体模仿，核心贡献在world model，且涉及manipulation。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Peking University",
-        "Beijing University of Posts and Telecommunications"
-      ],
-      "method_tags": [
-        "Joint-Embedding Predictive Architecture",
-        "one-shot imitation",
-        "cross-embodiment"
-      ],
-      "platform": [],
-      "sim_stack": [
-        "RLBench"
-      ],
-      "method_family": "WorldModel",
-      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": []
     },
