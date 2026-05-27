@@ -1,6 +1,6 @@
 {
   "date": "2026-05-26",
-  "count": 10,
+  "count": 11,
   "papers": [
     {
       "id": "arxiv-2605-26638",
@@ -18,7 +18,8 @@
       "primary_category": "cs.RO",
       "published": "2026-05-26",
       "channels": [
-        "manipulation"
+        "manipulation",
+        "sim2real"
       ],
       "badges": [
         {
@@ -43,7 +44,7 @@
       "arxiv_id": "2605.26638",
       "abs_url": "http://arxiv.org/abs/2605.26638v1",
       "pdf_url": "https://arxiv.org/pdf/2605.26638v1",
-      "score": 61,
+      "score": 75,
       "judge": {
         "relevant": true,
         "research_value": "high",
@@ -62,6 +63,132 @@
       "method_family": "Hybrid",
       "real_robot": "yes",
       "training_summary": "400 real-world task executions",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-27046",
+      "source": "arxiv",
+      "title": "Learning to Balance Motor Thermal Safety and Quadrupedal Locomotion Performance with Residual Policy",
+      "title_zh": "学习平衡电机热安全与四足运动性能的残差策略",
+      "tldr_zh": "提出残差策略平衡电机热安全与运动性能，实现负重下长时间稳定运动。",
+      "cover_zh": "电机过热是腿足机器人的死穴？这个残差策略让它在负重下多跑8分钟",
+      "abstract_zh": "电机热管理在电驱动机器人（尤其是腿足机器人）中常被忽视，但电机过热是限制长时间运动的关键因素，尤其在负重条件下。本文将四足机器人的全身热模型集成到强化学习流程中，以更新电机温度，并提出一个两阶段训练框架用于电机热管理。在该框架中，首先预训练一个名义策略作为能够穿越多种地形的运动基线。然后，在名义策略之上训练一个残差策略，根据机器人的热状态提供修正动作，确保低温条件下的高性能并防止高温条件下的电机过热。仿真结果表明，所提出的策略在电机热安全与运动性能之间实现了有效平衡。在Unitree A1四足机器人上的真实实验进一步验证了该方法：在3公斤负载下，机器人能在多种地形上稳定运动超过13分钟，而仅使用名义策略会导致电机在大约5分钟内过热。",
+      "authors": [
+        "Yuhang Wan",
+        "Weixian Lin",
+        "Letian Qian"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-26",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation",
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Unitree"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-27046.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-27046-p2.jpg",
+        "assets/img/covers/arxiv-2605-27046-p3.jpg",
+        "assets/img/covers/arxiv-2605-27046-p4.jpg"
+      ],
+      "arxiv_id": "2605.27046",
+      "abs_url": "http://arxiv.org/abs/2605.27046v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.27046v1",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "locomotion",
+        "reason": "提出残差策略平衡电机热安全与四足运动性能，仿真+真机验证，有实际价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Southeast University"
+      ],
+      "method_tags": [
+        "RL",
+        "residual policy",
+        "motor thermal management"
+      ],
+      "platform": [
+        "Unitree A1"
+      ],
+      "sim_stack": [],
+      "method_family": "RL",
+      "real_robot": "yes",
+      "training_summary": "two-stage training: nominal + residual policy",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-26991",
+      "source": "arxiv",
+      "title": "Towards Shared Embodied Intelligence in Humanoid Robots through Optimization Development and Testing of the Human Aware ergoCub Robot",
+      "title_zh": "面向人形机器人的共享具身智能：通过优化开发与测试人类感知的ergoCub机器人",
+      "tldr_zh": "提出整合共享智能与具身认知的架构，优化人形机器人硬件与控制以实现人机协作。",
+      "cover_zh": "人形机器人也能懂你？这个新架构让协作更自然｜ergoCub优化人体工程学",
+      "abstract_zh": "协作是人类行为的核心，使个体能够完成超出自身能力的任务。这种能力源于通过对他人的内部表征来协调行动，这一概念被称为共享智能。此外，人类以身体和认知能力为特征，这些能力会根据环境进行优化，这种现象称为具身认知。设计能够与人安全有效协作的人形机器人需要统一这些原则。本文提出了一种整合共享智能和具身认知的架构，使机器人能够与人类进行物理协作，其中机器人硬件和控制针对人类指标进行优化，利用人体表征和运动智能。最终目标是实现一种共享具身智能的形式。具体而言，我们的架构根据人体工程学指标优化机器人硬件和物理智能参数。这是通过将人机交互建模为硬件配置的函数，并将人体模型嵌入机器人的物理智能中来实现的。作为具体实现，我们展示了人形机器人ergoCub，其形态和控制已针对与人类的协作任务进行了优化。我们的方法为设计在硬件和物理智能层面优先考虑人体工程学的人形机器人提供了框架，可应用于工业和辅助机器人领域。",
+      "authors": [
+        "Carlotta Sartore",
+        "Mohamed Elobaid",
+        "Lorenzo Rapetti"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-26",
+      "channels": [
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Physical Intelligence (π)"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-26991.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-26991-p2.jpg",
+        "assets/img/covers/arxiv-2605-26991-p3.jpg",
+        "assets/img/covers/arxiv-2605-26991-p4.jpg"
+      ],
+      "arxiv_id": "2605.26991",
+      "abs_url": "http://arxiv.org/abs/2605.26991v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.26991v1",
+      "score": 51,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出人形机器人共享具身智能架构，优化硬件与控制以协作，属人形全身控制方向。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Istituto Italiano di Tecnologia (IIT)"
+      ],
+      "method_tags": [
+        "shared intelligence",
+        "embodied cognition",
+        "human-robot collaboration"
+      ],
+      "platform": [
+        "ergoCub"
+      ],
+      "sim_stack": [],
+      "method_family": "Hardware",
+      "real_robot": "yes",
+      "training_summary": "",
       "demo_videos": []
     },
     {
@@ -183,68 +310,6 @@
       "demo_videos": []
     },
     {
-      "id": "arxiv-2605-27046",
-      "source": "arxiv",
-      "title": "Learning to Balance Motor Thermal Safety and Quadrupedal Locomotion Performance with Residual Policy",
-      "title_zh": "学习平衡电机热安全与四足运动性能的残差策略",
-      "tldr_zh": "提出残差策略平衡电机热安全与运动性能，实现负重下长时间稳定运动。",
-      "cover_zh": "电机过热是腿足机器人的死穴？这个残差策略让它在负重下多跑8分钟",
-      "abstract_zh": "电机热管理在电驱动机器人（尤其是腿足机器人）中常被忽视，但电机过热是限制长时间运动的关键因素，尤其在负重条件下。本文将四足机器人的全身热模型集成到强化学习流程中，以更新电机温度，并提出一个两阶段训练框架用于电机热管理。在该框架中，首先预训练一个名义策略作为能够穿越多种地形的运动基线。然后，在名义策略之上训练一个残差策略，根据机器人的热状态提供修正动作，确保低温条件下的高性能并防止高温条件下的电机过热。仿真结果表明，所提出的策略在电机热安全与运动性能之间实现了有效平衡。在Unitree A1四足机器人上的真实实验进一步验证了该方法：在3公斤负载下，机器人能在多种地形上稳定运动超过13分钟，而仅使用名义策略会导致电机在大约5分钟内过热。",
-      "authors": [
-        "Yuhang Wan",
-        "Weixian Lin",
-        "Letian Qian"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-26",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ Unitree"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2605-27046.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-27046-p2.jpg",
-        "assets/img/covers/arxiv-2605-27046-p3.jpg",
-        "assets/img/covers/arxiv-2605-27046-p4.jpg"
-      ],
-      "arxiv_id": "2605.27046",
-      "abs_url": "http://arxiv.org/abs/2605.27046v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.27046v1",
-      "score": 41,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "locomotion",
-        "reason": "提出残差策略平衡电机热安全与四足运动性能，仿真+真机验证，有实际价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Southeast University"
-      ],
-      "method_tags": [
-        "RL",
-        "residual policy",
-        "motor thermal management"
-      ],
-      "platform": [
-        "Unitree A1"
-      ],
-      "sim_stack": [],
-      "method_family": "RL",
-      "real_robot": "yes",
-      "training_summary": "two-stage training: nominal + residual policy",
-      "demo_videos": []
-    },
-    {
       "id": "arxiv-2605-27114",
       "source": "arxiv",
       "title": "VR-DAgger: Immersive VR for Dexterous Data Collection and Uncertainty-Guided On-Policy Correction",
@@ -301,6 +366,63 @@
       "sim_stack": [],
       "method_family": "IL",
       "real_robot": "",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-27314",
+      "source": "arxiv",
+      "title": "Riding the Shifting Potential: When Reactive Control Suffices for Multi-Goal Behavior",
+      "title_zh": "驾驭变化的势场：反应式控制何时足以实现多目标行为",
+      "tldr_zh": "反应式控制通过零空间投影动态解决目标冲突，实现多目标行为。",
+      "cover_zh": "谁说反应式控制不行？新方法让机器人100%成功避开障碍｜零空间投影",
+      "abstract_zh": "反应式控制通常被认为不足以处理多目标任务，因为冲突的目标会导致局部极小值。我们认为这一局限性并非固有，而是源于静态编码无法反映目标当前如何相互作用。我们利用基于图的世界模型中编码的交互结构，通过零空间投影对其进行扩展：将低优先级梯度投影到高优先级梯度的零空间中，从而在冲突产生处解决冲突，优先级由当前状态连续确定。我们在两个目标冲突为核心问题的领域进行了演示：非凸障碍物周围的导航（静态势场在此根本失效）以及非凸物体的平面推动，我们的方法在一百种配置中实现了100%的成功率，而最速下降基线为0%，扩散策略约为55%，且无需演示或重新训练。相同的公式直接迁移到具有额外感知和运动学约束的真实机器人上，通过相同机制适应这些约束。",
+      "authors": [
+        "Vito Mengers",
+        "Oliver Brock"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-26",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-27314.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-27314-p2.jpg",
+        "assets/img/covers/arxiv-2605-27314-p3.jpg",
+        "assets/img/covers/arxiv-2605-27314-p4.jpg"
+      ],
+      "arxiv_id": "2605.27314",
+      "abs_url": "http://arxiv.org/abs/2605.27314v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.27314v1",
+      "score": 27,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出基于图世界模型的零空间投影反应控制，解决多目标冲突，在真实机器人上验证，具身世界模型创新。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "TU Berlin"
+      ],
+      "method_tags": [
+        "reactive control",
+        "nullspace projection",
+        "multi-goal behavior"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "Hybrid",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": []
     },
@@ -363,22 +485,23 @@
       "demo_videos": []
     },
     {
-      "id": "arxiv-2605-27314",
+      "id": "arxiv-2605-27095",
       "source": "arxiv",
-      "title": "Riding the Shifting Potential: When Reactive Control Suffices for Multi-Goal Behavior",
-      "title_zh": "驾驭变化的势场：反应式控制何时足以实现多目标行为",
-      "tldr_zh": "反应式控制通过零空间投影动态解决目标冲突，实现多目标行为。",
-      "cover_zh": "谁说反应式控制不行？新方法让机器人100%成功避开障碍｜零空间投影",
-      "abstract_zh": "反应式控制通常被认为不足以处理多目标任务，因为冲突的目标会导致局部极小值。我们认为这一局限性并非固有，而是源于静态编码无法反映目标当前如何相互作用。我们利用基于图的世界模型中编码的交互结构，通过零空间投影对其进行扩展：将低优先级梯度投影到高优先级梯度的零空间中，从而在冲突产生处解决冲突，优先级由当前状态连续确定。我们在两个目标冲突为核心问题的领域进行了演示：非凸障碍物周围的导航（静态势场在此根本失效）以及非凸物体的平面推动，我们的方法在一百种配置中实现了100%的成功率，而最速下降基线为0%，扩散策略约为55%，且无需演示或重新训练。相同的公式直接迁移到具有额外感知和运动学约束的真实机器人上，通过相同机制适应这些约束。",
+      "title": "Adversarial Dual On-Policy Distillation from Expressive Flow-based Teacher",
+      "title_zh": "基于表达性流模型的对抗式双策略蒸馏",
+      "tldr_zh": "提出FA-OPD，用流模型教师和双信号蒸馏提升示范学习鲁棒性。",
+      "cover_zh": "不用专家也能教｜双信号蒸馏让机器人从有限示范中学会泛化",
+      "abstract_zh": "在具身控制中，从示范中学习通常被建模为行为克隆，而最近的扩散或流匹配策略通过建模多模态专家动作改进了这一范式。然而，这些方法仍然是离线监督学习：策略仅在专家状态上训练，在其实际访问的状态上得不到任何纠正信号。策略蒸馏（OPD）提供了一种自然的补救措施，但标准OPD假设有一个强大的固定教师，这在仅含示范的控制中是不可用的。我们提出FA-OPD，一种对抗式双策略蒸馏方法，其中从示范中学习一个流匹配（FM）教师，并与轻量级MLP学生共同训练。教师为学生轨迹提供两种互补信号。奖励通道学习状态-动作对上的专家似然目标，并通过长视界策略优化驱动在线探索。动作通道在学生访问的状态上提供密集的局部目标，稳定利用。FA-OPD将两者耦合，使得奖励蒸馏能够泛化到逐点示范之外，而动作蒸馏将探索锚定在接近专家行为的状态。在六个机器人导航、操作和 locomotion 基准测试中，FA-OPD击败了强基线，并在噪声或有限示范下表现出更强的鲁棒性。",
       "authors": [
-        "Vito Mengers",
-        "Oliver Brock"
+        "Zhenglin Wan",
+        "Jingxuan Wu",
+        "Xingrui Yu"
       ],
-      "primary_category": "cs.RO",
+      "primary_category": "cs.LG",
       "published": "2026-05-26",
       "channels": [
-        "loco-manip-wbc",
-        "manipulation"
+        "manipulation",
+        "locomotion"
       ],
       "badges": [
         {
@@ -386,35 +509,36 @@
           "label": "⚡ 新鲜出炉"
         }
       ],
-      "cover_image": "assets/img/covers/arxiv-2605-27314.jpg",
+      "cover_image": "assets/img/covers/arxiv-2605-27095.jpg",
       "preview_pages": [
-        "assets/img/covers/arxiv-2605-27314-p2.jpg",
-        "assets/img/covers/arxiv-2605-27314-p3.jpg",
-        "assets/img/covers/arxiv-2605-27314-p4.jpg"
+        "assets/img/covers/arxiv-2605-27095-p2.jpg",
+        "assets/img/covers/arxiv-2605-27095-p3.jpg",
+        "assets/img/covers/arxiv-2605-27095-p4.jpg"
       ],
-      "arxiv_id": "2605.27314",
-      "abs_url": "http://arxiv.org/abs/2605.27314v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.27314v1",
+      "arxiv_id": "2605.27095",
+      "abs_url": "http://arxiv.org/abs/2605.27095v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.27095v1",
       "score": 24,
       "judge": {
         "relevant": true,
         "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出基于图世界模型的零空间投影反应控制，解决多目标冲突，在真实机器人上验证，具身世界模型创新。",
+        "primary_channel": "manipulation",
+        "reason": "提出对抗式双策略蒸馏方法，结合流匹配教师与在线策略优化，在导航、操作、移动多个具身任务上验证，方法新颖且实验充分。",
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "TU Berlin"
+        "National University of Singapore",
+        "University of Chinese Academy of Sciences"
       ],
       "method_tags": [
-        "reactive control",
-        "nullspace projection",
-        "multi-goal behavior"
+        "On-Policy Distillation",
+        "Flow Matching",
+        "Adversarial Learning"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "Hybrid",
-      "real_robot": "yes",
+      "method_family": "IL",
+      "real_robot": "no",
       "training_summary": "",
       "demo_videos": []
     },
@@ -527,63 +651,6 @@
       "platform": [],
       "sim_stack": [],
       "method_family": "Hybrid",
-      "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-27095",
-      "source": "arxiv",
-      "title": "Adversarial Dual On-Policy Distillation from Expressive Flow-based Teacher",
-      "title_zh": "基于表达性流模型的对抗式双策略蒸馏",
-      "tldr_zh": "提出FA-OPD，用流模型教师和双信号蒸馏提升示范学习鲁棒性。",
-      "cover_zh": "不用专家也能教｜双信号蒸馏让机器人从有限示范中学会泛化",
-      "abstract_zh": "在具身控制中，从示范中学习通常被建模为行为克隆，而最近的扩散或流匹配策略通过建模多模态专家动作改进了这一范式。然而，这些方法仍然是离线监督学习：策略仅在专家状态上训练，在其实际访问的状态上得不到任何纠正信号。策略蒸馏（OPD）提供了一种自然的补救措施，但标准OPD假设有一个强大的固定教师，这在仅含示范的控制中是不可用的。我们提出FA-OPD，一种对抗式双策略蒸馏方法，其中从示范中学习一个流匹配（FM）教师，并与轻量级MLP学生共同训练。教师为学生轨迹提供两种互补信号。奖励通道学习状态-动作对上的专家似然目标，并通过长视界策略优化驱动在线探索。动作通道在学生访问的状态上提供密集的局部目标，稳定利用。FA-OPD将两者耦合，使得奖励蒸馏能够泛化到逐点示范之外，而动作蒸馏将探索锚定在接近专家行为的状态。在六个机器人导航、操作和 locomotion 基准测试中，FA-OPD击败了强基线，并在噪声或有限示范下表现出更强的鲁棒性。",
-      "authors": [
-        "Zhenglin Wan",
-        "Jingxuan Wu",
-        "Xingrui Yu"
-      ],
-      "primary_category": "cs.LG",
-      "published": "2026-05-26",
-      "channels": [
-        "locomotion"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2605-27095.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-27095-p2.jpg",
-        "assets/img/covers/arxiv-2605-27095-p3.jpg",
-        "assets/img/covers/arxiv-2605-27095-p4.jpg"
-      ],
-      "arxiv_id": "2605.27095",
-      "abs_url": "http://arxiv.org/abs/2605.27095v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.27095v1",
-      "score": 16,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出对抗式双策略蒸馏方法，结合流匹配教师与在线策略优化，在导航、操作、移动多个具身任务上验证，方法新颖且实验充分。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "National University of Singapore",
-        "University of Chinese Academy of Sciences"
-      ],
-      "method_tags": [
-        "On-Policy Distillation",
-        "Flow Matching",
-        "Adversarial Learning"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "IL",
       "real_robot": "no",
       "training_summary": "",
       "demo_videos": []
