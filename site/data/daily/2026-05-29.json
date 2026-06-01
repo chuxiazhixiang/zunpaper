@@ -1,7 +1,68 @@
 {
   "date": "2026-05-29",
-  "count": 1,
+  "count": 6,
   "papers": [
+    {
+      "id": "arxiv-2605-31481",
+      "source": "arxiv",
+      "title": "Batched Differentiable Rigid Body Dynamics in PyTorch for GPU-Accelerated Robot Learning",
+      "title_zh": "基于 PyTorch 的批量化可微刚体动力学：GPU 加速的机器人学习",
+      "tldr_zh": "提出 BARD，一个基于 PyTorch 的 GPU 批量化可微刚体动力学库，吞吐量比 Pinocchio 高数十倍。",
+      "cover_zh": "GPU 加速的机器人动力学｜比 Pinocchio 快 64 倍，还能自动微分",
+      "abstract_zh": "随着机器人控制转向大规模强化学习与循环动力学计算，社区对 Pinocchio 等 CPU 绑定库的依赖在基于 GPU 的训练流程中造成了吞吐瓶颈。我们提出 BARD（批量化铰接刚体动力学），一个自包含的 PyTorch 实现，基于 Featherstone 刚体动力学算法，针对批量化 GPU 评估和自动微分进行了优化。三个设计选择使其高效：分层惰性求值缓存避免冗余树遍历，通过预计算 Rodrigues 常数实现无矩阵乘法的关节变换，以及层级并行传播将顺序操作减少为树深度的批量化步骤。在五个机器人模型（7-23 自由度）上，BARD 在数值上匹配 Pinocchio，同时在 NVIDIA H200 上以批大小 4096 实现前向运动学高达 64 倍、雅可比矩阵高达 63 倍的吞吐量提升。我们通过基于梯度的系统辨识验证了可微性，在 7 自由度机械臂上以 5% 扭矩噪声恢复连杆质量，平均误差 1.24%，并将 BARD 集成到 Isaac Lab AMP 训练流程中，用于具有 4096 个并行环境的 11 自由度脊柱四足机器人，其循环动力学速度比 Pinocchio 快 8.5 倍，比 ADAM 快 2.0 倍。BARD 已开源：https://github.com/YueWang996/bard-pytorch-dynamics",
+      "authors": [
+        "Yue Wang",
+        "Yanran Xu",
+        "Wenbo Wu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-29",
+      "channels": [
+        "locomotion",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ NVIDIA"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Yue Wang (USC)"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-31481.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-31481-p2.jpg",
+        "assets/img/covers/arxiv-2605-31481-p3.jpg",
+        "assets/img/covers/arxiv-2605-31481-p4.jpg"
+      ],
+      "arxiv_id": "2605.31481",
+      "abs_url": "http://arxiv.org/abs/2605.31481v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.31481v1",
+      "score": 67,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "sim2real",
+        "reason": "GPU加速的刚体动力学库，显著提升仿真训练吞吐，对sim2real和RL有重要价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "Differentiable Physics",
+        "GPU-Accelerated",
+        "Rigid Body Dynamics"
+      ],
+      "platform": [],
+      "sim_stack": [
+        "Isaac Lab"
+      ],
+      "method_family": "Hardware",
+      "real_robot": "no",
+      "training_summary": "4096 parallel envs, 8.5x faster than Pinocchio",
+      "demo_videos": []
+    },
     {
       "id": "embodied_techdaily-0a04334b39",
       "source": "embodied_techdaily",
@@ -20,10 +81,6 @@
         {
           "kind": "lab",
           "label": "⭐ 清华"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
         }
       ],
       "cover_image": "assets/img/covers/embodied_techdaily-0a04334b39.jpg",
@@ -31,7 +88,7 @@
       "arxiv_id": "",
       "abs_url": "http://www.jintiankansha.me/t/40uNpVw2Yy",
       "pdf_url": "",
-      "score": 53,
+      "score": 43,
       "judge": {
         "relevant": true,
         "research_value": "high",
@@ -50,6 +107,210 @@
       "sim_stack": [],
       "method_family": "Benchmark",
       "real_robot": "",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-31486",
+      "source": "arxiv",
+      "title": "Learning Controlled Separation of Small Objects Between Two Fingers with a Tactile Skin",
+      "title_zh": "学习用触觉皮肤在两根手指间控制小物体的分离",
+      "tldr_zh": "用触觉皮肤和强化学习实现手指间小物体数量的精确控制。",
+      "cover_zh": "不用眼睛也能数颗粒？触觉皮肤让机器人手指精准分离小物体",
+      "abstract_zh": "我们提出并解决了新型任务：用多用途机械手的两根手指控制小物体的分离——从装有多个小物体的盒子中抓取后，目标是丢弃多余物体，直到手指间保留所需数量。这些物体相对于手指宽度很小，且绝对尺寸也小。我们处理的是直径仅6毫米的小颗粒。我们证明，该任务可以仅通过指尖上的空间分辨触觉皮肤纯触觉（无视觉）完成。分离策略通过强化学习在仿真中训练，使用简单的稀疏奖励，基本只检查是否达到所需物体数量。在仿真实验中，我们详尽分析了空间分辨触觉反馈的优势：理想（高分辨率）触觉传感器几乎能完美完成任务，而较低空间分辨率（此处为4x4触觉单元）的传感器相比仅使用手指关节传感器仍能带来高达20%的提升。为此，我们还训练了一个与策略并行的估计器，用于预测真实接触位置。最后，我们展示了配备触觉皮肤的DLR-Hand II的成功仿真到现实迁移。",
+      "authors": [
+        "Ulf Kasolowsky",
+        "Berthold Bäuml"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-29",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2605-31486.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-31486-p2.jpg",
+        "assets/img/covers/arxiv-2605-31486-p3.jpg",
+        "assets/img/covers/arxiv-2605-31486-p4.jpg"
+      ],
+      "arxiv_id": "2605.31486",
+      "abs_url": "http://arxiv.org/abs/2605.31486v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.31486v1",
+      "score": 17,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "灵巧手触觉分离小物体，RL+sim2real，有算法创新和实验分析",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "DLR (German Aerospace Center)"
+      ],
+      "method_tags": [
+        "RL",
+        "sim-to-real",
+        "tactile manipulation"
+      ],
+      "platform": [
+        "DLR-Hand II"
+      ],
+      "sim_stack": [],
+      "method_family": "RL",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-31321",
+      "source": "arxiv",
+      "title": "Surface Constraint Policy for Learning Surface-Constrained and Dynamically Feasible Robot Skills",
+      "title_zh": "表面约束策略：学习受表面约束且动态可行的机器人技能",
+      "tldr_zh": "提出表面约束策略，结合扩散模型与动态运动基元，提升曲面操作任务的成功率与接触稳定性。",
+      "cover_zh": "机器人学不会曲面操作？新策略用扩散模型+动态基元，成功率飙升！",
+      "abstract_zh": "基于扩散的模仿学习方法推动了机器人灵巧操作任务的快速发展。然而，当应用于涉及复杂自由曲面约束的任务时，由于缺乏显式的曲面几何约束建模和动态可行性问题，这些方法存在局限性，导致随机动作生成无法实现可靠的曲面对齐和稳定接触。为了解决这些限制，我们提出了一种新颖的表面约束策略（SCP），基于人类演示和实时视觉观测生成满足自由曲面约束的机器人动作。首先，利用从演示中导出的二维加权高斯核函数对曲面几何约束进行编码。基于编码后的曲面几何约束，扩散策略用于从多模态感知输入（包括视觉观测和机器人状态反馈）推断任务级动作意图。这些意图通过基于相似性的动作映射方法进一步转化为受表面约束的动态运动基元（DMP），从而实现平滑且柔顺的运动执行。SCP实现了结构化曲面几何意图和动态可行动作的生成。该方法在多个曲面操作任务上进行了验证，并与现有技术进行了比较。实验结果表明，在曲面约束下，该方法具有优越的任务成功率和接触稳定性。",
+      "authors": [
+        "Shuai Ke",
+        "Jiexin Zhang",
+        "Huan Zhao"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-29",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2605-31321.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-31321-p2.jpg",
+        "assets/img/covers/arxiv-2605-31321-p3.jpg",
+        "assets/img/covers/arxiv-2605-31321-p4.jpg"
+      ],
+      "arxiv_id": "2605.31321",
+      "abs_url": "http://arxiv.org/abs/2605.31321v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.31321v1",
+      "score": 15,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出表面约束策略，结合扩散模型与DMP，解决灵巧操作中的表面约束与动态可行性问题，实验验证有效。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "华中科技大学"
+      ],
+      "method_tags": [
+        "Diffusion Policy",
+        "Surface Constraint",
+        "Dynamic Movement Primitives"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "Diffusion",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-31343",
+      "source": "arxiv",
+      "title": "Learning Terrain-Aware Whole-Body Control for Perceptive Legged Loco-Manipulation",
+      "title_zh": "学习地形感知的全身控制用于有感知的腿式移动操作",
+      "tldr_zh": "提出地形感知全身控制框架TA-WBC，通过混合感知编码和双策略蒸馏提升腿式机器人在复杂地形上的移动操作能力。",
+      "cover_zh": "腿式机器人也能翻山越岭？这个新框架让它在复杂地形上稳如老狗｜操作空间更大还不摔跤",
+      "abstract_zh": "腿式操作器结合了卓越的地形适应性和移动操作能力，使其在人类中心环境中极具应用前景。通过协调腿和臂的控制，全身控制器可以显著扩展腿式操作器的工作空间。然而，许多现有的全身控制器主要依赖于本体感觉，并未纳入有效地形拓扑感知所需的关键外部感知。这一限制可能阻碍它们适应不同环境条件并有效导航复杂地形。在本文中，我们提出了TA-WBC，一种用于腿式操作器的地形感知全身控制框架，其特点是一种新颖的基于强化学习的统一策略，专门针对各种地形中的全身移动操作任务。具体来说，我们采用混合外部感知编码器提取地形特征，为机器人主动调整姿态和立足点提供必要基础。此外，为了促进稳定的跨地形移动操作，我们提出了一种基于脚接触平面的新颖末端执行器采样方法，将操作目标与基座波动解耦。此外，引入了双策略蒸馏模块，以整合扩展的全身运动与地形适应性，而不会发生灾难性遗忘。仿真和真实世界实验验证了我们所提出控制器的鲁棒性，该控制器实现了更大的可达空间、更小的跟踪误差和减少的意外绊倒。这一统一策略突显了腿式操作器在复杂地形上执行移动操作任务的潜力。",
+      "authors": [
+        "Sikai Guo",
+        "Yudong Zhong",
+        "Guoyang Zhao"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-29",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2605-31343.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-31343-p2.jpg",
+        "assets/img/covers/arxiv-2605-31343-p3.jpg",
+        "assets/img/covers/arxiv-2605-31343-p4.jpg"
+      ],
+      "arxiv_id": "2605.31343",
+      "abs_url": "http://arxiv.org/abs/2605.31343v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.31343v1",
+      "score": 6,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出地形感知全身控制框架，结合RL与感知，解决腿臂协调与地形适应，实验验证充分。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "RL",
+        "whole-body control",
+        "terrain-aware"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "RL",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-31352",
+      "source": "arxiv",
+      "title": "Haptic Sorter: A Unified Planning Framework for Online Shape Estimation and Real-Time Pose Inference",
+      "title_zh": "Haptic Sorter：面向在线形状估计与实时位姿推理的统一规划框架",
+      "tldr_zh": "提出统一框架，用贝叶斯优化和触觉反馈在线估计物体形状与位姿。",
+      "cover_zh": "触觉+贝叶斯优化｜机器人盲摸也能精准分拣形状未知物体？",
+      "abstract_zh": "机器人操作通常假设在运动规划之前，物体的形状和位姿是已知的。然而，实际中精确的几何信息并不总是可得，且位姿推理受传感器不确定性和视角遮挡的影响。本文提出一个统一的基于模型的几何框架，集成机器人触觉感知、建模和操作规划。我们的创新包括：i) 引入贝叶斯优化（BO）指导触觉探索以推断物体形状，使用超椭圆近似几何边界；ii) 自适应地构建操作势能，编码物体几何以用于准静态机器人-物体交互；iii) 提出一个在线常微分方程（ODE），基于模型预测和触觉反馈进行实时位姿推理。我们将系统部署在二维机器人分拣任务上，通过改变物体几何形状，在仿真和真实多臂平台上验证了框架的鲁棒性和泛化能力。",
+      "authors": [
+        "Zhuoyi Lu",
+        "Lin Yang",
+        "Sri Harsha Turlapati"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-29",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2605-31352.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-31352-p2.jpg",
+        "assets/img/covers/arxiv-2605-31352-p3.jpg",
+        "assets/img/covers/arxiv-2605-31352-p4.jpg"
+      ],
+      "arxiv_id": "2605.31352",
+      "abs_url": "http://arxiv.org/abs/2605.31352v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.31352v1",
+      "score": 6,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "提出统一规划框架，结合触觉感知与形状估计，用于机器人操作，属于操作领域",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Nanyang Technological University"
+      ],
+      "method_tags": [
+        "Bayesian Optimization",
+        "haptic exploration",
+        "pose inference"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "Hybrid",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": []
     }
