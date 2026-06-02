@@ -1,0 +1,106 @@
+{
+  "id": "arxiv-2606-02486",
+  "source": "arxiv",
+  "title": "Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation",
+  "title_zh": "拦截未来：面向动态VLA操作的潜在空间预测世界模型",
+  "abstract": "Vision-Language-Action (VLA) models generalize across static manipulation but fail when objects move during task execution. They map the current observation to an action and assume the scene is stationary between observation and execution, so at any non-trivial object speed the resulting latency exceeds the time available to grasp. We close this gap with AHEAD (Anticipatory Horizon Extrapolation with Adaptive Dynamics), a predict-then-act wrapper that augments a frozen VLA with a motion-aware latent world model. A small world model trained on manipulation video forecasts future patch tokens in the VLA's feature space, conditioned on per-token velocity and acceleration from optical flow. A language-and-motion saliency mask concentrates prediction on task-relevant patches, and the model rolls forward for an adaptive horizon, halting when prediction uncertainty crosses a threshold. The frozen action decoder then receives the predicted future tokens in place of the current ones. AHEAD adds 4.9M parameters to a frozen 7B OpenVLA and reaches 79 to 97% success across 20 dynamic simulation scenarios where the strongest baseline reaches 31 to 58%. On a physical UFactory xArm 7, AHEAD succeeds on 29/30 to 30/30 on three conveyor and rolling-ball tasks, 23/30 on paddle interception, and 19/30 on projectile catching where every baseline scores 0/30.",
+  "abstract_zh": "视觉-语言-动作（VLA）模型在静态操作中表现良好，但当物体在任务执行过程中移动时则失败。它们将当前观测映射为动作，并假设观测与执行之间场景静止，因此一旦物体速度非零，产生的延迟就会超过抓取所需的时间。我们通过AHEAD（自适应动力学前瞻性外推）弥合了这一差距，这是一种预测-然后-动作的包装器，为冻结的VLA增加了运动感知的潜在世界模型。一个在操作视频上训练的小型世界模型，在VLA特征空间中预测未来的补丁令牌，条件为来自光流的每个令牌的速度和加速度。语言与运动显著性掩码将预测集中在任务相关的补丁上，模型向前滚动自适应时间范围，当预测不确定性超过阈值时停止。冻结的动作解码器随后接收预测的未来令牌以替代当前令牌。AHEAD为冻结的7B OpenVLA增加了4.9M参数，在20个动态模拟场景中达到79%至97%的成功率，而最强基线为31%至58%。在物理UFactory xArm 7上，AHEAD在三个传送带和滚球任务中成功29/30至30/30，在球拍拦截中成功23/30，在抛射物接取中成功19/30，而所有基线均为0/30。",
+  "tldr_zh": "AHEAD通过预测未来令牌，使冻结VLA模型在动态操作中成功率大幅提升。",
+  "cover_zh": "机器人抓不住运动物体？这个4.9M参数插件让成功率从0飙到97%！",
+  "authors": [
+    {
+      "name": "Shahram Najam Syed",
+      "affiliation": ""
+    },
+    {
+      "name": "Arthur Jakobsson",
+      "affiliation": ""
+    },
+    {
+      "name": "Haoran Hao",
+      "affiliation": ""
+    },
+    {
+      "name": "Jeffrey Ichnowski",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-06-01",
+  "updated": "2026-06-01",
+  "arxiv_id": "2606.02486",
+  "pdf_url": "https://arxiv.org/pdf/2606.02486v1",
+  "abs_url": "http://arxiv.org/abs/2606.02486v1",
+  "cover_image": "assets/img/covers/arxiv-2606-02486.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2606-02486-p2.jpg",
+    "assets/img/covers/arxiv-2606-02486-p3.jpg",
+    "assets/img/covers/arxiv-2606-02486-p4.jpg"
+  ],
+  "channels": [
+    "manipulation",
+    "world-model"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 28,
+  "source_tags": [],
+  "score": 30,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 6 个（vision-language-action、openvla、manipulation、grasp）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 28 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出预测性潜在世界模型增强VLA动态操作，方法新颖且实验充分，对具身操作有高参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "UC Berkeley"
+  ],
+  "method_tags": [
+    "World Model",
+    "VLA",
+    "Dynamic Manipulation"
+  ],
+  "platform": [
+    "UFactory xArm 7"
+  ],
+  "sim_stack": [],
+  "method_family": "WorldModel",
+  "real_robot": "yes",
+  "training_summary": "trained on manipulation video",
+  "demo_videos": []
+}
