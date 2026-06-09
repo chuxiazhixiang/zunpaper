@@ -18,8 +18,10 @@
       "primary_category": "cs.RO",
       "published": "2026-06-08",
       "channels": [
+        "loco-manip-wbc",
         "manipulation",
-        "locomotion"
+        "locomotion",
+        "world-model"
       ],
       "badges": [
         {
@@ -40,7 +42,7 @@
       "arxiv_id": "2606.09215",
       "abs_url": "http://arxiv.org/abs/2606.09215v1",
       "pdf_url": "https://arxiv.org/pdf/2606.09215v1",
-      "score": 62,
+      "score": 65,
       "judge": {
         "relevant": true,
         "research_value": "high",
@@ -309,6 +311,63 @@
       "demo_videos": []
     },
     {
+      "id": "arxiv-2606-09286",
+      "source": "arxiv",
+      "title": "VAIC: Vision-Guided Humanoid Agile Object Interaction Control via Decoupled Commands",
+      "title_zh": "VAIC：基于视觉引导的人形机器人敏捷物体交互控制与解耦指令",
+      "tldr_zh": "提出VAIC框架，仅用深度和本体感觉实现人形机器人敏捷物体交互。",
+      "cover_zh": "人形机器人也能滑板？｜仅靠深度相机就学会搬箱子推车",
+      "abstract_zh": "人形机器人在现实世界辅助中具有巨大潜力，但在非结构化环境中与物体进行敏捷交互需要紧密的全身协调。尽管近期有所进展，当前控制器仍面临关键部署差距：它们严重依赖密集参考轨迹和完美状态可观测性，这从根本上限制了物理泛化。我们提出视觉引导敏捷交互控制（VAIC），这是一个统一框架，通过仅依赖机载深度、历史本体感觉和解耦的用户命令接口来弥合这一差距。VAIC采用两阶段蒸馏范式：首先，特权教师策略利用精确物体运动学和环境状态掌握多样化交互技能；其次，可部署学生策略通过用多轴速度目标和每帧交互指示器替代全身跟踪来蒸馏这些能力。学生利用循环物体适应模块从原始深度流和本体感觉中隐式推断不可观测的物体动力学。在人形机器人上的评估和实际部署表明，单个VAIC策略成功执行高度多样化的动态任务，包括搬运箱子、推车交互和滑板，持续优于基线并推进自主人形机器人部署。",
+      "authors": [
+        "Dongting Li",
+        "Qianyang Wu",
+        "Xingyu Chen"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-08",
+      "channels": [
+        "loco-manip-wbc",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-09286.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-09286-p2.jpg",
+        "assets/img/covers/arxiv-2606-09286-p3.jpg",
+        "assets/img/covers/arxiv-2606-09286-p4.jpg"
+      ],
+      "arxiv_id": "2606.09286",
+      "abs_url": "http://arxiv.org/abs/2606.09286v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.09286v1",
+      "score": 37,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出人形机器人全身敏捷交互控制框架，结合视觉与解耦命令，有真实部署，创新性强。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "Distillation",
+        "Vision-Guided Control",
+        "Agile Interaction"
+      ],
+      "platform": [
+        "Humanoid robot"
+      ],
+      "sim_stack": [],
+      "method_family": "Hybrid",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
       "id": "arxiv-2606-09640",
       "source": "arxiv",
       "title": "Physics-Aware Sparse Learning and Selective Online Adaptation for Euler-Lagrange Robot Dynamics",
@@ -485,6 +544,63 @@
       "demo_videos": []
     },
     {
+      "id": "arxiv-2606-09457",
+      "source": "arxiv",
+      "title": "$ω$-EVA: Envision, Verify, and Act with Latent Interactive World Models",
+      "title_zh": "$ω$-EVA：基于潜在交互世界模型的设想、验证与行动",
+      "tldr_zh": "提出潜在交互世界模型，让策略在行动前验证自身提议的后果。",
+      "cover_zh": "动作前先“脑补”后果？这个新框架让机器人学会三思而后行",
+      "abstract_zh": "具身策略通常直接将当前观测映射到动作，而候选动作的后果隐含其中。世界模型提供预测性监督、表征或外部模拟，但很少让策略在行动前检查自身提议的想象后果。我们提出 $ω$-EVA，一种潜在交互世界模型，实现了用于具身动作生成的“设想-验证-行动”循环。其三阶段框架学习动作条件潜在动力学，在动力学感知视觉表征上训练语言条件流策略，并将策略的提议通过世界模型反馈。一个三分支精炼器联合推理当前状态、提议条件未来和提议动作，以生成最终动作块。由于后果推理保持在潜在特征空间中，$ω$-EVA 在推理时避免了生成未来视频。在多种单臂、双臂、长时域和扰动仿真设置中的评估表明，完整的交互流程持续改进提议策略，而潜在诊断揭示了有意义的动作条件未来结构。$ω$-EVA 拥有约 12 亿参数且无需额外的机器人数据预训练，展示了紧凑且具有竞争力的性能-规模-数据权衡，使世界模型成为主动的动作反馈模块而非被动预测器。",
+      "authors": [
+        "Zhenguo Sun",
+        "Yu Sun",
+        "Hande Huang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-08",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-09457.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-09457-p2.jpg",
+        "assets/img/covers/arxiv-2606-09457-p3.jpg",
+        "assets/img/covers/arxiv-2606-09457-p4.jpg"
+      ],
+      "arxiv_id": "2606.09457",
+      "abs_url": "http://arxiv.org/abs/2606.09457v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.09457v1",
+      "score": 27,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出潜在交互世界模型实现'设想-验证-行动'循环，用于具身动作生成，属于世界模型核心方向",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Technical University of Munich"
+      ],
+      "method_tags": [
+        "World Model",
+        "Latent Dynamics",
+        "Action-Conditioned"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "WorldModel",
+      "real_robot": "no",
+      "training_summary": "1.2B parameters, no additional robot-data pretraining",
+      "demo_videos": []
+    },
+    {
       "id": "arxiv-2606-09499",
       "source": "arxiv",
       "title": "Targeting World Models to Compromise Robot Learning Pipelines",
@@ -538,62 +654,6 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2606-09286",
-      "source": "arxiv",
-      "title": "VAIC: Vision-Guided Humanoid Agile Object Interaction Control via Decoupled Commands",
-      "title_zh": "VAIC：基于视觉引导的人形机器人敏捷物体交互控制与解耦指令",
-      "tldr_zh": "提出VAIC框架，仅用深度和本体感觉实现人形机器人敏捷物体交互。",
-      "cover_zh": "人形机器人也能滑板？｜仅靠深度相机就学会搬箱子推车",
-      "abstract_zh": "人形机器人在现实世界辅助中具有巨大潜力，但在非结构化环境中与物体进行敏捷交互需要紧密的全身协调。尽管近期有所进展，当前控制器仍面临关键部署差距：它们严重依赖密集参考轨迹和完美状态可观测性，这从根本上限制了物理泛化。我们提出视觉引导敏捷交互控制（VAIC），这是一个统一框架，通过仅依赖机载深度、历史本体感觉和解耦的用户命令接口来弥合这一差距。VAIC采用两阶段蒸馏范式：首先，特权教师策略利用精确物体运动学和环境状态掌握多样化交互技能；其次，可部署学生策略通过用多轴速度目标和每帧交互指示器替代全身跟踪来蒸馏这些能力。学生利用循环物体适应模块从原始深度流和本体感觉中隐式推断不可观测的物体动力学。在人形机器人上的评估和实际部署表明，单个VAIC策略成功执行高度多样化的动态任务，包括搬运箱子、推车交互和滑板，持续优于基线并推进自主人形机器人部署。",
-      "authors": [
-        "Dongting Li",
-        "Qianyang Wu",
-        "Xingyu Chen"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-08",
-      "channels": [
-        "sim2real"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-09286.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-09286-p2.jpg",
-        "assets/img/covers/arxiv-2606-09286-p3.jpg",
-        "assets/img/covers/arxiv-2606-09286-p4.jpg"
-      ],
-      "arxiv_id": "2606.09286",
-      "abs_url": "http://arxiv.org/abs/2606.09286v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.09286v1",
-      "score": 26,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "提出人形机器人全身敏捷交互控制框架，结合视觉与解耦命令，有真实部署，创新性强。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "Distillation",
-        "Vision-Guided Control",
-        "Agile Interaction"
-      ],
-      "platform": [
-        "Humanoid robot"
-      ],
-      "sim_stack": [],
-      "method_family": "Hybrid",
-      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": []
     },
@@ -1379,62 +1439,6 @@
       "method_family": "Diffusion",
       "real_robot": "yes",
       "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2606-09457",
-      "source": "arxiv",
-      "title": "$ω$-EVA: Envision, Verify, and Act with Latent Interactive World Models",
-      "title_zh": "$ω$-EVA：基于潜在交互世界模型的设想、验证与行动",
-      "tldr_zh": "提出潜在交互世界模型，让策略在行动前验证自身提议的后果。",
-      "cover_zh": "动作前先“脑补”后果？这个新框架让机器人学会三思而后行",
-      "abstract_zh": "具身策略通常直接将当前观测映射到动作，而候选动作的后果隐含其中。世界模型提供预测性监督、表征或外部模拟，但很少让策略在行动前检查自身提议的想象后果。我们提出 $ω$-EVA，一种潜在交互世界模型，实现了用于具身动作生成的“设想-验证-行动”循环。其三阶段框架学习动作条件潜在动力学，在动力学感知视觉表征上训练语言条件流策略，并将策略的提议通过世界模型反馈。一个三分支精炼器联合推理当前状态、提议条件未来和提议动作，以生成最终动作块。由于后果推理保持在潜在特征空间中，$ω$-EVA 在推理时避免了生成未来视频。在多种单臂、双臂、长时域和扰动仿真设置中的评估表明，完整的交互流程持续改进提议策略，而潜在诊断揭示了有意义的动作条件未来结构。$ω$-EVA 拥有约 12 亿参数且无需额外的机器人数据预训练，展示了紧凑且具有竞争力的性能-规模-数据权衡，使世界模型成为主动的动作反馈模块而非被动预测器。",
-      "authors": [
-        "Zhenguo Sun",
-        "Yu Sun",
-        "Hande Huang"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-08",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-09457.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-09457-p2.jpg",
-        "assets/img/covers/arxiv-2606-09457-p3.jpg",
-        "assets/img/covers/arxiv-2606-09457-p4.jpg"
-      ],
-      "arxiv_id": "2606.09457",
-      "abs_url": "http://arxiv.org/abs/2606.09457v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.09457v1",
-      "score": 16,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出潜在交互世界模型实现'设想-验证-行动'循环，用于具身动作生成，属于世界模型核心方向",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Technical University of Munich"
-      ],
-      "method_tags": [
-        "World Model",
-        "Latent Dynamics",
-        "Action-Conditioned"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "WorldModel",
-      "real_robot": "no",
-      "training_summary": "1.2B parameters, no additional robot-data pretraining",
       "demo_videos": []
     }
   ]
