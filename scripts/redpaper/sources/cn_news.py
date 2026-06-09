@@ -450,24 +450,52 @@ def _parse_qbitai_rss() -> list[dict]:
     return out
 
 
-_QBITAI_POST_HREF_RE = re.compile(
-    r'<a[^>]+href="(https://www\.qbitai\.com/(\d{4})/(\d{2})/\d+\.html)"[^>]*>(.*?)</a>',
+# 标题锚点（h2/h3/h4 包裹的 `<a href="...">title</a>`）
+_QBITAI_TITLE_ANCHOR_RE = re.compile(
+    r'<h[2-4][^>]*>\s*<a[^>]+href="(https://www\.qbitai\.com/(\d{4})/(\d{2})/\d+\.html)"[^>]*>(.*?)</a>',
     re.DOTALL,
 )
+# 时间标签：qbitai archive 把发布时刻塞在 `<span class="time">` 里，
+# 格式有三种：绝对日期 `2026-06-05` / 相对天 `昨天 11:17` `前天 20:43` /
+# 相对小时 `2小时前` `22小时前`。
+_QBITAI_TIME_SPAN_RE = re.compile(r'<span class="time">\s*([^<]+?)\s*</span>')
+
+_QBITAI_ABS_DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})")
+_QBITAI_HOURS_AGO_RE = re.compile(r"^(\d+)\s*小时前")
+_QBITAI_DAYS_AGO_RE = re.compile(r"^(\d+)\s*天前")
 
 
-def _qbitai_url_to_pubdate(year: str, month: str) -> str:
-    """qbitai 的 URL 路径段携带 YYYY/MM；至少够日期分组 / 衰减分数用。
-    默认取月中 15 号，但当年月与今天一致时夹紧到今天（避免给当月文章
-    写出未来日期）。输出 RFC822 字符串，与 RSS pubDate 路径对齐。"""
+def _qbitai_time_to_iso(text: str, today: _dt.date) -> str:
+    """Convert qbitai 的 `<span class="time">` 文本到 ISO 日期。
+
+    覆盖以下几种 qbitai 实际能渲染的格式：
+      - `2026-06-05`           → 直接拿
+      - `2小时前` / `22小时前` → 今天（小时窗口同日）
+      - `昨天 11:17`           → 今天 - 1 天
+      - `前天 20:43`           → 今天 - 2 天
+      - `3天前`                → 今天 - N 天
+    解析不出来就返回空串，让上游兜底（保持空 pubdate，前端不会乱排序）。
+    """
+    text = (text or "").strip()
+    if not text:
+        return ""
+    if m := _QBITAI_ABS_DATE_RE.match(text):
+        return m.group(1)
+    if _QBITAI_HOURS_AGO_RE.match(text):
+        return today.isoformat()
+    if text.startswith("昨天"):
+        return (today - _dt.timedelta(days=1)).isoformat()
+    if text.startswith("前天"):
+        return (today - _dt.timedelta(days=2)).isoformat()
+    if m := _QBITAI_DAYS_AGO_RE.match(text):
+        return (today - _dt.timedelta(days=int(m.group(1)))).isoformat()
+    return ""
+
+
+def _iso_to_rfc822(iso: str) -> str:
+    """ISO 日期串转 RFC822（与 RSS pubDate 对齐，方便下游 _parse_rfc822 复用）。"""
     try:
-        y, m = int(year), int(month)
-        today = _dt.date.today()
-        d = _dt.date(y, m, 15)
-        if d > today:
-            # 当月还没过半时，写 15 号会变成未来日期 → 改成今天兜底。
-            # 老月份永远在过去，不会进这个分支。
-            d = today
+        d = _dt.date.fromisoformat(iso)
         return d.strftime("%a, %d %b %Y 00:00:00 +0800")
     except Exception:
         return ""
@@ -478,27 +506,46 @@ def _parse_qbitai_archive(pages: int = 8) -> list[dict]:
     The RSS only carries ~10 latest; this gets us back ~25 posts per page
     so ~200 candidates over 8 pages = roughly 25-40 days back.
 
-    qbitai 的 article URL 形如 /2026/05/123456.html；archive 列表页不渲染
-    日期，但 URL 里就携带年月。提取出来当 pubdate，避免文章在前端显示
-    「无日期」、丢失日榜排序权重。
+    每篇文章在 archive 页里同时有 `<h4><a>title</a></h4>` 和紧随其后的
+    `<span class="time">...</span>`。我们按位置把这俩一一配对：标题锚点
+    之后第一个未消耗过的 time 标签，就是该文章的发布时间。
+
+    历史教训：之前只从 URL 取年月、当月默认 15 号 → 当月所有 archive 文章
+    被打上同一天的「未来夹紧」戳，导致 6/5–6/8 文章全显示成今天的日期、
+    和真实发布时间错位（也会被去重/排序逻辑误判为"陈旧"）。
     """
     seen: dict[str, dict] = {}
+    today = _dt.date.today()
     for p in range(1, pages + 1):
         url = f"https://www.qbitai.com/page/{p}"
         html = _safe_get(url)
         if not html:
             continue
-        for purl, yr, mo, inner in _QBITAI_POST_HREF_RE.findall(html):
-            text = _strip_tags(inner)
-            text = re.sub(r"\s+", " ", text)
-            if len(text) < 3:
+        # 收集页面里所有 time 标签的 (位置, 文本)，留待按位置匹配。
+        time_spans: list[tuple[int, str]] = [
+            (m.start(), m.group(1)) for m in _QBITAI_TIME_SPAN_RE.finditer(html)
+        ]
+        cursor = 0  # 已经被消耗到的 time span 下标
+        # 用 finditer 拿到每个标题锚点的位置，按出现顺序处理。
+        for m in _QBITAI_TITLE_ANCHOR_RE.finditer(html):
+            purl = m.group(1)
+            inner = _strip_tags(m.group(4))
+            inner = re.sub(r"\s+", " ", inner).strip()
+            if len(inner) < 3:
                 continue
             if purl in seen:
                 continue
+            # 找到位置在该标题之后、还没被任何标题消耗掉的最近一个 time span
+            iso = ""
+            while cursor < len(time_spans) and time_spans[cursor][0] < m.end():
+                cursor += 1
+            if cursor < len(time_spans):
+                iso = _qbitai_time_to_iso(time_spans[cursor][1], today)
+                cursor += 1
             seen[purl] = {
-                "title": text,
+                "title": inner,
                 "url": purl,
-                "pubdate": _qbitai_url_to_pubdate(yr, mo),
+                "pubdate": _iso_to_rfc822(iso),
                 "desc": "",
                 "lang": "zh",
             }
