@@ -1,0 +1,102 @@
+{
+  "id": "arxiv-2606-09749",
+  "source": "arxiv",
+  "title": "Your Model Already Knows: Attention-Guided Safety Filter for Vision-Language-Action Models",
+  "title_zh": "你的模型早已知道：面向视觉-语言-动作模型的注意力引导安全过滤器",
+  "abstract": "Vision-Language-Action (VLA) models have demonstrated impressive end-to-end performance across a variety of robotic manipulation tasks. However, these policies offer no guarantees against collisions with task-irrelevant objects in the scene. Existing safety filters sidestep this problem by querying a vision-language model (VLM) to identify obstacles and their locations. This, however, is too slow to run in the control loop and can only be invoked at episode initialization, leaving the filter unable to track moving obstacles. We discover that a small number of attention heads within a VLA model reliably localize the object the policy intends to approach. These heads can be exploited within a training-free safety framework that obtains the active target from the attention heads at every step, treats the remainder of the scene as obstacles, and feeds these into a Control Barrier Function (CBF) filter. Together with a lightweight real-time object tracker, this allows for collision avoidance for non-static obstacles. We evaluate our framework on SafeLIBERO, which we extend with moving obstacles. On the original static benchmark, our method performs comparably to an oracle that uses privileged simulator state to identify the target, emulating a VLM-based identification step run once at episode initialization. On the dynamic variant, where the oracle's init-time target assignment becomes stale, our method substantially outperforms it by 43%, on average. Our findings suggest that the perceptual signals needed for real-time safety filtering are already present within VLA policies and can be exploited without additional training or heavy auxiliary models.",
+  "abstract_zh": "视觉-语言-动作（VLA）模型在多种机器人操作任务中展现了出色的端到端性能。然而，这些策略无法保证避免与场景中任务无关的物体发生碰撞。现有的安全过滤器通过查询视觉-语言模型（VLM）来识别障碍物及其位置，但这在控制循环中运行速度过慢，只能在回合初始化时调用一次，导致过滤器无法跟踪移动障碍物。我们发现，VLA模型中的少数注意力头能够可靠地定位策略意图接近的目标物体。这些注意力头可以在一个无需训练的安全框架中被利用：该框架每步从注意力头中获取活动目标，将场景其余部分视为障碍物，并将其输入控制障碍函数（CBF）过滤器。结合轻量级实时目标跟踪器，这能够避免与非静态障碍物的碰撞。我们在SafeLIBERO上评估了我们的框架，并扩展了移动障碍物场景。在原始静态基准上，我们的方法性能与一个使用特权模拟器状态识别目标（模拟基于VLM的识别步骤在回合初始化时运行一次）的oracle相当。在动态变体中，oracle的初始化目标分配变得过时，我们的方法平均优于其43%。我们的发现表明，实时安全过滤所需的感知信号已经存在于VLA策略中，无需额外训练或重型辅助模型即可利用。",
+  "tldr_zh": "利用VLA模型内部注意力头实现无需训练的实时安全过滤，动态场景优于oracle 43%",
+  "cover_zh": "无需额外训练｜VLA模型自带的注意力头就能实时避障，动态场景反杀oracle 43%",
+  "authors": [
+    {
+      "name": "Seongbin Park",
+      "affiliation": ""
+    },
+    {
+      "name": "Fan Zhang",
+      "affiliation": ""
+    },
+    {
+      "name": "Baharan Mirzasoleiman",
+      "affiliation": ""
+    },
+    {
+      "name": "Shahriar Talebi",
+      "affiliation": ""
+    },
+    {
+      "name": "Nader Sehatbakhsh",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.LG"
+  ],
+  "published": "2026-06-08",
+  "updated": "2026-06-08",
+  "arxiv_id": "2606.09749",
+  "pdf_url": "https://arxiv.org/pdf/2606.09749v1",
+  "abs_url": "http://arxiv.org/abs/2606.09749v1",
+  "cover_image": "assets/img/covers/arxiv-2606-09749.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2606-09749-p2.jpg",
+    "assets/img/covers/arxiv-2606-09749-p3.jpg",
+    "assets/img/covers/arxiv-2606-09749-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 14,
+  "source_tags": [],
+  "score": 25,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 4 个（vision-language-action、vla model、manipulation、libero）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 14 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出VLA模型注意力引导的安全过滤器，无需额外训练，显著提升动态避障性能，具有高科研价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "UCLA"
+  ],
+  "method_tags": [
+    "Safety Filter",
+    "Control Barrier Function",
+    "Attention-Guided"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "Hybrid",
+  "real_robot": "no",
+  "training_summary": "",
+  "demo_videos": []
+}
