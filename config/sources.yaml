@@ -65,10 +65,11 @@ sources:
     lookback_days: 30         # 只要近 30 天的视频
 
   # ---------- P7: LLM 联网发现 ----------
-  # discover.py 用 Gemini-2.0/2.5 flash 带 google_search grounding 主动找最近
-  # arxiv 论文，专门补 channels.yaml 关键词漏召回的工作（新工作命名 / 新平台）。
-  # 必须有 GEMINI_API_KEY 才会真联网；没 key 时回退 DeepSeek 知识推理（对最新
-  # 论文效果一般，因训练截止落后几个月）。
+  # discover.py 用 Gemini flash 带 google_search grounding 主动找最近 arxiv
+  # 论文，专门补 channels.yaml 关键词漏召回的工作（新工作命名 / 新平台）。
+  # 多模型 fallback：gemini-2.5-flash → 2.0-flash → 2.5-flash-lite。
+  # 必须有 GEMINI_API_KEY 才会真联网；没 key 时整步跳过（不再回退 DeepSeek
+  # 知识推理 —— DeepSeek 不能联网，纯靠记忆会编连号假 arxiv ID）。
   # 候选 ID 全部走 arxiv API 验证一遍，防 LLM 幻觉编 ID。
   discover:
     enabled: true
