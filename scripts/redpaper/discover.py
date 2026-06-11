@@ -7,8 +7,10 @@
     带搜索能力的 LLM 去扫，专门补关键词漏召回的论文。
 
 后端选择：
-    优先 Gemini-2.0-flash 带 google_search grounding（真实联网，免费层 1500/day），
-    没有 GEMINI_API_KEY 时回退 DeepSeek-V4 + 知识推理（不联网，靠模型记忆推断）。
+    Gemini 系列 + `google_search` grounding（真实联网，免费层 1500/day）。
+    多模型 fallback：gemini-2.5-flash → 2.0-flash → 2.5-flash-lite，任一成功就用。
+    历史上试过 DeepSeek-V4 知识推理兜底，但 DeepSeek 没有联网能力 → 编出来的
+    arxiv ID 几乎全是假号（连号 hallucination），反而污染验证步骤，已经移除。
 
 输出：
     list[Paper]，已经验证过 arxiv ID 真实存在、且不在现有数据集里的。可以
@@ -31,13 +33,18 @@ from .models import Paper
 
 log = logging.getLogger(__name__)
 
-DEEPSEEK_URL = "https://api.deepseek.com/chat/completions"
 GEMINI_URL_TMPL = (
     "https://generativelanguage.googleapis.com/v1beta/models/"
     "{model}:generateContent?key={api_key}"
 )
-GEMINI_MODEL = os.environ.get("REDPAPER_DISCOVER_GEMINI_MODEL", "gemini-2.5-flash")
-DEEPSEEK_MODEL = os.environ.get("REDPAPER_DISCOVER_DEEPSEEK_MODEL", "deepseek-chat")
+# Gemini 模型 fallback 链。第一个 503/超时就降级到下一个；都失败 → 放弃 discover。
+# 注意：gemini-2.0-flash 用 `google_search` 工具 schema；1.5 系列只支持
+# `google_search_retrieval`，老 schema 已经放弃支持，所以这里只保留 2.x。
+GEMINI_MODELS = [
+    os.environ.get("REDPAPER_DISCOVER_GEMINI_MODEL", "gemini-2.5-flash"),
+    "gemini-2.0-flash",
+    "gemini-2.5-flash-lite",
+]
 ARXIV_ID_RE = re.compile(r"(\d{4})\.(\d{4,6})")
 
 
@@ -92,19 +99,16 @@ _URL_ARXIV_ID_RE = re.compile(
 
 # ----- Gemini grounded search ----------------------------------------------
 
-def _call_gemini_grounded(days: int, per_channel: int, timeout: float = 90) -> list[dict]:
-    """Gemini-2.0/2.5 flash with google_search grounding tool. 真实联网。"""
-    api_key = os.environ.get("GEMINI_API_KEY")
-    if not api_key:
-        raise RuntimeError("GEMINI_API_KEY not set")
-    url = GEMINI_URL_TMPL.format(model=GEMINI_MODEL, api_key=api_key)
+def _call_gemini_one_model(
+    model: str, api_key: str, days: int, per_channel: int, timeout: float = 90
+) -> list[dict]:
+    """Single-model Gemini grounded-search call. Raises on HTTP error so the
+    caller can decide whether to try the next model in the fallback chain."""
+    url = GEMINI_URL_TMPL.format(model=model, api_key=api_key)
     prompt = _SYSTEM_PROMPT.format(days=days, per_channel=per_channel)
-    # Gemini's grounding tool comes in two API names depending on model gen:
-    #   gemini-1.5: "google_search_retrieval"
-    #   gemini-2.0/2.5: "google_search"
-    # We default to 2.0+ and let the user override via env if needed.
     body = {
         "contents": [{"role": "user", "parts": [{"text": prompt}]}],
+        # Gemini 2.x grounding tool name.
         "tools": [{"google_search": {}}],
         "generationConfig": {
             "temperature": 0.2,
@@ -114,50 +118,45 @@ def _call_gemini_grounded(days: int, per_channel: int, timeout: float = 90) -> l
     }
     r = requests.post(url, json=body, timeout=timeout)
     if r.status_code >= 400:
-        log.warning("gemini discover HTTP %d: %s", r.status_code, r.text[:500])
+        snippet = (r.text or "")[:300].replace("\n", " ")
+        log.info("gemini[%s] HTTP %d: %s", model, r.status_code, snippet)
         r.raise_for_status()
     data = r.json()
-    # Cherry-pick the model output
     try:
         text = data["candidates"][0]["content"]["parts"][0]["text"]
     except (KeyError, IndexError) as e:
-        log.warning("gemini discover: cannot parse response: %s", data)
-        raise RuntimeError(f"unexpected gemini response shape: {e}")
-    papers = _extract_papers_from_text(text)
-    log.info("gemini discover: parsed %d candidates", len(papers))
-    return papers
+        raise RuntimeError(f"unexpected gemini response shape for {model}: {e}") from e
+    return _extract_papers_from_text(text)
 
 
-# ----- DeepSeek knowledge fallback -----------------------------------------
+def _call_gemini_grounded(days: int, per_channel: int, timeout: float = 90) -> list[dict]:
+    """Gemini grounded search 多模型 fallback。
 
-def _call_deepseek_knowledge(days: int, per_channel: int, timeout: float = 60) -> list[dict]:
-    """DeepSeek-V4 不能联网；纯靠模型训练知识推理。仅作 Gemini 不可用时的
-    兜底，对 2026 年最新论文几乎无效（训练截止往往落后几个月）。"""
-    api_key = os.environ.get("DEEPSEEK_API_KEY")
+    503 / quota / 任意 HTTP 错都自动降级到下一个模型；全部失败抛 RuntimeError。
+    成功后立刻返回（不再尝试更多模型），并打印用的是哪个。
+    """
+    api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
-        raise RuntimeError("DEEPSEEK_API_KEY not set")
-    prompt = _SYSTEM_PROMPT.format(days=days, per_channel=per_channel)
-    body = {
-        "model": DEEPSEEK_MODEL,
-        "messages": [
-            {"role": "system", "content": prompt},
-            {"role": "user", "content": "请按上面 JSON 格式给出。"},
-        ],
-        "response_format": {"type": "json_object"},
-        "temperature": 0.2,
-        "max_tokens": 2000,
-    }
-    r = requests.post(
-        DEEPSEEK_URL,
-        json=body,
-        timeout=timeout,
-        headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
-    )
-    r.raise_for_status()
-    text = r.json()["choices"][0]["message"]["content"]
-    papers = _extract_papers_from_text(text)
-    log.info("deepseek discover (knowledge-only): parsed %d candidates", len(papers))
-    return papers
+        raise RuntimeError("GEMINI_API_KEY not set")
+    last_exc: Exception | None = None
+    # 去重保持顺序：用户 override 的模型有可能与默认链里某项重复。
+    tried_models = list(dict.fromkeys(m for m in GEMINI_MODELS if m))
+    for model in tried_models:
+        try:
+            papers = _call_gemini_one_model(model, api_key, days, per_channel, timeout)
+            log.info("gemini[%s] discover: parsed %d candidates", model, len(papers))
+            return papers
+        except Exception as e:
+            last_exc = e
+            log.info("gemini[%s] failed (%s); trying next model", model, str(e)[:120])
+            continue
+    raise RuntimeError(f"all gemini models failed (last: {last_exc})")
+
+
+# DeepSeek 没有 web grounding 能力，纯靠模型记忆猜 arxiv ID 几乎 100% 编号
+# 都是 hallucination（实测连号假 ID 2504.12345 / 12346 / 12347 ...）。
+# 留着只会浪费 arxiv 验证调用 + 制造 log 噪音 → 移除该 fallback。
+# 如果哪天 DeepSeek 接入联网 / function-calling，可以再加回来。
 
 
 def _extract_papers_from_text(text: str) -> list[dict]:
@@ -306,12 +305,9 @@ def discover_recent_papers(
         try:
             candidates = _call_gemini_grounded(days, per_channel)
         except Exception as e:
-            log.warning("gemini discover failed (%s); falling back to deepseek", e)
-    if not candidates and os.environ.get("DEEPSEEK_API_KEY"):
-        try:
-            candidates = _call_deepseek_knowledge(days, per_channel)
-        except Exception as e:
-            log.warning("deepseek discover failed (%s); giving up", e)
+            log.warning("gemini discover failed (%s); skipping discover step", e)
+    else:
+        log.info("discover: GEMINI_API_KEY not set, skipping (DeepSeek 无联网能力, 不再 fallback)")
     if not candidates:
         return []
     log.info("discover: %d LLM candidates, validating against arxiv...", len(candidates))

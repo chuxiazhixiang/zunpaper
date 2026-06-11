@@ -19,11 +19,17 @@
   const CANVAS_WIDTH = 240;
   const CANVAS_HEIGHT = 320;
 
-  // 6 个表情参数（从 cdi3.json 的「表情」ParamGroup 里提取）：
+  // 「表情」ParamGroup（出处：cdi3.json）一共 7 个 Param：
   //   Param  = 眼镜    Param2 = 啊这    Param3 = 好耶
   //   Param4 = 红     Param5 = 汉      Param6 = 手     Param7 = 眼睛
-  // Param 是「眼镜」属于装饰用，不参与切换。
-  const EXPR_PARAMS = ['Param2', 'Param3', 'Param4', 'Param5', 'Param6', 'Param7'];
+  // 只有 Param2..Param6 是"附加表情贴图"（脸红/汉字/手势），开到 1 是叠加，
+  // 不影响主要五官 → 适合做随机切换。
+  // 排除：
+  //   - Param（眼镜）：装饰道具，长期挂着不变。
+  //   - Param7（眼睛）：是"眼睛形态切换"，开到 1 = 用另一套眼睛贴图替换默认
+  //     的，对这个模型来说看起来等于"眼睛没了"。误塞进随机池会导致每 9-15s
+  //     眼睛闪没一次，持续 2.5-4.5s。
+  const EXPR_PARAMS = ['Param2', 'Param3', 'Param4', 'Param5', 'Param6'];
 
   if (typeof window === 'undefined' || !window.document) return;
   if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
@@ -170,8 +176,9 @@
 
     // ----- Random expression switcher ---------------------------------------
     // 这套模型在 model3.json 里没声明 expressions 数组，但 cdi3.json 里
-    // 「表情」ParamGroup 下有 Param2..Param7。我们直接把它们当离散开关用：
-    // 每隔 9-15s 随机点亮一个，2-4s 后归零。
+    // 「表情」ParamGroup 下有 Param2..Param6 这种纯叠加的表情贴图（见上面
+    // EXPR_PARAMS 注释）。我们直接把它们当离散开关用：每隔 9-15s 随机点
+    // 亮一个，2-4s 后归零。
     let activeParam = null;
     function setExpr(id, value) {
       try {
