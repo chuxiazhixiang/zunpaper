@@ -1,6 +1,6 @@
 {
   "date": "2026-06-10",
-  "count": 25,
+  "count": 27,
   "papers": [
     {
       "id": "arxiv-2606-11891",
@@ -1256,6 +1256,121 @@
       "method_family": "WorldModel",
       "real_robot": "no",
       "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2606-12728",
+      "source": "arxiv",
+      "title": "EquiDexFlow: Contact-Grounded SE(3)-Equivariant Dexterous Grasp Generative Flows",
+      "title_zh": "EquiDexFlow：基于接触的SE(3)等变灵巧抓取生成流",
+      "tldr_zh": "SE(3)等变流模型联合预测抓取姿态与接触力，实现零摩擦违规的物理稳定抓取。",
+      "cover_zh": "抓取生成还能保证物理稳定？这个模型直接预测接触力，零摩擦违规！",
+      "abstract_zh": "大多数学习的灵巧抓取生成器将接触力归入下游验证步骤，因此运动学上可行的姿态仍可能违反稳定物理抓取的条件。我们通过EquiDexFlow解决这一问题，这是一种SE(3)等变流匹配模型，可从物体点云联合预测手腕姿态、关节角度、指尖接触点、表面法线和接触力。我们的架构通过构造将接触点投影到物体表面，并将力投影到库仑摩擦锥内，因此无需损失惩罚即可满足放置和摩擦合规性。我们证明了端到端的SE(3)等变性，并在200次旋转上经验验证，手腕残差低于0.04°，关节偏差精确为零。在16自由度Allegro Hand的81个物体上的8,100个力闭合抓取上训练，我们的模型在所有消融变体中实现了零摩擦违规、最佳综合得分和最低扳手残差。我们通过每指逆运动学将解码的指尖接触点重定位到16自由度LEAP Hand，我们的硬件可行优化使每个关节至少位于其执行器包络线内部5%，同时保持扳手平衡。在物理机器人上，重定位的EquiDexFlow解码抓取在所有六个测试物体上完成了开环抓取保持试验，每个非对称物体在标准姿态和120°共旋转下均成功。视频、代码和检查点见https://equidexflow.github.io。",
+      "authors": [
+        "Clinton Enwerem",
+        "John S. Baras",
+        "Calin Belta"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-10",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-12728.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-12728-p2.jpg",
+        "assets/img/covers/arxiv-2606-12728-p3.jpg",
+        "assets/img/covers/arxiv-2606-12728-p4.jpg"
+      ],
+      "arxiv_id": "2606.12728",
+      "abs_url": "http://arxiv.org/abs/2606.12728v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.12728v1",
+      "score": 19,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "SE(3)-等变流匹配灵巧手抓取，联合预测接触力与摩擦锥，物理机器人验证，算法创新强。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Maryland"
+      ],
+      "method_tags": [
+        "Flow Matching",
+        "SE(3)-Equivariant",
+        "Dexterous Grasping"
+      ],
+      "platform": [
+        "Allegro Hand",
+        "LEAP Hand"
+      ],
+      "sim_stack": [],
+      "method_family": "Diffusion",
+      "real_robot": "yes",
+      "training_summary": "8,100 force-closure grasps across 81 objects",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2606-12759",
+      "source": "arxiv",
+      "title": "Sparse2Act: Learning Action-Aligned Sparse 3D Representations for Cross-Domain Robot Manipulation",
+      "title_zh": "Sparse2Act：学习动作对齐的稀疏3D表示用于跨域机器人操作",
+      "tldr_zh": "利用动作作为几何监督预训练稀疏3D编码器，实现跨域机器人操作的高效迁移。",
+      "cover_zh": "机器人操作新突破｜用动作对齐稀疏3D表示，跨域迁移成功率飙升",
+      "abstract_zh": "显式3D表示因其能在度量坐标中揭示物体形状、工作空间几何以及机器人-物体关系而备受操作任务青睐。然而，稀疏3D编码器通常通过下游任务目标进行学习，导致表示与特定数据分布、策略架构和动作参数化绑定。我们提出Sparse2Act，一种用于预训练稀疏点云编码器的观测-动作对齐框架。核心思想是利用任务空间末端执行器动作作为几何监督：掩码稀疏3D令牌被训练以组织与观测配对的工作空间运动周围的场景特征。预训练后，下游策略仅复用编码器初始化，从而保留其自身架构和动作空间（包括关节空间命令）。在LIBERO-10基准上，我们的方法在500次微调步骤后达到86.9%的平均成功率。同一预训练编码器支持LIBERO到Meta-World的跨域迁移，在Meta-World-5基准上达到73.4%的平均成功率。关于目标和解码器容量的消融实验表明，性能提升来自掩码动作对齐信号，且该信号对下游动作解码器仍然有用。在真实世界实验中，仿真预训练后结合有限真实数据微调，在四个任务上平均成功率为72.5%，展示了有效的仿真到现实迁移。这些结果表明，机器人动作可以为可复用的稀疏3D表示提供紧凑的几何监督。",
+      "authors": [
+        "Yu Guo",
+        "Chang Yu",
+        "Siyu Ma"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-10",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-12759.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-12759-p2.jpg",
+        "assets/img/covers/arxiv-2606-12759-p3.jpg",
+        "assets/img/covers/arxiv-2606-12759-p4.jpg"
+      ],
+      "arxiv_id": "2606.12759",
+      "abs_url": "http://arxiv.org/abs/2606.12759v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.12759v1",
+      "score": 19,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出动作对齐的稀疏3D表征预训练方法，在LIBERO和Meta-World上表现优异，支持跨域和sim2real迁移，对操作学习有重要价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "UCLA"
+      ],
+      "method_tags": [
+        "sparse 3D representation",
+        "action-aligned pretraining",
+        "cross-domain transfer"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "Foundation",
+      "real_robot": "yes",
+      "training_summary": "500 fine-tuning steps on LIBERO-10",
       "demo_videos": []
     },
     {
