@@ -747,6 +747,63 @@
       "demo_videos": []
     },
     {
+      "id": "arxiv-2606-12759",
+      "source": "arxiv",
+      "title": "Sparse2Act: Learning Action-Aligned Sparse 3D Representations for Cross-Domain Robot Manipulation",
+      "title_zh": "Sparse2Act：学习动作对齐的稀疏3D表示用于跨域机器人操作",
+      "tldr_zh": "利用动作作为几何监督预训练稀疏3D编码器，实现跨域机器人操作的高效迁移。",
+      "cover_zh": "机器人操作新突破｜用动作对齐稀疏3D表示，跨域迁移成功率飙升",
+      "abstract_zh": "显式3D表示因其能在度量坐标中揭示物体形状、工作空间几何以及机器人-物体关系而备受操作任务青睐。然而，稀疏3D编码器通常通过下游任务目标进行学习，导致表示与特定数据分布、策略架构和动作参数化绑定。我们提出Sparse2Act，一种用于预训练稀疏点云编码器的观测-动作对齐框架。核心思想是利用任务空间末端执行器动作作为几何监督：掩码稀疏3D令牌被训练以组织与观测配对的工作空间运动周围的场景特征。预训练后，下游策略仅复用编码器初始化，从而保留其自身架构和动作空间（包括关节空间命令）。在LIBERO-10基准上，我们的方法在500次微调步骤后达到86.9%的平均成功率。同一预训练编码器支持LIBERO到Meta-World的跨域迁移，在Meta-World-5基准上达到73.4%的平均成功率。关于目标和解码器容量的消融实验表明，性能提升来自掩码动作对齐信号，且该信号对下游动作解码器仍然有用。在真实世界实验中，仿真预训练后结合有限真实数据微调，在四个任务上平均成功率为72.5%，展示了有效的仿真到现实迁移。这些结果表明，机器人动作可以为可复用的稀疏3D表示提供紧凑的几何监督。",
+      "authors": [
+        "Yu Guo",
+        "Chang Yu",
+        "Siyu Ma"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-10",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-12759.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-12759-p2.jpg",
+        "assets/img/covers/arxiv-2606-12759-p3.jpg",
+        "assets/img/covers/arxiv-2606-12759-p4.jpg"
+      ],
+      "arxiv_id": "2606.12759",
+      "abs_url": "http://arxiv.org/abs/2606.12759v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.12759v1",
+      "score": 27,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出动作对齐的稀疏3D表征预训练方法，在LIBERO和Meta-World上表现优异，支持跨域和sim2real迁移，对操作学习有重要价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "UCLA"
+      ],
+      "method_tags": [
+        "sparse 3D representation",
+        "action-aligned pretraining",
+        "cross-domain transfer"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "Foundation",
+      "real_robot": "yes",
+      "training_summary": "500 fine-tuning steps on LIBERO-10",
+      "demo_videos": []
+    },
+    {
       "id": "arxiv-2606-12109",
       "source": "arxiv",
       "title": "Bridging the Morphology Gap: Adapting VLA Models to Dexterous Manipulation via Intent-Conditioned Fine-Tuning",
@@ -1315,62 +1372,6 @@
       "method_family": "Diffusion",
       "real_robot": "yes",
       "training_summary": "8,100 force-closure grasps across 81 objects",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2606-12759",
-      "source": "arxiv",
-      "title": "Sparse2Act: Learning Action-Aligned Sparse 3D Representations for Cross-Domain Robot Manipulation",
-      "title_zh": "Sparse2Act：学习动作对齐的稀疏3D表示用于跨域机器人操作",
-      "tldr_zh": "利用动作作为几何监督预训练稀疏3D编码器，实现跨域机器人操作的高效迁移。",
-      "cover_zh": "机器人操作新突破｜用动作对齐稀疏3D表示，跨域迁移成功率飙升",
-      "abstract_zh": "显式3D表示因其能在度量坐标中揭示物体形状、工作空间几何以及机器人-物体关系而备受操作任务青睐。然而，稀疏3D编码器通常通过下游任务目标进行学习，导致表示与特定数据分布、策略架构和动作参数化绑定。我们提出Sparse2Act，一种用于预训练稀疏点云编码器的观测-动作对齐框架。核心思想是利用任务空间末端执行器动作作为几何监督：掩码稀疏3D令牌被训练以组织与观测配对的工作空间运动周围的场景特征。预训练后，下游策略仅复用编码器初始化，从而保留其自身架构和动作空间（包括关节空间命令）。在LIBERO-10基准上，我们的方法在500次微调步骤后达到86.9%的平均成功率。同一预训练编码器支持LIBERO到Meta-World的跨域迁移，在Meta-World-5基准上达到73.4%的平均成功率。关于目标和解码器容量的消融实验表明，性能提升来自掩码动作对齐信号，且该信号对下游动作解码器仍然有用。在真实世界实验中，仿真预训练后结合有限真实数据微调，在四个任务上平均成功率为72.5%，展示了有效的仿真到现实迁移。这些结果表明，机器人动作可以为可复用的稀疏3D表示提供紧凑的几何监督。",
-      "authors": [
-        "Yu Guo",
-        "Chang Yu",
-        "Siyu Ma"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-10",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-12759.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-12759-p2.jpg",
-        "assets/img/covers/arxiv-2606-12759-p3.jpg",
-        "assets/img/covers/arxiv-2606-12759-p4.jpg"
-      ],
-      "arxiv_id": "2606.12759",
-      "abs_url": "http://arxiv.org/abs/2606.12759v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.12759v1",
-      "score": 19,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出动作对齐的稀疏3D表征预训练方法，在LIBERO和Meta-World上表现优异，支持跨域和sim2real迁移，对操作学习有重要价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "UCLA"
-      ],
-      "method_tags": [
-        "sparse 3D representation",
-        "action-aligned pretraining",
-        "cross-domain transfer"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Foundation",
-      "real_robot": "yes",
-      "training_summary": "500 fine-tuning steps on LIBERO-10",
       "demo_videos": []
     },
     {
