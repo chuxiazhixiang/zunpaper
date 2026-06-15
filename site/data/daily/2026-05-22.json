@@ -3,6 +3,73 @@
   "count": 15,
   "papers": [
     {
+      "id": "arxiv-2605-23568",
+      "source": "arxiv",
+      "title": "TactileReflex: Noise-Statistics-Driven Vision-Tactile Reflex Control for Force-Sensitive Manipulation",
+      "title_zh": "TactileReflex：基于噪声统计的视觉-触觉反射控制用于力敏感操作",
+      "tldr_zh": "利用传感器噪声统计直接设定阈值，实现易碎容器抓取的三通道反射控制。",
+      "cover_zh": "不用力传感器也能精准抓杯子？噪声统计直接算出阈值，成功率拉满！",
+      "abstract_zh": "操作易碎的可变形容器（例如装有液体的一次性塑料杯）需要在极窄的力裕度内实时调整抓取力：力不足会导致滑落，力过大则会不可逆地使薄壁变形。现有方法难以实现此类力敏感操作任务。我们提出了一种基于噪声统计的标定驱动反射控制范式，结合基于视觉的触觉传感：通过分析传感器固有的噪声特性（通过简短的静态保持和卸载协议），直接推导出所有控制器阈值，消除了外部力标定、试错手动调参或材料特定的物理模型。实例化该范式，我们提出了TactileReflex，一个三通道闭环控制器，从双视觉-触觉传感器中提取三个图像级代理：剪切强度（$S_y$）、接触强度（$F_n$）和压力中心（$C$），并以约12 Hz的频率驱动优先级反射通道，用于滑移抑制、重量自适应释放和力保护。每个通道通过噪声导出的阈值直接在其代理上闭环。消融实验表明，只有完整的三通道系统能够防止不可逆的容器变形（5/5成功，而部分配置最多1/5）。在动态倒水任务中，固定力基线由于姿态漂移在所有10次尝试中均失败，而TactileReflex在两种水量下实现了9/10的成功率。作为一个自包含且可解释的控制器，TactileReflex可作为高层操作管线（包括无触觉VR遥操作和视觉-语言-动作（VLA）策略）的即插即用安全层。",
+      "authors": [
+        "Ziyan Feng",
+        "Yulong Fu",
+        "Zheng Li"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-22",
+      "channels": [
+        "manipulation",
+        "teleop"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ SJTU"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKUST"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-23568.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-23568-p2.jpg",
+        "assets/img/covers/arxiv-2605-23568-p3.jpg",
+        "assets/img/covers/arxiv-2605-23568-p4.jpg"
+      ],
+      "arxiv_id": "2605.23568",
+      "abs_url": "http://arxiv.org/abs/2605.23568v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.23568v1",
+      "score": 45,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出基于触觉的力敏感操作反射控制，方法新颖且实验充分，对灵巧操作有重要参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "The Hong Kong University of Science and Technology (Guangzhou)",
+        "Shanghai Jiao Tong University"
+      ],
+      "method_tags": [
+        "reflex control",
+        "vision-based tactile sensing",
+        "noise-statistics-based calibration"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
       "id": "arxiv-2605-23128",
       "source": "arxiv",
       "title": "$π_0$-EqM: Equilibrium Matching for Closed-Loop Vision-Language-Action Control",
@@ -23,7 +90,7 @@
       "badges": [
         {
           "kind": "lab",
-          "label": "⭐ 上海 AI Lab"
+          "label": "⭐ SJTU"
         },
         {
           "kind": "lab",
@@ -49,17 +116,140 @@
       },
       "institutions": [
         "University of Science and Technology of China",
-        "Shanghai Artificial Intelligence Laboratory"
+        "Shanghai Jiao Tong University"
       ],
       "method_tags": [
         "Equilibrium Matching",
-        "VLA",
-        "flow-matching"
+        "flow-matching",
+        "VLA"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "VLA",
-      "real_robot": "no",
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2605-23733",
+      "source": "arxiv",
+      "title": "Any2Any: Efficient Cross-Embodiment Transfer for Humanoid Whole-Body Tracking",
+      "title_zh": "Any2Any：面向人形机器人全身追踪的高效跨本体迁移",
+      "tldr_zh": "仅用1%数据计算，预训练全身追踪模型即可高效迁移至新人形机器人。",
+      "cover_zh": "人形机器人换身体不用重练？Any2Any用1%成本实现全身追踪迁移",
+      "abstract_zh": "全身追踪（WBT）模型已成为人形机器人的关键基础，使其能够高保真地模仿多样动作。从头训练此类模型需要大规模数据和计算，导致在新人形平台上快速部署成本高昂。这引出一个自然问题：预训练的WBT模型能否通过最小化适配跨本体迁移？为回答此问题，我们提出Any2Any，一种仅需少量数据和计算即可将现有WBT专家高效迁移至新人形本体的范式。Any2Any首先在源和目标人形之间进行运动学对齐，对齐其输入和输出空间，使得预训练源策略能在目标本体上有意义地重用。随后，Any2Any通过向选定的动力学敏感模块应用轻量级参数高效微调（PEFT）组件进行动力学适配，保留有用的行为先验，同时实现对目标机器人的定向适配。在多个人形平台和预训练骨干上的大量实验表明，与从头训练相比，Any2Any显著加速收敛并降低训练成本，同时达到具有竞争力或更优的追踪性能。值得注意的是，仅使用完整训练所需1%的计算和数据，Any2Any成功将预训练于Unitree G1的Sonic模型迁移至LimX Oli和LimX Luna。这些结果表明，预训练的WBT专家可在不同本体间高效重用，为在新机器人上部署人形全身控制提供了可扩展路径。",
+      "authors": [
+        "Ming Yang",
+        "Tao Yu",
+        "Feng Li"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-22",
+      "channels": [
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Limx Dynamics"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-23733.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-23733-p2.jpg",
+        "assets/img/covers/arxiv-2605-23733-p3.jpg",
+        "assets/img/covers/arxiv-2605-23733-p4.jpg"
+      ],
+      "arxiv_id": "2605.23733",
+      "abs_url": "http://arxiv.org/abs/2605.23733v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.23733v1",
+      "score": 40,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出跨本体迁移的全身跟踪方法，高效适配新平台，对具身迁移学习有重要价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "LimX Dynamics"
+      ],
+      "method_tags": [
+        "cross-embodiment transfer",
+        "parameter-efficient fine-tuning",
+        "kinematic alignment"
+      ],
+      "platform": [
+        "Unitree G1",
+        "LimX Oli",
+        "LimX Luna"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2605-23341",
+      "source": "arxiv",
+      "title": "Sparse Compositional Flow Matching by geometric assembly from motion primitives",
+      "title_zh": "稀疏组合流匹配：基于运动基元的几何组装",
+      "tldr_zh": "提出稀疏组合流匹配，通过运动基元字典学习和几何约束直接生成具身轨迹，精度提升显著。",
+      "cover_zh": "不用逐点生成轨迹｜直接组装运动基元，精度飙升还更省样本",
+      "abstract_zh": "具身轨迹，例如机器人机械臂、水下航行器和移动机器人的可执行运动序列，是具身AI的基本输出。现代生成模型通常将其视为密集的、整体的信号，逐点生成，拟合复杂的高维后验，却未对数据的潜在结构进行建模，这正是结构化生成模型文献早已指出的样本效率低下问题。我们认为组合潜在结构是一种自然的选择：许多具身任务共享可重复出现的运动片段，这些片段可以显式地表示为有限的可重用运动基元库，并且组合单元自然地与子任务边界对齐，以支持任务分解。然而，现有的组合生成器在潜在空间中进行组合，并依赖事后解码将采样单元与实际轨迹段关联起来。我们则通过一个具有两个耦合设计的流匹配框架，直接在物理轨迹空间中进行组合。运动基元字典学习为每个原子配备了一个可学习的长度掩码和二进制起始指示符，使得原子本身即为基元，无论放置在哪里都逐字重用。具有几何约束的结构稀疏流匹配随后通过持续时间感知的标记化和可微的几何损失生成一个二进制放置矩阵，该损失在相邻基元连接处强制执行空间连续性和时间连续性。在Open X-Embodiment和3DMoTraj上，该框架达到了最先进的精度，并将FDE/ADE比率从1.8降至1.07，在最强基线上ADE提高了19.2%，FDE提高了21.0%。",
+      "authors": [
+        "Yan Tang",
+        "Yuanbo Tang",
+        "Tingyu Cao"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-22",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-23341.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-23341-p2.jpg",
+        "assets/img/covers/arxiv-2605-23341-p3.jpg",
+        "assets/img/covers/arxiv-2605-23341-p4.jpg"
+      ],
+      "arxiv_id": "2605.23341",
+      "abs_url": "http://arxiv.org/abs/2605.23341v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.23341v1",
+      "score": 34,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出稀疏组合流匹配框架，从运动基元几何组装生成具身轨迹，在Open X-Embodiment上取得SOTA，对操作任务有高科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Tsinghua Shenzhen Graduate School, Tsinghua University",
+        "School of AI, Chinese University of Hong Kong (Shenzhen)"
+      ],
+      "method_tags": [
+        "Flow Matching",
+        "Compositional Generation",
+        "Motion Primitive"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -106,125 +296,18 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "University of Hong Kong"
+        "The University of Hong Kong",
+        "Southern University of Science and Technology"
       ],
       "method_tags": [
         "Diffusion Policy",
         "Mixture-of-Experts",
-        "Compositional Manipulation"
+        "compositional manipulation"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "Diffusion",
+      "method_family": "",
       "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2605-23523",
-      "source": "arxiv",
-      "title": "ComPose: When to Trust Hands for Object Pose Tracking",
-      "title_zh": "ComPose：何时信任手部信息进行物体姿态追踪",
-      "tldr_zh": "提出ComPose框架，利用手部运动作为补充线索进行鲁棒的物体姿态追踪。",
-      "cover_zh": "手不是遮挡物而是线索？这个追踪框架让物体姿态估计更准更稳",
-      "abstract_zh": "从视频中重建物体的运动是具身AI和机器人操作的关键组成部分。尽管已有多种物体姿态追踪方法，但它们严重依赖强大的外部先验（如深度数据或3D模板），并且即使使用了显式掩码，在手部抓握造成的严重遮挡下仍然非常脆弱。在这项工作中，我们提出了ComPose，一个面向从RGB视频进行手部感知物体姿态估计的6DoF物体追踪框架。我们的方法不将手部纯粹视为遮挡物，而是将手部运动协调为物体追踪的补充线索。具体来说，我们通过在一个统一的追踪流程中结合来自基础模型的物体和手部线索，随时间恢复多种物体运动。在此，ComPose自适应地选择信息丰富的手部关节点，结合物体和手部导出的线索进行运动估计，并利用可见几何证据和学习到的校正来细化得到的物体运动。我们进一步在旋转和平移上强制时间一致性，从而无需任何外部平滑即可获得随时间稳定的3D物体轨迹。大量实验表明，我们的方法在严重手部遮挡和几何模糊下准确、高效且鲁棒。此外，得到的轨迹还可以通过使机器人能够从在线视频中重建人类动作，有效地迁移到下游机器人操作任务中。",
-      "authors": [
-        "Jisu Shin",
-        "Junoh Lee",
-        "JunGyu Lee"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-05-22",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ KAIST"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2605-23523.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-23523-p2.jpg",
-        "assets/img/covers/arxiv-2605-23523-p3.jpg",
-        "assets/img/covers/arxiv-2605-23523-p4.jpg"
-      ],
-      "arxiv_id": "2605.23523",
-      "abs_url": "http://arxiv.org/abs/2605.23523v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.23523v1",
-      "score": 34,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出手感知物体6DoF跟踪框架，利用手作为互补线索，对机器人操作有直接价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "KAIST"
-      ],
-      "method_tags": [
-        "6DoF object tracking",
-        "hand-aware",
-        "foundation model"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Hybrid",
-      "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2605-23568",
-      "source": "arxiv",
-      "title": "TactileReflex: Noise-Statistics-Driven Vision-Tactile Reflex Control for Force-Sensitive Manipulation",
-      "title_zh": "TactileReflex：基于噪声统计的视觉-触觉反射控制用于力敏感操作",
-      "tldr_zh": "利用传感器噪声统计直接设定阈值，实现易碎容器抓取的三通道反射控制。",
-      "cover_zh": "不用力传感器也能精准抓杯子？噪声统计直接算出阈值，成功率拉满！",
-      "abstract_zh": "操作易碎的可变形容器（例如装有液体的一次性塑料杯）需要在极窄的力裕度内实时调整抓取力：力不足会导致滑落，力过大则会不可逆地使薄壁变形。现有方法难以实现此类力敏感操作任务。我们提出了一种基于噪声统计的标定驱动反射控制范式，结合基于视觉的触觉传感：通过分析传感器固有的噪声特性（通过简短的静态保持和卸载协议），直接推导出所有控制器阈值，消除了外部力标定、试错手动调参或材料特定的物理模型。实例化该范式，我们提出了TactileReflex，一个三通道闭环控制器，从双视觉-触觉传感器中提取三个图像级代理：剪切强度（$S_y$）、接触强度（$F_n$）和压力中心（$C$），并以约12 Hz的频率驱动优先级反射通道，用于滑移抑制、重量自适应释放和力保护。每个通道通过噪声导出的阈值直接在其代理上闭环。消融实验表明，只有完整的三通道系统能够防止不可逆的容器变形（5/5成功，而部分配置最多1/5）。在动态倒水任务中，固定力基线由于姿态漂移在所有10次尝试中均失败，而TactileReflex在两种水量下实现了9/10的成功率。作为一个自包含且可解释的控制器，TactileReflex可作为高层操作管线（包括无触觉VR遥操作和视觉-语言-动作（VLA）策略）的即插即用安全层。",
-      "authors": [
-        "Ziyan Feng",
-        "Yulong Fu",
-        "Zheng Li"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-22",
-      "channels": [
-        "manipulation",
-        "teleop"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-23568.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-23568-p2.jpg",
-        "assets/img/covers/arxiv-2605-23568-p3.jpg",
-        "assets/img/covers/arxiv-2605-23568-p4.jpg"
-      ],
-      "arxiv_id": "2605.23568",
-      "abs_url": "http://arxiv.org/abs/2605.23568v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.23568v1",
-      "score": 20,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出基于触觉的力敏感操作反射控制，方法新颖且实验充分，对灵巧操作有重要参考价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "reflex control",
-        "vision-based tactile sensing",
-        "force-sensitive manipulation"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Hardware",
-      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -267,18 +350,19 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "LAAS-CNRS",
-        "Université de Toulouse"
+        "LAAS-CNRS, Université de Toulouse, CNRS, Toulouse, France",
+        "IRT Saint-Exupéry, Toulouse, France",
+        "Artificial and Natural Intelligence Toulouse Institute (ANITI), Toulouse, France"
       ],
       "method_tags": [
-        "Direct Dynamic Retargeting",
         "Imitation Learning",
-        "Model Predictive Control"
+        "Model Predictive Control",
+        "Direct Dynamic Retargeting"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "MPC",
-      "real_robot": "no",
+      "method_family": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -324,15 +408,14 @@
         "Oregon State University"
       ],
       "method_tags": [
-        "World Model",
-        "Particle Dynamics",
-        "Gaussian Splatting"
+        "particle dynamics model",
+        "Gaussian splatting"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "WorldModel",
+      "method_family": "",
       "real_robot": "no",
-      "training_summary": "~500 real-world videos",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -374,18 +457,17 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Ghent University - imec"
+        "Ghent University—imec"
       ],
       "method_tags": [
         "Imitation Learning",
-        "Diffusion Policy",
-        "instrumentation"
+        "Diffusion Policy"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "IL",
+      "method_family": "",
       "real_robot": "yes",
-      "training_summary": "180 teleoperated demonstrations",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -427,11 +509,11 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "National Taiwan University",
-        "University of Florida"
+        "Texas A&M University",
+        "National Taiwan University"
       ],
       "method_tags": [
-        "Deep Reinforcement Learning",
+        "PPO",
         "Sim-to-Real",
         "Instance Segmentation"
       ],
@@ -441,9 +523,9 @@
       "sim_stack": [
         "Isaac Lab"
       ],
-      "method_family": "RL",
+      "method_family": "",
       "real_robot": "yes",
-      "training_summary": "PPO trained in Isaac Lab, 281 strawberries harvested in greenhouse",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -482,71 +564,18 @@
         "reason": "研究世界模型在无语言监督下通过物理交互涌现语义表征，核心贡献在world model领域",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "Independent Researcher"
+      ],
       "method_tags": [
         "World Model",
-        "VAE",
-        "Representation Learning"
+        "VAE"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "WorldModel",
+      "method_family": "",
       "real_robot": "no",
-      "training_summary": "random embodied exploration, 20 temporal checkpoints",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2605-23733",
-      "source": "arxiv",
-      "title": "Any2Any: Efficient Cross-Embodiment Transfer for Humanoid Whole-Body Tracking",
-      "title_zh": "Any2Any：面向人形机器人全身追踪的高效跨本体迁移",
-      "tldr_zh": "仅用1%数据计算，预训练全身追踪模型即可高效迁移至新人形机器人。",
-      "cover_zh": "人形机器人换身体不用重练？Any2Any用1%成本实现全身追踪迁移",
-      "abstract_zh": "全身追踪（WBT）模型已成为人形机器人的关键基础，使其能够高保真地模仿多样动作。从头训练此类模型需要大规模数据和计算，导致在新人形平台上快速部署成本高昂。这引出一个自然问题：预训练的WBT模型能否通过最小化适配跨本体迁移？为回答此问题，我们提出Any2Any，一种仅需少量数据和计算即可将现有WBT专家高效迁移至新人形本体的范式。Any2Any首先在源和目标人形之间进行运动学对齐，对齐其输入和输出空间，使得预训练源策略能在目标本体上有意义地重用。随后，Any2Any通过向选定的动力学敏感模块应用轻量级参数高效微调（PEFT）组件进行动力学适配，保留有用的行为先验，同时实现对目标机器人的定向适配。在多个人形平台和预训练骨干上的大量实验表明，与从头训练相比，Any2Any显著加速收敛并降低训练成本，同时达到具有竞争力或更优的追踪性能。值得注意的是，仅使用完整训练所需1%的计算和数据，Any2Any成功将预训练于Unitree G1的Sonic模型迁移至LimX Oli和LimX Luna。这些结果表明，预训练的WBT专家可在不同本体间高效重用，为在新机器人上部署人形全身控制提供了可扩展路径。",
-      "authors": [
-        "Ming Yang",
-        "Tao Yu",
-        "Feng Li"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-22",
-      "channels": [
-        "loco-manip-wbc"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-23733.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-23733-p2.jpg",
-        "assets/img/covers/arxiv-2605-23733-p3.jpg",
-        "assets/img/covers/arxiv-2605-23733-p4.jpg"
-      ],
-      "arxiv_id": "2605.23733",
-      "abs_url": "http://arxiv.org/abs/2605.23733v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.23733v1",
-      "score": 15,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "提出跨本体迁移的全身跟踪方法，高效适配新平台，对具身迁移学习有重要价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "cross-embodiment transfer",
-        "whole-body tracking",
-        "parameter-efficient fine-tuning"
-      ],
-      "platform": [
-        "Unitree G1",
-        "LimX Oli",
-        "LimX Luna"
-      ],
-      "sim_stack": [],
-      "method_family": "Hybrid",
-      "real_robot": "yes",
-      "training_summary": "1% of full training data and compute",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -587,68 +616,75 @@
         "reason": "提出意图驱动物体导航基准，涉及VLM评估，对具身导航研究有参考价值",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "The University of Manchester",
+        "A*STAR",
+        "Responsible AI Research Centre, Adelaide University",
+        "2077AI"
+      ],
       "method_tags": [
-        "Benchmark",
-        "Object Navigation",
-        "Human Instruction"
+        "intent-driven object navigation",
+        "active object search"
       ],
       "platform": [],
       "sim_stack": [
         "Isaac Sim"
       ],
-      "method_family": "Benchmark",
+      "method_family": "",
       "real_robot": "no",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
     {
-      "id": "arxiv-2605-23341",
+      "id": "arxiv-2605-23523",
       "source": "arxiv",
-      "title": "Sparse Compositional Flow Matching by geometric assembly from motion primitives",
-      "title_zh": "稀疏组合流匹配：基于运动基元的几何组装",
-      "tldr_zh": "提出稀疏组合流匹配，通过运动基元字典学习和几何约束直接生成具身轨迹，精度提升显著。",
-      "cover_zh": "不用逐点生成轨迹｜直接组装运动基元，精度飙升还更省样本",
-      "abstract_zh": "具身轨迹，例如机器人机械臂、水下航行器和移动机器人的可执行运动序列，是具身AI的基本输出。现代生成模型通常将其视为密集的、整体的信号，逐点生成，拟合复杂的高维后验，却未对数据的潜在结构进行建模，这正是结构化生成模型文献早已指出的样本效率低下问题。我们认为组合潜在结构是一种自然的选择：许多具身任务共享可重复出现的运动片段，这些片段可以显式地表示为有限的可重用运动基元库，并且组合单元自然地与子任务边界对齐，以支持任务分解。然而，现有的组合生成器在潜在空间中进行组合，并依赖事后解码将采样单元与实际轨迹段关联起来。我们则通过一个具有两个耦合设计的流匹配框架，直接在物理轨迹空间中进行组合。运动基元字典学习为每个原子配备了一个可学习的长度掩码和二进制起始指示符，使得原子本身即为基元，无论放置在哪里都逐字重用。具有几何约束的结构稀疏流匹配随后通过持续时间感知的标记化和可微的几何损失生成一个二进制放置矩阵，该损失在相邻基元连接处强制执行空间连续性和时间连续性。在Open X-Embodiment和3DMoTraj上，该框架达到了最先进的精度，并将FDE/ADE比率从1.8降至1.07，在最强基线上ADE提高了19.2%，FDE提高了21.0%。",
+      "title": "ComPose: When to Trust Hands for Object Pose Tracking",
+      "title_zh": "ComPose：何时信任手部信息进行物体姿态追踪",
+      "tldr_zh": "提出ComPose框架，利用手部运动作为补充线索进行鲁棒的物体姿态追踪。",
+      "cover_zh": "手不是遮挡物而是线索？这个追踪框架让物体姿态估计更准更稳",
+      "abstract_zh": "从视频中重建物体的运动是具身AI和机器人操作的关键组成部分。尽管已有多种物体姿态追踪方法，但它们严重依赖强大的外部先验（如深度数据或3D模板），并且即使使用了显式掩码，在手部抓握造成的严重遮挡下仍然非常脆弱。在这项工作中，我们提出了ComPose，一个面向从RGB视频进行手部感知物体姿态估计的6DoF物体追踪框架。我们的方法不将手部纯粹视为遮挡物，而是将手部运动协调为物体追踪的补充线索。具体来说，我们通过在一个统一的追踪流程中结合来自基础模型的物体和手部线索，随时间恢复多种物体运动。在此，ComPose自适应地选择信息丰富的手部关节点，结合物体和手部导出的线索进行运动估计，并利用可见几何证据和学习到的校正来细化得到的物体运动。我们进一步在旋转和平移上强制时间一致性，从而无需任何外部平滑即可获得随时间稳定的3D物体轨迹。大量实验表明，我们的方法在严重手部遮挡和几何模糊下准确、高效且鲁棒。此外，得到的轨迹还可以通过使机器人能够从在线视频中重建人类动作，有效地迁移到下游机器人操作任务中。",
       "authors": [
-        "Yan Tang",
-        "Yuanbo Tang",
-        "Tingyu Cao"
+        "Jisu Shin",
+        "Junoh Lee",
+        "JunGyu Lee"
       ],
-      "primary_category": "cs.RO",
+      "primary_category": "cs.CV",
       "published": "2026-05-22",
       "channels": [
         "manipulation"
       ],
       "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-23341.jpg",
+      "cover_image": "assets/img/covers/arxiv-2605-23523.jpg",
       "preview_pages": [
-        "assets/img/covers/arxiv-2605-23341-p2.jpg",
-        "assets/img/covers/arxiv-2605-23341-p3.jpg",
-        "assets/img/covers/arxiv-2605-23341-p4.jpg"
+        "assets/img/covers/arxiv-2605-23523-p2.jpg",
+        "assets/img/covers/arxiv-2605-23523-p3.jpg",
+        "assets/img/covers/arxiv-2605-23523-p4.jpg"
       ],
-      "arxiv_id": "2605.23341",
-      "abs_url": "http://arxiv.org/abs/2605.23341v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.23341v1",
+      "arxiv_id": "2605.23523",
+      "abs_url": "http://arxiv.org/abs/2605.23523v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.23523v1",
       "score": 9,
       "judge": {
         "relevant": true,
         "research_value": "high",
         "primary_channel": "manipulation",
-        "reason": "提出稀疏组合流匹配框架，从运动基元几何组装生成具身轨迹，在Open X-Embodiment上取得SOTA，对操作任务有高科研价值。",
+        "reason": "提出手感知物体6DoF跟踪框架，利用手作为互补线索，对机器人操作有直接价值。",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "GIST",
+        "Yonsei Univ.",
+        "DGIST"
+      ],
       "method_tags": [
-        "Flow Matching",
-        "Compositional Generation",
-        "Motion Primitives"
+        "6DoF object tracking",
+        "hand-aware object pose estimation"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "Diffusion",
-      "real_robot": "",
+      "method_family": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -689,18 +725,21 @@
         "reason": "提出视频模型反事实物理一致性基准，直接评估世界模型因果理解，高科研价值。",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "University of Freiburg",
+        "Max Planck Institute for Informatics",
+        "CISPA Helmholtz Center for Information Security"
+      ],
       "method_tags": [
-        "Benchmark",
-        "Counterfactual",
-        "Video Prediction"
+        "video prediction",
+        "counterfactual physical consistency"
       ],
       "platform": [],
       "sim_stack": [
         "Unreal Engine"
       ],
-      "method_family": "Benchmark",
-      "real_robot": "no",
+      "method_family": "",
+      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -741,16 +780,19 @@
         "reason": "提出SOM算法，在在线RL中实现单步生成策略，在运动任务上达到SOTA，显著降低计算开销。",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "Korea University",
+        "Gauss Labs Inc."
+      ],
       "method_tags": [
         "Score-Based",
-        "Flow Matching",
-        "Online RL"
+        "MeanFlow",
+        "actor-critic"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "RL",
-      "real_robot": "no",
+      "method_family": "",
+      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -792,16 +834,19 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Aalto University"
+        "Aalto University",
+        "ELLIS Institute Finland",
+        "University of Oulu",
+        "Sun Yat-sen University"
       ],
       "method_tags": [
-        "Diffusion",
-        "World Model",
-        "Point Tracking"
+        "World Action Model",
+        "Diffusion Transformer",
+        "point tracking"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "Diffusion",
+      "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
