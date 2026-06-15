@@ -481,6 +481,69 @@
       "github": {}
     },
     {
+      "id": "arxiv-2606-13886",
+      "source": "arxiv",
+      "title": "PhysVLA: Towards Physically-Grounded VLA for Embodied Robotic Manipulation",
+      "title_zh": "PhysVLA：面向具身机器人操作的物理基础VLA",
+      "tldr_zh": "无需重新训练，PhysVLA为任何VLA模型增加物理约束，提升成功率与稳定性。",
+      "cover_zh": "机器人操作总翻车？这个即插即用模块让成功率飙升50%！",
+      "abstract_zh": "视觉-语言-动作（VLA）模型擅长将视觉输入和自然语言指令直接映射到机器人控制策略。然而，由于它们主要训练以拟合行为演示数据，并未显式强制执行刚体动力学或接触约束等基本物理原理。这暴露了一个关键的物理鸿沟：在单步或分块VLA上应用的标准时间平滑以轨迹质量为代价增加了短期记忆无法解决的失败。为弥合这一鸿沟，我们提出了PhysVLA（Physics-VLA），一个即插即用的推理时框架，旨在包装任何冻结的VLA主干，无需重新训练、微调或权重访问，每个控制步骤的开销小于1毫秒。PhysVLA拦截预测的控制动作，仅捕获模拟器或系统状态，并应用双层校正：（i）一个相位感知有限状态机，用于结构化离散任务阶段（接近、抓取、运输和放置），以及（ii）一个选择性欧拉-拉格朗日门，仅在动力学预言器检测到运动学不一致时激活。在LIBERO-Spatial上使用7自由度Franka Panda对OpenVLA、OpenVLA-OFT、Force-VLA和Generalist-VLA进行评估，该框架提供了高达17%的绝对成功率提升和高达19%的稳定性提升，且无每任务回归，在所有四个主干上轨迹效率提升高达15%，并在Robosuite Lift跨模拟器扫描中显示出高达10倍的轨迹急动度鲁棒性提升。我们进一步在真实的Agilex Piper机械臂上通过拾放任务验证了该框架，确认PhysVLA无需重新训练即可迁移到物理硬件，成功率提升高达50%，从而将物理感知确立为一个可组合、主干无关的运行时模块。",
+      "authors": [
+        "Namai Chandra",
+        "Shriram Damodaran",
+        "Lin Wang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-11",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ NTU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-13886.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-13886-p2.jpg",
+        "assets/img/covers/arxiv-2606-13886-p3.jpg",
+        "assets/img/covers/arxiv-2606-13886-p4.jpg"
+      ],
+      "arxiv_id": "2606.13886",
+      "abs_url": "http://arxiv.org/abs/2606.13886v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.13886v1",
+      "score": 40,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出物理感知的VLA框架，提升操作成功率与稳定性，方法新颖且实验充分。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "IIT Madras",
+        "Nanyang Technological University"
+      ],
+      "method_tags": [
+        "physics-informed inference",
+        "finite-state action correction",
+        "Euler-Lagrange consistency gate"
+      ],
+      "platform": [
+        "Franka Panda",
+        "Agilex Piper"
+      ],
+      "sim_stack": [
+        "Robosuite"
+      ],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
       "id": "arxiv-2606-12965",
       "source": "arxiv",
       "title": "EmbodiSteer: Steering Embodiment-Agnostic Visuomotor Policies with Joint-Space Guidance for Zero-Shot Cross-Embodiment Deployment",
@@ -1102,6 +1165,64 @@
       "github": {}
     },
     {
+      "id": "arxiv-2606-13970",
+      "source": "arxiv",
+      "title": "An Attention-based Model for Robust Forecasting with Missing Modality",
+      "title_zh": "基于注意力的缺失模态鲁棒预测模型",
+      "tldr_zh": "提出一种基于注意力的多模态模型，能在训练和推理时处理缺失模态，实现鲁棒预测。",
+      "cover_zh": "传感器坏了也能预测？这个注意力模型专治模态缺失｜机器人学习新突破",
+      "abstract_zh": "缺失模态学习是多模态机器人学习中的一个基本挑战，因为真实世界的机器人系统常常在传感器数据不完整的环境中运行。基于注意力的模型在处理多模态数据时具有吸引力，因为它们可以用单个骨干网络处理多种模态。然而，大多数多模态模型假设在训练和推理过程中所有模态都可用，这限制了它们在机器人感知和决策中的应用。本文提出了一种多模态模型，旨在处理训练和推理过程中的模态缺失。该模型被构建为条件变分自编码器（CVAE），并采用基于Transformer的架构，利用注意力机制学习统一的固定维度表示，即使某些模态缺失。我们证明，所提出的模型可以在模态缺失的情况下进行训练，同时逼近所有模态的鲁棒表示。我们在两个机器人学习任务的五个多模态数据集上评估了我们的方法：人类轨迹预测和机器人操作预测。实验结果表明，我们的模型能够有效从不完整数据中学习，并且优于先前的多模态融合方法。",
+      "authors": [
+        "Zhitian Zhang",
+        "Wenjie Zi",
+        "Yunduz Rakhmangulova"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-11",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ SFU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-13970.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-13970-p2.jpg",
+        "assets/img/covers/arxiv-2606-13970-p3.jpg",
+        "assets/img/covers/arxiv-2606-13970-p4.jpg"
+      ],
+      "arxiv_id": "2606.13970",
+      "abs_url": "http://arxiv.org/abs/2606.13970v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.13970v1",
+      "score": 31,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "提出缺失模态下的注意力融合模型，应用于机器人操作预测，有方法创新和实验验证。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Simon Fraser University",
+        "RBC Borealis"
+      ],
+      "method_tags": [
+        "CVAE",
+        "transformer",
+        "missing modalities"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
       "id": "arxiv-2606-12956",
       "source": "arxiv",
       "title": "SERF: Spatiotemporal Environment and Robot Feature Map for Long-Horizon Mobile Manipulation",
@@ -1304,20 +1425,18 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Skoltech"
+        "Skolkovo Institute of Science and Technology (Skoltech)"
       ],
       "method_tags": [
-        "VLA",
+        "VLA fine-tuning",
         "output-level regularization",
-        "seed lottery"
+        "VICReg"
       ],
       "platform": [],
-      "sim_stack": [
-        "LIBERO"
-      ],
-      "method_family": "VLA",
-      "real_robot": "no",
-      "training_summary": "13 seeds × 3 LIBERO benchmarks",
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -1359,17 +1478,17 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "University at Buffalo"
+        "Purdue University",
+        "Texas A&M University"
       ],
       "method_tags": [
         "World Model",
-        "Vision-Tactile",
         "Contact-Rich Manipulation"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "WorldModel",
-      "real_robot": "no",
+      "method_family": "",
+      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -1641,61 +1760,6 @@
       "github": {}
     },
     {
-      "id": "arxiv-2606-13886",
-      "source": "arxiv",
-      "title": "PhysVLA: Towards Physically-Grounded VLA for Embodied Robotic Manipulation",
-      "title_zh": "PhysVLA：面向具身机器人操作的物理基础VLA",
-      "tldr_zh": "无需重新训练，PhysVLA为任何VLA模型增加物理约束，提升成功率与稳定性。",
-      "cover_zh": "机器人操作总翻车？这个即插即用模块让成功率飙升50%！",
-      "abstract_zh": "视觉-语言-动作（VLA）模型擅长将视觉输入和自然语言指令直接映射到机器人控制策略。然而，由于它们主要训练以拟合行为演示数据，并未显式强制执行刚体动力学或接触约束等基本物理原理。这暴露了一个关键的物理鸿沟：在单步或分块VLA上应用的标准时间平滑以轨迹质量为代价增加了短期记忆无法解决的失败。为弥合这一鸿沟，我们提出了PhysVLA（Physics-VLA），一个即插即用的推理时框架，旨在包装任何冻结的VLA主干，无需重新训练、微调或权重访问，每个控制步骤的开销小于1毫秒。PhysVLA拦截预测的控制动作，仅捕获模拟器或系统状态，并应用双层校正：（i）一个相位感知有限状态机，用于结构化离散任务阶段（接近、抓取、运输和放置），以及（ii）一个选择性欧拉-拉格朗日门，仅在动力学预言器检测到运动学不一致时激活。在LIBERO-Spatial上使用7自由度Franka Panda对OpenVLA、OpenVLA-OFT、Force-VLA和Generalist-VLA进行评估，该框架提供了高达17%的绝对成功率提升和高达19%的稳定性提升，且无每任务回归，在所有四个主干上轨迹效率提升高达15%，并在Robosuite Lift跨模拟器扫描中显示出高达10倍的轨迹急动度鲁棒性提升。我们进一步在真实的Agilex Piper机械臂上通过拾放任务验证了该框架，确认PhysVLA无需重新训练即可迁移到物理硬件，成功率提升高达50%，从而将物理感知确立为一个可组合、主干无关的运行时模块。",
-      "authors": [
-        "Namai Chandra",
-        "Shriram Damodaran",
-        "Lin Wang"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-11",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-13886.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-13886-p2.jpg",
-        "assets/img/covers/arxiv-2606-13886-p3.jpg",
-        "assets/img/covers/arxiv-2606-13886-p4.jpg"
-      ],
-      "arxiv_id": "2606.13886",
-      "abs_url": "http://arxiv.org/abs/2606.13886v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.13886v1",
-      "score": 15,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出物理感知的VLA框架，提升操作成功率与稳定性，方法新颖且实验充分。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "VLA",
-        "physics-aware",
-        "inference-time correction"
-      ],
-      "platform": [
-        "Franka Panda",
-        "Agilex Piper"
-      ],
-      "sim_stack": [
-        "Robosuite"
-      ],
-      "method_family": "VLA",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
       "id": "arxiv-2606-12910",
       "source": "arxiv",
       "title": "Bounding Boxes as Goals: Language-Conditioned Grasping via Neuro-Symbolic Planning",
@@ -1903,56 +1967,6 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2606-13970",
-      "source": "arxiv",
-      "title": "An Attention-based Model for Robust Forecasting with Missing Modality",
-      "title_zh": "基于注意力的缺失模态鲁棒预测模型",
-      "tldr_zh": "提出一种基于注意力的多模态模型，能在训练和推理时处理缺失模态，实现鲁棒预测。",
-      "cover_zh": "传感器坏了也能预测？这个注意力模型专治模态缺失｜机器人学习新突破",
-      "abstract_zh": "缺失模态学习是多模态机器人学习中的一个基本挑战，因为真实世界的机器人系统常常在传感器数据不完整的环境中运行。基于注意力的模型在处理多模态数据时具有吸引力，因为它们可以用单个骨干网络处理多种模态。然而，大多数多模态模型假设在训练和推理过程中所有模态都可用，这限制了它们在机器人感知和决策中的应用。本文提出了一种多模态模型，旨在处理训练和推理过程中的模态缺失。该模型被构建为条件变分自编码器（CVAE），并采用基于Transformer的架构，利用注意力机制学习统一的固定维度表示，即使某些模态缺失。我们证明，所提出的模型可以在模态缺失的情况下进行训练，同时逼近所有模态的鲁棒表示。我们在两个机器人学习任务的五个多模态数据集上评估了我们的方法：人类轨迹预测和机器人操作预测。实验结果表明，我们的模型能够有效从不完整数据中学习，并且优于先前的多模态融合方法。",
-      "authors": [
-        "Zhitian Zhang",
-        "Wenjie Zi",
-        "Yunduz Rakhmangulova"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-11",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-13970.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-13970-p2.jpg",
-        "assets/img/covers/arxiv-2606-13970-p3.jpg",
-        "assets/img/covers/arxiv-2606-13970-p4.jpg"
-      ],
-      "arxiv_id": "2606.13970",
-      "abs_url": "http://arxiv.org/abs/2606.13970v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.13970v1",
-      "score": 6,
-      "judge": {
-        "relevant": true,
-        "research_value": "medium",
-        "primary_channel": "manipulation",
-        "reason": "提出缺失模态下的注意力融合模型，应用于机器人操作预测，有方法创新和实验验证。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "CVAE",
-        "Transformer",
-        "missing modality"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
