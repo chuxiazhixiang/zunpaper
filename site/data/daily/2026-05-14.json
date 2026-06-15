@@ -251,8 +251,8 @@
       "title": "VGGT-$Ω$",
       "title_zh": "VGGT-$Ω$",
       "tldr_zh": "VGGT-$Ω$通过架构简化和寄存器注意力，用更少内存实现更优重建，精度提升77%。",
-      "cover_zh": "内存砍掉70%，精度反升77%｜这个3D重建模型靠“寄存器”逆袭",
-      "abstract_zh": "近期前馈式重建模型（如VGGT）已被证明与传统基于优化的重建方法具有竞争力，同时还能提供对其他任务有用的几何感知特征。本文表明，这些模型的质量随模型和数据规模可预测地提升。为此，我们引入了VGGT-$Ω$，它显著提高了静态和动态场景的重建精度、效率和能力。为了以前所未有的规模训练该模型，我们引入了提升训练效率的架构改进、支持动态场景的高质量数据标注流水线以及自监督学习协议。我们简化了VGGT的架构，使用单一密集预测头进行多任务监督，并移除了昂贵的高分辨率卷积层。我们还使用寄存器将场景信息聚合为紧凑表示，并引入寄存器注意力，将帧间信息交换限制在这些寄存器上，部分替代了全局注意力。通过这种方式，在训练过程中，VGGT-$Ω$仅使用其前身约30%的GPU内存，使我们能够使用比先前工作多15倍的监督数据进行训练，并利用大量未标记的视频数据。VGGT-$Ω$在多个基准测试中实现了静态和动态场景重建的强结果，例如，在Sintel上相机姿态估计精度比之前最佳方法提高了77%。我们还展示了学习到的寄存器可以改进视觉-语言-动作模型，并支持与语言的对齐，这表明重建可以成为空间理解的一个强大且可扩展的代理任务。项目页面：http://vggt-omega.github.io/",
+      "cover_zh": "内存砍掉70%｜VGGT-$Ω$用寄存器注意力让重建精度飙升77%",
+      "abstract_zh": "最近的馈送式重建模型（如VGGT）已被证明与传统基于优化的重建方法具有竞争力，同时还能提供对其他任务有用的几何感知特征。在此，我们展示了这些模型的质量随模型和数据规模可预测地提升。为此，我们引入了VGGT-$Ω$，它显著提高了静态和动态场景的重建精度、效率和能力。为了以前所未有的规模训练该模型，我们引入了提高训练效率的架构变化、支持动态场景的高质量数据标注流水线以及自监督学习协议。我们简化了VGGT的架构，使用单个密集预测头进行多任务监督，并移除了昂贵的高分辨率卷积层。我们还使用寄存器将场景信息聚合为紧凑表示，并引入寄存器注意力，将帧间信息交换限制在这些寄存器上，部分替代了全局注意力。这样，在训练过程中，VGGT-$Ω$仅使用其前身约30%的GPU内存，使我们能够使用比先前工作多15倍的监督数据进行训练，并利用大量未标记的视频数据。VGGT-$Ω$在多个基准测试中实现了静态和动态场景重建的强结果，例如，在Sintel上，相机估计精度比之前的最佳结果提高了77%。我们还展示了学习到的寄存器可以改进视觉-语言-动作模型，并支持与语言的对齐，这表明重建可以成为空间理解的一个强大且可扩展的代理任务。项目页面：http://vggt-omega.github.io/",
       "authors": [
         "Jianyuan Wang",
         "Minghao Chen",
@@ -300,56 +300,6 @@
       "method_family": "Foundation",
       "real_robot": "no",
       "training_summary": "15x more supervised data than prior work, plus unlabeled video",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2605-14417",
-      "source": "arxiv_discover",
-      "title": "Before the Body Moves: Learning Anticipatory Joint Intent for Language-Conditioned Humanoid Control",
-      "title_zh": "身体移动之前：面向语言条件人形控制的预期关节意图学习",
-      "tldr_zh": "提出DAJI框架，通过预期关节意图接口实现语言条件人形机器人的流式全身控制。",
-      "cover_zh": "人形机器人听懂指令还能预判动作？这个新框架让控制更丝滑",
-      "abstract_zh": "自然语言是人形机器人直观的交互界面，然而流式全身控制需要既能即时执行又能预测未来物理状态变化的控制表示。现有语言条件人形系统通常生成运动学参考，由底层跟踪器被动修正，或使用隐式/动作策略，其输出不显式编码即将到来的接触变化、支撑转移和平衡准备。我们提出DAJI（动力学对齐的关节意图），一个分层框架，在语言生成和闭环控制之间学习预期性的关节意图接口。DAJI-Act通过学生驱动的轨迹展开，将未来感知的教师模型蒸馏为可部署的扩散动作策略，而DAJI-Flow从语言和意图历史中自回归生成未来意图块。实验表明，DAJI在预期隐式学习、单指令生成和流式指令跟随方面取得强劲结果，在HumanML3D风格生成上达到94.42%的轨迹展开成功率，在BABEL上达到0.152的子序列FID。",
-      "authors": [
-        "Haozhe Jia",
-        "Honglei Jin",
-        "Yuan Zhang"
-      ],
-      "primary_category": "",
-      "published": "2026-05-14",
-      "channels": [
-        "loco-manip-wbc"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-14417.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-14417-p2.jpg",
-        "assets/img/covers/arxiv-2605-14417-p3.jpg",
-        "assets/img/covers/arxiv-2605-14417-p4.jpg"
-      ],
-      "arxiv_id": "2605.14417",
-      "abs_url": "http://arxiv.org/abs/2605.14417v2",
-      "pdf_url": "https://arxiv.org/pdf/2605.14417v2",
-      "score": 25,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "提出面向人形机器人的语言条件全身控制框架，含预测性关节意图，属于人形全身控制前沿",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "Diffusion Policy",
-        "Language-Conditioned Control",
-        "Anticipatory Control"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Diffusion",
-      "real_robot": "no",
-      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -540,6 +490,56 @@
       "sim_stack": [],
       "method_family": "WorldModel",
       "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2605-14417",
+      "source": "arxiv_discover",
+      "title": "Before the Body Moves: Learning Anticipatory Joint Intent for Language-Conditioned Humanoid Control",
+      "title_zh": "身体移动之前：面向语言条件人形控制的预期关节意图学习",
+      "tldr_zh": "提出DAJI框架，通过预期关节意图接口实现语言条件人形机器人的流式全身控制。",
+      "cover_zh": "人形机器人听懂指令还能预判动作？这个新框架让控制更丝滑",
+      "abstract_zh": "自然语言是人形机器人直观的交互界面，然而流式全身控制需要既能即时执行又能预测未来物理状态变化的控制表示。现有语言条件人形系统通常生成运动学参考，由底层跟踪器被动修正，或使用隐式/动作策略，其输出不显式编码即将到来的接触变化、支撑转移和平衡准备。我们提出DAJI（动力学对齐的关节意图），一个分层框架，在语言生成和闭环控制之间学习预期性的关节意图接口。DAJI-Act通过学生驱动的轨迹展开，将未来感知的教师模型蒸馏为可部署的扩散动作策略，而DAJI-Flow从语言和意图历史中自回归生成未来意图块。实验表明，DAJI在预期隐式学习、单指令生成和流式指令跟随方面取得强劲结果，在HumanML3D风格生成上达到94.42%的轨迹展开成功率，在BABEL上达到0.152的子序列FID。",
+      "authors": [
+        "Haozhe Jia",
+        "Honglei Jin",
+        "Yuan Zhang"
+      ],
+      "primary_category": "",
+      "published": "2026-05-14",
+      "channels": [
+        "loco-manip-wbc"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2605-14417.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-14417-p2.jpg",
+        "assets/img/covers/arxiv-2605-14417-p3.jpg",
+        "assets/img/covers/arxiv-2605-14417-p4.jpg"
+      ],
+      "arxiv_id": "2605.14417",
+      "abs_url": "http://arxiv.org/abs/2605.14417v2",
+      "pdf_url": "https://arxiv.org/pdf/2605.14417v2",
+      "score": 15,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出面向人形机器人的语言条件全身控制框架，含预测性关节意图，属于人形全身控制前沿",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "Diffusion Policy",
+        "Language-Conditioned Control",
+        "Anticipatory Control"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "Diffusion",
+      "real_robot": "no",
       "training_summary": "",
       "demo_videos": [],
       "github": {}

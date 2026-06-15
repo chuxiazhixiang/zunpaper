@@ -24,10 +24,6 @@
       "badges": [
         {
           "kind": "lab",
-          "label": "⭐ Unitree"
-        },
-        {
-          "kind": "lab",
           "label": "⭐ HKU"
         },
         {
@@ -52,7 +48,7 @@
       "arxiv_id": "2606.11092",
       "abs_url": "http://arxiv.org/abs/2606.11092v1",
       "pdf_url": "https://arxiv.org/pdf/2606.11092v1",
-      "score": 75,
+      "score": 65,
       "judge": {
         "relevant": true,
         "research_value": "high",
@@ -138,65 +134,6 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2606-10288",
-      "source": "arxiv_discover",
-      "title": "MARCH: Model-Assisted Reinforcement Learning for the Perceptive Control of Humanoids over Sparse Footholds",
-      "title_zh": "MARCH：模型辅助强化学习实现人形机器人在稀疏立足点上的感知控制",
-      "tldr_zh": "模型辅助强化学习结合简化模型与CLF奖励，提升人形机器人稀疏地形行走的样本效率和运动平滑性。",
-      "cover_zh": "人形机器人也能跳梅花桩？模型辅助RL让稀疏地形行走更稳更顺滑",
-      "abstract_zh": "在稀疏地形上的感知双足行走仍然是一个难题：基于模型的方法精确但对不确定性脆弱，而无模型方法鲁棒但难以发现安全关键型运动所需的精确、受约束的运动，其中小误差可能导致灾难性故障。我们提出了一种模型辅助强化学习框架，通过三个步骤结合两种视角：(1) 使用简化模型生成安全参考轨迹；(2) 训练一个特权教师策略，由围绕安全参考轨迹构建的控制李雅普诺夫函数奖励引导；(3) 将教师策略蒸馏为基于视觉的学生策略。我们表明，这种模型辅助过程产生了物理基础的运动，提高了样本效率，减少了对复杂学习课程的需求，并在步进石性能上与无模型基线相当的同时实现了更平滑的运动行为。我们在仿真中验证了该方法，并在Unitree G1人形机器人上成功部署，该机器人在具有横向约束的稀疏立足点上导航。",
-      "authors": [
-        "Codrin Crismariu",
-        "Ryan K. Cosner"
-      ],
-      "primary_category": "",
-      "published": "2026-06-09",
-      "channels": [
-        "loco-manip-wbc",
-        "locomotion"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ Unitree"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-10288.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-10288-p2.jpg",
-        "assets/img/covers/arxiv-2606-10288-p3.jpg",
-        "assets/img/covers/arxiv-2606-10288-p4.jpg"
-      ],
-      "arxiv_id": "2606.10288",
-      "abs_url": "http://arxiv.org/abs/2606.10288v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.10288v1",
-      "score": 55,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "提出模型辅助强化学习框架，实现人形机器人在稀疏立足点上的感知双足运动，仿真与真机验证，方法新颖且实用。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Tufts University"
-      ],
-      "method_tags": [
-        "model-assisted reinforcement learning",
-        "control Lyapunov function",
-        "teacher-student distillation"
-      ],
-      "platform": [
-        "Unitree G1"
-      ],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -510,7 +447,7 @@
       "method_tags": [
         "World Model",
         "Tactile Foresight",
-        "Contact-Rich Manipulation"
+        "Force-Conditioned"
       ],
       "platform": [],
       "sim_stack": [],
@@ -577,73 +514,6 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2606-10903",
-      "source": "arxiv",
-      "title": "AgniNav: Configuration-Driven Cross-Embodiment Local Planning for Robot Navigation",
-      "title_zh": "AgniNav：配置驱动的跨形态机器人导航局部规划",
-      "tldr_zh": "提出配置驱动框架AgniNav，用四参数安全包络实现跨形态机器人零重训练单目导航。",
-      "cover_zh": "一个框架搞定轮式、四足、人形机器人导航｜无需重训，单目相机直接起飞",
-      "abstract_zh": "单目局部导航对轻量级机器人很有吸引力，但现有的基于视觉的策略通常将感知与特定本体、相机高度和足迹耦合，使得从轮式底盘转移到腿式平台需要重新训练或主动深度硬件。本文提出AgniNav，一种配置驱动的局部导航框架，在碰撞包络层面标准化跨形态迁移。每个机器人由一个可测量的四参数安全包络定义：碰撞相关高度、前长、后长和半宽。高度参数条件化一个图像到扫描网络，从单目彩色图像预测一维碰撞相关伪激光扫描，而其余足迹参数配置一个维度感知的局部规划器用于碰撞检测。训练使用从配对的彩色-深度数据生成的高度条件化列最小扫描标签，使得同一图像可以监督不同的安全包络，而无需收集机器人特定数据。据我们所知，AgniNav是第一个单目局部导航框架，它联合条件化感知和规划于共享的碰撞包络配置，实现跨轮式、四足和人形平台的零重训练部署。在Turtlebot2、Unitree Go2和Accelerated Evolution K1上的真实机器人实验分别达到39/40、18/20和18/20的成功率，碰撞次数分别为0/40、1/20和2/20，同时在Jetson Orin上以30 Hz运行。",
-      "authors": [
-        "Tianhao Zang",
-        "Siwei Cheng",
-        "Haidong Huang"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-09",
-      "channels": [
-        "locomotion"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ Unitree"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ USTC"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-10903.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-10903-p2.jpg",
-        "assets/img/covers/arxiv-2606-10903-p3.jpg",
-        "assets/img/covers/arxiv-2606-10903-p4.jpg"
-      ],
-      "arxiv_id": "2606.10903",
-      "abs_url": "http://arxiv.org/abs/2606.10903v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.10903v1",
-      "score": 44,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "locomotion",
-        "reason": "提出跨形态局部导航框架，在轮式、四足、人形平台上验证，零重训练迁移，具身导航新范式。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Eastern Institute of Technology",
-        "University of Nottingham",
-        "University of Science and Technology of China"
-      ],
-      "method_tags": [
-        "monocular local navigation",
-        "cross-embodiment",
-        "collision-envelope"
-      ],
-      "platform": [
-        "Turtlebot2",
-        "Unitree Go2",
-        "Accelerated Evolution K1"
-      ],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -832,6 +702,69 @@
       "github": {}
     },
     {
+      "id": "arxiv-2606-10903",
+      "source": "arxiv",
+      "title": "AgniNav: Configuration-Driven Cross-Embodiment Local Planning for Robot Navigation",
+      "title_zh": "AgniNav：配置驱动的跨形态机器人导航局部规划",
+      "tldr_zh": "提出配置驱动框架AgniNav，用四参数安全包络实现跨形态机器人零重训练单目导航。",
+      "cover_zh": "一个框架搞定轮式、四足、人形机器人导航｜无需重训，单目相机直接起飞",
+      "abstract_zh": "单目局部导航对轻量级机器人很有吸引力，但现有的基于视觉的策略通常将感知与特定本体、相机高度和足迹耦合，使得从轮式底盘转移到腿式平台需要重新训练或主动深度硬件。本文提出AgniNav，一种配置驱动的局部导航框架，在碰撞包络层面标准化跨形态迁移。每个机器人由一个可测量的四参数安全包络定义：碰撞相关高度、前长、后长和半宽。高度参数条件化一个图像到扫描网络，从单目彩色图像预测一维碰撞相关伪激光扫描，而其余足迹参数配置一个维度感知的局部规划器用于碰撞检测。训练使用从配对的彩色-深度数据生成的高度条件化列最小扫描标签，使得同一图像可以监督不同的安全包络，而无需收集机器人特定数据。据我们所知，AgniNav是第一个单目局部导航框架，它联合条件化感知和规划于共享的碰撞包络配置，实现跨轮式、四足和人形平台的零重训练部署。在Turtlebot2、Unitree Go2和Accelerated Evolution K1上的真实机器人实验分别达到39/40、18/20和18/20的成功率，碰撞次数分别为0/40、1/20和2/20，同时在Jetson Orin上以30 Hz运行。",
+      "authors": [
+        "Tianhao Zang",
+        "Siwei Cheng",
+        "Haidong Huang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-09",
+      "channels": [
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ USTC"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-10903.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-10903-p2.jpg",
+        "assets/img/covers/arxiv-2606-10903-p3.jpg",
+        "assets/img/covers/arxiv-2606-10903-p4.jpg"
+      ],
+      "arxiv_id": "2606.10903",
+      "abs_url": "http://arxiv.org/abs/2606.10903v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.10903v1",
+      "score": 34,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "locomotion",
+        "reason": "提出跨形态局部导航框架，在轮式、四足、人形平台上验证，零重训练迁移，具身导航新范式。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Eastern Institute of Technology",
+        "University of Nottingham",
+        "University of Science and Technology of China"
+      ],
+      "method_tags": [
+        "monocular local navigation",
+        "cross-embodiment",
+        "collision-envelope"
+      ],
+      "platform": [
+        "Turtlebot2",
+        "Unitree Go2",
+        "Accelerated Evolution K1"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
       "id": "arxiv-2606-10382",
       "source": "arxiv",
       "title": "UMI-Bench 1.0: An Open and Reproducible Real-World Benchmark for Tabletop Robotic Manipulation with UMI Data",
@@ -1006,75 +939,16 @@
       "github": {}
     },
     {
-      "id": "arxiv-2606-11034",
-      "source": "arxiv",
-      "title": "A Spiking Neural Architecture for Coordinating Arm and Locomotor Control",
-      "title_zh": "一种协调手臂与运动控制的脉冲神经架构",
-      "tldr_zh": "首个集成双足运动和手臂控制的脉冲神经网络架构。",
-      "cover_zh": "人形机器人也能边走路边画画？这个脉冲架构做到了！",
-      "abstract_zh": "脉冲神经网络（SNN）结合神经形态硬件为人形机器人控制提供了节能方案。然而，现有的基于SNN的运动控制系统分别处理双足运动和手臂控制，未解决两者的集成控制问题。我们提出一种脉冲架构，在模拟人形机器人中协调基于力的手臂控制和双足运动，采用神经工程框架（NEF）和语义指针架构（SPA）。运动控制和手臂控制之间的高层动作选择由生物启发的脉冲基底节模型介导。我们通过Nengo（神经控制）和Isaac Sim的联合仿真验证了该系统，展示了成功的目标到达、连续数字绘制、路径跟踪运动，以及通过基底节去抑制在行走和手臂控制之间切换。据我们所知，这是首个在全尺寸人形平台上结合双足运动和手臂控制的集成脉冲控制器。全脉冲实现使其未来可部署于低功耗神经形态硬件。",
-      "authors": [
-        "Lea Steffen",
-        "Kathryn Simone",
-        "Graeme Damberger"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-09",
-      "channels": [
-        "loco-manip-wbc",
-        "locomotion",
-        "sim2real"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-11034.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-11034-p2.jpg",
-        "assets/img/covers/arxiv-2606-11034-p3.jpg",
-        "assets/img/covers/arxiv-2606-11034-p4.jpg"
-      ],
-      "arxiv_id": "2606.11034",
-      "abs_url": "http://arxiv.org/abs/2606.11034v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.11034v1",
-      "score": 30,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "首次实现脉冲神经网络协调人形机器人双臂与双足运动，结合NEF和基底节模型，具有创新性和低功耗潜力。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "University of Waterloo",
-        "Applied Brain Research"
-      ],
-      "method_tags": [
-        "Spiking Neural Networks",
-        "Neural Engineering Framework",
-        "Semantic Pointer Architecture"
-      ],
-      "platform": [],
-      "sim_stack": [
-        "Nengo",
-        "Isaac Sim"
-      ],
-      "method_family": "",
-      "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2606-10449",
+      "id": "arxiv-2606-10288",
       "source": "arxiv_discover",
-      "title": "GuideWalk: Learning Unified Autonomous Navigation and Locomotion for Humanoid Robots across Versatile Terrains",
-      "title_zh": "GuideWalk：面向人形机器人在多种地形上的统一自主导航与运动学习",
-      "tldr_zh": "提出统一框架GuideWalk，结合导航引导与运动教师，实现人形机器人多地形稳定导航。",
-      "cover_zh": "人形机器人也能翻山越岭？这个新框架让导航和运动合二为一",
-      "abstract_zh": "人形机器人已具备强大的运动能力，但在多种地形上的可靠导航仍然具有挑战性，因为避障必须与动态可行的运动相协调。本文提出GuideWalk，一个统一的端到端框架，将可通行性感知的导航引导与地形自适应运动教师相结合，用于人形机器人导航。具体而言，我们引入一个提供明确速度引导的导航模块，将避障与地形条件解耦，从而在多样环境中实现鲁棒规划。我们提出一种复合教师蒸馏方案，将目标导向指令和动态一致的动作聚合并蒸馏到单个策略中。为进一步提升鲁棒性，蒸馏后的策略通过强化学习和辅助行为克隆目标进行微调，在保留期望教师行为的同时促进探索。实验表明，GuideWalk在保持稳定人形运动的同时实现了稳定有效的导航。",
+      "title": "MARCH: Model-Assisted Reinforcement Learning for the Perceptive Control of Humanoids over Sparse Footholds",
+      "title_zh": "MARCH：模型辅助强化学习实现人形机器人在稀疏立足点上的感知控制",
+      "tldr_zh": "模型辅助强化学习结合简化模型与CLF奖励，提升人形机器人稀疏地形行走的样本效率和运动平滑性。",
+      "cover_zh": "人形机器人也能跳梅花桩？模型辅助RL让稀疏地形行走更稳更顺滑",
+      "abstract_zh": "在稀疏地形上的感知双足行走仍然是一个难题：基于模型的方法精确但对不确定性脆弱，而无模型方法鲁棒但难以发现安全关键型运动所需的精确、受约束的运动，其中小误差可能导致灾难性故障。我们提出了一种模型辅助强化学习框架，通过三个步骤结合两种视角：(1) 使用简化模型生成安全参考轨迹；(2) 训练一个特权教师策略，由围绕安全参考轨迹构建的控制李雅普诺夫函数奖励引导；(3) 将教师策略蒸馏为基于视觉的学生策略。我们表明，这种模型辅助过程产生了物理基础的运动，提高了样本效率，减少了对复杂学习课程的需求，并在步进石性能上与无模型基线相当的同时实现了更平滑的运动行为。我们在仿真中验证了该方法，并在Unitree G1人形机器人上成功部署，该机器人在具有横向约束的稀疏立足点上导航。",
       "authors": [
-        "Haoxuan Han",
-        "Chen Chen",
-        "Linao Gong"
+        "Codrin Crismariu",
+        "Ryan K. Cosner"
       ],
       "primary_category": "",
       "published": "2026-06-09",
@@ -1083,36 +957,37 @@
         "locomotion"
       ],
       "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-10449.jpg",
+      "cover_image": "assets/img/covers/arxiv-2606-10288.jpg",
       "preview_pages": [
-        "assets/img/covers/arxiv-2606-10449-p2.jpg",
-        "assets/img/covers/arxiv-2606-10449-p3.jpg",
-        "assets/img/covers/arxiv-2606-10449-p4.jpg"
+        "assets/img/covers/arxiv-2606-10288-p2.jpg",
+        "assets/img/covers/arxiv-2606-10288-p3.jpg",
+        "assets/img/covers/arxiv-2606-10288-p4.jpg"
       ],
-      "arxiv_id": "2606.10449",
-      "abs_url": "http://arxiv.org/abs/2606.10449v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.10449v1",
-      "score": 27,
+      "arxiv_id": "2606.10288",
+      "abs_url": "http://arxiv.org/abs/2606.10288v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.10288v1",
+      "score": 20,
       "judge": {
         "relevant": true,
         "research_value": "high",
         "primary_channel": "loco-manip-wbc",
-        "reason": "人形机器人导航与运动统一框架，涉及全身控制与地形适应，高科研价值。",
+        "reason": "提出模型辅助强化学习框架，实现人形机器人在稀疏立足点上的感知双足运动，仿真与真机验证，方法新颖且实用。",
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Harbin Institute of Technology",
-        "Leju Robotics"
+        "Tufts University"
       ],
       "method_tags": [
-        "policy distillation",
-        "reinforcement learning",
-        "behavior cloning"
+        "model-assisted reinforcement learning",
+        "control Lyapunov function",
+        "teacher-student distillation"
       ],
-      "platform": [],
+      "platform": [
+        "Unitree G1"
+      ],
       "sim_stack": [],
       "method_family": "",
-      "real_robot": "no",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -1161,8 +1036,8 @@
         "Beijing University of Posts and Telecommunications"
       ],
       "method_tags": [
-        "tokenizer",
-        "cross-embodiment"
+        "Tokenizer",
+        "Cross-embodiment"
       ],
       "platform": [],
       "sim_stack": [],
@@ -1216,12 +1091,70 @@
       "method_tags": [
         "contact localization",
         "cross-embodiment retargeting",
-        "hand-object interaction"
+        "trajectory transfer"
       ],
       "platform": [],
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-11034",
+      "source": "arxiv",
+      "title": "A Spiking Neural Architecture for Coordinating Arm and Locomotor Control",
+      "title_zh": "一种协调手臂与运动控制的脉冲神经架构",
+      "tldr_zh": "首个集成双足运动和手臂控制的脉冲神经网络架构。",
+      "cover_zh": "人形机器人也能边走路边画画？这个脉冲架构做到了！",
+      "abstract_zh": "脉冲神经网络（SNN）结合神经形态硬件为人形机器人控制提供了节能方案。然而，现有的基于SNN的运动控制系统分别处理双足运动和手臂控制，未解决两者的集成控制问题。我们提出一种脉冲架构，在模拟人形机器人中协调基于力的手臂控制和双足运动，采用神经工程框架（NEF）和语义指针架构（SPA）。运动控制和手臂控制之间的高层动作选择由生物启发的脉冲基底节模型介导。我们通过Nengo（神经控制）和Isaac Sim的联合仿真验证了该系统，展示了成功的目标到达、连续数字绘制、路径跟踪运动，以及通过基底节去抑制在行走和手臂控制之间切换。据我们所知，这是首个在全尺寸人形平台上结合双足运动和手臂控制的集成脉冲控制器。全脉冲实现使其未来可部署于低功耗神经形态硬件。",
+      "authors": [
+        "Lea Steffen",
+        "Kathryn Simone",
+        "Graeme Damberger"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-09",
+      "channels": [
+        "loco-manip-wbc",
+        "locomotion",
+        "sim2real"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2606-11034.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-11034-p2.jpg",
+        "assets/img/covers/arxiv-2606-11034-p3.jpg",
+        "assets/img/covers/arxiv-2606-11034-p4.jpg"
+      ],
+      "arxiv_id": "2606.11034",
+      "abs_url": "http://arxiv.org/abs/2606.11034v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.11034v1",
+      "score": 20,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "首次实现脉冲神经网络协调人形机器人双臂与双足运动，结合NEF和基底节模型，具有创新性和低功耗潜力。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Waterloo",
+        "Applied Brain Research"
+      ],
+      "method_tags": [
+        "Spiking Neural Networks",
+        "Neural Engineering Framework",
+        "Semantic Pointer Architecture"
+      ],
+      "platform": [],
+      "sim_stack": [
+        "Nengo",
+        "Isaac Sim"
+      ],
+      "method_family": "",
+      "real_robot": "no",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -1282,54 +1215,55 @@
       "github": {}
     },
     {
-      "id": "arxiv-2606-11109",
-      "source": "arxiv",
-      "title": "EM-Fall: Embodied mmWave Sensing for Day-and-Night Fall Detection on Humanoid Robots",
-      "title_zh": "EM-Fall：面向人形机器人的昼夜跌倒检测的具身毫米波感知",
-      "tldr_zh": "提出EM-Fall，利用移动人形机器人的毫米波感知实现昼夜跌倒检测。",
-      "cover_zh": "机器人主动找角度｜毫米波雷达让跌倒检测无死角",
-      "abstract_zh": "跌倒是老年人受伤和住院的主要原因之一，因此可靠的跌倒感知能力对于住宅环境中的安全监测至关重要。然而，现有的跌倒检测系统通常依赖可穿戴设备或固定传感装置，可能存在用户依从性低、空间覆盖有限、或在遮挡和光线不足条件下性能下降的问题。在这项工作中，我们提出了EM-Fall，一种部署在移动人形机器人上的具身跌倒检测框架。该系统将毫米波感知与机器人移动性相结合，使机器人能够主动调整其感知视角，并在不同房间和遮挡情况下保持目标可观测性。为了解决复杂住宅环境中的干扰，包括宠物运动和多重路径伪影，我们设计了一个以人为中心的感知流水线，结合轻量级时间建模来捕捉跌倒事件前、中、后的运动演变。我们在八个真实室内环境中对四位参与者进行了系统评估，并构建了一个家庭毫米波跌倒检测数据集。实验结果表明，具身移动感知范式提高了监测连续性，并在多种环境条件下保持了稳健的跌倒检测性能。所提出的框架为家庭环境中的机器人辅助安全监测提供了一种实用解决方案。",
+      "id": "arxiv-2606-10449",
+      "source": "arxiv_discover",
+      "title": "GuideWalk: Learning Unified Autonomous Navigation and Locomotion for Humanoid Robots across Versatile Terrains",
+      "title_zh": "GuideWalk：面向人形机器人在多种地形上的统一自主导航与运动学习",
+      "tldr_zh": "提出统一框架GuideWalk，结合导航引导与运动教师，实现人形机器人多地形稳定导航。",
+      "cover_zh": "人形机器人也能翻山越岭？这个新框架让导航和运动合二为一",
+      "abstract_zh": "人形机器人已具备强大的运动能力，但在多种地形上的可靠导航仍然具有挑战性，因为避障必须与动态可行的运动相协调。本文提出GuideWalk，一个统一的端到端框架，将可通行性感知的导航引导与地形自适应运动教师相结合，用于人形机器人导航。具体而言，我们引入一个提供明确速度引导的导航模块，将避障与地形条件解耦，从而在多样环境中实现鲁棒规划。我们提出一种复合教师蒸馏方案，将目标导向指令和动态一致的动作聚合并蒸馏到单个策略中。为进一步提升鲁棒性，蒸馏后的策略通过强化学习和辅助行为克隆目标进行微调，在保留期望教师行为的同时促进探索。实验表明，GuideWalk在保持稳定人形运动的同时实现了稳定有效的导航。",
       "authors": [
-        "Yanshuo Lu",
-        "Yuxuan Hu",
-        "Shenghai Yuan"
+        "Haoxuan Han",
+        "Chen Chen",
+        "Linao Gong"
       ],
-      "primary_category": "cs.RO",
+      "primary_category": "",
       "published": "2026-06-09",
       "channels": [
-        "loco-manip-wbc"
+        "loco-manip-wbc",
+        "locomotion"
       ],
       "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-11109.jpg",
+      "cover_image": "assets/img/covers/arxiv-2606-10449.jpg",
       "preview_pages": [
-        "assets/img/covers/arxiv-2606-11109-p2.jpg",
-        "assets/img/covers/arxiv-2606-11109-p3.jpg",
-        "assets/img/covers/arxiv-2606-11109-p4.jpg"
+        "assets/img/covers/arxiv-2606-10449-p2.jpg",
+        "assets/img/covers/arxiv-2606-10449-p3.jpg",
+        "assets/img/covers/arxiv-2606-10449-p4.jpg"
       ],
-      "arxiv_id": "2606.11109",
-      "abs_url": "http://arxiv.org/abs/2606.11109v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.11109v1",
-      "score": 19,
+      "arxiv_id": "2606.10449",
+      "abs_url": "http://arxiv.org/abs/2606.10449v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.10449v1",
+      "score": 17,
       "judge": {
         "relevant": true,
-        "research_value": "medium",
+        "research_value": "high",
         "primary_channel": "loco-manip-wbc",
-        "reason": "将毫米波感知部署在人形机器人上实现跌倒检测，涉及移动感知与全身平台，属于人形机器人应用。",
+        "reason": "人形机器人导航与运动统一框架，涉及全身控制与地形适应，高科研价值。",
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "MARS Lab",
-        "NTU",
-        "IOT Lab"
+        "Harbin Institute of Technology",
+        "Leju Robotics"
       ],
       "method_tags": [
-        "mmWave sensing",
-        "temporal modeling"
+        "policy distillation",
+        "reinforcement learning",
+        "behavior cloning"
       ],
       "platform": [],
       "sim_stack": [],
       "method_family": "",
-      "real_robot": "yes",
+      "real_robot": "no",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -1595,6 +1529,59 @@
       "github": {}
     },
     {
+      "id": "arxiv-2606-11109",
+      "source": "arxiv",
+      "title": "EM-Fall: Embodied mmWave Sensing for Day-and-Night Fall Detection on Humanoid Robots",
+      "title_zh": "EM-Fall：面向人形机器人的昼夜跌倒检测的具身毫米波感知",
+      "tldr_zh": "提出EM-Fall，利用移动人形机器人的毫米波感知实现昼夜跌倒检测。",
+      "cover_zh": "机器人主动找角度｜毫米波雷达让跌倒检测无死角",
+      "abstract_zh": "跌倒是老年人受伤和住院的主要原因之一，因此可靠的跌倒感知能力对于住宅环境中的安全监测至关重要。然而，现有的跌倒检测系统通常依赖可穿戴设备或固定传感装置，可能存在用户依从性低、空间覆盖有限、或在遮挡和光线不足条件下性能下降的问题。在这项工作中，我们提出了EM-Fall，一种部署在移动人形机器人上的具身跌倒检测框架。该系统将毫米波感知与机器人移动性相结合，使机器人能够主动调整其感知视角，并在不同房间和遮挡情况下保持目标可观测性。为了解决复杂住宅环境中的干扰，包括宠物运动和多重路径伪影，我们设计了一个以人为中心的感知流水线，结合轻量级时间建模来捕捉跌倒事件前、中、后的运动演变。我们在八个真实室内环境中对四位参与者进行了系统评估，并构建了一个家庭毫米波跌倒检测数据集。实验结果表明，具身移动感知范式提高了监测连续性，并在多种环境条件下保持了稳健的跌倒检测性能。所提出的框架为家庭环境中的机器人辅助安全监测提供了一种实用解决方案。",
+      "authors": [
+        "Yanshuo Lu",
+        "Yuxuan Hu",
+        "Shenghai Yuan"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-09",
+      "channels": [
+        "loco-manip-wbc"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2606-11109.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-11109-p2.jpg",
+        "assets/img/covers/arxiv-2606-11109-p3.jpg",
+        "assets/img/covers/arxiv-2606-11109-p4.jpg"
+      ],
+      "arxiv_id": "2606.11109",
+      "abs_url": "http://arxiv.org/abs/2606.11109v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.11109v1",
+      "score": 9,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "将毫米波感知部署在人形机器人上实现跌倒检测，涉及移动感知与全身平台，属于人形机器人应用。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "MARS Lab",
+        "NTU",
+        "IOT Lab"
+      ],
+      "method_tags": [
+        "mmWave sensing",
+        "temporal modeling"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
       "id": "arxiv-2606-10517",
       "source": "arxiv",
       "title": "LAFP: Preserving Latent Action Structure in Latent Policy Learning via Flow Matching",
@@ -1637,7 +1624,7 @@
       "method_tags": [
         "Flow Matching",
         "Latent Policy Learning",
-        "Imitation Learning"
+        "Behavior Cloning"
       ],
       "platform": [],
       "sim_stack": [],
@@ -1687,7 +1674,7 @@
         "School of Instrument Science and Engineering, Southeast University"
       ],
       "method_tags": [
-        "neuro-symbolic framework",
+        "neuro-symbolic",
         "LLM",
         "behavior trees"
       ],
@@ -1738,7 +1725,8 @@
       "institutions": [],
       "method_tags": [
         "counterfactual reasoning",
-        "causal inference"
+        "causal inference",
+        "world model"
       ],
       "platform": [],
       "sim_stack": [],

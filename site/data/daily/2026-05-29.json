@@ -3,64 +3,6 @@
   "count": 17,
   "papers": [
     {
-      "id": "arxiv-2605-31481",
-      "source": "arxiv",
-      "title": "Batched Differentiable Rigid Body Dynamics in PyTorch for GPU-Accelerated Robot Learning",
-      "title_zh": "基于 PyTorch 的批量化可微刚体动力学：GPU 加速的机器人学习",
-      "tldr_zh": "提出 BARD，一个基于 PyTorch 的 GPU 批量化可微刚体动力学库，吞吐量比 Pinocchio 高数十倍。",
-      "cover_zh": "GPU 加速的机器人动力学｜比 Pinocchio 快 64 倍，还能自动微分",
-      "abstract_zh": "随着机器人控制转向大规模强化学习与循环动力学计算，社区对 Pinocchio 等 CPU 绑定库的依赖在基于 GPU 的训练流程中造成了吞吐瓶颈。我们提出 BARD（批量化铰接刚体动力学），一个自包含的 PyTorch 实现，基于 Featherstone 刚体动力学算法，针对批量化 GPU 评估和自动微分进行了优化。三个设计选择使其高效：分层惰性求值缓存避免冗余树遍历，通过预计算 Rodrigues 常数实现无矩阵乘法的关节变换，以及层级并行传播将顺序操作减少为树深度的批量化步骤。在五个机器人模型（7-23 自由度）上，BARD 在数值上匹配 Pinocchio，同时在 NVIDIA H200 上以批大小 4096 实现前向运动学高达 64 倍、雅可比矩阵高达 63 倍的吞吐量提升。我们通过基于梯度的系统辨识验证了可微性，在 7 自由度机械臂上以 5% 扭矩噪声恢复连杆质量，平均误差 1.24%，并将 BARD 集成到 Isaac Lab AMP 训练流程中，用于具有 4096 个并行环境的 11 自由度脊柱四足机器人，其循环动力学速度比 Pinocchio 快 8.5 倍，比 ADAM 快 2.0 倍。BARD 已开源：https://github.com/YueWang996/bard-pytorch-dynamics",
-      "authors": [
-        "Yue Wang",
-        "Yanran Xu",
-        "Wenbo Wu"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-29",
-      "channels": [
-        "locomotion",
-        "sim2real"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ NVIDIA"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2605-31481.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-31481-p2.jpg",
-        "assets/img/covers/arxiv-2605-31481-p3.jpg",
-        "assets/img/covers/arxiv-2605-31481-p4.jpg"
-      ],
-      "arxiv_id": "2605.31481",
-      "abs_url": "http://arxiv.org/abs/2605.31481v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.31481v1",
-      "score": 47,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "sim2real",
-        "reason": "GPU加速的刚体动力学库，显著提升仿真训练吞吐，对sim2real和RL有重要价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "Differentiable Physics",
-        "GPU-Accelerated",
-        "Rigid Body Dynamics"
-      ],
-      "platform": [],
-      "sim_stack": [
-        "Isaac Lab"
-      ],
-      "method_family": "Hardware",
-      "real_robot": "no",
-      "training_summary": "4096 parallel envs, 8.5x faster than Pinocchio",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
       "id": "embodied_techdaily-0a04334b39",
       "source": "embodied_techdaily",
       "title": "清华团队在思考一个问题：世界模型如何真正走进世界？iWorld-Bench工作解析......",
@@ -336,6 +278,59 @@
       "method_family": "Hybrid",
       "real_robot": "yes",
       "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2605-31481",
+      "source": "arxiv",
+      "title": "Batched Differentiable Rigid Body Dynamics in PyTorch for GPU-Accelerated Robot Learning",
+      "title_zh": "基于 PyTorch 的批量化可微刚体动力学：GPU 加速的机器人学习",
+      "tldr_zh": "提出 BARD，一个基于 PyTorch 的 GPU 批量化可微刚体动力学库，吞吐量比 Pinocchio 高数十倍。",
+      "cover_zh": "GPU 加速的机器人动力学｜比 Pinocchio 快 64 倍，还能自动微分",
+      "abstract_zh": "随着机器人控制转向大规模强化学习与循环动力学计算，社区对 Pinocchio 等 CPU 绑定库的依赖在基于 GPU 的训练流程中造成了吞吐瓶颈。我们提出 BARD（批量化铰接刚体动力学），一个自包含的 PyTorch 实现，基于 Featherstone 刚体动力学算法，针对批量化 GPU 评估和自动微分进行了优化。三个设计选择使其高效：分层惰性求值缓存避免冗余树遍历，通过预计算 Rodrigues 常数实现无矩阵乘法的关节变换，以及层级并行传播将顺序操作减少为树深度的批量化步骤。在五个机器人模型（7-23 自由度）上，BARD 在数值上匹配 Pinocchio，同时在 NVIDIA H200 上以批大小 4096 实现前向运动学高达 64 倍、雅可比矩阵高达 63 倍的吞吐量提升。我们通过基于梯度的系统辨识验证了可微性，在 7 自由度机械臂上以 5% 扭矩噪声恢复连杆质量，平均误差 1.24%，并将 BARD 集成到 Isaac Lab AMP 训练流程中，用于具有 4096 个并行环境的 11 自由度脊柱四足机器人，其循环动力学速度比 Pinocchio 快 8.5 倍，比 ADAM 快 2.0 倍。BARD 已开源：https://github.com/YueWang996/bard-pytorch-dynamics",
+      "authors": [
+        "Yue Wang",
+        "Yanran Xu",
+        "Wenbo Wu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-29",
+      "channels": [
+        "locomotion",
+        "sim2real"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2605-31481.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-31481-p2.jpg",
+        "assets/img/covers/arxiv-2605-31481-p3.jpg",
+        "assets/img/covers/arxiv-2605-31481-p4.jpg"
+      ],
+      "arxiv_id": "2605.31481",
+      "abs_url": "http://arxiv.org/abs/2605.31481v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.31481v1",
+      "score": 22,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "sim2real",
+        "reason": "GPU加速的刚体动力学库，显著提升仿真训练吞吐，对sim2real和RL有重要价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "Differentiable Physics",
+        "GPU-Accelerated",
+        "Rigid Body Dynamics"
+      ],
+      "platform": [],
+      "sim_stack": [
+        "Isaac Lab"
+      ],
+      "method_family": "Hardware",
+      "real_robot": "no",
+      "training_summary": "4096 parallel envs, 8.5x faster than Pinocchio",
       "demo_videos": [],
       "github": {}
     },
