@@ -1,14 +1,16 @@
-name: Deploy on push
+name: Deploy (manual)
 
-# Redeploy whenever the site/ folder is updated by a manual push
-# (e.g., you fix CSS). The daily workflow handles its own deploy too.
-
+# 仅手动触发的兜底部署。
+#
+# 为什么去掉了 push 触发：
+#   - daily.yml 的提交用默认 GITHUB_TOKEN，本就不会触发其它 workflow；
+#   - 真正会触发本 workflow 的是「人/gh API 用户令牌」往 main 推 site/**，
+#     而那种推送带的是工作区里旧的 ?v= 戳（没跑 stamp_assets），于是本 workflow
+#     会用「陈旧 stamp 的 HTML/JS」覆盖掉 daily 部署的正确产物，且两个部署并发
+#     竞态、后完成者覆盖前者。
+#   - daily.yml 现在每轮提交完整 site/（含 stamp 后的 HTML/JS/RSS/digest），是
+#     唯一的自动部署源。需要纯前端临时部署时，手动触发本 workflow 或直接重跑 daily。
 on:
-  push:
-    branches: [main]
-    paths:
-      - "site/**"
-      - ".github/workflows/deploy.yml"
   workflow_dispatch:
 
 permissions:

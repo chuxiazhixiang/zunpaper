@@ -74,10 +74,12 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # data/*.json 是 LLM 判定 / 翻译 / enrich 的累积缓存 ——
-          # 不 commit 回去的话每天 Actions 都得从零再付费判一遍 (DeepSeek + Gemini)。
-          # 跨日复用 cache 才是省钱 + 稳定输出的关键。
-          git add site/data site/assets/img/covers data/judge_cache.json data/enrich_cache.json data/video_cache.json data/github_state.json || true
+          # 提交完整 site/（含 stamp_assets 改过的 *.html / assets/js 的 ?v= 戳、
+          # rss.xml、digest/*.md），保证 git 上的前端与本轮部署的 artifact 一致，
+          # 否则手动 deploy.yml（从 git 部署）会用旧 ?v= 的 HTML 覆盖正确产物。
+          # data/*.json 是 LLM 判定 / 翻译 / enrich 的累积缓存 —— 不 commit 回去
+          # 的话每天 Actions 都得从零再付费判一遍，跨日复用才省钱 + 稳定。
+          git add site data/judge_cache.json data/enrich_cache.json data/video_cache.json data/github_state.json || true
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0

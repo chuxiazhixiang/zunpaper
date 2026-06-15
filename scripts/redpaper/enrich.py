@@ -112,6 +112,9 @@ class Enrichment:
     real_robot: str = ""
     training_summary: str = ""
     model: str = ""
+    # reviewer 是否成功核验过。False = reviewer 调用失败、走了保守降级（已清空
+    # 高风险事实字段），缓存标记后下次重试。
+    review_ok: bool = True
 
 
 class EnrichUnavailable(RuntimeError):
@@ -191,7 +194,14 @@ def enrich_paper(title: str, abstract: str, authors_text: str = "", pdf_text: st
     try:
         reviewed = _coerce(_deepseek_json(REVIEW_PROMPT, review_user, key, model, timeout), model)
     except Exception as e:
-        log.warning("enrich review failed (%s); using draft", e)
+        # reviewer 失败：不能直接信任未核验的 writer 草稿。保守降级——清空高风险
+        # 事实字段（机构/平台/仿真栈，最容易被瞎猜），只留较低风险的 method_tags /
+        # real_robot；并标记 review_ok=False，下次 build 重试核验。
+        log.warning("enrich review failed (%s); 保守降级 + 标记重试", e)
+        draft.institutions = []
+        draft.platform = []
+        draft.sim_stack = []
+        draft.review_ok = False
         return draft
     return reviewed
 
@@ -274,24 +284,29 @@ class EnrichCache:
     def needs_reenrich(self, pid: str, has_pdf_url: bool = False) -> bool:
         """是否需要(重新)抽取。
         - 没缓存 / schema 低于当前 → 需要。
-        - schema 当前、但有 pdf_url 却没成功读到 PDF 证据（pdf_ok=False）且重试
-          次数未超上限 → 需要（给"上次 PDF 下载失败"一个再试机会，避免机构永久
-          缺证据）。死链 PDF 试满 MAX_PDF_RETRIES 次后放弃，不再空耗。"""
+        - schema 当前、但「有 pdf_url 却没读到 PDF 证据(pdf_ok=False)」或「reviewer
+          没核验过(review_ok=False)」，且重试次数未超上限 → 需要（给上次的瞬时失败
+          再试一次机会）。试满 MAX_PDF_RETRIES 次后放弃，不再空耗 backfill 预算。"""
         e = self.entries.get(pid)
         if not e:
             return True
         if int(e.get("schema", 0)) < self.SCHEMA:
             return True
-        if has_pdf_url and not e.get("pdf_ok") and int(e.get("tries", 0)) < self.MAX_PDF_RETRIES:
-            return True
+        if int(e.get("tries", 0)) < self.MAX_PDF_RETRIES:
+            if has_pdf_url and not e.get("pdf_ok"):
+                return True
+            if not e.get("review_ok", True):
+                return True
         return False
 
-    def put(self, pid: str, j: Enrichment, pdf_ok: bool = True) -> None:
+    def put(self, pid: str, j: Enrichment, pdf_ok: bool = True, review_ok: bool = True) -> None:
         prev_tries = int((self.entries.get(pid) or {}).get("tries", 0))
         d = asdict(j)
+        d.pop("review_ok", None)  # 用入参的 review_ok 为准（dataclass 上的只是传递）
         d["ts"] = int(time.time())
         d["schema"] = self.SCHEMA
         d["pdf_ok"] = bool(pdf_ok)
+        d["review_ok"] = bool(review_ok)
         d["tries"] = prev_tries + 1
         self.entries[pid] = d
 

@@ -135,12 +135,14 @@ def _enrich_papers(fresh: dict[str, Paper]) -> dict[str, Paper]:
             pdf_text = ""
             if p.pdf_url:
                 try:
-                    pdf_text = fetch_head_text(p.pdf_url)
+                    pdf_text, pc = fetch_head_text(p.pdf_url)
+                    if pc > 0 and not p.page_count:
+                        p.page_count = pc  # 顺带回填页数（longer_paper 评分用）
                 except Exception as ex:
                     log.debug("head text extract failed for %s: %s", pid, ex)
             e = enrich_paper(p.title, p.abstract or p.tldr_zh or p.title, authors_text, pdf_text)
             enrich_calls += 1
-            cache.put(pid, e, pdf_ok=bool(pdf_text))
+            cache.put(pid, e, pdf_ok=bool(pdf_text), review_ok=getattr(e, "review_ok", True))
             _apply_enrichment(p, e)
         except EnrichUnavailable as ex:
             log.warning("enrich skipped (%s); leaving %s without chips", ex, pid)
@@ -396,41 +398,40 @@ def process_new_papers(
     for pid, paper in fresh.items():
         cached = existing.get(pid)
         if cached:
-            # Merge channel union, keep cached translations and cover.
-            for c in paper.channels:
-                if c not in cached.channels:
-                    cached.channels.append(c)
-            if paper.updated and paper.updated > (cached.updated or ""):
-                cached.updated = paper.updated
-            # 同步回填 published：以前 cn_news 解析失败时 published 会是空串，
-            # 之后修好 parser 后只更新 updated 又导致 published 永久为空。
-            # 这里如果 cached.published 是空且 fresh paper 有 published，
-            # 直接补上；如果两者都有，谁早听谁的（保留原始 first-publish 日期）。
-            if paper.published:
-                if not cached.published:
-                    cached.published = paper.published
-                elif paper.published < cached.published:
-                    cached.published = paper.published
-            # GitHub 开源仓的 star / 语言 / 归档 / topics / judge 每轮都会变，
-            # 必须用本轮 fresh 覆盖回 cached，否则入库后这些字段永久陈旧、
-            # open-source tab 的 star 排序也会 stale。翻译（cover_zh/tldr_zh）
-            # 已在 _process_github_repos 里从旧卡继承到 fresh，这里不会丢。
-            if (paper.source or "") == "github":
-                if paper.github:
-                    cached.github = paper.github
-                if paper.judge:
-                    cached.judge = paper.judge
-                if paper.method_tags:
-                    cached.method_tags = paper.method_tags
-                if paper.abs_url:
-                    cached.abs_url = paper.abs_url
-                if paper.abstract:
-                    cached.abstract = paper.abstract
-                for fld in ("title_zh", "abstract_zh", "tldr_zh", "cover_zh"):
-                    val = getattr(paper, fld, "")
-                    if val:
-                        setattr(cached, fld, val)
-            paper = cached
+            # ★ fresh 为主：paper(fresh) 携带本轮重新算过的 judge / enrich
+            # (institutions/platform/...) / demo_videos / score，必须保留。只从
+            # cached 继承「贵且无需重算」的翻译 + 封面 + 页数。
+            # 历史坑：以前这里 `paper = cached`，把本轮 re-judge/re-enrich/视频
+            # 全丢了 → 活跃论文（在 fresh 里）的标签永远停在首次入库值。
+            is_gh = (paper.source or "") == "github"
+            # 频道：github 用 fresh 判定的方向（不并 cached，免得把旧 open-source
+            # 并回来）；其它源与 cached 取并集（保持历史行为）。
+            if not is_gh:
+                for c in cached.channels:
+                    if c not in paper.channels:
+                        paper.channels.append(c)
+            # 日期：published 取最早（保留 first-publish），updated 取最新。
+            if cached.published and (not paper.published or cached.published < paper.published):
+                paper.published = cached.published
+            if cached.updated and cached.updated > (paper.updated or ""):
+                paper.updated = cached.updated
+            # 翻译：fresh 一般没翻（cn_news / github 自带的除外），从 cached 继承。
+            paper.title_zh = paper.title_zh or cached.title_zh
+            paper.abstract_zh = paper.abstract_zh or cached.abstract_zh
+            paper.tldr_zh = paper.tldr_zh or cached.tldr_zh
+            paper.cover_zh = paper.cover_zh or cached.cover_zh
+            # 封面 / 预览 / 页数：已渲染过的从 cached 继承，不重渲。
+            paper.cover_image = paper.cover_image or cached.cover_image
+            if not paper.preview_pages:
+                paper.preview_pages = list(cached.preview_pages or [])
+            if not paper.page_count:
+                paper.page_count = cached.page_count
+            if not paper.related_links:
+                paper.related_links = list(cached.related_links or [])
+            # source_tags 取并集（保留 manual_pin 等历史标记）。
+            for tg in (cached.source_tags or []):
+                if tg not in (paper.source_tags or []):
+                    paper.source_tags.append(tg)
 
         if not paper.cover_image and paper.pdf_url:
             rel, previews, pages = fetch_and_render(paper.pdf_url, paper.id, cfg.COVER_DIR)
@@ -1108,10 +1109,14 @@ def run() -> None:
                 and enrich_cache.needs_reenrich(paper.id, bool(paper.pdf_url)):
             try:
                 authors_text = "、".join(a.name for a in (paper.authors or [])[:8])
-                pdf_text = fetch_head_text(paper.pdf_url) if paper.pdf_url else ""
+                pdf_text = ""
+                if paper.pdf_url:
+                    pdf_text, pc = fetch_head_text(paper.pdf_url)
+                    if pc > 0 and not paper.page_count:
+                        paper.page_count = pc
                 e = enrich_paper(paper.title, paper.abstract or paper.tldr_zh or paper.title,
                                  authors_text, pdf_text)
-                enrich_cache.put(paper.id, e, pdf_ok=bool(pdf_text))
+                enrich_cache.put(paper.id, e, pdf_ok=bool(pdf_text), review_ok=getattr(e, "review_ok", True))
                 _apply_enrichment(paper, e)
                 backfilled += 1
             except EnrichUnavailable:

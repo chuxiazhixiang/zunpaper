@@ -134,6 +134,9 @@ async function selectMonth(ym) {
 
 async function main() {
   Theme.init();
+  document.querySelector('#theme-toggle')?.addEventListener('click', () => {
+    Theme.cycle();
+  });
   attachSearchRedirect();
   const idx = await loadIndex();
   STATE.digests = idx.digests || [];
