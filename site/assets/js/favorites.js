@@ -15,7 +15,7 @@ import {
   showToast,
   fetchJSON,
 } from './utils.js?v=7adda7f1';
-import { chipRowsHTML, videoBadgeHTML } from './feed.js?v=7adda7f1';
+import { chipRowsHTML, videoBadgeHTML, githubCardHTML } from './feed.js?v=7adda7f1';
 
 const STATE = {
   papers: [],          // master list from index.json
@@ -28,6 +28,8 @@ async function loadIndex() {
 }
 
 function cardHTML(p) {
+  // 开源仓复用 feed 的 GitHub 卡片（显示 star/语言、直链仓库），保持一致。
+  if ((p.source || '') === 'github') return githubCardHTML(p);
   const cover = pickCover(p.id);
   const titleZh = p.title_zh || p.title;
   const headline = p.cover_zh || p.tldr_zh || titleZh;

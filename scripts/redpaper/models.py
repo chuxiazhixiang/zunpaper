@@ -62,6 +62,9 @@ class Paper:
     # demo 视频聚合：从 paper 项目主页 / abstract / awesome_papers 抽出来的
     # YouTube / Bilibili / 自托管 mp4 嵌入，前端 cover carousel 第 0 张直接放视频。
     demo_videos: list[dict] = field(default_factory=list)                # [{kind, url, embed_url, thumbnail, title}]
+    # GitHub 开源项目卡专属元数据（source == "github" 时填充）。前端用来在卡片上
+    # 展示 ⭐ star / 语言 / 最近更新，并直链到仓库。
+    github: dict = field(default_factory=dict)                            # {owner, repo, stars, language, pushed_at, created_at, topics}
 
     def to_dict(self) -> dict[str, Any]:
         d = asdict(self)

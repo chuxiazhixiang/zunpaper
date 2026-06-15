@@ -258,6 +258,18 @@ def _substr_or_regex(text: str, pattern: str) -> bool:
 
 def score_paper(paper: Paper) -> tuple[int, list[dict]]:
     """Return (total_score, breakdown_list)."""
+    # GitHub 开源仓单独按 star 打分（论文那套规则不适用）。前端「开源项目」tab
+    # 实际用真实 star 排序，这里给个 log 归一化分数仅用于展示 / 兜底排序。
+    if (paper.source or "") == "github":
+        import math
+        stars = int((paper.github or {}).get("stars", 0))
+        pts = min(100, int(round(20 * math.log10(max(stars, 1)))))  # 1k≈60, 1万≈80, 10万≈100
+        return pts, [{
+            "id": "github_stars",
+            "label": "GitHub 热度",
+            "points": pts,
+            "hint": f"⭐ {stars}",
+        }]
     breakdown: list[dict] = []
     total = 0
     for rule in _rules():

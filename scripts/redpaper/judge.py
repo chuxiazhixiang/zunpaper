@@ -180,6 +180,84 @@ def judge_paper(title: str, abstract: str, *, model: str = DEFAULT_MODEL,
     return j
 
 
+REPO_SYSTEM_PROMPT = (
+    "你是一位严格的具身 / 人形机器人方向研究员，要判断一个 GitHub 开源仓库\n"
+    "是否值得放进「优质开源项目」栏目。输入是仓库的 名字 + 描述 + README 摘要 + topics。\n"
+    "\n"
+    "**接受**（relevant=true）—— 必须是「能落地的算法 / 模型 / 系统 / 框架 / 数据集 / benchmark」，\n"
+    "且属于下列任一方向：\n"
+    "  - loco-manip-wbc：人形全身控制 / 移动操作 / 全身 VLA / 人形动作模仿 / retargeting\n"
+    "  - manipulation：灵巧手 / 抓取 / 双臂 / 桌面操作 / 操作 VLA（OpenVLA/π0/Octo/RDT/ACT/Diffusion Policy）\n"
+    "  - teleop：遥操作 / VR / 力反馈 / 主从\n"
+    "  - locomotion：双足 / 四足 / parkour / 地形运动\n"
+    "  - sim2real：仿真到真机 / 域随机化 / 机器人仿真器（Isaac/MuJoCo/Genesis/ManiSkill）\n"
+    "  - world-model：世界模型 / JEPA / Cosmos / Genie / Dreamer / 视频或物理世界模型\n"
+    "典型正例：openvla、openpi(π0)、lerobot、IsaacLab、Genesis、diffusion_policy、HumanPlus、\n"
+    "ASAP、human2humanoid、expressive-humanoid、AMO、RDT、GR00T、umi-on-legs、robosuite。\n"
+    "\n"
+    "**砍掉**（relevant=false）—— 这些即使 star 很高也不要：\n"
+    "  - 课程 / 教程 / 学习路线 / awesome-list / 论文清单 / 面经（如 every-embodied、awesome-xxx）\n"
+    "  - 别人的 fork / 非官方复现 / 架构草稿（lucidrains 式 re-implementation，跑不出系统）\n"
+    "  - 蹭热门项目名的无关仓（如把 π0 名字用在游戏外挂 / 加密货币 / 网页模板）\n"
+    "  - 个人镜像 / 作业 / 玩具 demo / 空壳仓（README 几乎没内容）\n"
+    "  - 纯前端 / 网站 / 数据可视化 / 与物理机器人算法无关的通用 ML / LLM Agent\n"
+    "  - 医疗 / 手术 / 工业产线自动化，缺乏机器人学习算法新意\n"
+    "\n"
+    "严格按 JSON 输出，schema：\n"
+    "{\n"
+    '  "relevant": true/false,                  // 是否值得进开源栏目\n'
+    '  "research_value": "high"/"medium"/"low", // 对一线科研 / 工程的参考价值\n'
+    '  "primary_channel": "loco-manip-wbc|manipulation|teleop|locomotion|sim2real|world-model|none",\n'
+    '  "reason": "20-40 字中文简评，说明留 / 砍理由"\n'
+    "}\n"
+    "判定原则：\n"
+    "  - 是「课程 / awesome / 复现 / 蹭名 / 空壳」→ 一律 false，无论多少 star。\n"
+    "  - 官方算法 / 模型 / 框架 / 仿真器 / 数据集（在用户方向）→ true，research_value 视影响力。\n"
+    "  - 拿不准是不是官方原作、或方向是否吻合 → false，宁缺勿滥。\n"
+)
+
+
+def judge_repo(name: str, description: str, readme: str = "", topics: str = "",
+               *, model: str = DEFAULT_MODEL, api_key: str | None = None,
+               timeout: float = JUDGE_TIMEOUT) -> Judgment:
+    """对一个 GitHub 仓库做「是否进开源栏目」判定。复用 Judgment / 解析逻辑。"""
+    if os.environ.get("REDPAPER_JUDGE_DISABLE") == "1":
+        raise JudgeUnavailable("REDPAPER_JUDGE_DISABLE=1")
+    key = api_key or os.environ.get("DEEPSEEK_API_KEY")
+    if not key:
+        raise JudgeUnavailable("DEEPSEEK_API_KEY not set")
+
+    user_msg = (
+        f"仓库：{name.strip()}\n"
+        f"topics：{(topics or '').strip()}\n\n"
+        f"描述：{(description or '').strip()[:500]}\n\n"
+        f"README 摘要：\n{(readme or '').strip()[:2500]}\n"
+    )
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": REPO_SYSTEM_PROMPT},
+            {"role": "user",   "content": user_msg},
+        ],
+        "response_format": {"type": "json_object"},
+        "temperature": 0.0,
+        "thinking": {"type": "disabled"},
+        "max_tokens": 400,
+    }
+    headers = {"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
+    r = requests.post(DEEPSEEK_URL, json=payload, headers=headers, timeout=timeout)
+    r.raise_for_status()
+    raw = r.json()["choices"][0]["message"]["content"]
+    data = _parse_response(raw)
+    return Judgment(
+        relevant=bool(data.get("relevant", False)),
+        research_value=str(data.get("research_value", "low")).lower(),
+        primary_channel=str(data.get("primary_channel", "none")).lower(),
+        reason=str(data.get("reason", "")).strip()[:200],
+        model=model,
+    )
+
+
 def _parse_response(raw: str) -> dict:
     """LLM 偶尔会在 JSON 周围加 ```json fence；剥掉。"""
     s = raw.strip()

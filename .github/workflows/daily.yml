@@ -61,6 +61,8 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
           OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
+          # 开源项目栏目召回 GitHub repos 用（Actions 自带 token，无需额外配 secret）。
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/build.py
 
       - name: Commit generated data
@@ -70,7 +72,7 @@ jobs:
           # data/*.json 是 LLM 判定 / 翻译 / enrich 的累积缓存 ——
           # 不 commit 回去的话每天 Actions 都得从零再付费判一遍 (DeepSeek + Gemini)。
           # 跨日复用 cache 才是省钱 + 稳定输出的关键。
-          git add site/data site/assets/img/covers data/judge_cache.json data/enrich_cache.json data/video_cache.json || true
+          git add site/data site/assets/img/covers data/judge_cache.json data/enrich_cache.json data/video_cache.json data/github_state.json || true
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0

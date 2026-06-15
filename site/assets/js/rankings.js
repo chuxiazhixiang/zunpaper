@@ -21,7 +21,9 @@ const STATE = {
 
 async function loadData() {
   const r = await fetchJSON('data/index.json').then((r) => r.json()).catch(() => ({ papers: [] }));
-  STATE.papers = r.papers || [];
+  // 开源项目（source==="github"）有自己的「开源项目」tab，不进论文排行榜
+  // （否则总榜会按 star score 混入 repo，且链接指向 post.html 而非仓库）。
+  STATE.papers = (r.papers || []).filter((p) => (p.source || '') !== 'github');
 }
 
 function withinWindow(p, days) {

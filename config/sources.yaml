@@ -80,3 +80,14 @@ sources:
     enabled: true
     lookback_days: 14         # 让 LLM 限定在近 N 天内找
     per_channel: 5            # 每个频道最多让 LLM 推 N 篇
+
+  # ---------- 开源项目栏目 ----------
+  # github_repos.py 在一组关键词上跑 GitHub search（stars >= min_stars，fork:false），
+  # 候选交给 judge.judge_repo 让 LLM 砍掉课程 / awesome / 复现 / 蹭名 / 跑题，
+  # 留下的做成「开源项目」tab 的卡片（按 star 排）。judge 结果走 judge_cache 复用，
+  # 所以挂在每日 build 里也几乎零成本（慢变集合，只判新跨过门槛的仓）。
+  github:
+    enabled: true
+    min_stars: 300            # 硬门槛：兜住 AMO/ExBody/HumanPlus 这档优质论文仓
+    max_repos: 120            # 单次召回上限（去重后按 star 截断）
+    refresh_days: 7           # 每 N 天才重新召回一次（候选是慢变集合，无需日日扫）

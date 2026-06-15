@@ -10,7 +10,7 @@ from pathlib import Path
 
 from . import config as cfg
 from .digest import write_markdown_digest, write_rss
-from .judge import judge_paper, JudgeUnavailable, JudgeCache
+from .judge import judge_paper, judge_repo, JudgeUnavailable, JudgeCache
 from .enrich import enrich_paper, EnrichUnavailable, EnrichCache
 from .videos import VideoCache, enrich_paper_videos
 from .labs import detect_labs, lab_badges
@@ -59,6 +59,10 @@ def _judge_filter(fresh: dict[str, Paper]) -> dict[str, Paper]:
     for pid, p in fresh.items():
         # Pinned / manually-curated papers bypass the gate entirely
         if "manual_pin" in (p.source_tags or []) or p.source == "manual_arxiv":
+            kept[pid] = p
+            continue
+        # GitHub 开源仓已经在 _process_github_repos 里走过 judge_repo，这里直接放行。
+        if p.source == "github":
             kept[pid] = p
             continue
 
@@ -112,6 +116,9 @@ def _enrich_papers(fresh: dict[str, Paper]) -> dict[str, Paper]:
     cache = EnrichCache(cfg.REPO_ROOT / "data" / "enrich_cache.json")
     enrich_calls = enrich_cache_hits = enrich_refresh = 0
     for pid, p in fresh.items():
+        # GitHub 开源仓不抽机构/方法 chip（它们展示 star/语言/topics），跳过 enrich。
+        if p.source == "github":
+            continue
         cached = cache.get(pid)
         # 旧 cache 只有 institutions+method_tags，没有 platform/sim_stack 等 P1
         # 字段——需要重新调一次让 LLM 把新字段补齐。
@@ -162,6 +169,9 @@ def _scrape_demo_videos(fresh: dict[str, Paper]) -> None:
     cache = VideoCache(cfg.REPO_ROOT / "data" / "video_cache.json")
     hits = misses = 0
     for pid, p in fresh.items():
+        # GitHub 开源仓不扫 demo 视频（卡片不展示视频角标，扫了只是膨胀缓存）。
+        if (p.source or "") == "github":
+            continue
         try:
             videos = enrich_paper_videos(p, cache)
             p.demo_videos = videos
@@ -175,12 +185,185 @@ def _scrape_demo_videos(fresh: dict[str, Paper]) -> None:
     log.info("videos: %d papers got demo videos, %d papers had none", hits, misses)
 
 
+def _github_should_fetch(refresh_days: int) -> bool:
+    """节流：候选开源仓是慢变集合，没必要每天重新召回。距上次召回不足
+    refresh_days 天、且盘上已有 github 卡时，跳过这轮抓取（卡片照样从盘上
+    保留）。状态记在 data/github_state.json。"""
+    if refresh_days <= 0:
+        return True
+    state_path = cfg.REPO_ROOT / "data" / "github_state.json"
+    have_existing = any(cfg.PAPERS_DIR.glob("github-*.json"))
+    if not have_existing:
+        return True  # 首次：必须抓
+    try:
+        last = json.loads(state_path.read_text(encoding="utf-8")).get("last_fetch", "")
+        last_dt = dt.datetime.fromisoformat(last)
+        age_days = (dt.datetime.now(dt.timezone.utc) - last_dt).days
+        return age_days >= refresh_days
+    except Exception:
+        return True
+
+
+def _github_write_state(**fields) -> None:
+    state_path = cfg.REPO_ROOT / "data" / "github_state.json"
+    data = {}
+    try:
+        if state_path.exists():
+            data = json.loads(state_path.read_text(encoding="utf-8"))
+    except Exception:
+        data = {}
+    data.update(fields)
+    try:
+        state_path.write_text(json.dumps(data), encoding="utf-8")
+    except Exception as e:
+        log.warning("github state write failed: %s", e)
+
+
+def _github_mark_fetched() -> None:
+    # 成功：推进 last_fetch，进入 refresh_days 冷却。
+    _github_write_state(last_fetch=dt.datetime.now(dt.timezone.utc).isoformat())
+
+
+def _github_mark_attempt() -> None:
+    # 失败：只记 last_attempt，不动 last_fetch —— 下次 build 仍可重试，不哑等一周。
+    _github_write_state(last_attempt=dt.datetime.now(dt.timezone.utc).isoformat())
+
+
+# 子方向 slug → 中文短标签（chip 展示用，不暴露内部 id）。
+_GH_DIR_LABEL = {
+    "loco-manip-wbc": "全身控制",
+    "manipulation": "操作",
+    "teleop": "遥操作",
+    "locomotion": "运动控制",
+    "world-model": "世界模型",
+    "sim2real": "Sim2Real",
+}
+
+
+def _reconcile_github(active_ids: set[str]) -> None:
+    """删除盘上不在本轮 kept 集合里的 github-*.json。
+
+    用途：提高 min_stars / 改 judge prompt / 清 cache 重判后，旧的不达标 repo
+    要从站点下架。只在一次 **成功** 的 refresh 之后调用（active_ids 可信），
+    否则会误删全部。"""
+    removed = 0
+    for jp in cfg.PAPERS_DIR.glob("github-*.json"):
+        if jp.stem not in active_ids:
+            try:
+                jp.unlink()
+                removed += 1
+            except OSError:
+                pass
+    if removed:
+        log.info("github reconcile: removed %d de-listed repo(s)", removed)
+
+
+def _process_github_repos(sources: cfg.SourcesConfig) -> tuple[dict[str, Paper], bool]:
+    """召回候选开源仓 → judge_repo 过滤（缓存复用）→ 翻译描述 → 包成已就绪的
+    Paper（source="github"，channels=["open-source"]）。
+
+    返回 (papers, ok)。ok=True 表示「召回成功 + judge 可用」，此时调用方可以
+    放心更新冷却时间戳、且本函数已对盘上旧 repo 做过 reconcile（下架不达标的）。
+    ok=False（召回失败 / judge 不可用）时返回空 dict 且不动盘上已有卡片。"""
+    from .sources import github_repos as gh_src
+
+    out: dict[str, Paper] = {}
+    try:
+        repos = gh_src.fetch_candidate_repos(
+            min_stars=sources.github_min_stars,
+            max_repos=sources.github_max_repos,
+        )
+    except Exception as e:
+        log.warning("github fetch failed: %s", e)
+        return out, False
+    if not repos:
+        # 一次都没召回到（限流 / 网络） → 视为失败，不进冷却、不 reconcile。
+        log.warning("github: 0 candidates fetched (treating as failure)")
+        return out, False
+
+    cache = JudgeCache(cfg.REPO_ROOT / "data" / "judge_cache.json")
+    judged = kept = dropped = cache_hits = 0
+    for d in repos:
+        paper = gh_src.repo_to_paper(d)
+        pid = paper.id
+        j = cache.get(pid)
+        if j is not None:
+            cache_hits += 1
+        else:
+            try:
+                topics = ", ".join(d.get("topics", []))
+                j = judge_repo(d["full_name"], d.get("description", ""),
+                               d.get("readme", ""), topics)
+                judged += 1
+                cache.put(pid, j)
+            except JudgeUnavailable as e:
+                # 没有 key / judge 被禁 —— 不能裸放行（会把课程/awesome/无关仓
+                # 全塞进栏目）。整步放弃：返回空 + ok=False，保留盘上旧卡。
+                cache.save()
+                log.warning("github: repo judge unavailable (%s); skipping step "
+                            "(no repos added, existing kept)", e)
+                return {}, False
+            except Exception as e:
+                log.warning("repo judge failed for %s: %s; skipping", pid, e)
+                continue
+        paper.judge = {
+            "relevant": j.relevant,
+            "research_value": j.research_value,
+            "primary_channel": j.primary_channel,
+            "reason": j.reason,
+            "model": j.model,
+        }
+        if not j.relevant:
+            dropped += 1
+            log.info("repo[skip] %s ⭐%s → %s", d["full_name"], d["stars"], j.reason[:60])
+            continue
+        # AI 判出的子方向作为 method chip（映射成中文短标签，不露内部 slug）
+        if j.primary_channel and j.primary_channel != "none":
+            paper.method_tags = [_GH_DIR_LABEL.get(j.primary_channel, j.primary_channel)]
+        out[pid] = paper
+        kept += 1
+    cache.save()
+
+    # 翻译描述拿中文 headline（标题保留 owner/repo 原名）。已翻过的（盘上已有
+    # 同 id）复用，这里只对新 repo 真正调用翻译后端。
+    existing = _existing_papers()
+    for pid, paper in out.items():
+        prev = existing.get(pid)
+        if prev is not None and (prev.cover_zh or prev.tldr_zh):
+            paper.title_zh = prev.title_zh or paper.title
+            paper.abstract_zh = prev.abstract_zh
+            paper.tldr_zh = prev.tldr_zh
+            paper.cover_zh = prev.cover_zh
+            continue
+        try:
+            t = translate_with_retry(paper.title, paper.abstract)
+            paper.abstract_zh = t.abstract_zh or paper.abstract
+            paper.tldr_zh = t.tldr_zh or ""
+            paper.cover_zh = t.cover_zh or t.tldr_zh or ""
+        except Exception as e:
+            log.warning("repo translate failed for %s: %s", pid, e)
+        paper.title_zh = paper.title  # 保留 owner/repo 原名，不译
+        if not paper.cover_zh:
+            paper.cover_zh = (paper.abstract or paper.title)[:60]
+
+    # reconcile：下架本轮不在 kept 集合里的旧 repo（min_stars 提高 / prompt 改 /
+    # cache 清空重判后才能正确生效）。只在成功路径执行。
+    _reconcile_github(set(out.keys()))
+
+    log.info("github: %d kept, %d dropped, %d judged, %d cached", kept, dropped, judged, cache_hits)
+    return out, True
+
+
 def _is_translated(p: Paper) -> bool:
     """We treat a paper as fully translated only when every field the UI
     depends on is present *and* the title actually has Chinese characters
     in it. If the source title is English and translation fell back to
     dryrun (e.g. Gemini quota exhausted), title_zh stays English — those
     papers must be retried on the next CI run."""
+    # GitHub 开源仓：标题保留 owner/repo 原名（不译），只要中文 headline
+    # （cover_zh / tldr_zh）就位即视为已处理，避免每天重复翻译仓库名。
+    if (p.source or "") == "github":
+        return bool(p.cover_zh or p.tldr_zh)
     if not (p.abstract_zh and p.title_zh and p.cover_zh):
         return False
     src_title = p.title or ""
@@ -218,6 +401,25 @@ def process_new_papers(
                     cached.published = paper.published
                 elif paper.published < cached.published:
                     cached.published = paper.published
+            # GitHub 开源仓的 star / 语言 / 归档 / topics / judge 每轮都会变，
+            # 必须用本轮 fresh 覆盖回 cached，否则入库后这些字段永久陈旧、
+            # open-source tab 的 star 排序也会 stale。翻译（cover_zh/tldr_zh）
+            # 已在 _process_github_repos 里从旧卡继承到 fresh，这里不会丢。
+            if (paper.source or "") == "github":
+                if paper.github:
+                    cached.github = paper.github
+                if paper.judge:
+                    cached.judge = paper.judge
+                if paper.method_tags:
+                    cached.method_tags = paper.method_tags
+                if paper.abs_url:
+                    cached.abs_url = paper.abs_url
+                if paper.abstract:
+                    cached.abstract = paper.abstract
+                for fld in ("title_zh", "abstract_zh", "tldr_zh", "cover_zh"):
+                    val = getattr(paper, fld, "")
+                    if val:
+                        setattr(cached, fld, val)
             paper = cached
 
         if not paper.cover_image and paper.pdf_url:
@@ -271,7 +473,12 @@ class EnrichmentContext:
     def apply(self, paper: Paper) -> None:
         # Recompute all badges. Labs come from heuristic detection so they're
         # cheap to recompute.
-        paper.badges = list(lab_badges(detect_labs(paper)))
+        # GitHub 开源仓不跑 lab 徽章：README 里出现 MIT / Stanford 等字样会被
+        # detect_labs 误判成「该实验室出品」。仓库卡展示 star/语言就够了。
+        if (paper.source or "") == "github":
+            paper.badges = []
+        else:
+            paper.badges = list(lab_badges(detect_labs(paper)))
         paper.related_links = list(paper.related_links or [])
         paper.source_tags = list(paper.source_tags or [])
 
@@ -530,6 +737,8 @@ def _feed_entry(p: Paper) -> dict:
         "training_summary": p.training_summary or "",
         # P0: demo 视频
         "demo_videos": p.demo_videos or [],
+        # GitHub 开源项目元数据（source == "github" 时非空）
+        "github": p.github or {},
     }
 
 
@@ -637,6 +846,15 @@ def retag_and_prune(channels: list[cfg.Channel]) -> None:
         try:
             paper = load_paper(p)
         except Exception:
+            continue
+
+        # GitHub 开源仓不参与频道关键词匹配（它们固定在 open-source 频道），
+        # 也不能被 prune 掉 —— 否则每天 build 开头就把上次抓的仓删光、白白重抓。
+        if (paper.source or "").lower() == "github":
+            if paper.channels != ["open-source"]:
+                paper.channels = ["open-source"]
+                save_paper(paper, cfg.PAPERS_DIR)
+            kept += 1
             continue
 
         pinned = (paper.source or "").lower() in ("manual_arxiv", "manual_xhs") \
@@ -806,6 +1024,26 @@ def run() -> None:
                     fresh[p.id] = p
         except Exception as e:
             log.warning("video channel fetch failed: %s", e)
+
+    # ----- 开源项目栏目（GitHub repos） --------------------------------
+    # 召回高 star 仓 → judge_repo 砍课程/复现/蹭名 → 包成 open-source 频道卡片。
+    # 节流：refresh_days 天内已抓过就跳过（卡片从盘上保留），省 API + token。
+    if getattr(sources, "github_enabled", True):
+        if _github_should_fetch(getattr(sources, "github_refresh_days", 7)):
+            try:
+                gh_papers, gh_ok = _process_github_repos(sources)
+                for pid, p in gh_papers.items():
+                    fresh[pid] = p
+                # 只有真正成功（召回到候选 + judge 可用）才进 7 天冷却；
+                # 失败只记一次尝试，让下次 build 还能重试，而不是哑等一周。
+                if gh_ok:
+                    _github_mark_fetched()
+                else:
+                    _github_mark_attempt()
+            except Exception as e:
+                log.warning("github repos step failed: %s", e)
+        else:
+            log.info("github: within refresh window, skipping fetch (repos kept from disk)")
 
     log.info("fetched %d unique papers", len(fresh))
 

@@ -100,7 +100,11 @@ function buildChannelTabs() {
 function visiblePapers() {
   const q = STATE.searchQuery.trim().toLowerCase();
   return STATE.papers.filter((p) => {
-    if (STATE.activeChannel !== 'all' && !(p.channels || []).includes(STATE.activeChannel)) {
+    const isGithub = (p.source || '') === 'github';
+    if (STATE.activeChannel === 'all') {
+      // 开源仓只在「开源项目」tab 出现，不混进论文主页。
+      if (isGithub) return false;
+    } else if (!(p.channels || []).includes(STATE.activeChannel)) {
       return false;
     }
     if (!q) return true;
@@ -132,7 +136,53 @@ function badgeHTML(badge) {
   return `<span class="${cls}">${escapeHTML(badge.label)}</span>`;
 }
 
+function fmtStars(n) {
+  n = n || 0;
+  if (n >= 10000) return Math.round(n / 1000) + 'k';
+  if (n >= 1000) return (n / 1000).toFixed(1) + 'k';
+  return String(n);
+}
+
+// 开源项目卡：封面右上角显示 ⭐star，正文显示语言 + AI 判出的子方向，
+// 点击直接跳 GitHub（新标签）。收藏页等也复用这个渲染。
+export function githubCardHTML(p) {
+  const cover = pickCover(p.id);
+  const g = p.github || {};
+  const headline = p.cover_zh || p.tldr_zh || (p.abstract_zh || '').slice(0, 60) || p.title;
+  const fav = Favorites.has(p.id);
+  const heart = fav ? HEART_SVG_FILL : HEART_SVG_OUTLINE;
+  const stars = fmtStars(g.stars);
+  const lang = g.language || '';
+  const dir = (p.method_tags || [])[0] || '';
+  const url = p.abs_url || `https://github.com/${p.title}`;
+  const archived = g.archived ? '<span class="rp-chip rp-chip--inst">已归档</span>' : '';
+  return `
+    <a class="rp-card rp-card--repo" href="${url}" target="_blank" rel="noopener" data-id="${p.id}">
+      <div class="rp-cover ${cover.cls}">
+        <span class="rp-cover__source">GITHUB</span>
+        <span class="rp-cover__stars">⭐ ${stars}</span>
+        <p class="rp-cover__headline">${escapeHTML(headline)}</p>
+      </div>
+      <div class="rp-card__body">
+        <h4 class="rp-card__title">${escapeHTML(p.title)}</h4>
+        ${p.tldr_zh ? `<p class="rp-card__tldr">${escapeHTML(p.tldr_zh)}</p>` : ''}
+        <div class="rp-card__chips">
+          ${lang ? `<span class="rp-chip rp-chip--sim">${escapeHTML(lang)}</span>` : ''}
+          ${dir ? `<span class="rp-chip rp-chip--method">${escapeHTML(dir)}</span>` : ''}
+          ${archived}
+        </div>
+        <div class="rp-card__meta">
+          <span class="rp-card__authors">${escapeHTML(g.owner || '')}</span>
+          <button class="rp-card__like ${fav ? 'is-liked' : ''}" data-fav="${p.id}" title="${fav ? '取消收藏' : '收藏'}" aria-label="收藏">
+            ${heart}
+          </button>
+        </div>
+      </div>
+    </a>`;
+}
+
 function cardHTML(p) {
+  if ((p.source || '') === 'github') return githubCardHTML(p);
   const cover = pickCover(p.id);
   const titleZh = p.title_zh || p.title;
   const headline = p.cover_zh || p.tldr_zh || titleZh;
@@ -386,6 +436,31 @@ function appendPeriod(feed, key) {
   feed.appendChild(section);
 }
 
+// 开源项目 tab 专用渲染：按 star 倒序，单个 section 一次铺满（集合不大）。
+function renderOpenSource(feed, list) {
+  const sorted = [...list].sort(
+    (a, b) => ((b.github && b.github.stars) || 0) - ((a.github && a.github.stars) || 0),
+  );
+  const section = document.createElement('section');
+  section.className = 'rp-week rp-week--day';
+  const divider = document.createElement('div');
+  divider.className = 'rp-week__divider';
+  divider.innerHTML =
+    '<span class="rp-week__chip"><span class="rp-week__chip-emoji">🐙</span><span>优质开源项目</span></span>';
+  section.appendChild(divider);
+  const title = document.createElement('h2');
+  title.className = 'rp-week__title';
+  title.innerHTML =
+    '<span class="rp-week__date">按 GitHub Star 排序 · AI 已筛除课程/复现/无关项目</span>' +
+    `<em>${sorted.length} 个</em>`;
+  section.appendChild(title);
+  const grid = document.createElement('div');
+  grid.className = 'rp-feed';
+  grid.innerHTML = sorted.map(cardHTML).join('');
+  section.appendChild(grid);
+  feed.appendChild(section);
+}
+
 function teardownObserver() {
   if (STATE.observer) {
     STATE.observer.disconnect();
@@ -439,6 +514,12 @@ function renderFeed() {
         <p class="rp-status__title">还没有内容</p>
         <p>等下次定时任务跑过就有啦，或者本地手动 <code>python scripts/build.py</code>。</p>
       </div>`;
+    return;
+  }
+
+  // 开源项目 tab：不按日期分组，整体按 GitHub Star 倒序一次性渲染。
+  if (STATE.activeChannel === 'open-source') {
+    renderOpenSource(feed, list);
     return;
   }
 

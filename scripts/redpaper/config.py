@@ -57,6 +57,11 @@ class SourcesConfig:
     discover_enabled: bool = True
     discover_lookback_days: int = 14
     discover_per_channel: int = 5
+    # GitHub 开源项目栏目（github_repos.py）—— 高 star + AI 判定的具身/人形算法仓
+    github_enabled: bool = True
+    github_min_stars: int = 300
+    github_max_repos: int = 120
+    github_refresh_days: int = 7
 
 
 @dataclass
@@ -125,6 +130,10 @@ def load_sources() -> SourcesConfig:
         discover_enabled=get("discover", "enabled", True),
         discover_lookback_days=get("discover", "lookback_days", 14),
         discover_per_channel=get("discover", "per_channel", 5),
+        github_enabled=get("github", "enabled", True),
+        github_min_stars=get("github", "min_stars", 300),
+        github_max_repos=get("github", "max_repos", 120),
+        github_refresh_days=get("github", "refresh_days", 7),
     )
 
 
