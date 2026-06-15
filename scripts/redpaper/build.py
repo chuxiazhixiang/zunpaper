@@ -179,12 +179,17 @@ def _scrape_demo_videos(fresh: dict[str, Paper]) -> None:
     cache = VideoCache(cfg.REPO_ROOT / "data" / "video_cache.json")
     hits = misses = 0
     for pid, p in fresh.items():
+        src = p.source or ""
         # GitHub 开源仓不扫 demo 视频（卡片不展示视频角标，扫了只是膨胀缓存）。
-        if (p.source or "") == "github":
+        # 视频源卡（video_youtube / video_bilibili）本身就是一条视频，demo_videos
+        # 已在 video_channels 里预填好；这里若再扫 abstract/项目页会返回 [] 把它
+        # 覆盖清空，所以直接跳过。
+        if src == "github" or src.startswith("video_"):
             continue
         try:
             videos = enrich_paper_videos(p, cache)
-            p.demo_videos = videos
+            # 防御：万一扫不到也别清掉卡片自带的 demo_videos。
+            p.demo_videos = videos or p.demo_videos
             if videos:
                 hits += 1
             else:
@@ -293,6 +298,7 @@ def _process_github_repos(sources: cfg.SourcesConfig) -> tuple[dict[str, Paper],
 
     cache = JudgeCache(cfg.REPO_ROOT / "data" / "judge_cache.json")
     judged = kept = dropped = cache_hits = 0
+    failed_ids: set[str] = set()  # 本轮 judge 瞬时失败的 repo —— reconcile 时别误删它们的旧卡
     for d in repos:
         paper = gh_src.repo_to_paper(d)
         pid = paper.id
@@ -314,7 +320,10 @@ def _process_github_repos(sources: cfg.SourcesConfig) -> tuple[dict[str, Paper],
                             "(no repos added, existing kept)", e)
                 return {}, False
             except Exception as e:
-                log.warning("repo judge failed for %s: %s; skipping", pid, e)
+                # 单个 repo 瞬时失败（网络/限流）：记下来，reconcile 时保留它的旧卡，
+                # 别因为这一轮没判出来就把好仓误删。
+                log.warning("repo judge failed for %s: %s; skipping (keep old card)", pid, e)
+                failed_ids.add(pid)
                 continue
         paper.judge = {
             "relevant": j.relevant,
@@ -359,8 +368,9 @@ def _process_github_repos(sources: cfg.SourcesConfig) -> tuple[dict[str, Paper],
             paper.cover_zh = (paper.abstract or paper.title)[:60]
 
     # reconcile：下架本轮不在 kept 集合里的旧 repo（min_stars 提高 / prompt 改 /
-    # cache 清空重判后才能正确生效）。只在成功路径执行。
-    _reconcile_github(set(out.keys()))
+    # cache 清空重判后才能正确生效）。只在成功路径执行。failed_ids（本轮瞬时失败
+    # 没判出来的）也一并保留，避免单个 repo 的网络抖动误删它的好卡。
+    _reconcile_github(set(out.keys()) | failed_ids)
 
     log.info("github: %d kept, %d dropped, %d judged, %d cached", kept, dropped, judged, cache_hits)
     return out, True
@@ -867,6 +877,19 @@ def retag_and_prune(channels: list[cfg.Channel]) -> None:
             desired = [pc] if pc in valid_ch_ids else []
             if paper.channels != desired:
                 paper.channels = desired
+                save_paper(paper, cfg.PAPERS_DIR)
+            kept += 1
+            continue
+
+        # 视频卡（厂商 demo，source=video_youtube / video_bilibili）：豁免 prune
+        # —— 标题常不含频道关键词，按普通论文规则会被误删。尽力按关键词归类，
+        # 没命中就保留已有 channels（可能为空，只在「全部」露出），但绝不删除。
+        if (paper.source or "").lower().startswith("video_"):
+            matched = [c.id for c in channels
+                       if _matches_channel(paper.title, paper.abstract, c)]
+            new_ch = matched or paper.channels
+            if new_ch != paper.channels:
+                paper.channels = new_ch
                 save_paper(paper, cfg.PAPERS_DIR)
             kept += 1
             continue

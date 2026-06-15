@@ -817,6 +817,8 @@ function setupDeck() {
   }
   _deckKeyHandler = (e) => {
     if (e.target.matches('input,textarea')) return;
+    // 图片 lightbox 打开时，方向键归 lightbox 翻图，别让背后的 deck 也翻页。
+    if (document.querySelector('.rp-lightbox.is-open')) return;
     if (e.key === 'ArrowRight') setSlide(current + 1);
     if (e.key === 'ArrowLeft') setSlide(current - 1);
   };

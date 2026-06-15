@@ -112,6 +112,12 @@ cd site && python -m http.server 8000                       # 本地预览
 
 - 论文命中已有缓存时走 **fresh 为主**：保留本轮重算的 `judge` / `institutions` / `platform` / `method_tags` / `real_robot` / `demo_videos` / `score`，**只从 cached 继承**翻译（`*_zh`）+ 封面（`cover_image` / `preview_pages` / `page_count`）这些贵且无需重算的。**绝不能 `paper = cached`**（那会把本轮重判/重抽全丢掉，活跃论文标签永远停在首次入库值——这是修过的 bug）。
 
+## 各 source 的特殊处理（别一刀切）
+
+- **`github`**：channels 由 `judge_repo` 判定方向；`retag_and_prune` 豁免 prune 且按 `judge.primary_channel` 同步 channels；`_enrich_papers` / `_scrape_demo_videos` / lab 徽章都跳过；reconcile 下架不达标仓时会保留本轮 judge 瞬时失败的旧卡（`failed_ids`）。
+- **`video_youtube` / `video_bilibili`**：卡片自带 `demo_videos`（厂商 demo），**`_scrape_demo_videos` 必须跳过 `video_*`**（否则扫 abstract 扫不到会把 embed 覆盖清空）；`retag_and_prune` 也豁免 prune（标题常不含关键词），尽力按关键词归类、没命中就保留现有 channels。
+- **推代码**：`api_push.py`（推 main 的兜底）会先校验 remote HEAD 是本地 HEAD 的祖先，本地落后/分叉就拒绝（防把远端新增文件当删除推上去）。日常用「基于远端 HEAD 增量」的 gh API 推法更安全。
+
 ## 踩过的坑（重要，别重蹈）
 
 - **本机 `git push` / `git fetch` 走 git 协议会 TLS 报错/卡死**。要推代码用 `scripts/api_push.py`（走 gh Git Database API，硬编码推 `main`）；推 feature 分支得用 gh API 自己建 blob/tree/commit/ref。本地 `main` 经常停在旧 commit（没法 fetch），判断远端状态用 `gh api repos/Nangongyeee/redpaper/...`，别信本地 `git log`。

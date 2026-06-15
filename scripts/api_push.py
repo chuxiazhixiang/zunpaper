@@ -122,6 +122,23 @@ def main() -> None:
     print(f"remote head:  {remote_sha}")
     print(f"remote tree:  {remote_tree_sha}")
 
+    # 1.5) 安全检查：remote_sha 必须是本地 HEAD 的祖先。否则本地落后/分叉，
+    # diff-tree(remote_sha → HEAD) 会把「远端新增、本地没有」的文件当成删除推
+    # 上去，造成远端数据丢失。无法验证（remote_sha 不在本地对象库）时也拒绝。
+    anc = subprocess.run(
+        ["git", "merge-base", "--is-ancestor", remote_sha, "HEAD"],
+        cwd=LOCAL_REPO, capture_output=True, text=True,
+    )
+    if anc.returncode != 0:
+        print(
+            f"ABORT: 远端 HEAD {remote_sha[:10]} 不是本地 HEAD 的祖先"
+            f"（本地落后或分叉，或该 commit 未 fetch 到本地）。\n"
+            f"  先同步：git fetch origin main && git reset --hard origin/main\n"
+            f"  或改用「基于远端 HEAD 增量」的 gh API 推法（见 AGENTS.md 部署模型）。",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
     # 2) Diff
     added, deleted = diff_against(remote_sha)
     print(f"files to add/modify: {len(added)}, delete: {len(deleted)}")
