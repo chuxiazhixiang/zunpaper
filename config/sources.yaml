@@ -4,8 +4,13 @@ sources:
     enabled: true
     # 拉取最近 N 天内发布的论文（含当天）。可以被环境变量 REDPAPER_ARXIV_LOOKBACK_DAYS
     # 一次性覆盖（workflow_dispatch 里的 lookback_days_override 输入会注入这个环境变量）。
-    # 默认 2 天对应「每天跑一次 + 留 1 天 buffer 防 arxiv 投递延迟」的节奏。
-    lookback_days: 2
+    #
+    # 为什么是 4 而不是 2：arXiv 按「提交日期(submittedDate)」过滤，但提交日常比
+    # 公告日早 2-3 天 —— 尤其周五提交的论文要到周日晚美东 20:00（北京周一 08:00）
+    # 才公告。窗口太窄（2 天）时，周一跑 build 截止日是周六，会把刚公告、但提交日
+    # 是周五的一大批论文整批漏掉（只能靠下面 evergreen 兜底，而它只在窗口 < 8 篇时
+    # 才触发，不够稳）。放宽到 4 天让主窗口直接覆盖「周五提交 / 周一公告」的间隔。
+    lookback_days: 4
     # 单次拉取上限（每个 channel），避免初次跑爆
     per_channel_limit: 120
     # "evergreen 回补"：如果按 lookback_days 拉完一遍后，所有 channel 加起来
