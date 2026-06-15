@@ -23,15 +23,15 @@
       "badges": [
         {
           "kind": "lab",
+          "label": "⭐ CMU RI"
+        },
+        {
+          "kind": "lab",
           "label": "⭐ 北大"
         },
         {
           "kind": "lab",
           "label": "⭐ SJTU"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ USTC"
         },
         {
           "kind": "lab",
@@ -56,22 +56,21 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Peking University",
+        "Eastern Institute of Technology, Ningbo",
         "Shanghai Jiao Tong University",
-        "University of Science and Technology of China"
+        "Peking University",
+        "Carnegie Mellon University"
       ],
       "method_tags": [
         "self-other distinction",
-        "proprioceptive-visual correspondence",
-        "self-model learning"
+        "self-model",
+        "proprioceptive-visual correspondence"
       ],
-      "platform": [
-        "Unitree H1"
-      ],
+      "platform": [],
       "sim_stack": [],
-      "method_family": "Hybrid",
+      "method_family": "",
       "real_robot": "yes",
-      "training_summary": "self-supervised from 10K proprioceptive-visual pairs",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -134,24 +133,21 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
+        "UC Berkeley",
+        "CMU",
         "Stanford University",
-        "UC Berkeley"
+        "Amazon FAR"
       ],
       "method_tags": [
         "sim-to-real",
-        "dexterous manipulation",
-        "reinforcement learning"
+        "reinforcement learning",
+        "motion planning"
       ],
-      "platform": [
-        "Allegro Hand",
-        "Franka Emika Panda"
-      ],
-      "sim_stack": [
-        "Isaac Gym"
-      ],
-      "method_family": "RL",
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
       "real_robot": "yes",
-      "training_summary": "automatic data generation, <1 min per tool",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -180,6 +176,10 @@
         },
         {
           "kind": "lab",
+          "label": "⭐ SJTU"
+        },
+        {
+          "kind": "lab",
           "label": "⭐ Yang Gao (清华)"
         }
       ],
@@ -201,80 +201,93 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Tsinghua University"
+        "Tsinghua University",
+        "Shanghai Qi Zhi Institute",
+        "Sharpa",
+        "Shanghai Jiao Tong University"
       ],
       "method_tags": [
-        "Foundation Model",
-        "Tactile Policy",
+        "Foundation Policy",
+        "Tactile Manipulation",
         "Cross-Sensor Transfer"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "Foundation",
+      "method_family": "",
       "real_robot": "yes",
-      "training_summary": "~3000 hours from 26 sources, 21 sensors",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
     {
-      "id": "arxiv-2606-13232",
+      "id": "arxiv-2606-12995",
       "source": "arxiv",
-      "title": "WT-UMI: Tactile-based Whole-Body Manipulation via Force-Supervised Contact-Aware Planning",
-      "title_zh": "WT-UMI：基于触觉的全身操控通过力监督的接触感知规划",
-      "tldr_zh": "提出可穿戴触觉接口WT-UMI，通过力监督规划实现接触感知的全身操控。",
-      "cover_zh": "人形机器人也能“摸”着干活？这个触觉接口让力控更自然",
-      "abstract_zh": "全身人形机器人操控笨重、可变形和共享负载的物体需要分布式接触感知和显式力调节，然而大多数模仿策略仅隐式处理接触力。另一方面，不同的演示源提供了具有固有权衡的互补模态：人类演示捕捉自然接触力但不提供机器人可执行的动作，而遥操作直接记录机器人动作但力调节不够自然。本文提出WT-UMI，一种可穿戴全身触觉接口，可由人类操作员佩戴或安装在人形机器人上，在人类演示和人形机器人遥操作模式下提供触觉图像、接触力和末端执行器位姿的精确观测。我们引入了一个力条件目标位姿校正模块，通过从遥操作数据中学习校正，将测量到的人类位姿转换为接触感知的机器人目标。为了利用人类数据中的自然力交互，我们提出了一个力监督规划器，预测末端执行器位姿块和接触力轨迹。预测的接触力作为基于触觉的导纳控制器的参考。在五个接触密集任务中，涵盖可变形物体、笨重刚体物体和人机协作，WT-UMI在成功率上优于四个策略基线，并降低了接触位置跟踪误差。我们的项目页面位于https://wt-umi.github.io/WTUMI/。",
+      "title": "GenHOI: Contact-Aware Humanoid-Object Interaction by Imitating Generated Videos without Task-Specific Training",
+      "title_zh": "GenHOI：通过模仿生成视频实现接触感知的人形机器人-物体交互，无需任务特定训练",
+      "tldr_zh": "无需训练，仅靠生成视频即可让机器人零样本执行多种物体交互任务。",
+      "cover_zh": "零样本搞定人机交互｜看个视频就能学会搬箱子抬桌子",
+      "abstract_zh": "人形机器人-物体交互（HOI）是人形机器人的基本能力，但由于动态平衡与多样化物体稳定交互之间的紧密耦合，这一任务仍然具有挑战性。现有方法通常需要耗时的任务特定策略训练，或依赖刚性的轨迹回放，这限制了它们适应新交互场景的能力。在这项工作中，我们提出了GenHOI，一个简单而有效的框架，使机器人能够通过直接模仿单个生成视频，以零样本方式执行多样化的物体交互任务，无需任务特定训练或物理演示数据。GenHOI首先在仿真中重建机器人-物体场景并渲染第一帧图像，该图像与语言指令一起，用于条件化生成任务导向的交互视频。然后分析生成的视频，以识别与交互相关的接触事件并估计手-物体接触区域，这些被编码为以物体为中心的几何约束，将视觉交互线索转化为物理基础的优化先验。在这些先验的指导下，从视频中恢复的参考运动被细化和平滑，以解决2D视频生成中固有的尺度模糊性，同时将单个参考轨迹适应于未见过的机器人-物体相对姿态。优化后的轨迹最终由闭环跟踪控制器执行。我们在广泛的仿真和真实世界实验中验证了所提出的框架，涵盖了多种物体交互任务，包括抓取箱子、不对称双臂搬运椅子、从下方抬起桌子以及包裹圆柱形物体。",
       "authors": [
-        "Jaehwi Jang",
-        "Zhaoyuan Gu",
-        "Alfred Cueva"
+        "Zhihai Bi",
+        "Qiang Zhang",
+        "Guoyang Zhao"
       ],
       "primary_category": "cs.RO",
       "published": "2026-06-11",
       "channels": [
         "loco-manip-wbc",
-        "manipulation",
-        "teleop"
+        "manipulation"
       ],
       "badges": [
         {
           "kind": "lab",
-          "label": "⭐ NVIDIA"
+          "label": "⭐ HKUST"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ USTC"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ NUS"
         }
       ],
-      "cover_image": "assets/img/covers/arxiv-2606-13232.jpg",
+      "cover_image": "assets/img/covers/arxiv-2606-12995.jpg",
       "preview_pages": [
-        "assets/img/covers/arxiv-2606-13232-p2.jpg",
-        "assets/img/covers/arxiv-2606-13232-p3.jpg",
-        "assets/img/covers/arxiv-2606-13232-p4.jpg"
+        "assets/img/covers/arxiv-2606-12995-p2.jpg",
+        "assets/img/covers/arxiv-2606-12995-p3.jpg",
+        "assets/img/covers/arxiv-2606-12995-p4.jpg"
       ],
-      "arxiv_id": "2606.13232",
-      "abs_url": "http://arxiv.org/abs/2606.13232v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.13232v1",
+      "arxiv_id": "2606.12995",
+      "abs_url": "http://arxiv.org/abs/2606.12995v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.12995v1",
       "score": 55,
       "judge": {
         "relevant": true,
         "research_value": "high",
         "primary_channel": "loco-manip-wbc",
-        "reason": "全身人形操作+触觉力控+接触感知规划，核心贡献在全身移动操作与力控",
+        "reason": "零样本人形物体交互，结合视频生成与全身控制，创新性强",
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "University of Texas at Austin",
-        "NVIDIA"
+        "The Hong Kong University of Science and Technology (Guangzhou)",
+        "Artificial General Intelligence Institute, University of Science and Technology of China",
+        "The University of Hong Kong",
+        "National University of Singapore"
       ],
       "method_tags": [
-        "force-supervised planning",
-        "contact-aware planning",
-        "tactile-based admittance control"
+        "zero-shot imitation",
+        "contact-aware optimization"
       ],
-      "platform": [
-        "Unitree H1"
-      ],
+      "platform": [],
       "sim_stack": [],
-      "method_family": "Hybrid",
+      "method_family": "",
       "real_robot": "yes",
-      "training_summary": "teleoperation data for correction module",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -336,15 +349,15 @@
         "UC Berkeley"
       ],
       "method_tags": [
-        "Flow Matching",
-        "Steering",
-        "Generalist Policy"
+        "Flow Reversal Steering",
+        "flow matching",
+        "behavioral cloning"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "Foundation",
+      "method_family": "",
       "real_robot": "yes",
-      "training_summary": "under a minute of training for distillation",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -374,7 +387,7 @@
         },
         {
           "kind": "lab",
-          "label": "⭐ Google DeepMind"
+          "label": "⭐ CMU RI"
         }
       ],
       "cover_image": "assets/img/covers/arxiv-2606-13672.jpg",
@@ -395,19 +408,137 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "CMU",
-        "Google DeepMind"
+        "Mila - Québec AI Institute",
+        "Université de Montréal",
+        "Carnegie Mellon University",
+        "McGill University"
       ],
       "method_tags": [
         "World Model",
-        "Flow Matching",
-        "Multi-View"
+        "flow-matching loss",
+        "robotic manipulation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-12954",
+      "source": "arxiv",
+      "title": "Towards Reliable Sequential Object Picking in Clutter: The Runner-up Solution to RGMC 2025",
+      "title_zh": "面向杂乱环境中的可靠顺序抓取：RGMC 2025 亚军方案",
+      "tldr_zh": "提出集成软硬件流水线，实现杂乱环境下的顺序抓取，获RGMC 2025亚军。",
+      "cover_zh": "杂乱堆里精准抓取｜这个亚军方案让机器人学会“翻找”目标物体",
+      "abstract_zh": "在机器人操作领域，杂乱环境下的稳定高效抓取是工业场景中的长期挑战。尽管近期研究在杂乱抓取中取得了较高成功率，但对于顺序物体搜索与分拣等更复杂任务，成熟方案仍然稀缺。本工作基于杂乱环境抓取基准（CEPB），针对ICRA 2025第十届机器人抓取与操作竞赛（RGMC）的“杂乱抓取”赛道提出解决方案。该任务面临若干关键挑战：首先，需要鲁棒且考虑碰撞的抓取，在包括刚性和可变形物体的多样化物体集上实现高成功率；其次，要求高效搜索目标物体，对解决方案的清理和搜索策略提出严格要求。为应对上述挑战，我们设计了一个集成的软硬件流水线，结合物体识别、清理和多模态抓取。主要贡献包括多功能夹爪的硬件设计，以及杂乱空间中物体分布和遮挡关系的新型表示。该流水线实现了杂乱环境中物体的高效识别、搜索和顺序抓取，在实验室测试和竞赛场景中均展现出强劲性能，最终在RGMC 2025的“杂乱抓取”赛道中获得第二名。",
+      "authors": [
+        "Wei Yu",
+        "Xidan Zhang",
+        "Ziyi Zheng"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-11",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ ZJU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-12954.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-12954-p2.jpg",
+        "assets/img/covers/arxiv-2606-12954-p3.jpg"
+      ],
+      "arxiv_id": "2606.12954",
+      "abs_url": "http://arxiv.org/abs/2606.12954v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.12954v1",
+      "score": 44,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "针对杂乱环境顺序抓取，有硬件和算法贡献，竞赛验证，但创新点较工程化。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Zhejiang University"
+      ],
+      "method_tags": [
+        "object detection",
+        "segmentation",
+        "multi-modal grasping"
       ],
       "platform": [
-        "Franka"
+        "UR5e"
       ],
       "sim_stack": [],
-      "method_family": "WorldModel",
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-12965",
+      "source": "arxiv",
+      "title": "EmbodiSteer: Steering Embodiment-Agnostic Visuomotor Policies with Joint-Space Guidance for Zero-Shot Cross-Embodiment Deployment",
+      "title_zh": "EmbodiSteer：通过关节空间引导实现零样本跨实体部署的实体无关视觉运动策略操控",
+      "tldr_zh": "无需训练，通过关节空间引导实现零样本跨实体部署，大幅降低碰撞率并提升成功率。",
+      "cover_zh": "机器人学不会新身体？这个框架零训练就能跨实体避障，成功率飙升！",
+      "abstract_zh": "可扩展的机器人模仿学习依赖于来自不同机器人的大规模异构数据或无实体数据，这使得笛卡尔末端执行器动作成为实体无关策略学习的关键接口。然而，仅基于末端执行器的抽象使得笛卡尔策略不了解部署的机器人实体，从而在全身避碰等机器人特定约束下变得脆弱。为了克服这一限制，我们提出了EmbodiSteer，一个无需训练的框架，将实体无关的视觉运动策略导向零样本的实体感知部署。EmbodiSteer将策略学习保持在笛卡尔空间，同时通过正向运动学和基于雅可比矩阵的更新，高效地将推理时的扩散采样提升到目标机器人的关节空间。在每个去噪步骤后，通过全身碰撞感知引导对关节轨迹进行优化，使机械臂在保持所学末端执行器行为的同时避开碰撞。与仅使用笛卡尔空间执行相比，EmbodiSteer在9个模拟机器人上将碰撞率降低了46.1%，任务成功率提高了28.5%，并在高度受限场景下的两个物理机器人上实现了90.0%的碰撞率降低和36.7%的成功率提升。我们的项目页面位于https://frankwang67.github.io/EmbodiSteer-Page。",
+      "authors": [
+        "Shihefeng Wang",
+        "Kangchen Lv",
+        "Mingrui Yu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-11",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-12965.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-12965-p2.jpg",
+        "assets/img/covers/arxiv-2606-12965-p3.jpg",
+        "assets/img/covers/arxiv-2606-12965-p4.jpg"
+      ],
+      "arxiv_id": "2606.12965",
+      "abs_url": "http://arxiv.org/abs/2606.12965v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.12965v1",
+      "score": 39,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出零样本跨本体部署框架，结合关节空间引导与全身碰撞避免，实验充分，对操作策略泛化有重要价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Tsinghua University",
+        "Beijing Key Laboratory of Embodied Intelligence Systems",
+        "Institute for Embodied Intelligence and Robotics, Tsinghua University"
+      ],
+      "method_tags": [
+        "diffusion policy",
+        "whole-body collision avoidance",
+        "cross-embodiment deployment"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
@@ -454,16 +585,21 @@
         "reason": "提出实时视频世界模型，从单图生成可交互360°场景，结合3D高斯与扩散，创新性强",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "South China University of Technology",
+        "Columbia University",
+        "Orange Team, Youku Moku-Lab, HUJING Digital Media & Entertainment Group",
+        "Singapore Management University"
+      ],
       "method_tags": [
         "diffusion",
-        "3D Gaussian",
-        "video world model"
+        "3D Gaussian scaffold",
+        "distillation"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "Diffusion",
-      "real_robot": "no",
+      "method_family": "",
+      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -510,16 +646,15 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Nanyang Technological University"
+        "MARS Lab, Nanyang Technological University"
       ],
       "method_tags": [
-        "VLA",
-        "gesture grounding",
-        "human-robot interaction"
+        "Vision-Language-Action",
+        "gesture understanding"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "VLA",
+      "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
@@ -547,6 +682,10 @@
         {
           "kind": "lab",
           "label": "⭐ Physical Intelligence (π)"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Beihang (BUAA)"
         }
       ],
       "cover_image": "assets/img/covers/arxiv-2606-12859.jpg",
@@ -567,24 +706,280 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Chinese Academy of Sciences",
-        "Institute of Automation, CAS"
+        "The Institute of Automation, Chinese Academy of Sciences",
+        "School of Automation, Beijing Institute of Technology",
+        "College of Automotive and Energy Engineering, Tongji University",
+        "School of Transportation Science and Engineering, Beihang University"
       ],
       "method_tags": [
-        "Flow Matching",
+        "flow matching",
         "Mixture of Experts",
-        "Aerial Manipulation"
+        "cascaded dual-action decoders"
       ],
-      "platform": [
-        "DJI M600",
-        "Kinova JACO2"
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-12936",
+      "source": "arxiv",
+      "title": "An Embodied Simulation Platform, Benchmark, and Data-Efficient Augmentation Framework for Wet-Lab Robotics",
+      "title_zh": "湿实验室机器人的具身仿真平台、基准测试与数据高效增强框架",
+      "tldr_zh": "Pipette通过仿真数据增强，仅用30个演示即可显著提升湿实验室机器人性能。",
+      "cover_zh": "30个演示就能训练机器人？这个仿真平台让数据效率飙升",
+      "abstract_zh": "湿实验室机器人能够提高生物医学实验的可重复性、通量和安全性，但扩展其学习能力需要可定制的仿真器以实现安全且可重复的任务生成、开放可编辑的实验室资产，以及将有限演示转化为可用训练数据的高效流程。我们提出了Pipette，一个用于湿实验室机器人学习的具身仿真平台、基准测试和数据高效增强框架。Pipette发布了超过43个开源且可重新编辑的湿实验室资产，以及一个可扩展的资产构建流程。其关键组件是基于仿真的数据增强流程：在仿真中回放人类演示，应用光照、相机、速度和动作扰动，并通过自动任务成功检查过滤生成的片段，从而从有限的手动演示中快速扩展可用训练数据。我们还引入了一个包含11个任务的湿实验室具身基准测试，涵盖样本处理、培养器具操作、设备操作和精确放置。每个任务仅需30个演示，ACT实现了65.5%的平均成功率，而仿真增强将SmolVLA从44.1%提升至74.7%，π0从40.4%提升至46.5%，验证了Pipette在数据高效的VLA训练和评估中的有效性。Pipette还支持自然语言驱动的场景构建和任务注册，降低了非专家用户定义新湿实验室机器人任务的门槛。",
+      "authors": [
+        "Zhe Liu",
+        "Huanbo Jin",
+        "Zhaohui Du"
       ],
-      "sim_stack": [
-        "Isaac Sim"
+      "primary_category": "cs.RO",
+      "published": "2026-06-11",
+      "channels": [
+        "manipulation"
       ],
-      "method_family": "Hybrid",
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ SJTU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-12936.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-12936-p2.jpg",
+        "assets/img/covers/arxiv-2606-12936-p3.jpg",
+        "assets/img/covers/arxiv-2606-12936-p4.jpg"
+      ],
+      "arxiv_id": "2606.12936",
+      "abs_url": "http://arxiv.org/abs/2606.12936v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.12936v1",
+      "score": 34,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "sim2real",
+        "reason": "提出湿实验室机器人仿真平台、基准和高效数据增强框架，包含仿真到真机迁移关键组件，对sim2real和VLA训练有高价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "East China University of Science and Technology",
+        "Shanghai Jiao Tong University School of Medicine"
+      ],
+      "method_tags": [
+        "simulation-based data augmentation",
+        "VLA"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-13460",
+      "source": "arxiv",
+      "title": "VISA: VLM-Guided Instance Semantic Auditing for 3D Occupancy World Models",
+      "title_zh": "VISA：VLM引导的实例语义审计用于3D占据世界模型",
+      "tldr_zh": "VLM作为语义审计器提升3D占据模型性能，无需推理时调用。",
+      "cover_zh": "VLM还能这么用？不调嵌入做审计，3D占据精度反升",
+      "abstract_zh": "语义3D占据为自动驾驶和机器人决策提供了体素化的世界状态，但物体和稀有类别的错误会影响自由空间解释、碰撞检测和时间状态传播。我们发现，一种常见的VLM策略——将3D体素或物体特征与裁剪-字幕嵌入对齐——提高了文本空间相似性，但未能可靠地提升闭集占据mIoU。受此不匹配启发，我们提出了VISA，一种针对现有占据世界模型的训练时语义审计方法。VISA对每个物理物体实例的代表性裁剪查询离线VLM，获取包含类别假设、可能混淆、可靠性、属性和证据的结构化审计，并沿物体轨迹传播。审计与匹配的3D物体体素对齐，并通过可靠性加权分类法、属性因子和场景级审计图损失蒸馏为语义logits，而推理保持不变且无需VLM。在nuScenes上，三次运行平均，VISA将OccWorld的mIoU从19.06提升至20.05，GaussianWorld从21.36提升至21.91；在GaussianWorld上，物体mIoU从18.18提升至19.16，稀有类别mIoU从15.60提升至16.79。这些结果表明，VLM更适合作为可靠性感知的语义审计器用于闭集占据，而非作为通用的字幕嵌入目标。",
+      "authors": [
+        "Ruiqi Xian",
+        "Yuehan Xian",
+        "Jing Liang"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-06-11",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Stanford"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-13460.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-13460-p2.jpg",
+        "assets/img/covers/arxiv-2606-13460-p3.jpg",
+        "assets/img/covers/arxiv-2606-13460-p4.jpg"
+      ],
+      "arxiv_id": "2606.13460",
+      "abs_url": "http://arxiv.org/abs/2606.13460v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.13460v1",
+      "score": 34,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出VLM引导的语义审计方法改进3D占用世界模型，核心贡献在world model领域，且实验有效提升mIoU。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Maryland College Park",
+        "Nanjing University of Posts and Telecommunications",
+        "Stanford University",
+        "Motional AD Inc."
+      ],
+      "method_tags": [
+        "VLM",
+        "semantic auditing",
+        "3D occupancy"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-13515",
+      "source": "arxiv",
+      "title": "MaskWAM: Unifying Mask Prompting and Prediction for World-Action Models",
+      "title_zh": "MaskWAM：统一掩码提示与预测的世界动作模型",
+      "tldr_zh": "用掩码统一输入和预测，提升世界动作模型在杂乱场景中的鲁棒性。",
+      "cover_zh": "机器人看不懂指令？用掩码做空间锚点，操作精度直接拉满！",
+      "abstract_zh": "世界动作模型（WAM）通过视频预测为机器人控制提供了一种有前景的范式。然而，当前的WAM存在根本性的空间瓶颈：标准文本输入在杂乱场景中引入指代歧义，而无结构的RGB预测缺乏语义基础，且容易受到任务无关背景的干扰。为克服这些限制，我们提出了MaskWAM，一种以对象为中心的世界动作模型。通过统一的混合Transformer（MoT）将掩码同时作为显式输入和预测进行整合，MaskWAM实现了鲁棒的策略泛化。这一设计带来两个关键优势：（1）预测未来掩码提供了以对象为中心的语义监督，抑制了视觉噪声，显著增强了甚至标准文本条件的WAM；（2）将该预测监督与首帧视觉提示（如目标对象掩码）耦合，建立了精确的空间锚点，大幅减少了语言歧义。关键在于，由于WAM本质上是视觉驱动的架构，直接掩码条件比单独文本提供更强的引导，为操作未见对象建立了精确且鲁棒的范式。在LIBERO、RoboTwin和真实世界任务上的评估表明，MaskWAM在语言清晰和语言模糊任务中均显著优于基线。",
+      "authors": [
+        "Hanyang Yu",
+        "Haitao Lin",
+        "Jingbo Zhang"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-06-11",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKUST"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ 腾讯"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-13515.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-13515-p2.jpg",
+        "assets/img/covers/arxiv-2606-13515-p3.jpg",
+        "assets/img/covers/arxiv-2606-13515-p4.jpg"
+      ],
+      "arxiv_id": "2606.13515",
+      "abs_url": "http://arxiv.org/abs/2606.13515v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.13515v1",
+      "score": 34,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出世界动作模型MaskWAM，融合掩码提示与预测，提升泛化性，属于world-model方向创新",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "The Hong Kong University of Science and Technology",
+        "Tencent Robotics X",
+        "Tsinghua University"
+      ],
+      "method_tags": [
+        "World Action Models",
+        "Mask Visual Prompting",
+        "Object-Centric Manipulation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
       "real_robot": "yes",
-      "training_summary": "AIR-VLA benchmark, 48.0 avg score",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-13040",
+      "source": "arxiv",
+      "title": "RoboProcessBench: Benchmarking Process-Aware Understanding in Vision-Language Robotic Manipulation",
+      "title_zh": "RoboProcessBench：面向视觉语言机器人操作的过程感知理解基准",
+      "tldr_zh": "提出RoboProcessBench基准，评估VLM在机器人操作中的过程感知能力，发现现有模型存在局限。",
+      "cover_zh": "机器人操作只看结果？新基准专测过程理解，VLM集体翻车",
+      "abstract_zh": "视觉语言模型（VLM）正越来越多地被用作机器人操作中的视觉评判器、奖励生成器和故障检测器。这些角色隐含要求模型不仅判断最终任务成功与否，还要判断操作执行在物理和时间上的进展。然而，现有评估未能测试VLM是否具备细粒度的过程理解。为填补这一空白，我们提出了RoboProcessBench，一个用于视觉语言机器人操作中过程感知理解的基准。RoboProcessBench将这种能力分解为两个互补维度：静态监控和动态推理，具体化为12个诊断问题家族，涵盖阶段、接触、运动、协调、基元局部进度、时间顺序、结果和基元级转换。基于物理基础执行轨迹构建的基准语料库ProcessData包含约58k个问答对，覆盖260个操作任务，并进一步分为ProcessData-SFT和ProcessData-Eval用于后训练和评估。在ProcessData-Eval上对各种VLM的广泛评估揭示了12个诊断任务家族中的普遍局限性，表明当前模型仍缺乏对操作执行的鲁棒过程感知理解。但使用ProcessData-SFT后训练的Qwen2.5-VL-7B和InternVL-3-8B在局部状态、运动、进度和基元感知线索上表现出一致的提升。这些结果表明，RoboProcessBench既可作为评估基准，也可作为可学习的监督源，用于开发能够监控和评估机器人操作过程的VLM。项目网页：https://processbench-2026.github.io。",
+      "authors": [
+        "Dayu Xia",
+        "Yue Shi",
+        "Yao Mu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-11",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ 上海 AI Lab"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ ZJU"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ SJTU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-13040.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-13040-p2.jpg",
+        "assets/img/covers/arxiv-2606-13040-p3.jpg",
+        "assets/img/covers/arxiv-2606-13040-p4.jpg"
+      ],
+      "arxiv_id": "2606.13040",
+      "abs_url": "http://arxiv.org/abs/2606.13040v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.13040v1",
+      "score": 31,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出机器人操作过程理解基准，含58k问答对，评估VLM，对操作VLA有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Shanghai AI Laboratory",
+        "Zhejiang University",
+        "Shanghai Jiao Tong University",
+        "Tsinghua University"
+      ],
+      "method_tags": [
+        "benchmark",
+        "process-aware understanding"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -630,8 +1025,8 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Samsung Research",
-        "Yonsei University",
+        "Korea Institute of Science and Technology",
+        "Seoul National University",
         "Google Research"
       ],
       "method_tags": [
@@ -641,58 +1036,188 @@
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "VLA",
+      "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
     {
-      "id": "arxiv-2606-12995",
+      "id": "arxiv-2606-13497",
       "source": "arxiv",
-      "title": "GenHOI: Contact-Aware Humanoid-Object Interaction by Imitating Generated Videos without Task-Specific Training",
-      "title_zh": "GenHOI：通过模仿生成视频实现接触感知的人形机器人-物体交互，无需任务特定训练",
-      "tldr_zh": "无需训练，仅靠生成视频即可让机器人零样本执行多种物体交互任务。",
-      "cover_zh": "零样本搞定人机交互｜看个视频就能学会搬箱子抬桌子",
-      "abstract_zh": "人形机器人-物体交互（HOI）是人形机器人的基本能力，但由于动态平衡与多样化物体稳定交互之间的紧密耦合，这一任务仍然具有挑战性。现有方法通常需要耗时的任务特定策略训练，或依赖刚性的轨迹回放，这限制了它们适应新交互场景的能力。在这项工作中，我们提出了GenHOI，一个简单而有效的框架，使机器人能够通过直接模仿单个生成视频，以零样本方式执行多样化的物体交互任务，无需任务特定训练或物理演示数据。GenHOI首先在仿真中重建机器人-物体场景并渲染第一帧图像，该图像与语言指令一起，用于条件化生成任务导向的交互视频。然后分析生成的视频，以识别与交互相关的接触事件并估计手-物体接触区域，这些被编码为以物体为中心的几何约束，将视觉交互线索转化为物理基础的优化先验。在这些先验的指导下，从视频中恢复的参考运动被细化和平滑，以解决2D视频生成中固有的尺度模糊性，同时将单个参考轨迹适应于未见过的机器人-物体相对姿态。优化后的轨迹最终由闭环跟踪控制器执行。我们在广泛的仿真和真实世界实验中验证了所提出的框架，涵盖了多种物体交互任务，包括抓取箱子、不对称双臂搬运椅子、从下方抬起桌子以及包裹圆柱形物体。",
+      "title": "SPARC: Reliable Spatial Annotations from Robot Demonstrations at Scale",
+      "title_zh": "SPARC：从机器人演示中大规模获取可靠的空间标注",
+      "tldr_zh": "SPARC利用时空结构为机器人演示标注提供可靠性评分，减少噪声并保留更多有用样本。",
+      "cover_zh": "机器人标注不再盲目｜SPARC自动给每个标注打上可靠性分数，噪声少了，样本多了三倍",
+      "abstract_zh": "本文提出SPARC（Spatial Annotations from Robot Demonstrations with Reliability Calibration），一种风险感知框架，可自动为机器人演示标注结构化空间信息，并为每个标注分配可靠性分数。结构化空间标注（如边界框、物体轨迹、操作阶段标签）有益于多种机器人应用，从训练具身策略和基础模型到运动规划与层次化任务组合。现有自动化流水线虽能大规模生成此类标注，但缺乏可靠的质量信号：检测器置信度与标注正确性校准不良，迫使在接收噪声标签或丢弃有用样本间取舍。SPARC利用机器人任务固有的时空结构生成可靠性信号，减少噪声标签并保留更多有用样本。我们进一步提出交互感知基准（IA-Bench），用于衡量模型在机器人演示中定位交互物体位置的准确性。在涵盖多种形态与场景的1700个人工标注演示上，SPARC在定位精度上显著优于纯检测基线，同时在高精度操作点保留三倍样本。实验表明，基于我们的标注微调的模型在物体定位与指向基准上达到同类模型最优，在更广泛的空间推理套件中无需人工验证或标注数据即可保持竞争力。此外，基于SPARC标注训练的策略在杂乱、视觉模糊的真实场景中优于基线。代码、数据和模型见intuitive-robots.github.io/sparc-labeling。",
       "authors": [
-        "Zhihai Bi",
-        "Qiang Zhang",
-        "Guoyang Zhao"
+        "Nils Blank",
+        "Paul Mattes",
+        "Maximilian Xiling Li"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-11",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ NVIDIA"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ CMU RI"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-13497.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-13497-p2.jpg",
+        "assets/img/covers/arxiv-2606-13497-p3.jpg",
+        "assets/img/covers/arxiv-2606-13497-p4.jpg"
+      ],
+      "arxiv_id": "2606.13497",
+      "abs_url": "http://arxiv.org/abs/2606.13497v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.13497v1",
+      "score": 31,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出可扩展的空间标注框架，提升机器人策略训练数据质量，对操作和具身基础模型有重要价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Karlsruhe Institute of Technology",
+        "NVIDIA",
+        "Robotics Institute Germany"
+      ],
+      "method_tags": [
+        "spatial annotation",
+        "reliability calibration"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-13578",
+      "source": "arxiv",
+      "title": "LabVLA: Grounding Vision-Language-Action Models in Scientific Laboratories",
+      "title_zh": "LabVLA：在科学实验室中落地视觉-语言-动作模型",
+      "tldr_zh": "提出LabVLA模型，结合模拟数据引擎RoboGenesis，在科学实验室场景中实现高成功率动作执行。",
+      "cover_zh": "AI终于能动手做实验了｜LabVLA让机器人操作烧杯和仪器",
+      "abstract_zh": "科学实验室越来越依赖AI系统来推理实验，但物理上的实验操作仍然遥不可及。AI可以辅助阅读文献、生成假设和规划方案，但实验台前的执行仍需人类操作员。视觉-语言-动作（VLA）模型为书面方案与机器人执行之间提供了可能的接口，但现有策略主要基于家庭和桌面演示训练，很少涉及科学实验室中的仪器、透明液体或固定协议流程。弥合这一差距既需要实验室特定的监督，也需要一个统一的学习框架来容纳执行实验方案所需的不同机器人形态。因此，我们将数据和形态视为与模型设计并列的核心瓶颈。在数据方面，我们构建了RoboGenesis，这是一个基于模拟的工作流和数据引擎，它从原子技能组合配置的实验室工作流，验证和过滤轨迹，并导出支持机器人配置的结构化演示。在策略方面，我们提出了LabVLA，采用两阶段训练方案：首先通过FAST动作标记预训练使Qwen3-VL-4B-Instruct骨干网络具备动作感知能力，然后进行流匹配后训练，在知识隔离下附加DiT动作专家。在LabUtopia基准上，LabVLA在分布内和分布外设置下均取得了所有评估基线中最高的平均成功率。",
+      "authors": [
+        "Baochang Ren",
+        "Xinjie Liu",
+        "Xi Chen"
+      ],
+      "primary_category": "cs.CL",
+      "published": "2026-06-11",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 上海 AI Lab"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ ZJU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-13578.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-13578-p2.jpg",
+        "assets/img/covers/arxiv-2606-13578-p3.jpg",
+        "assets/img/covers/arxiv-2606-13578-p4.jpg"
+      ],
+      "arxiv_id": "2606.13578",
+      "abs_url": "http://arxiv.org/abs/2606.13578v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.13578v1",
+      "score": 31,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出面向科学实验室的VLA模型，解决数据与具身瓶颈，具有科研价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Zhejiang University",
+        "Shanghai AI Laboratory",
+        "Harbin Institute of Technology"
+      ],
+      "method_tags": [
+        "VLA",
+        "flow matching",
+        "action token pretraining"
+      ],
+      "platform": [],
+      "sim_stack": [
+        "RoboGenesis"
+      ],
+      "method_family": "",
+      "real_robot": "no",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-13232",
+      "source": "arxiv",
+      "title": "WT-UMI: Tactile-based Whole-Body Manipulation via Force-Supervised Contact-Aware Planning",
+      "title_zh": "WT-UMI：基于触觉的全身操控通过力监督的接触感知规划",
+      "tldr_zh": "提出可穿戴触觉接口WT-UMI，通过力监督规划实现接触感知的全身操控。",
+      "cover_zh": "人形机器人也能“摸”着干活？这个触觉接口让力控更自然",
+      "abstract_zh": "全身人形机器人操控笨重、可变形和共享负载的物体需要分布式接触感知和显式力调节，然而大多数模仿策略仅隐式处理接触力。另一方面，不同的演示源提供了具有固有权衡的互补模态：人类演示捕捉自然接触力但不提供机器人可执行的动作，而遥操作直接记录机器人动作但力调节不够自然。本文提出WT-UMI，一种可穿戴全身触觉接口，可由人类操作员佩戴或安装在人形机器人上，在人类演示和人形机器人遥操作模式下提供触觉图像、接触力和末端执行器位姿的精确观测。我们引入了一个力条件目标位姿校正模块，通过从遥操作数据中学习校正，将测量到的人类位姿转换为接触感知的机器人目标。为了利用人类数据中的自然力交互，我们提出了一个力监督规划器，预测末端执行器位姿块和接触力轨迹。预测的接触力作为基于触觉的导纳控制器的参考。在五个接触密集任务中，涵盖可变形物体、笨重刚体物体和人机协作，WT-UMI在成功率上优于四个策略基线，并降低了接触位置跟踪误差。我们的项目页面位于https://wt-umi.github.io/WTUMI/。",
+      "authors": [
+        "Jaehwi Jang",
+        "Zhaoyuan Gu",
+        "Alfred Cueva"
       ],
       "primary_category": "cs.RO",
       "published": "2026-06-11",
       "channels": [
         "loco-manip-wbc",
-        "manipulation"
+        "manipulation",
+        "teleop"
       ],
       "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-12995.jpg",
+      "cover_image": "assets/img/covers/arxiv-2606-13232.jpg",
       "preview_pages": [
-        "assets/img/covers/arxiv-2606-12995-p2.jpg",
-        "assets/img/covers/arxiv-2606-12995-p3.jpg",
-        "assets/img/covers/arxiv-2606-12995-p4.jpg"
+        "assets/img/covers/arxiv-2606-13232-p2.jpg",
+        "assets/img/covers/arxiv-2606-13232-p3.jpg",
+        "assets/img/covers/arxiv-2606-13232-p4.jpg"
       ],
-      "arxiv_id": "2606.12995",
-      "abs_url": "http://arxiv.org/abs/2606.12995v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.12995v1",
+      "arxiv_id": "2606.13232",
+      "abs_url": "http://arxiv.org/abs/2606.13232v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.13232v1",
       "score": 30,
       "judge": {
         "relevant": true,
         "research_value": "high",
         "primary_channel": "loco-manip-wbc",
-        "reason": "零样本人形物体交互，结合视频生成与全身控制，创新性强",
+        "reason": "全身人形操作+触觉力控+接触感知规划，核心贡献在全身移动操作与力控",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "Georgia Institute of Technology"
+      ],
       "method_tags": [
-        "video imitation",
-        "contact-aware",
-        "zero-shot"
+        "force-supervised planning",
+        "tactile-based admittance control",
+        "contact-aware planning"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "Hybrid",
+      "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
@@ -736,16 +1261,19 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "UC San Diego"
+        "UC San Diego",
+        "Agency for Defense Development",
+        "SceniX Inc.",
+        "University of Michigan"
       ],
       "method_tags": [
         "VLA",
         "spatiotemporal feature map",
-        "long-horizon"
+        "long-horizon mobile manipulation"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "VLA",
+      "method_family": "",
       "real_robot": "no",
       "training_summary": "",
       "demo_videos": [],
@@ -789,15 +1317,19 @@
         "reason": "提出事件感知世界模型EA-WM，结合任务规范预测与验证，提升长时操作规划，属于world-model方向创新。",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "AI Lab, Country Garden Services Group",
+        "Fudan University",
+        "Omni AI"
+      ],
       "method_tags": [
-        "World Model",
-        "Long-Horizon",
-        "Manipulation"
+        "World Models",
+        "Event-Aware Planning",
+        "Task Specification"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "WorldModel",
+      "method_family": "",
       "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
@@ -911,55 +1443,6 @@
       "github": {}
     },
     {
-      "id": "arxiv-2606-12954",
-      "source": "arxiv",
-      "title": "Towards Reliable Sequential Object Picking in Clutter: The Runner-up Solution to RGMC 2025",
-      "title_zh": "面向杂乱环境中的可靠顺序抓取：RGMC 2025 亚军方案",
-      "tldr_zh": "提出集成软硬件流水线，实现杂乱环境下的顺序抓取，获RGMC 2025亚军。",
-      "cover_zh": "杂乱堆里精准抓取｜这个亚军方案让机器人学会“翻找”目标物体",
-      "abstract_zh": "在机器人操作领域，杂乱环境下的稳定高效抓取是工业场景中的长期挑战。尽管近期研究在杂乱抓取中取得了较高成功率，但对于顺序物体搜索与分拣等更复杂任务，成熟方案仍然稀缺。本工作基于杂乱环境抓取基准（CEPB），针对ICRA 2025第十届机器人抓取与操作竞赛（RGMC）的“杂乱抓取”赛道提出解决方案。该任务面临若干关键挑战：首先，需要鲁棒且考虑碰撞的抓取，在包括刚性和可变形物体的多样化物体集上实现高成功率；其次，要求高效搜索目标物体，对解决方案的清理和搜索策略提出严格要求。为应对上述挑战，我们设计了一个集成的软硬件流水线，结合物体识别、清理和多模态抓取。主要贡献包括多功能夹爪的硬件设计，以及杂乱空间中物体分布和遮挡关系的新型表示。该流水线实现了杂乱环境中物体的高效识别、搜索和顺序抓取，在实验室测试和竞赛场景中均展现出强劲性能，最终在RGMC 2025的“杂乱抓取”赛道中获得第二名。",
-      "authors": [
-        "Wei Yu",
-        "Xidan Zhang",
-        "Ziyi Zheng"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-11",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-12954.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-12954-p2.jpg",
-        "assets/img/covers/arxiv-2606-12954-p3.jpg"
-      ],
-      "arxiv_id": "2606.12954",
-      "abs_url": "http://arxiv.org/abs/2606.12954v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.12954v1",
-      "score": 19,
-      "judge": {
-        "relevant": true,
-        "research_value": "medium",
-        "primary_channel": "manipulation",
-        "reason": "针对杂乱环境顺序抓取，有硬件和算法贡献，竞赛验证，但创新点较工程化。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "multi-modal grasping",
-        "decluttering",
-        "sequential picking"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Hardware",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
       "id": "arxiv-2606-13169",
       "source": "arxiv",
       "title": "Redesigning Regularization for Effective Policy Smoothing",
@@ -996,18 +1479,16 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Nara Institute of Science and Technology"
+        "National Institute of Informatics (NII)",
+        "The Graduate University for Advanced Studies (SOKENDAI)"
       ],
       "method_tags": [
-        "RL",
         "regularization",
         "sim-to-real"
       ],
-      "platform": [
-        "quadruped robot"
-      ],
+      "platform": [],
       "sim_stack": [],
-      "method_family": "RL",
+      "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
@@ -1050,17 +1531,19 @@
         "reason": "提出几何自适应混合动作Transformer，解决全身移动操作中的几何感知与动作生成问题，仿真和实物实验均显著提升",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "Beijing Institute of Technology"
+      ],
       "method_tags": [
-        "Diffusion Policy",
-        "Hybrid Action",
+        "Diffusion",
+        "Imitation Learning",
         "Mobile Manipulation"
       ],
       "platform": [],
       "sim_stack": [
         "ManiSkill-HAB"
       ],
-      "method_family": "Diffusion",
+      "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
@@ -1103,19 +1586,19 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Fudan University",
-        "Ant Group"
+        "Institute of Trustworthy Embodied AI, Fudan University",
+        "Robbyant, Ant Group",
+        "Hongkong University of Science and Technology"
       ],
       "method_tags": [
         "World Action Model",
-        "Representation Visual-Action Tokenizer",
-        "Manipulation"
+        "representation visual-action tokenizer"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "WorldModel",
+      "method_family": "",
       "real_robot": "yes",
-      "training_summary": "Pretrained on large-scale video data, adapted to real robot trajectories",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -1155,17 +1638,19 @@
         "reason": "提出双臂操作VLA框架，含视觉路由和动作MoE，仿真和实物验证，创新性强",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "Dongguk University"
+      ],
       "method_tags": [
-        "VLA",
-        "Mixture-of-Experts",
-        "bimanual manipulation"
+        "Vision-Language-Action",
+        "Dual-Level Structural Decomposition",
+        "Mixture-of-Experts"
       ],
       "platform": [],
       "sim_stack": [
         "RoboTwin 2.0"
       ],
-      "method_family": "VLA",
+      "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
@@ -1210,15 +1695,13 @@
         "University of Salford"
       ],
       "method_tags": [
-        "biomimetic",
-        "anatomical structural priors",
-        "dexterous manipulation"
+        "anatomical biomimetics",
+        "structural prior generation",
+        "muscle mediated modulation"
       ],
-      "platform": [
-        "MCR-Bionic Hand"
-      ],
+      "platform": [],
       "sim_stack": [],
-      "method_family": "Hardware",
+      "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
@@ -1280,59 +1763,6 @@
       "github": {}
     },
     {
-      "id": "arxiv-2606-12965",
-      "source": "arxiv",
-      "title": "EmbodiSteer: Steering Embodiment-Agnostic Visuomotor Policies with Joint-Space Guidance for Zero-Shot Cross-Embodiment Deployment",
-      "title_zh": "EmbodiSteer：通过关节空间引导实现零样本跨实体部署的实体无关视觉运动策略操控",
-      "tldr_zh": "无需训练，通过关节空间引导实现零样本跨实体部署，大幅降低碰撞率并提升成功率。",
-      "cover_zh": "机器人学不会新身体？这个框架零训练就能跨实体避障，成功率飙升！",
-      "abstract_zh": "可扩展的机器人模仿学习依赖于来自不同机器人的大规模异构数据或无实体数据，这使得笛卡尔末端执行器动作成为实体无关策略学习的关键接口。然而，仅基于末端执行器的抽象使得笛卡尔策略不了解部署的机器人实体，从而在全身避碰等机器人特定约束下变得脆弱。为了克服这一限制，我们提出了EmbodiSteer，一个无需训练的框架，将实体无关的视觉运动策略导向零样本的实体感知部署。EmbodiSteer将策略学习保持在笛卡尔空间，同时通过正向运动学和基于雅可比矩阵的更新，高效地将推理时的扩散采样提升到目标机器人的关节空间。在每个去噪步骤后，通过全身碰撞感知引导对关节轨迹进行优化，使机械臂在保持所学末端执行器行为的同时避开碰撞。与仅使用笛卡尔空间执行相比，EmbodiSteer在9个模拟机器人上将碰撞率降低了46.1%，任务成功率提高了28.5%，并在高度受限场景下的两个物理机器人上实现了90.0%的碰撞率降低和36.7%的成功率提升。我们的项目页面位于https://frankwang67.github.io/EmbodiSteer-Page。",
-      "authors": [
-        "Shihefeng Wang",
-        "Kangchen Lv",
-        "Mingrui Yu"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-11",
-      "channels": [
-        "loco-manip-wbc",
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-12965.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-12965-p2.jpg",
-        "assets/img/covers/arxiv-2606-12965-p3.jpg",
-        "assets/img/covers/arxiv-2606-12965-p4.jpg"
-      ],
-      "arxiv_id": "2606.12965",
-      "abs_url": "http://arxiv.org/abs/2606.12965v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.12965v1",
-      "score": 14,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出零样本跨本体部署框架，结合关节空间引导与全身碰撞避免，实验充分，对操作策略泛化有重要价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "CUHK"
-      ],
-      "method_tags": [
-        "Diffusion Policy",
-        "Jacobian-based guidance",
-        "zero-shot cross-embodiment"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Diffusion",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
       "id": "arxiv-2606-12910",
       "source": "arxiv",
       "title": "Bounding Boxes as Goals: Language-Conditioned Grasping via Neuro-Symbolic Planning",
@@ -1368,67 +1798,18 @@
         "reason": "语言条件抓取，结合VLM与符号规划，零样本桌面操作，有真实实验",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "University of Maryland, Cyber-Physical Systems Engineering"
+      ],
       "method_tags": [
         "neuro-symbolic planning",
-        "language-conditioned grasping",
-        "VLM"
+        "language-conditioned manipulation"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "Hybrid",
+      "method_family": "",
       "real_robot": "yes",
-      "training_summary": "zero-shot, no task-specific training",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2606-12936",
-      "source": "arxiv",
-      "title": "An Embodied Simulation Platform, Benchmark, and Data-Efficient Augmentation Framework for Wet-Lab Robotics",
-      "title_zh": "湿实验室机器人的具身仿真平台、基准测试与数据高效增强框架",
-      "tldr_zh": "Pipette通过仿真数据增强，仅用30个演示即可显著提升湿实验室机器人性能。",
-      "cover_zh": "30个演示就能训练机器人？这个仿真平台让数据效率飙升",
-      "abstract_zh": "湿实验室机器人能够提高生物医学实验的可重复性、通量和安全性，但扩展其学习能力需要可定制的仿真器以实现安全且可重复的任务生成、开放可编辑的实验室资产，以及将有限演示转化为可用训练数据的高效流程。我们提出了Pipette，一个用于湿实验室机器人学习的具身仿真平台、基准测试和数据高效增强框架。Pipette发布了超过43个开源且可重新编辑的湿实验室资产，以及一个可扩展的资产构建流程。其关键组件是基于仿真的数据增强流程：在仿真中回放人类演示，应用光照、相机、速度和动作扰动，并通过自动任务成功检查过滤生成的片段，从而从有限的手动演示中快速扩展可用训练数据。我们还引入了一个包含11个任务的湿实验室具身基准测试，涵盖样本处理、培养器具操作、设备操作和精确放置。每个任务仅需30个演示，ACT实现了65.5%的平均成功率，而仿真增强将SmolVLA从44.1%提升至74.7%，π0从40.4%提升至46.5%，验证了Pipette在数据高效的VLA训练和评估中的有效性。Pipette还支持自然语言驱动的场景构建和任务注册，降低了非专家用户定义新湿实验室机器人任务的门槛。",
-      "authors": [
-        "Zhe Liu",
-        "Huanbo Jin",
-        "Zhaohui Du"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-11",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-12936.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-12936-p2.jpg",
-        "assets/img/covers/arxiv-2606-12936-p3.jpg",
-        "assets/img/covers/arxiv-2606-12936-p4.jpg"
-      ],
-      "arxiv_id": "2606.12936",
-      "abs_url": "http://arxiv.org/abs/2606.12936v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.12936v1",
-      "score": 9,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "sim2real",
-        "reason": "提出湿实验室机器人仿真平台、基准和高效数据增强框架，包含仿真到真机迁移关键组件，对sim2real和VLA训练有高价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "sim-to-real",
-        "data augmentation",
-        "VLA"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Benchmark",
-      "real_robot": "no",
-      "training_summary": "30 demos per task",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -1472,72 +1853,14 @@
         "University of Illinois Urbana-Champaign"
       ],
       "method_tags": [
-        "adversarial attack",
-        "prompt search",
-        "trajectory redirection"
-      ],
-      "platform": [
-        "Franka"
-      ],
-      "sim_stack": [
-        "MuJoCo"
-      ],
-      "method_family": "Hybrid",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2606-13460",
-      "source": "arxiv",
-      "title": "VISA: VLM-Guided Instance Semantic Auditing for 3D Occupancy World Models",
-      "title_zh": "VISA：VLM引导的实例语义审计用于3D占据世界模型",
-      "tldr_zh": "VLM作为语义审计器提升3D占据模型性能，无需推理时调用。",
-      "cover_zh": "VLM还能这么用？不调嵌入做审计，3D占据精度反升",
-      "abstract_zh": "语义3D占据为自动驾驶和机器人决策提供了体素化的世界状态，但物体和稀有类别的错误会影响自由空间解释、碰撞检测和时间状态传播。我们发现，一种常见的VLM策略——将3D体素或物体特征与裁剪-字幕嵌入对齐——提高了文本空间相似性，但未能可靠地提升闭集占据mIoU。受此不匹配启发，我们提出了VISA，一种针对现有占据世界模型的训练时语义审计方法。VISA对每个物理物体实例的代表性裁剪查询离线VLM，获取包含类别假设、可能混淆、可靠性、属性和证据的结构化审计，并沿物体轨迹传播。审计与匹配的3D物体体素对齐，并通过可靠性加权分类法、属性因子和场景级审计图损失蒸馏为语义logits，而推理保持不变且无需VLM。在nuScenes上，三次运行平均，VISA将OccWorld的mIoU从19.06提升至20.05，GaussianWorld从21.36提升至21.91；在GaussianWorld上，物体mIoU从18.18提升至19.16，稀有类别mIoU从15.60提升至16.79。这些结果表明，VLM更适合作为可靠性感知的语义审计器用于闭集占据，而非作为通用的字幕嵌入目标。",
-      "authors": [
-        "Ruiqi Xian",
-        "Yuehan Xian",
-        "Jing Liang"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-06-11",
-      "channels": [
-        "world-model"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-13460.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-13460-p2.jpg",
-        "assets/img/covers/arxiv-2606-13460-p3.jpg",
-        "assets/img/covers/arxiv-2606-13460-p4.jpg"
-      ],
-      "arxiv_id": "2606.13460",
-      "abs_url": "http://arxiv.org/abs/2606.13460v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.13460v1",
-      "score": 9,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出VLM引导的语义审计方法改进3D占用世界模型，核心贡献在world model领域，且实验有效提升mIoU。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "University of Maryland",
-        "University of California, Riverside"
-      ],
-      "method_tags": [
-        "VLM",
-        "semantic auditing",
-        "3D occupancy"
+        "adversarial attacks",
+        "prompt search"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "Hybrid",
-      "real_robot": "no",
-      "training_summary": "nuScenes dataset, 3 runs",
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -1578,228 +1901,21 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "NII",
-        "AIST",
-        "Sony"
+        "The University of Tokyo",
+        "National Institute of Informatics",
+        "AIRoA",
+        "ATR"
       ],
       "method_tags": [
-        "Diffusion Transformer",
-        "World Model",
-        "Visual Navigation"
-      ],
-      "platform": [
-        "Jackal"
-      ],
-      "sim_stack": [
-        "Habitat"
-      ],
-      "method_family": "WorldModel",
-      "real_robot": "yes",
-      "training_summary": "simulation pretraining + real-robot adaptation",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2606-13515",
-      "source": "arxiv",
-      "title": "MaskWAM: Unifying Mask Prompting and Prediction for World-Action Models",
-      "title_zh": "MaskWAM：统一掩码提示与预测的世界动作模型",
-      "tldr_zh": "用掩码统一输入和预测，提升世界动作模型在杂乱场景中的鲁棒性。",
-      "cover_zh": "机器人看不懂指令？用掩码做空间锚点，操作精度直接拉满！",
-      "abstract_zh": "世界动作模型（WAM）通过视频预测为机器人控制提供了一种有前景的范式。然而，当前的WAM存在根本性的空间瓶颈：标准文本输入在杂乱场景中引入指代歧义，而无结构的RGB预测缺乏语义基础，且容易受到任务无关背景的干扰。为克服这些限制，我们提出了MaskWAM，一种以对象为中心的世界动作模型。通过统一的混合Transformer（MoT）将掩码同时作为显式输入和预测进行整合，MaskWAM实现了鲁棒的策略泛化。这一设计带来两个关键优势：（1）预测未来掩码提供了以对象为中心的语义监督，抑制了视觉噪声，显著增强了甚至标准文本条件的WAM；（2）将该预测监督与首帧视觉提示（如目标对象掩码）耦合，建立了精确的空间锚点，大幅减少了语言歧义。关键在于，由于WAM本质上是视觉驱动的架构，直接掩码条件比单独文本提供更强的引导，为操作未见对象建立了精确且鲁棒的范式。在LIBERO、RoboTwin和真实世界任务上的评估表明，MaskWAM在语言清晰和语言模糊任务中均显著优于基线。",
-      "authors": [
-        "Hanyang Yu",
-        "Haitao Lin",
-        "Jingbo Zhang"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-06-11",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-13515.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-13515-p2.jpg",
-        "assets/img/covers/arxiv-2606-13515-p3.jpg",
-        "assets/img/covers/arxiv-2606-13515-p4.jpg"
-      ],
-      "arxiv_id": "2606.13515",
-      "abs_url": "http://arxiv.org/abs/2606.13515v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.13515v1",
-      "score": 9,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出世界动作模型MaskWAM，融合掩码提示与预测，提升泛化性，属于world-model方向创新",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "World Action Model",
-        "Mask Prompting",
-        "Object-Centric"
+        "diffusion-transformer policy",
+        "world model",
+        "visual navigation"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "WorldModel",
+      "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2606-13040",
-      "source": "arxiv",
-      "title": "RoboProcessBench: Benchmarking Process-Aware Understanding in Vision-Language Robotic Manipulation",
-      "title_zh": "RoboProcessBench：面向视觉语言机器人操作的过程感知理解基准",
-      "tldr_zh": "提出RoboProcessBench基准，评估VLM在机器人操作中的过程感知能力，发现现有模型存在局限。",
-      "cover_zh": "机器人操作只看结果？新基准专测过程理解，VLM集体翻车",
-      "abstract_zh": "视觉语言模型（VLM）正越来越多地被用作机器人操作中的视觉评判器、奖励生成器和故障检测器。这些角色隐含要求模型不仅判断最终任务成功与否，还要判断操作执行在物理和时间上的进展。然而，现有评估未能测试VLM是否具备细粒度的过程理解。为填补这一空白，我们提出了RoboProcessBench，一个用于视觉语言机器人操作中过程感知理解的基准。RoboProcessBench将这种能力分解为两个互补维度：静态监控和动态推理，具体化为12个诊断问题家族，涵盖阶段、接触、运动、协调、基元局部进度、时间顺序、结果和基元级转换。基于物理基础执行轨迹构建的基准语料库ProcessData包含约58k个问答对，覆盖260个操作任务，并进一步分为ProcessData-SFT和ProcessData-Eval用于后训练和评估。在ProcessData-Eval上对各种VLM的广泛评估揭示了12个诊断任务家族中的普遍局限性，表明当前模型仍缺乏对操作执行的鲁棒过程感知理解。但使用ProcessData-SFT后训练的Qwen2.5-VL-7B和InternVL-3-8B在局部状态、运动、进度和基元感知线索上表现出一致的提升。这些结果表明，RoboProcessBench既可作为评估基准，也可作为可学习的监督源，用于开发能够监控和评估机器人操作过程的VLM。项目网页：https://processbench-2026.github.io。",
-      "authors": [
-        "Dayu Xia",
-        "Yue Shi",
-        "Yao Mu"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-11",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-13040.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-13040-p2.jpg",
-        "assets/img/covers/arxiv-2606-13040-p3.jpg",
-        "assets/img/covers/arxiv-2606-13040-p4.jpg"
-      ],
-      "arxiv_id": "2606.13040",
-      "abs_url": "http://arxiv.org/abs/2606.13040v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.13040v1",
-      "score": 6,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出机器人操作过程理解基准，含58k问答对，评估VLM，对操作VLA有参考价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "Benchmark",
-        "Process-Aware Understanding",
-        "Vision-Language Model"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Benchmark",
-      "real_robot": "",
-      "training_summary": "~58k QA pairs across 260 tasks",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2606-13497",
-      "source": "arxiv",
-      "title": "SPARC: Reliable Spatial Annotations from Robot Demonstrations at Scale",
-      "title_zh": "SPARC：从机器人演示中大规模获取可靠的空间标注",
-      "tldr_zh": "SPARC利用时空结构为机器人演示标注提供可靠性评分，减少噪声并保留更多有用样本。",
-      "cover_zh": "机器人标注不再盲目｜SPARC自动给每个标注打上可靠性分数，噪声少了，样本多了三倍",
-      "abstract_zh": "本文提出SPARC（Spatial Annotations from Robot Demonstrations with Reliability Calibration），一种风险感知框架，可自动为机器人演示标注结构化空间信息，并为每个标注分配可靠性分数。结构化空间标注（如边界框、物体轨迹、操作阶段标签）有益于多种机器人应用，从训练具身策略和基础模型到运动规划与层次化任务组合。现有自动化流水线虽能大规模生成此类标注，但缺乏可靠的质量信号：检测器置信度与标注正确性校准不良，迫使在接收噪声标签或丢弃有用样本间取舍。SPARC利用机器人任务固有的时空结构生成可靠性信号，减少噪声标签并保留更多有用样本。我们进一步提出交互感知基准（IA-Bench），用于衡量模型在机器人演示中定位交互物体位置的准确性。在涵盖多种形态与场景的1700个人工标注演示上，SPARC在定位精度上显著优于纯检测基线，同时在高精度操作点保留三倍样本。实验表明，基于我们的标注微调的模型在物体定位与指向基准上达到同类模型最优，在更广泛的空间推理套件中无需人工验证或标注数据即可保持竞争力。此外，基于SPARC标注训练的策略在杂乱、视觉模糊的真实场景中优于基线。代码、数据和模型见intuitive-robots.github.io/sparc-labeling。",
-      "authors": [
-        "Nils Blank",
-        "Paul Mattes",
-        "Maximilian Xiling Li"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-11",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-13497.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-13497-p2.jpg",
-        "assets/img/covers/arxiv-2606-13497-p3.jpg",
-        "assets/img/covers/arxiv-2606-13497-p4.jpg"
-      ],
-      "arxiv_id": "2606.13497",
-      "abs_url": "http://arxiv.org/abs/2606.13497v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.13497v1",
-      "score": 6,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出可扩展的空间标注框架，提升机器人策略训练数据质量，对操作和具身基础模型有重要价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Karlsruhe Institute of Technology"
-      ],
-      "method_tags": [
-        "spatial annotation",
-        "reliability calibration",
-        "object grounding"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Dataset",
-      "real_robot": "yes",
-      "training_summary": "1.7k human-annotated demonstrations",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2606-13578",
-      "source": "arxiv",
-      "title": "LabVLA: Grounding Vision-Language-Action Models in Scientific Laboratories",
-      "title_zh": "LabVLA：在科学实验室中落地视觉-语言-动作模型",
-      "tldr_zh": "提出LabVLA模型，结合模拟数据引擎RoboGenesis，在科学实验室场景中实现高成功率动作执行。",
-      "cover_zh": "AI终于能动手做实验了｜LabVLA让机器人操作烧杯和仪器",
-      "abstract_zh": "科学实验室越来越依赖AI系统来推理实验，但物理上的实验操作仍然遥不可及。AI可以辅助阅读文献、生成假设和规划方案，但实验台前的执行仍需人类操作员。视觉-语言-动作（VLA）模型为书面方案与机器人执行之间提供了可能的接口，但现有策略主要基于家庭和桌面演示训练，很少涉及科学实验室中的仪器、透明液体或固定协议流程。弥合这一差距既需要实验室特定的监督，也需要一个统一的学习框架来容纳执行实验方案所需的不同机器人形态。因此，我们将数据和形态视为与模型设计并列的核心瓶颈。在数据方面，我们构建了RoboGenesis，这是一个基于模拟的工作流和数据引擎，它从原子技能组合配置的实验室工作流，验证和过滤轨迹，并导出支持机器人配置的结构化演示。在策略方面，我们提出了LabVLA，采用两阶段训练方案：首先通过FAST动作标记预训练使Qwen3-VL-4B-Instruct骨干网络具备动作感知能力，然后进行流匹配后训练，在知识隔离下附加DiT动作专家。在LabUtopia基准上，LabVLA在分布内和分布外设置下均取得了所有评估基线中最高的平均成功率。",
-      "authors": [
-        "Baochang Ren",
-        "Xinjie Liu",
-        "Xi Chen"
-      ],
-      "primary_category": "cs.CL",
-      "published": "2026-06-11",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-13578.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-13578-p2.jpg",
-        "assets/img/covers/arxiv-2606-13578-p3.jpg",
-        "assets/img/covers/arxiv-2606-13578-p4.jpg"
-      ],
-      "arxiv_id": "2606.13578",
-      "abs_url": "http://arxiv.org/abs/2606.13578v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.13578v1",
-      "score": 6,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出面向科学实验室的VLA模型，解决数据与具身瓶颈，具有科研价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "VLA",
-        "flow matching",
-        "sim-to-real"
-      ],
-      "platform": [],
-      "sim_stack": [
-        "RoboGenesis"
-      ],
-      "method_family": "VLA",
-      "real_robot": "no",
-      "training_summary": "two-stage: FAST pretraining + flow matching posttraining",
       "demo_videos": [],
       "github": {}
     },
