@@ -35,46 +35,41 @@ DEEPSEEK_URL = "https://api.deepseek.com/chat/completions"
 ENRICH_TIMEOUT = 60
 
 SYSTEM_PROMPT = (
-    "你是人形机器人论文标签助手。读一篇 paper 的标题 + 摘要 + 作者，输出 7 组结构化字段。\n"
+    "你是人形机器人论文标签助手。我会给你一篇 paper 的【标题 + 作者 + 摘要 + PDF 首页文本】，"
+    "你只能依据这些**提供的文本**抽取 5 组结构化字段。\n"
     "\n"
-    "(1) institutions：参与单位（公司或大学），从作者署名 / 摘要 / 项目名里推断。\n"
-    "    - 必须真实存在，不要瞎编。最多 3 个，按相关度排序。\n"
-    "    - 例：MIT CSAIL / Stanford / Tsinghua / 清华 / 北大 / SJTU / CUHK / 上海AI Lab /\n"
-    "      Boston Dynamics / Figure / 1X / Tesla / 宇树 / 智元 / 银河通用 / Physical Intelligence /\n"
-    "      Skild AI / Generalist / NVIDIA / Google DeepMind ...\n"
-    "    - 拿不准 → 留空 []。\n"
+    "★★ 最重要的铁律：只填**文本里明确出现**的信息。绝不根据作者名字、研究主题、\n"
+    "   或常见组合去猜。拿不准、文本没写 → 一律留空（[] 或 \"\"）。宁可空着，也不要填错。\n"
     "\n"
-    "(2) method_tags：方法 + 问题混合标签，2-3 个，少而精。\n"
-    "    - 方法侧例：RL / Imitation Learning / DAgger / VAE / Diffusion Policy / ACT /\n"
-    "      VLA / World Model / MPC / Curriculum / Domain Randomization / Foundation Model /\n"
-    "      GAIL / Behavior Cloning / Test-Time Training / Distillation ...\n"
-    "    - 问题侧例：sim-to-real / long-horizon / fall recovery / parkour / 灵巧抓取 /\n"
-    "      双臂协调 / 跨本体迁移 / 视觉运动控制 / 特技动作 / 动作重定向 / 真机部署 ...\n"
-    "    - 中英文都行。\n"
+    "(1) institutions：作者所属单位（公司 / 大学 / 实验室）。\n"
+    "    - **只从 PDF 首页文本里的单位脚注 / 作者署名块识别**（摘要里通常没有单位信息）。\n"
+    "    - 原文怎么写就怎么填（可用通用简称：MIT CSAIL / Stanford / 清华 / 上海交大 /\n"
+    "      TeleAI / 中国电信 / 复旦 / NVIDIA / 宇树 ...），但**必须文本里真的出现过该单位**。\n"
+    "    - ❌ 禁止：看到作者是某知名人士就脑补他现在的单位；看到是人形论文就猜“上海AI Lab/CUHK”。\n"
+    "    - PDF 文本里找不到任何单位 → 留空 []。最多 4 个，按出现顺序。\n"
     "\n"
-    "(3) platform：用了哪些机器人硬件平台。最多 3 个。\n"
-    "    - 例：Unitree G1 / Unitree H1 / Booster T1 / Atlas / Figure 02 / GR-1 / GR-2 /\n"
-    "      Apollo / ANYmal / Spot / Cassie / Digit / ALOHA / Franka / Reachy / ...\n"
-    "    - 没在标题/摘要里提到具体型号 → 留空 []，不要硬猜。\n"
+    "(2) method_tags：方法 + 问题混合标签，2-3 个，少而精，必须有文本依据。\n"
+    "    - 方法侧例：RL / Imitation Learning / Diffusion Policy / ACT / VLA / World Model /\n"
+    "      MPC / Domain Randomization / Behavior Cloning / Distillation ...\n"
+    "    - 问题侧例：sim-to-real / long-horizon / loco-manipulation / 灵巧抓取 / 全身控制 /\n"
+    "      跨本体迁移 / 视觉运动控制 / 动作重定向 ...\n"
+    "    - 中英文都行。文本没体现的方法不要写。\n"
     "\n"
-    "(4) sim_stack：用了哪些仿真器 / 仿真栈。最多 2 个。\n"
-    "    - 例：Isaac Lab / Isaac Sim / Isaac Gym / MuJoCo / Genesis / GenSim / RoboCasa /\n"
-    "      RoboTwin / SAPIEN / Habitat / DRAKE / PyBullet / Unity / ...\n"
-    "    - 没明确说 → 留空 []。\n"
+    "(3) platform：用到的机器人硬件平台。最多 3 个。\n"
+    "    - **只有文本明确出现具体型号才填**：Unitree G1 / Unitree H1 / Booster T1 / Atlas /\n"
+    "      Figure 02 / GR-1 / Apollo / ANYmal / Spot / Cassie / Digit / ALOHA / Franka ...\n"
+    "    - ❗只说 “humanoid / quadruped / a robot” 没给型号 → 留空 []。\n"
+    "    - ❗注意区分 G1 与 H1 等型号，以文本为准，不要混。\n"
     "\n"
-    "(5) method_family：主方法家族，单选一个，从下列里挑（实在不属于任一就 \"\"）：\n"
-    "    \"RL\" | \"IL\" | \"VLA\" | \"MPC\" | \"Diffusion\" | \"WorldModel\" | \"Foundation\" |\n"
-    "    \"Hybrid\" | \"Hardware\" | \"Dataset\" | \"Benchmark\" | \"Survey\" | \"\"\n"
+    "(4) sim_stack：用到的仿真器 / 仿真栈。最多 2 个。\n"
+    "    - 例：Isaac Lab / Isaac Sim / Isaac Gym / MuJoCo / Genesis / SAPIEN / Habitat /\n"
+    "      PyBullet / Gazebo / RoboTwin ...\n"
+    "    - 文本没明确提到 → 留空 []。\n"
     "\n"
-    "(6) real_robot：这篇有没有真机实验。\n"
-    "    \"yes\" = 摘要明确说在真机器人上验证 / 有真机视频；\n"
-    "    \"no\"  = 明确只是仿真 / 数据集 / 方法论文；\n"
-    "    \"\"   = 拿不准。\n"
-    "\n"
-    "(7) training_summary：训练规模 / 数据量的一句话摘要，0-25 字。\n"
-    "    - 例：\"30K env-steps × 5 GPU-days\" / \"100K human demos\" / \"1.2M motion clips\" /\n"
-    "      \"6h teleop data\" / \"4-stage curriculum\" / \"3000 SE(3) trajectories\"\n"
-    "    - 摘要没透露规模 → 留空 \"\"。\n"
+    "(5) real_robot：是否在真实机器人上做过实验。\n"
+    "    \"yes\" = 文本明确说在真机上验证 / 部署 / 有真机实验；\n"
+    "    \"no\"  = 文本明确说只是仿真 / 数据集 / 纯方法；\n"
+    "    \"\"   = 文本没说清。\n"
     "\n"
     "严格按 JSON 输出（不要 markdown 包裹）：\n"
     "{\n"
@@ -82,10 +77,20 @@ SYSTEM_PROMPT = (
     '  "method_tags": [],\n'
     '  "platform": [],\n'
     '  "sim_stack": [],\n'
-    '  "method_family": "",\n'
-    '  "real_robot": "",\n'
-    '  "training_summary": ""\n'
+    '  "real_robot": ""\n'
     "}\n"
+)
+
+# Reviewer（第二个 AI）：对照原文核对草稿，删掉没有依据的值。
+REVIEW_PROMPT = (
+    "你是严格的事实核查员。我会给你一篇 paper 的【原始文本】（标题 + 作者 + 摘要 + PDF 首页）"
+    "和上一轮助手抽取的【字段草稿】。请逐字段核对：\n"
+    "  - 某个值在原始文本里有明确依据 → 保留。\n"
+    "  - 找不到依据 / 疑似根据作者名字或研究主题猜的 → 删除（list 删该项，字符串置空）。\n"
+    "  - institutions 尤其严格：该单位名必须在【PDF 首页文本】里真实出现，否则删。\n"
+    "  - platform 型号（G1 / H1 等）必须文本明确写到，且型号要对；存疑就删。\n"
+    "不要新增草稿里没有的值，只做删除 / 收紧。输出修正后的同 schema JSON（institutions /\n"
+    "method_tags / platform / sim_stack / real_robot），不要解释、不要 markdown。\n"
 )
 
 
@@ -113,63 +118,82 @@ class EnrichUnavailable(RuntimeError):
     pass
 
 
-def enrich_paper(title: str, abstract: str, authors_text: str = "",
-                 *, model: str = DEFAULT_MODEL, api_key: str | None = None,
-                 timeout: float = ENRICH_TIMEOUT) -> Enrichment:
-    if os.environ.get("REDPAPER_ENRICH_DISABLE") == "1":
-        raise EnrichUnavailable("REDPAPER_ENRICH_DISABLE=1")
-    key = api_key or os.environ.get("DEEPSEEK_API_KEY")
-    if not key:
-        raise EnrichUnavailable("DEEPSEEK_API_KEY not set")
-
-    user_parts = [f"标题：{title.strip()}"]
-    if authors_text.strip():
-        user_parts.append(f"作者：{authors_text.strip()[:400]}")
-    user_parts.append(f"摘要 / 描述：\n{(abstract or '').strip()[:3000]}")
-    user_msg = "\n\n".join(user_parts)
-
+def _deepseek_json(system: str, user: str, key: str, model: str, timeout: float) -> dict:
     payload = {
         "model": model,
         "messages": [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user",   "content": user_msg},
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
         ],
         "response_format": {"type": "json_object"},
         "temperature": 0.0,
-        # 关掉 reasoning：单纯抽取任务用不上 CoT，开了会吃 max_tokens 配额。
         "thinking": {"type": "disabled"},
-        # 输出空间：7 个字段（4 list + 3 string），留 600 token 防截断。
-        "max_tokens": 600,
+        "max_tokens": 500,
     }
     r = requests.post(DEEPSEEK_URL, json=payload, headers={
         "Authorization": f"Bearer {key}",
         "Content-Type": "application/json",
     }, timeout=timeout)
     r.raise_for_status()
-    raw = r.json()["choices"][0]["message"]["content"]
-    data = _parse_response(raw)
+    return _parse_response(r.json()["choices"][0]["message"]["content"])
 
-    insts = _clean_list(data.get("institutions", []))[:3]
-    methods = _clean_list(data.get("method_tags", []))[:3]
-    platform = _clean_list(data.get("platform", []))[:3]
-    sim_stack = _clean_list(data.get("sim_stack", []))[:2]
-    mf = str(data.get("method_family", "") or "").strip()
-    if mf not in _METHOD_FAMILIES:
-        mf = ""
+
+def _coerce(data: dict, model: str) -> Enrichment:
     rr = str(data.get("real_robot", "") or "").strip().lower()
     if rr not in _REAL_ROBOT:
         rr = ""
-    ts = str(data.get("training_summary", "") or "").strip()[:80]
     return Enrichment(
-        institutions=insts,
-        method_tags=methods,
-        platform=platform,
-        sim_stack=sim_stack,
-        method_family=mf,
+        institutions=_clean_list(data.get("institutions", []))[:4],
+        method_tags=_clean_list(data.get("method_tags", []))[:3],
+        platform=_clean_list(data.get("platform", []))[:3],
+        sim_stack=_clean_list(data.get("sim_stack", []))[:2],
         real_robot=rr,
-        training_summary=ts,
+        # method_family / training_summary 已弃用（常含糊无用），固定留空。
+        method_family="",
+        training_summary="",
         model=model,
     )
+
+
+def enrich_paper(title: str, abstract: str, authors_text: str = "", pdf_text: str = "",
+                 *, model: str = DEFAULT_MODEL, api_key: str | None = None,
+                 timeout: float = ENRICH_TIMEOUT, review: bool = True) -> Enrichment:
+    """两步抽取：①writer 依据文本抽字段（默认弃权，不准猜）→ ②reviewer 对照原文
+    核对、删掉没依据的值。pdf_text = PDF 首页文本（含真实单位脚注 / 平台型号）。"""
+    if os.environ.get("REDPAPER_ENRICH_DISABLE") == "1":
+        raise EnrichUnavailable("REDPAPER_ENRICH_DISABLE=1")
+    key = api_key or os.environ.get("DEEPSEEK_API_KEY")
+    if not key:
+        raise EnrichUnavailable("DEEPSEEK_API_KEY not set")
+
+    src_parts = [f"标题：{title.strip()}"]
+    if authors_text.strip():
+        src_parts.append(f"作者：{authors_text.strip()[:400]}")
+    src_parts.append(f"摘要：\n{(abstract or '').strip()[:2000]}")
+    if pdf_text.strip():
+        src_parts.append(f"PDF 首页文本（含单位 / 平台 / 实验信息）：\n{pdf_text.strip()[:3500]}")
+    source = "\n\n".join(src_parts)
+
+    # ① writer
+    draft = _coerce(_deepseek_json(SYSTEM_PROMPT, source, key, model, timeout), model)
+    if not review:
+        return draft
+
+    # ② reviewer：对照原文核对草稿，删掉没依据的
+    draft_json = json.dumps({
+        "institutions": draft.institutions,
+        "method_tags": draft.method_tags,
+        "platform": draft.platform,
+        "sim_stack": draft.sim_stack,
+        "real_robot": draft.real_robot,
+    }, ensure_ascii=False)
+    review_user = f"【原始文本】\n{source}\n\n【字段草稿】\n{draft_json}"
+    try:
+        reviewed = _coerce(_deepseek_json(REVIEW_PROMPT, review_user, key, model, timeout), model)
+    except Exception as e:
+        log.warning("enrich review failed (%s); using draft", e)
+        return draft
+    return reviewed
 
 
 def _parse_response(raw: str) -> dict:
@@ -210,6 +234,9 @@ def _clean_list(items) -> list[str]:
 
 class EnrichCache:
     VERSION = 1
+    # 抽取 schema 版本：2 = 读 PDF 首页 + 默认弃权 + reviewer 复核（去掉
+    # method_family / training_summary）。低于此版本的缓存条目需要重抽。
+    SCHEMA = 2
 
     def __init__(self, path: Path):
         self.path = path
@@ -241,17 +268,18 @@ class EnrichCache:
             model=e.get("model", ""),
         )
 
-    def has_deep_fields(self, pid: str) -> bool:
-        """老缓存只有 institutions+method_tags，新字段缺失则需重抽。"""
+    def is_current(self, pid: str) -> bool:
+        """缓存条目是否已用当前 schema 抽过。低版本（含老的 7 字段、未读 PDF /
+        未经 reviewer 的）返回 False，触发重抽。"""
         e = self.entries.get(pid)
         if not e:
             return False
-        # 只要任何一个新字段已经存在（即使是空字符串/空列表）就算抽过
-        return any(k in e for k in ("platform", "sim_stack", "method_family"))
+        return int(e.get("schema", 0)) >= self.SCHEMA
 
     def put(self, pid: str, j: Enrichment) -> None:
         d = asdict(j)
         d["ts"] = int(time.time())
+        d["schema"] = self.SCHEMA
         self.entries[pid] = d
 
     def save(self) -> None:

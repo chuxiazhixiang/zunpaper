@@ -107,10 +107,9 @@ function postChipsHTML(p) {
 // 表格，让用户在最显眼的位置就能 1 秒判断这篇是不是要细读。
 function postStructuredHTML(p) {
   const items = [];
-  if (p.method_family) items.push(['🔬 方法家族', escapeHTML(p.method_family)]);
+  // method_family / training_summary 已弃用（常含糊无用）：不再展示。
   if (p.real_robot === 'yes') items.push(['🤝 真机实验', '是']);
   else if (p.real_robot === 'no') items.push(['🤝 真机实验', '否 (sim only)']);
-  if (p.training_summary) items.push(['📊 训练规模', escapeHTML(p.training_summary)]);
   if (!items.length) return '';
   const cells = items.map(([k, v]) =>
     `<div class="rp-factbox__cell"><div class="rp-factbox__k">${k}</div><div class="rp-factbox__v">${v}</div></div>`

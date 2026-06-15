@@ -16,7 +16,7 @@ from .videos import VideoCache, enrich_paper_videos
 from .labs import detect_labs, lab_badges
 from .scoring import score_paper
 from .models import Paper, load_paper, save_paper
-from .render import fetch_and_render
+from .render import fetch_and_render, extract_head_text as fetch_head_text
 from .sources import arxiv_source
 from .sources import hf_daily as hf_daily_source
 from .sources import semantic_scholar as ss_source
@@ -120,9 +120,9 @@ def _enrich_papers(fresh: dict[str, Paper]) -> dict[str, Paper]:
         if p.source == "github":
             continue
         cached = cache.get(pid)
-        # 旧 cache 只有 institutions+method_tags，没有 platform/sim_stack 等 P1
-        # 字段——需要重新调一次让 LLM 把新字段补齐。
-        if cached is not None and cache.has_deep_fields(pid):
+        # 用当前 schema 抽过就直接复用；老 schema（未读 PDF / 未经 reviewer /
+        # 还带 method_family）需要重抽。
+        if cached is not None and cache.is_current(pid):
             enrich_cache_hits += 1
             _apply_enrichment(p, cached)
             continue
@@ -130,7 +130,15 @@ def _enrich_papers(fresh: dict[str, Paper]) -> dict[str, Paper]:
             enrich_refresh += 1
         try:
             authors_text = "、".join(a.name for a in (p.authors or [])[:8])
-            e = enrich_paper(p.title, p.abstract or p.tldr_zh or p.title, authors_text)
+            # 读 PDF 首页文本喂给抽取器：真实单位脚注 / 平台型号几乎只在首页，
+            # 摘要里没有 → 不给 PDF 的话机构/平台只能靠猜（OASIS 把 G1 猜成 H1）。
+            pdf_text = ""
+            if p.pdf_url:
+                try:
+                    pdf_text = fetch_head_text(p.pdf_url)
+                except Exception as ex:
+                    log.debug("head text extract failed for %s: %s", pid, ex)
+            e = enrich_paper(p.title, p.abstract or p.tldr_zh or p.title, authors_text, pdf_text)
             enrich_calls += 1
             cache.put(pid, e)
             _apply_enrichment(p, e)

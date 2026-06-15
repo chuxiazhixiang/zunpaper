@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import io
 import logging
+import re
 import shutil
 import tempfile
 from pathlib import Path
@@ -45,6 +46,39 @@ def download_pdf(url: str, dest: Path) -> bool:
     except Exception as e:
         log.warning("download_pdf failed for %s: %s", url, e)
         return False
+
+
+def extract_head_text(pdf_url: str, max_pages: int = 2, max_chars: int = 3500) -> str:
+    """Download a PDF and return the plain text of its first `max_pages` pages.
+
+    给 enrich 用：论文的**真实机构 / 单位脚注**几乎只在首页（不在摘要里），
+    具体机器人平台型号、仿真器也常出现在首页 / 引言。把这段文本喂给抽取器，
+    就不用让它从作者名 / 主题瞎猜了。Best-effort：任何失败返回 ''。
+    """
+    if not pdf_url:
+        return ""
+    with tempfile.TemporaryDirectory() as td:
+        dest = Path(td) / "head.pdf"
+        if not download_pdf(pdf_url, dest):
+            return ""
+        try:
+            doc = fitz.open(dest)
+        except Exception as e:
+            log.warning("extract_head_text open failed: %s", e)
+            return ""
+        parts: list[str] = []
+        try:
+            for i in range(min(max_pages, doc.page_count)):
+                try:
+                    parts.append(doc[i].get_text() or "")
+                except Exception:
+                    pass
+        finally:
+            doc.close()
+    text = "\n".join(parts)
+    text = re.sub(r"[ \t]+", " ", text)
+    text = re.sub(r"\n{3,}", "\n\n", text).strip()
+    return text[:max_chars]
 
 
 def _render_page(doc, page_idx: int, out_jpg: Path, max_width: int = 900, quality: int = 82) -> bool:
