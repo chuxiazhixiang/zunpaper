@@ -45,6 +45,16 @@ DEEPSEEK_URL = "https://api.deepseek.com/chat/completions"
 
 JUDGE_TIMEOUT = 60
 
+# judge prompt 版本号：改了 SYSTEM_PROMPT 的判定标准（频道定义 / 黑白名单 /
+# VLA 归类等）就 +1。
+#
+# ⚠️ 本字段只「记录」每条判定是用哪版 prompt 做的，**不自动失效**。原因：judge
+# 决定论文的去留（relevant=false 直接砍），若按版本自动全站重判，会突然大批
+# 增删论文、且烧钱/可能超时，风险远高于 enrich（enrich 只改展示标签）。
+# 想按新 prompt 重判时，手动跑 `JudgeCache(path).evict_stale()` 清掉旧版本条目
+# （或只清近 N 天），下次 build 自然重判。详见 AGENTS.md「缓存与版本约定」。
+PROMPT_VERSION = 1
+
 SYSTEM_PROMPT = (
     "你是一位严格的具身机器人方向研究员，要从「研究相关性 + 科研价值」两个角度给文章打分。\n"
     "输入是一篇文章的标题 + 摘要 / 描述。\n"
@@ -321,7 +331,26 @@ class JudgeCache:
     def put(self, pid: str, j: Judgment) -> None:
         d = asdict(j)
         d["ts"] = int(time.time())
+        # 只记录用哪版 prompt 判的；不自动失效（见 PROMPT_VERSION 注释）。
+        d["prompt_version"] = PROMPT_VERSION
         self.entries[pid] = d
+
+    def evict_stale(self, current_version: int = PROMPT_VERSION,
+                    newer_than_ts: int | None = None) -> int:
+        """手动重判用：删掉 prompt_version 不等于 current_version 的条目，下次
+        build 会重新判定。可选 newer_than_ts：只清这个时间戳之后入库的（即"只
+        重判近期"），避免一次性全站重判带来的成本/论文增删波动。返回删除条数。
+        注意：本方法不会在常规 build 流程里被自动调用。"""
+        stale = []
+        for pid, e in list(self.entries.items()):
+            if int(e.get("prompt_version", 0)) == current_version:
+                continue
+            if newer_than_ts is not None and int(e.get("ts", 0)) < newer_than_ts:
+                continue
+            stale.append(pid)
+        for pid in stale:
+            self.entries.pop(pid, None)
+        return len(stale)
 
     def save(self) -> None:
         self.path.parent.mkdir(parents=True, exist_ok=True)
