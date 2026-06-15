@@ -161,7 +161,9 @@ def repo_to_paper(d: dict) -> Paper:
         published="",                       # 不进归档/排行
         updated=d.get("pushed_at", ""),
         abs_url=d.get("html_url", ""),
-        channels=["open-source"],
+        # channels 由 _process_github_repos 根据 judge 判定的方向填充
+        # （loco-manip-wbc / manipulation / ...），让二级方向标签能过滤开源项目。
+        channels=[],
         source_tags=["github"],
         github={
             "owner": d.get("owner", ""),

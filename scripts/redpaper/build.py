@@ -317,8 +317,10 @@ def _process_github_repos(sources: cfg.SourcesConfig) -> tuple[dict[str, Paper],
             dropped += 1
             log.info("repo[skip] %s ⭐%s → %s", d["full_name"], d["stars"], j.reason[:60])
             continue
-        # AI 判出的子方向作为 method chip（映射成中文短标签，不露内部 slug）
+        # AI 判出的方向 → 既作为 channel（让二级方向标签能过滤开源项目），
+        # 也作为中文 chip 展示在卡片上。
         if j.primary_channel and j.primary_channel != "none":
+            paper.channels = [j.primary_channel]
             paper.method_tags = [_GH_DIR_LABEL.get(j.primary_channel, j.primary_channel)]
         out[pid] = paper
         kept += 1
@@ -848,11 +850,14 @@ def retag_and_prune(channels: list[cfg.Channel]) -> None:
         except Exception:
             continue
 
-        # GitHub 开源仓不参与频道关键词匹配（它们固定在 open-source 频道），
-        # 也不能被 prune 掉 —— 否则每天 build 开头就把上次抓的仓删光、白白重抓。
+        # GitHub 开源仓不参与频道关键词匹配，也不能被 prune（否则每天 build
+        # 开头就把上次抓的仓删光、白白重抓）。它们的方向频道来自 judge 判定，
+        # 这里据 judge.primary_channel 同步 channels（兼带迁移老的 open-source）。
         if (paper.source or "").lower() == "github":
-            if paper.channels != ["open-source"]:
-                paper.channels = ["open-source"]
+            pc = (paper.judge or {}).get("primary_channel", "")
+            desired = [pc] if pc in valid_ch_ids else []
+            if paper.channels != desired:
+                paper.channels = desired
                 save_paper(paper, cfg.PAPERS_DIR)
             kept += 1
             continue

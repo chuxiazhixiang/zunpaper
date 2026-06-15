@@ -24,6 +24,7 @@ const STATE = {
   channels: [],
   papers: [],
   palettes: [],
+  mode: 'papers',          // 'papers' | 'repos' —— 顶层切换；方向标签对两者通用
   activeChannel: 'all',
   searchQuery: '',
   // Filled per render: bucket maps + ordered list of bucket keys.
@@ -99,12 +100,13 @@ function buildChannelTabs() {
 
 function visiblePapers() {
   const q = STATE.searchQuery.trim().toLowerCase();
+  const wantRepos = STATE.mode === 'repos';
   return STATE.papers.filter((p) => {
     const isGithub = (p.source || '') === 'github';
-    if (STATE.activeChannel === 'all') {
-      // 开源仓只在「开源项目」tab 出现，不混进论文主页。
-      if (isGithub) return false;
-    } else if (!(p.channels || []).includes(STATE.activeChannel)) {
+    // 顶层模式过滤：论文模式只看非 github，开源模式只看 github。
+    if (wantRepos !== isGithub) return false;
+    // 二级方向标签：对论文和开源项目通用（开源项目的 channel 由 AI 判定）。
+    if (STATE.activeChannel !== 'all' && !(p.channels || []).includes(STATE.activeChannel)) {
       return false;
     }
     if (!q) return true;
@@ -517,8 +519,8 @@ function renderFeed() {
     return;
   }
 
-  // 开源项目 tab：不按日期分组，整体按 GitHub Star 倒序一次性渲染。
-  if (STATE.activeChannel === 'open-source') {
+  // 开源项目模式：不按日期分组，整体按 GitHub Star 倒序一次性渲染。
+  if (STATE.mode === 'repos') {
     renderOpenSource(feed, list);
     return;
   }
@@ -539,6 +541,23 @@ function renderFeed() {
 }
 
 // ----- Wiring -----------------------------------------------------------
+function wireModeSwitch() {
+  const wrap = document.querySelector('#mode-switch');
+  if (!wrap) return;
+  wrap.querySelectorAll('.rp-modeswitch__btn').forEach((el) => {
+    el.addEventListener('click', () => {
+      if (STATE.mode === el.dataset.mode) return;
+      STATE.mode = el.dataset.mode;
+      wrap
+        .querySelectorAll('.rp-modeswitch__btn')
+        .forEach((b) => b.classList.toggle('is-active', b === el));
+      STATE.activeChannel = 'all'; // 切模式时方向回到「全部」
+      buildChannelTabs();
+      renderFeed();
+    });
+  });
+}
+
 function wireFavDelegation() {
   const feed = document.querySelector('#feed');
   if (!feed) return;
@@ -578,6 +597,7 @@ function wireUpChrome() {
 async function main() {
   Theme.init();
   wireUpChrome();
+  wireModeSwitch();
   wireFavDelegation();
   const params = new URLSearchParams(window.location.search);
   const initialQ = params.get('q');
