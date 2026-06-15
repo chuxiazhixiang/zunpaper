@@ -1,0 +1,87 @@
+{
+  "id": "arxiv-2606-13886",
+  "source": "arxiv",
+  "title": "PhysVLA: Towards Physically-Grounded VLA for Embodied Robotic Manipulation",
+  "title_zh": "PhysVLA：面向具身机器人操作的物理基础VLA",
+  "abstract": "Vision-Language-Action (VLA) models excel at mapping visual inputs and natural language instructions directly to robotic control policies. However, because they are trained primarily to fit behavioural demonstration data, they do not explicitly enforce fundamental physical principles such as rigid-body dynamics or contact constraints. This exposes a critical physics gap: standard temporal smoothing applied on top of single-step or chunked VLAs trades trajectory quality for added failures that short-term memory cannot resolve. To bridge this gap, we introduce PhysVLA (Physics-VLA), a plug-and-play, inference-time framework designed to wrap any frozen VLA backbone without retraining, fine-tuning, or weight access, with less than 1 ms of overhead per control step. PhysVLA intercepts the predicted control action, captures only the simulator or system state, and applies a dual-layered correction: (i) a phase-aware finite-state machine that structures discrete task segments (approach, grasp, transport, and place), and (ii) a selective Euler-Lagrange gate that activates only when a dynamics oracle detects kinodynamic inconsistency. Evaluated across OpenVLA, OpenVLA-OFT, Force-VLA, and Generalist-VLA on LIBERO-Spatial with a 7-DoF Franka Panda, the framework delivers absolute success rate increases of up to 17% and stability increases of up to 19% with no per-task regressions, improves trajectory efficiency by up to 15% across all four backbones, and shows up to a 10x improvement in trajectory jerk robustness on a Robosuite Lift cross-simulator sweep. We further validate the framework on a real Agilex Piper arm with a pick-and-place task, confirming that PhysVLA transfers to physical hardware without retraining, with success-rate improvements of up to 50%, establishing physical awareness as a composable, backbone-agnostic runtime module.",
+  "abstract_zh": "视觉-语言-动作（VLA）模型擅长将视觉输入和自然语言指令直接映射到机器人控制策略。然而，由于它们主要训练以拟合行为演示数据，并未显式强制执行刚体动力学或接触约束等基本物理原理。这暴露了一个关键的物理鸿沟：在单步或分块VLA上应用的标准时间平滑以轨迹质量为代价增加了短期记忆无法解决的失败。为弥合这一鸿沟，我们提出了PhysVLA（Physics-VLA），一个即插即用的推理时框架，旨在包装任何冻结的VLA主干，无需重新训练、微调或权重访问，每个控制步骤的开销小于1毫秒。PhysVLA拦截预测的控制动作，仅捕获模拟器或系统状态，并应用双层校正：（i）一个相位感知有限状态机，用于结构化离散任务阶段（接近、抓取、运输和放置），以及（ii）一个选择性欧拉-拉格朗日门，仅在动力学预言器检测到运动学不一致时激活。在LIBERO-Spatial上使用7自由度Franka Panda对OpenVLA、OpenVLA-OFT、Force-VLA和Generalist-VLA进行评估，该框架提供了高达17%的绝对成功率提升和高达19%的稳定性提升，且无每任务回归，在所有四个主干上轨迹效率提升高达15%，并在Robosuite Lift跨模拟器扫描中显示出高达10倍的轨迹急动度鲁棒性提升。我们进一步在真实的Agilex Piper机械臂上通过拾放任务验证了该框架，确认PhysVLA无需重新训练即可迁移到物理硬件，成功率提升高达50%，从而将物理感知确立为一个可组合、主干无关的运行时模块。",
+  "tldr_zh": "无需重新训练，PhysVLA为任何VLA模型增加物理约束，提升成功率与稳定性。",
+  "cover_zh": "机器人操作总翻车？这个即插即用模块让成功率飙升50%！",
+  "authors": [
+    {
+      "name": "Namai Chandra",
+      "affiliation": ""
+    },
+    {
+      "name": "Shriram Damodaran",
+      "affiliation": ""
+    },
+    {
+      "name": "Lin Wang",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.CV",
+    "cs.LG"
+  ],
+  "published": "2026-06-11",
+  "updated": "2026-06-11",
+  "arxiv_id": "2606.13886",
+  "pdf_url": "https://arxiv.org/pdf/2606.13886v1",
+  "abs_url": "http://arxiv.org/abs/2606.13886v1",
+  "cover_image": "assets/img/covers/arxiv-2606-13886.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2606-13886-p2.jpg",
+    "assets/img/covers/arxiv-2606-13886-p3.jpg",
+    "assets/img/covers/arxiv-2606-13886-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 14,
+  "source_tags": [],
+  "score": 15,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 6 个（vision-language-action、openvla、manipulation、grasp）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 14 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出物理感知的VLA框架，提升操作成功率与稳定性，方法新颖且实验充分。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "VLA",
+    "physics-aware",
+    "inference-time correction"
+  ],
+  "platform": [
+    "Franka Panda",
+    "Agilex Piper"
+  ],
+  "sim_stack": [
+    "Robosuite"
+  ],
+  "method_family": "VLA",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": []
+}

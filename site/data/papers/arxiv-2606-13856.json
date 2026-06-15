@@ -1,0 +1,80 @@
+{
+  "id": "arxiv-2606-13856",
+  "source": "arxiv",
+  "title": "Output-Level Regularization Eliminates the Seed Lottery in Single-GPU VLA Fine-Tuning",
+  "title_zh": "输出级正则化消除单GPU VLA微调中的种子彩票",
+  "abstract": "Fine-tuning a vision-language-action model (VLA-JEPA) on a single GPU should be simple: load a pretrained checkpoint, run training, deploy. There is a hidden danger. Run the same fine-tuning code thirteen times -- same data, same architecture, different random seed -- and twelve runs produce a robot succeeding 91--94% of the time, while one run silently degrades to 65.2%: a 29 pp gap with no error message, no warning, and no way to predict which seed will fail. We call this the seed lottery. We trace the cause to output collapse: the action predictor quietly learns to produce nearly identical outputs regardless of what the robot sees. Existing weight-level methods (L2, EWC) are structurally blind to this collapse -- they penalize weight changes, but collapse occurs in directions weights can move freely without affecting outputs, a gap we formalize via the Jacobian null-space. Across 7 methods x up to 13 seeds x 3 LIBERO benchmarks, three output-level regularizers -- VICReg (n=12 seeds), Dropout (n=4), and a halved learning rate (n=5) -- each eliminate every catastrophic seed (0/21 combined collapses vs. 1/13 Baseline; F(12,11)=28.7, p<0.001), while weight-level methods (L2, EWC) preserve the lottery. The simplest fix is changing one number in your optimizer config.",
+  "abstract_zh": "在单GPU上微调视觉-语言-动作模型（VLA-JEPA）本应很简单：加载预训练检查点，运行训练，部署。但存在一个隐藏风险。用相同的微调代码运行十三次——相同数据、相同架构、不同随机种子——其中十二次运行的机器人成功率为91-94%，而有一次运行悄无声息地降至65.2%：29个百分点的差距，没有错误信息、没有警告，也无法预测哪个种子会失败。我们称之为种子彩票。我们将原因追溯到输出坍缩：动作预测器悄悄学会产生几乎相同的输出，无论机器人看到什么。现有的权重级方法（L2、EWC）在结构上对此坍缩视而不见——它们惩罚权重变化，但坍缩发生在权重可以自由移动而不影响输出的方向上，我们通过雅可比零空间形式化了这一差距。在7种方法×最多13个种子×3个LIBERO基准测试中，三种输出级正则化器——VICReg（n=12个种子）、Dropout（n=4）和减半学习率（n=5）——各自消除了所有灾难性种子（共0/21次坍缩，对比基线1/13；F(12,11)=28.7，p<0.001），而权重级方法（L2、EWC）保留了彩票。最简单的修复是在优化器配置中更改一个数字。",
+  "tldr_zh": "输出级正则化可消除单GPU微调中随机种子导致的性能暴跌问题。",
+  "cover_zh": "同一个代码跑13次，1次突然崩了？输出级正则化一招解决种子彩票",
+  "authors": [
+    {
+      "name": "Jeffrin Sam",
+      "affiliation": ""
+    },
+    {
+      "name": "Dzmitry Tsetserukou",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-06-11",
+  "updated": "2026-06-11",
+  "arxiv_id": "2606.13856",
+  "pdf_url": "https://arxiv.org/pdf/2606.13856v1",
+  "abs_url": "http://arxiv.org/abs/2606.13856v1",
+  "cover_image": "assets/img/covers/arxiv-2606-13856.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2606-13856-p2.jpg",
+    "assets/img/covers/arxiv-2606-13856-p3.jpg",
+    "assets/img/covers/arxiv-2606-13856-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 14,
+  "source_tags": [],
+  "score": 12,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（vision-language-action、vla fine-tuning、libero）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 14 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "针对VLA微调中种子彩票问题的系统性研究，提出输出级正则化方法，实验扎实，对实操有重要指导意义。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Skoltech"
+  ],
+  "method_tags": [
+    "VLA",
+    "output-level regularization",
+    "seed lottery"
+  ],
+  "platform": [],
+  "sim_stack": [
+    "LIBERO"
+  ],
+  "method_family": "VLA",
+  "real_robot": "no",
+  "training_summary": "13 seeds × 3 LIBERO benchmarks",
+  "demo_videos": []
+}

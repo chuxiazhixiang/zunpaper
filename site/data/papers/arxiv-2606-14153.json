@@ -1,0 +1,88 @@
+{
+  "id": "arxiv-2606-14153",
+  "source": "arxiv",
+  "title": "Encoder Winners Do Not Reliably Transfer Across VLA Backbone Scale: A Frozen-Backbone Grafting Diagnostic",
+  "title_zh": "编码器胜者无法可靠地跨VLA骨干规模迁移：一种冻结骨干嫁接诊断方法",
+  "abstract": "Vision-language-action (VLA) policies typically inherit their vision encoder from upstream VLM releases, but it is unclear whether an encoder choice validated on a small VLA transfers to a larger backbone. We introduce a frozen-backbone grafting diagnostic: the vision tower of a released VLA is replaced by a candidate encoder under a fixed protocol (adaptive average pooling, LayerNorm, and a single trainable linear projector), with the language model and action expert frozen. Across four encoders, two LIBERO suites, two backbones (SmolVLA-450M and $π_{0.5}$-3.3B), and two-to-three seeds per cell (40 main grafting runs plus native, LoRA, pooling, and zero-/shuffled-image controls, all scored by offline action MSE), the small-backbone winner does not reliably select the large-backbone top tier: SigLIP is best on SmolVLA across both suites, while on $π_{0.5}$ DINOv2-small leads the spatial suite and the object suite is a seed-sensitive near-tie band; three of the four backbone-suite comparisons (and 11 of 12 seed-level cells) support backbone-dependent rankings. The grafting wrapper is itself non-neutral with opposite sign across backbones (+45-56% MSE on the SmolVLA native tower, -50-52% on $π_{0.5}$), so all conclusions are conditional on the fixed grafting protocol. We position frozen grafting as a cheap target-backbone diagnostic to run before committing to an encoder at scale, not as a closed-loop deployment claim.",
+  "abstract_zh": "视觉-语言-动作（VLA）策略通常从上游VLM发布中继承其视觉编码器，但尚不清楚在小规模VLA上验证的编码器选择是否能迁移到更大的骨干网络上。我们引入了一种冻结骨干嫁接诊断方法：将已发布VLA的视觉塔替换为候选编码器，采用固定协议（自适应平均池化、LayerNorm和单个可训练的线性投影器），同时冻结语言模型和动作专家。在四个编码器、两个LIBERO套件、两个骨干网络（SmolVLA-450M和π₀.₅-3.3B）以及每个单元两到三个随机种子的设置下（共40次主要嫁接运行，加上原生、LoRA、池化以及零/打乱图像对照，所有结果均通过离线动作MSE评分），小骨干网络的胜者无法可靠地选出大骨干网络的顶级编码器：SigLIP在SmolVLA上两个套件中表现最佳，而在π₀.₅上，DINOv2-small在空间套件中领先，物体套件则是一个对种子敏感的接近平局带；四个骨干-套件比较中的三个（以及12个种子级单元中的11个）支持骨干依赖的排名。嫁接包装本身并非中性，在两个骨干网络上符号相反（在SmolVLA原生塔上MSE增加45-56%，在π₀.₅上减少50-52%），因此所有结论都依赖于固定的嫁接协议。我们将冻结嫁接定位为一种低成本的目标骨干诊断方法，可在大规模确定编码器之前运行，而非闭环部署声明。",
+  "tldr_zh": "小模型上最优的视觉编码器在大模型上不一定最优，需针对性诊断。",
+  "cover_zh": "小模型选出的最佳编码器，换到大模型上竟然翻车了？",
+  "authors": [
+    {
+      "name": "Qingping Zeng",
+      "affiliation": ""
+    },
+    {
+      "name": "Fei She",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.CV",
+  "categories": [
+    "cs.CV",
+    "cs.RO"
+  ],
+  "published": "2026-06-12",
+  "updated": "2026-06-12",
+  "arxiv_id": "2606.14153",
+  "pdf_url": "https://arxiv.org/pdf/2606.14153v1",
+  "abs_url": "http://arxiv.org/abs/2606.14153v1",
+  "cover_image": "assets/img/covers/arxiv-2606-14153.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2606-14153-p2.jpg",
+    "assets/img/covers/arxiv-2606-14153-p3.jpg",
+    "assets/img/covers/arxiv-2606-14153-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ Physical Intelligence (π)"
+    }
+  ],
+  "related_links": [],
+  "page_count": 23,
+  "source_tags": [],
+  "score": 34,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “Physical Intelligence (π)” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 6,
+      "hint": "频道关键词命中 2 个（vision-language-action、libero）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 23 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "系统研究VLA视觉编码器选择与骨干网络规模的关系，对VLA设计有重要指导意义。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "VLA",
+    "frozen-backbone grafting",
+    "encoder transfer"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "VLA",
+  "real_robot": "no",
+  "training_summary": "",
+  "demo_videos": []
+}
