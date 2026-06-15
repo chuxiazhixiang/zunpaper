@@ -1,0 +1,75 @@
+{
+  "id": "github-chengxuxin-expressive-humanoid",
+  "source": "github",
+  "title": "chengxuxin/expressive-humanoid",
+  "title_zh": "chengxuxin/expressive-humanoid",
+  "abstract": "[RSS 2024]: Expressive Whole-Body Control for Humanoid Robots\n\nExpressive Whole-Body Control for Humanoid Robots Xuxin Cheng* · Yandong Ji* · Junming Chen Ge Yang · Xiaolong Wang Website | arXiv | Video | Summary ## Installation ## Next install fbx. Follow the instructions [here](https://github.com/nv-tlabs/ASE/issues/61). ## Prepare dataset 1. Download from [here](https://drive.google.com/file/d/1m3JRBox51cjV4CbiKIcVXR6eKQBjaAhO/view?usp=sharing) and extract the zip file to `ASE/ase/poselib/data/cmu_fbx_all` that contains all `.fbx` files. 2. Gnerate `.yaml` file for the motions you want to use. This step is not mandatory because the `.yaml` file is already generated. But if you want to add more motions, you can use this script to generate the `.yaml` file. 3. Import motions This will import all motions in CMU Mocap dataset into `ASE/ase/poselib/data/npy`. 4. Retarget motions This will retarget all motions in `ASE/ase/poselib/data/npy` to `ASE/ase/poselib/data/retarget_npy`. 5. Gnerate keybody positions This step will require running simulation to extract more precise key body positions. Train for 1 iteration and kill the program to have a dummy model to load. It is recommended to use `motions_autogen_all.yaml` at the first time, so that later if you have a subset it is not neccessary to regenerate keybody positions. This will generate keybody positions to `ASE/ase/poselib/data/retarget_npy`. Set wandb asset: ## Usage To train a new policy `xxx-xx` is usually an id like `000-01`. `motion_type` and `motion_name` are defined in `legged_gym/legged_gym/envs/h1/h1_mimic_config.py`. They can be also given as arguments. Can set default WANDB_ENTITY in `legged_gym/legged_gym/utils/helpers.py`. To play a policy No need to write the full experimentt id. The parser will auto match runs with first 6 strings (xxx-xx). So better make sure you don't reuse xxx-xx. Delay is added after 8k iters. If you want to play after 8k, add `--delay`. To play with example pretrained models Try to press `+` or `-` to see different motions. The motion name",
+  "abstract_zh": "本文提出了一种用于人形机器人的富有表现力的全身控制方法，使机器人能够执行多样且自然的全身运动。该方法基于CMU动作捕捉数据集，通过重定向和关键身体位置提取，训练策略网络实现全身协调运动。实验展示了机器人在多种动作上的表现力，包括舞蹈、武术等。",
+  "tldr_zh": "提出人形机器人全身控制方法，实现富有表现力的自然运动。",
+  "cover_zh": "人形机器人也能跳舞？这个全身控制方法让动作自然又富有表现力！",
+  "authors": [
+    {
+      "name": "chengxuxin",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2025-03-30",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/chengxuxin/expressive-humanoid",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "open-source"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github"
+  ],
+  "score": 54,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 54,
+      "hint": "⭐ 492"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "loco-manip-wbc",
+    "reason": "RSS 2024 全身控制算法，含代码、数据集和预训练模型，可复现",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "全身控制"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "chengxuxin",
+    "repo": "expressive-humanoid",
+    "stars": 492,
+    "language": "Python",
+    "pushed_at": "2025-03-30",
+    "created_at": "2024-07-14",
+    "topics": [
+      "human-motion",
+      "imitation-learning",
+      "reinforcement-learning",
+      "sim-to-real"
+    ],
+    "archived": false
+  }
+}
