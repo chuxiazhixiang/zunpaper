@@ -85,8 +85,8 @@ def _check_manual_pin(paper: Paper, rule: dict) -> dict | int:
 
 def _check_famous_lab(paper: Paper, rule: dict) -> dict | int:
     labs_mod._ensure_loaded()
-    aff_hay = "\n".join(a.affiliation for a in paper.authors if a.affiliation)
-    aff_hay += "\n" + (paper.abstract or "")
+    # 复用 labs 的机构 haystack（含 enrich 抽的 institutions），避免逻辑漂移。
+    aff_hay = labs_mod.affiliation_haystack(paper)
     for lab_rule in labs_mod._LAB_RULES or []:
         for pat in lab_rule["patterns"]:
             if _substr_or_regex(aff_hay, pat):
@@ -96,11 +96,13 @@ def _check_famous_lab(paper: Paper, rule: dict) -> dict | int:
 
 def _check_key_author(paper: Paper, rule: dict) -> dict | int:
     labs_mod._ensure_loaded()
-    author_hay = "\n".join(a.name for a in paper.authors if a.name)
+    # 走 labs.author_rule_matches，让机构守卫（重名消歧）在打分侧也生效，
+    # 否则会出现「徽章没打、分数却加了」的不一致。
+    author_hay = labs_mod.author_haystack(paper)
+    aff_hay = labs_mod.affiliation_haystack(paper)
     for au_rule in labs_mod._AUTHOR_RULES or []:
-        for pat in au_rule["patterns"]:
-            if _substr_or_regex(author_hay, pat):
-                return {"points": rule["points"], "hint": f'作者列表里有 {au_rule["label"]}'}
+        if labs_mod.author_rule_matches(au_rule, author_hay, aff_hay):
+            return {"points": rule["points"], "hint": f'作者列表里有 {au_rule["label"]}'}
     return 0
 
 

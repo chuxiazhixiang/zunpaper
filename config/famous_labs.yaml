@@ -12,6 +12,12 @@
 # - 任意 pattern 命中就算这一条 label 命中
 # - 同一张卡片不会重复同一个 label
 #
+# 机构守卫（仅作者条目，可选）：
+#   - { label: "...", patterns: [...], require_affiliation: ["zhejiang university", ...] }
+#   声明后，作者名命中之外还必须在「机构 haystack」（per-author affiliation +
+#   enrich 抽的 institutions + 摘要）里命中其中一个 require_affiliation，才会打徽章。
+#   用于给常见重名消歧（如 USC vs 浙大 各有一位 Yue Wang）；都命中不到就不打。
+#
 # 名单来源：站长 Zotero 库 282 篇里出现频率最高的「通讯/末作者」+
 #          2024–2026 人形机器人圈活跃的公司与高校组。
 # =================================================================
@@ -127,7 +133,12 @@ authors:
   - { label: "Tony Zhao",        patterns: ["Tony Z. Zhao", "Tony Zhao"] }
   - { label: "Brianna Zitkovich",patterns: ["Brianna Zitkovich"] }
   - { label: "Yijie Guo",        patterns: ["Yijie Guo"] }
-  - { label: "Yue Wang (USC)",   patterns: ["Yue Wang"] }
+  # 「Yue Wang」是高频重名：USC 有 Yue Wang（机器人/ML AP），浙大也有 Yue Wang
+  # （ywang-zju，人形/具身，APT 等工作的通讯）。只按名字匹配会互相误标，所以两条
+  # 都加 require_affiliation 机构守卫：必须在机构/摘要里同时命中对应学校才打徽章；
+  # 都命中不到就不打（避免把浙大的人标成 USC）。
+  - { label: "Yue Wang (USC)", patterns: ["Yue Wang"], require_affiliation: ["/\\busc\\b/", "university of southern california", "southern california"] }
+  - { label: "Yue Wang (ZJU)", patterns: ["Yue Wang"], require_affiliation: ["zhejiang university", "浙江大学", "zhejiang humanoid"] }
   - { label: "Li Yi",            patterns: ["Li Yi"] }
   - { label: "Hongyang Li (SAIL)", patterns: ["Hongyang Li"] }
 

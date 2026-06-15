@@ -53,7 +53,8 @@ def _load_rules() -> tuple[list[dict], list[dict]]:
         return [], []
     labs = data.get("labs") or []
     authors = data.get("authors") or []
-    # Normalize entries: each is { label: str, patterns: [str, ...] }
+    # Normalize entries: each is
+    #   { label: str, patterns: [str, ...], require_affiliation?: [str, ...] }
     def _norm(items):
         out = []
         for entry in items:
@@ -63,7 +64,12 @@ def _load_rules() -> tuple[list[dict], list[dict]]:
             patterns = entry.get("patterns") or []
             if not label or not patterns:
                 continue
-            out.append({"label": label, "patterns": [str(p) for p in patterns]})
+            norm = {"label": label, "patterns": [str(p) for p in patterns]}
+            # 可选机构守卫：只用于作者规则，给重名作者消歧（见 author_rule_matches）。
+            req = entry.get("require_affiliation")
+            if req:
+                norm["require_affiliation"] = [str(p) for p in req]
+            out.append(norm)
         return out
     return _norm(labs), _norm(authors)
 
@@ -79,25 +85,59 @@ def _ensure_loaded() -> None:
         _LAB_RULES, _AUTHOR_RULES = _load_rules()
 
 
+def affiliation_haystack(paper: Paper) -> str:
+    """All text we trust to carry institution signals: per-author affiliation
+    (often empty for arXiv), the LLM-extracted `institutions`, and the abstract.
+
+    历史坑：以前只看 author.affiliation + abstract，而 arXiv 抓下来的论文
+    per-author affiliation 基本是空的，真正的机构信息在 enrich.py 抽出来的
+    `paper.institutions` 里。不把 institutions 算进来，机构守卫（重名消歧）
+    和 ZJU/USC 这类高校 lab 徽章就几乎永远命中不了。"""
+    parts: list[str] = []
+    parts.extend(a.affiliation for a in paper.authors if a.affiliation)
+    parts.extend(paper.institutions or [])
+    parts.append(paper.abstract or "")
+    return "\n".join(parts)
+
+
+def author_haystack(paper: Paper) -> str:
+    return "\n".join(a.name for a in paper.authors if a.name)
+
+
+def author_rule_matches(rule: dict, author_hay: str, aff_hay: str) -> bool:
+    """An author rule fires when a name pattern hits AND (if the rule declares
+    `require_affiliation`) at least one affiliation guard also hits.
+
+    机构守卫专治常见重名：例如「Yue Wang」在 USC（机器人 AP）和浙大
+    （ywang-zju，人形/具身）各有一位，只按名字子串匹配会互相误标。给两条
+    规则分别声明 require_affiliation，必须在机构/摘要里看到对应学校才打徽章；
+    都看不到就宁可不打（漏标 < 错标）。"""
+    if not any(_match(author_hay, p) for p in rule["patterns"]):
+        return False
+    guards = rule.get("require_affiliation") or []
+    if guards and not any(_match(aff_hay, g) for g in guards):
+        return False
+    return True
+
+
 def detect_labs(paper: Paper) -> list[str]:
     """Return a deduped list of badge labels matched on this paper.
 
     Combines both "famous lab" (affiliation/abstract scan) and
-    "key author" (author-name scan) hits.
+    "key author" (author-name scan, with optional affiliation guard) hits.
     """
     _ensure_loaded()
-    hay_parts: list[str] = []
-    hay_parts.extend(a.affiliation for a in paper.authors if a.affiliation)
-    hay_parts.append(paper.abstract or "")
-    aff_hay = "\n".join(hay_parts)
-    author_hay = "\n".join(a.name for a in paper.authors if a.name)
+    aff_hay = affiliation_haystack(paper)
+    author_hay = author_haystack(paper)
 
     out: list[str] = []
     for rule in _LAB_RULES or []:
         if any(_match(aff_hay, p) for p in rule["patterns"]) and rule["label"] not in out:
             out.append(rule["label"])
     for rule in _AUTHOR_RULES or []:
-        if any(_match(author_hay, p) for p in rule["patterns"]) and rule["label"] not in out:
+        if rule["label"] in out:
+            continue
+        if author_rule_matches(rule, author_hay, aff_hay):
             out.append(rule["label"])
     return out
 
