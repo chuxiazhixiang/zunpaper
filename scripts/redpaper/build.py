@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import re
 import datetime as dt
 from dataclasses import dataclass, field
@@ -1089,10 +1090,33 @@ def run() -> None:
     # Re-enrich existing papers too (so badges/news stay fresh even if the paper
     # was fetched on an earlier day). Also back-fill translation fields the
     # current model expects (e.g. cover_zh was added later).
+    #
+    # 滚动 enrich backfill：存量里 enrich schema 过期（老的瞎猜版 / 没读过 PDF）的
+    # 论文，每轮补抽一批（读 PDF + reviewer，限量防 CI 超时）。按发布日期倒序优先
+    # 修近期高曝光论文。窗口外的旧论文（如 OASIS 6/07）就是靠这条慢慢纠正过来。
+    enrich_cache = EnrichCache(cfg.REPO_ROOT / "data" / "enrich_cache.json")
+    backfill_budget = int(os.environ.get("REDPAPER_ENRICH_BACKFILL", "80") or "80")
+    backfilled = 0
     all_papers = list(_existing_papers().values())
+    all_papers.sort(key=lambda p: (p.published or "", p.id), reverse=True)
     for paper in all_papers:
         if paper.id in fresh:
             continue  # already enriched in process_new_papers
+
+        if (paper.source or "") != "github" and backfilled < backfill_budget \
+                and not enrich_cache.is_current(paper.id):
+            try:
+                authors_text = "、".join(a.name for a in (paper.authors or [])[:8])
+                pdf_text = fetch_head_text(paper.pdf_url) if paper.pdf_url else ""
+                e = enrich_paper(paper.title, paper.abstract or paper.tldr_zh or paper.title,
+                                 authors_text, pdf_text)
+                enrich_cache.put(paper.id, e)
+                _apply_enrichment(paper, e)
+                backfilled += 1
+            except EnrichUnavailable:
+                pass
+            except Exception as ex:
+                log.warning("enrich backfill failed for %s: %s", paper.id, ex)
 
         if not _is_translated(paper):
             t = translate_with_retry(paper.title, paper.abstract)
@@ -1104,6 +1128,10 @@ def run() -> None:
 
         ctx.apply(paper)
         save_paper(paper, cfg.PAPERS_DIR)
+
+    if backfilled:
+        enrich_cache.save()
+        log.info("enrich backfill: re-enriched %d schema-outdated existing papers", backfilled)
 
     all_papers = list(_existing_papers().values())
     write_feed(all_papers)
