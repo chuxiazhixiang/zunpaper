@@ -25,6 +25,7 @@ const STATE = {
   papers: [],
   palettes: [],
   mode: 'papers',          // 'papers' | 'repos' —— 顶层切换；方向标签对两者通用
+  repoSort: 'stars',       // 'stars' | 'updated' —— 开源项目排序方式
   activeChannel: 'all',
   searchQuery: '',
   // Filled per render: bucket maps + ordered list of bucket keys.
@@ -174,7 +175,7 @@ export function githubCardHTML(p) {
           ${archived}
         </div>
         <div class="rp-card__meta">
-          <span class="rp-card__authors">${escapeHTML(g.owner || '')}</span>
+          <span class="rp-card__authors">${escapeHTML(g.owner || '')}${g.pushed_at ? ` · 🕒 ${escapeHTML(g.pushed_at)}` : ''}</span>
           <button class="rp-card__like ${fav ? 'is-liked' : ''}" data-fav="${p.id}" title="${fav ? '取消收藏' : '收藏'}" aria-label="收藏">
             ${heart}
           </button>
@@ -438,11 +439,21 @@ function appendPeriod(feed, key) {
   feed.appendChild(section);
 }
 
-// 开源项目 tab 专用渲染：按 star 倒序，单个 section 一次铺满（集合不大）。
+// 开源项目排序：⭐ star 最多 / 🕒 最近更新（pushed_at）。单个 section 一次铺满。
+function sortRepos(list) {
+  const arr = [...list];
+  if (STATE.repoSort === 'updated') {
+    arr.sort((a, b) =>
+      ((b.github && b.github.pushed_at) || '').localeCompare((a.github && a.github.pushed_at) || ''),
+    );
+  } else {
+    arr.sort((a, b) => ((b.github && b.github.stars) || 0) - ((a.github && a.github.stars) || 0));
+  }
+  return arr;
+}
+
 function renderOpenSource(feed, list) {
-  const sorted = [...list].sort(
-    (a, b) => ((b.github && b.github.stars) || 0) - ((a.github && a.github.stars) || 0),
-  );
+  const sorted = sortRepos(list);
   const section = document.createElement('section');
   section.className = 'rp-week rp-week--day';
   const divider = document.createElement('div');
@@ -452,8 +463,12 @@ function renderOpenSource(feed, list) {
   section.appendChild(divider);
   const title = document.createElement('h2');
   title.className = 'rp-week__title';
+  const starActive = STATE.repoSort !== 'updated';
   title.innerHTML =
-    '<span class="rp-week__date">按 GitHub Star 排序 · AI 已筛除课程/复现/无关项目</span>' +
+    `<span class="rp-reposort">
+       <button class="rp-reposort__btn ${starActive ? 'is-active' : ''}" data-sort="stars">⭐ Star 最多</button>
+       <button class="rp-reposort__btn ${!starActive ? 'is-active' : ''}" data-sort="updated">🕒 最近更新</button>
+     </span>` +
     `<em>${sorted.length} 个</em>`;
   section.appendChild(title);
   const grid = document.createElement('div');
@@ -461,6 +476,17 @@ function renderOpenSource(feed, list) {
   grid.innerHTML = sorted.map(cardHTML).join('');
   section.appendChild(grid);
   feed.appendChild(section);
+
+  section.querySelectorAll('.rp-reposort__btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const next = btn.dataset.sort;
+      if (STATE.repoSort === next) return;
+      STATE.repoSort = next;
+      renderFeed();
+    });
+  });
 }
 
 function teardownObserver() {
