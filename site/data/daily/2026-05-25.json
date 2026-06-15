@@ -24,6 +24,10 @@
       "badges": [
         {
           "kind": "lab",
+          "label": "⭐ Stanford"
+        },
+        {
+          "kind": "lab",
           "label": "⭐ Chelsea Finn"
         },
         {
@@ -40,7 +44,7 @@
       "arxiv_id": "2605.25477",
       "abs_url": "http://arxiv.org/abs/2605.25477v1",
       "pdf_url": "https://arxiv.org/pdf/2605.25477v1",
-      "score": 40,
+      "score": 65,
       "judge": {
         "relevant": true,
         "research_value": "high",
@@ -64,13 +68,186 @@
       "demo_videos": []
     },
     {
+      "id": "arxiv-2605-25802",
+      "source": "arxiv",
+      "title": "Rethinking VLM Representation for VLA Initialization",
+      "title_zh": "重新思考用于 VLA 初始化的 VLM 表示",
+      "tldr_zh": "研究 VLM 表示对 VLA 初始化的影响，发现保留预训练表示并用 LoRA 微调效果最佳。",
+      "cover_zh": "VLM 直接拿来用？｜LoRA 微调比全微调更适合 VLA 初始化",
+      "abstract_zh": "视觉-语言-动作（VLA）模型广泛采用预训练的视觉-语言模型（VLM）作为策略骨干，但尚不清楚何种预训练 VLM 表示对 VLA 初始化有用。本文将 VLA 初始化作为一个受控的表示设计问题，从三个维度进行研究：能力级别的具身 VQA 监督、参数更新策略和机器人数据预训练。实验表明，原始预训练 VLM 表示是动作性能的关键来源。然而，具身 VQA 适应并未带来均匀的提升：其收益取决于下游瓶颈，且不同能力领域的收益并非简单叠加。对于更新策略，LoRA 比全微调提供了更可靠的初始化，表明过度重塑预训练表示会削弱 VLA 初始化。机器人数据预训练进一步改善了 VLA 初始化，通过基于 LoRA 的分阶段训练获得了最强变体。这些发现共同表明，有效的 VLM 到 VLA 适应应注入与动作相关的具身和机器人轨迹信号，同时保留对动作学习仍有用的预训练 VLM 表示。",
+      "authors": [
+        "Weifeng Lin",
+        "Siyuan Huang",
+        "Hao Li"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-05-25",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 上海 AI Lab"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Siyuan Huang"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-25802.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-25802-p2.jpg",
+        "assets/img/covers/arxiv-2605-25802-p3.jpg",
+        "assets/img/covers/arxiv-2605-25802-p4.jpg"
+      ],
+      "arxiv_id": "2605.25802",
+      "abs_url": "http://arxiv.org/abs/2605.25802v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.25802v1",
+      "score": 51,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "系统研究VLM表征对VLA初始化的影响，实验设计严谨，对VLA训练有重要指导意义。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "CUHK",
+        "Shanghai AI Lab"
+      ],
+      "method_tags": [
+        "VLA",
+        "VLM",
+        "representation learning"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "VLA",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-26006",
+      "source": "arxiv",
+      "title": "MIND: Multi-Scale Intent Diffusion for Text-Driven Physics-Based Humanoid Control",
+      "title_zh": "MIND：面向文本驱动的物理仿真人体控制的多尺度意图扩散",
+      "tldr_zh": "提出MIND框架，用多尺度意图扩散桥接文本与物理仿真人体控制。",
+      "cover_zh": "文本直接控制虚拟人？新框架用意图扩散让动作更自然！",
+      "abstract_zh": "让物理仿真人体能够根据高层文本指令执行多样化行为仍是一个重大挑战。现有方法通常遵循两阶段范式（结合运动学动作生成与物理仿真跟踪）或端到端模仿学习范式（直接从文本生成动作）。然而，前者受限于运动学生成与物理仿真跟踪之间的固有领域偏移，后者则难以弥合文本指令与底层动作之间的巨大模态差距，限制了有效的语义对齐。值得注意的是，人体状态编码了丰富的运动动态，与文本描述在语义上比底层动作更对齐，因此成为推导行为意图的自然基础。基于这一洞察，我们提出MIND，一种新颖的端到端扩散框架，用于文本驱动的物理仿真人体控制，利用行为意图作为文本指令与底层动作之间的语义桥梁。其核心是多尺度意图扩散机制：全局意图预测器捕捉整体行为动态以指导整体行为合成，而即时意图预测器在每个扩散步骤提供逐步的细粒度信号以局部行为细化。这种分层意图公式为人体控制施加了结构化的归纳偏置，提升了语义对齐和行为自然度。此外，MIND将人体状态编码到潜在空间，以实现更有效的语义意图建模。大量实验表明，MIND优于现有方法，能从文本指令合成连贯、物理合理且语义对齐的人体行为。代码将开源以促进未来研究。",
+      "authors": [
+        "Bin Li",
+        "Ruichi Zhang",
+        "Han Liang"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-05-25",
+      "channels": [
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 上海 AI Lab"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ SJTU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-26006.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-26006-p2.jpg",
+        "assets/img/covers/arxiv-2605-26006-p3.jpg",
+        "assets/img/covers/arxiv-2605-26006-p4.jpg"
+      ],
+      "arxiv_id": "2605.26006",
+      "abs_url": "http://arxiv.org/abs/2605.26006v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.26006v1",
+      "score": 44,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出多尺度意图扩散框架，实现文本驱动的人形机器人物理控制，解决语义对齐与域迁移问题，创新性强。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Shanghai Jiao Tong University",
+        "Shanghai AI Laboratory"
+      ],
+      "method_tags": [
+        "Diffusion",
+        "text-driven control",
+        "multi-scale intent"
+      ],
+      "platform": [],
+      "sim_stack": [
+        "Isaac Gym"
+      ],
+      "method_family": "Diffusion",
+      "real_robot": "no",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "vid-bilibili-BV1wjGx6rEpJ",
+      "source": "video_bilibili",
+      "title": "会议室杂乱整理测试：宇树WVLA2.0模型",
+      "title_zh": "会议室杂乱整理测试：宇树WVLA2.0模型",
+      "tldr_zh": "宇树WVLA2.0模型在强干扰下实现多任务全自主运行。",
+      "cover_zh": "一镜到底｜强干扰下多任务全自主，宇树WVLA2.0太稳了",
+      "abstract_zh": "本测试展示了宇树WVLA2.0模型在一镜到底、多任务全自主运行场景下的表现，并引入了外部强干扰。",
+      "authors": [],
+      "primary_category": "video",
+      "published": "2026-05-25",
+      "channels": [
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Unitree"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "",
+      "abs_url": "https://www.bilibili.com/video/BV1wjGx6rEpJ",
+      "pdf_url": "",
+      "score": 43,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "宇树人形机器人WVLA2.0模型，涉及全身移动操作与抗干扰，属于loco-manip-wbc方向。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "宇树"
+      ],
+      "method_tags": [
+        "VLA",
+        "多任务"
+      ],
+      "platform": [
+        "Unitree H1"
+      ],
+      "sim_stack": [],
+      "method_family": "VLA",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
       "id": "vid-youtube-zqqIpVsMYkE",
       "source": "video_youtube",
       "title": "Conference Room Mess Cleanup Test: Unitree WVLA 2.0 Model🎉",
       "title_zh": "会议室杂乱清理测试：Unitree WVLA 2.0 模型",
-      "tldr_zh": "Unitree WVLA 2.0 模型在强干扰下实现多任务全自主清理",
-      "cover_zh": "机器人自己收拾会议室｜强干扰下还能多任务全自主运行",
-      "abstract_zh": "会议室杂乱清理测试：Unitree WVLA 2.0 模型。本视频为单次拍摄。多任务、全自主运行，存在强外部干扰。#unitree #人形机器人 #任务执行 #世界模型 #通用人工智能",
+      "tldr_zh": "单次拍摄展示人形机器人在强干扰下多任务全自主清理",
+      "cover_zh": "机器人自己收拾会议室｜强干扰下单次拍摄全自主多任务",
+      "abstract_zh": "会议室杂乱清理测试：Unitree WVLA 2.0 模型。本视频为单次拍摄。多任务、全自主运行，存在强烈外部干扰。#unitree #人形机器人 #任务执行 #世界模型 #通用人工智能",
       "authors": [],
       "primary_category": "video",
       "published": "2026-05-25",
@@ -107,6 +284,121 @@
       ],
       "sim_stack": [],
       "method_family": "VLA",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-26379",
+      "source": "arxiv_discover",
+      "title": "When Does LeJEPA Learn a World Model?",
+      "title_zh": "LeJEPA 何时能学到世界模型？",
+      "tldr_zh": "证明LeJEPA在线性可识别性下能恢复世界潜变量，且高斯分布是唯一保证。",
+      "cover_zh": "高斯分布竟是关键？LeJEPA如何保证学到世界模型",
+      "abstract_zh": "一个打乱世界真实自由度的表示无法支持可靠的规划或组合泛化。我们证明，在一类潜变量在平稳加性噪声转移下演化的广泛世界中，LeJEPA（对齐加高斯正则化）能从非线性观测中线性恢复世界的潜变量，这一性质称为线性可识别性。我们的主要结果是：在所有此类世界中，高斯分布是唯一能使该保证成立的潜分布。正向方向依赖于谱分解，其中每个非线性度都受到对齐的严格惩罚，使得线性映射成为最优；反向方向排除了所有非高斯替代。我们进一步证明了一个近似可识别性结果，其中保证会优雅地退化，并表明线性正交可识别性能够实现最优潜空间规划。我们通过从二维示例到1024维潜变量的实验验证了该理论，包括分布消融和基于像素的机器人控制。我们的理论将一个经验上成功的配方转化为数学保证，为构建可证明恢复世界结构的世界模型奠定了基础。",
+      "authors": [
+        "David Klindt",
+        "Yann LeCun",
+        "Randall Balestriero"
+      ],
+      "primary_category": "",
+      "published": "2026-05-25",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Meta FAIR"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-26379.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-26379-p2.jpg",
+        "assets/img/covers/arxiv-2605-26379-p3.jpg",
+        "assets/img/covers/arxiv-2605-26379-p4.jpg"
+      ],
+      "arxiv_id": "2605.26379",
+      "abs_url": "http://arxiv.org/abs/2605.26379v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.26379v1",
+      "score": 37,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "核心贡献是LeJEPA世界模型的理论可识别性证明，直接相关world-model频道",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Meta AI",
+        "FAIR",
+        "NYU"
+      ],
+      "method_tags": [
+        "World Model",
+        "Linear Identifiability",
+        "LeJEPA"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "WorldModel",
+      "real_robot": "no",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-25547",
+      "source": "arxiv",
+      "title": "TapSampling: Inference-Time Sampling with a Task-Progress-Understanding Verifier for Robotic Manipulation",
+      "title_zh": "TapSampling：基于任务进度理解验证器的推理时采样方法用于机器人操作",
+      "tldr_zh": "提出即插即用的推理时采样框架，通过动作VAE和任务进度验证器提升机器人操作策略性能。",
+      "cover_zh": "不用重新训练模型｜推理时采样让机器人操作性能飙升",
+      "abstract_zh": "现有的具身控制研究通过扩大训练数据和模型规模取得了显著的性能提升。我们转而探索推理时策略作为另一个维度。非确定性生成模型，如扩散模型和自回归模型，已在具身控制领域得到广泛应用。然而，单次推理范式限制了它们的性能。本文提出TapSampling，一个即插即用的推理时采样框架。首先，我们引入Action-VAE，通过将策略生成的初始动作映射到压缩的后验分布中，在低维潜在空间中表示动作，从中可以抽取任意数量的潜在样本并解码为近似真实动作分布的候选动作。其次，我们将动作验证形式化为任务进度结果预测，利用机器人数据集的内在序列结构训练一个语义基础的验证器，用于可解释的动作选择。此外，TapSampling是策略无关的框架。在模拟和真实环境中的大量实验表明，我们的方法无需进一步策略微调即可显著提升多个通用策略的性能。代码和模型可在项目页面获取。",
+      "authors": [
+        "Sizhe Zhao",
+        "Shengping Zhang",
+        "Shuo Yang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-25",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-25547.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-25547-p2.jpg",
+        "assets/img/covers/arxiv-2605-25547-p3.jpg",
+        "assets/img/covers/arxiv-2605-25547-p4.jpg"
+      ],
+      "arxiv_id": "2605.25547",
+      "abs_url": "http://arxiv.org/abs/2605.25547v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.25547v1",
+      "score": 31,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出推理时采样框架，提升通用策略性能，实验充分，有代码",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Harbin Institute of Technology",
+        "Tsinghua University"
+      ],
+      "method_tags": [
+        "inference-time sampling",
+        "Action-VAE",
+        "task-progress verifier"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "Hybrid",
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": []
@@ -229,63 +521,6 @@
       "demo_videos": []
     },
     {
-      "id": "arxiv-2605-25802",
-      "source": "arxiv",
-      "title": "Rethinking VLM Representation for VLA Initialization",
-      "title_zh": "重新思考用于 VLA 初始化的 VLM 表示",
-      "tldr_zh": "研究 VLM 表示对 VLA 初始化的影响，发现保留预训练表示并用 LoRA 微调效果最佳。",
-      "cover_zh": "VLM 直接拿来用？｜LoRA 微调比全微调更适合 VLA 初始化",
-      "abstract_zh": "视觉-语言-动作（VLA）模型广泛采用预训练的视觉-语言模型（VLM）作为策略骨干，但尚不清楚何种预训练 VLM 表示对 VLA 初始化有用。本文将 VLA 初始化作为一个受控的表示设计问题，从三个维度进行研究：能力级别的具身 VQA 监督、参数更新策略和机器人数据预训练。实验表明，原始预训练 VLM 表示是动作性能的关键来源。然而，具身 VQA 适应并未带来均匀的提升：其收益取决于下游瓶颈，且不同能力领域的收益并非简单叠加。对于更新策略，LoRA 比全微调提供了更可靠的初始化，表明过度重塑预训练表示会削弱 VLA 初始化。机器人数据预训练进一步改善了 VLA 初始化，通过基于 LoRA 的分阶段训练获得了最强变体。这些发现共同表明，有效的 VLM 到 VLA 适应应注入与动作相关的具身和机器人轨迹信号，同时保留对动作学习仍有用的预训练 VLM 表示。",
-      "authors": [
-        "Weifeng Lin",
-        "Siyuan Huang",
-        "Hao Li"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-05-25",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ Siyuan Huang"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2605-25802.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-25802-p2.jpg",
-        "assets/img/covers/arxiv-2605-25802-p3.jpg",
-        "assets/img/covers/arxiv-2605-25802-p4.jpg"
-      ],
-      "arxiv_id": "2605.25802",
-      "abs_url": "http://arxiv.org/abs/2605.25802v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.25802v1",
-      "score": 26,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "系统研究VLM表征对VLA初始化的影响，实验设计严谨，对VLA训练有重要指导意义。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "CUHK",
-        "Shanghai AI Lab"
-      ],
-      "method_tags": [
-        "VLA",
-        "VLM",
-        "representation learning"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "VLA",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
       "id": "arxiv-2605-25874",
       "source": "arxiv",
       "title": "WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation",
@@ -333,104 +568,6 @@
       "sim_stack": [],
       "method_family": "Benchmark",
       "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-26006",
-      "source": "arxiv",
-      "title": "MIND: Multi-Scale Intent Diffusion for Text-Driven Physics-Based Humanoid Control",
-      "title_zh": "MIND：面向文本驱动的物理仿真人体控制的多尺度意图扩散",
-      "tldr_zh": "提出MIND框架，用多尺度意图扩散桥接文本与物理仿真人体控制。",
-      "cover_zh": "文本直接控制虚拟人？新框架用意图扩散让动作更自然！",
-      "abstract_zh": "让物理仿真人体能够根据高层文本指令执行多样化行为仍是一个重大挑战。现有方法通常遵循两阶段范式（结合运动学动作生成与物理仿真跟踪）或端到端模仿学习范式（直接从文本生成动作）。然而，前者受限于运动学生成与物理仿真跟踪之间的固有领域偏移，后者则难以弥合文本指令与底层动作之间的巨大模态差距，限制了有效的语义对齐。值得注意的是，人体状态编码了丰富的运动动态，与文本描述在语义上比底层动作更对齐，因此成为推导行为意图的自然基础。基于这一洞察，我们提出MIND，一种新颖的端到端扩散框架，用于文本驱动的物理仿真人体控制，利用行为意图作为文本指令与底层动作之间的语义桥梁。其核心是多尺度意图扩散机制：全局意图预测器捕捉整体行为动态以指导整体行为合成，而即时意图预测器在每个扩散步骤提供逐步的细粒度信号以局部行为细化。这种分层意图公式为人体控制施加了结构化的归纳偏置，提升了语义对齐和行为自然度。此外，MIND将人体状态编码到潜在空间，以实现更有效的语义意图建模。大量实验表明，MIND优于现有方法，能从文本指令合成连贯、物理合理且语义对齐的人体行为。代码将开源以促进未来研究。",
-      "authors": [
-        "Bin Li",
-        "Ruichi Zhang",
-        "Han Liang"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-05-25",
-      "channels": [
-        "loco-manip-wbc"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-26006.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-26006-p2.jpg",
-        "assets/img/covers/arxiv-2605-26006-p3.jpg",
-        "assets/img/covers/arxiv-2605-26006-p4.jpg"
-      ],
-      "arxiv_id": "2605.26006",
-      "abs_url": "http://arxiv.org/abs/2605.26006v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.26006v1",
-      "score": 19,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "提出多尺度意图扩散框架，实现文本驱动的人形机器人物理控制，解决语义对齐与域迁移问题，创新性强。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Shanghai Jiao Tong University",
-        "Shanghai AI Laboratory"
-      ],
-      "method_tags": [
-        "Diffusion",
-        "text-driven control",
-        "multi-scale intent"
-      ],
-      "platform": [],
-      "sim_stack": [
-        "Isaac Gym"
-      ],
-      "method_family": "Diffusion",
-      "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "vid-bilibili-BV1wjGx6rEpJ",
-      "source": "video_bilibili",
-      "title": "会议室杂乱整理测试：宇树WVLA2.0模型",
-      "title_zh": "会议室杂乱整理测试：宇树WVLA2.0模型",
-      "tldr_zh": "宇树WVLA2.0模型在强干扰下实现多任务全自主运行。",
-      "cover_zh": "一镜到底｜强干扰下多任务全自主，宇树WVLA2.0太稳了",
-      "abstract_zh": "本测试展示了宇树WVLA2.0模型在一镜到底、多任务全自主运行场景下的表现，并引入了外部强干扰。",
-      "authors": [],
-      "primary_category": "video",
-      "published": "2026-05-25",
-      "channels": [
-        "locomotion"
-      ],
-      "badges": [],
-      "cover_image": "",
-      "preview_pages": [],
-      "arxiv_id": "",
-      "abs_url": "https://www.bilibili.com/video/BV1wjGx6rEpJ",
-      "pdf_url": "",
-      "score": 18,
-      "judge": {
-        "relevant": true,
-        "research_value": "medium",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "宇树人形机器人WVLA2.0模型，涉及全身移动操作与抗干扰，属于loco-manip-wbc方向。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "宇树"
-      ],
-      "method_tags": [
-        "VLA",
-        "多任务"
-      ],
-      "platform": [
-        "Unitree H1"
-      ],
-      "sim_stack": [],
-      "method_family": "VLA",
-      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": []
     },
@@ -526,59 +663,6 @@
         "World Model",
         "JEPA",
         "Partial Observability"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "WorldModel",
-      "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-26379",
-      "source": "arxiv_discover",
-      "title": "When Does LeJEPA Learn a World Model?",
-      "title_zh": "LeJEPA 何时能学到世界模型？",
-      "tldr_zh": "证明LeJEPA在线性可识别性下能恢复世界潜变量，且高斯分布是唯一保证。",
-      "cover_zh": "高斯分布竟是关键？LeJEPA如何保证学到世界模型",
-      "abstract_zh": "一个打乱世界真实自由度的表示无法支持可靠的规划或组合泛化。我们证明，在一类潜变量在平稳加性噪声转移下演化的广泛世界中，LeJEPA（对齐加高斯正则化）能从非线性观测中线性恢复世界的潜变量，这一性质称为线性可识别性。我们的主要结果是：在所有此类世界中，高斯分布是唯一能使该保证成立的潜分布。正向方向依赖于谱分解，其中每个非线性度都受到对齐的严格惩罚，使得线性映射成为最优；反向方向排除了所有非高斯替代。我们进一步证明了一个近似可识别性结果，其中保证会优雅地退化，并表明线性正交可识别性能够实现最优潜空间规划。我们通过从二维示例到1024维潜变量的实验验证了该理论，包括分布消融和基于像素的机器人控制。我们的理论将一个经验上成功的配方转化为数学保证，为构建可证明恢复世界结构的世界模型奠定了基础。",
-      "authors": [
-        "David Klindt",
-        "Yann LeCun",
-        "Randall Balestriero"
-      ],
-      "primary_category": "",
-      "published": "2026-05-25",
-      "channels": [
-        "world-model"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-26379.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-26379-p2.jpg",
-        "assets/img/covers/arxiv-2605-26379-p3.jpg",
-        "assets/img/covers/arxiv-2605-26379-p4.jpg"
-      ],
-      "arxiv_id": "2605.26379",
-      "abs_url": "http://arxiv.org/abs/2605.26379v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.26379v1",
-      "score": 12,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "核心贡献是LeJEPA世界模型的理论可识别性证明，直接相关world-model频道",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Meta AI",
-        "FAIR",
-        "NYU"
-      ],
-      "method_tags": [
-        "World Model",
-        "Linear Identifiability",
-        "LeJEPA"
       ],
       "platform": [],
       "sim_stack": [],
@@ -735,58 +819,6 @@
       "method_family": "Foundation",
       "real_robot": "yes",
       "training_summary": "4 hours on single A100 GPU",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-25547",
-      "source": "arxiv",
-      "title": "TapSampling: Inference-Time Sampling with a Task-Progress-Understanding Verifier for Robotic Manipulation",
-      "title_zh": "TapSampling：基于任务进度理解验证器的推理时采样方法用于机器人操作",
-      "tldr_zh": "提出即插即用的推理时采样框架，通过动作VAE和任务进度验证器提升机器人操作策略性能。",
-      "cover_zh": "不用重新训练模型｜推理时采样让机器人操作性能飙升",
-      "abstract_zh": "现有的具身控制研究通过扩大训练数据和模型规模取得了显著的性能提升。我们转而探索推理时策略作为另一个维度。非确定性生成模型，如扩散模型和自回归模型，已在具身控制领域得到广泛应用。然而，单次推理范式限制了它们的性能。本文提出TapSampling，一个即插即用的推理时采样框架。首先，我们引入Action-VAE，通过将策略生成的初始动作映射到压缩的后验分布中，在低维潜在空间中表示动作，从中可以抽取任意数量的潜在样本并解码为近似真实动作分布的候选动作。其次，我们将动作验证形式化为任务进度结果预测，利用机器人数据集的内在序列结构训练一个语义基础的验证器，用于可解释的动作选择。此外，TapSampling是策略无关的框架。在模拟和真实环境中的大量实验表明，我们的方法无需进一步策略微调即可显著提升多个通用策略的性能。代码和模型可在项目页面获取。",
-      "authors": [
-        "Sizhe Zhao",
-        "Shengping Zhang",
-        "Shuo Yang"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-25",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-25547.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-25547-p2.jpg",
-        "assets/img/covers/arxiv-2605-25547-p3.jpg",
-        "assets/img/covers/arxiv-2605-25547-p4.jpg"
-      ],
-      "arxiv_id": "2605.25547",
-      "abs_url": "http://arxiv.org/abs/2605.25547v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.25547v1",
-      "score": 6,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出推理时采样框架，提升通用策略性能，实验充分，有代码",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Harbin Institute of Technology",
-        "Tsinghua University"
-      ],
-      "method_tags": [
-        "inference-time sampling",
-        "Action-VAE",
-        "task-progress verifier"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Hybrid",
-      "real_robot": "yes",
-      "training_summary": "",
       "demo_videos": []
     },
     {

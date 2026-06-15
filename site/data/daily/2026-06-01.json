@@ -76,6 +76,65 @@
       "demo_videos": []
     },
     {
+      "id": "arxiv-2606-02486",
+      "source": "arxiv",
+      "title": "Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation",
+      "title_zh": "拦截未来：面向动态VLA操作的潜在空间预测世界模型",
+      "tldr_zh": "AHEAD通过预测未来令牌，使冻结VLA模型在动态操作中成功率大幅提升。",
+      "cover_zh": "机器人抓不住运动物体？这个4.9M参数插件让成功率从0飙到97%！",
+      "abstract_zh": "视觉-语言-动作（VLA）模型在静态操作中表现良好，但当物体在任务执行过程中移动时则失败。它们将当前观测映射为动作，并假设观测与执行之间场景静止，因此一旦物体速度非零，产生的延迟就会超过抓取所需的时间。我们通过AHEAD（自适应动力学前瞻性外推）弥合了这一差距，这是一种预测-然后-动作的包装器，为冻结的VLA增加了运动感知的潜在世界模型。一个在操作视频上训练的小型世界模型，在VLA特征空间中预测未来的补丁令牌，条件为来自光流的每个令牌的速度和加速度。语言与运动显著性掩码将预测集中在任务相关的补丁上，模型向前滚动自适应时间范围，当预测不确定性超过阈值时停止。冻结的动作解码器随后接收预测的未来令牌以替代当前令牌。AHEAD为冻结的7B OpenVLA增加了4.9M参数，在20个动态模拟场景中达到79%至97%的成功率，而最强基线为31%至58%。在物理UFactory xArm 7上，AHEAD在三个传送带和滚球任务中成功29/30至30/30，在球拍拦截中成功23/30，在抛射物接取中成功19/30，而所有基线均为0/30。",
+      "authors": [
+        "Shahram Najam Syed",
+        "Arthur Jakobsson",
+        "Haoran Hao"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-01",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Berkeley (BAIR)"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-02486.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-02486-p2.jpg",
+        "assets/img/covers/arxiv-2606-02486-p3.jpg",
+        "assets/img/covers/arxiv-2606-02486-p4.jpg"
+      ],
+      "arxiv_id": "2606.02486",
+      "abs_url": "http://arxiv.org/abs/2606.02486v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.02486v1",
+      "score": 45,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出预测性潜在世界模型增强VLA动态操作，方法新颖且实验充分，对具身操作有高参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "UC Berkeley"
+      ],
+      "method_tags": [
+        "World Model",
+        "VLA",
+        "Dynamic Manipulation"
+      ],
+      "platform": [
+        "UFactory xArm 7"
+      ],
+      "sim_stack": [],
+      "method_family": "WorldModel",
+      "real_robot": "yes",
+      "training_summary": "trained on manipulation video",
+      "demo_videos": []
+    },
+    {
       "id": "arxiv-2606-02577",
       "source": "arxiv",
       "title": "RoboDream: Compositional World Models for Scalable Robot Data Synthesis",
@@ -98,7 +157,11 @@
       "badges": [
         {
           "kind": "lab",
-          "label": "⭐ Yue Wang (USC)"
+          "label": "⭐ Toyota TRI / RAI"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Berkeley (BAIR)"
         }
       ],
       "cover_image": "assets/img/covers/arxiv-2606-02577.jpg",
@@ -110,7 +173,7 @@
       "arxiv_id": "2606.02577",
       "abs_url": "http://arxiv.org/abs/2606.02577v1",
       "pdf_url": "https://arxiv.org/pdf/2606.02577v1",
-      "score": 40,
+      "score": 45,
       "judge": {
         "relevant": true,
         "research_value": "high",
@@ -131,6 +194,67 @@
       "sim_stack": [],
       "method_family": "WorldModel",
       "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2606-02753",
+      "source": "arxiv_discover",
+      "title": "MetaWorld: Scaling Multi-Agent Video World Model from Single-view Video Data",
+      "title_zh": "MetaWorld：从单视角视频数据扩展多智能体视频世界模型",
+      "tldr_zh": "提出MetaWorld，从单视角视频扩展多智能体视频世界模型，实现跨视角一致性和身份保真度。",
+      "cover_zh": "单视角视频就能训练多智能体世界模型？MetaWorld让跨视角一致性起飞",
+      "abstract_zh": "视频世界模型是具身AI和元宇宙的基础生成技术，但现有方法本质上局限于单个智能体从单一视角观察。将这些模型扩展到多智能体设置面临两个关键挑战：数据稀缺（协调的多视角录制对于通用开放域场景成本过高）和世界状态对齐（独立生成的视频流无法确保共享物理环境和事件在各视角间一致演化）。为解决这些问题，我们提出MetaWorld，一个新颖框架，可直接从单视角视频将多智能体视频世界模型扩展到开放域环境。首先，我们引入单目世界状态展开（MWSU），将单目视频显式分解为相机操作者的自我运动和被观察主体的空间轨迹。这种相机-轨迹分解自然地提取出共享3D空间内的同步多智能体运动数据，完全绕过了多相机设置的需求。其次，为实现精确视觉控制，我们开发了主体感知世界生成器，基于每个智能体的身份图像进行外观驱动的模拟。最后，为确保两个视角基于同一物理现实，我们提出世界状态对齐（WSA），一种插入视频DiT每个Transformer层的帧间分支交叉注意力机制。通过联合同步去噪过程，WSA强制实现静态几何一致性和动态运动一致性，确保共享3D环境和物理事件在自我中心视角间保持良好对齐。大量实验表明，MetaWorld实现了优越的跨视角一致性和身份保真度，为多智能体视频世界建模建立了一个高度可扩展、物理驱动的范式。",
+      "authors": [
+        "Teng Hu",
+        "Mingchun Lu",
+        "Yating Wang"
+      ],
+      "primary_category": "",
+      "published": "2026-06-01",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ SJTU"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ 腾讯"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-02753.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-02753-p2.jpg",
+        "assets/img/covers/arxiv-2606-02753-p3.jpg",
+        "assets/img/covers/arxiv-2606-02753-p4.jpg"
+      ],
+      "arxiv_id": "2606.02753",
+      "abs_url": "http://arxiv.org/abs/2606.02753v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.02753v1",
+      "score": 40,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出多智能体视频世界模型，解决数据稀缺和状态对齐，方法新颖且具扩展性。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Shanghai Jiao Tong University",
+        "Tencent AI Lab"
+      ],
+      "method_tags": [
+        "Video World Model",
+        "Multi-Agent",
+        "Cross-View Consistency"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "WorldModel",
+      "real_robot": "no",
       "training_summary": "",
       "demo_videos": []
     },
@@ -290,60 +414,6 @@
       "demo_videos": []
     },
     {
-      "id": "arxiv-2606-02486",
-      "source": "arxiv",
-      "title": "Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation",
-      "title_zh": "拦截未来：面向动态VLA操作的潜在空间预测世界模型",
-      "tldr_zh": "AHEAD通过预测未来令牌，使冻结VLA模型在动态操作中成功率大幅提升。",
-      "cover_zh": "机器人抓不住运动物体？这个4.9M参数插件让成功率从0飙到97%！",
-      "abstract_zh": "视觉-语言-动作（VLA）模型在静态操作中表现良好，但当物体在任务执行过程中移动时则失败。它们将当前观测映射为动作，并假设观测与执行之间场景静止，因此一旦物体速度非零，产生的延迟就会超过抓取所需的时间。我们通过AHEAD（自适应动力学前瞻性外推）弥合了这一差距，这是一种预测-然后-动作的包装器，为冻结的VLA增加了运动感知的潜在世界模型。一个在操作视频上训练的小型世界模型，在VLA特征空间中预测未来的补丁令牌，条件为来自光流的每个令牌的速度和加速度。语言与运动显著性掩码将预测集中在任务相关的补丁上，模型向前滚动自适应时间范围，当预测不确定性超过阈值时停止。冻结的动作解码器随后接收预测的未来令牌以替代当前令牌。AHEAD为冻结的7B OpenVLA增加了4.9M参数，在20个动态模拟场景中达到79%至97%的成功率，而最强基线为31%至58%。在物理UFactory xArm 7上，AHEAD在三个传送带和滚球任务中成功29/30至30/30，在球拍拦截中成功23/30，在抛射物接取中成功19/30，而所有基线均为0/30。",
-      "authors": [
-        "Shahram Najam Syed",
-        "Arthur Jakobsson",
-        "Haoran Hao"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-01",
-      "channels": [
-        "manipulation",
-        "world-model"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-02486.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-02486-p2.jpg",
-        "assets/img/covers/arxiv-2606-02486-p3.jpg",
-        "assets/img/covers/arxiv-2606-02486-p4.jpg"
-      ],
-      "arxiv_id": "2606.02486",
-      "abs_url": "http://arxiv.org/abs/2606.02486v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.02486v1",
-      "score": 20,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出预测性潜在世界模型增强VLA动态操作，方法新颖且实验充分，对具身操作有高参考价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "UC Berkeley"
-      ],
-      "method_tags": [
-        "World Model",
-        "VLA",
-        "Dynamic Manipulation"
-      ],
-      "platform": [
-        "UFactory xArm 7"
-      ],
-      "sim_stack": [],
-      "method_family": "WorldModel",
-      "real_robot": "yes",
-      "training_summary": "trained on manipulation video",
-      "demo_videos": []
-    },
-    {
       "id": "arxiv-2606-02372",
       "source": "arxiv",
       "title": "COMAP: Co-Evolving World Models and Agent Policies for LLM Agents",
@@ -384,58 +454,6 @@
         "world model",
         "co-evolution",
         "agent policy"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "WorldModel",
-      "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2606-02753",
-      "source": "arxiv_discover",
-      "title": "MetaWorld: Scaling Multi-Agent Video World Model from Single-view Video Data",
-      "title_zh": "MetaWorld：从单视角视频数据扩展多智能体视频世界模型",
-      "tldr_zh": "提出MetaWorld，从单视角视频扩展多智能体视频世界模型，实现跨视角一致性和身份保真度。",
-      "cover_zh": "单视角视频就能训练多智能体世界模型？MetaWorld让跨视角一致性起飞",
-      "abstract_zh": "视频世界模型是具身AI和元宇宙的基础生成技术，但现有方法本质上局限于单个智能体从单一视角观察。将这些模型扩展到多智能体设置面临两个关键挑战：数据稀缺（协调的多视角录制对于通用开放域场景成本过高）和世界状态对齐（独立生成的视频流无法确保共享物理环境和事件在各视角间一致演化）。为解决这些问题，我们提出MetaWorld，一个新颖框架，可直接从单视角视频将多智能体视频世界模型扩展到开放域环境。首先，我们引入单目世界状态展开（MWSU），将单目视频显式分解为相机操作者的自我运动和被观察主体的空间轨迹。这种相机-轨迹分解自然地提取出共享3D空间内的同步多智能体运动数据，完全绕过了多相机设置的需求。其次，为实现精确视觉控制，我们开发了主体感知世界生成器，基于每个智能体的身份图像进行外观驱动的模拟。最后，为确保两个视角基于同一物理现实，我们提出世界状态对齐（WSA），一种插入视频DiT每个Transformer层的帧间分支交叉注意力机制。通过联合同步去噪过程，WSA强制实现静态几何一致性和动态运动一致性，确保共享3D环境和物理事件在自我中心视角间保持良好对齐。大量实验表明，MetaWorld实现了优越的跨视角一致性和身份保真度，为多智能体视频世界建模建立了一个高度可扩展、物理驱动的范式。",
-      "authors": [
-        "Teng Hu",
-        "Mingchun Lu",
-        "Yating Wang"
-      ],
-      "primary_category": "",
-      "published": "2026-06-01",
-      "channels": [
-        "world-model"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-02753.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-02753-p2.jpg",
-        "assets/img/covers/arxiv-2606-02753-p3.jpg",
-        "assets/img/covers/arxiv-2606-02753-p4.jpg"
-      ],
-      "arxiv_id": "2606.02753",
-      "abs_url": "http://arxiv.org/abs/2606.02753v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.02753v1",
-      "score": 15,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出多智能体视频世界模型，解决数据稀缺和状态对齐，方法新颖且具扩展性。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Shanghai Jiao Tong University",
-        "Tencent AI Lab"
-      ],
-      "method_tags": [
-        "Video World Model",
-        "Multi-Agent",
-        "Cross-View Consistency"
       ],
       "platform": [],
       "sim_stack": [],

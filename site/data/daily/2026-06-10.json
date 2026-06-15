@@ -3,6 +3,194 @@
   "count": 27,
   "papers": [
     {
+      "id": "arxiv-2606-11743",
+      "source": "arxiv",
+      "title": "TacCoRL: Integrating Tactile Feedback into VLA via Simulation",
+      "title_zh": "TacCoRL：通过仿真将触觉反馈集成到VLA中",
+      "tldr_zh": "通过仿真注入触觉反馈并联合训练，提升VLA策略在接触密集型任务中的成功率。",
+      "cover_zh": "机器人摸一摸就开窍？触觉反馈让VLA策略成功率飙升22.5%",
+      "abstract_zh": "视觉-语言-动作（VLA）模型为机器人操作提供了强大的视觉、语言和动作先验，但仅靠视觉观测往往缺失接触密集型任务所需的局部接触状态。我们提出TacCoRL，一个可扩展的框架，将触觉反馈注入VLA策略，并通过仿真-真实联合训练和基于仿真的强化学习（RL）进行改进，无需大规模触觉预训练或大量真实世界接触探索。关键思想不仅是将触觉作为输入，而是学习在接近失败状态下接触读数应如何调节动作响应，这些状态在演示中罕见且在硬件上收集风险高。我们使用真实对齐的仿真器作为接触交互的闭环训练环境。混合仿真和真实轨迹首先在预训练策略中热启动触觉条件动作。然后，具有可验证任务奖励的强化学习利用仿真接触轨迹优化策略，强化导致任务完成的触觉条件动作，同时真实轨迹上的监督目标使精炼策略锚定于部署时的视觉、触觉和动作分布。最终策略直接迁移到真实机器人，无需特权仿真状态或在线真实世界RL。在四个双臂接触密集型任务中，最终的视觉-触觉策略平均成功率达到72.5%，而基线为50.0%。结果视频和更多细节见https://tac-corl.github.io/",
+      "authors": [
+        "Siyu Ma",
+        "Yuqi Liang",
+        "Chang Yu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-10",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 北大"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Hao Su"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-11743.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-11743-p2.jpg",
+        "assets/img/covers/arxiv-2606-11743-p3.jpg",
+        "assets/img/covers/arxiv-2606-11743-p4.jpg"
+      ],
+      "arxiv_id": "2606.11743",
+      "abs_url": "http://arxiv.org/abs/2606.11743v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.11743v1",
+      "score": 70,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "将触觉反馈注入VLA策略，结合仿真-真实协同训练和强化学习，提升接触丰富任务性能，方法新颖且有效。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "UCLA",
+        "Peking University",
+        "University of Utah"
+      ],
+      "method_tags": [
+        "VLA",
+        "Tactile Feedback",
+        "Sim-to-Real"
+      ],
+      "platform": [
+        "Franka"
+      ],
+      "sim_stack": [
+        "Isaac Sim"
+      ],
+      "method_family": "Hybrid",
+      "real_robot": "yes",
+      "training_summary": "Mixed sim and real trajectories + RL with simulated contact rollouts",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2606-12365",
+      "source": "arxiv",
+      "title": "Ambient Diffusion Policy: Imitation Learning from Suboptimal Data in Robotics",
+      "title_zh": "环境扩散策略：机器人学中来自次优数据的模仿学习",
+      "tldr_zh": "提出环境扩散策略，通过噪声依赖的数据使用从次优数据中提取有用特征进行模仿学习。",
+      "cover_zh": "次优数据也能逆袭？新方法让机器人从低质量演示中高效学习",
+      "abstract_zh": "我们提出环境扩散策略（Ambient Diffusion Policy），一种简单且原理性的方法，用于机器人学中从次优数据中进行模仿学习。高质量、特定任务的机器人数据收集成本高昂且耗时，而质量较低或分布外演示的次优数据集则非常丰富。现有方法在机器人学中同时训练两种数据源时，往往无法区分次优样本中有意义和有害的特征。相比之下，我们的方法通过引入机器人学中协同训练的新轴：噪声依赖的数据使用，仅提取有用特征。环境扩散策略在训练期间将次优数据的贡献限制在仅高和低扩散时间。为了严格证明我们的方法，我们首先观察到机器人动作数据呈现谱幂律。这引出了最优扩散策略的两个重要性质：全局到局部的层次性和局部性。我们使用简化模型从理论上形式化了这一讨论。我们的实验在六个任务上对四种类型的次优动作数据（噪声轨迹、模拟到现实差距、任务不匹配和大规模数据混合）验证了环境扩散策略。结果表明，它能有效学习来自任意来源的次优数据。值得注意的是，当扩展到Open X-Embodiment（一个具有异构数据质量和非结构化分布偏移的大规模数据集）时，它比现有协同训练基线高出多达33%。总体而言，环境扩散策略提高了次优演示的效用，并扩展了机器人学中可用数据源的范围。",
+      "authors": [
+        "Adam Wei",
+        "Nicholas Pfaff",
+        "Thomas Cohn"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-10",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ MIT CSAIL"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Russ Tedrake"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-12365.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-12365-p2.jpg",
+        "assets/img/covers/arxiv-2606-12365-p3.jpg",
+        "assets/img/covers/arxiv-2606-12365-p4.jpg"
+      ],
+      "arxiv_id": "2606.12365",
+      "abs_url": "http://arxiv.org/abs/2606.12365v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.12365v1",
+      "score": 65,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出从次优数据中模仿学习的扩散策略，理论扎实，实验涵盖多种次优类型，对操作领域有高参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "MIT CSAIL"
+      ],
+      "method_tags": [
+        "Diffusion Policy",
+        "Imitation Learning",
+        "suboptimal data"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "Diffusion",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2606-12366",
+      "source": "arxiv",
+      "title": "APT: Action Expert Pretraining Improves Instruction Generalization of Vision-Language-Action Policies",
+      "title_zh": "APT：动作专家预训练提升视觉-语言-动作策略的指令泛化能力",
+      "tldr_zh": "提出两阶段训练方法APT，通过动作专家预训练解决VLA模型语言指令泛化差的问题",
+      "cover_zh": "语言指令总翻车？这个新方法让机器人听懂你没说过的指令",
+      "abstract_zh": "视觉-语言-动作（VLA）模型将预训练的视觉-语言模型（VLM）与连续动作专家结合，在操作任务上表现出色，但对分布外语言指令的泛化能力仍然较差。一个已知挑战是VLA数据的结构不平衡：语言的多样性远低于视觉和动作内容，导致策略容易依赖视觉捷径。离散动作方法通过视觉-语言联合训练缓解了这一问题，但连续动作专家缺乏这种保护：它们从随机初始化开始，完全从不平衡数据中学习，产生噪声梯度，破坏VLM并无法利用其语言能力。我们从贝叶斯角度出发，将策略分解为与语言无关的视觉-动作（VA）先验和语言条件化的VLA似然，并提出APT——一种强调动作专家预训练的两阶段训练方法。第一阶段，动作专家作为VA先验在冻结VLM的视觉-动作对上进行预训练，绕开语言不平衡。第二阶段，通过门控融合机制注入语言标记，在保留已学习的视觉运动先验的同时整合VLM特征。APT适用于主流VLA架构，包括π和GR00T风格架构。大量实验验证了APT在未见指令和组合任务上取得一致提升。项目页面：https://xukechun.github.io/papers/APT/",
+      "authors": [
+        "Kechun Xu",
+        "Zhenjie Zhu",
+        "Anzhe Chen"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-10",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ ZJU"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Yue Wang (ZJU)"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-12366.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-12366-p2.jpg",
+        "assets/img/covers/arxiv-2606-12366-p3.jpg",
+        "assets/img/covers/arxiv-2606-12366-p4.jpg"
+      ],
+      "arxiv_id": "2606.12366",
+      "abs_url": "http://arxiv.org/abs/2606.12366v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.12366v1",
+      "score": 62,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出动作专家预训练方法，提升VLA模型对未见指令的泛化，实验充分，有科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Zhejiang University"
+      ],
+      "method_tags": [
+        "VLA",
+        "Action Expert Pretraining",
+        "Language Generalization"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "VLA",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
       "id": "arxiv-2606-11891",
       "source": "arxiv",
       "title": "Critic Architecture Matters: Dual vs. Unified Critics for Humanoid Loco-Manipulation",
@@ -66,17 +254,17 @@
       "demo_videos": []
     },
     {
-      "id": "arxiv-2606-11743",
+      "id": "arxiv-2606-12352",
       "source": "arxiv",
-      "title": "TacCoRL: Integrating Tactile Feedback into VLA via Simulation",
-      "title_zh": "TacCoRL：通过仿真将触觉反馈集成到VLA中",
-      "tldr_zh": "通过仿真注入触觉反馈并联合训练，提升VLA策略在接触密集型任务中的成功率。",
-      "cover_zh": "机器人摸一摸就开窍？触觉反馈让VLA策略成功率飙升22.5%",
-      "abstract_zh": "视觉-语言-动作（VLA）模型为机器人操作提供了强大的视觉、语言和动作先验，但仅靠视觉观测往往缺失接触密集型任务所需的局部接触状态。我们提出TacCoRL，一个可扩展的框架，将触觉反馈注入VLA策略，并通过仿真-真实联合训练和基于仿真的强化学习（RL）进行改进，无需大规模触觉预训练或大量真实世界接触探索。关键思想不仅是将触觉作为输入，而是学习在接近失败状态下接触读数应如何调节动作响应，这些状态在演示中罕见且在硬件上收集风险高。我们使用真实对齐的仿真器作为接触交互的闭环训练环境。混合仿真和真实轨迹首先在预训练策略中热启动触觉条件动作。然后，具有可验证任务奖励的强化学习利用仿真接触轨迹优化策略，强化导致任务完成的触觉条件动作，同时真实轨迹上的监督目标使精炼策略锚定于部署时的视觉、触觉和动作分布。最终策略直接迁移到真实机器人，无需特权仿真状态或在线真实世界RL。在四个双臂接触密集型任务中，最终的视觉-触觉策略平均成功率达到72.5%，而基线为50.0%。结果视频和更多细节见https://tac-corl.github.io/",
+      "title": "CHORUS: Decentralized Multi-Embodiment Collaboration with One VLA Policy",
+      "title_zh": "CHORUS：基于单一VLA策略的去中心化多体协作",
+      "tldr_zh": "单一VLA模型实现去中心化多机器人协作，无需通信或单独策略。",
+      "cover_zh": "一个VLA模型控制所有机器人？去中心化协作竟比集中式更强！",
+      "abstract_zh": "多机器人协作使机器人能够高效完成从搬运沙发穿过门廊到在建筑工地组装结构等广泛任务。然而，在移动多机器人环境中实现这种协调仍然具有挑战性：基于团队联合观测的集中式方法随团队规模扩大而扩展性差，而每个机器人训练一个策略的去中心化方法通常需要显式对齐过程或推理时的信息共享来克服部分可观测性。我们的关键洞察是，预训练的视觉-语言-动作（VLA）模型的视觉运动先验应能仅从每个机器人的局部观测实现反应式、去中心化协作，无需这些推理时的假设。我们提出CHORUS，一个将单一VLA骨干适配到控制多样化多机器人团队的框架。推理时，每个机器人运行CHORUS的独立副本，仅基于自身观测和机器人标识提示。在包括移动卷尺测量、图书馆书籍交接和洗衣篮抬举的真实世界实验中，CHORUS相比去中心化从头训练模型提升了64个百分点的成功率，对队友行为的反应性提高了40个百分点，并优于集中式基线。这些结果共同表明，共享的VLA骨干能够实现去中心化多机器人协作，无需每个机器人单独的策略或推理时的机器人间通信。",
       "authors": [
-        "Siyu Ma",
-        "Yuqi Liang",
-        "Chang Yu"
+        "Ria Doshi",
+        "Tian Gao",
+        "Annie Chen"
       ],
       "primary_category": "cs.RO",
       "published": "2026-06-10",
@@ -86,45 +274,170 @@
       "badges": [
         {
           "kind": "lab",
-          "label": "⭐ Hao Su"
+          "label": "⭐ Stanford"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Chelsea Finn"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Jeannette Bohg"
         }
       ],
-      "cover_image": "assets/img/covers/arxiv-2606-11743.jpg",
+      "cover_image": "assets/img/covers/arxiv-2606-12352.jpg",
       "preview_pages": [
-        "assets/img/covers/arxiv-2606-11743-p2.jpg",
-        "assets/img/covers/arxiv-2606-11743-p3.jpg",
-        "assets/img/covers/arxiv-2606-11743-p4.jpg"
+        "assets/img/covers/arxiv-2606-12352-p2.jpg",
+        "assets/img/covers/arxiv-2606-12352-p3.jpg",
+        "assets/img/covers/arxiv-2606-12352-p4.jpg"
       ],
-      "arxiv_id": "2606.11743",
-      "abs_url": "http://arxiv.org/abs/2606.11743v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.11743v1",
-      "score": 45,
+      "arxiv_id": "2606.12352",
+      "abs_url": "http://arxiv.org/abs/2606.12352v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.12352v1",
+      "score": 54,
       "judge": {
         "relevant": true,
         "research_value": "high",
         "primary_channel": "manipulation",
-        "reason": "将触觉反馈注入VLA策略，结合仿真-真实协同训练和强化学习，提升接触丰富任务性能，方法新颖且有效。",
+        "reason": "多机器人协作VLA，去中心化控制，真实实验验证，有显著性能提升",
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "UCLA",
-        "Peking University",
-        "University of Utah"
+        "Stanford University"
       ],
       "method_tags": [
         "VLA",
-        "Tactile Feedback",
-        "Sim-to-Real"
+        "decentralized multi-robot collaboration"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "VLA",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2606-12402",
+      "source": "arxiv",
+      "title": "DIRECT: When and Where Should You Allocate Test-Time Compute in Embodied Planners?",
+      "title_zh": "DIRECT：在具身规划器中，何时何地分配测试时计算？",
+      "tldr_zh": "提出DIRECT路由框架，根据场景动态分配测试时计算，降低延迟同时保持成功率。",
+      "cover_zh": "测试时计算不是越多越好｜DIRECT用更少计算达到更强性能",
+      "abstract_zh": "视觉语言模型（VLM）越来越多地被部署为具身智能体的高层规划器，一种新兴策略是通过扩展测试时计算来提升能力。然而，我们观察到这样做会增加延迟、token使用量和FLOPs，同时在下游成功率上带来不均匀且往往递减的收益，限制了具身智能体的部署场景。我们认为，选择何时何地投入测试时计算是将前沿性能带入现实世界的关键。我们提出了DIRECT，一个路由框架，利用多模态场景上下文为每个提示分配计算资源，在成功-成本帕累托前沿上优于固定模型选择。在三个主要的扩展轴——思维链深度、模型大小和记忆历史——上，我们在VLABench和RoboMME上的实验表明，测试时计算并非统一的杠杆：不同轴带来性质不同的能力增益。我们在DROID设置中的物理Franka机械臂上验证了这些见解，涵盖零样本操作和长程链式任务，我们的路由器以高达65%的平均延迟降低匹配或超越了更强模型的成功率。最终，我们的结果表明，天真地扩展测试时计算是浪费的，而DIRECT能够以极低的成本在机器人系统中提供前沿水平的具身规划。项目页面：jadee-dao.github.io/direct/。",
+      "authors": [
+        "Jadelynn Dao",
+        "Milan Ganai",
+        "Yasmina Abukhadra"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-10",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Stanford"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Chelsea Finn"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Jiajun Wu"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-12402.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-12402-p2.jpg",
+        "assets/img/covers/arxiv-2606-12402-p3.jpg",
+        "assets/img/covers/arxiv-2606-12402-p4.jpg"
+      ],
+      "arxiv_id": "2606.12402",
+      "abs_url": "http://arxiv.org/abs/2606.12402v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.12402v1",
+      "score": 54,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出测试时计算分配框架，在VLABench和真实Franka上验证，对VLM规划器效率提升有高参考价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Stanford University"
+      ],
+      "method_tags": [
+        "Test-Time Compute",
+        "Routing",
+        "VLM"
       ],
       "platform": [
         "Franka"
       ],
-      "sim_stack": [
-        "Isaac Sim"
+      "sim_stack": [],
+      "method_family": "VLA",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2606-12027",
+      "source": "arxiv",
+      "title": "Learning Unions of Convex Sets via Invertible Latent Decomposition for Path Planning",
+      "title_zh": "通过可逆隐式分解学习凸集并集用于路径规划",
+      "tldr_zh": "提出ILD框架，联合学习可逆映射和隐空间凸集并集，实现高效无碰撞路径规划。",
+      "cover_zh": "路径规划新突破｜可逆隐式分解让凸集并集既灵活又保约束",
+      "abstract_zh": "在杂乱的真实环境中进行无碰撞路径规划依赖于对无碰撞空间的表示，现有表示大致分为两类。显式表示（如凸集并集）可作为硬约束嵌入基于优化的规划器，但其参数随配置空间维度增长而扩展性差。隐式表示则灵活且能良好扩展至复杂几何形状，但通常缺乏此类保证。我们提出ILD（可逆隐式分解）框架，联合学习一个可逆映射和隐空间中显式凸多面体的并集。规划在隐凸集上进行，可逆映射将所得路径解码回原始配置空间，同时保持相对于细化后的显式安全区域的可行性。我们进一步提出可见性引导采样（VGS）以保持凸集连通性用于路径规划。在2D导航、6自由度及14自由度操作环境中，ILD相比先前基线实现了更广的覆盖、更好的集间连通性和更高的路径规划成功率，且在测试时细化后零误报。在14自由度双臂操作器上，我们进一步展示了实时无碰撞规划，测试时细化可适应真实部署中场景几何变化（单6自由度臂）。",
+      "authors": [
+        "Taerim Yoon",
+        "Dongho Kang",
+        "Kisang Park"
       ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-10",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ ETH (RSL)"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-12027.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-12027-p2.jpg",
+        "assets/img/covers/arxiv-2606-12027-p3.jpg",
+        "assets/img/covers/arxiv-2606-12027-p4.jpg"
+      ],
+      "arxiv_id": "2606.12027",
+      "abs_url": "http://arxiv.org/abs/2606.12027v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.12027v1",
+      "score": 42,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出可逆隐式分解学习凸集并用于路径规划，在6-DoF和14-DoF操作任务上验证，对操作规划有高参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Korea University",
+        "ETH Zurich"
+      ],
+      "method_tags": [
+        "invertible latent decomposition",
+        "convex polytopes",
+        "path planning"
+      ],
+      "platform": [],
+      "sim_stack": [],
       "method_family": "Hybrid",
       "real_robot": "yes",
-      "training_summary": "Mixed sim and real trajectories + RL with simulated contact rollouts",
+      "training_summary": "",
       "demo_videos": []
     },
     {
@@ -191,236 +504,59 @@
       "demo_videos": []
     },
     {
-      "id": "arxiv-2606-12365",
+      "id": "arxiv-2606-12217",
       "source": "arxiv",
-      "title": "Ambient Diffusion Policy: Imitation Learning from Suboptimal Data in Robotics",
-      "title_zh": "环境扩散策略：机器人学中来自次优数据的模仿学习",
-      "tldr_zh": "提出环境扩散策略，通过噪声依赖的数据使用从次优数据中提取有用特征进行模仿学习。",
-      "cover_zh": "次优数据也能逆袭？新方法让机器人从低质量演示中高效学习",
-      "abstract_zh": "我们提出环境扩散策略（Ambient Diffusion Policy），一种简单且原理性的方法，用于机器人学中从次优数据中进行模仿学习。高质量、特定任务的机器人数据收集成本高昂且耗时，而质量较低或分布外演示的次优数据集则非常丰富。现有方法在机器人学中同时训练两种数据源时，往往无法区分次优样本中有意义和有害的特征。相比之下，我们的方法通过引入机器人学中协同训练的新轴：噪声依赖的数据使用，仅提取有用特征。环境扩散策略在训练期间将次优数据的贡献限制在仅高和低扩散时间。为了严格证明我们的方法，我们首先观察到机器人动作数据呈现谱幂律。这引出了最优扩散策略的两个重要性质：全局到局部的层次性和局部性。我们使用简化模型从理论上形式化了这一讨论。我们的实验在六个任务上对四种类型的次优动作数据（噪声轨迹、模拟到现实差距、任务不匹配和大规模数据混合）验证了环境扩散策略。结果表明，它能有效学习来自任意来源的次优数据。值得注意的是，当扩展到Open X-Embodiment（一个具有异构数据质量和非结构化分布偏移的大规模数据集）时，它比现有协同训练基线高出多达33%。总体而言，环境扩散策略提高了次优演示的效用，并扩展了机器人学中可用数据源的范围。",
+      "title": "Making Foresight Actionable: Repurposing Representation Alignment in World Action Models",
+      "title_zh": "让预见可操作：在世界动作模型中重新利用表示对齐",
+      "tldr_zh": "提出AGRA对齐视频扩散特征与语义表示，提升世界动作模型的动作引导性。",
+      "cover_zh": "视频生成模型能预测未来，但动作却不准？AGRA一招对齐表示，让机器人操作更鲁棒！",
+      "abstract_zh": "世界动作模型（WAM）通过使用视频生成模型在产生控制动作之前建模未来场景演化，为机器人操作提供了一条有前景的路径。然而，我们的实证观察揭示了一个现象：生成看似合理的视觉未来并不总能保证提取出准确的动作。为了诊断这一失败，我们进行了动作头注意力分析和因果干预。我们发现，动作解码器未能关注任务相关的交互区域，并且对任务无关区域的扰动保持敏感。这揭示了一种表示不匹配：为视觉重建优化的隐藏状态并非天然地以适用于低级动作控制的形式组织。在本文中，我们提出了AGRA，一种动作引导的表示对齐目标，通过将中间视频扩散特征与来自基础视觉编码器的空间一致语义表示对齐，来正则化世界-动作接口。我们在真实世界的操作任务上评估了AGRA。实验表明，AGRA使世界模型表示更加动作引导：通过将动作解码器聚焦于正确的交互区域，它提高了物体定位精度和功能理解，并使策略对任务无关区域的扰动更加鲁棒。因此，AGRA在分布内性能和分布外泛化上均持续优于基线世界动作模型。",
       "authors": [
-        "Adam Wei",
-        "Nicholas Pfaff",
-        "Thomas Cohn"
+        "Lu Qiu",
+        "Yizhuo Li",
+        "Yi Chen"
       ],
-      "primary_category": "cs.RO",
+      "primary_category": "cs.CV",
       "published": "2026-06-10",
       "channels": [
         "manipulation",
-        "sim2real"
+        "world-model"
       ],
       "badges": [
         {
           "kind": "lab",
-          "label": "⭐ Russ Tedrake"
+          "label": "⭐ HKU"
         }
       ],
-      "cover_image": "assets/img/covers/arxiv-2606-12365.jpg",
+      "cover_image": "assets/img/covers/arxiv-2606-12217.jpg",
       "preview_pages": [
-        "assets/img/covers/arxiv-2606-12365-p2.jpg",
-        "assets/img/covers/arxiv-2606-12365-p3.jpg",
-        "assets/img/covers/arxiv-2606-12365-p4.jpg"
+        "assets/img/covers/arxiv-2606-12217-p2.jpg",
+        "assets/img/covers/arxiv-2606-12217-p3.jpg",
+        "assets/img/covers/arxiv-2606-12217-p4.jpg"
       ],
-      "arxiv_id": "2606.12365",
-      "abs_url": "http://arxiv.org/abs/2606.12365v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.12365v1",
-      "score": 40,
+      "arxiv_id": "2606.12217",
+      "abs_url": "http://arxiv.org/abs/2606.12217v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.12217v1",
+      "score": 39,
       "judge": {
         "relevant": true,
         "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出从次优数据中模仿学习的扩散策略，理论扎实，实验涵盖多种次优类型，对操作领域有高参考价值。",
+        "primary_channel": "world-model",
+        "reason": "提出世界动作模型中的表征对齐方法，解决视觉预测与动作提取不匹配问题，有实验验证，对世界模型用于机器人操作有重要价值。",
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "MIT CSAIL"
+        "The University of Hong Kong",
+        "Huawei Noah's Ark Lab"
       ],
       "method_tags": [
-        "Diffusion Policy",
-        "Imitation Learning",
-        "suboptimal data"
+        "World Action Model",
+        "Representation Alignment",
+        "Manipulation"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "Diffusion",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2606-12366",
-      "source": "arxiv",
-      "title": "APT: Action Expert Pretraining Improves Instruction Generalization of Vision-Language-Action Policies",
-      "title_zh": "APT：动作专家预训练提升视觉-语言-动作策略的指令泛化能力",
-      "tldr_zh": "提出两阶段训练方法APT，通过动作专家预训练解决VLA模型语言指令泛化差的问题",
-      "cover_zh": "语言指令总翻车？这个新方法让机器人听懂你没说过的指令",
-      "abstract_zh": "视觉-语言-动作（VLA）模型将预训练的视觉-语言模型（VLM）与连续动作专家结合，在操作任务上表现出色，但对分布外语言指令的泛化能力仍然较差。一个已知挑战是VLA数据的结构不平衡：语言的多样性远低于视觉和动作内容，导致策略容易依赖视觉捷径。离散动作方法通过视觉-语言联合训练缓解了这一问题，但连续动作专家缺乏这种保护：它们从随机初始化开始，完全从不平衡数据中学习，产生噪声梯度，破坏VLM并无法利用其语言能力。我们从贝叶斯角度出发，将策略分解为与语言无关的视觉-动作（VA）先验和语言条件化的VLA似然，并提出APT——一种强调动作专家预训练的两阶段训练方法。第一阶段，动作专家作为VA先验在冻结VLM的视觉-动作对上进行预训练，绕开语言不平衡。第二阶段，通过门控融合机制注入语言标记，在保留已学习的视觉运动先验的同时整合VLM特征。APT适用于主流VLA架构，包括π和GR00T风格架构。大量实验验证了APT在未见指令和组合任务上取得一致提升。项目页面：https://xukechun.github.io/papers/APT/",
-      "authors": [
-        "Kechun Xu",
-        "Zhenjie Zhu",
-        "Anzhe Chen"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-10",
-      "channels": [
-        "loco-manip-wbc",
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ Yue Wang (USC)"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-12366.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-12366-p2.jpg",
-        "assets/img/covers/arxiv-2606-12366-p3.jpg",
-        "assets/img/covers/arxiv-2606-12366-p4.jpg"
-      ],
-      "arxiv_id": "2606.12366",
-      "abs_url": "http://arxiv.org/abs/2606.12366v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.12366v1",
-      "score": 37,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出动作专家预训练方法，提升VLA模型对未见指令的泛化，实验充分，有科研价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Zhejiang University"
-      ],
-      "method_tags": [
-        "VLA",
-        "Action Expert Pretraining",
-        "Language Generalization"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "VLA",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2606-12352",
-      "source": "arxiv",
-      "title": "CHORUS: Decentralized Multi-Embodiment Collaboration with One VLA Policy",
-      "title_zh": "CHORUS：基于单一VLA策略的去中心化多体协作",
-      "tldr_zh": "单一VLA模型实现去中心化多机器人协作，无需通信或单独策略。",
-      "cover_zh": "一个VLA模型控制所有机器人？去中心化协作竟比集中式更强！",
-      "abstract_zh": "多机器人协作使机器人能够高效完成从搬运沙发穿过门廊到在建筑工地组装结构等广泛任务。然而，在移动多机器人环境中实现这种协调仍然具有挑战性：基于团队联合观测的集中式方法随团队规模扩大而扩展性差，而每个机器人训练一个策略的去中心化方法通常需要显式对齐过程或推理时的信息共享来克服部分可观测性。我们的关键洞察是，预训练的视觉-语言-动作（VLA）模型的视觉运动先验应能仅从每个机器人的局部观测实现反应式、去中心化协作，无需这些推理时的假设。我们提出CHORUS，一个将单一VLA骨干适配到控制多样化多机器人团队的框架。推理时，每个机器人运行CHORUS的独立副本，仅基于自身观测和机器人标识提示。在包括移动卷尺测量、图书馆书籍交接和洗衣篮抬举的真实世界实验中，CHORUS相比去中心化从头训练模型提升了64个百分点的成功率，对队友行为的反应性提高了40个百分点，并优于集中式基线。这些结果共同表明，共享的VLA骨干能够实现去中心化多机器人协作，无需每个机器人单独的策略或推理时的机器人间通信。",
-      "authors": [
-        "Ria Doshi",
-        "Tian Gao",
-        "Annie Chen"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-10",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ Chelsea Finn"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ Jeannette Bohg"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-12352.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-12352-p2.jpg",
-        "assets/img/covers/arxiv-2606-12352-p3.jpg",
-        "assets/img/covers/arxiv-2606-12352-p4.jpg"
-      ],
-      "arxiv_id": "2606.12352",
-      "abs_url": "http://arxiv.org/abs/2606.12352v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.12352v1",
-      "score": 29,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "多机器人协作VLA，去中心化控制，真实实验验证，有显著性能提升",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Stanford University"
-      ],
-      "method_tags": [
-        "VLA",
-        "decentralized multi-robot collaboration"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "VLA",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2606-12402",
-      "source": "arxiv",
-      "title": "DIRECT: When and Where Should You Allocate Test-Time Compute in Embodied Planners?",
-      "title_zh": "DIRECT：在具身规划器中，何时何地分配测试时计算？",
-      "tldr_zh": "提出DIRECT路由框架，根据场景动态分配测试时计算，降低延迟同时保持成功率。",
-      "cover_zh": "测试时计算不是越多越好｜DIRECT用更少计算达到更强性能",
-      "abstract_zh": "视觉语言模型（VLM）越来越多地被部署为具身智能体的高层规划器，一种新兴策略是通过扩展测试时计算来提升能力。然而，我们观察到这样做会增加延迟、token使用量和FLOPs，同时在下游成功率上带来不均匀且往往递减的收益，限制了具身智能体的部署场景。我们认为，选择何时何地投入测试时计算是将前沿性能带入现实世界的关键。我们提出了DIRECT，一个路由框架，利用多模态场景上下文为每个提示分配计算资源，在成功-成本帕累托前沿上优于固定模型选择。在三个主要的扩展轴——思维链深度、模型大小和记忆历史——上，我们在VLABench和RoboMME上的实验表明，测试时计算并非统一的杠杆：不同轴带来性质不同的能力增益。我们在DROID设置中的物理Franka机械臂上验证了这些见解，涵盖零样本操作和长程链式任务，我们的路由器以高达65%的平均延迟降低匹配或超越了更强模型的成功率。最终，我们的结果表明，天真地扩展测试时计算是浪费的，而DIRECT能够以极低的成本在机器人系统中提供前沿水平的具身规划。项目页面：jadee-dao.github.io/direct/。",
-      "authors": [
-        "Jadelynn Dao",
-        "Milan Ganai",
-        "Yasmina Abukhadra"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-10",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ Chelsea Finn"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ Jiajun Wu"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-12402.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-12402-p2.jpg",
-        "assets/img/covers/arxiv-2606-12402-p3.jpg",
-        "assets/img/covers/arxiv-2606-12402-p4.jpg"
-      ],
-      "arxiv_id": "2606.12402",
-      "abs_url": "http://arxiv.org/abs/2606.12402v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.12402v1",
-      "score": 29,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出测试时计算分配框架，在VLABench和真实Franka上验证，对VLM规划器效率提升有高参考价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Stanford University"
-      ],
-      "method_tags": [
-        "Test-Time Compute",
-        "Routing",
-        "VLM"
-      ],
-      "platform": [
-        "Franka"
-      ],
-      "sim_stack": [],
-      "method_family": "VLA",
+      "method_family": "Foundation",
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": []
@@ -641,59 +777,6 @@
       "demo_videos": []
     },
     {
-      "id": "arxiv-2606-12027",
-      "source": "arxiv",
-      "title": "Learning Unions of Convex Sets via Invertible Latent Decomposition for Path Planning",
-      "title_zh": "通过可逆隐式分解学习凸集并集用于路径规划",
-      "tldr_zh": "提出ILD框架，联合学习可逆映射和隐空间凸集并集，实现高效无碰撞路径规划。",
-      "cover_zh": "路径规划新突破｜可逆隐式分解让凸集并集既灵活又保约束",
-      "abstract_zh": "在杂乱的真实环境中进行无碰撞路径规划依赖于对无碰撞空间的表示，现有表示大致分为两类。显式表示（如凸集并集）可作为硬约束嵌入基于优化的规划器，但其参数随配置空间维度增长而扩展性差。隐式表示则灵活且能良好扩展至复杂几何形状，但通常缺乏此类保证。我们提出ILD（可逆隐式分解）框架，联合学习一个可逆映射和隐空间中显式凸多面体的并集。规划在隐凸集上进行，可逆映射将所得路径解码回原始配置空间，同时保持相对于细化后的显式安全区域的可行性。我们进一步提出可见性引导采样（VGS）以保持凸集连通性用于路径规划。在2D导航、6自由度及14自由度操作环境中，ILD相比先前基线实现了更广的覆盖、更好的集间连通性和更高的路径规划成功率，且在测试时细化后零误报。在14自由度双臂操作器上，我们进一步展示了实时无碰撞规划，测试时细化可适应真实部署中场景几何变化（单6自由度臂）。",
-      "authors": [
-        "Taerim Yoon",
-        "Dongho Kang",
-        "Kisang Park"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-10",
-      "channels": [
-        "manipulation",
-        "sim2real"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-12027.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-12027-p2.jpg",
-        "assets/img/covers/arxiv-2606-12027-p3.jpg",
-        "assets/img/covers/arxiv-2606-12027-p4.jpg"
-      ],
-      "arxiv_id": "2606.12027",
-      "abs_url": "http://arxiv.org/abs/2606.12027v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.12027v1",
-      "score": 17,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出可逆隐式分解学习凸集并用于路径规划，在6-DoF和14-DoF操作任务上验证，对操作规划有高参考价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Korea University",
-        "ETH Zurich"
-      ],
-      "method_tags": [
-        "invertible latent decomposition",
-        "convex polytopes",
-        "path planning"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Hybrid",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
       "id": "arxiv-2606-12759",
       "source": "arxiv",
       "title": "Sparse2Act: Learning Action-Aligned Sparse 3D Representations for Cross-Domain Robot Manipulation",
@@ -846,59 +929,6 @@
       ],
       "method_family": "RL",
       "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2606-12217",
-      "source": "arxiv",
-      "title": "Making Foresight Actionable: Repurposing Representation Alignment in World Action Models",
-      "title_zh": "让预见可操作：在世界动作模型中重新利用表示对齐",
-      "tldr_zh": "提出AGRA对齐视频扩散特征与语义表示，提升世界动作模型的动作引导性。",
-      "cover_zh": "视频生成模型能预测未来，但动作却不准？AGRA一招对齐表示，让机器人操作更鲁棒！",
-      "abstract_zh": "世界动作模型（WAM）通过使用视频生成模型在产生控制动作之前建模未来场景演化，为机器人操作提供了一条有前景的路径。然而，我们的实证观察揭示了一个现象：生成看似合理的视觉未来并不总能保证提取出准确的动作。为了诊断这一失败，我们进行了动作头注意力分析和因果干预。我们发现，动作解码器未能关注任务相关的交互区域，并且对任务无关区域的扰动保持敏感。这揭示了一种表示不匹配：为视觉重建优化的隐藏状态并非天然地以适用于低级动作控制的形式组织。在本文中，我们提出了AGRA，一种动作引导的表示对齐目标，通过将中间视频扩散特征与来自基础视觉编码器的空间一致语义表示对齐，来正则化世界-动作接口。我们在真实世界的操作任务上评估了AGRA。实验表明，AGRA使世界模型表示更加动作引导：通过将动作解码器聚焦于正确的交互区域，它提高了物体定位精度和功能理解，并使策略对任务无关区域的扰动更加鲁棒。因此，AGRA在分布内性能和分布外泛化上均持续优于基线世界动作模型。",
-      "authors": [
-        "Lu Qiu",
-        "Yizhuo Li",
-        "Yi Chen"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-06-10",
-      "channels": [
-        "manipulation",
-        "world-model"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-12217.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-12217-p2.jpg",
-        "assets/img/covers/arxiv-2606-12217-p3.jpg",
-        "assets/img/covers/arxiv-2606-12217-p4.jpg"
-      ],
-      "arxiv_id": "2606.12217",
-      "abs_url": "http://arxiv.org/abs/2606.12217v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.12217v1",
-      "score": 14,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出世界动作模型中的表征对齐方法，解决视觉预测与动作提取不匹配问题，有实验验证，对世界模型用于机器人操作有重要价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "The University of Hong Kong",
-        "Huawei Noah's Ark Lab"
-      ],
-      "method_tags": [
-        "World Action Model",
-        "Representation Alignment",
-        "Manipulation"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Foundation",
-      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": []
     },

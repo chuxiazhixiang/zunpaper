@@ -62,6 +62,66 @@
       "demo_videos": []
     },
     {
+      "id": "arxiv-2606-09314",
+      "source": "arxiv",
+      "title": "KPGrasp: Scalable Keypoint Flow Matching for Dexterous Grasp Generation",
+      "title_zh": "KPGrasp：面向灵巧抓取生成的可扩展关键点流匹配",
+      "tldr_zh": "KPGrasp用流匹配和关键点参数化实现高效灵巧抓取，无需接触损失。",
+      "cover_zh": "不用接触损失也能抓得稳？这个新框架在灵巧抓取上直接反超基线47%",
+      "abstract_zh": "生成高质量的灵巧抓取对基于学习的方法仍然具有挑战性，这些方法通常依赖于精心调整的接触损失或昂贵的基于接触的测试时优化。我们提出KPGrasp，一个流匹配框架，从大规模数据中学习灵巧抓取先验，而不依赖接触损失或基于接触的测试时优化。KPGrasp将全欧几里得3D手部关键点参数化与简单且可扩展的Transformer流模型相结合。该参数化避免了传统混合SE(3)姿态和关节角输出空间的缺点，在与物体点云相同的坐标系中表达抓取，从而实现原生空间推理；Transformer流模型仅使用标准流匹配损失进行训练，并随数据、模型容量和批大小有效扩展。实验在两个仿真基准上展示了最先进的性能。在Dexonomy基准上，它达到了76.3%的抓取成功率，比最强的直接可比基线提高了47.4%，同时将穿透深度减少到2.4毫米。同一模型在DexGrasp Anything基准上也无需微调即实现了最佳平均性能。对于批量推理，KPGrasp每个抓取仅需0.032秒。最后，在20个不同物体上的真实世界实验表明，该流程可以在实际环境中部署。",
+      "authors": [
+        "Yuansen Huang",
+        "Jiayi Chen",
+        "Haoran Liu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-08",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Li Yi"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-09314.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-09314-p2.jpg",
+        "assets/img/covers/arxiv-2606-09314-p3.jpg",
+        "assets/img/covers/arxiv-2606-09314-p4.jpg"
+      ],
+      "arxiv_id": "2606.09314",
+      "abs_url": "http://arxiv.org/abs/2606.09314v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.09314v1",
+      "score": 54,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出可扩展的流匹配框架用于灵巧手抓取生成，性能显著提升，有仿真和真实实验",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Tsinghua University"
+      ],
+      "method_tags": [
+        "Flow Matching",
+        "Keypoint Parameterization",
+        "Dexterous Grasping"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "Diffusion",
+      "real_robot": "yes",
+      "training_summary": "Large-scale data, model capacity scaling",
+      "demo_videos": []
+    },
+    {
       "id": "arxiv-2606-09630",
       "source": "arxiv",
       "title": "ReCoVLA: VLM-Guided Reward Compilation for Failure Recovery in Vision-Language-Action Policies",
@@ -117,6 +177,182 @@
       "method_family": "Hybrid",
       "real_robot": "yes",
       "training_summary": "in-simulation residual-policy training, zero-shot sim-to-real",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2606-09457",
+      "source": "arxiv",
+      "title": "$ω$-EVA: Envision, Verify, and Act with Latent Interactive World Models",
+      "title_zh": "$ω$-EVA：基于潜在交互世界模型的设想、验证与行动",
+      "tldr_zh": "提出潜在交互世界模型，让策略在行动前验证自身提议的后果。",
+      "cover_zh": "动作前先“脑补”后果？这个新框架让机器人学会三思而后行",
+      "abstract_zh": "具身策略通常直接将当前观测映射到动作，而候选动作的后果隐含其中。世界模型提供预测性监督、表征或外部模拟，但很少让策略在行动前检查自身提议的想象后果。我们提出 $ω$-EVA，一种潜在交互世界模型，实现了用于具身动作生成的“设想-验证-行动”循环。其三阶段框架学习动作条件潜在动力学，在动力学感知视觉表征上训练语言条件流策略，并将策略的提议通过世界模型反馈。一个三分支精炼器联合推理当前状态、提议条件未来和提议动作，以生成最终动作块。由于后果推理保持在潜在特征空间中，$ω$-EVA 在推理时避免了生成未来视频。在多种单臂、双臂、长时域和扰动仿真设置中的评估表明，完整的交互流程持续改进提议策略，而潜在诊断揭示了有意义的动作条件未来结构。$ω$-EVA 拥有约 12 亿参数且无需额外的机器人数据预训练，展示了紧凑且具有竞争力的性能-规模-数据权衡，使世界模型成为主动的动作反馈模块而非被动预测器。",
+      "authors": [
+        "Zhenguo Sun",
+        "Yu Sun",
+        "Hande Huang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-08",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ TUM"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-09457.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-09457-p2.jpg",
+        "assets/img/covers/arxiv-2606-09457-p3.jpg",
+        "assets/img/covers/arxiv-2606-09457-p4.jpg"
+      ],
+      "arxiv_id": "2606.09457",
+      "abs_url": "http://arxiv.org/abs/2606.09457v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.09457v1",
+      "score": 42,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出潜在交互世界模型实现'设想-验证-行动'循环，用于具身动作生成，属于世界模型核心方向",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Technical University of Munich"
+      ],
+      "method_tags": [
+        "World Model",
+        "Latent Dynamics",
+        "Action-Conditioned"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "WorldModel",
+      "real_robot": "no",
+      "training_summary": "1.2B parameters, no additional robot-data pretraining",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2606-09572",
+      "source": "arxiv",
+      "title": "CT-VAM: A Cerebello-Thalamic-Inspired Vision-Action Model for Efficient Visuomotor Control",
+      "title_zh": "CT-VAM：受小脑-丘脑启发的视觉-动作模型，用于高效视动控制",
+      "tldr_zh": "受小脑-丘脑启发的68M参数视觉-动作模型，实现高效视动控制。",
+      "cover_zh": "68M参数吊打大模型？这个受小脑启发的机器人控制框架，推理快还省资源！",
+      "abstract_zh": "视觉-语言-动作模型在机器人操作中展现出巨大潜力，但语言主要用于指定任务意图，而非在高频低层执行中反复处理。受此分离启发，我们提出了一种受小脑-丘脑启发的视觉-动作模型（CT-VAM），用于高效的任务条件视动控制。CT-VAM作为一个紧凑的局部执行策略，从双视角视觉观察、本体感觉和轻量级任务条件中预测动作片段，有望实现实用的云-边缘范式：高层语义推理由大模型处理，而快速闭环控制运行在本地硬件上。为有效融合异构输入，CT-VAM引入了TARS（丘脑动作路由流），一种流分离的条件注意力解码器，独立路由动作、视觉和任务流，防止密集的感知标记淹没紧凑的任务相关条件。仅68M参数，CT-VAM在LIBERO上取得了与更大规模VLA模型相当的成功率，同时降低了推理延迟。结合用于异步片段执行的流一致修补，CT-VAM支持高频控制，并在资源受限的机器人平台上展示了鲁棒的实物部署。",
+      "authors": [
+        "Jiacheng Li",
+        "Yize Guo",
+        "Jiabin Guo"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-08",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ USTC"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-09572.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-09572-p2.jpg",
+        "assets/img/covers/arxiv-2606-09572-p3.jpg",
+        "assets/img/covers/arxiv-2606-09572-p4.jpg"
+      ],
+      "arxiv_id": "2606.09572",
+      "abs_url": "http://arxiv.org/abs/2606.09572v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.09572v1",
+      "score": 40,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出高效VLA模型，在LIBERO上达到SOTA，适合资源受限平台，有科研价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Science and Technology of China"
+      ],
+      "method_tags": [
+        "Vision-Action Model",
+        "Visuomotor Control",
+        "Efficient Inference"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "VLA",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2606-09798",
+      "source": "arxiv",
+      "title": "SynManDex: Synthesizing Human-like Dexterous Grasps from Synthetic Human Pre-Grasps",
+      "title_zh": "SynManDex：从合成人类预抓取生成类人灵巧抓取",
+      "tldr_zh": "用人类预抓取引导机器人灵巧抓取，仿真与实物成功率均超80%",
+      "cover_zh": "机器人手也能像人一样抓取？这个新方法成功率83%还超自然",
+      "abstract_zh": "人类手-物体交互编码了功能意图，但直接迁移到机器人手常因形态、接触和可达性约束而失败。我们提出SynManDex，一个合成流水线，利用生成的人类预抓取作为可供性感知的提议，并通过机器人原生优化解决最终接触。SynManDex采样物体条件化的数字人类预抓取，将其重定向到灵巧机器人手姿态，在目标实体上优化力闭合接触，并接受通过每一步检查的轨迹。生成的关键帧支持抓取-提升演示以及各种抓取操作任务，如倒茶、拍照和吹笛子，这些任务由VLM智能体设计。因此，SynManDex结合了高抓取质量（86.4%抓取稳定性）与4.67/5的人类相似度（93.4%）。在仿真中达到80.7%的成功率，在应用于36自由度双臂灵巧机器人平台时，真实机器人成功率为25/30（83.3%）。",
+      "authors": [
+        "Yanming Shao",
+        "Zanxin Chen",
+        "Wenwei Lin"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-08",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 上海 AI Lab"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ SJTU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-09798.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-09798-p2.jpg",
+        "assets/img/covers/arxiv-2606-09798-p3.jpg",
+        "assets/img/covers/arxiv-2606-09798-p4.jpg"
+      ],
+      "arxiv_id": "2606.09798",
+      "abs_url": "http://arxiv.org/abs/2606.09798v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.09798v1",
+      "score": 40,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "灵巧手抓取合成与重定向，结合VLM，仿真与真机验证，高稳定性和类人性",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Shanghai Jiao Tong University",
+        "Shanghai AI Laboratory"
+      ],
+      "method_tags": [
+        "dexterous grasping",
+        "human-likeness",
+        "retargeting"
+      ],
+      "platform": [
+        "bimanual dexterous robotic platform"
+      ],
+      "sim_stack": [],
+      "method_family": "Hybrid",
+      "real_robot": "yes",
+      "training_summary": "",
       "demo_videos": []
     },
     {
@@ -232,62 +468,6 @@
       "method_family": "Hardware",
       "real_robot": "yes",
       "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2606-09314",
-      "source": "arxiv",
-      "title": "KPGrasp: Scalable Keypoint Flow Matching for Dexterous Grasp Generation",
-      "title_zh": "KPGrasp：面向灵巧抓取生成的可扩展关键点流匹配",
-      "tldr_zh": "KPGrasp用流匹配和关键点参数化实现高效灵巧抓取，无需接触损失。",
-      "cover_zh": "不用接触损失也能抓得稳？这个新框架在灵巧抓取上直接反超基线47%",
-      "abstract_zh": "生成高质量的灵巧抓取对基于学习的方法仍然具有挑战性，这些方法通常依赖于精心调整的接触损失或昂贵的基于接触的测试时优化。我们提出KPGrasp，一个流匹配框架，从大规模数据中学习灵巧抓取先验，而不依赖接触损失或基于接触的测试时优化。KPGrasp将全欧几里得3D手部关键点参数化与简单且可扩展的Transformer流模型相结合。该参数化避免了传统混合SE(3)姿态和关节角输出空间的缺点，在与物体点云相同的坐标系中表达抓取，从而实现原生空间推理；Transformer流模型仅使用标准流匹配损失进行训练，并随数据、模型容量和批大小有效扩展。实验在两个仿真基准上展示了最先进的性能。在Dexonomy基准上，它达到了76.3%的抓取成功率，比最强的直接可比基线提高了47.4%，同时将穿透深度减少到2.4毫米。同一模型在DexGrasp Anything基准上也无需微调即实现了最佳平均性能。对于批量推理，KPGrasp每个抓取仅需0.032秒。最后，在20个不同物体上的真实世界实验表明，该流程可以在实际环境中部署。",
-      "authors": [
-        "Yuansen Huang",
-        "Jiayi Chen",
-        "Haoran Liu"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-08",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ Li Yi"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-09314.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-09314-p2.jpg",
-        "assets/img/covers/arxiv-2606-09314-p3.jpg",
-        "assets/img/covers/arxiv-2606-09314-p4.jpg"
-      ],
-      "arxiv_id": "2606.09314",
-      "abs_url": "http://arxiv.org/abs/2606.09314v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.09314v1",
-      "score": 29,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出可扩展的流匹配框架用于灵巧手抓取生成，性能显著提升，有仿真和真实实验",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Tsinghua University"
-      ],
-      "method_tags": [
-        "Flow Matching",
-        "Keypoint Parameterization",
-        "Dexterous Grasping"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Diffusion",
-      "real_robot": "yes",
-      "training_summary": "Large-scale data, model capacity scaling",
       "demo_videos": []
     },
     {
@@ -505,58 +685,6 @@
       "demo_videos": []
     },
     {
-      "id": "arxiv-2606-09457",
-      "source": "arxiv",
-      "title": "$ω$-EVA: Envision, Verify, and Act with Latent Interactive World Models",
-      "title_zh": "$ω$-EVA：基于潜在交互世界模型的设想、验证与行动",
-      "tldr_zh": "提出潜在交互世界模型，让策略在行动前验证自身提议的后果。",
-      "cover_zh": "动作前先“脑补”后果？这个新框架让机器人学会三思而后行",
-      "abstract_zh": "具身策略通常直接将当前观测映射到动作，而候选动作的后果隐含其中。世界模型提供预测性监督、表征或外部模拟，但很少让策略在行动前检查自身提议的想象后果。我们提出 $ω$-EVA，一种潜在交互世界模型，实现了用于具身动作生成的“设想-验证-行动”循环。其三阶段框架学习动作条件潜在动力学，在动力学感知视觉表征上训练语言条件流策略，并将策略的提议通过世界模型反馈。一个三分支精炼器联合推理当前状态、提议条件未来和提议动作，以生成最终动作块。由于后果推理保持在潜在特征空间中，$ω$-EVA 在推理时避免了生成未来视频。在多种单臂、双臂、长时域和扰动仿真设置中的评估表明，完整的交互流程持续改进提议策略，而潜在诊断揭示了有意义的动作条件未来结构。$ω$-EVA 拥有约 12 亿参数且无需额外的机器人数据预训练，展示了紧凑且具有竞争力的性能-规模-数据权衡，使世界模型成为主动的动作反馈模块而非被动预测器。",
-      "authors": [
-        "Zhenguo Sun",
-        "Yu Sun",
-        "Hande Huang"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-08",
-      "channels": [
-        "manipulation",
-        "world-model"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-09457.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-09457-p2.jpg",
-        "assets/img/covers/arxiv-2606-09457-p3.jpg",
-        "assets/img/covers/arxiv-2606-09457-p4.jpg"
-      ],
-      "arxiv_id": "2606.09457",
-      "abs_url": "http://arxiv.org/abs/2606.09457v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.09457v1",
-      "score": 17,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出潜在交互世界模型实现'设想-验证-行动'循环，用于具身动作生成，属于世界模型核心方向",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Technical University of Munich"
-      ],
-      "method_tags": [
-        "World Model",
-        "Latent Dynamics",
-        "Action-Conditioned"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "WorldModel",
-      "real_robot": "no",
-      "training_summary": "1.2B parameters, no additional robot-data pretraining",
-      "demo_videos": []
-    },
-    {
       "id": "arxiv-2606-09499",
       "source": "arxiv",
       "title": "Targeting World Models to Compromise Robot Learning Pipelines",
@@ -654,57 +782,6 @@
       "sim_stack": [],
       "method_family": "Hardware",
       "real_robot": "",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2606-09572",
-      "source": "arxiv",
-      "title": "CT-VAM: A Cerebello-Thalamic-Inspired Vision-Action Model for Efficient Visuomotor Control",
-      "title_zh": "CT-VAM：受小脑-丘脑启发的视觉-动作模型，用于高效视动控制",
-      "tldr_zh": "受小脑-丘脑启发的68M参数视觉-动作模型，实现高效视动控制。",
-      "cover_zh": "68M参数吊打大模型？这个受小脑启发的机器人控制框架，推理快还省资源！",
-      "abstract_zh": "视觉-语言-动作模型在机器人操作中展现出巨大潜力，但语言主要用于指定任务意图，而非在高频低层执行中反复处理。受此分离启发，我们提出了一种受小脑-丘脑启发的视觉-动作模型（CT-VAM），用于高效的任务条件视动控制。CT-VAM作为一个紧凑的局部执行策略，从双视角视觉观察、本体感觉和轻量级任务条件中预测动作片段，有望实现实用的云-边缘范式：高层语义推理由大模型处理，而快速闭环控制运行在本地硬件上。为有效融合异构输入，CT-VAM引入了TARS（丘脑动作路由流），一种流分离的条件注意力解码器，独立路由动作、视觉和任务流，防止密集的感知标记淹没紧凑的任务相关条件。仅68M参数，CT-VAM在LIBERO上取得了与更大规模VLA模型相当的成功率，同时降低了推理延迟。结合用于异步片段执行的流一致修补，CT-VAM支持高频控制，并在资源受限的机器人平台上展示了鲁棒的实物部署。",
-      "authors": [
-        "Jiacheng Li",
-        "Yize Guo",
-        "Jiabin Guo"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-08",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-09572.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-09572-p2.jpg",
-        "assets/img/covers/arxiv-2606-09572-p3.jpg",
-        "assets/img/covers/arxiv-2606-09572-p4.jpg"
-      ],
-      "arxiv_id": "2606.09572",
-      "abs_url": "http://arxiv.org/abs/2606.09572v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.09572v1",
-      "score": 15,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出高效VLA模型，在LIBERO上达到SOTA，适合资源受限平台，有科研价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "University of Science and Technology of China"
-      ],
-      "method_tags": [
-        "Vision-Action Model",
-        "Visuomotor Control",
-        "Efficient Inference"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "VLA",
-      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": []
     },
@@ -809,60 +886,6 @@
       "sim_stack": [],
       "method_family": "Hybrid",
       "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2606-09798",
-      "source": "arxiv",
-      "title": "SynManDex: Synthesizing Human-like Dexterous Grasps from Synthetic Human Pre-Grasps",
-      "title_zh": "SynManDex：从合成人类预抓取生成类人灵巧抓取",
-      "tldr_zh": "用人类预抓取引导机器人灵巧抓取，仿真与实物成功率均超80%",
-      "cover_zh": "机器人手也能像人一样抓取？这个新方法成功率83%还超自然",
-      "abstract_zh": "人类手-物体交互编码了功能意图，但直接迁移到机器人手常因形态、接触和可达性约束而失败。我们提出SynManDex，一个合成流水线，利用生成的人类预抓取作为可供性感知的提议，并通过机器人原生优化解决最终接触。SynManDex采样物体条件化的数字人类预抓取，将其重定向到灵巧机器人手姿态，在目标实体上优化力闭合接触，并接受通过每一步检查的轨迹。生成的关键帧支持抓取-提升演示以及各种抓取操作任务，如倒茶、拍照和吹笛子，这些任务由VLM智能体设计。因此，SynManDex结合了高抓取质量（86.4%抓取稳定性）与4.67/5的人类相似度（93.4%）。在仿真中达到80.7%的成功率，在应用于36自由度双臂灵巧机器人平台时，真实机器人成功率为25/30（83.3%）。",
-      "authors": [
-        "Yanming Shao",
-        "Zanxin Chen",
-        "Wenwei Lin"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-08",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-09798.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-09798-p2.jpg",
-        "assets/img/covers/arxiv-2606-09798-p3.jpg",
-        "assets/img/covers/arxiv-2606-09798-p4.jpg"
-      ],
-      "arxiv_id": "2606.09798",
-      "abs_url": "http://arxiv.org/abs/2606.09798v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.09798v1",
-      "score": 15,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "灵巧手抓取合成与重定向，结合VLM，仿真与真机验证，高稳定性和类人性",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Shanghai Jiao Tong University",
-        "Shanghai AI Laboratory"
-      ],
-      "method_tags": [
-        "dexterous grasping",
-        "human-likeness",
-        "retargeting"
-      ],
-      "platform": [
-        "bimanual dexterous robotic platform"
-      ],
-      "sim_stack": [],
-      "method_family": "Hybrid",
-      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": []
     },

@@ -3,6 +3,79 @@
   "count": 15,
   "papers": [
     {
+      "id": "arxiv-2605-30347",
+      "source": "arxiv",
+      "title": "NeuROK: Generative 4D Neural Object Kinematics",
+      "title_zh": "NeuROK：生成式4D神经物体运动学",
+      "tldr_zh": "提出NeuROK，通过学习潜在运动学参数化生成4D物体动态变形。",
+      "cover_zh": "不用物理公式也能模拟物体变形？这个4D生成框架让动力学变得简单",
+      "abstract_zh": "数据驱动方法彻底改变了3D视觉，使Transformer能够有效重建和生成静态3D物体。然而，生成模拟4D动力学——静态物体在各种物理条件下的真实时间变形——仍然具有挑战性且往往缺乏通用性，尽管它在构建全面3D世界模型中至关重要。现有方法大多假设预定义的物理模型并使用系统辨识来估计参数，这限制了这些方法只能应用于特定类别和小规模数据集。我们提出，通过学习以物体为中心的物理系统的数据驱动运动学状态参数化，可以克服这些限制。具体来说，我们学习了一个表示物体所有可能状态的潜在空间，以及一个将任意采样的潜在向量映射到物体合理变形形状的解码器。我们将这种参数化称为神经物体运动学（NeuROK），并在一个精心策划的大规模4D数据集上训练了一个基于Transformer的编码器-解码器模型。这种公式化和学习到的模型显著简化了模拟动力学的生成，因为我们只需要从经典物理中拉格朗日力学的角度考虑低维潜在空间内的动力学。我们在多种动态物体类型上展示了这种神经模拟框架的有效性和通用性，显示出相对于先前工作的明显优势。项目页面：https://chen-geng.com/neurok",
+      "authors": [
+        "Chen Geng",
+        "Guangzhao He",
+        "Yue Gao"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-05-28",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Stanford"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Jiajun Wu"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Yue Gao"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-30347.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-30347-p2.jpg",
+        "assets/img/covers/arxiv-2605-30347-p3.jpg",
+        "assets/img/covers/arxiv-2605-30347-p4.jpg"
+      ],
+      "arxiv_id": "2605.30347",
+      "abs_url": "http://arxiv.org/abs/2605.30347v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.30347v1",
+      "score": 54,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出生成式4D神经运动学，用于物体动态模拟，属于世界模型范畴",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Stanford University",
+        "MIT"
+      ],
+      "method_tags": [
+        "Neural Object Kinematics",
+        "latent dynamics",
+        "4D generation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "Foundation",
+      "real_robot": "no",
+      "training_summary": "large-scale 4D dataset",
+      "demo_videos": [
+        {
+          "kind": "mp4",
+          "url": "https://chen-geng.com/rose4d/static/videos/teaser-small.mp4",
+          "embed_url": "https://chen-geng.com/rose4d/static/videos/teaser-small.mp4",
+          "title": "NeuROK: Generative 4D Neural Object Kinematics",
+          "source": "project_page"
+        }
+      ]
+    },
+    {
       "id": "arxiv-2605-30282",
       "source": "arxiv",
       "title": "Gaze2Act: Gaze-Conditioned Vision-Language-Action Policies for Interactive Robot Manipulation",
@@ -63,58 +136,60 @@
       "demo_videos": []
     },
     {
-      "id": "arxiv-2605-29605",
+      "id": "arxiv-2605-30346",
       "source": "arxiv",
-      "title": "VLAConf: Calibrated Task-Success Confidence for Vision-Language-Action Models",
-      "title_zh": "VLAConf：面向视觉-语言-动作模型的校准式任务成功置信度",
-      "tldr_zh": "提出VLAConf，利用冻结的VLA内部表示单次前向估计置信度，提升效率与泛化性。",
-      "cover_zh": "机器人不再盲目执行｜VLAConf让模型自己知道何时会失败",
-      "abstract_zh": "视觉-语言-动作（VLA）模型的置信度估计对于机器人在开放世界中执行操作任务至关重要，它为风险敏感决策和失败预测提供了关键信号。现有的置信度估计方法通常依赖于集成范式或动作令牌概率来预测任务成功的可能性，但在计算效率和跨架构泛化性方面仍面临挑战。这些方法通常需要重复采样，导致推理效率低下，并且仅限于具有离散动作输出的VLA模型，难以应用于连续动作空间。为解决这一问题，我们提出了VLAConf，一种单类判别式置信度框架。通过利用冻结的预训练VLA内部表示，VLAConf使用轻量级置信度头在单次前向传播中直接估计逐步骤的异常分数，从而消除了穷举重采样的开销。我们还使用步骤条件建模来编码沿操作轨迹的 rollout 阶段信息。在LIBERO基准上的实验表明，VLAConf显著提升了为事后校准构建的置信度信号的质量，在推理效率上大幅优于现有基线。VLAConf的有效性在真实机器人实验中得到了进一步验证。要访问源代码和补充视频，请访问 https://sites.google.com/view/vlaconf。",
+      "title": "YoCausal: How Far is Video Generation from World Model? A Causality Perspective",
+      "title_zh": "YoCausal：视频生成距离世界模型还有多远？一个因果视角",
+      "tldr_zh": "提出YoCausal基准，发现视频扩散模型感知时间箭头不等于理解因果关系。",
+      "cover_zh": "视频模型真懂因果？新基准揭示：时间箭头≠因果理解｜差距惊人",
+      "abstract_zh": "随着视频扩散模型（VDM）向世界模型迈进，一个关键问题浮现：它们是否真正理解因果关系，还是仅仅过拟合了统计时间模式？现有基准大多依赖合成数据，由于仿真到现实的差距，限制了真实世界的泛化能力。我们提出YoCausal，一个受认知科学中期望违背（VoE）范式启发的两级基准。通过零成本地时间反转真实视频作为自然反事实样本，YoCausal建立了一个可任意扩展的评估协议。第一级引入反向惊奇指数（RSI），通过去噪损失量化时间箭头感知。第二级引入因果认知指数（CCI），利用视觉语言模型（VLM）将数据集分层为因果和非因果子集，从而将真正的因果推理与时间偏差分离开来。对13个最先进VDM的评估揭示，感知时间箭头并不等同于理解因果关系，且与人类水平的因果认知相比仍存在显著差距。",
       "authors": [
-        "Dehao Huang",
-        "Aoxiang Gu",
-        "Chengjie Zhang"
+        "You-Zhe Xie",
+        "Yu-Hsuan Li",
+        "Jie-Ying Lee"
       ],
-      "primary_category": "cs.RO",
+      "primary_category": "cs.CV",
       "published": "2026-05-28",
       "channels": [
-        "manipulation"
+        "world-model",
+        "sim2real"
       ],
       "badges": [
         {
           "kind": "lab",
-          "label": "⭐ Yue Wang (USC)"
+          "label": "⭐ 上海 AI Lab"
         }
       ],
-      "cover_image": "assets/img/covers/arxiv-2605-29605.jpg",
+      "cover_image": "assets/img/covers/arxiv-2605-30346.jpg",
       "preview_pages": [
-        "assets/img/covers/arxiv-2605-29605-p2.jpg",
-        "assets/img/covers/arxiv-2605-29605-p3.jpg",
-        "assets/img/covers/arxiv-2605-29605-p4.jpg"
+        "assets/img/covers/arxiv-2605-30346-p2.jpg",
+        "assets/img/covers/arxiv-2605-30346-p3.jpg",
+        "assets/img/covers/arxiv-2605-30346-p4.jpg"
       ],
-      "arxiv_id": "2605.29605",
-      "abs_url": "http://arxiv.org/abs/2605.29605v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.29605v1",
-      "score": 35,
+      "arxiv_id": "2605.30346",
+      "abs_url": "http://arxiv.org/abs/2605.30346v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.30346v1",
+      "score": 45,
       "judge": {
         "relevant": true,
         "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出VLA模型置信度估计框架，提升操作任务安全性与效率，实验充分",
+        "primary_channel": "world-model",
+        "reason": "提出因果性基准YoCausal，评估视频生成模型作为世界模型的因果理解能力，直接关联world model频道。",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "National Taiwan University",
+        "Shanghai AI Laboratory"
+      ],
       "method_tags": [
-        "confidence estimation",
-        "VLA",
-        "one-class discriminative"
+        "Video Diffusion Model",
+        "Causality Benchmark",
+        "Violation of Expectation"
       ],
       "platform": [],
-      "sim_stack": [
-        "LIBERO"
-      ],
-      "method_family": "VLA",
-      "real_robot": "yes",
+      "sim_stack": [],
+      "method_family": "Benchmark",
+      "real_robot": "no",
       "training_summary": "",
       "demo_videos": []
     },
@@ -139,7 +214,7 @@
       "badges": [
         {
           "kind": "lab",
-          "label": "⭐ Yue Wang (USC)"
+          "label": "⭐ 阿里"
         }
       ],
       "cover_image": "assets/img/covers/arxiv-2605-30280.jpg",
@@ -151,7 +226,7 @@
       "arxiv_id": "2605.30280",
       "abs_url": "http://arxiv.org/abs/2605.30280v1",
       "pdf_url": "https://arxiv.org/pdf/2605.30280v1",
-      "score": 35,
+      "score": 40,
       "judge": {
         "relevant": true,
         "research_value": "high",
@@ -176,75 +251,6 @@
       "real_robot": "yes",
       "training_summary": "Large-scale joint pretraining over diverse data sources",
       "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-30347",
-      "source": "arxiv",
-      "title": "NeuROK: Generative 4D Neural Object Kinematics",
-      "title_zh": "NeuROK：生成式4D神经物体运动学",
-      "tldr_zh": "提出NeuROK，通过学习潜在运动学参数化生成4D物体动态变形。",
-      "cover_zh": "不用物理公式也能模拟物体变形？这个4D生成框架让动力学变得简单",
-      "abstract_zh": "数据驱动方法彻底改变了3D视觉，使Transformer能够有效重建和生成静态3D物体。然而，生成模拟4D动力学——静态物体在各种物理条件下的真实时间变形——仍然具有挑战性且往往缺乏通用性，尽管它在构建全面3D世界模型中至关重要。现有方法大多假设预定义的物理模型并使用系统辨识来估计参数，这限制了这些方法只能应用于特定类别和小规模数据集。我们提出，通过学习以物体为中心的物理系统的数据驱动运动学状态参数化，可以克服这些限制。具体来说，我们学习了一个表示物体所有可能状态的潜在空间，以及一个将任意采样的潜在向量映射到物体合理变形形状的解码器。我们将这种参数化称为神经物体运动学（NeuROK），并在一个精心策划的大规模4D数据集上训练了一个基于Transformer的编码器-解码器模型。这种公式化和学习到的模型显著简化了模拟动力学的生成，因为我们只需要从经典物理中拉格朗日力学的角度考虑低维潜在空间内的动力学。我们在多种动态物体类型上展示了这种神经模拟框架的有效性和通用性，显示出相对于先前工作的明显优势。项目页面：https://chen-geng.com/neurok",
-      "authors": [
-        "Chen Geng",
-        "Guangzhao He",
-        "Yue Gao"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-05-28",
-      "channels": [
-        "world-model"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ Jiajun Wu"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ Yue Gao"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2605-30347.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-30347-p2.jpg",
-        "assets/img/covers/arxiv-2605-30347-p3.jpg",
-        "assets/img/covers/arxiv-2605-30347-p4.jpg"
-      ],
-      "arxiv_id": "2605.30347",
-      "abs_url": "http://arxiv.org/abs/2605.30347v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.30347v1",
-      "score": 29,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出生成式4D神经运动学，用于物体动态模拟，属于世界模型范畴",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Stanford University",
-        "MIT"
-      ],
-      "method_tags": [
-        "Neural Object Kinematics",
-        "latent dynamics",
-        "4D generation"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Foundation",
-      "real_robot": "no",
-      "training_summary": "large-scale 4D dataset",
-      "demo_videos": [
-        {
-          "kind": "mp4",
-          "url": "https://chen-geng.com/rose4d/static/videos/teaser-small.mp4",
-          "embed_url": "https://chen-geng.com/rose4d/static/videos/teaser-small.mp4",
-          "title": "NeuROK: Generative 4D Neural Object Kinematics",
-          "source": "project_page"
-        }
-      ]
     },
     {
       "id": "arxiv-2605-30263",
@@ -453,55 +459,53 @@
       "demo_videos": []
     },
     {
-      "id": "arxiv-2605-30346",
+      "id": "arxiv-2605-29605",
       "source": "arxiv",
-      "title": "YoCausal: How Far is Video Generation from World Model? A Causality Perspective",
-      "title_zh": "YoCausal：视频生成距离世界模型还有多远？一个因果视角",
-      "tldr_zh": "提出YoCausal基准，发现视频扩散模型感知时间箭头不等于理解因果关系。",
-      "cover_zh": "视频模型真懂因果？新基准揭示：时间箭头≠因果理解｜差距惊人",
-      "abstract_zh": "随着视频扩散模型（VDM）向世界模型迈进，一个关键问题浮现：它们是否真正理解因果关系，还是仅仅过拟合了统计时间模式？现有基准大多依赖合成数据，由于仿真到现实的差距，限制了真实世界的泛化能力。我们提出YoCausal，一个受认知科学中期望违背（VoE）范式启发的两级基准。通过零成本地时间反转真实视频作为自然反事实样本，YoCausal建立了一个可任意扩展的评估协议。第一级引入反向惊奇指数（RSI），通过去噪损失量化时间箭头感知。第二级引入因果认知指数（CCI），利用视觉语言模型（VLM）将数据集分层为因果和非因果子集，从而将真正的因果推理与时间偏差分离开来。对13个最先进VDM的评估揭示，感知时间箭头并不等同于理解因果关系，且与人类水平的因果认知相比仍存在显著差距。",
+      "title": "VLAConf: Calibrated Task-Success Confidence for Vision-Language-Action Models",
+      "title_zh": "VLAConf：面向视觉-语言-动作模型的校准式任务成功置信度",
+      "tldr_zh": "提出VLAConf，利用冻结的VLA内部表示单次前向估计置信度，提升效率与泛化性。",
+      "cover_zh": "机器人不再盲目执行｜VLAConf让模型自己知道何时会失败",
+      "abstract_zh": "视觉-语言-动作（VLA）模型的置信度估计对于机器人在开放世界中执行操作任务至关重要，它为风险敏感决策和失败预测提供了关键信号。现有的置信度估计方法通常依赖于集成范式或动作令牌概率来预测任务成功的可能性，但在计算效率和跨架构泛化性方面仍面临挑战。这些方法通常需要重复采样，导致推理效率低下，并且仅限于具有离散动作输出的VLA模型，难以应用于连续动作空间。为解决这一问题，我们提出了VLAConf，一种单类判别式置信度框架。通过利用冻结的预训练VLA内部表示，VLAConf使用轻量级置信度头在单次前向传播中直接估计逐步骤的异常分数，从而消除了穷举重采样的开销。我们还使用步骤条件建模来编码沿操作轨迹的 rollout 阶段信息。在LIBERO基准上的实验表明，VLAConf显著提升了为事后校准构建的置信度信号的质量，在推理效率上大幅优于现有基线。VLAConf的有效性在真实机器人实验中得到了进一步验证。要访问源代码和补充视频，请访问 https://sites.google.com/view/vlaconf。",
       "authors": [
-        "You-Zhe Xie",
-        "Yu-Hsuan Li",
-        "Jie-Ying Lee"
+        "Dehao Huang",
+        "Aoxiang Gu",
+        "Chengjie Zhang"
       ],
-      "primary_category": "cs.CV",
+      "primary_category": "cs.RO",
       "published": "2026-05-28",
       "channels": [
-        "world-model",
-        "sim2real"
+        "manipulation"
       ],
       "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-30346.jpg",
+      "cover_image": "assets/img/covers/arxiv-2605-29605.jpg",
       "preview_pages": [
-        "assets/img/covers/arxiv-2605-30346-p2.jpg",
-        "assets/img/covers/arxiv-2605-30346-p3.jpg",
-        "assets/img/covers/arxiv-2605-30346-p4.jpg"
+        "assets/img/covers/arxiv-2605-29605-p2.jpg",
+        "assets/img/covers/arxiv-2605-29605-p3.jpg",
+        "assets/img/covers/arxiv-2605-29605-p4.jpg"
       ],
-      "arxiv_id": "2605.30346",
-      "abs_url": "http://arxiv.org/abs/2605.30346v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.30346v1",
-      "score": 20,
+      "arxiv_id": "2605.29605",
+      "abs_url": "http://arxiv.org/abs/2605.29605v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.29605v1",
+      "score": 15,
       "judge": {
         "relevant": true,
         "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出因果性基准YoCausal，评估视频生成模型作为世界模型的因果理解能力，直接关联world model频道。",
+        "primary_channel": "manipulation",
+        "reason": "提出VLA模型置信度估计框架，提升操作任务安全性与效率，实验充分",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [
-        "National Taiwan University",
-        "Shanghai AI Laboratory"
-      ],
+      "institutions": [],
       "method_tags": [
-        "Video Diffusion Model",
-        "Causality Benchmark",
-        "Violation of Expectation"
+        "confidence estimation",
+        "VLA",
+        "one-class discriminative"
       ],
       "platform": [],
-      "sim_stack": [],
-      "method_family": "Benchmark",
-      "real_robot": "no",
+      "sim_stack": [
+        "LIBERO"
+      ],
+      "method_family": "VLA",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": []
     },

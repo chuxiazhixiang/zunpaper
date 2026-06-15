@@ -3,6 +3,302 @@
   "count": 20,
   "papers": [
     {
+      "id": "arxiv-2605-15141",
+      "source": "arxiv",
+      "title": "Causal Forcing++: Scalable Few-Step Autoregressive Diffusion Distillation for Real-Time Interactive Video Generation",
+      "title_zh": "Causal Forcing++：面向实时交互视频生成的可扩展少步自回归扩散蒸馏",
+      "tldr_zh": "提出Causal Forcing++，通过因果一致性蒸馏实现帧级1-2步自回归视频生成，降低延迟和训练成本。",
+      "cover_zh": "视频生成只需1-2步？延迟砍半，质量反超SOTA！",
+      "abstract_zh": "实时交互式视频生成需要低延迟、流式且可控的生成。现有的自回归（AR）扩散蒸馏方法通过将双向基模型蒸馏为少步AR学生模型，在分块4步生成中取得了不错的效果，但受限于粗粒度的响应和不可忽略的采样延迟。本文研究了一种更激进的设置：帧级自回归，仅需1-2步采样。在此设置下，我们发现少步AR学生模型的初始化是关键瓶颈：现有策略要么目标不对齐，要么无法进行少步生成，要么成本过高难以扩展。我们提出Causal Forcing++，一种原理性且可扩展的流水线，使用因果一致性蒸馏（causal CD）进行少步AR初始化。核心思想是：因果CD学习与因果ODE蒸馏相同的AR条件流映射，但仅从相邻时间步之间的单个在线教师ODE步骤获取监督，避免了预计算和存储完整PF-ODE轨迹的需求。这使得初始化更高效且更易优化。我们的流水线在帧级2步设置下，VBench总分、VBench质量和VisionReward分别比当前最先进的分块4步Causal Forcing高出0.1、0.3和0.335，同时首帧延迟降低50%，第二阶段训练成本降低约4倍。我们进一步将流水线扩展到基于动作条件的世界模型生成，类似于Genie3。项目页面：https://github.com/thu-ml/Causal-Forcing 和 https://github.com/shengshu-ai/minWM。",
+      "authors": [
+        "Min Zhao",
+        "Hongzhou Zhu",
+        "Kaiwen Zheng"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-05-14",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-15141.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-15141-p2.jpg",
+        "assets/img/covers/arxiv-2605-15141-p3.jpg",
+        "assets/img/covers/arxiv-2605-15141-p4.jpg"
+      ],
+      "arxiv_id": "2605.15141",
+      "abs_url": "http://arxiv.org/abs/2605.15141v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.15141v1",
+      "score": 45,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出因果一致性蒸馏用于帧级自回归视频生成，并扩展到动作条件世界模型，与Genie3精神一致，属于世界模型方向。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Tsinghua University",
+        "Shengshu AI"
+      ],
+      "method_tags": [
+        "Diffusion Distillation",
+        "Autoregressive",
+        "Real-Time Video Generation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "Diffusion",
+      "real_robot": "no",
+      "training_summary": "",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-15157",
+      "source": "arxiv",
+      "title": "Hand-in-the-Loop: Improving Dexterous VLA via Seamless Interventional Correction",
+      "title_zh": "手在环中：通过无缝干预校正提升灵巧VLA模型",
+      "tldr_zh": "提出HandITL方法，通过无缝融合人类校正意图与自主执行，避免灵巧操作中的手势跳跃，显著提升策略性能。",
+      "cover_zh": "机器人手不再“抽风”｜新方法让人类干预如丝般顺滑",
+      "abstract_zh": "视觉-语言-动作（VLA）模型在灵巧操作中容易产生累积误差，高维动作空间和接触丰富的动力学使得微小策略偏差在长时域内被放大。交互式模仿学习（IIL）可以通过人类接管数据来优化策略，但将其应用于高自由度（DoF）机械手时，由于人类遥操作与策略执行在接管时刻存在指令不匹配，导致机器人手部配置突变，即“手势跳跃”。我们提出Hand-in-the-Loop（HandITL），一种无缝的人机环中干预方法，它将人类校正意图与自主策略执行融合，以避免双手灵巧操作中的手势跳跃。与直接遥操作接管相比，HandITL将接管抖动降低了99.8%，并保持了稳健的接管后操作能力，抓取失败率降低87.5%，平均完成时间缩短19.1%。我们在需要双手协调、工具使用和精细长时域操作的任务上验证了HandITL。当用于收集策略优化的干预数据时，HandITL生成的策略在三个长时域灵巧任务上平均比使用标准遥操作数据训练的策略高出19%。",
+      "authors": [
+        "Zhuohang Li",
+        "Liqun Huang",
+        "Wei Xu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-14",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation",
+        "teleop"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ SJTU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-15157.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-15157-p2.jpg",
+        "assets/img/covers/arxiv-2605-15157-p3.jpg",
+        "assets/img/covers/arxiv-2605-15157-p4.jpg"
+      ],
+      "arxiv_id": "2605.15157",
+      "abs_url": "http://arxiv.org/abs/2605.15157v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.15157v1",
+      "score": 45,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出人机协同干预方法解决灵巧操作中VLA的复合误差，实验验证有效，对IL和VLA有参考价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Shanghai Jiao Tong University"
+      ],
+      "method_tags": [
+        "Interactive Imitation Learning",
+        "dexterous manipulation",
+        "human-in-the-loop"
+      ],
+      "platform": [
+        "Shadow Hand"
+      ],
+      "sim_stack": [],
+      "method_family": "IL",
+      "real_robot": "yes",
+      "training_summary": "intervention data from human corrections",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-15122",
+      "source": "arxiv",
+      "title": "CoCo-InEKF: State Estimation with Learned Contact Covariances in Dynamic, Contact-Rich Scenarios",
+      "title_zh": "CoCo-InEKF：动态接触丰富场景中基于学习接触协方差的状态估计",
+      "tldr_zh": "提出用连续接触协方差替代二元接触状态，提升动态场景下腿式机器人状态估计的鲁棒性。",
+      "cover_zh": "告别二元接触｜连续协方差让机器人跳舞更稳更准",
+      "abstract_zh": "腿式机器人在高度动态运动中的鲁棒状态估计仍然具有挑战性，尤其是在动态、接触丰富的场景中。传统方法通常依赖二元接触状态，无法捕捉部分接触或方向性滑动的细微差别。本文提出CoCo-InEKF，一种可微分的不变扩展卡尔曼滤波器，利用连续接触速度协方差代替二元接触状态。这些学习到的协方差允许方法动态调节接触置信度，适应从牢固接触到方向性滑动或无接触等更细微的条件。为了预测一组预定义接触候选点的协方差，我们采用轻量级神经网络，使用状态误差损失进行端到端训练。该方法消除了对启发式真实接触标签的需求。此外，我们提出了一种自动接触候选点选择程序，并证明我们的方法对其精确位置不敏感。在双足机器人上的实验表明，与基线方法相比，线性速度估计具有优越的精度-效率权衡，以及改进的滤波器一致性。这使得能够鲁棒执行具有挑战性的运动，包括舞蹈和复杂的地面交互——无论是在仿真中还是在现实世界中。",
+      "authors": [
+        "Michael Baumgartner",
+        "David Müller",
+        "Agon Serifi"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-14",
+      "channels": [
+        "manipulation",
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ ETH (RSL)"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-15122.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-15122-p2.jpg",
+        "assets/img/covers/arxiv-2605-15122-p3.jpg",
+        "assets/img/covers/arxiv-2605-15122-p4.jpg"
+      ],
+      "arxiv_id": "2605.15122",
+      "abs_url": "http://arxiv.org/abs/2605.15122v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.15122v1",
+      "score": 42,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "locomotion",
+        "reason": "提出可微IEKF与学习接触协方差，提升双足机器人动态运动状态估计精度与鲁棒性",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Disney Research",
+        "ETH Zurich"
+      ],
+      "method_tags": [
+        "Invariant Extended Kalman Filter",
+        "Contact Covariance Learning",
+        "State Estimation"
+      ],
+      "platform": [
+        "Bipedal robot"
+      ],
+      "sim_stack": [],
+      "method_family": "Hybrid",
+      "real_robot": "yes",
+      "training_summary": "End-to-end training with state-error loss",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-15178",
+      "source": "arxiv",
+      "title": "SANA-WM: Efficient Minute-Scale World Modeling with Hybrid Linear Diffusion Transformer",
+      "title_zh": "SANA-WM：基于混合线性扩散Transformer的高效分钟级世界模型",
+      "tldr_zh": "提出高效开源世界模型SANA-WM，实现分钟级720p视频生成，吞吐量提升36倍。",
+      "cover_zh": "开源世界模型也能分钟级生成720p视频？效率还比工业基线高36倍！",
+      "abstract_zh": "我们提出SANA-WM，一个高效的26亿参数开源世界模型，原生训练用于一分钟视频生成，可合成高保真、720p、分钟级视频并支持精确相机控制。SANA-WM在视觉质量上达到与大规模工业基线（如LingBot-World和HY-WorldPlay）相当的水平，同时显著提升效率。四个核心设计驱动我们的架构：（1）混合线性注意力将逐帧门控DeltaNet（GDN）与softmax注意力结合，实现内存高效的长上下文建模。（2）双分支相机控制确保精确的6自由度轨迹遵循。（3）两阶段生成流水线对第一阶段输出应用长视频精炼器，提升序列的质量和一致性。（4）鲁棒标注流水线从公开视频中提取精确的米制6自由度相机位姿，生成高质量、时空一致的动作标签。在这些设计的驱动下，SANA-WM在数据、训练计算和推理硬件方面展现出卓越的效率：仅使用约21.3万带有米制位姿监督的公开视频片段，在64块H100上15天完成训练，并在单GPU上生成每个60秒片段；其蒸馏变体可在单张RTX 5090上通过NVFP4量化部署，以34秒去噪一个60秒720p片段。在我们的一分钟世界模型基准上，SANA-WM表现出比先前开源基线更强的动作跟随精度，并在视觉质量相当的情况下实现了36倍更高的吞吐量，用于可扩展的世界建模。",
+      "authors": [
+        "Haoyi Zhu",
+        "Haozhe Liu",
+        "Yuyang Zhao"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-05-14",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ NVIDIA"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-15178.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-15178-p2.jpg",
+        "assets/img/covers/arxiv-2605-15178-p3.jpg",
+        "assets/img/covers/arxiv-2605-15178-p4.jpg"
+      ],
+      "arxiv_id": "2605.15178",
+      "abs_url": "http://arxiv.org/abs/2605.15178v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.15178v1",
+      "score": 34,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出高效分钟级世界模型SANA-WM，含混合线性注意力、双分支相机控制等创新，性能与效率俱佳",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "MIT",
+        "NVIDIA",
+        "Tsinghua University"
+      ],
+      "method_tags": [
+        "World Model",
+        "Hybrid Linear Attention",
+        "Diffusion Transformer"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "WorldModel",
+      "real_robot": "no",
+      "training_summary": "213K video clips, 15 days on 64 H100s",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-15195",
+      "source": "arxiv",
+      "title": "VGGT-$Ω$",
+      "title_zh": "VGGT-$Ω$",
+      "tldr_zh": "VGGT-$Ω$通过架构改进和更大规模训练，在静态和动态场景重建上显著提升精度和效率。",
+      "cover_zh": "GPU内存仅需30%｜重建精度却飙升77%？这个新模型太强了！",
+      "abstract_zh": "近期前馈式重建模型（如VGGT）已被证明与传统基于优化的重建方法具有竞争力，同时还能提供对其他任务有用的几何感知特征。本文表明，这些模型的质量随模型和数据规模可预测地提升。为此，我们引入了VGGT-$Ω$，它在静态和动态场景的重建精度、效率和能力上均有显著改进。为了以前所未有的规模训练该模型，我们引入了提升训练效率的架构变化、支持动态场景的高质量数据标注流水线以及自监督学习协议。我们简化了VGGT的架构，采用单一密集预测头进行多任务监督，并移除了昂贵的高分辨率卷积层。我们还使用寄存器将场景信息聚合为紧凑表示，并引入寄存器注意力，将帧间信息交换限制在这些寄存器上，部分替代全局注意力。这样，在训练过程中，VGGT-$Ω$仅使用其前身约30%的GPU内存，使我们能够使用比先前工作多15倍的监督数据进行训练，并利用大量未标记视频数据。VGGT-$Ω$在多个基准测试中实现了静态和动态场景重建的强结果，例如，在Sintel上相机估计精度比之前最佳方法提高了77%。我们还表明，学习到的寄存器可以改进视觉-语言-动作模型，并支持与语言的对齐，这表明重建可以成为空间理解的一个强大且可扩展的代理任务。项目页面：http://vggt-omega.github.io/",
+      "authors": [
+        "Jianyuan Wang",
+        "Minghao Chen",
+        "Shangzhan Zhang"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-05-14",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Meta FAIR"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-15195.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-15195-p2.jpg",
+        "assets/img/covers/arxiv-2605-15195-p3.jpg",
+        "assets/img/covers/arxiv-2605-15195-p4.jpg"
+      ],
+      "arxiv_id": "2605.15195",
+      "abs_url": "http://arxiv.org/abs/2605.15195v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.15195v1",
+      "score": 31,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出可扩展的3D重建模型VGGT-Ω，支持动态场景，并展示其视觉特征可提升VLA模型，属于世界模型/空间理解方向。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Meta AI",
+        "University of Oxford"
+      ],
+      "method_tags": [
+        "feed-forward reconstruction",
+        "self-supervised learning",
+        "register attention"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "Foundation",
+      "real_robot": "no",
+      "training_summary": "15x more supervised data than prior work, plus unlabeled video",
+      "demo_videos": []
+    },
+    {
       "id": "arxiv-2605-14417",
       "source": "arxiv_discover",
       "title": "Before the Body Moves: Learning Anticipatory Joint Intent for Language-Conditioned Humanoid Control",
@@ -101,113 +397,6 @@
       "method_family": "MPC",
       "real_robot": "no",
       "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-15141",
-      "source": "arxiv",
-      "title": "Causal Forcing++: Scalable Few-Step Autoregressive Diffusion Distillation for Real-Time Interactive Video Generation",
-      "title_zh": "Causal Forcing++：面向实时交互视频生成的可扩展少步自回归扩散蒸馏",
-      "tldr_zh": "提出Causal Forcing++，通过因果一致性蒸馏实现帧级1-2步自回归视频生成，降低延迟和训练成本。",
-      "cover_zh": "视频生成只需1-2步？延迟砍半，质量反超SOTA！",
-      "abstract_zh": "实时交互式视频生成需要低延迟、流式且可控的生成。现有的自回归（AR）扩散蒸馏方法通过将双向基模型蒸馏为少步AR学生模型，在分块4步生成中取得了不错的效果，但受限于粗粒度的响应和不可忽略的采样延迟。本文研究了一种更激进的设置：帧级自回归，仅需1-2步采样。在此设置下，我们发现少步AR学生模型的初始化是关键瓶颈：现有策略要么目标不对齐，要么无法进行少步生成，要么成本过高难以扩展。我们提出Causal Forcing++，一种原理性且可扩展的流水线，使用因果一致性蒸馏（causal CD）进行少步AR初始化。核心思想是：因果CD学习与因果ODE蒸馏相同的AR条件流映射，但仅从相邻时间步之间的单个在线教师ODE步骤获取监督，避免了预计算和存储完整PF-ODE轨迹的需求。这使得初始化更高效且更易优化。我们的流水线在帧级2步设置下，VBench总分、VBench质量和VisionReward分别比当前最先进的分块4步Causal Forcing高出0.1、0.3和0.335，同时首帧延迟降低50%，第二阶段训练成本降低约4倍。我们进一步将流水线扩展到基于动作条件的世界模型生成，类似于Genie3。项目页面：https://github.com/thu-ml/Causal-Forcing 和 https://github.com/shengshu-ai/minWM。",
-      "authors": [
-        "Min Zhao",
-        "Hongzhou Zhu",
-        "Kaiwen Zheng"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-05-14",
-      "channels": [
-        "world-model"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-15141.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-15141-p2.jpg",
-        "assets/img/covers/arxiv-2605-15141-p3.jpg",
-        "assets/img/covers/arxiv-2605-15141-p4.jpg"
-      ],
-      "arxiv_id": "2605.15141",
-      "abs_url": "http://arxiv.org/abs/2605.15141v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.15141v1",
-      "score": 20,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出因果一致性蒸馏用于帧级自回归视频生成，并扩展到动作条件世界模型，与Genie3精神一致，属于世界模型方向。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Tsinghua University",
-        "Shengshu AI"
-      ],
-      "method_tags": [
-        "Diffusion Distillation",
-        "Autoregressive",
-        "Real-Time Video Generation"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Diffusion",
-      "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-15157",
-      "source": "arxiv",
-      "title": "Hand-in-the-Loop: Improving Dexterous VLA via Seamless Interventional Correction",
-      "title_zh": "手在环中：通过无缝干预校正提升灵巧VLA模型",
-      "tldr_zh": "提出HandITL方法，通过无缝融合人类校正意图与自主执行，避免灵巧操作中的手势跳跃，显著提升策略性能。",
-      "cover_zh": "机器人手不再“抽风”｜新方法让人类干预如丝般顺滑",
-      "abstract_zh": "视觉-语言-动作（VLA）模型在灵巧操作中容易产生累积误差，高维动作空间和接触丰富的动力学使得微小策略偏差在长时域内被放大。交互式模仿学习（IIL）可以通过人类接管数据来优化策略，但将其应用于高自由度（DoF）机械手时，由于人类遥操作与策略执行在接管时刻存在指令不匹配，导致机器人手部配置突变，即“手势跳跃”。我们提出Hand-in-the-Loop（HandITL），一种无缝的人机环中干预方法，它将人类校正意图与自主策略执行融合，以避免双手灵巧操作中的手势跳跃。与直接遥操作接管相比，HandITL将接管抖动降低了99.8%，并保持了稳健的接管后操作能力，抓取失败率降低87.5%，平均完成时间缩短19.1%。我们在需要双手协调、工具使用和精细长时域操作的任务上验证了HandITL。当用于收集策略优化的干预数据时，HandITL生成的策略在三个长时域灵巧任务上平均比使用标准遥操作数据训练的策略高出19%。",
-      "authors": [
-        "Zhuohang Li",
-        "Liqun Huang",
-        "Wei Xu"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-14",
-      "channels": [
-        "loco-manip-wbc",
-        "manipulation",
-        "teleop"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-15157.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-15157-p2.jpg",
-        "assets/img/covers/arxiv-2605-15157-p3.jpg",
-        "assets/img/covers/arxiv-2605-15157-p4.jpg"
-      ],
-      "arxiv_id": "2605.15157",
-      "abs_url": "http://arxiv.org/abs/2605.15157v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.15157v1",
-      "score": 20,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出人机协同干预方法解决灵巧操作中VLA的复合误差，实验验证有效，对IL和VLA有参考价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Shanghai Jiao Tong University"
-      ],
-      "method_tags": [
-        "Interactive Imitation Learning",
-        "dexterous manipulation",
-        "human-in-the-loop"
-      ],
-      "platform": [
-        "Shadow Hand"
-      ],
-      "sim_stack": [],
-      "method_family": "IL",
-      "real_robot": "yes",
-      "training_summary": "intervention data from human corrections",
       "demo_videos": []
     },
     {
@@ -343,61 +532,6 @@
       "method_family": "WorldModel",
       "real_robot": "",
       "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-15122",
-      "source": "arxiv",
-      "title": "CoCo-InEKF: State Estimation with Learned Contact Covariances in Dynamic, Contact-Rich Scenarios",
-      "title_zh": "CoCo-InEKF：动态接触丰富场景中基于学习接触协方差的状态估计",
-      "tldr_zh": "提出用连续接触协方差替代二元接触状态，提升动态场景下腿式机器人状态估计的鲁棒性。",
-      "cover_zh": "告别二元接触｜连续协方差让机器人跳舞更稳更准",
-      "abstract_zh": "腿式机器人在高度动态运动中的鲁棒状态估计仍然具有挑战性，尤其是在动态、接触丰富的场景中。传统方法通常依赖二元接触状态，无法捕捉部分接触或方向性滑动的细微差别。本文提出CoCo-InEKF，一种可微分的不变扩展卡尔曼滤波器，利用连续接触速度协方差代替二元接触状态。这些学习到的协方差允许方法动态调节接触置信度，适应从牢固接触到方向性滑动或无接触等更细微的条件。为了预测一组预定义接触候选点的协方差，我们采用轻量级神经网络，使用状态误差损失进行端到端训练。该方法消除了对启发式真实接触标签的需求。此外，我们提出了一种自动接触候选点选择程序，并证明我们的方法对其精确位置不敏感。在双足机器人上的实验表明，与基线方法相比，线性速度估计具有优越的精度-效率权衡，以及改进的滤波器一致性。这使得能够鲁棒执行具有挑战性的运动，包括舞蹈和复杂的地面交互——无论是在仿真中还是在现实世界中。",
-      "authors": [
-        "Michael Baumgartner",
-        "David Müller",
-        "Agon Serifi"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-14",
-      "channels": [
-        "manipulation",
-        "locomotion"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-15122.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-15122-p2.jpg",
-        "assets/img/covers/arxiv-2605-15122-p3.jpg",
-        "assets/img/covers/arxiv-2605-15122-p4.jpg"
-      ],
-      "arxiv_id": "2605.15122",
-      "abs_url": "http://arxiv.org/abs/2605.15122v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.15122v1",
-      "score": 17,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "locomotion",
-        "reason": "提出可微IEKF与学习接触协方差，提升双足机器人动态运动状态估计精度与鲁棒性",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Disney Research",
-        "ETH Zurich"
-      ],
-      "method_tags": [
-        "Invariant Extended Kalman Filter",
-        "Contact Covariance Learning",
-        "State Estimation"
-      ],
-      "platform": [
-        "Bipedal robot"
-      ],
-      "sim_stack": [],
-      "method_family": "Hybrid",
-      "real_robot": "yes",
-      "training_summary": "End-to-end training with state-error loss",
       "demo_videos": []
     },
     {
@@ -803,59 +937,6 @@
       "demo_videos": []
     },
     {
-      "id": "arxiv-2605-15178",
-      "source": "arxiv",
-      "title": "SANA-WM: Efficient Minute-Scale World Modeling with Hybrid Linear Diffusion Transformer",
-      "title_zh": "SANA-WM：基于混合线性扩散Transformer的高效分钟级世界模型",
-      "tldr_zh": "提出高效开源世界模型SANA-WM，实现分钟级720p视频生成，吞吐量提升36倍。",
-      "cover_zh": "开源世界模型也能分钟级生成720p视频？效率还比工业基线高36倍！",
-      "abstract_zh": "我们提出SANA-WM，一个高效的26亿参数开源世界模型，原生训练用于一分钟视频生成，可合成高保真、720p、分钟级视频并支持精确相机控制。SANA-WM在视觉质量上达到与大规模工业基线（如LingBot-World和HY-WorldPlay）相当的水平，同时显著提升效率。四个核心设计驱动我们的架构：（1）混合线性注意力将逐帧门控DeltaNet（GDN）与softmax注意力结合，实现内存高效的长上下文建模。（2）双分支相机控制确保精确的6自由度轨迹遵循。（3）两阶段生成流水线对第一阶段输出应用长视频精炼器，提升序列的质量和一致性。（4）鲁棒标注流水线从公开视频中提取精确的米制6自由度相机位姿，生成高质量、时空一致的动作标签。在这些设计的驱动下，SANA-WM在数据、训练计算和推理硬件方面展现出卓越的效率：仅使用约21.3万带有米制位姿监督的公开视频片段，在64块H100上15天完成训练，并在单GPU上生成每个60秒片段；其蒸馏变体可在单张RTX 5090上通过NVFP4量化部署，以34秒去噪一个60秒720p片段。在我们的一分钟世界模型基准上，SANA-WM表现出比先前开源基线更强的动作跟随精度，并在视觉质量相当的情况下实现了36倍更高的吞吐量，用于可扩展的世界建模。",
-      "authors": [
-        "Haoyi Zhu",
-        "Haozhe Liu",
-        "Yuyang Zhao"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-05-14",
-      "channels": [
-        "world-model"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-15178.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-15178-p2.jpg",
-        "assets/img/covers/arxiv-2605-15178-p3.jpg",
-        "assets/img/covers/arxiv-2605-15178-p4.jpg"
-      ],
-      "arxiv_id": "2605.15178",
-      "abs_url": "http://arxiv.org/abs/2605.15178v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.15178v1",
-      "score": 9,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出高效分钟级世界模型SANA-WM，含混合线性注意力、双分支相机控制等创新，性能与效率俱佳",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "MIT",
-        "NVIDIA",
-        "Tsinghua University"
-      ],
-      "method_tags": [
-        "World Model",
-        "Hybrid Linear Attention",
-        "Diffusion Transformer"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "WorldModel",
-      "real_robot": "no",
-      "training_summary": "213K video clips, 15 days on 64 H100s",
-      "demo_videos": []
-    },
-    {
       "id": "arxiv-2605-14923",
       "source": "arxiv",
       "title": "SceneParser: Hierarchical Scene Parsing for Visual Semantics Understanding",
@@ -951,58 +1032,6 @@
       "method_family": "Foundation",
       "real_robot": "",
       "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-15195",
-      "source": "arxiv",
-      "title": "VGGT-$Ω$",
-      "title_zh": "VGGT-$Ω$",
-      "tldr_zh": "VGGT-$Ω$通过架构改进和更大规模训练，在静态和动态场景重建上显著提升精度和效率。",
-      "cover_zh": "GPU内存仅需30%｜新模型VGGT-$Ω$重建精度飙升77%",
-      "abstract_zh": "近期前馈重建模型（如VGGT）已证明与传统基于优化的重建方法具有竞争力，同时还能提供对其他任务有用的几何感知特征。本文表明，这些模型的质量随模型和数据规模可预测地提升。为此，我们引入了VGGT-$Ω$，它在静态和动态场景的重建精度、效率和能力上均有显著改进。为了以前所未有的规模训练该模型，我们引入了提升训练效率的架构改进、支持动态场景的高质量数据标注流程以及自监督学习协议。我们简化了VGGT的架构，使用单一密集预测头进行多任务监督，并移除了昂贵的高分辨率卷积层。我们还使用寄存器将场景信息聚合为紧凑表示，并引入寄存器注意力，将帧间信息交换限制在这些寄存器上，部分替代了全局注意力。通过这种方式，在训练过程中，VGGT-$Ω$仅使用其前身约30%的GPU内存，使我们能够使用比先前工作多15倍的监督数据进行训练，并利用大量未标记的视频数据。VGGT-$Ω$在多个基准测试中实现了静态和动态场景重建的强结果，例如，在Sintel上相机姿态估计精度相比之前最佳方法提升了77%。我们还展示了学习到的寄存器可以改进视觉-语言-动作模型，并支持与语言的对齐，这表明重建可以成为空间理解的一个强大且可扩展的代理任务。项目页面：http://vggt-omega.github.io/",
-      "authors": [
-        "Jianyuan Wang",
-        "Minghao Chen",
-        "Shangzhan Zhang"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-05-14",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-15195.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-15195-p2.jpg",
-        "assets/img/covers/arxiv-2605-15195-p3.jpg",
-        "assets/img/covers/arxiv-2605-15195-p4.jpg"
-      ],
-      "arxiv_id": "2605.15195",
-      "abs_url": "http://arxiv.org/abs/2605.15195v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.15195v1",
-      "score": 6,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出可扩展的3D重建模型VGGT-Ω，支持动态场景，并展示其视觉特征可提升VLA模型，属于世界模型/空间理解方向。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Meta AI",
-        "University of Oxford"
-      ],
-      "method_tags": [
-        "feed-forward reconstruction",
-        "self-supervised learning",
-        "register attention"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Foundation",
-      "real_robot": "no",
-      "training_summary": "15x more supervised data than prior work, plus unlabeled video",
       "demo_videos": []
     }
   ]

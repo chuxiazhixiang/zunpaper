@@ -79,7 +79,12 @@
         "manipulation",
         "world-model"
       ],
-      "badges": [],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ ZJU"
+        }
+      ],
       "cover_image": "assets/img/covers/arxiv-2605-07931.jpg",
       "preview_pages": [
         "assets/img/covers/arxiv-2605-07931-p2.jpg",
@@ -89,7 +94,7 @@
       "arxiv_id": "2605.07931",
       "abs_url": "http://arxiv.org/abs/2605.07931v1",
       "pdf_url": "https://arxiv.org/pdf/2605.07931v1",
-      "score": 20,
+      "score": 45,
       "judge": {
         "relevant": true,
         "research_value": "high",
@@ -112,6 +117,192 @@
       "method_family": "WorldModel",
       "real_robot": "yes",
       "training_summary": "14.71M LoRA params on π0 (2B) backbone",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-07605",
+      "source": "arxiv",
+      "title": "BrickCraft: Visuomotor Skill Composition with Situated Manual Guidance for Long-Horizon Interlocking Brick Assembly",
+      "title_zh": "BrickCraft：面向长程互锁积木组装的视觉运动技能组合与情境化手册引导",
+      "tldr_zh": "提出组合框架BrickCraft，用相对公式和情境化手册实现长程积木组装技能泛化。",
+      "cover_zh": "积木组装也能自学？这个机器人看几遍演示就能搭出全新结构！",
+      "abstract_zh": "自主机器人组装互锁积木需要无缝集成长期任务推理、空间定位和精细操作。本文提出BrickCraft，一个面向长程且可泛化的互锁积木组装的组合框架。BrickCraft使用相对公式化建模组装过程，每一步都锚定于部分结构中的参考积木，从而将复杂任务分解为有限的可重用基本技能。通过情境化手册，BrickCraft弥合了高层组装计划与物理执行之间的鸿沟，该手册通过将组装意图投影到实时机器人观测上，为学习的视觉运动技能提供明确的空间引导。最后，BrickCraft采用组合执行流水线，将这些空间定位的技能链接起来以完成长程组装任务。大量实验验证表明，BrickCraft能从有限的演示中获取熟练的组装技能，并对未见结构展现出强大的组合泛化能力。项目网站：https://intelligent-control-lab.github.io/BrickCraft。",
+      "authors": [
+        "Jichuan Yu",
+        "Bowei Li",
+        "Zhenran Tang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-08",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ CMU RI"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-07605.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-07605-p2.jpg",
+        "assets/img/covers/arxiv-2605-07605-p3.jpg",
+        "assets/img/covers/arxiv-2605-07605-p4.jpg"
+      ],
+      "arxiv_id": "2605.07605",
+      "abs_url": "http://arxiv.org/abs/2605.07605v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.07605v1",
+      "score": 37,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip",
+        "reason": "长时序积木组装任务，结合视觉运动技能组合与人工引导，具身操作新方法",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Carnegie Mellon University",
+        "Tsinghua University"
+      ],
+      "method_tags": [
+        "compositional framework",
+        "visuomotor skill",
+        "long-horizon assembly"
+      ],
+      "platform": [
+        "Franka"
+      ],
+      "sim_stack": [],
+      "method_family": "Hybrid",
+      "real_robot": "yes",
+      "training_summary": "limited set of demonstrations",
+      "demo_videos": [
+        {
+          "kind": "youtube",
+          "url": "https://www.youtube.com/watch?v=qx-bElwitVI",
+          "embed_url": "https://www.youtube.com/embed/qx-bElwitVI",
+          "title": "BrickCraft: Visuomotor Skill Composition with Situated Manual Guidance",
+          "source": "project_page"
+        }
+      ]
+    },
+    {
+      "id": "arxiv-2605-07381",
+      "source": "arxiv",
+      "title": "Escaping the Diversity Trap in Robotic Manipulation via Anchor-Centric Adaptation",
+      "title_zh": "通过锚点中心适应逃离机器人操作中的多样性陷阱",
+      "tldr_zh": "发现多样性陷阱并提出锚点中心适应方法，提升机器人操作任务可靠性。",
+      "cover_zh": "别再盲目收集多样数据｜这个新方法让机器人学习效率翻倍",
+      "abstract_zh": "尽管视觉-语言-动作（VLA）模型具有广泛的通用能力，但在特定硬件上部署时，需要现实世界的适应来弥合具身差距。由于机器人演示成本高昂，这种适应通常必须在严格的数据预算下进行。在这项工作中，我们识别出一个关键的多样性陷阱：通过收集多样化的单次演示来“最大化覆盖”的标准启发式方法，由于非消失的估计噪声，可能适得其反。我们将这一现象形式化为覆盖-密度权衡。通过将策略误差分解为估计（密度）和外推（覆盖）项，我们刻画了在固定预算下独特条件的最优内部分配。基于这一分析，我们提出了锚点中心适应（ACA），这是一个两阶段框架：首先通过核心锚点的重复演示稳定策略骨架，然后通过教师强制错误挖掘和约束残差更新，选择性地扩展到高风险边界。真实机器人实验验证了我们的权衡框架，并表明在相同预算下，ACA显著提高了任务可靠性和成功率，优于标准多样化采样策略。",
+      "authors": [
+        "Yanzhe Chen",
+        "Kevin Yuchen Ma",
+        "Qi Lv"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-08",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ NUS"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-07381.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-07381-p2.jpg",
+        "assets/img/covers/arxiv-2605-07381-p3.jpg",
+        "assets/img/covers/arxiv-2605-07381-p4.jpg"
+      ],
+      "arxiv_id": "2605.07381",
+      "abs_url": "http://arxiv.org/abs/2605.07381v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.07381v1",
+      "score": 34,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出锚点中心适应方法解决多样性陷阱，对机器人操作泛化有重要价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "National University of Singapore"
+      ],
+      "method_tags": [
+        "VLA",
+        "Anchor-Centric Adaptation",
+        "data efficiency"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "VLA",
+      "real_robot": "yes",
+      "training_summary": "fixed budget, repeated anchor demos + selective expansion",
+      "demo_videos": []
+    },
+    {
+      "id": "arxiv-2605-07727",
+      "source": "arxiv",
+      "title": "Drifting Field Policy: A One-Step Generative Policy via Wasserstein Gradient Flow",
+      "title_zh": "漂移场策略：基于Wasserstein梯度流的一步生成式策略",
+      "tldr_zh": "提出非ODE一步生成式策略DFP，通过Wasserstein梯度流实现高效策略更新，在操作任务上达到SOTA。",
+      "cover_zh": "告别ODE｜一步生成策略DFP让机器人操作性能起飞",
+      "abstract_zh": "我们提出漂移场策略（DFP），一种基于漂移模型范式的非ODE一步生成式策略。我们将策略更新视为朝向软目标策略的逆KL Wasserstein-2梯度流，使得每次DFP更新对应于概率空间中的一个梯度步。通过构造，该梯度分解为朝向更高动作价值区域的上升和与锚定策略的分数匹配（作为信任区域）。我们进一步推导了原本难以处理的更新损失的一个简单、易处理的替代项，类似于在评论家选择的top-K动作上进行行为克隆。我们经验性地发现，由于其非ODE参数化，该机制独特地有利于漂移骨干网络。通过一步推理，DFP在Robomimic和OGBench的多个操作任务上达到了最先进的性能，优于基于ODE的策略。",
+      "authors": [
+        "Juil Koo",
+        "Mingue Park",
+        "Jiwon Choi"
+      ],
+      "primary_category": "cs.LG",
+      "published": "2026-05-08",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ KAIST"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-07727.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-07727-p2.jpg",
+        "assets/img/covers/arxiv-2605-07727-p3.jpg",
+        "assets/img/covers/arxiv-2605-07727-p4.jpg"
+      ],
+      "arxiv_id": "2605.07727",
+      "abs_url": "http://arxiv.org/abs/2605.07727v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.07727v1",
+      "score": 31,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出基于Wasserstein梯度流的一步生成策略，在机器人操作任务中具有理论创新和实用潜力。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "KAIST"
+      ],
+      "method_tags": [
+        "Wasserstein Gradient Flow",
+        "One-Step Generative Policy",
+        "Behavior Cloning"
+      ],
+      "platform": [],
+      "sim_stack": [
+        "Robomimic",
+        "OGBench"
+      ],
+      "method_family": "Diffusion",
+      "real_robot": "no",
+      "training_summary": "",
       "demo_videos": []
     },
     {
@@ -248,68 +439,6 @@
       ]
     },
     {
-      "id": "arxiv-2605-07605",
-      "source": "arxiv",
-      "title": "BrickCraft: Visuomotor Skill Composition with Situated Manual Guidance for Long-Horizon Interlocking Brick Assembly",
-      "title_zh": "BrickCraft：面向长程互锁积木组装的视觉运动技能组合与情境化手册引导",
-      "tldr_zh": "提出组合框架BrickCraft，用相对公式和情境化手册实现长程积木组装技能泛化。",
-      "cover_zh": "积木组装也能自学？这个机器人看几遍演示就能搭出全新结构！",
-      "abstract_zh": "自主机器人组装互锁积木需要无缝集成长期任务推理、空间定位和精细操作。本文提出BrickCraft，一个面向长程且可泛化的互锁积木组装的组合框架。BrickCraft使用相对公式化建模组装过程，每一步都锚定于部分结构中的参考积木，从而将复杂任务分解为有限的可重用基本技能。通过情境化手册，BrickCraft弥合了高层组装计划与物理执行之间的鸿沟，该手册通过将组装意图投影到实时机器人观测上，为学习的视觉运动技能提供明确的空间引导。最后，BrickCraft采用组合执行流水线，将这些空间定位的技能链接起来以完成长程组装任务。大量实验验证表明，BrickCraft能从有限的演示中获取熟练的组装技能，并对未见结构展现出强大的组合泛化能力。项目网站：https://intelligent-control-lab.github.io/BrickCraft。",
-      "authors": [
-        "Jichuan Yu",
-        "Bowei Li",
-        "Zhenran Tang"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-08",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-07605.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-07605-p2.jpg",
-        "assets/img/covers/arxiv-2605-07605-p3.jpg",
-        "assets/img/covers/arxiv-2605-07605-p4.jpg"
-      ],
-      "arxiv_id": "2605.07605",
-      "abs_url": "http://arxiv.org/abs/2605.07605v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.07605v1",
-      "score": 12,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip",
-        "reason": "长时序积木组装任务，结合视觉运动技能组合与人工引导，具身操作新方法",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Carnegie Mellon University",
-        "Tsinghua University"
-      ],
-      "method_tags": [
-        "compositional framework",
-        "visuomotor skill",
-        "long-horizon assembly"
-      ],
-      "platform": [
-        "Franka"
-      ],
-      "sim_stack": [],
-      "method_family": "Hybrid",
-      "real_robot": "yes",
-      "training_summary": "limited set of demonstrations",
-      "demo_videos": [
-        {
-          "kind": "youtube",
-          "url": "https://www.youtube.com/watch?v=qx-bElwitVI",
-          "embed_url": "https://www.youtube.com/embed/qx-bElwitVI",
-          "title": "BrickCraft: Visuomotor Skill Composition with Situated Manual Guidance",
-          "source": "project_page"
-        }
-      ]
-    },
-    {
       "id": "arxiv-2605-07988",
       "source": "arxiv",
       "title": "Evaluation of an Actuated Spine in Agile Quadruped Locomotion",
@@ -363,57 +492,6 @@
       "method_family": "RL",
       "real_robot": "no",
       "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-07381",
-      "source": "arxiv",
-      "title": "Escaping the Diversity Trap in Robotic Manipulation via Anchor-Centric Adaptation",
-      "title_zh": "通过锚点中心适应逃离机器人操作中的多样性陷阱",
-      "tldr_zh": "发现多样性陷阱并提出锚点中心适应方法，提升机器人操作任务可靠性。",
-      "cover_zh": "别再盲目收集多样数据｜这个新方法让机器人学习效率翻倍",
-      "abstract_zh": "尽管视觉-语言-动作（VLA）模型具有广泛的通用能力，但在特定硬件上部署时，需要现实世界的适应来弥合具身差距。由于机器人演示成本高昂，这种适应通常必须在严格的数据预算下进行。在这项工作中，我们识别出一个关键的多样性陷阱：通过收集多样化的单次演示来“最大化覆盖”的标准启发式方法，由于非消失的估计噪声，可能适得其反。我们将这一现象形式化为覆盖-密度权衡。通过将策略误差分解为估计（密度）和外推（覆盖）项，我们刻画了在固定预算下独特条件的最优内部分配。基于这一分析，我们提出了锚点中心适应（ACA），这是一个两阶段框架：首先通过核心锚点的重复演示稳定策略骨架，然后通过教师强制错误挖掘和约束残差更新，选择性地扩展到高风险边界。真实机器人实验验证了我们的权衡框架，并表明在相同预算下，ACA显著提高了任务可靠性和成功率，优于标准多样化采样策略。",
-      "authors": [
-        "Yanzhe Chen",
-        "Kevin Yuchen Ma",
-        "Qi Lv"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-08",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-07381.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-07381-p2.jpg",
-        "assets/img/covers/arxiv-2605-07381-p3.jpg",
-        "assets/img/covers/arxiv-2605-07381-p4.jpg"
-      ],
-      "arxiv_id": "2605.07381",
-      "abs_url": "http://arxiv.org/abs/2605.07381v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.07381v1",
-      "score": 9,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出锚点中心适应方法解决多样性陷阱，对机器人操作泛化有重要价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "National University of Singapore"
-      ],
-      "method_tags": [
-        "VLA",
-        "Anchor-Centric Adaptation",
-        "data efficiency"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "VLA",
-      "real_robot": "yes",
-      "training_summary": "fixed budget, repeated anchor demos + selective expansion",
       "demo_videos": []
     },
     {
@@ -517,60 +595,6 @@
       "platform": [],
       "sim_stack": [],
       "method_family": "IL",
-      "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": []
-    },
-    {
-      "id": "arxiv-2605-07727",
-      "source": "arxiv",
-      "title": "Drifting Field Policy: A One-Step Generative Policy via Wasserstein Gradient Flow",
-      "title_zh": "漂移场策略：基于Wasserstein梯度流的一步生成式策略",
-      "tldr_zh": "提出非ODE一步生成式策略DFP，通过Wasserstein梯度流实现高效策略更新，在操作任务上达到SOTA。",
-      "cover_zh": "告别ODE｜一步生成策略DFP让机器人操作性能起飞",
-      "abstract_zh": "我们提出漂移场策略（DFP），一种基于漂移模型范式的非ODE一步生成式策略。我们将策略更新视为朝向软目标策略的逆KL Wasserstein-2梯度流，使得每次DFP更新对应于概率空间中的一个梯度步。通过构造，该梯度分解为朝向更高动作价值区域的上升和与锚定策略的分数匹配（作为信任区域）。我们进一步推导了原本难以处理的更新损失的一个简单、易处理的替代项，类似于在评论家选择的top-K动作上进行行为克隆。我们经验性地发现，由于其非ODE参数化，该机制独特地有利于漂移骨干网络。通过一步推理，DFP在Robomimic和OGBench的多个操作任务上达到了最先进的性能，优于基于ODE的策略。",
-      "authors": [
-        "Juil Koo",
-        "Mingue Park",
-        "Jiwon Choi"
-      ],
-      "primary_category": "cs.LG",
-      "published": "2026-05-08",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-07727.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-07727-p2.jpg",
-        "assets/img/covers/arxiv-2605-07727-p3.jpg",
-        "assets/img/covers/arxiv-2605-07727-p4.jpg"
-      ],
-      "arxiv_id": "2605.07727",
-      "abs_url": "http://arxiv.org/abs/2605.07727v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.07727v1",
-      "score": 6,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出基于Wasserstein梯度流的一步生成策略，在机器人操作任务中具有理论创新和实用潜力。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "KAIST"
-      ],
-      "method_tags": [
-        "Wasserstein Gradient Flow",
-        "One-Step Generative Policy",
-        "Behavior Cloning"
-      ],
-      "platform": [],
-      "sim_stack": [
-        "Robomimic",
-        "OGBench"
-      ],
-      "method_family": "Diffusion",
       "real_robot": "no",
       "training_summary": "",
       "demo_videos": []
