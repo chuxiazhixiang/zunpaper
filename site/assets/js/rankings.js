@@ -16,14 +16,31 @@ const DAY_MS = 86400000;
 
 const STATE = {
   papers: [],
-  window: 'day', // 'day' | 'week' | 'month' | 'all'
+  repos: [],
+  window: 'day', // 'day' | 'week' | 'month' | 'all' | 'repos'
 };
+
+const _GH_DIR_LABEL = {
+  'loco-manip-wbc': '全身控制',
+  manipulation: '操作',
+  teleop: '遥操作',
+  locomotion: '运动控制',
+  'world-model': '世界模型',
+  sim2real: 'Sim2Real',
+};
+
+function fmtStars(n) {
+  n = n || 0;
+  if (n >= 10000) return Math.round(n / 1000) + 'k';
+  if (n >= 1000) return (n / 1000).toFixed(1) + 'k';
+  return String(n);
+}
 
 async function loadData() {
   const r = await fetchJSON('data/index.json').then((r) => r.json()).catch(() => ({ papers: [] }));
-  // 开源项目（source==="github"）有自己的「开源项目」tab，不进论文排行榜
-  // （否则总榜会按 star score 混入 repo，且链接指向 post.html 而非仓库）。
+  // 论文榜（日/周/月/总）排除开源仓；开源仓单独走「🐙 开源 Star 榜」。
   STATE.papers = (r.papers || []).filter((p) => (p.source || '') !== 'github');
+  STATE.repos = (r.papers || []).filter((p) => (p.source || '') === 'github');
 }
 
 function withinWindow(p, days) {
@@ -35,7 +52,14 @@ function withinWindow(p, days) {
   return now - d.getTime() <= days * DAY_MS + 12 * 3600 * 1000;
 }
 
+function reposByStars() {
+  return [...STATE.repos].sort(
+    (a, b) => ((b.github && b.github.stars) || 0) - ((a.github && a.github.stars) || 0),
+  );
+}
+
 function papersForWindow(win) {
+  if (win === 'repos') return reposByStars();
   let pool;
   // 日榜：最新有内容那一天为锚，paper 数 < 8 时往前合并直到凑够（最多合
   // 并到 3 天）。原因：arxiv 偶尔 HTTP 429 把当天 cron 几乎打空（只剩个
@@ -84,7 +108,34 @@ function badgePill(b) {
   return `<span class="rp-rank__pill">${escapeHTML(b.label)}</span>`;
 }
 
+function repoRowHTML(p, rank) {
+  const g = p.github || {};
+  const stars = fmtStars(g.stars);
+  const lang = g.language || '';
+  const dir = (p.channels || [])[0];
+  const dirLabel = dir ? _GH_DIR_LABEL[dir] || dir : '';
+  const tldr = p.tldr_zh || '';
+  const url = p.abs_url || `https://github.com/${p.title}`;
+  return `
+    <li class="rp-rank__row">
+      <a class="rp-rank__link" href="${url}" target="_blank" rel="noopener">
+        <div class="rp-rank__rank">${medal(rank)}</div>
+        <div class="rp-rank__score rp-rank__score--star" title="GitHub Star">⭐${stars}</div>
+        <div class="rp-rank__body">
+          <div class="rp-rank__title">${escapeHTML(p.title)}</div>
+          <div class="rp-rank__meta">
+            <span>${escapeHTML(g.owner || '')}</span>
+            ${lang ? `<span>·</span><span>${escapeHTML(lang)}</span>` : ''}
+            ${dirLabel ? `<span class="rp-rank__chan">#${escapeHTML(dirLabel)}</span>` : ''}
+          </div>
+          ${tldr ? `<div class="rp-rank__tldr">${escapeHTML(tldr)}</div>` : ''}
+        </div>
+      </a>
+    </li>`;
+}
+
 function rowHTML(p, rank) {
+  if ((p.source || '') === 'github') return repoRowHTML(p, rank);
   const title = p.title_zh || p.title;
   const authors = formatAuthors(p.authors || []);
   const score = p.score || 0;
@@ -116,7 +167,10 @@ function render() {
   const pool = papersForWindow(STATE.window);
   const note = document.querySelector('#rank-note');
   if (note) {
-    if (STATE.window === 'day' && pool.length) {
+    if (STATE.window === 'repos') {
+      note.textContent = `按 GitHub Star 倒序 · 共 ${pool.length} 个开源项目（已由 AI 筛除课程/复现/无关项目，点击直达仓库）`;
+      note.style.display = '';
+    } else if (STATE.window === 'day' && pool.length) {
       const dates = [
         ...new Set(pool.map((p) => (p.published || '').slice(0, 10)).filter(Boolean)),
       ].sort().reverse();
@@ -131,7 +185,10 @@ function render() {
     }
   }
   if (!pool.length) {
-    list.innerHTML = `<li class="rp-status">这个时段还没有论文，主页换个频道或等下次更新～</li>`;
+    const msg = STATE.window === 'repos'
+      ? '还没有收录开源项目，等下次定时任务跑过就有啦～'
+      : '这个时段还没有论文，主页换个频道或等下次更新～';
+    list.innerHTML = `<li class="rp-status">${msg}</li>`;
     return;
   }
   // Cap the leaderboard at top 200 to keep DOM cheap.
