@@ -25,6 +25,10 @@ on:
         description: "覆盖 arxiv lookback_days（一次性回补/扩展窗口，留空 = 用 sources.yaml 默认）"
         required: false
         default: ""
+      enrich_backfill:
+        description: "本轮重抽多少篇 schema 过期的存量论文（留空 = 默认 80；一次性全站迁移可调大）"
+        required: false
+        default: ""
 
 permissions:
   contents: write    # 允许把生成的 data 提交回仓库
@@ -56,6 +60,7 @@ jobs:
         env:
           REDPAPER_LLM_BACKEND: ${{ inputs.llm_backend || 'deepseek' }}
           REDPAPER_ARXIV_LOOKBACK_DAYS: ${{ inputs.lookback_days_override || '' }}
+          REDPAPER_ENRICH_BACKFILL: ${{ inputs.enrich_backfill || '' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
