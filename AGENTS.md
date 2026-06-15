@@ -118,6 +118,15 @@ cd site && python -m http.server 8000                       # 本地预览
 - **`video_youtube` / `video_bilibili`**：卡片自带 `demo_videos`（厂商 demo），**`_scrape_demo_videos` 必须跳过 `video_*`**（否则扫 abstract 扫不到会把 embed 覆盖清空）；`retag_and_prune` 也豁免 prune（标题常不含关键词），尽力按关键词归类、没命中就保留现有 channels。
 - **推代码**：`api_push.py`（推 main 的兜底）会先校验 remote HEAD 是本地 HEAD 的祖先，本地落后/分叉就拒绝（防把远端新增文件当删除推上去）。日常用「基于远端 HEAD 增量」的 gh API 推法更安全。
 
+## 已知取舍 / 刻意不修（review 别重复 flag）
+
+- **卡片是 `<a>` 外层里嵌收藏 `<button>`**（`feed.js` 的 `cardHTML` / `githubCardHTML`，favorites / archive 同款）。严格说这是无效 HTML（交互元素嵌套），a11y / Safari / 纯键盘场景理论上「点收藏」可能误触外层链接跳转。**现状刻意保留**，原因：
+  - 全站所有卡片都是这个写法，只改 github 卡会与普通论文卡不一致；
+  - 靠 `wireFavDelegation` 的 `preventDefault + stopPropagation`，主流浏览器实测正常；
+  - 全站重构成「容器 `<div>` + 主体 `<a>` + 收藏按钮做兄弟元素」会动到 `.rp-card` 的 hover / 布局样式，有回归风险，收益（a11y / Safari 边角）不抵成本。
+  - 触发重构的条件：要做无障碍合规，或出现真实的 Safari / 键盘误跳报告。届时一次性改所有卡片渲染（feed/favorites/archive 共用）。
+- **judge `PROMPT_VERSION` 只记录、不自动失效**（见「缓存与版本约定」）：改 prompt 后要手动 `JudgeCache.evict_stale()` 才会重判。这是刻意的（judge 决定论文去留，自动全站重判风险高），不是漏改。
+
 ## 踩过的坑（重要，别重蹈）
 
 - **本机 `git push` / `git fetch` 走 git 协议会 TLS 报错/卡死**。要推代码用 `scripts/api_push.py`（走 gh Git Database API，硬编码推 `main`）；推 feature 分支得用 gh API 自己建 blob/tree/commit/ref。本地 `main` 经常停在旧 commit（没法 fetch），判断远端状态用 `gh api repos/Nangongyeee/redpaper/...`，别信本地 `git log`。
