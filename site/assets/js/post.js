@@ -65,6 +65,7 @@ function relatedPapersHTML(current, allPapers) {
     .filter(
       (p) =>
         p.id !== current.id &&
+        (p.source || '') !== 'github' && // 开源仓不进「相关论文」（链接走 post 而非仓库）
         (p.channels || []).some((c) => tags.has(c)),
     )
     .slice(0, 4);

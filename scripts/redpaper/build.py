@@ -121,9 +121,8 @@ def _enrich_papers(fresh: dict[str, Paper]) -> dict[str, Paper]:
         if p.source == "github":
             continue
         cached = cache.get(pid)
-        # 用当前 schema 抽过就直接复用；老 schema（未读 PDF / 未经 reviewer /
-        # 还带 method_family）需要重抽。
-        if cached is not None and cache.is_current(pid):
+        # 当前 schema 且不需要重试 → 复用；老 schema / 上次没读到 PDF → 重抽。
+        if cached is not None and not cache.needs_reenrich(pid, bool(p.pdf_url)):
             enrich_cache_hits += 1
             _apply_enrichment(p, cached)
             continue
@@ -141,7 +140,7 @@ def _enrich_papers(fresh: dict[str, Paper]) -> dict[str, Paper]:
                     log.debug("head text extract failed for %s: %s", pid, ex)
             e = enrich_paper(p.title, p.abstract or p.tldr_zh or p.title, authors_text, pdf_text)
             enrich_calls += 1
-            cache.put(pid, e)
+            cache.put(pid, e, pdf_ok=bool(pdf_text))
             _apply_enrichment(p, e)
         except EnrichUnavailable as ex:
             log.warning("enrich skipped (%s); leaving %s without chips", ex, pid)
@@ -1095,7 +1094,9 @@ def run() -> None:
     # 论文，每轮补抽一批（读 PDF + reviewer，限量防 CI 超时）。按发布日期倒序优先
     # 修近期高曝光论文。窗口外的旧论文（如 OASIS 6/07）就是靠这条慢慢纠正过来。
     enrich_cache = EnrichCache(cfg.REPO_ROOT / "data" / "enrich_cache.json")
-    backfill_budget = int(os.environ.get("REDPAPER_ENRICH_BACKFILL", "80") or "80")
+    # 默认每轮只补 30 篇（读 PDF + writer + reviewer 较重，避免日常 build 撞 50min
+    # 超时 / 成本突增）；一次性全站迁移用 workflow_dispatch 的 enrich_backfill 调大。
+    backfill_budget = int(os.environ.get("REDPAPER_ENRICH_BACKFILL", "30") or "30")
     backfilled = 0
     all_papers = list(_existing_papers().values())
     all_papers.sort(key=lambda p: (p.published or "", p.id), reverse=True)
@@ -1104,13 +1105,13 @@ def run() -> None:
             continue  # already enriched in process_new_papers
 
         if (paper.source or "") != "github" and backfilled < backfill_budget \
-                and not enrich_cache.is_current(paper.id):
+                and enrich_cache.needs_reenrich(paper.id, bool(paper.pdf_url)):
             try:
                 authors_text = "、".join(a.name for a in (paper.authors or [])[:8])
                 pdf_text = fetch_head_text(paper.pdf_url) if paper.pdf_url else ""
                 e = enrich_paper(paper.title, paper.abstract or paper.tldr_zh or paper.title,
                                  authors_text, pdf_text)
-                enrich_cache.put(paper.id, e)
+                enrich_cache.put(paper.id, e, pdf_ok=bool(pdf_text))
                 _apply_enrichment(paper, e)
                 backfilled += 1
             except EnrichUnavailable:

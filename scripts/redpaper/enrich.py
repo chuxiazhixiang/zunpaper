@@ -268,18 +268,31 @@ class EnrichCache:
             model=e.get("model", ""),
         )
 
-    def is_current(self, pid: str) -> bool:
-        """缓存条目是否已用当前 schema 抽过。低版本（含老的 7 字段、未读 PDF /
-        未经 reviewer 的）返回 False，触发重抽。"""
+    # PDF 文本下载失败时最多重试几次再放弃（防死链 PDF 每轮空耗 backfill 预算）。
+    MAX_PDF_RETRIES = 3
+
+    def needs_reenrich(self, pid: str, has_pdf_url: bool = False) -> bool:
+        """是否需要(重新)抽取。
+        - 没缓存 / schema 低于当前 → 需要。
+        - schema 当前、但有 pdf_url 却没成功读到 PDF 证据（pdf_ok=False）且重试
+          次数未超上限 → 需要（给"上次 PDF 下载失败"一个再试机会，避免机构永久
+          缺证据）。死链 PDF 试满 MAX_PDF_RETRIES 次后放弃，不再空耗。"""
         e = self.entries.get(pid)
         if not e:
-            return False
-        return int(e.get("schema", 0)) >= self.SCHEMA
+            return True
+        if int(e.get("schema", 0)) < self.SCHEMA:
+            return True
+        if has_pdf_url and not e.get("pdf_ok") and int(e.get("tries", 0)) < self.MAX_PDF_RETRIES:
+            return True
+        return False
 
-    def put(self, pid: str, j: Enrichment) -> None:
+    def put(self, pid: str, j: Enrichment, pdf_ok: bool = True) -> None:
+        prev_tries = int((self.entries.get(pid) or {}).get("tries", 0))
         d = asdict(j)
         d["ts"] = int(time.time())
         d["schema"] = self.SCHEMA
+        d["pdf_ok"] = bool(pdf_ok)
+        d["tries"] = prev_tries + 1
         self.entries[pid] = d
 
     def save(self) -> None:

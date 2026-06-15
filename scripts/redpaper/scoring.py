@@ -205,12 +205,13 @@ _CONF_VENUE_RE = re.compile(
         CoRL |
         RA-?L |          # RAL / RA-L
         T-?RO |          # T-RO
-        Humanoids? |
         IJRR |
         ICLR |
         NeurIPS |
         ICML
     )\b""",
+    # 移除了 Humanoids?：它会把海量普通 "Humanoid robot" 标题误判成「顶会出品」。
+    # IEEE-RAS Humanoids 会议太小众，为它放进来得不偿失。
     re.IGNORECASE | re.VERBOSE,
 )
 

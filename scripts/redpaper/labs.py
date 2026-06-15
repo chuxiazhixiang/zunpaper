@@ -86,17 +86,17 @@ def _ensure_loaded() -> None:
 
 
 def affiliation_haystack(paper: Paper) -> str:
-    """All text we trust to carry institution signals: per-author affiliation
-    (often empty for arXiv), the LLM-extracted `institutions`, and the abstract.
+    """机构信号来源：作者单位（arXiv 通常为空）+ enrich.py 抽出并经 reviewer
+    核对的 `institutions`。
 
-    历史坑：以前只看 author.affiliation + abstract，而 arXiv 抓下来的论文
-    per-author affiliation 基本是空的，真正的机构信息在 enrich.py 抽出来的
-    `paper.institutions` 里。不把 institutions 算进来，机构守卫（重名消歧）
-    和 ZJU/USC 这类高校 lab 徽章就几乎永远命中不了。"""
+    ❗ 故意**不含摘要**：摘要里经常出现平台 / 对比对象（"using Unitree G1"、
+    "compared to Boston Dynamics"），把它算进来会让机构徽章被平台名误触发
+    （论文只是用了宇树 G1，却被打 ⭐Unitree）。机构徽章只认真正的"出品单位"，
+    即作者单位 + evidence-backed institutions。institutions 现在是读 PDF 首页 +
+    reviewer 核对过的可信来源，所以 recall 也够。"""
     parts: list[str] = []
     parts.extend(a.affiliation for a in paper.authors if a.affiliation)
     parts.extend(paper.institutions or [])
-    parts.append(paper.abstract or "")
     return "\n".join(parts)
 
 

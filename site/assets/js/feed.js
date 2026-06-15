@@ -638,4 +638,9 @@ async function main() {
   renderFeed();
 }
 
-document.addEventListener('DOMContentLoaded', main);
+// feed.js 既是首页入口，又被 favorites.js / archive.js 当共享模块导入
+// （借用 chipRowsHTML / githubCardHTML 等）。只有首页才有 #mode-switch，
+// 据此判断；否则不跑 main()，避免在收藏/归档页覆盖它们的 #feed、重复绑定事件。
+if (document.querySelector('#mode-switch')) {
+  document.addEventListener('DOMContentLoaded', main);
+}
