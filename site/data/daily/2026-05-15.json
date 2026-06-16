@@ -29,6 +29,14 @@
         },
         {
           "kind": "lab",
+          "label": "⭐ HKUST"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
+        },
+        {
+          "kind": "lab",
           "label": "⭐ Jemin Hwangbo"
         }
       ],
@@ -50,23 +58,140 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "KAIST"
+        "KAIST",
+        "The Hong Kong University of Science and Technology (Guangzhou)"
       ],
       "method_tags": [
-        "Hierarchical RL",
-        "Whole-Body Control",
-        "Pick-and-Place"
+        "Reinforcement Learning",
+        "hierarchical reinforcement learning",
+        "whole-body control"
       ],
-      "platform": [
-        "Unitree Go1",
-        "6-DOF arm"
-      ],
-      "sim_stack": [
-        "Isaac Gym"
-      ],
-      "method_family": "RL",
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
       "real_robot": "yes",
-      "training_summary": "Simulation training with domain randomization",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2605-15559",
+      "source": "arxiv_discover",
+      "title": "NavRL++: A System-Level Framework for Improving Sim-to-Real Transfer in Reinforcement Learning-Based Robot Navigation",
+      "title_zh": "NavRL++：一个用于提升基于强化学习的机器人导航中仿真到现实迁移的系统级框架",
+      "tldr_zh": "提出系统级框架NavRL++，通过扰动感知微调和Transformer策略提升导航中仿真到现实的零样本迁移。",
+      "cover_zh": "机器人导航仿真到现实总翻车？这个框架用Transformer微调直接零样本迁移",
+      "abstract_zh": "近年来，使用强化学习的自主导航取得了显著进展。然而，现有方法主要强调强化学习框架设计，如输入表示、动作空间和奖励函数，而对仿真到现实迁移的分析有限，且对训练策略如何影响实际部署性能的洞察不足。为弥补这一差距，我们不仅引入了一个有效的强化学习框架，还提出了一个完整的训练和部署流程，以及一项系统的实证研究，该研究解耦了影响基于强化学习的导航中仿真到现实迁移的关键因素，包括传感器噪声、感知失败、系统延迟和控制响应。基于此分析的见解，我们引入了扰动感知微调，这是一种训练后适应策略，通过明确考虑经验识别的领域差异来提高迁移鲁棒性。为了进一步减轻实际部署中的感知退化并增强控制平滑性，我们提出了一种基于Transformer的时间推理策略，该策略利用短时域观测进行导航控制。我们定量评估了单个仿真到现实扰动和训练设计选择如何影响跨环境的导航性能。实验结果表明，所提出的训练策略和策略架构在静态和动态环境中均优于基于学习的基线，同时在静态设置中实现了与基于优化的规划器相当的性能。我们通过在多个机器人平台（包括空中和腿式机器人）上的实际部署验证了我们的方法，涉及探索和检查等导航核心任务，展示了零样本仿真到现实迁移。",
+      "authors": [
+        "Zhefan Xu",
+        "Hanyu Jin",
+        "Kenji Shimada"
+      ],
+      "primary_category": "",
+      "published": "2026-05-15",
+      "channels": [
+        "locomotion",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ CMU RI"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-15559.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-15559-p2.jpg",
+        "assets/img/covers/arxiv-2605-15559-p3.jpg",
+        "assets/img/covers/arxiv-2605-15559-p4.jpg"
+      ],
+      "arxiv_id": "2605.15559",
+      "abs_url": "http://arxiv.org/abs/2605.15559v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.15559v1",
+      "score": 45,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "sim2real",
+        "reason": "系统级Sim-to-Real框架，含扰动感知微调与Transformer时序策略，实验覆盖多平台零样本迁移。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Carnegie Mellon University"
+      ],
+      "method_tags": [
+        "RL",
+        "sim-to-real",
+        "Transformer"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2605-16043",
+      "source": "arxiv",
+      "title": "Learning Sim-Grounded Policies for Bimanual Rope Manipulation from Human Teleoperation Data",
+      "title_zh": "从人类遥操作数据中学习用于双臂绳索操作的仿真基础策略",
+      "tldr_zh": "基于状态的策略比视觉策略在绳索操作中误差降低30.8%，揭示观测空间是关键瓶颈。",
+      "cover_zh": "机器人解绳结｜不用看摄像头，靠物理状态反杀视觉策略",
+      "abstract_zh": "绳索和电缆等可变形线性对象（DLO）在家庭和工业应用中广泛存在，但由于其无限维的构型空间和频繁的自遮挡，操作起来仍然具有挑战性。基于遥操作的模仿学习为双臂DLO操作提供了一条实用路径，但其可扩展性受限于人力投入，因此观测空间的选择对于从小数据集中实现泛化至关重要。在本研究中，我们探究了在解结任务中，基于自我中心视觉的策略缺乏泛化能力是否源于观测空间本身，而非策略架构或数据规模。我们比较了两个基于相同双臂遥操作数据训练的、采用动作分块与Transformer的策略：一个基于视觉的策略，以腕部摄像头提供的两个自我中心RGB流为条件；另一个基于状态的策略，以DLO的3D粒子状态为条件，该状态通过多视角融合从初始观测中提取，并在基于粒子的扩展位置动力学仿真中演化。在未见过的绳索配置上进行开环评估时，基于状态的策略在预测初始抓取和拉动动作时，L1误差比基于视觉的策略降低了30.8%，量化了像素与物理一致状态之间的可观测性差距，并为从有限的人类演示中实现更数据高效的DLO操作机器人学习指明了方向。",
+      "authors": [
+        "Gina Wigginghaus",
+        "Tim Missal",
+        "Berk Guler"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-15",
+      "channels": [
+        "manipulation",
+        "teleop"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ CMU RI"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-16043.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-16043-p2.jpg",
+        "assets/img/covers/arxiv-2605-16043-p3.jpg",
+        "assets/img/covers/arxiv-2605-16043-p4.jpg"
+      ],
+      "arxiv_id": "2605.16043",
+      "abs_url": "http://arxiv.org/abs/2605.16043v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.16043v1",
+      "score": 45,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "研究双臂绳索操作，结合遥操作数据与仿真策略，有方法创新和实验对比",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Technical University of Darmstadt",
+        "German Research Center for Artificial Intelligence (DFKI)",
+        "Hessian.AI",
+        "Robotics Institute Germany (RIG)"
+      ],
+      "method_tags": [
+        "Imitation Learning",
+        "Action Chunking with Transformers",
+        "state-based policy"
+      ],
+      "platform": [],
+      "sim_stack": [
+        "eXtended Position-Based Dynamics"
+      ],
+      "method_family": "",
+      "real_robot": "no",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -141,6 +266,10 @@
         {
           "kind": "lab",
           "label": "⭐ HKUST"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
         }
       ],
       "cover_image": "assets/img/covers/arxiv-2605-15971.jpg",
@@ -161,18 +290,17 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Hong Kong University of Science and Technology (Guangzhou)"
+        "The Hong Kong University of Science and Technology (Guangzhou)"
       ],
       "method_tags": [
-        "RL",
-        "Human Preference",
-        "Manipulation"
+        "Human-in-the-Loop Reinforcement Learning",
+        "Preference Guidance"
       ],
       "platform": [
         "Franka"
       ],
       "sim_stack": [],
-      "method_family": "RL",
+      "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
@@ -220,19 +348,24 @@
         "reason": "灵巧手操作基准与工具包，含任务、数据、评估，对操作研究有高参考价值",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "NLPR & MAIS, CASIA",
+        "SJTU",
+        "MBZUAI",
+        "Beijing Institute of Basic Medical Sciences"
+      ],
       "method_tags": [
-        "Benchmark",
-        "Dexterous Manipulation",
-        "Toolkit"
+        "ACT",
+        "Diffusion Policy",
+        "GR00T-N1.5"
       ],
       "platform": [],
       "sim_stack": [
         "MuJoCo"
       ],
-      "method_family": "Benchmark",
+      "method_family": "",
       "real_robot": "no",
-      "training_summary": "1.1K trajectories across 11 tasks",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -391,129 +524,19 @@
         "reason": "提出健康条件VLA模型，处理机器人物理退化，有创新性和实用价值",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "Hacettepe University"
+      ],
       "method_tags": [
-        "VLA",
-        "malfunction-aware",
-        "health-conditioned"
+        "Vision-Language-Action",
+        "malfunction-aware control"
       ],
       "platform": [],
       "sim_stack": [
         "LIBERO"
       ],
-      "method_family": "VLA",
+      "method_family": "",
       "real_robot": "no",
-      "training_summary": "128 teleoperated episodes on LIBERO-Spatial",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2605-15559",
-      "source": "arxiv_discover",
-      "title": "NavRL++: A System-Level Framework for Improving Sim-to-Real Transfer in Reinforcement Learning-Based Robot Navigation",
-      "title_zh": "NavRL++：一个用于提升基于强化学习的机器人导航中仿真到现实迁移的系统级框架",
-      "tldr_zh": "提出系统级框架NavRL++，通过扰动感知微调和Transformer策略提升导航中仿真到现实的零样本迁移。",
-      "cover_zh": "机器人导航仿真到现实总翻车？这个框架用Transformer微调直接零样本迁移",
-      "abstract_zh": "近年来，使用强化学习的自主导航取得了显著进展。然而，现有方法主要强调强化学习框架设计，如输入表示、动作空间和奖励函数，而对仿真到现实迁移的分析有限，且对训练策略如何影响实际部署性能的洞察不足。为弥补这一差距，我们不仅引入了一个有效的强化学习框架，还提出了一个完整的训练和部署流程，以及一项系统的实证研究，该研究解耦了影响基于强化学习的导航中仿真到现实迁移的关键因素，包括传感器噪声、感知失败、系统延迟和控制响应。基于此分析的见解，我们引入了扰动感知微调，这是一种训练后适应策略，通过明确考虑经验识别的领域差异来提高迁移鲁棒性。为了进一步减轻实际部署中的感知退化并增强控制平滑性，我们提出了一种基于Transformer的时间推理策略，该策略利用短时域观测进行导航控制。我们定量评估了单个仿真到现实扰动和训练设计选择如何影响跨环境的导航性能。实验结果表明，所提出的训练策略和策略架构在静态和动态环境中均优于基于学习的基线，同时在静态设置中实现了与基于优化的规划器相当的性能。我们通过在多个机器人平台（包括空中和腿式机器人）上的实际部署验证了我们的方法，涉及探索和检查等导航核心任务，展示了零样本仿真到现实迁移。",
-      "authors": [
-        "Zhefan Xu",
-        "Hanyu Jin",
-        "Kenji Shimada"
-      ],
-      "primary_category": "",
-      "published": "2026-05-15",
-      "channels": [
-        "locomotion",
-        "sim2real"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-15559.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-15559-p2.jpg",
-        "assets/img/covers/arxiv-2605-15559-p3.jpg",
-        "assets/img/covers/arxiv-2605-15559-p4.jpg"
-      ],
-      "arxiv_id": "2605.15559",
-      "abs_url": "http://arxiv.org/abs/2605.15559v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.15559v1",
-      "score": 20,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "sim2real",
-        "reason": "系统级Sim-to-Real框架，含扰动感知微调与Transformer时序策略，实验覆盖多平台零样本迁移。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Johns Hopkins University"
-      ],
-      "method_tags": [
-        "RL",
-        "sim-to-real",
-        "navigation"
-      ],
-      "platform": [
-        "aerial robot",
-        "legged robot"
-      ],
-      "sim_stack": [],
-      "method_family": "RL",
-      "real_robot": "yes",
-      "training_summary": "perturbation-aware fine-tuning",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2605-16043",
-      "source": "arxiv",
-      "title": "Learning Sim-Grounded Policies for Bimanual Rope Manipulation from Human Teleoperation Data",
-      "title_zh": "从人类遥操作数据中学习用于双臂绳索操作的仿真基础策略",
-      "tldr_zh": "基于状态的策略比视觉策略在绳索操作中误差降低30.8%，揭示观测空间是关键瓶颈。",
-      "cover_zh": "机器人解绳结｜不用看摄像头，靠物理状态反杀视觉策略",
-      "abstract_zh": "绳索和电缆等可变形线性对象（DLO）在家庭和工业应用中广泛存在，但由于其无限维的构型空间和频繁的自遮挡，操作起来仍然具有挑战性。基于遥操作的模仿学习为双臂DLO操作提供了一条实用路径，但其可扩展性受限于人力投入，因此观测空间的选择对于从小数据集中实现泛化至关重要。在本研究中，我们探究了在解结任务中，基于自我中心视觉的策略缺乏泛化能力是否源于观测空间本身，而非策略架构或数据规模。我们比较了两个基于相同双臂遥操作数据训练的、采用动作分块与Transformer的策略：一个基于视觉的策略，以腕部摄像头提供的两个自我中心RGB流为条件；另一个基于状态的策略，以DLO的3D粒子状态为条件，该状态通过多视角融合从初始观测中提取，并在基于粒子的扩展位置动力学仿真中演化。在未见过的绳索配置上进行开环评估时，基于状态的策略在预测初始抓取和拉动动作时，L1误差比基于视觉的策略降低了30.8%，量化了像素与物理一致状态之间的可观测性差距，并为从有限的人类演示中实现更数据高效的DLO操作机器人学习指明了方向。",
-      "authors": [
-        "Gina Wigginghaus",
-        "Tim Missal",
-        "Berk Guler"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-15",
-      "channels": [
-        "manipulation",
-        "teleop"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-16043.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-16043-p2.jpg",
-        "assets/img/covers/arxiv-2605-16043-p3.jpg",
-        "assets/img/covers/arxiv-2605-16043-p4.jpg"
-      ],
-      "arxiv_id": "2605.16043",
-      "abs_url": "http://arxiv.org/abs/2605.16043v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.16043v1",
-      "score": 20,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "研究双臂绳索操作，结合遥操作数据与仿真策略，有方法创新和实验对比",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "TU Darmstadt"
-      ],
-      "method_tags": [
-        "Imitation Learning",
-        "Action Chunking with Transformers",
-        "bimanual manipulation"
-      ],
-      "platform": [],
-      "sim_stack": [
-        "eXtended Position-Based Dynamics"
-      ],
-      "method_family": "IL",
-      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -669,17 +692,17 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "University of Melbourne"
+        "The University of Melbourne",
+        "Monash University"
       ],
       "method_tags": [
-        "latent video prediction",
-        "world model",
-        "robustness"
+        "latent prediction",
+        "world model"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "Foundation",
-      "real_robot": "no",
+      "method_family": "",
+      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
