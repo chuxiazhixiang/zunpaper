@@ -1,0 +1,100 @@
+{
+  "id": "arxiv-2606-16515",
+  "source": "arxiv",
+  "title": "Direction-Conditioned Policies via Compositional Subgoal Scoring for Online Goal-Conditioned Reinforcement Learning",
+  "title_zh": "方向条件策略：通过组合性子目标评分实现在线目标条件强化学习",
+  "abstract": "Hamilton-Jacobi-Bellman theory implies that the optimal goal-conditioned action depends on the goal only through the gradient of the goal-reaching distance at the current state, yet standard online GCRL still conditions the actor on the raw goal -- a signal that is geometrically uninformative when the goal is far from the data distribution. We propose Direction-Conditioned Policies (DCP), a fully online method that decomposes goal-reaching into two components sharing one InfoNCE representation $ψ$: a subgoal-scoring step that selects a visited state $z_t$ aligned with the final goal $g$ in $ψ_g$, and a direction-conditioned actor that consumes the unit direction $d_t$ and magnitude $r_t$ from $ψ(s_t)$ to $ψ(z_t)$. The two components train jointly, factor cleanly at deployment (subgoal scoring is removed, while direction conditioning remains with $g$ in place of $z_t$), and admit independent modification at the same $(d_t,r_t)$ interface. We prove three results. First, direction sufficiency under HJB: the optimal action under control-affine dynamics depends on the goal only through the value gradient. Second, a quantitative bound showing that, under mild conditions on the learned representation and assuming the scoring rule returns an on-path $z_t$, the actor's conditioning input at training and at deployment coincide up to representation error and geodesic slack. Third, a controllable-subspace characterization of when directional conditioning fails. Across nine environments, DCP improves over Contrastive RL on most final metrics, with the largest gains on manipulation and obstacle-interaction tasks; a qualitative analysis of the learned $ψ$-distance landscape shows the contrastive representation behaves as an online quasimetric encoding environment topology, and the single failure case (AntSoccer) localizes to a learned-gradient pathology that the theory anticipates.",
+  "abstract_zh": "Hamilton-Jacobi-Bellman理论表明，最优目标条件动作仅通过当前状态下到达目标距离的梯度依赖于目标，然而标准的在线GCRL仍然将演员网络条件于原始目标——当目标远离数据分布时，这一信号在几何上信息不足。我们提出方向条件策略（DCP），一种完全在线的方法，将目标达成分解为两个共享同一InfoNCE表示ψ的组件：一个子目标评分步骤，选择与最终目标g在ψ空间中对齐的已访问状态z_t；以及一个方向条件演员，它消耗从ψ(s_t)到ψ(z_t)的单位方向d_t和幅度r_t。两个组件联合训练，在部署时干净地分解（子目标评分被移除，而方向条件保留，用g代替z_t），并允许在相同的(d_t, r_t)接口上进行独立修改。我们证明了三个结果。第一，HJB下的方向充分性：在控制仿射动力学下，最优动作仅通过值梯度依赖于目标。第二，一个定量界表明，在关于学习表示的温和条件下，并假设评分规则返回一个路径上的z_t，演员在训练和部署时的条件输入在表示误差和测地松弛下是一致的。第三，一个可控子空间刻画，说明方向条件何时失败。在九个环境中，DCP在大多数最终指标上优于对比RL，在操作和障碍交互任务上提升最大；对学习到的ψ距离景观的定性分析表明，对比表示表现为一种在线拟度量，编码环境拓扑，而唯一的失败案例（AntSoccer）定位到理论所预期的学习梯度病理。",
+  "tldr_zh": "提出方向条件策略，通过子目标评分和方向条件演员分解目标达成，在多个任务上提升性能。",
+  "cover_zh": "目标太远信号失效？新方法用方向条件让强化学习在线起飞",
+  "authors": [
+    {
+      "name": "Swaminathan S K",
+      "affiliation": ""
+    },
+    {
+      "name": "Damiya Gondha",
+      "affiliation": ""
+    },
+    {
+      "name": "Theyanesh Eswaramoorthy Rajahkrishnan",
+      "affiliation": ""
+    },
+    {
+      "name": "Aritra Hazra",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.LG",
+  "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.RO"
+  ],
+  "published": "2026-06-15",
+  "updated": "2026-06-15",
+  "arxiv_id": "2606.16515",
+  "pdf_url": "https://arxiv.org/pdf/2606.16515v1",
+  "abs_url": "http://arxiv.org/abs/2606.16515v1",
+  "cover_image": "assets/img/covers/arxiv-2606-16515.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2606-16515-p2.jpg",
+    "assets/img/covers/arxiv-2606-16515-p3.jpg",
+    "assets/img/covers/arxiv-2606-16515-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 17,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（manipulation）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 17 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出方向条件策略，结合子目标评分与对比表示，理论扎实，在操作任务上提升显著，对GCRL有重要参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Indian Institute of Technology Kharagpur"
+  ],
+  "method_tags": [
+    "Goal-Conditioned Reinforcement Learning",
+    "Direction-Conditioned Policies",
+    "InfoNCE representation"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "no",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {}
+}

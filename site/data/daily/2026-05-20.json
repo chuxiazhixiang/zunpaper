@@ -24,15 +24,7 @@
       "badges": [
         {
           "kind": "lab",
-          "label": "⭐ CMU RI"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ HKU"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ Beihang (BUAA)"
+          "label": "⭐ 清华"
         },
         {
           "kind": "lab",
@@ -57,24 +49,21 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "University of Hong Kong",
-        "Beihang University",
-        "Carnegie Mellon University"
+        "Tuojing Intelligence",
+        "University of Chinese Academy of Sciences",
+        "Institute of Automation, Chinese Academy of Sciences",
+        "Tsinghua University"
       ],
       "method_tags": [
-        "World Model",
-        "3D Gaussian",
-        "VLA"
+        "3D Gaussian world model",
+        "feed-forward",
+        "spatio-temporal supervision"
       ],
-      "platform": [
-        "Franka"
-      ],
-      "sim_stack": [
-        "Isaac Sim"
-      ],
-      "method_family": "WorldModel",
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
       "real_robot": "yes",
-      "training_summary": "LIBERO 98.4%, RoboCasa Human-50 52.6%, real-world 50.0%",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -123,18 +112,203 @@
       },
       "institutions": [
         "Peking University",
-        "Beijing University of Posts and Telecommunications"
+        "University of Washington",
+        "Beijing Innovation Center of Humanoid Robotics"
       ],
       "method_tags": [
         "Joint-Embedding Predictive Architecture",
-        "one-shot imitation",
-        "cross-embodiment"
+        "cross-embodiment imitation",
+        "latent goal inference"
       ],
       "platform": [],
       "sim_stack": [
         "RLBench"
       ],
-      "method_family": "WorldModel",
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2605-20856",
+      "source": "arxiv",
+      "title": "DISC: Decoupling Instruction from State-Conditioned Control via Policy Generation",
+      "title_zh": "DISC：通过策略生成将指令与状态条件控制解耦",
+      "tldr_zh": "DISC用超网络生成策略参数，解耦指令与状态，消除观测泄露，性能超越纠缠基线。",
+      "cover_zh": "指令与状态解耦｜新方法让机器人不再“偷看”场景，性能反超预训练大模型",
+      "abstract_zh": "语言条件操控策略通常通过共享网络参数处理指令和观测。这种任务-状态纠缠为观测泄露提供了途径——网络学习场景到动作的捷径，完全绕过语言基础。DISC从结构上消除了这一失败模式。DISC不将通用策略条件化于语言，而是使用超网络仅从指令生成任务特定视觉运动策略的完整参数集。生成的策略从不直接访问语言；因此，其任务意识必须来自语言。结果，观测泄露没有途径出现。另一方面，生成连贯的高维策略权重本身就是一个挑战性问题。我们通过一个两阶段超网络来解决，其精炼阶段将基于梯度优化的结构嵌入为前馈归纳偏置，无需实际梯度计算即可产生全局一致的参数。在标准数据预算下从头训练，DISC在LIBERO-90和Meta-World上优于所有纠缠基线，在复杂、长时任务上优势扩大——并且超越大规模预训练的π₀，尽管未使用外部预训练数据。在一个所有任务共享相同视觉背景的真实世界基准上，DISC显著优于纠缠替代方案，直接证实是语言生成的策略参数而非视觉捷径驱动行为。超网络进一步学习了一个语义结构化的参数流形，使得从极少量演示中进行少样本适应和跨释义指令的鲁棒泛化成为可能。我们的代码可在：{https://github.com/ReNginx/DISC}获取。",
+      "authors": [
+        "Hanxiang Ren",
+        "Pei Zhou",
+        "Xunzhe Zhou"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-20",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ ZJU"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-20856.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-20856-p2.jpg",
+        "assets/img/covers/arxiv-2605-20856-p3.jpg",
+        "assets/img/covers/arxiv-2605-20856-p4.jpg"
+      ],
+      "arxiv_id": "2605.20856",
+      "abs_url": "http://arxiv.org/abs/2605.20856v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.20856v1",
+      "score": 45,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出解耦语言与状态条件的策略生成方法，在操作任务上显著提升性能，具有高科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Zhejiang University",
+        "The University of Hong Kong",
+        "TranscEngram"
+      ],
+      "method_tags": [
+        "hypernetwork",
+        "policy generation",
+        "language-conditioned manipulation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2605-20894",
+      "source": "arxiv",
+      "title": "Mobile UMI: Cross-View Diffusion Policy with Decoupled Kinematics for Mobile Manipulation",
+      "title_zh": "Mobile UMI：面向移动操作任务的解耦运动学跨视角扩散策略",
+      "tldr_zh": "提出解耦运动学与异步状态匹配的移动模仿学习框架，无需硬件改造，成功率83.8%。",
+      "cover_zh": "机器人移动操作总翻车？试试解耦运动学+异步对齐，成功率飙升！",
+      "abstract_zh": "移动操作中的模仿学习面临两个耦合瓶颈：受运动污染的动作标签以及连续移动基座上推理引起的执行延迟。近期腕戴式接口降低了桌面数据采集成本，但单一腕部视角无法捕捉基座导航所需的全局上下文。添加身体安装的摄像头会将人类行走与手部运动纠缠在一起。同时，生成式策略引入数百毫秒的推理延迟，在此期间基座会越过预测路径点，导致动作拼接处出现向后修正。本文提出Mobile UMI，一种无需硬件的演示框架，通过三个组件解决上述问题。首先，双摄像头采集系统记录以胸部为中心的全局上下文和以腕部为中心的局部交互，无需机器人参与。其次，基于ChArUco的一次性空间锚点统一了胸部和手部视觉惯性坐标系；手部姿态相对于胸部重新表达，以提取解耦的SE(3)操作和SE(2)基座轨迹。最后，异步滚动时域执行器执行在线状态匹配：每个生成的动作块与当前物理姿态重新对齐，从而在执行前丢弃过期的路径点。该系统在四个长时域家庭任务上评估，每个任务100次试验的平均成功率为83.8%。与ACT和扩散策略的对比实验表明，仅使用胸部相对标签即可缩小大部分差距；在线状态匹配弥补了剩余差距。这些结果表明，在测试条件下，显式运动学分解结合状态级延迟对齐为移动模仿学习提供了有效解决方案，而无需对底层策略类进行架构更改。",
+      "authors": [
+        "Haoran Huang",
+        "Haonan Dong",
+        "Huixu Dong"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-20",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation",
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ ZJU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-20894.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-20894-p2.jpg",
+        "assets/img/covers/arxiv-2605-20894-p3.jpg",
+        "assets/img/covers/arxiv-2605-20894-p4.jpg"
+      ],
+      "arxiv_id": "2605.20894",
+      "abs_url": "http://arxiv.org/abs/2605.20894v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.20894v1",
+      "score": 45,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出移动操作模仿学习框架，解耦基座与操作动作，解决延迟问题，实验验证有效。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Zhejiang University"
+      ],
+      "method_tags": [
+        "Imitation Learning",
+        "Diffusion Policy",
+        "Mobile Manipulation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2605-22882",
+      "source": "arxiv_discover",
+      "title": "GEM-4D: Geometry-Enhanced Video World Models for Robot Manipulation",
+      "title_zh": "GEM-4D：用于机器人操作的几何增强视频世界模型",
+      "tldr_zh": "GEM-4D通过密集4D对应监督提升视频世界模型的几何一致性，实现机器人操作成功率从61%到81%。",
+      "cover_zh": "视频世界模型终于不“飘”了｜几何监督让机器人操作成功率飙升20%",
+      "abstract_zh": "视频世界模型能够根据单条指令生成逼真的未来画面，但往往难以在时间上保持一致的点级运动。因此，生成的视频看似合理，却缺乏可靠动作执行（如机器人操作）所需的物理基础。我们提出GEM-4D，一种几何接地视频世界模型，通过在训练期间将从预训练几何基础模型中蒸馏出的密集4D对应监督注入视频生成骨干网络，解决了这一局限。这种监督使模型能够联合捕捉外观和几何结构，同时保持单流架构且无额外推理成本。我们进一步引入一个逆动力学模块，将对应一致的视频展开转换为可执行的机器人轨迹，从而在真实世界和模拟操作中实现直接部署。GEM-4D在视频预测和几何一致性方面，在模拟和真实场景中均达到最先进性能，并将真实世界操作成功率从61%提升至81%。更多结果请访问项目页面：https://anonymous-submission-20.github.io/gem.github.io/。",
+      "authors": [
+        "Kaichen Zhou",
+        "Yuzhen Chen",
+        "Fangneng Zhan"
+      ],
+      "primary_category": "",
+      "published": "2026-05-20",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Princeton"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-22882.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-22882-p2.jpg",
+        "assets/img/covers/arxiv-2605-22882-p3.jpg",
+        "assets/img/covers/arxiv-2605-22882-p4.jpg"
+      ],
+      "arxiv_id": "2605.22882",
+      "abs_url": "http://arxiv.org/abs/2605.22882v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.22882v1",
+      "score": 45,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出几何增强视频世界模型，提升机器人操作，有真实实验验证。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Harvard AI and Robotics Lab, Harvard University",
+        "Media Lab and EECS, MIT",
+        "Computer Science, Princeton University",
+        "MIT-IBM Watson AI Lab"
+      ],
+      "method_tags": [
+        "video world model",
+        "inverse dynamics"
+      ],
+      "platform": [
+        "Franka Emika Panda"
+      ],
+      "sim_stack": [],
+      "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
@@ -182,15 +356,16 @@
         "reason": "提出人形机器人全身操作框架，结合空间感知与动作生成，具有创新性和通用性",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "Sun Yat-sen University"
+      ],
       "method_tags": [
         "multi-agent large models",
-        "whole-body manipulation",
-        "spatial perception"
+        "loco-manipulation"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "Foundation",
+      "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
@@ -238,35 +413,35 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "ETH Zurich"
+        "ETH Zürich"
       ],
       "method_tags": [
-        "RL",
-        "Transformer",
-        "Distillation"
+        "Reinforcement Learning",
+        "Distillation",
+        "Transformer"
       ],
       "platform": [
         "ORCA hand"
       ],
       "sim_stack": [],
-      "method_family": "RL",
+      "method_family": "",
       "real_robot": "yes",
-      "training_summary": "Teacher RL + student distillation",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
     {
-      "id": "arxiv-2605-21414",
+      "id": "arxiv-2605-21258",
       "source": "arxiv",
-      "title": "PointACT: Vision-Language-Action Models with Multi-Scale Point-Action Interaction",
-      "title_zh": "PointACT：具有多尺度点-动作交互的视觉-语言-动作模型",
-      "tldr_zh": "提出PointACT，通过多尺度点-动作交互将3D点云融入VLA模型，提升机器人操作成功率。",
-      "cover_zh": "2D视觉不够用？这个3D感知VLA模型让机器人操作成功率飙升10%",
-      "abstract_zh": "视觉-语言-动作（VLA）模型通过利用大规模预训练的视觉-语言骨干网络，在通用机器人操作中展现出巨大潜力。然而，现有大多数VLA主要依赖2D视觉表示，这限制了它们对细粒度几何和空间基础推理的能力——而这些能力对于在3D环境中实现精确且鲁棒的操作至关重要。本文提出PointACT，一种双系统3D感知VLA策略，它将分层3D点云表示直接集成到动作解码过程中。PointACT采用多尺度点-动作交互机制和高效的瓶颈窗口自注意力，使演化的动作标记能够密集关注局部几何细节和全局场景结构。我们在LIBERO和RLBench基准上评估PointACT，并系统性地将其与单系统和双系统VLA基线（包括增强点云输入的变体）进行比较。PointACT在两个基准上均取得一致改进，在具有挑战性的RLBench-10Tasks套件上，相比最先进的预训练VLA，成功率提高了10%，当视觉-语言骨干网络冻结且动作专家从头训练时，增益更大。大量消融研究表明，将分层3D几何与预训练2D语义表示紧密耦合，对于鲁棒且空间基础的机器人控制至关重要。我们的结果也突显了预训练3D表示在3D感知VLA策略中的前景。",
+      "title": "Learning Structural Latent Points for Efficient Visual Representations in Robotic Manipulation",
+      "title_zh": "学习结构隐式点：面向机器人操作高效视觉表征",
+      "tldr_zh": "提出混合隐式点表示，结合隐式表达力与显式结构先验，提升机器人操作效率。",
+      "cover_zh": "机器人操作新突破｜隐式点表示让3D感知既准又高效",
+      "abstract_zh": "当前面向具身感知与操作的3D感知预训练方法大多基于可微分渲染框架，生成完全隐式神经场或完全显式几何基元。隐式表示虽表达力强，但缺乏显式结构线索；显式表示虽保留几何结构，却受限于分辨率与泛化能力。为解决这些局限，我们提出一种新颖的预训练框架，学习混合表示——结构隐式点。具体而言，我们在点云自编码器的隐空间中插入一个逐点隐变分自编码器，联合正则化逐点特征与坐标朝向高斯先验。得到的紧凑隐表示保留了粗略的结构趋势，不编码精确几何，但捕获更丰富的粗糙形状与语义信息，有效结合了隐式表示的表达力与显式表示的结构先验。此外，受先前工作中共享设计选择的启发，我们开发了一个精简高效的基于3DGS的渲染管线，刻意保持轻量，提升效率的同时将更多表示能力留给前端隐模块。在RLBench、ManiSkill2及真实机器人平台上的大量评估表明，与强基线相比，我们的方法在任务成功率、样本效率以及对视角和场景变化的鲁棒性上均取得一致提升。消融研究进一步证实，框架的每个组件对整体性能都至关重要。",
       "authors": [
-        "Shizhe Chen",
-        "Paul Pacaud",
-        "Cordelia Schmid"
+        "Yicheng Jiang",
+        "Jiaxu Wang",
+        "Junhao He"
       ],
       "primary_category": "cs.RO",
       "published": "2026-05-20",
@@ -276,191 +451,44 @@
       "badges": [
         {
           "kind": "lab",
-          "label": "⭐ Google DeepMind"
+          "label": "⭐ HKUST"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
         }
       ],
-      "cover_image": "assets/img/covers/arxiv-2605-21414.jpg",
+      "cover_image": "assets/img/covers/arxiv-2605-21258.jpg",
       "preview_pages": [
-        "assets/img/covers/arxiv-2605-21414-p2.jpg",
-        "assets/img/covers/arxiv-2605-21414-p3.jpg",
-        "assets/img/covers/arxiv-2605-21414-p4.jpg"
+        "assets/img/covers/arxiv-2605-21258-p2.jpg",
+        "assets/img/covers/arxiv-2605-21258-p3.jpg",
+        "assets/img/covers/arxiv-2605-21258-p4.jpg"
       ],
-      "arxiv_id": "2605.21414",
-      "abs_url": "http://arxiv.org/abs/2605.21414v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.21414v1",
-      "score": 40,
+      "arxiv_id": "2605.21258",
+      "abs_url": "http://arxiv.org/abs/2605.21258v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.21258v1",
+      "score": 31,
       "judge": {
         "relevant": true,
         "research_value": "high",
         "primary_channel": "manipulation",
-        "reason": "提出3D感知VLA模型PointACT，在LIBERO和RLBench上显著提升，具有科研价值。",
+        "reason": "提出结构隐式点混合表征，提升3D视觉预训练在操作任务中的效率与泛化，实验充分",
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "INRIA",
-        "Google DeepMind"
+        "The Hong Kong University of Science and Technology",
+        "The Hong Kong University of Science and Technology (Guangzhou)",
+        "MMLab, The Chinese University of Hong Kong",
+        "X-Humanoid Robots"
       ],
       "method_tags": [
-        "VLA",
-        "3D point cloud",
-        "multi-scale attention"
+        "3D-aware pretraining",
+        "hybrid representation",
+        "structural latent points"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "VLA",
-      "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2605-20856",
-      "source": "arxiv",
-      "title": "DISC: Decoupling Instruction from State-Conditioned Control via Policy Generation",
-      "title_zh": "DISC：通过策略生成将指令与状态条件控制解耦",
-      "tldr_zh": "DISC用超网络生成策略参数，解耦指令与状态，消除观测泄露，性能超越纠缠基线。",
-      "cover_zh": "指令与状态解耦｜新方法让机器人不再“偷看”场景，性能反超预训练大模型",
-      "abstract_zh": "语言条件操控策略通常通过共享网络参数处理指令和观测。这种任务-状态纠缠为观测泄露提供了途径——网络学习场景到动作的捷径，完全绕过语言基础。DISC从结构上消除了这一失败模式。DISC不将通用策略条件化于语言，而是使用超网络仅从指令生成任务特定视觉运动策略的完整参数集。生成的策略从不直接访问语言；因此，其任务意识必须来自语言。结果，观测泄露没有途径出现。另一方面，生成连贯的高维策略权重本身就是一个挑战性问题。我们通过一个两阶段超网络来解决，其精炼阶段将基于梯度优化的结构嵌入为前馈归纳偏置，无需实际梯度计算即可产生全局一致的参数。在标准数据预算下从头训练，DISC在LIBERO-90和Meta-World上优于所有纠缠基线，在复杂、长时任务上优势扩大——并且超越大规模预训练的π₀，尽管未使用外部预训练数据。在一个所有任务共享相同视觉背景的真实世界基准上，DISC显著优于纠缠替代方案，直接证实是语言生成的策略参数而非视觉捷径驱动行为。超网络进一步学习了一个语义结构化的参数流形，使得从极少量演示中进行少样本适应和跨释义指令的鲁棒泛化成为可能。我们的代码可在：{https://github.com/ReNginx/DISC}获取。",
-      "authors": [
-        "Hanxiang Ren",
-        "Pei Zhou",
-        "Xunzhe Zhou"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-20",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-20856.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-20856-p2.jpg",
-        "assets/img/covers/arxiv-2605-20856-p3.jpg",
-        "assets/img/covers/arxiv-2605-20856-p4.jpg"
-      ],
-      "arxiv_id": "2605.20856",
-      "abs_url": "http://arxiv.org/abs/2605.20856v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.20856v1",
-      "score": 20,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出解耦语言与状态条件的策略生成方法，在操作任务上显著提升性能，具有高科研价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "Hypernetwork",
-        "Language-conditioned manipulation",
-        "Policy generation"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Hybrid",
-      "real_robot": "yes",
-      "training_summary": "Standard data budgets (LIBERO-90, Meta-World)",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2605-20894",
-      "source": "arxiv",
-      "title": "Mobile UMI: Cross-View Diffusion Policy with Decoupled Kinematics for Mobile Manipulation",
-      "title_zh": "Mobile UMI：面向移动操作任务的解耦运动学跨视角扩散策略",
-      "tldr_zh": "提出解耦运动学与异步状态匹配的移动模仿学习框架，无需硬件改造，成功率83.8%。",
-      "cover_zh": "机器人移动操作总翻车？试试解耦运动学+异步对齐，成功率飙升！",
-      "abstract_zh": "移动操作中的模仿学习面临两个耦合瓶颈：受运动污染的动作标签以及连续移动基座上推理引起的执行延迟。近期腕戴式接口降低了桌面数据采集成本，但单一腕部视角无法捕捉基座导航所需的全局上下文。添加身体安装的摄像头会将人类行走与手部运动纠缠在一起。同时，生成式策略引入数百毫秒的推理延迟，在此期间基座会越过预测路径点，导致动作拼接处出现向后修正。本文提出Mobile UMI，一种无需硬件的演示框架，通过三个组件解决上述问题。首先，双摄像头采集系统记录以胸部为中心的全局上下文和以腕部为中心的局部交互，无需机器人参与。其次，基于ChArUco的一次性空间锚点统一了胸部和手部视觉惯性坐标系；手部姿态相对于胸部重新表达，以提取解耦的SE(3)操作和SE(2)基座轨迹。最后，异步滚动时域执行器执行在线状态匹配：每个生成的动作块与当前物理姿态重新对齐，从而在执行前丢弃过期的路径点。该系统在四个长时域家庭任务上评估，每个任务100次试验的平均成功率为83.8%。与ACT和扩散策略的对比实验表明，仅使用胸部相对标签即可缩小大部分差距；在线状态匹配弥补了剩余差距。这些结果表明，在测试条件下，显式运动学分解结合状态级延迟对齐为移动模仿学习提供了有效解决方案，而无需对底层策略类进行架构更改。",
-      "authors": [
-        "Haoran Huang",
-        "Haonan Dong",
-        "Huixu Dong"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-20",
-      "channels": [
-        "loco-manip-wbc",
-        "manipulation",
-        "locomotion"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-20894.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-20894-p2.jpg",
-        "assets/img/covers/arxiv-2605-20894-p3.jpg",
-        "assets/img/covers/arxiv-2605-20894-p4.jpg"
-      ],
-      "arxiv_id": "2605.20894",
-      "abs_url": "http://arxiv.org/abs/2605.20894v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.20894v1",
-      "score": 20,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "提出移动操作模仿学习框架，解耦基座与操作动作，解决延迟问题，实验验证有效。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "Diffusion Policy",
-        "Imitation Learning",
-        "mobile manipulation"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Diffusion",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2605-22882",
-      "source": "arxiv_discover",
-      "title": "GEM-4D: Geometry-Enhanced Video World Models for Robot Manipulation",
-      "title_zh": "GEM-4D：用于机器人操作的几何增强视频世界模型",
-      "tldr_zh": "GEM-4D通过密集4D对应监督提升视频世界模型的几何一致性，实现机器人操作成功率从61%到81%。",
-      "cover_zh": "视频世界模型终于不“飘”了｜几何监督让机器人操作成功率飙升20%",
-      "abstract_zh": "视频世界模型能够根据单条指令生成逼真的未来画面，但往往难以在时间上保持一致的点级运动。因此，生成的视频看似合理，却缺乏可靠动作执行（如机器人操作）所需的物理基础。我们提出GEM-4D，一种几何接地视频世界模型，通过在训练期间将从预训练几何基础模型中蒸馏出的密集4D对应监督注入视频生成骨干网络，解决了这一局限。这种监督使模型能够联合捕捉外观和几何结构，同时保持单流架构且无额外推理成本。我们进一步引入一个逆动力学模块，将对应一致的视频展开转换为可执行的机器人轨迹，从而在真实世界和模拟操作中实现直接部署。GEM-4D在视频预测和几何一致性方面，在模拟和真实场景中均达到最先进性能，并将真实世界操作成功率从61%提升至81%。更多结果请访问项目页面：https://anonymous-submission-20.github.io/gem.github.io/。",
-      "authors": [
-        "Kaichen Zhou",
-        "Yuzhen Chen",
-        "Fangneng Zhan"
-      ],
-      "primary_category": "",
-      "published": "2026-05-20",
-      "channels": [
-        "manipulation",
-        "world-model"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-22882.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-22882-p2.jpg",
-        "assets/img/covers/arxiv-2605-22882-p3.jpg",
-        "assets/img/covers/arxiv-2605-22882-p4.jpg"
-      ],
-      "arxiv_id": "2605.22882",
-      "abs_url": "http://arxiv.org/abs/2605.22882v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.22882v1",
-      "score": 20,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出几何增强视频世界模型，提升机器人操作，有真实实验验证。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "Video World Model",
-        "4D Correspondence",
-        "Inverse Dynamics"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "WorldModel",
+      "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
@@ -507,15 +535,14 @@
         "The University of Tokyo"
       ],
       "method_tags": [
-        "wire-driven actuation",
-        "wheeled-legged locomotion",
-        "environmental utilization"
+        "wheeled-legged",
+        "wire-driven"
       ],
       "platform": [
         "WiXus"
       ],
       "sim_stack": [],
-      "method_family": "Hardware",
+      "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
@@ -564,12 +591,66 @@
       "method_tags": [
         "Diffusion Policy",
         "Shared Control",
-        "Human In The Loop"
+        "Teleoperation"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "Diffusion",
+      "method_family": "",
       "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2605-21414",
+      "source": "arxiv",
+      "title": "PointACT: Vision-Language-Action Models with Multi-Scale Point-Action Interaction",
+      "title_zh": "PointACT：具有多尺度点-动作交互的视觉-语言-动作模型",
+      "tldr_zh": "提出PointACT，通过多尺度点-动作交互将3D点云融入VLA模型，提升机器人操作成功率。",
+      "cover_zh": "2D视觉不够用？这个3D感知VLA模型让机器人操作成功率飙升10%",
+      "abstract_zh": "视觉-语言-动作（VLA）模型通过利用大规模预训练的视觉-语言骨干网络，在通用机器人操作中展现出巨大潜力。然而，现有大多数VLA主要依赖2D视觉表示，这限制了它们对细粒度几何和空间基础推理的能力——而这些能力对于在3D环境中实现精确且鲁棒的操作至关重要。本文提出PointACT，一种双系统3D感知VLA策略，它将分层3D点云表示直接集成到动作解码过程中。PointACT采用多尺度点-动作交互机制和高效的瓶颈窗口自注意力，使演化的动作标记能够密集关注局部几何细节和全局场景结构。我们在LIBERO和RLBench基准上评估PointACT，并系统性地将其与单系统和双系统VLA基线（包括增强点云输入的变体）进行比较。PointACT在两个基准上均取得一致改进，在具有挑战性的RLBench-10Tasks套件上，相比最先进的预训练VLA，成功率提高了10%，当视觉-语言骨干网络冻结且动作专家从头训练时，增益更大。大量消融研究表明，将分层3D几何与预训练2D语义表示紧密耦合，对于鲁棒且空间基础的机器人控制至关重要。我们的结果也突显了预训练3D表示在3D感知VLA策略中的前景。",
+      "authors": [
+        "Shizhe Chen",
+        "Paul Pacaud",
+        "Cordelia Schmid"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-20",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2605-21414.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-21414-p2.jpg",
+        "assets/img/covers/arxiv-2605-21414-p3.jpg",
+        "assets/img/covers/arxiv-2605-21414-p4.jpg"
+      ],
+      "arxiv_id": "2605.21414",
+      "abs_url": "http://arxiv.org/abs/2605.21414v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.21414v1",
+      "score": 15,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出3D感知VLA模型PointACT，在LIBERO和RLBench上显著提升，具有科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Inria",
+        "École normale supérieure",
+        "CNRS",
+        "PSL Research University"
+      ],
+      "method_tags": [
+        "VLA",
+        "multi-scale point-action interaction"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "no",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -611,15 +692,20 @@
         "reason": "提出BEV世界模型用于预测未来语义地图，结合RL实现安全驾驶，属于世界模型在自动驾驶中的应用",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "PCA Lab@NJUST",
+        "NJU",
+        "SJTU",
+        "FDU"
+      ],
       "method_tags": [
-        "RL",
-        "World Model",
-        "autonomous driving"
+        "reinforcement learning",
+        "world model",
+        "distillation"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "RL",
+      "method_family": "",
       "real_robot": "no",
       "training_summary": "",
       "demo_videos": [],
@@ -661,11 +747,14 @@
         "reason": "研究sim-to-real差距，提出Fisher-SEP策略，理论贡献强，对sim2real方向有指导意义",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "Amazon SCOT",
+        "Yale University",
+        "Duke University"
+      ],
       "method_tags": [
         "sim-to-real",
-        "experimental design",
-        "simulation lemma"
+        "simulation-aided experimental policy"
       ],
       "platform": [],
       "sim_stack": [],
@@ -712,67 +801,16 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Aalborg University"
+        "University of Southern Denmark"
       ],
       "method_tags": [
         "Control Barrier Function",
-        "Implicit Contact Dynamics",
-        "Safety-Critical Control"
+        "smoothed implicit contact dynamics"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "MPC",
+      "method_family": "",
       "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2605-21258",
-      "source": "arxiv",
-      "title": "Learning Structural Latent Points for Efficient Visual Representations in Robotic Manipulation",
-      "title_zh": "学习结构隐式点：面向机器人操作高效视觉表征",
-      "tldr_zh": "提出混合隐式点表示，结合隐式表达力与显式结构先验，提升机器人操作效率。",
-      "cover_zh": "机器人操作新突破｜隐式点表示让3D感知既准又高效",
-      "abstract_zh": "当前面向具身感知与操作的3D感知预训练方法大多基于可微分渲染框架，生成完全隐式神经场或完全显式几何基元。隐式表示虽表达力强，但缺乏显式结构线索；显式表示虽保留几何结构，却受限于分辨率与泛化能力。为解决这些局限，我们提出一种新颖的预训练框架，学习混合表示——结构隐式点。具体而言，我们在点云自编码器的隐空间中插入一个逐点隐变分自编码器，联合正则化逐点特征与坐标朝向高斯先验。得到的紧凑隐表示保留了粗略的结构趋势，不编码精确几何，但捕获更丰富的粗糙形状与语义信息，有效结合了隐式表示的表达力与显式表示的结构先验。此外，受先前工作中共享设计选择的启发，我们开发了一个精简高效的基于3DGS的渲染管线，刻意保持轻量，提升效率的同时将更多表示能力留给前端隐模块。在RLBench、ManiSkill2及真实机器人平台上的大量评估表明，与强基线相比，我们的方法在任务成功率、样本效率以及对视角和场景变化的鲁棒性上均取得一致提升。消融研究进一步证实，框架的每个组件对整体性能都至关重要。",
-      "authors": [
-        "Yicheng Jiang",
-        "Jiaxu Wang",
-        "Junhao He"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-20",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-21258.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-21258-p2.jpg",
-        "assets/img/covers/arxiv-2605-21258-p3.jpg",
-        "assets/img/covers/arxiv-2605-21258-p4.jpg"
-      ],
-      "arxiv_id": "2605.21258",
-      "abs_url": "http://arxiv.org/abs/2605.21258v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.21258v1",
-      "score": 6,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出结构隐式点混合表征，提升3D视觉预训练在操作任务中的效率与泛化，实验充分",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "hybrid representation",
-        "latent VAE",
-        "3D pretraining"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Hybrid",
-      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -813,19 +851,23 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "University of Edinburgh"
+        "University of Edinburgh",
+        "National University Singapore"
       ],
       "method_tags": [
-        "RL",
-        "tactile sensing",
-        "benchmark"
+        "Reinforcement Learning",
+        "tactile-based manipulation"
       ],
-      "platform": [],
+      "platform": [
+        "Shadow Dexterous Hand",
+        "Shadow Dexterous Hand Lite",
+        "Allegro Hand"
+      ],
       "sim_stack": [
-        "Isaac Gym"
+        "Isaac Lab"
       ],
-      "method_family": "Benchmark",
-      "real_robot": "no",
+      "method_family": "",
+      "real_robot": "",
       "training_summary": "",
       "demo_videos": [
         {
