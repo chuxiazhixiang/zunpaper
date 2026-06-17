@@ -45,20 +45,23 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Zhejiang University"
+        "Zhejiang University",
+        "Central South University",
+        "Harbin Institute of Technology",
+        "Embodied Intelligence General Platform Laboratory, Chery Auto"
       ],
       "method_tags": [
-        "World Model",
-        "VLA",
-        "Token Compression"
+        "world model",
+        "flow matching",
+        "VLA"
       ],
       "platform": [
         "Piper arm"
       ],
       "sim_stack": [],
-      "method_family": "WorldModel",
+      "method_family": "",
       "real_robot": "yes",
-      "training_summary": "14.71M LoRA params on π0 (2B) backbone",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -108,21 +111,18 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Carnegie Mellon University",
-        "Tsinghua University"
+        "Tsinghua University",
+        "Carnegie Mellon University"
       ],
       "method_tags": [
-        "compositional framework",
-        "visuomotor skill",
+        "visuomotor skill composition",
         "long-horizon assembly"
       ],
-      "platform": [
-        "Franka"
-      ],
+      "platform": [],
       "sim_stack": [],
-      "method_family": "Hybrid",
-      "real_robot": "yes",
-      "training_summary": "limited set of demonstrations",
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
       "demo_videos": [
         {
           "kind": "youtube",
@@ -176,18 +176,83 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "National University of Singapore"
+        "National University of Singapore",
+        "Institude for Information Research, A*STAR",
+        "Harbin Institute of Technology (Shenzhen)"
       ],
       "method_tags": [
-        "VLA",
         "Anchor-Centric Adaptation",
-        "data efficiency"
+        "VLA"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "VLA",
+      "method_family": "",
       "real_robot": "yes",
-      "training_summary": "fixed budget, repeated anchor demos + selective expansion",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2605-07794",
+      "source": "arxiv",
+      "title": "NoiseGate: Learning Per-Latent Timestep Schedules as Information Gating in World Action Models",
+      "title_zh": "NoiseGate：在世界动作模型中将每个潜在时间步调度学习为信息门控",
+      "tldr_zh": "NoiseGate通过可学习的每潜在时间步调度作为信息门控，提升世界动作模型性能。",
+      "cover_zh": "别再让所有潜在帧共享同一个时间步｜NoiseGate用可学习门控让机器人动作生成更精准",
+      "abstract_zh": "世界动作模型（WAMs）是一类新兴的策略，它将机器人动作生成与未来观测建模相结合。本文聚焦于联合视频-动作建模范式，其中动作和想象的未来观测沿着共享的去噪或流轨迹共同生成，从而将感知、预测和控制耦合在一个生成过程中。现有的WAMs通常通过混合Transformer（MoT）实现这一范式，其中视频和动作令牌通过共享的自注意力进行交互。这种架构原则上可以为每个预测的潜在帧分配独立的时间步$t_f$，但当前系统将这一自由度坍缩为单个共享标量$t$。在扩散强制（Diffusion Forcing）的噪声即掩码视角下，这种共享调度施加了不合理的先验，即每个预测的潜在帧对动作生成具有相同的可靠性。相反，我们将每个潜在时间步调度视为一个可学习的信息门控策略：通过改变潜在帧的噪声水平，策略调节其键/值对动作令牌贡献的可靠性。我们提出NoiseGate，它结合了骨干网络训练期间的独立每潜在时间步采样、一个轻量级门控策略网络（在去噪过程中输出每潜在时间增量），以及任务奖励优化（无需手工设计的形状先验即可训练调度策略）。基于联合视频-动作MoT骨干网络，NoiseGate在多种RoboTwin随机场景操作任务上取得了持续改进。",
+      "authors": [
+        "Wen Huang",
+        "Haoran Sun",
+        "Yongjian Guo"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-08",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ 北大"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-07794.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-07794-p2.jpg",
+        "assets/img/covers/arxiv-2605-07794-p3.jpg",
+        "assets/img/covers/arxiv-2605-07794-p4.jpg"
+      ],
+      "arxiv_id": "2605.07794",
+      "abs_url": "http://arxiv.org/abs/2605.07794v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.07794v1",
+      "score": 34,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "vla",
+        "reason": "提出世界动作模型中基于潜变量的时间步调度，创新性强，对VLA和具身智能有重要参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Tsinghua University",
+        "Peking University",
+        "JDT AI Infra",
+        "Tianjin University"
+      ],
+      "method_tags": [
+        "World Action Model",
+        "Diffusion Forcing",
+        "per-latent timestep schedule"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -236,17 +301,14 @@
         "KAIST"
       ],
       "method_tags": [
-        "Wasserstein Gradient Flow",
-        "One-Step Generative Policy",
-        "Behavior Cloning"
+        "generative policy",
+        "Wasserstein gradient flow",
+        "one-step inference"
       ],
       "platform": [],
-      "sim_stack": [
-        "Robomimic",
-        "OGBench"
-      ],
-      "method_family": "Diffusion",
-      "real_robot": "no",
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -286,11 +348,13 @@
         "reason": "提出模仿学习中主动视觉与预期注视的基准，对具身智能研究有重要价值",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "Tilburg University"
+      ],
       "method_tags": [
-        "Active Vision",
         "Imitation Learning",
-        "Benchmark"
+        "Active Vision",
+        "Diffusion Policy"
       ],
       "platform": [
         "GR1T2",
@@ -299,9 +363,70 @@
       "sim_stack": [
         "IsaacLab"
       ],
-      "method_family": "Benchmark",
+      "method_family": "",
       "real_robot": "no",
-      "training_summary": "~2200 episodes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2605-08020",
+      "source": "arxiv",
+      "title": "Active Embodiment Identification with Reinforcement Learning for Legged Robots",
+      "title_zh": "基于强化学习的足式机器人主动本体识别",
+      "tldr_zh": "足式机器人通过强化学习主动识别自身形态参数。",
+      "cover_zh": "机器人自己学会认识身体？强化学习让足式机器人主动识别形态参数",
+      "abstract_zh": "我们提出了一种用于足式机器人的主动本体识别方法，该方法联合学习信息寻求行为和显式本体预测。通过使用历史增强的URMA架构，该方法在仿真中通过与不同形态环境的交互来推断关节级和全局本体参数。",
+      "authors": [
+        "Nico Bohlinger",
+        "Jan Peters"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-08",
+      "channels": [
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ CMU RI"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-08020.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-08020-p2.jpg",
+        "assets/img/covers/arxiv-2605-08020-p3.jpg"
+      ],
+      "arxiv_id": "2605.08020",
+      "abs_url": "http://arxiv.org/abs/2605.08020v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.08020v1",
+      "score": 28,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "locomotion",
+        "reason": "将强化学习用于腿足机器人主动本体辨识，有算法创新和实际价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Technical University of Darmstadt",
+        "Robotics Institute Germany (RIG)",
+        "German Research Center for AI (DFKI)",
+        "hessian.AI"
+      ],
+      "method_tags": [
+        "Reinforcement Learning",
+        "embodiment identification"
+      ],
+      "platform": [
+        "Unitree Go2",
+        "ANYmal C",
+        "Unitree G1"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "no",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -333,19 +458,13 @@
         "reason": "Figure展示双机器人自主整理卧室，涉及全身控制与移动操作，来自顶尖公司。",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [
-        "Figure"
-      ],
-      "method_tags": [
-        "VLA",
-        "Imitation Learning",
-        "双臂协调"
-      ],
+      "institutions": [],
+      "method_tags": [],
       "platform": [
-        "Figure 03"
+        "Figure 02"
       ],
       "sim_stack": [],
-      "method_family": "VLA",
+      "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [
@@ -417,7 +536,9 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Rutgers University"
+        "Rutgers University",
+        "Purdue University",
+        "University of Wisconsin-Madison"
       ],
       "method_tags": [
         "World Model",
@@ -426,8 +547,8 @@
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "WorldModel",
-      "real_robot": "no",
+      "method_family": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [
         {
@@ -476,14 +597,14 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "MAB Robotics",
-        "TU Darmstadt",
+        "Technical University of Darmstadt",
+        "IDEAS Research Institute",
         "Poznan University of Technology"
       ],
       "method_tags": [
-        "RL",
-        "agile locomotion",
-        "actuated spine"
+        "Reinforcement Learning",
+        "PPO",
+        "Domain Randomization"
       ],
       "platform": [
         "Silver Badger"
@@ -491,7 +612,7 @@
       "sim_stack": [
         "MuJoCo"
       ],
-      "method_family": "RL",
+      "method_family": "",
       "real_robot": "no",
       "training_summary": "",
       "demo_videos": [],
@@ -537,17 +658,14 @@
         "National Yang Ming Chiao Tung University"
       ],
       "method_tags": [
-        "World Action Model",
+        "World Action Models",
         "action-state consistency",
-        "test-time selection"
+        "value-free consensus"
       ],
       "platform": [],
-      "sim_stack": [
-        "RoboCasa",
-        "RoboTwin 2.0"
-      ],
-      "method_family": "WorldModel",
-      "real_robot": "no",
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -589,116 +707,16 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Waseda University"
+        "Waseda University",
+        "Fujitsu Limited"
       ],
       "method_tags": [
         "Imitation Learning",
-        "Attention Mechanism",
-        "Data Selection"
+        "Attention Mechanism"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "IL",
-      "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2605-07794",
-      "source": "arxiv",
-      "title": "NoiseGate: Learning Per-Latent Timestep Schedules as Information Gating in World Action Models",
-      "title_zh": "NoiseGate：在世界动作模型中将每个潜在时间步调度学习为信息门控",
-      "tldr_zh": "NoiseGate通过可学习的每潜在时间步调度作为信息门控，提升世界动作模型性能。",
-      "cover_zh": "别再让所有潜在帧共享同一个时间步｜NoiseGate用可学习门控让机器人动作生成更精准",
-      "abstract_zh": "世界动作模型（WAMs）是一类新兴的策略，它将机器人动作生成与未来观测建模相结合。本文聚焦于联合视频-动作建模范式，其中动作和想象的未来观测沿着共享的去噪或流轨迹共同生成，从而将感知、预测和控制耦合在一个生成过程中。现有的WAMs通常通过混合Transformer（MoT）实现这一范式，其中视频和动作令牌通过共享的自注意力进行交互。这种架构原则上可以为每个预测的潜在帧分配独立的时间步$t_f$，但当前系统将这一自由度坍缩为单个共享标量$t$。在扩散强制（Diffusion Forcing）的噪声即掩码视角下，这种共享调度施加了不合理的先验，即每个预测的潜在帧对动作生成具有相同的可靠性。相反，我们将每个潜在时间步调度视为一个可学习的信息门控策略：通过改变潜在帧的噪声水平，策略调节其键/值对动作令牌贡献的可靠性。我们提出NoiseGate，它结合了骨干网络训练期间的独立每潜在时间步采样、一个轻量级门控策略网络（在去噪过程中输出每潜在时间增量），以及任务奖励优化（无需手工设计的形状先验即可训练调度策略）。基于联合视频-动作MoT骨干网络，NoiseGate在多种RoboTwin随机场景操作任务上取得了持续改进。",
-      "authors": [
-        "Wen Huang",
-        "Haoran Sun",
-        "Yongjian Guo"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-08",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-07794.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-07794-p2.jpg",
-        "assets/img/covers/arxiv-2605-07794-p3.jpg",
-        "assets/img/covers/arxiv-2605-07794-p4.jpg"
-      ],
-      "arxiv_id": "2605.07794",
-      "abs_url": "http://arxiv.org/abs/2605.07794v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.07794v1",
-      "score": 6,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "vla",
-        "reason": "提出世界动作模型中基于潜变量的时间步调度，创新性强，对VLA和具身智能有重要参考价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "Diffusion Forcing",
-        "World Action Model",
-        "per-latent timestep"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Diffusion",
-      "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2605-08020",
-      "source": "arxiv",
-      "title": "Active Embodiment Identification with Reinforcement Learning for Legged Robots",
-      "title_zh": "基于强化学习的足式机器人主动本体识别",
-      "tldr_zh": "足式机器人通过强化学习主动识别自身形态参数。",
-      "cover_zh": "机器人自己学会认识身体？强化学习让足式机器人主动识别形态参数",
-      "abstract_zh": "我们提出了一种用于足式机器人的主动本体识别方法，该方法联合学习信息寻求行为和显式本体预测。通过使用历史增强的URMA架构，该方法在仿真中通过与不同形态环境的交互来推断关节级和全局本体参数。",
-      "authors": [
-        "Nico Bohlinger",
-        "Jan Peters"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-08",
-      "channels": [
-        "locomotion"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-08020.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-08020-p2.jpg",
-        "assets/img/covers/arxiv-2605-08020-p3.jpg"
-      ],
-      "arxiv_id": "2605.08020",
-      "abs_url": "http://arxiv.org/abs/2605.08020v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.08020v1",
-      "score": 3,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "locomotion",
-        "reason": "将强化学习用于腿足机器人主动本体辨识，有算法创新和实际价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "TU Darmstadt"
-      ],
-      "method_tags": [
-        "RL",
-        "embodiment identification",
-        "legged robots"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "RL",
+      "method_family": "",
       "real_robot": "no",
       "training_summary": "",
       "demo_videos": [],

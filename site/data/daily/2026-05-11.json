@@ -3,6 +3,71 @@
   "count": 10,
   "papers": [
     {
+      "id": "arxiv-2605-10942",
+      "source": "arxiv",
+      "title": "HarmoWAM: Harmonizing Generalizable and Precise Manipulation via Adaptive World Action Models",
+      "title_zh": "HarmoWAM：通过自适应世界动作模型协调泛化与精确操控",
+      "tldr_zh": "提出HarmoWAM，融合预测与反应控制，实现机器人泛化与精确操控的协调。",
+      "cover_zh": "机器人操控新突破｜零样本泛化精度提升33%",
+      "abstract_zh": "世界动作模型（WAM）通过建模物理动力学，已成为机器人控制的一种有前景的范式。当前的WAM通常遵循两种范式：“先想象后执行”方法，利用视频预测通过逆动力学推断动作；以及“联合建模”方法，联合建模动作和视频表示。基于系统实验，我们观察到这些范式之间存在根本性的权衡：前者显式利用世界模型实现泛化转移，但缺乏交互精度；而后者能够生成细粒度、时间连贯的动作，但受限于训练分布的探索空间。受这些发现启发，我们提出HarmoWAM，一种端到端的WAM，它充分利用世界模型统一预测和反应控制，实现泛化转移和精确操控。具体地，世界模型提供时空物理先验，条件化两个互补的动作专家：预测专家利用潜在动力学进行迭代动作生成，反应专家直接从预测的视觉演化中推断动作。为实现自适应协调，我们提出过程自适应门控机制，自动决定两者切换的时机和位置。这使得世界模型能够驱动反应专家扩展探索空间，预测专家在任务的不同阶段进行精确交互。为评估，我们构建了三个训练未见测试环境，涵盖六个真实世界机器人任务，涉及背景、位置和物体语义的变化。值得注意的是，HarmoWAM在这些场景中实现了强大的零样本泛化，显著优于先前最先进的VLA模型和WAM，分别提升33%和29%。",
+      "authors": [
+        "Qiuxuan Feng",
+        "Jiale Yu",
+        "Jiaming Liu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-11",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 北大"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-10942.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-10942-p2.jpg",
+        "assets/img/covers/arxiv-2605-10942-p3.jpg",
+        "assets/img/covers/arxiv-2605-10942-p4.jpg"
+      ],
+      "arxiv_id": "2605.10942",
+      "abs_url": "http://arxiv.org/abs/2605.10942v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.10942v1",
+      "score": 45,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出HarmoWAM，融合世界模型与动作专家，实现泛化与精确操作，实验显著超越SOTA。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Peking University",
+        "Simplexity Robotics",
+        "The Chinese University of Hong Kong"
+      ],
+      "method_tags": [
+        "World Action Models",
+        "predictive control",
+        "reactive control"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
       "id": "arxiv-2605-10201",
       "source": "arxiv",
       "title": "HeteroGenManip: Generalizable Manipulation For Heterogeneous Object Interactions",
@@ -44,16 +109,139 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Peking University"
+        "Peking University",
+        "Tianjin University"
       ],
       "method_tags": [
         "Diffusion Policy",
         "Foundation Model",
-        "long-horizon"
+        "Grasp"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "Diffusion",
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2605-10485",
+      "source": "arxiv",
+      "title": "VEGA: Visual Encoder Grounding Alignment for Spatially-Aware Vision-Language-Action Models",
+      "title_zh": "VEGA：面向空间感知视觉-语言-动作模型的视觉编码器基础对齐",
+      "tldr_zh": "VEGA通过在视觉编码器输出层对齐3D特征，提升VLA模型的空间感知能力，无额外推理开销。",
+      "cover_zh": "机器人看不懂空间？这个新方法让VLA模型秒懂3D｜零额外计算开销",
+      "abstract_zh": "精确的空间推理是机器人操作的基础，然而当前视觉-语言-动作（VLA）模型的视觉骨干主要是在2D图像数据上预训练的，缺乏显式的3D几何监督，导致表征缺乏准确的空间感知能力。现有的隐式空间基础方法通过将VLA特征与3D感知基础模型的特征对齐来部分解决这一问题，但它们依赖于经验性的层搜索，并在LLM级别的视觉token上进行对齐，此时空间结构已与语言语义纠缠，限制了泛化性和几何可解释性。我们提出VEGA（视觉编码器基础对齐），一个简单而有效的框架，直接将VLA视觉编码器的输出与来自DINOv2-FiT3D的空间感知特征对齐，DINOv2-FiT3D是一个经过多视图一致3D高斯泼溅监督微调的DINOv2模型。通过在视觉编码器输出层面进行对齐，VEGA在语言纠缠发生之前就建立了空间感知，提供了更可解释和原则性的对齐目标。对齐通过一个轻量级投影器实现，该投影器使用余弦相似度损失和标准动作预测目标联合训练，并在推理时丢弃，不引入额外计算开销。在仿真基准和真实世界操作任务上的大量实验表明，VEGA持续优于现有的隐式空间基础基线，在VLA模型的隐式空间基础方法中建立了新的最先进水平。",
+      "authors": [
+        "Hao Wang",
+        "Xiaobao Wei",
+        "Jingyang He"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-11",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 北大"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-10485.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-10485-p2.jpg",
+        "assets/img/covers/arxiv-2605-10485-p3.jpg",
+        "assets/img/covers/arxiv-2605-10485-p4.jpg"
+      ],
+      "arxiv_id": "2605.10485",
+      "abs_url": "http://arxiv.org/abs/2605.10485v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.10485v1",
+      "score": 37,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出VLA视觉编码器与3D空间特征对齐方法，提升空间推理能力，实验充分，有创新性。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Peking University",
+        "Beijing Innovation Center of Humanoid Robotics"
+      ],
+      "method_tags": [
+        "Visual Encoder Grounding Alignment",
+        "spatial grounding",
+        "VLA"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2605-10819",
+      "source": "arxiv",
+      "title": "ALAM: Algebraically Consistent Latent Transitions for Vision-Language-Action Models",
+      "title_zh": "ALAM：面向视觉-语言-动作模型的代数一致隐式转移",
+      "tldr_zh": "提出ALAM，通过代数一致性约束从无动作视频学习结构化隐式转移，显著提升VLA策略成功率。",
+      "cover_zh": "无动作视频也能训练机器人？ALAM用代数一致性让成功率翻倍",
+      "abstract_zh": "视觉-语言-动作（VLA）模型仍受限于带动作标签的机器人数据稀缺，而无动作视频提供了物理世界如何变化的丰富证据。隐式动作模型有望从视频中提取此类先验，但基于重建训练的隐式编码不一定适用于策略生成：它们可能预测未来观测，却缺乏可重用或与机器人动作一致生成所需的结构。我们提出ALAM（代数隐式动作模型），一种代数一致的隐式动作模型，将无动作视频中的时序关系转化为结构监督。给定帧三元组，ALAM学习由重建驱动且受组合与反转一致性正则化的隐式转移，鼓励局部可加的转移空间。在下游VLA学习中，我们冻结预训练编码器，将其隐式转移序列作为辅助生成目标，在联合流匹配目标下与机器人动作共同生成。这耦合了结构化的隐式转移与基于流的策略生成，使策略能够利用ALAM的局部一致转移几何，而无需隐式到动作的解码。表征探测显示，ALAM将可加性和反转性误差相比无结构隐式动作基线降低25-85倍，并改善了长时域累积重建。当迁移到VLA策略时，ALAM在MetaWorld MT50上将平均成功率从47.9%提升至85.0%，在LIBERO上从94.1%提升至98.1%，并在真实世界操作任务中取得一致增益。消融实验进一步证实，最大的改进来自代数结构化的隐式转移与联合流匹配之间的协同作用。",
+      "authors": [
+        "Zuojin Tang",
+        "Haoyun Liu",
+        "Xinyuan Chang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-05-11",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ ZJU"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ 阿里"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-10819.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-10819-p2.jpg",
+        "assets/img/covers/arxiv-2605-10819-p3.jpg",
+        "assets/img/covers/arxiv-2605-10819-p4.jpg"
+      ],
+      "arxiv_id": "2605.10819",
+      "abs_url": "http://arxiv.org/abs/2605.10819v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.10819v1",
+      "score": 37,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出代数一致潜动作模型，从无动作视频学习结构化潜转移，显著提升VLA策略成功率，方法新颖且实验充分。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Zhejiang University",
+        "Amap, Alibaba Group",
+        "Nanjing University",
+        "Shenzhen University of Advanced Technology"
+      ],
+      "method_tags": [
+        "Latent Action Model",
+        "Flow Matching",
+        "Algebraic Consistency"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
@@ -80,11 +268,11 @@
       "badges": [
         {
           "kind": "lab",
-          "label": "⭐ CMU RI"
+          "label": "⭐ Microsoft"
         },
         {
           "kind": "lab",
-          "label": "⭐ SJTU"
+          "label": "⭐ 清华"
         }
       ],
       "cover_image": "assets/img/covers/arxiv-2605-10821.jpg",
@@ -105,21 +293,87 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Carnegie Mellon University",
-        "Shanghai Jiao Tong University"
+        "University of Technology Sydney",
+        "Tsinghua University",
+        "Microsoft Research"
       ],
       "method_tags": [
-        "Noise-Space RL",
-        "Human-in-the-Loop",
-        "VLA Adaptation"
+        "Noise-space RL",
+        "Human corrective guidance",
+        "Action-to-noise inversion"
       ],
-      "platform": [
-        "Franka Emika Panda"
-      ],
+      "platform": [],
       "sim_stack": [],
-      "method_family": "Hybrid",
+      "method_family": "",
       "real_robot": "yes",
-      "training_summary": "66 minutes real-world interaction per task",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2605-10903",
+      "source": "arxiv",
+      "title": "CapVector: Learning Transferable Capability Vectors in Parametric Space for Vision-Language-Action Models",
+      "title_zh": "CapVector：在参数空间中学习可迁移的能力向量用于视觉-语言-动作模型",
+      "tldr_zh": "通过参数差异提取能力向量，合并后提升VLA模型微调性能且降低计算开销。",
+      "cover_zh": "不用额外算力｜参数空间里挖出能力向量，VLA模型微调直接起飞",
+      "abstract_zh": "本文提出一种新方法，解决预训练VLA模型在标准监督微调（SFT）中常无法有效提升性能并降低适应成本的挑战。一些带有辅助训练目标的高级微调方法可以提升性能并减少收敛步数，但由于辅助目标带来的额外损失，它们通常会产生显著的计算开销。为了同时实现辅助训练的增强能力和标准SFT的简洁性，我们在参数空间中将辅助目标SFT的两个目标解耦，即增强通用能力和拟合特定任务的动作分布。为实现这一目标，我们只需使用两种不同的训练策略在小规模任务集上训练模型收敛，得到两个微调模型。这两个模型之间的参数差异可以被解释为辅助目标提供的能力向量。这些向量随后与预训练参数合并，形成能力增强的元模型。此外，当标准SFT增加一个轻量级的正交正则化损失时，合并后的模型在减少计算开销的同时，性能可与辅助微调基线相媲美。内部和外部实验表明，我们的能力向量（1）在不同模型上有效且通用，（2）可以开箱即用地泛化到新环境和具身形态。",
+      "authors": [
+        "Wenxuan Song",
+        "Han Zhao",
+        "Fuhao Li"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-05-11",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ ZJU"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKUST"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-10903.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-10903-p2.jpg",
+        "assets/img/covers/arxiv-2605-10903-p3.jpg",
+        "assets/img/covers/arxiv-2605-10903-p4.jpg"
+      ],
+      "arxiv_id": "2605.10903",
+      "abs_url": "http://arxiv.org/abs/2605.10903v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.10903v1",
+      "score": 34,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出VLA模型参数空间的能力向量迁移方法，提升微调效率，有理论创新和实验验证。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "HKUST (GZ)",
+        "Zhejiang University",
+        "Westlake University",
+        "Tsinghua University"
+      ],
+      "method_tags": [
+        "Supervised Finetuning",
+        "capability vectors"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
       "demo_videos": [],
       "github": {}
     },
@@ -198,66 +452,11 @@
         "model": "deepseek-v4-flash"
       },
       "institutions": [],
-      "method_tags": [
-        "物理推理",
-        "隐空间"
-      ],
+      "method_tags": [],
       "platform": [],
       "sim_stack": [],
       "method_family": "",
       "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2605-10942",
-      "source": "arxiv",
-      "title": "HarmoWAM: Harmonizing Generalizable and Precise Manipulation via Adaptive World Action Models",
-      "title_zh": "HarmoWAM：通过自适应世界动作模型协调泛化与精确操控",
-      "tldr_zh": "提出HarmoWAM，融合预测与反应控制，实现机器人泛化与精确操控的协调。",
-      "cover_zh": "机器人操控新突破｜零样本泛化精度提升33%",
-      "abstract_zh": "世界动作模型（WAM）通过建模物理动力学，已成为机器人控制的一种有前景的范式。当前的WAM通常遵循两种范式：“先想象后执行”方法，利用视频预测通过逆动力学推断动作；以及“联合建模”方法，联合建模动作和视频表示。基于系统实验，我们观察到这些范式之间存在根本性的权衡：前者显式利用世界模型实现泛化转移，但缺乏交互精度；而后者能够生成细粒度、时间连贯的动作，但受限于训练分布的探索空间。受这些发现启发，我们提出HarmoWAM，一种端到端的WAM，它充分利用世界模型统一预测和反应控制，实现泛化转移和精确操控。具体地，世界模型提供时空物理先验，条件化两个互补的动作专家：预测专家利用潜在动力学进行迭代动作生成，反应专家直接从预测的视觉演化中推断动作。为实现自适应协调，我们提出过程自适应门控机制，自动决定两者切换的时机和位置。这使得世界模型能够驱动反应专家扩展探索空间，预测专家在任务的不同阶段进行精确交互。为评估，我们构建了三个训练未见测试环境，涵盖六个真实世界机器人任务，涉及背景、位置和物体语义的变化。值得注意的是，HarmoWAM在这些场景中实现了强大的零样本泛化，显著优于先前最先进的VLA模型和WAM，分别提升33%和29%。",
-      "authors": [
-        "Qiuxuan Feng",
-        "Jiale Yu",
-        "Jiaming Liu"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-11",
-      "channels": [
-        "loco-manip-wbc",
-        "manipulation",
-        "world-model"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-10942.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-10942-p2.jpg",
-        "assets/img/covers/arxiv-2605-10942-p3.jpg",
-        "assets/img/covers/arxiv-2605-10942-p4.jpg"
-      ],
-      "arxiv_id": "2605.10942",
-      "abs_url": "http://arxiv.org/abs/2605.10942v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.10942v1",
-      "score": 20,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出HarmoWAM，融合世界模型与动作专家，实现泛化与精确操作，实验显著超越SOTA。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "World Action Model",
-        "predictive-reactive control",
-        "zero-shot generalization"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "WorldModel",
-      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -298,166 +497,21 @@
         "reason": "提出VLA模型适应新任务时保留预训练先验的方法，在多个基准和真实任务上超越SOTA，对操作领域有高参考价值。",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "Institute of Automation, Chinese Academy of Sciences",
+        "Dexmal",
+        "University of Chinese Academy of Sciences",
+        "Zhongguancun Academy"
+      ],
       "method_tags": [
         "VLA",
-        "adaptation",
+        "fine-tuning",
         "prior preservation"
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "VLA",
+      "method_family": "",
       "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2605-10485",
-      "source": "arxiv",
-      "title": "VEGA: Visual Encoder Grounding Alignment for Spatially-Aware Vision-Language-Action Models",
-      "title_zh": "VEGA：面向空间感知视觉-语言-动作模型的视觉编码器基础对齐",
-      "tldr_zh": "VEGA通过在视觉编码器输出层对齐3D特征，提升VLA模型的空间感知能力，无额外推理开销。",
-      "cover_zh": "机器人看不懂空间？这个新方法让VLA模型秒懂3D｜零额外计算开销",
-      "abstract_zh": "精确的空间推理是机器人操作的基础，然而当前视觉-语言-动作（VLA）模型的视觉骨干主要是在2D图像数据上预训练的，缺乏显式的3D几何监督，导致表征缺乏准确的空间感知能力。现有的隐式空间基础方法通过将VLA特征与3D感知基础模型的特征对齐来部分解决这一问题，但它们依赖于经验性的层搜索，并在LLM级别的视觉token上进行对齐，此时空间结构已与语言语义纠缠，限制了泛化性和几何可解释性。我们提出VEGA（视觉编码器基础对齐），一个简单而有效的框架，直接将VLA视觉编码器的输出与来自DINOv2-FiT3D的空间感知特征对齐，DINOv2-FiT3D是一个经过多视图一致3D高斯泼溅监督微调的DINOv2模型。通过在视觉编码器输出层面进行对齐，VEGA在语言纠缠发生之前就建立了空间感知，提供了更可解释和原则性的对齐目标。对齐通过一个轻量级投影器实现，该投影器使用余弦相似度损失和标准动作预测目标联合训练，并在推理时丢弃，不引入额外计算开销。在仿真基准和真实世界操作任务上的大量实验表明，VEGA持续优于现有的隐式空间基础基线，在VLA模型的隐式空间基础方法中建立了新的最先进水平。",
-      "authors": [
-        "Hao Wang",
-        "Xiaobao Wei",
-        "Jingyang He"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-11",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-10485.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-10485-p2.jpg",
-        "assets/img/covers/arxiv-2605-10485-p3.jpg",
-        "assets/img/covers/arxiv-2605-10485-p4.jpg"
-      ],
-      "arxiv_id": "2605.10485",
-      "abs_url": "http://arxiv.org/abs/2605.10485v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.10485v1",
-      "score": 12,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出VLA视觉编码器与3D空间特征对齐方法，提升空间推理能力，实验充分，有创新性。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "VLA",
-        "spatial grounding",
-        "visual encoder alignment"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "VLA",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2605-10819",
-      "source": "arxiv",
-      "title": "ALAM: Algebraically Consistent Latent Transitions for Vision-Language-Action Models",
-      "title_zh": "ALAM：面向视觉-语言-动作模型的代数一致隐式转移",
-      "tldr_zh": "提出ALAM，通过代数一致性约束从无动作视频学习结构化隐式转移，显著提升VLA策略成功率。",
-      "cover_zh": "无动作视频也能训练机器人？ALAM用代数一致性让成功率翻倍",
-      "abstract_zh": "视觉-语言-动作（VLA）模型仍受限于带动作标签的机器人数据稀缺，而无动作视频提供了物理世界如何变化的丰富证据。隐式动作模型有望从视频中提取此类先验，但基于重建训练的隐式编码不一定适用于策略生成：它们可能预测未来观测，却缺乏可重用或与机器人动作一致生成所需的结构。我们提出ALAM（代数隐式动作模型），一种代数一致的隐式动作模型，将无动作视频中的时序关系转化为结构监督。给定帧三元组，ALAM学习由重建驱动且受组合与反转一致性正则化的隐式转移，鼓励局部可加的转移空间。在下游VLA学习中，我们冻结预训练编码器，将其隐式转移序列作为辅助生成目标，在联合流匹配目标下与机器人动作共同生成。这耦合了结构化的隐式转移与基于流的策略生成，使策略能够利用ALAM的局部一致转移几何，而无需隐式到动作的解码。表征探测显示，ALAM将可加性和反转性误差相比无结构隐式动作基线降低25-85倍，并改善了长时域累积重建。当迁移到VLA策略时，ALAM在MetaWorld MT50上将平均成功率从47.9%提升至85.0%，在LIBERO上从94.1%提升至98.1%，并在真实世界操作任务中取得一致增益。消融实验进一步证实，最大的改进来自代数结构化的隐式转移与联合流匹配之间的协同作用。",
-      "authors": [
-        "Zuojin Tang",
-        "Haoyun Liu",
-        "Xinyuan Chang"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-05-11",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-10819.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-10819-p2.jpg",
-        "assets/img/covers/arxiv-2605-10819-p3.jpg",
-        "assets/img/covers/arxiv-2605-10819-p4.jpg"
-      ],
-      "arxiv_id": "2605.10819",
-      "abs_url": "http://arxiv.org/abs/2605.10819v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.10819v1",
-      "score": 12,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出代数一致潜动作模型，从无动作视频学习结构化潜转移，显著提升VLA策略成功率，方法新颖且实验充分。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "Latent Action Model",
-        "Flow Matching",
-        "VLA"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "Hybrid",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2605-10903",
-      "source": "arxiv",
-      "title": "CapVector: Learning Transferable Capability Vectors in Parametric Space for Vision-Language-Action Models",
-      "title_zh": "CapVector：在参数空间中学习可迁移的能力向量用于视觉-语言-动作模型",
-      "tldr_zh": "通过参数差异提取能力向量，合并后提升VLA模型微调性能且降低计算开销。",
-      "cover_zh": "不用额外算力｜参数空间里挖出能力向量，VLA模型微调直接起飞",
-      "abstract_zh": "本文提出一种新方法，解决预训练VLA模型在标准监督微调（SFT）中常无法有效提升性能并降低适应成本的挑战。一些带有辅助训练目标的高级微调方法可以提升性能并减少收敛步数，但由于辅助目标带来的额外损失，它们通常会产生显著的计算开销。为了同时实现辅助训练的增强能力和标准SFT的简洁性，我们在参数空间中将辅助目标SFT的两个目标解耦，即增强通用能力和拟合特定任务的动作分布。为实现这一目标，我们只需使用两种不同的训练策略在小规模任务集上训练模型收敛，得到两个微调模型。这两个模型之间的参数差异可以被解释为辅助目标提供的能力向量。这些向量随后与预训练参数合并，形成能力增强的元模型。此外，当标准SFT增加一个轻量级的正交正则化损失时，合并后的模型在减少计算开销的同时，性能可与辅助微调基线相媲美。内部和外部实验表明，我们的能力向量（1）在不同模型上有效且通用，（2）可以开箱即用地泛化到新环境和具身形态。",
-      "authors": [
-        "Wenxuan Song",
-        "Han Zhao",
-        "Fuhao Li"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-05-11",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2605-10903.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-10903-p2.jpg",
-        "assets/img/covers/arxiv-2605-10903-p3.jpg",
-        "assets/img/covers/arxiv-2605-10903-p4.jpg"
-      ],
-      "arxiv_id": "2605.10903",
-      "abs_url": "http://arxiv.org/abs/2605.10903v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.10903v1",
-      "score": 9,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出VLA模型参数空间的能力向量迁移方法，提升微调效率，有理论创新和实验验证。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "parameter space",
-        "capability vectors",
-        "VLA"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "VLA",
-      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
