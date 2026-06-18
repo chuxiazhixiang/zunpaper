@@ -3,6 +3,83 @@
   "count": 23,
   "papers": [
     {
+      "id": "arxiv-2606-18610",
+      "source": "arxiv",
+      "title": "SC3-Eval: Evaluating Robot Foundation Models via Self-Consistent Video Generation",
+      "title_zh": "SC3-Eval：通过自洽视频生成评估机器人基础模型",
+      "tldr_zh": "提出SC3-Eval，通过三种自洽性约束将视频模型转化为机器人策略评估器，实现高相关性评估。",
+      "cover_zh": "机器人评估不用真机跑｜视频模型自洽生成就能精准打分",
+      "abstract_zh": "在现实世界中评估通用机器人操作策略成本高昂、速度缓慢且难以扩展。动作条件视频世界模型通过模拟策略部署提供了一种可扩展的替代方案。自回归部署会累积复合误差，多摄像头视角的观测必须保持相互一致，且评估器必须泛化到行为超出训练分布的策略。我们通过SC3-Eval应对这些挑战，这是一种自洽视频生成方法，通过强制三种互补的一致性形式，将预训练视频基础模型适配为准确的策略评估器。首先，前向-逆向动力学一致性联合训练模型从动作预测帧以及从帧恢复动作，将生成的部署锚定到物理上合理的动作流形，并抵消仅前向模型无法惩罚的漂移。其次，跨视角一致性训练模型从其他视角修复每个摄像头视角，使多摄像头观测在长部署中保持连贯，无需任何显式记忆机制。第三，测试时一致性在推理时重用逆向动力学模式作为每个动作块的不确定性信号，终止生成帧偏离请求动作的部署。我们还展示了SC3-Eval部署再现了策略在现实部署中表现出的失败模式，支持细粒度诊断比较而非仅聚合排名。在七个真实世界视觉-语言-动作策略上，SC3-Eval实现了闭环皮尔逊相关系数0.929和MMRV 0.119，优于三个强先验视频模型基线，并泛化到新任务。",
+      "authors": [
+        "Wei-Cheng Tseng",
+        "Gashon Hussein",
+        "Yuzhu Dong"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-17",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Physical Intelligence (π)"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ NVIDIA"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Sergey Levine"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Quan Vuong"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-18610.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-18610-p2.jpg",
+        "assets/img/covers/arxiv-2606-18610-p3.jpg",
+        "assets/img/covers/arxiv-2606-18610-p4.jpg"
+      ],
+      "arxiv_id": "2606.18610",
+      "abs_url": "http://arxiv.org/abs/2606.18610v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.18610v1",
+      "score": 75,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出基于视频世界模型的机器人策略评估方法，核心贡献在world model，相关性高且科研价值高。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Toronto",
+        "Vector Institute",
+        "NVIDIA",
+        "Physical Intelligence"
+      ],
+      "method_tags": [
+        "video world model",
+        "forward-inverse dynamics consistency",
+        "cross-view consistency"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
       "id": "arxiv-2606-18959",
       "source": "arxiv",
       "title": "TactSpace: Learning a Physics-enriched Shared Latent Space for Tactile Sim-to-Real Transfer",
@@ -76,82 +153,6 @@
       "github": {}
     },
     {
-      "id": "arxiv-2606-18610",
-      "source": "arxiv",
-      "title": "SC3-Eval: Evaluating Robot Foundation Models via Self-Consistent Video Generation",
-      "title_zh": "SC3-Eval：通过自洽视频生成评估机器人基础模型",
-      "tldr_zh": "提出SC3-Eval，通过三种自洽性约束将视频模型转化为机器人策略评估器，实现高相关性评估。",
-      "cover_zh": "机器人评估不用真机跑｜视频模型自洽生成就能精准打分",
-      "abstract_zh": "在现实世界中评估通用机器人操作策略成本高昂、速度缓慢且难以扩展。动作条件视频世界模型通过模拟策略部署提供了一种可扩展的替代方案。自回归部署会累积复合误差，多摄像头视角的观测必须保持相互一致，且评估器必须泛化到行为超出训练分布的策略。我们通过SC3-Eval应对这些挑战，这是一种自洽视频生成方法，通过强制三种互补的一致性形式，将预训练视频基础模型适配为准确的策略评估器。首先，前向-逆向动力学一致性联合训练模型从动作预测帧以及从帧恢复动作，将生成的部署锚定到物理上合理的动作流形，并抵消仅前向模型无法惩罚的漂移。其次，跨视角一致性训练模型从其他视角修复每个摄像头视角，使多摄像头观测在长部署中保持连贯，无需任何显式记忆机制。第三，测试时一致性在推理时重用逆向动力学模式作为每个动作块的不确定性信号，终止生成帧偏离请求动作的部署。我们还展示了SC3-Eval部署再现了策略在现实部署中表现出的失败模式，支持细粒度诊断比较而非仅聚合排名。在七个真实世界视觉-语言-动作策略上，SC3-Eval实现了闭环皮尔逊相关系数0.929和MMRV 0.119，优于三个强先验视频模型基线，并泛化到新任务。",
-      "authors": [
-        "Wei-Cheng Tseng",
-        "Gashon Hussein",
-        "Yuzhu Dong"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-17",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ Physical Intelligence (π)"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ NVIDIA"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ Sergey Levine"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ Quan Vuong"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-18610.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-18610-p2.jpg",
-        "assets/img/covers/arxiv-2606-18610-p3.jpg",
-        "assets/img/covers/arxiv-2606-18610-p4.jpg"
-      ],
-      "arxiv_id": "2606.18610",
-      "abs_url": "http://arxiv.org/abs/2606.18610v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.18610v1",
-      "score": 70,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出基于视频世界模型的机器人策略评估方法，核心贡献在world model，相关性高且科研价值高。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "University of Toronto",
-        "Vector Institute",
-        "NVIDIA",
-        "Physical Intelligence"
-      ],
-      "method_tags": [
-        "video world model",
-        "forward-inverse dynamics consistency",
-        "cross-view consistency"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
       "id": "arxiv-2606-19333",
       "source": "arxiv",
       "title": "Do as I Do: Dexterous Manipulation Data from Everyday Human Videos",
@@ -210,6 +211,197 @@
       "method_tags": [
         "retargeting",
         "dexterous manipulation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-18589",
+      "source": "arxiv",
+      "title": "DREAM-Chunk: Reactive Action Chunking with Latent World Model",
+      "title_zh": "DREAM-Chunk：基于潜在世界模型的反应式动作分块",
+      "tldr_zh": "DREAM-Chunk通过测试时潜在世界模型采样和选择动作分块，提升机器人策略鲁棒性。",
+      "cover_zh": "动作分块不再开环死板｜DREAM-Chunk用潜在世界模型让机器人更灵活",
+      "abstract_zh": "动作分块已成为视觉-语言-动作（VLA）模型的常见接口，使得低频策略推理能够驱动高频机器人执行。然而，一旦动作分块被提交，其开环执行在随机动力学、硬件执行误差和部分可观测性下可能变得脆弱。我们提出DREAM-Chunk，一种测试时扩展方法，通过轻量级潜在世界模型增强基于分块的策略，无需额外的策略微调。在测试时，DREAM-Chunk采样多个候选动作分块，展开其预测的潜在未来，并从预测状态与观测展开最匹配的分块中选择动作。通过这种方式，DREAM-Chunk利用额外的测试时计算来覆盖多个可能的随机未来，并在长时域分块执行期间提高反应性。在Kinetix基准测试上，DREAM-Chunk在增加动作噪声下提高了鲁棒性，并从更大的候选样本量中受益，特别是当演示包含纠正行为时。我们进一步在两个机器人平台和两个VLA策略上的四个操作任务中验证了DREAM-Chunk，涉及各种随机性来源。在仿真和硬件实验中，DREAM-Chunk提高了动作分块策略在随机动力学中的鲁棒性。",
+      "authors": [
+        "Wenxi Chen",
+        "Kaidi Zhang",
+        "Chi Lin"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-17",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Stanford"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-18589.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-18589-p2.jpg",
+        "assets/img/covers/arxiv-2606-18589-p3.jpg",
+        "assets/img/covers/arxiv-2606-18589-p4.jpg"
+      ],
+      "arxiv_id": "2606.18589",
+      "abs_url": "http://arxiv.org/abs/2606.18589v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.18589v1",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出轻量级潜世界模型增强动作块策略，提升鲁棒性，属于世界模型在机器人操作中的应用。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Purdue University",
+        "Stanford University"
+      ],
+      "method_tags": [
+        "action chunking",
+        "latent world model",
+        "test-time scaling"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-18772",
+      "source": "arxiv",
+      "title": "HALOMI: Learning Humanoid Loco-Manipulation with Active Perception from Human Demonstrations",
+      "title_zh": "HALOMI：从人类演示中学习具有主动感知的人形机器人全身操控",
+      "tldr_zh": "提出HALOMI框架，利用人类演示学习人形机器人全身操控，在五个任务中平均成功率85%。",
+      "cover_zh": "人形机器人也能学人类演示？HALOMI让全身操控成功率高达85%",
+      "abstract_zh": "人类演示能够大规模收集并自然捕捉主动的手眼协调，是学习人形机器人全身操控的有前景的数据源。然而，直接将人类演示迁移到人形机器人需要精确的世界坐标系跟踪控制器，该控制器在分布外目标下往往脆弱，而人形机器人在自我中心观察和动作执行方面仍存在差距。为解决这些挑战，我们提出HALOMI，一个从人类演示中学习具有主动感知的人形机器人全身操控的可扩展框架。HALOMI扩展了通用操控接口（UMI），通过自我中心感知大规模收集自我视角和手腕视角观察以及头手轨迹。我们进一步提出一个流形约束控制器，在学习的潜在行为流形中进行规划，以实现世界坐标系下精确且鲁棒的头手跟踪。为弥合人机差距，我们进行自我视角对齐，并引入控制器感知的参考轨迹自适应，以减少观察和动作执行中的不匹配。我们在配备主动颈部的Unitree G1人形机器人上，在涉及导航、抓取、双臂操控、全身协调和动态行为的五个真实世界任务中验证了HALOMI。在三个定量评估的任务中，HALOMI实现了85%的平均成功率，而额外的定性演示展示了其支持动态抛掷和深蹲抓取的能力。",
+      "authors": [
+        "Zehui Zhao",
+        "Yuxuan Zhao",
+        "Gaojing Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-17",
+      "channels": [
+        "manipulation",
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ SJTU"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-18772.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-18772-p2.jpg",
+        "assets/img/covers/arxiv-2606-18772-p3.jpg",
+        "assets/img/covers/arxiv-2606-18772-p4.jpg"
+      ],
+      "arxiv_id": "2606.18772",
+      "abs_url": "http://arxiv.org/abs/2606.18772v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.18772v1",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "人形全身移动操作+主动感知，从人类演示学习，真实机器人验证，高成功率",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Shanghai Jiao Tong University",
+        "University of Sussex",
+        "East China University of Science and Technology"
+      ],
+      "method_tags": [
+        "VLA",
+        "manifold-constrained controller",
+        "active perception"
+      ],
+      "platform": [
+        "Unitree G1"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-18883",
+      "source": "arxiv",
+      "title": "ZiMPedance: Impedance-Aware ZMP Modeling and Control for Payload Carrying with Quadruped Robots",
+      "title_zh": "ZiMPedance：面向四足机器人负载运输的阻抗感知ZMP建模与控制",
+      "tldr_zh": "提出阻抗感知ZMP模型，将被动负载动力学融入MPC，显著提升四足机器人负载运输稳定性。",
+      "cover_zh": "被动弹簧臂也能稳如泰山？新控制让四足机器人扛重物不摔跤",
+      "abstract_zh": "四足机器人的负载运输受到机器人与负载之间物理接口动力学的强烈影响。与主动机械臂相比，被动弹簧臂降低了重量和复杂度，但其弹簧-阻尼器动力学可能引入振荡力，从而降低运动稳定性。本文推导了一种扩展的零力矩点（ZMP）公式，该公式包含了被动负载-接口动力学，将刚度、阻尼和负载质量与稳定裕度联系起来。分析表明，欠阻尼配置可能与运动谐波产生共振。基于这一见解，我们将被动子系统动力学增强到单刚体动力学模型中，并将其集成到模型预测控制框架中。在仿真中，所提出的控制器将稳定性违规减少了高达10倍（从7.0%降至0.7%），并通过将水平地面反作用力努力降低高达15%来提高运动效率，与名义基线相比。使用2公斤负载的硬件实验表明，在名义控制器失效的拉放扰动下，机器人仍能稳定运动。同一模型还实现了通过被动臂动力学进行末端执行器跟踪，而无需直接驱动臂。",
+      "authors": [
+        "Giovanni B. Dessy",
+        "Lorenzo Amatucci",
+        "Victor Barasuol"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-17",
+      "channels": [
+        "locomotion",
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ IIT (Italy)"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-18883.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-18883-p2.jpg",
+        "assets/img/covers/arxiv-2606-18883-p3.jpg",
+        "assets/img/covers/arxiv-2606-18883-p4.jpg"
+      ],
+      "arxiv_id": "2606.18883",
+      "abs_url": "http://arxiv.org/abs/2606.18883v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.18883v1",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "locomotion",
+        "reason": "提出考虑被动负载动力学的扩展ZMP模型，结合MPC控制，显著提升四足机器人负载运输稳定性，理论与实验验证充分。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Istituto Italiano di Tecnologia (IIT)"
+      ],
+      "method_tags": [
+        "ZMP",
+        "Model Predictive Control",
+        "passive payload-interface dynamics"
       ],
       "platform": [],
       "sim_stack": [],
@@ -291,132 +483,6 @@
       "github": {}
     },
     {
-      "id": "arxiv-2606-18772",
-      "source": "arxiv",
-      "title": "HALOMI: Learning Humanoid Loco-Manipulation with Active Perception from Human Demonstrations",
-      "title_zh": "HALOMI：从人类演示中学习具有主动感知的人形机器人全身操控",
-      "tldr_zh": "提出HALOMI框架，利用人类演示学习人形机器人全身操控，在五个任务中平均成功率85%。",
-      "cover_zh": "人形机器人也能学人类演示？HALOMI让全身操控成功率高达85%",
-      "abstract_zh": "人类演示能够大规模收集并自然捕捉主动的手眼协调，是学习人形机器人全身操控的有前景的数据源。然而，直接将人类演示迁移到人形机器人需要精确的世界坐标系跟踪控制器，该控制器在分布外目标下往往脆弱，而人形机器人在自我中心观察和动作执行方面仍存在差距。为解决这些挑战，我们提出HALOMI，一个从人类演示中学习具有主动感知的人形机器人全身操控的可扩展框架。HALOMI扩展了通用操控接口（UMI），通过自我中心感知大规模收集自我视角和手腕视角观察以及头手轨迹。我们进一步提出一个流形约束控制器，在学习的潜在行为流形中进行规划，以实现世界坐标系下精确且鲁棒的头手跟踪。为弥合人机差距，我们进行自我视角对齐，并引入控制器感知的参考轨迹自适应，以减少观察和动作执行中的不匹配。我们在配备主动颈部的Unitree G1人形机器人上，在涉及导航、抓取、双臂操控、全身协调和动态行为的五个真实世界任务中验证了HALOMI。在三个定量评估的任务中，HALOMI实现了85%的平均成功率，而额外的定性演示展示了其支持动态抛掷和深蹲抓取的能力。",
-      "authors": [
-        "Zehui Zhao",
-        "Yuxuan Zhao",
-        "Gaojing Zhang"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-17",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ SJTU"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-18772.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-18772-p2.jpg",
-        "assets/img/covers/arxiv-2606-18772-p3.jpg",
-        "assets/img/covers/arxiv-2606-18772-p4.jpg"
-      ],
-      "arxiv_id": "2606.18772",
-      "abs_url": "http://arxiv.org/abs/2606.18772v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.18772v1",
-      "score": 50,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "人形全身移动操作+主动感知，从人类演示学习，真实机器人验证，高成功率",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Shanghai Jiao Tong University",
-        "University of Sussex",
-        "East China University of Science and Technology"
-      ],
-      "method_tags": [
-        "VLA",
-        "manifold-constrained controller",
-        "active perception"
-      ],
-      "platform": [
-        "Unitree G1"
-      ],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2606-18883",
-      "source": "arxiv",
-      "title": "ZiMPedance: Impedance-Aware ZMP Modeling and Control for Payload Carrying with Quadruped Robots",
-      "title_zh": "ZiMPedance：面向四足机器人负载运输的阻抗感知ZMP建模与控制",
-      "tldr_zh": "提出阻抗感知ZMP模型，将被动负载动力学融入MPC，显著提升四足机器人负载运输稳定性。",
-      "cover_zh": "被动弹簧臂也能稳如泰山？新控制让四足机器人扛重物不摔跤",
-      "abstract_zh": "四足机器人的负载运输受到机器人与负载之间物理接口动力学的强烈影响。与主动机械臂相比，被动弹簧臂降低了重量和复杂度，但其弹簧-阻尼器动力学可能引入振荡力，从而降低运动稳定性。本文推导了一种扩展的零力矩点（ZMP）公式，该公式包含了被动负载-接口动力学，将刚度、阻尼和负载质量与稳定裕度联系起来。分析表明，欠阻尼配置可能与运动谐波产生共振。基于这一见解，我们将被动子系统动力学增强到单刚体动力学模型中，并将其集成到模型预测控制框架中。在仿真中，所提出的控制器将稳定性违规减少了高达10倍（从7.0%降至0.7%），并通过将水平地面反作用力努力降低高达15%来提高运动效率，与名义基线相比。使用2公斤负载的硬件实验表明，在名义控制器失效的拉放扰动下，机器人仍能稳定运动。同一模型还实现了通过被动臂动力学进行末端执行器跟踪，而无需直接驱动臂。",
-      "authors": [
-        "Giovanni B. Dessy",
-        "Lorenzo Amatucci",
-        "Victor Barasuol"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-17",
-      "channels": [
-        "locomotion"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ IIT (Italy)"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-18883.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-18883-p2.jpg",
-        "assets/img/covers/arxiv-2606-18883-p3.jpg",
-        "assets/img/covers/arxiv-2606-18883-p4.jpg"
-      ],
-      "arxiv_id": "2606.18883",
-      "abs_url": "http://arxiv.org/abs/2606.18883v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.18883v1",
-      "score": 50,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "locomotion",
-        "reason": "提出考虑被动负载动力学的扩展ZMP模型，结合MPC控制，显著提升四足机器人负载运输稳定性，理论与实验验证充分。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Istituto Italiano di Tecnologia (IIT)"
-      ],
-      "method_tags": [
-        "ZMP",
-        "Model Predictive Control",
-        "passive payload-interface dynamics"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
       "id": "arxiv-2606-19161",
       "source": "arxiv",
       "title": "HT-Bench: Benchmarking and Learning Dexterous Full-Hand Tactile Representations with Egocentric Vision",
@@ -484,68 +550,6 @@
       "github": {}
     },
     {
-      "id": "arxiv-2606-18589",
-      "source": "arxiv",
-      "title": "DREAM-Chunk: Reactive Action Chunking with Latent World Model",
-      "title_zh": "DREAM-Chunk：基于潜在世界模型的反应式动作分块",
-      "tldr_zh": "DREAM-Chunk通过测试时潜在世界模型采样和选择动作分块，提升机器人策略鲁棒性。",
-      "cover_zh": "动作分块不再开环死板｜DREAM-Chunk用潜在世界模型让机器人更灵活",
-      "abstract_zh": "动作分块已成为视觉-语言-动作（VLA）模型的常见接口，使得低频策略推理能够驱动高频机器人执行。然而，一旦动作分块被提交，其开环执行在随机动力学、硬件执行误差和部分可观测性下可能变得脆弱。我们提出DREAM-Chunk，一种测试时扩展方法，通过轻量级潜在世界模型增强基于分块的策略，无需额外的策略微调。在测试时，DREAM-Chunk采样多个候选动作分块，展开其预测的潜在未来，并从预测状态与观测展开最匹配的分块中选择动作。通过这种方式，DREAM-Chunk利用额外的测试时计算来覆盖多个可能的随机未来，并在长时域分块执行期间提高反应性。在Kinetix基准测试上，DREAM-Chunk在增加动作噪声下提高了鲁棒性，并从更大的候选样本量中受益，特别是当演示包含纠正行为时。我们进一步在两个机器人平台和两个VLA策略上的四个操作任务中验证了DREAM-Chunk，涉及各种随机性来源。在仿真和硬件实验中，DREAM-Chunk提高了动作分块策略在随机动力学中的鲁棒性。",
-      "authors": [
-        "Wenxi Chen",
-        "Kaidi Zhang",
-        "Chi Lin"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-17",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ Stanford"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-18589.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-18589-p2.jpg",
-        "assets/img/covers/arxiv-2606-18589-p3.jpg",
-        "assets/img/covers/arxiv-2606-18589-p4.jpg"
-      ],
-      "arxiv_id": "2606.18589",
-      "abs_url": "http://arxiv.org/abs/2606.18589v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.18589v1",
-      "score": 47,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出轻量级潜世界模型增强动作块策略，提升鲁棒性，属于世界模型在机器人操作中的应用。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Purdue University",
-        "Stanford University"
-      ],
-      "method_tags": [
-        "action chunking",
-        "latent world model",
-        "test-time scaling"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
       "id": "arxiv-2606-18955",
       "source": "arxiv",
       "title": "Motion-Focused Latent Action Enables Cross-Embodiment VLA Training from Human EgoVideos",
@@ -598,6 +602,124 @@
         "VLA",
         "latent action",
         "cross-embodiment"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-18646",
+      "source": "arxiv",
+      "title": "A Scalable Embodied Intelligence Platform for Seamless Real-to-Sim-to-Real Transfer of Household Mobile Manipulation Tasks",
+      "title_zh": "一种可扩展的具身智能平台，实现家庭移动操作任务的真实-仿真-真实无缝迁移",
+      "tldr_zh": "提出BestMan平台，通过自动场景生成和统一中间件实现家庭移动操作的真实-仿真-真实无缝迁移。",
+      "cover_zh": "家庭机器人操作难？这个平台让仿真到真实迁移像喝水一样简单",
+      "abstract_zh": "移动操作是具身智能机器人的基本能力。在非结构化家庭环境中对鲁棒且可泛化的操作需求日益增长，推动了具身智能平台的快速发展。然而，实现真实-仿真-真实循环的无缝迁移面临三个关键挑战：高保真仿真场景重建成本高昂、仿真中系统策略评估的复杂性以及不兼容的真实世界部署。为解决这些问题，我们开发了BestMan，一个可扩展且无缝的真实-仿真-真实平台，弥合仿真与真实世界之间的差距，实现家庭移动操作的有效策略开发、集成和部署。具体而言，我们设计了一种新颖的自动场景生成（ASG）模块，从真实观测中重建逼真的仿真场景。然后，我们提出了一种仿真引导的任务形式化和技能学习架构，支持在仿真中灵活集成和大规模评估混合技能策略。最后，为增强真实世界的可扩展性，我们开发了硬件无关的统一中间件（HUM），确保跨异构移动操作器的无缝且兼容的仿真到真实迁移，用于实际部署。实验结果表明，我们提出的平台在建立标准化基准和促进移动操作领域有前景的研究方面表现出优越性能。",
+      "authors": [
+        "Kui Yang",
+        "Xianlei Long",
+        "Haoxuan Li"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-17",
+      "channels": [
+        "manipulation",
+        "loco-manip-wbc",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-18646.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-18646-p2.jpg",
+        "assets/img/covers/arxiv-2606-18646-p3.jpg",
+        "assets/img/covers/arxiv-2606-18646-p4.jpg"
+      ],
+      "arxiv_id": "2606.18646",
+      "abs_url": "http://arxiv.org/abs/2606.18646v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.18646v1",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "sim2real",
+        "reason": "提出BestMan平台，解决家庭移动操作的实到仿到实迁移，含ASG和HUM模块，高科研价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "School of Computer Science, Chongqing University",
+        "R&D Department, Lumos Robotics Technology (Suzhou) Co., Ltd"
+      ],
+      "method_tags": [
+        "Real-to-Sim-to-Real",
+        "Automated Scene Generation",
+        "Hardware-agnostic and Unified Middleware"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-18960",
+      "source": "arxiv",
+      "title": "Mem-World: Memory-Augmented Action-Conditioned World Models for Persistent Robot Manipulation",
+      "title_zh": "Mem-World：面向持久机器人操作的内存增强动作条件世界模型",
+      "tldr_zh": "提出内存增强世界模型，通过4D surfel索引记忆解决操作任务中的持久建模问题。",
+      "cover_zh": "机器人总忘记场景细节？这个新记忆机制让模型持久不丢帧｜成功率飙升14%",
+      "abstract_zh": "动作条件世界模型已成为机器人学习的一种有前景的范式，通过生成动作一致的视频推演，为昂贵的真实世界实验提供了可扩展的替代方案。然而，在操作任务中，持久世界建模仍然具有挑战性：频繁的末端执行器遮挡和快速的手腕相机运动使得当前观测不足以预测未来视图，导致模型遗忘或幻觉早期帧中看到的场景细节。现有的记忆检索策略往往无法在动态操作场景中识别出信息丰富的历史帧。为解决这一局限，我们提出了Mem-World，一种内存增强的多视图动作条件世界模型。其核心是W-VMem，一个以手腕视图为中心的4D surfel索引内存，将历史观测锚定到随时间演变的表面元素上。通过显式建模场景元素被观测的时间和位置，W-VMem能够基于未来动作实现几何感知的相关历史帧检索。在生成过程中，通过基于surfel的渲染和评分选择相关历史帧，为预测提供信息丰富且非冗余的上下文。大量实验表明，Mem-World在复杂操作场景中生成持久推演，比Ctrl-World实现更可靠的策略评估，与真实世界性能的皮尔逊相关系数提高14.5%，并通过合成数据生成支持有效的策略改进，在长时任务中将成功率从58%提升至72%。",
+      "authors": [
+        "Zirui Zheng",
+        "Jiaqian Yu",
+        "Xiongfeng Peng"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-06-17",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-18960.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-18960-p2.jpg",
+        "assets/img/covers/arxiv-2606-18960-p3.jpg",
+        "assets/img/covers/arxiv-2606-18960-p4.jpg"
+      ],
+      "arxiv_id": "2606.18960",
+      "abs_url": "http://arxiv.org/abs/2606.18960v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.18960v1",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出记忆增强的动作条件世界模型，解决持久操作中的遮挡和遗忘问题，具有高科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Dalian University of Technology"
+      ],
+      "method_tags": [
+        "World Model",
+        "Memory Mechanism",
+        "Robot Manipulation"
       ],
       "platform": [],
       "sim_stack": [],
@@ -662,6 +784,63 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-18697",
+      "source": "arxiv",
+      "title": "Stealthy World Model Manipulation via Data Poisoning",
+      "title_zh": "通过数据投毒进行隐蔽的世界模型操控",
+      "tldr_zh": "首个针对世界模型的两阶段数据投毒框架，能隐蔽地降低性能并规避防御。",
+      "cover_zh": "世界模型也能被投毒？新攻击让智能体悄悄变笨｜SWAAP",
+      "abstract_zh": "基于模型的学习智能体使用学习到的世界模型来预测未来状态、规划行动并适应新环境。然而，从收集的经验中更新世界模型的过程创造了一个训练时攻击面：对抗性投毒的微调轨迹可以操控学习到的动力学，从而破坏下游规划。在本文中，我们提出了SWAAP，这是第一个针对学习世界模型的两阶段数据投毒框架。在第一阶段，SWAAP通过一阶双层优化（利用过渡梯度定理）识别出一个有害的目标世界模型，该模型在规划下诱导低回报行为，同时保持接近清洁动力学。在第二阶段，SWAAP通过隐蔽约束的梯度匹配实现这一目标，仅修改有限比例的微调过渡目标，使得诱导的训练梯度将受害模型引向对抗目标，同时预测误差正则化器鼓励投毒目标保持接近世界模型的自然逼近误差。为了评估攻击的隐蔽性，我们在投毒管道的三个阶段评估了防御和可检测性：微调前检测投毒过渡、微调期间的鲁棒训练以及测试时监控生成的世界模型。在多种连续控制任务中，SWAAP导致显著的性能下降，同时保持投毒过渡接近清洁数据，并规避了评估的非自适应残差/CUSUM/TRIM风格防御。这些结果揭示了世界模型适应管道中的实际漏洞，并强调了需要保护世界模型训练数据和学到的动力学的鲁棒性方法。",
+      "authors": [
+        "Yibin Hu",
+        "Xiaolin Sun",
+        "Zizhan Zheng"
+      ],
+      "primary_category": "cs.LG",
+      "published": "2026-06-17",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-18697.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-18697-p2.jpg",
+        "assets/img/covers/arxiv-2606-18697-p3.jpg",
+        "assets/img/covers/arxiv-2606-18697-p4.jpg"
+      ],
+      "arxiv_id": "2606.18697",
+      "abs_url": "http://arxiv.org/abs/2606.18697v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.18697v1",
+      "score": 27,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出针对世界模型的数据投毒攻击框架，揭示训练时漏洞，对世界模型安全性研究有重要价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Tulane University"
+      ],
+      "method_tags": [
+        "data poisoning",
+        "world model"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -834,6 +1013,69 @@
       ],
       "platform": [
         "ANYmal D"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-18594",
+      "source": "arxiv",
+      "title": "Benchmarking Action Spaces in Reinforcement Learning for Vision-based Robotic Manipulation",
+      "title_zh": "强化学习中动作空间对基于视觉的机器人操作任务的基准测试",
+      "tldr_zh": "研究发现关节速度动作空间在视觉机器人操作任务中表现最佳。",
+      "cover_zh": "机器人操作任务中，动作空间选错可能白费功夫？关节速度才是最优解！",
+      "abstract_zh": "在现实世界的强化学习（RL）中，动作空间的选择在塑造运动平滑性、安全性和整体任务性能方面起着关键作用。在本研究中，我们评估了位姿增量、位姿速度、关节位置增量和关节速度在两项基于视觉的操作任务（物体抓取和推动）中的表现。我们在仿真中训练策略，并通过仿真到现实的迁移将其部署到真实世界。我们发现，动作空间表示确实显著影响仿真到现实的性能。特别地，我们发现关节速度动作空间在视觉抓取和推动任务中，在平滑性和最终任务性能方面表现最佳。我们还为RL从业者在仿真和真实世界实验中选择动作空间提供了实用指导。",
+      "authors": [
+        "Seyed Alireza Azimi",
+        "Homayoon Farrahi",
+        "Abhishek Naik"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-17",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-18594.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-18594-p2.jpg",
+        "assets/img/covers/arxiv-2606-18594-p3.jpg",
+        "assets/img/covers/arxiv-2606-18594-p4.jpg"
+      ],
+      "arxiv_id": "2606.18594",
+      "abs_url": "http://arxiv.org/abs/2606.18594v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.18594v1",
+      "score": 24,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "sim2real",
+        "reason": "研究动作空间对sim-to-real性能的影响，有实用指导价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Alberta",
+        "National Research Council Canada",
+        "University of Ottawa",
+        "Vector Institute"
+      ],
+      "method_tags": [
+        "Reinforcement Learning",
+        "sim-to-real",
+        "vision-based manipulation"
+      ],
+      "platform": [
+        "Franka Emika Panda"
       ],
       "sim_stack": [],
       "method_family": "",
@@ -1073,182 +1315,6 @@
       "github": {}
     },
     {
-      "id": "arxiv-2606-18594",
-      "source": "arxiv",
-      "title": "Benchmarking Action Spaces in Reinforcement Learning for Vision-based Robotic Manipulation",
-      "title_zh": "强化学习中动作空间对基于视觉的机器人操作任务的基准测试",
-      "tldr_zh": "研究发现关节速度动作空间在视觉机器人操作任务中表现最佳。",
-      "cover_zh": "机器人操作任务中，动作空间选错可能白费功夫？关节速度才是最优解！",
-      "abstract_zh": "在现实世界的强化学习（RL）中，动作空间的选择在塑造运动平滑性、安全性和整体任务性能方面起着关键作用。在本研究中，我们评估了位姿增量、位姿速度、关节位置增量和关节速度在两项基于视觉的操作任务（物体抓取和推动）中的表现。我们在仿真中训练策略，并通过仿真到现实的迁移将其部署到真实世界。我们发现，动作空间表示确实显著影响仿真到现实的性能。特别地，我们发现关节速度动作空间在视觉抓取和推动任务中，在平滑性和最终任务性能方面表现最佳。我们还为RL从业者在仿真和真实世界实验中选择动作空间提供了实用指导。",
-      "authors": [
-        "Seyed Alireza Azimi",
-        "Homayoon Farrahi",
-        "Abhishek Naik"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-17",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-18594.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-18594-p2.jpg",
-        "assets/img/covers/arxiv-2606-18594-p3.jpg",
-        "assets/img/covers/arxiv-2606-18594-p4.jpg"
-      ],
-      "arxiv_id": "2606.18594",
-      "abs_url": "http://arxiv.org/abs/2606.18594v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.18594v1",
-      "score": 16,
-      "judge": {
-        "relevant": true,
-        "research_value": "medium",
-        "primary_channel": "sim2real",
-        "reason": "研究动作空间对sim-to-real性能的影响，有实用指导价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "University of Alberta",
-        "National Research Council Canada",
-        "University of Ottawa",
-        "Vector Institute"
-      ],
-      "method_tags": [
-        "Reinforcement Learning",
-        "sim-to-real",
-        "vision-based manipulation"
-      ],
-      "platform": [
-        "Franka Emika Panda"
-      ],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2606-18646",
-      "source": "arxiv",
-      "title": "A Scalable Embodied Intelligence Platform for Seamless Real-to-Sim-to-Real Transfer of Household Mobile Manipulation Tasks",
-      "title_zh": "一种可扩展的具身智能平台，实现家庭移动操作任务的真实-仿真-真实无缝迁移",
-      "tldr_zh": "提出BestMan平台，通过自动场景生成和统一中间件实现家庭移动操作的真实-仿真-真实无缝迁移。",
-      "cover_zh": "家庭机器人操作难？这个平台让仿真到真实迁移像喝水一样简单",
-      "abstract_zh": "移动操作是具身智能机器人的基本能力。在非结构化家庭环境中对鲁棒且可泛化的操作需求日益增长，推动了具身智能平台的快速发展。然而，实现真实-仿真-真实循环的无缝迁移面临三个关键挑战：高保真仿真场景重建成本高昂、仿真中系统策略评估的复杂性以及不兼容的真实世界部署。为解决这些问题，我们开发了BestMan，一个可扩展且无缝的真实-仿真-真实平台，弥合仿真与真实世界之间的差距，实现家庭移动操作的有效策略开发、集成和部署。具体而言，我们设计了一种新颖的自动场景生成（ASG）模块，从真实观测中重建逼真的仿真场景。然后，我们提出了一种仿真引导的任务形式化和技能学习架构，支持在仿真中灵活集成和大规模评估混合技能策略。最后，为增强真实世界的可扩展性，我们开发了硬件无关的统一中间件（HUM），确保跨异构移动操作器的无缝且兼容的仿真到真实迁移，用于实际部署。实验结果表明，我们提出的平台在建立标准化基准和促进移动操作领域有前景的研究方面表现出优越性能。",
-      "authors": [
-        "Kui Yang",
-        "Xianlei Long",
-        "Haoxuan Li"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-17",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-18646.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-18646-p2.jpg",
-        "assets/img/covers/arxiv-2606-18646-p3.jpg",
-        "assets/img/covers/arxiv-2606-18646-p4.jpg"
-      ],
-      "arxiv_id": "2606.18646",
-      "abs_url": "http://arxiv.org/abs/2606.18646v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.18646v1",
-      "score": 16,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "sim2real",
-        "reason": "提出BestMan平台，解决家庭移动操作的实到仿到实迁移，含ASG和HUM模块，高科研价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "School of Computer Science, Chongqing University",
-        "R&D Department, Lumos Robotics Technology (Suzhou) Co., Ltd"
-      ],
-      "method_tags": [
-        "Real-to-Sim-to-Real",
-        "Automated Scene Generation",
-        "Hardware-agnostic and Unified Middleware"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2606-18697",
-      "source": "arxiv",
-      "title": "Stealthy World Model Manipulation via Data Poisoning",
-      "title_zh": "通过数据投毒进行隐蔽的世界模型操控",
-      "tldr_zh": "首个针对世界模型的两阶段数据投毒框架，能隐蔽地降低性能并规避防御。",
-      "cover_zh": "世界模型也能被投毒？新攻击让智能体悄悄变笨｜SWAAP",
-      "abstract_zh": "基于模型的学习智能体使用学习到的世界模型来预测未来状态、规划行动并适应新环境。然而，从收集的经验中更新世界模型的过程创造了一个训练时攻击面：对抗性投毒的微调轨迹可以操控学习到的动力学，从而破坏下游规划。在本文中，我们提出了SWAAP，这是第一个针对学习世界模型的两阶段数据投毒框架。在第一阶段，SWAAP通过一阶双层优化（利用过渡梯度定理）识别出一个有害的目标世界模型，该模型在规划下诱导低回报行为，同时保持接近清洁动力学。在第二阶段，SWAAP通过隐蔽约束的梯度匹配实现这一目标，仅修改有限比例的微调过渡目标，使得诱导的训练梯度将受害模型引向对抗目标，同时预测误差正则化器鼓励投毒目标保持接近世界模型的自然逼近误差。为了评估攻击的隐蔽性，我们在投毒管道的三个阶段评估了防御和可检测性：微调前检测投毒过渡、微调期间的鲁棒训练以及测试时监控生成的世界模型。在多种连续控制任务中，SWAAP导致显著的性能下降，同时保持投毒过渡接近清洁数据，并规避了评估的非自适应残差/CUSUM/TRIM风格防御。这些结果揭示了世界模型适应管道中的实际漏洞，并强调了需要保护世界模型训练数据和学到的动力学的鲁棒性方法。",
-      "authors": [
-        "Yibin Hu",
-        "Xiaolin Sun",
-        "Zizhan Zheng"
-      ],
-      "primary_category": "cs.LG",
-      "published": "2026-06-17",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-18697.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-18697-p2.jpg",
-        "assets/img/covers/arxiv-2606-18697-p3.jpg",
-        "assets/img/covers/arxiv-2606-18697-p4.jpg"
-      ],
-      "arxiv_id": "2606.18697",
-      "abs_url": "http://arxiv.org/abs/2606.18697v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.18697v1",
-      "score": 16,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出针对世界模型的数据投毒攻击框架，揭示训练时漏洞，对世界模型安全性研究有重要价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Tulane University"
-      ],
-      "method_tags": [
-        "data poisoning",
-        "world model"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
       "id": "arxiv-2606-18861",
       "source": "arxiv",
       "title": "URDF Synthesis from RGB-D Sequences via Differentiable Joint Inference and Energy-Consistent Verification",
@@ -1302,63 +1368,6 @@
       ],
       "method_family": "",
       "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2606-18960",
-      "source": "arxiv",
-      "title": "Mem-World: Memory-Augmented Action-Conditioned World Models for Persistent Robot Manipulation",
-      "title_zh": "Mem-World：面向持久机器人操作的内存增强动作条件世界模型",
-      "tldr_zh": "提出内存增强世界模型，通过4D surfel索引记忆解决操作任务中的持久建模问题。",
-      "cover_zh": "机器人总忘记场景细节？这个新记忆机制让模型持久不丢帧｜成功率飙升14%",
-      "abstract_zh": "动作条件世界模型已成为机器人学习的一种有前景的范式，通过生成动作一致的视频推演，为昂贵的真实世界实验提供了可扩展的替代方案。然而，在操作任务中，持久世界建模仍然具有挑战性：频繁的末端执行器遮挡和快速的手腕相机运动使得当前观测不足以预测未来视图，导致模型遗忘或幻觉早期帧中看到的场景细节。现有的记忆检索策略往往无法在动态操作场景中识别出信息丰富的历史帧。为解决这一局限，我们提出了Mem-World，一种内存增强的多视图动作条件世界模型。其核心是W-VMem，一个以手腕视图为中心的4D surfel索引内存，将历史观测锚定到随时间演变的表面元素上。通过显式建模场景元素被观测的时间和位置，W-VMem能够基于未来动作实现几何感知的相关历史帧检索。在生成过程中，通过基于surfel的渲染和评分选择相关历史帧，为预测提供信息丰富且非冗余的上下文。大量实验表明，Mem-World在复杂操作场景中生成持久推演，比Ctrl-World实现更可靠的策略评估，与真实世界性能的皮尔逊相关系数提高14.5%，并通过合成数据生成支持有效的策略改进，在长时任务中将成功率从58%提升至72%。",
-      "authors": [
-        "Zirui Zheng",
-        "Jiaqian Yu",
-        "Xiongfeng Peng"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-06-17",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-18960.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-18960-p2.jpg",
-        "assets/img/covers/arxiv-2606-18960-p3.jpg",
-        "assets/img/covers/arxiv-2606-18960-p4.jpg"
-      ],
-      "arxiv_id": "2606.18960",
-      "abs_url": "http://arxiv.org/abs/2606.18960v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.18960v1",
-      "score": 16,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出记忆增强的动作条件世界模型，解决持久操作中的遮挡和遗忘问题，具有高科研价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Dalian University of Technology"
-      ],
-      "method_tags": [
-        "World Model",
-        "Memory Mechanism",
-        "Robot Manipulation"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
