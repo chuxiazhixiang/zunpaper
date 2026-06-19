@@ -1,0 +1,115 @@
+{
+  "id": "arxiv-2606-20458",
+  "source": "arxiv",
+  "title": "Slow Brain, Fast Planner: Latency-Resilient VLM-Augmented Urban Navigation",
+  "title_zh": "慢大脑，快规划器：延迟鲁棒的VLM增强城市导航",
+  "abstract": "Learning-based planners for sidewalk navigation can generate diverse candidate trajectories in real time, yet their scoring functions often fail to select the best trajectory in challenging situations, outputting trajectories that make the mobile robot drive onto grass, toward pedestrians, or in the wrong direction, even when better candidates exist in the same set. We call this the trajectory scoring gap: in real-world sidewalk navigation, the gap between an anchor-based planner's top choice and the best possible candidate is substantial, likely due to limited high-level scene understanding capability of the planner. Rather than replacing the planner with an end-to-end Vision-Language-Action model, we propose a VLM-Planner interface that uses a VLM to select a candidate index from the planner's proposal set and then fuse it with the planner's initial output. However, VLMs take 1--3s per query and so cannot directly drive a 5--20Hz control loop. We contribute a training-free, latency-resilient trajectory-level fusion layer that turns a stale VLM selection into real-time planner scoring via geometric similarity with exponential decay. On $\\sim$2,000 challenging real-world scenarios (e.g., junctions, pedestrian encounters), VLM selection achieves 30% ADE reduction versus the planner's best selection, while the planner remains competitive in routine situations. In simulation, Score Fusion maintains >80% success rate with delays up to 5s. We demonstrate the full system on a mobile robot navigating challenging campus sidewalks with varied network latency.",
+  "abstract_zh": "基于学习的 sidewalk 导航规划器能实时生成多样候选轨迹，但其评分函数在挑战性场景中常无法选出最佳轨迹，导致移动机器人驶入草地、冲向行人或方向错误，即便同一候选集中存在更优轨迹。我们将此称为轨迹评分差距：在真实 sidewalk 导航中，基于锚点的规划器首选与最佳候选之间的差距显著，可能源于规划器高层场景理解能力有限。我们不采用端到端视觉-语言-动作模型替换规划器，而是提出 VLM-规划器接口，利用 VLM 从规划器候选集中选择索引，再与规划器初始输出融合。然而，VLM 每次查询需 1-3 秒，无法直接驱动 5-20Hz 控制循环。我们贡献了一个无需训练、延迟鲁棒的轨迹级融合层，通过几何相似性与指数衰减将过时的 VLM 选择转化为实时规划器评分。在约 2000 个挑战性真实场景（如路口、行人相遇）中，VLM 选择相比规划器最佳选择实现了 30% 的 ADE 降低，而规划器在常规场景中保持竞争力。仿真中，评分融合在高达 5 秒延迟下仍保持 >80% 的成功率。我们在移动机器人上展示了完整系统，在校园 sidewalk 上导航，应对不同网络延迟。",
+  "tldr_zh": "用VLM辅助规划器选轨迹，延迟5秒仍保持80%成功率",
+  "cover_zh": "VLM太慢没法实时控制？融合层让延迟5秒也能精准导航",
+  "authors": [
+    {
+      "name": "Zhenghao \"Mark'' Peng",
+      "affiliation": ""
+    },
+    {
+      "name": "Honglin He",
+      "affiliation": ""
+    },
+    {
+      "name": "Quanyi Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Yukai Ma",
+      "affiliation": ""
+    },
+    {
+      "name": "Bolei Zhou",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-06-18",
+  "updated": "2026-06-18",
+  "arxiv_id": "2606.20458",
+  "pdf_url": "https://arxiv.org/pdf/2606.20458v1",
+  "abs_url": "http://arxiv.org/abs/2606.20458v1",
+  "cover_image": "assets/img/covers/arxiv-2606-20458.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2606-20458-p2.jpg",
+    "assets/img/covers/arxiv-2606-20458-p3.jpg",
+    "assets/img/covers/arxiv-2606-20458-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ ZJU"
+    },
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 22,
+  "source_tags": [],
+  "score": 41,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “ZJU” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（vision-language-action）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 22 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "locomotion",
+    "reason": "提出VLM增强的移动机器人导航规划器，解决轨迹评分差距，具有实际部署价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Amazon FAR",
+    "UCLA",
+    "Independent",
+    "Zhejiang University"
+  ],
+  "method_tags": [
+    "VLM",
+    "trajectory scoring",
+    "urban navigation"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {}
+}
