@@ -485,6 +485,7 @@ class EnrichmentContext:
     hf_index: dict = field(default_factory=dict)
     ss_index: dict = field(default_factory=dict)
     news_index: dict = field(default_factory=dict)
+    curated_ids: set = field(default_factory=set)  # 站长甄选高质量论文 id
     # 「⚡ 新鲜出炉」徽章窗口：3 天 = 72 小时。
     # 之前是 36h（1.5 天），刚过周末/工作日的 paper 在站点上常常一两天后
     # 就不带「新鲜」标签了，体感更新太快 → 拉长到 3 天，跟主流 paper feed
@@ -510,6 +511,13 @@ class EnrichmentContext:
             if "manual_pin" not in paper.source_tags:
                 paper.source_tags.append("manual_pin")
             paper.badges.append({"kind": "pin", "label": "📌 站长精选"})
+
+        # 💎 站长甄选（config/curated.yaml）—— 高质量金标准。打徽章 + 加 source_tag
+        # （让 scoring 的 curated 规则加分）。放在 score_paper 之前。
+        if paper.id in self.curated_ids:
+            if "curated" not in paper.source_tags:
+                paper.source_tags.append("curated")
+            paper.badges.append({"kind": "gem", "label": "💎 站长甄选"})
 
         aid = paper.arxiv_id
 
@@ -658,6 +666,28 @@ def write_feed(all_papers: list[Paper]) -> None:
     with (cfg.DATA_DIR / "days.json").open("w", encoding="utf-8") as f:
         json.dump({"days": days_sorted}, f, ensure_ascii=False, indent=2)
 
+    # curated.json —— 站长甄选「金标准」数据集（committed via site/data），供后续
+    # 关键词挖掘 / judge few-shot / 相似度推荐 / 量化评测复用。
+    curated = [p for p in all_papers if "curated" in (p.source_tags or [])]
+    curated.sort(key=lambda p: (p.published or "", p.id), reverse=True)
+    with (cfg.DATA_DIR / "curated.json").open("w", encoding="utf-8") as f:
+        json.dump({
+            "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+            "count": len(curated),
+            "papers": [{
+                "id": p.id,
+                "title": p.title,
+                "title_zh": p.title_zh or p.title,
+                "channels": p.channels or [],
+                "institutions": p.institutions or [],
+                "method_tags": p.method_tags or [],
+                "platform": p.platform or [],
+                "published": p.published,
+                "source": p.source,
+                "abs_url": p.abs_url,
+            } for p in curated],
+        }, f, ensure_ascii=False, indent=2)
+
     # 最后一步：给所有 HTML / JS 资源打上版本戳，绕开浏览器缓存。
     # 必须放在 write_feed 末尾才能确保部署时一定被执行。
     stamp_assets()
@@ -766,6 +796,10 @@ def _feed_entry(p: Paper) -> dict:
 def _build_enrichment_context(sources: cfg.SourcesConfig, fresh: dict[str, Paper]) -> EnrichmentContext:
     """Pull Phase 2 metadata only if those sources are enabled."""
     ctx = EnrichmentContext()
+    try:
+        ctx.curated_ids = cfg.load_curated_ids()
+    except Exception as e:
+        log.warning("load curated failed: %s", e)
 
     if sources.hf_daily_enabled:
         try:

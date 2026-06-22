@@ -74,6 +74,11 @@ def _rules() -> list[dict]:
 #   - dict { "points": int, "hint": str }   to override the hint with paper-
 #                     specific info (e.g. which lab matched)
 
+def _check_curated(paper: Paper, rule: dict) -> dict | int:
+    """站长甄选高质量（config/curated.yaml → source_tag 'curated'）。"""
+    return rule["points"] if "curated" in (paper.source_tags or []) else 0
+
+
 def _check_manual_pin(paper: Paper, rule: dict) -> dict | int:
     """User manually pinned this paper via config/manual_arxiv.yaml."""
     if (paper.source or "").lower() == "manual_arxiv":
@@ -232,6 +237,7 @@ def _check_cross_channel(paper: Paper, rule: dict) -> dict | int:
 
 
 _EVALUATORS = {
+    "curated": _check_curated,
     "manual_pin": _check_manual_pin,
     "famous_lab": _check_famous_lab,
     "key_author": _check_key_author,

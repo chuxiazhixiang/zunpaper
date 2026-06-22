@@ -1,6 +1,6 @@
 // Detail page: load /data/papers/{id}.json, render hero + bilingual content.
 
-import { Favorites, Reads, Theme } from './storage.js?v=3d3fb04b';
+import { Favorites, Curated, Reads, Theme } from './storage.js?v=7adda7f1';
 import {
   escapeHTML,
   formatAuthors,
@@ -13,7 +13,7 @@ import {
   HEART_SVG_OUTLINE,
   HEART_SVG_FILL,
   fetchJSON,
-} from './utils.js?v=3d3fb04b';
+} from './utils.js?v=7adda7f1';
 
 let _palettes = [];
 
@@ -383,6 +383,7 @@ function renderPaper(p, all) {
         <button class="rp-btn" id="share-btn">复制链接</button>
         <button class="rp-btn ${Favorites.has(p.id) ? 'rp-btn--primary' : ''}" id="fav-btn">${heart} <span id="fav-label">${Favorites.has(p.id) ? '已收藏' : '收藏'}</span></button>
         <button class="rp-btn" id="fav-cat-btn" title="分类管理">📁 分类</button>
+        <button class="rp-btn ${Curated.has(p.id) ? 'rp-btn--primary' : ''}" id="gem-btn" title="标记为高质量（站长甄选）">💎 <span id="gem-label">${Curated.has(p.id) ? '已标高质量' : '标记高质量'}</span></button>
       </div>
 
       ${
@@ -430,6 +431,14 @@ function renderPaper(p, all) {
 
   document.querySelector('#fav-cat-btn')?.addEventListener('click', () => {
     openCategoryPicker(p.id, refreshFavBtn);
+  });
+
+  const gemBtn = document.querySelector('#gem-btn');
+  gemBtn?.addEventListener('click', () => {
+    const on = Curated.toggle(p.id);
+    gemBtn.classList.toggle('rp-btn--primary', on);
+    gemBtn.innerHTML = `💎 <span id="gem-label">${on ? '已标高质量' : '标记高质量'}</span>`;
+    showToast(on ? `已标记高质量（共 ${Curated.count()} 篇，去收藏页可导出）` : '已取消高质量标记');
   });
 
   document.querySelector('#share-btn')?.addEventListener('click', async () => {

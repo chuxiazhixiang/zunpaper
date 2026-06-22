@@ -6,7 +6,7 @@
 // 把页面塞爆。
 // before the user hits the bottom.
 
-import { Favorites, Reads, Theme } from './storage.js?v=3d3fb04b';
+import { Favorites, Curated, Reads, Theme } from './storage.js?v=7adda7f1';
 import {
   pickCover,
   loadPalettes,
@@ -18,7 +18,7 @@ import {
   HEART_SVG_FILL,
   showToast,
   fetchJSON,
-} from './utils.js?v=3d3fb04b';
+} from './utils.js?v=7adda7f1';
 
 const STATE = {
   channels: [],
@@ -176,6 +176,7 @@ export function githubCardHTML(p) {
         </div>
         <div class="rp-card__meta">
           <span class="rp-card__authors">${escapeHTML(g.owner || '')}${g.pushed_at ? ` · 🕒 ${escapeHTML(g.pushed_at)}` : ''}</span>
+          <button class="rp-card__gem ${Curated.has(p.id) ? 'is-on' : ''}" data-gem="${p.id}" title="标记为高质量（站长甄选）" aria-label="标记高质量">💎</button>
           <button class="rp-card__like ${fav ? 'is-liked' : ''}" data-fav="${p.id}" title="${fav ? '取消收藏' : '收藏'}" aria-label="收藏">
             ${heart}
           </button>
@@ -215,6 +216,7 @@ function cardHTML(p) {
         ${badges ? `<div class="rp-card__badges">${badges}</div>` : ''}
         <div class="rp-card__meta">
           <span class="rp-card__authors">${escapeHTML(authors)}</span>
+          <button class="rp-card__gem ${Curated.has(p.id) ? 'is-on' : ''}" data-gem="${p.id}" title="标记为高质量（站长甄选）" aria-label="标记高质量">💎</button>
           <button class="rp-card__like ${fav ? 'is-liked' : ''}" data-fav="${p.id}" title="${fav ? '取消收藏' : '收藏'}" aria-label="收藏">
             ${heart}
           </button>
@@ -600,6 +602,15 @@ function wireFavDelegation() {
   const feed = document.querySelector('#feed');
   if (!feed) return;
   feed.addEventListener('click', (e) => {
+    const gem = e.target.closest('[data-gem]');
+    if (gem && feed.contains(gem)) {
+      e.preventDefault();
+      e.stopPropagation();
+      const on = Curated.toggle(gem.dataset.gem);
+      gem.classList.toggle('is-on', on);
+      showToast(on ? `已标记高质量（共 ${Curated.count()} 篇，记得导出）` : '已取消高质量标记');
+      return;
+    }
     const btn = e.target.closest('[data-fav]');
     if (!btn || !feed.contains(btn)) return;
     e.preventDefault();

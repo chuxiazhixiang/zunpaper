@@ -1,7 +1,7 @@
 // Favorites page: filter the global index to favorited papers, grouped by
 // user-defined categories. All state is local to this browser.
 
-import { Favorites, Theme } from './storage.js?v=3d3fb04b';
+import { Favorites, Curated, Theme } from './storage.js?v=7adda7f1';
 import {
   pickCover,
   loadPalettes,
@@ -14,8 +14,8 @@ import {
   HEART_SVG_FILL,
   showToast,
   fetchJSON,
-} from './utils.js?v=3d3fb04b';
-import { chipRowsHTML, videoBadgeHTML, githubCardHTML } from './feed.js?v=3d3fb04b';
+} from './utils.js?v=7adda7f1';
+import { chipRowsHTML, videoBadgeHTML, githubCardHTML } from './feed.js?v=7adda7f1';
 
 const STATE = {
   papers: [],          // master list from index.json
@@ -223,6 +223,42 @@ async function main() {
   STATE.papers = index.papers || [];
   STATE.palettes = palettes || [];
   renderAll();
+  injectCuratedBar();
+}
+
+// 「💎 高质量」导出条：浏览时在卡片上点 💎 标记的论文，这里一键导出 JSON，
+// 再用 scripts/import_curated.py 合并进 config/curated.yaml（提交进仓库）。
+function injectCuratedBar() {
+  const host = document.querySelector('#category-tabs') || document.querySelector('#feed');
+  if (!host || document.querySelector('#curated-bar')) return;
+  const bar = document.createElement('div');
+  bar.id = 'curated-bar';
+  bar.className = 'rp-curated-bar';
+  const n = Curated.count();
+  bar.innerHTML = `
+    <span>💎 已标记高质量 <b>${n}</b> 篇</span>
+    <button class="rp-btn" id="curated-export">导出清单</button>
+    <span class="rp-curated-bar__hint">导出后跑 <code>python scripts/import_curated.py 下载的.json</code> 合并入库</span>`;
+  host.parentNode.insertBefore(bar, host);
+  document.querySelector('#curated-export')?.addEventListener('click', () => {
+    const ids = Curated.ids();
+    if (!ids.length) { showToast('还没标记任何高质量论文'); return; }
+    const byId = new Map(STATE.papers.map((p) => [p.id, p]));
+    const papers = ids.map((id) => {
+      const p = byId.get(id);
+      return { id, title: p ? (p.title || '') : '', title_zh: p ? (p.title_zh || '') : '' };
+    });
+    const blob = new Blob(
+      [JSON.stringify({ exported_at: new Date().toISOString(), curated: ids, papers }, null, 2)],
+      { type: 'application/json' },
+    );
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'curated-export.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+    showToast(`已导出 ${ids.length} 篇`);
+  });
 }
 
 document.addEventListener('DOMContentLoaded', main);

@@ -187,6 +187,23 @@ export const Favorites = {
   DEFAULT_CATEGORY,
 };
 
+// -------- 站长「💎 高质量」标记（独立于收藏） --------
+// 浏览时一键标记你认可的高质量论文，存本浏览器。用「导出高质量清单」导出后，
+// 跑 scripts/import_curated.py 合并进 config/curated.yaml（提交进仓库 = 金标准
+// 数据集），下次 build 就会打 💎 徽章 + 评分加成。
+export const Curated = {
+  has: (id) => readSet('curated').has(id),
+  toggle(id) {
+    const s = readSet('curated');
+    let on;
+    if (s.has(id)) { s.delete(id); on = false; } else { s.add(id); on = true; }
+    writeSet('curated', s);
+    return on;
+  },
+  ids: () => [...readSet('curated')],
+  count: () => readSet('curated').size,
+};
+
 export const Reads = {
   has: (id) => readSet('reads').has(id),
   mark(id) {

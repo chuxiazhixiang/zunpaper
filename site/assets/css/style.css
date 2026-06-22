@@ -688,6 +688,27 @@ img {
   font-weight: 600;
 }
 
+/* 💎 高质量导出条（收藏页） */
+.rp-curated-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 0 4px 14px;
+  padding: 10px 14px;
+  background: var(--rp-surface);
+  border: 1px solid var(--rp-border);
+  border-radius: 12px;
+  font-size: 13px;
+  color: var(--rp-text);
+}
+.rp-curated-bar b { color: var(--rp-red); font-size: 15px; }
+.rp-curated-bar__hint { color: var(--rp-text-dim); font-size: 11.5px; }
+.rp-curated-bar__hint code {
+  background: color-mix(in srgb, var(--rp-text) 8%, transparent);
+  padding: 1px 5px; border-radius: 4px;
+}
+
 /* ===== 数据看板 (insights.html) ===================================== */
 .rp-insights { padding-bottom: 48px; }
 
@@ -947,6 +968,21 @@ img {
 .rp-card__like.is-liked {
   color: var(--rp-red);
 }
+
+/* 💎 高质量标记按钮：未标记时灰暗（去色），标记后高亮 */
+.rp-card__gem {
+  padding: 2px 4px;
+  border-radius: 6px;
+  position: relative;
+  z-index: 2;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  filter: grayscale(1) opacity(0.45);
+  transition: filter 0.15s ease, transform 0.12s ease;
+}
+.rp-card__gem:hover { filter: grayscale(0.3) opacity(0.85); transform: scale(1.12); }
+.rp-card__gem.is-on { filter: none; text-shadow: 0 0 8px rgba(90, 169, 230, 0.6); }
 
 .rp-card__badges {
   display: flex;

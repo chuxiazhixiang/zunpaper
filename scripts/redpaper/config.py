@@ -88,6 +88,36 @@ def load_channels() -> list[Channel]:
     return [Channel(**c) for c in raw.get("channels", [])]
 
 
+_ARXIV_NUM_RE = __import__("re").compile(r"^(\d{4})\.(\d{4,6})$")
+
+
+def _normalize_paper_id(raw: str) -> str:
+    """把 '2606.12366' 这种 arxiv 号归一成 slug 'arxiv-2606-12366'；其它原样返回。"""
+    s = str(raw or "").strip()
+    m = _ARXIV_NUM_RE.match(s)
+    if m:
+        return f"arxiv-{m.group(1)}-{m.group(2)}"
+    return s
+
+
+def load_curated_ids() -> set[str]:
+    """站长甄选高质量清单（config/curated.yaml）。返回归一化后的 paper id 集合。
+    条目可写 `- id: arxiv-...` / `- id: 2606.12366` / 直接 `- arxiv-...`。"""
+    path = CONFIG_DIR / "curated.yaml"
+    if not path.exists():
+        return set()
+    raw = _load_yaml(path).get("curated") or []
+    out: set[str] = set()
+    for item in raw:
+        if isinstance(item, dict):
+            pid = item.get("id")
+        else:
+            pid = item
+        if pid:
+            out.add(_normalize_paper_id(pid))
+    return out
+
+
 def load_sources() -> SourcesConfig:
     import os
 
