@@ -1,7 +1,7 @@
 // 数据看板：读 data/stats.json，用 ECharts 画 8 类图，滚动到哪张图触发哪张
 // 图的入场动画。ECharts 通过 insights.html 的 CDN <script> 提供全局 echarts。
-import { Theme } from './storage.js?v=33cdb9ca';
-import { escapeHTML, attachSearchRedirect, fetchJSON } from './utils.js?v=33cdb9ca';
+import { Theme } from './storage.js?v=7adda7f1';
+import { escapeHTML, attachSearchRedirect, fetchJSON } from './utils.js?v=7adda7f1';
 
 // 站点暖色调色板（跟首页红主题呼应）
 const PALETTE = [
@@ -63,6 +63,27 @@ function optCatTime(d) {
     yAxis: { type: 'value', axisLabel: { color: ink(true) }, splitLine: splitLine() },
     series,
     ...ANIM,
+  };
+}
+
+// 独立折线（不堆叠）：每个方向一条线，高低直接对应当月数量，一眼看出谁多。
+function optCatLine(d) {
+  const series = d.channels.map((c, i) => ({
+    name: `${c.emoji || ''} ${c.name}`.trim(),
+    type: 'line', smooth: true, showSymbol: false,
+    lineStyle: { width: 2.5 },
+    emphasis: { focus: 'series' },
+    color: PALETTE[i % PALETTE.length],
+    data: d.months.map((m) => d.cat_time[c.id][m] || 0),
+  }));
+  return {
+    color: PALETTE,
+    tooltip: baseTooltip({ trigger: 'axis' }),
+    legend: { type: 'scroll', top: 0, textStyle: { color: ink(true), fontSize: 11 } },
+    grid: Object.assign({}, BASE_GRID, { top: 56 }),
+    xAxis: { type: 'category', boundaryGap: false, data: d.months, axisLabel: { color: ink(true), fontSize: 11 }, axisLine: { lineStyle: { color: ink(true) } } },
+    yAxis: { type: 'value', axisLabel: { color: ink(true) }, splitLine: splitLine() },
+    series, ...ANIM,
   };
 }
 
@@ -247,6 +268,7 @@ async function main() {
   renderStatCards(d);
 
   lazyMount('chart-cat-time', optCatTime);
+  lazyMount('chart-cat-line', optCatLine);
   lazyMount('chart-cat-count', (x) => optDonut(x.channels.map((c) => ({ name: `${c.emoji || ''} ${c.name}`.trim(), value: x.cat_count[c.id] || 0 })), 'name', 'value'));
   lazyMount('chart-source', (x) => optDonut(x.source, 'name', 'value'));
   lazyMount('chart-intake', optIntake);
