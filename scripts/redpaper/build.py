@@ -1173,6 +1173,13 @@ def run() -> None:
     # 只重生成本月份，避免每天把所有月份都烧一遍 LLM。生成后写完 monthly_index。
     _refresh_current_month_digest(sorted_papers)
 
+    # ----- 数据可视化预聚合 → site/data/stats.json ------------------------
+    try:
+        from .stats import write_stats
+        write_stats(all_papers, channels)
+    except Exception as e:
+        log.warning("stats step failed: %s", e)
+
 
 def _refresh_current_month_digest(all_papers: list[Paper]) -> None:
     """重生成当前月份的 LLM 综述（如果当月已有 ≥5 篇 paper）。"""
