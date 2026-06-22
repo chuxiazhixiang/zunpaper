@@ -6,7 +6,7 @@
 // 把页面塞爆。
 // before the user hits the bottom.
 
-import { Favorites, Reads, Theme } from './storage.js?v=ca590f47';
+import { Favorites, Reads, Theme } from './storage.js?v=7adda7f1';
 import {
   pickCover,
   loadPalettes,
@@ -18,7 +18,7 @@ import {
   HEART_SVG_FILL,
   showToast,
   fetchJSON,
-} from './utils.js?v=ca590f47';
+} from './utils.js?v=7adda7f1';
 
 const STATE = {
   channels: [],
@@ -500,6 +500,31 @@ function teardownObserver() {
   if (end) end.remove();
 }
 
+// 连续补分组，直到 sentinel 被推出视口下方 600px（首屏填满）或没有更多分组。
+// 不依赖「sentinel 留在视口里会自动再触发」——IntersectionObserver 在元素持续
+// 可见时不会重复回调，稀疏频道（首组只有 1-2 篇）会卡在 2 篇加载不出后续。
+function fillViewport(feed, sentinel) {
+  let guard = 0;
+  while (guard++ < 80) {
+    const next = STATE.periodOrder.find((k) => !STATE.renderedKeys.has(k));
+    if (next === undefined) {
+      teardownObserver();
+      if (!document.querySelector('#rp-feed-end')) {
+        const end = document.createElement('div');
+        end.id = 'rp-feed-end';
+        end.className = 'rp-status rp-status--end';
+        end.textContent = '已经到底啦';
+        feed.appendChild(end);
+      }
+      return;
+    }
+    appendPeriod(feed, next);
+    feed.appendChild(sentinel); // 保持 sentinel 在最底部
+    const rect = sentinel.getBoundingClientRect();
+    if (rect.top > window.innerHeight + 600) return; // 视口已填满，等用户滚动
+  }
+}
+
 function attachSentinel(feed) {
   teardownObserver();
   const sentinel = document.createElement('div');
@@ -509,23 +534,14 @@ function attachSentinel(feed) {
   STATE.observer = new IntersectionObserver(
     (entries) => {
       if (!entries.some((e) => e.isIntersecting)) return;
-      const next = STATE.periodOrder.find((k) => !STATE.renderedKeys.has(k));
-      if (next === undefined) {
-        teardownObserver();
-        const end = document.createElement('div');
-        end.id = 'rp-feed-end';
-        end.className = 'rp-status rp-status--end';
-        end.textContent = '已经到底啦';
-        feed.appendChild(end);
-        return;
-      }
-      appendPeriod(feed, next);
-      // Move the sentinel back to the bottom so it can fire again.
-      feed.appendChild(sentinel);
+      fillViewport(feed, sentinel);
     },
     { rootMargin: '600px 0px' }, // 提前 600px 触发，体感是“自动刷出”
   );
   STATE.observer.observe(sentinel);
+
+  // 初始主动填满首屏（不等首次 intersection 回调，修稀疏频道只剩 2 篇的问题）。
+  fillViewport(feed, sentinel);
 }
 
 function renderFeed() {
@@ -558,11 +574,7 @@ function renderFeed() {
   STATE.periodOrder = order;
   STATE.renderedKeys = new Set();
 
-  // 渲染第一个非空 bucket（通常是「今天」），然后挂 sentinel 让用户向下滚动
-  // 时自动加载更老的桶。
-  const first = STATE.periodOrder.find((k) => (buckets.get(k) || []).length > 0);
-  if (first === undefined) return;
-  appendPeriod(feed, first);
+  // 挂 sentinel 并主动把首屏填满（见 attachSentinel/fillViewport）。
   attachSentinel(feed);
 }
 
