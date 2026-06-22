@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="site/assets/img/redpaper-logo.png" alt="redpaper" width="140" />
+</p>
+
 # redpaper
 
 > 把每天看不完的论文整理成「小红书 feed」的静态站。
