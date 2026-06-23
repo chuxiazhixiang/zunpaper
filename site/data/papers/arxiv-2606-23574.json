@@ -1,0 +1,110 @@
+{
+  "id": "arxiv-2606-23574",
+  "source": "arxiv",
+  "title": "A Watermark for Vision-Language-Action and World Action Models",
+  "title_zh": "面向视觉-语言-动作模型与世界动作模型的水印技术",
+  "abstract": "Vision-language-action (VLA) models and world-action models (WAM) are the generative models now driving general-purpose robot control, turning raw camera input directly into motor commands. They are increasingly deployed as black-box services, where a partner runs the policy through an interface while the owner keeps the weights private. Training such a model takes proprietary data and heavy computational power, making the deployed model itself a valuable intellectual property.   To address this, we propose the \\emph{keyed latent-provenance verification} method, which fingerprints the policy through the seed of the Gaussian noise vector that the models draw before generation. At the injection stage, the owner swaps this seed for a keyed one with the same distribution as ordinary noise, so the fingerprinted actions are statistically identical to those of an ordinary run and an adversary watching the output finds no signal to detect or remove. At the verification stage, the owner runs the suspect model under authorized access and records the action channels the robot executes, a partial and possibly post-processed view of the policy's output. From this view, the verifier recovers the seed by gradient-based maximum a posteriori (MAP) optimization, tests it for the secret key to score each rollout, and aggregates these scores into a single decision on whether the suspect model belongs to the owner.   We evaluate the method on two representative models across two robot suites. The experiments cover detection of the fingerprint, identification of which of several keys a suspect carries, robustness to a range of attacks, and an analysis of why the design works. Across both models, the fingerprint can be detected reliably with little change to task performance, and it remains detectable under output-side removal attacks and weight-level edits.",
+  "abstract_zh": "视觉-语言-动作（VLA）模型和世界动作模型（WAM）是当前驱动通用机器人控制的生成式模型，能够直接将原始摄像头输入转化为电机指令。它们越来越多地被部署为黑盒服务，合作伙伴通过接口运行策略，而所有者保持权重私有。训练此类模型需要专有数据和大量算力，使得部署的模型本身成为宝贵的知识产权。为此，我们提出了“密钥化潜在来源验证”方法，通过模型在生成前所采高斯噪声向量的种子来对策略进行指纹标记。在注入阶段，所有者将该种子替换为与普通噪声同分布的密钥化种子，使得带指纹的动作在统计上与普通运行无异，攻击者观察输出无法发现可检测或移除的信号。在验证阶段，所有者在授权访问下运行可疑模型，记录机器人执行的动作通道（这是策略输出的部分且可能经过后处理的视图）。基于该视图，验证者通过基于梯度的最大后验（MAP）优化恢复种子，测试其是否包含密钥以对每次运行评分，并汇总这些评分以判断可疑模型是否属于所有者。我们在两个机器人套件上对两个代表性模型进行了评估。实验涵盖指纹检测、识别可疑模型携带的多个密钥中的哪一个、对多种攻击的鲁棒性，以及设计原理分析。在两个模型上，指纹均能被可靠检测，且对任务性能影响很小；在输出侧移除攻击和权重级编辑下仍可检测。",
+  "tldr_zh": "提出一种通过噪声种子为机器人模型添加水印的方法，可检测模型盗用且不影响性能。",
+  "cover_zh": "机器人模型也能打水印？黑盒部署再也不怕被盗用｜新方法让指纹藏进噪声里",
+  "authors": [
+    {
+      "name": "Yule Liu",
+      "affiliation": ""
+    },
+    {
+      "name": "Shuai Liu",
+      "affiliation": ""
+    },
+    {
+      "name": "Jiaheng Wei",
+      "affiliation": ""
+    },
+    {
+      "name": "Xinlei He",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.CR",
+  "categories": [
+    "cs.CR",
+    "cs.RO"
+  ],
+  "published": "2026-06-22",
+  "updated": "2026-06-22",
+  "arxiv_id": "2606.23574",
+  "pdf_url": "https://arxiv.org/pdf/2606.23574v1",
+  "abs_url": "http://arxiv.org/abs/2606.23574v1",
+  "cover_image": "assets/img/covers/arxiv-2606-23574.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2606-23574-p2.jpg",
+    "assets/img/covers/arxiv-2606-23574-p3.jpg",
+    "assets/img/covers/arxiv-2606-23574-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ HKUST"
+    },
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 19,
+  "source_tags": [],
+  "score": 41,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “HKUST” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（vision-language-action）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 19 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "world-model",
+    "reason": "提出VLA和世界动作模型的指纹水印方法，保护知识产权，具身机器人领域新贡献。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Hong Kong University of Science and Technology (Guangzhou)",
+    "Wuhan University",
+    "Xi'an Jiao Tong University"
+  ],
+  "method_tags": [
+    "watermarking",
+    "keyed latent-provenance verification"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {}
+}
