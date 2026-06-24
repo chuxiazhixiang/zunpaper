@@ -1,6 +1,6 @@
 {
   "date": "2026-06-23",
-  "count": 13,
+  "count": 15,
   "papers": [
     {
       "id": "arxiv-2606-24208",
@@ -209,6 +209,71 @@
       "github": {}
     },
     {
+      "id": "arxiv-2606-24350",
+      "source": "arxiv",
+      "title": "SlipSense: Multimodal Sensing for Online Slip Detection in Legged Robots",
+      "title_zh": "SlipSense：用于足式机器人在线滑移检测的多模态传感",
+      "tldr_zh": "提出SlipSense框架，用多模态传感和LSTM实现四足机器人早期滑移在线检测，精度提升24%。",
+      "cover_zh": "四足机器人也能提前感知打滑？这个新框架让盲走更稳更准！",
+      "abstract_zh": "足式机器人依赖准确的地面交互感知来穿越多变地形，例如光滑表面。现有的滑移检测方法通常依赖运动学和本体感觉，缺乏对灾难性失稳前早期滑移的敏感性。因此，本文提出SlipSense，一种新颖的在线基于力的滑移检测框架，使用为四足机器人设计的定制轻量化传感足来检测滑移。该框架集成了多模态传感器设计与基于LSTM的模型，以推断地面反作用力并检测运动过程中指示滑移的异常。所提框架部署在Unitree Go1四足机器人上，展示了在光滑地形上的盲在线滑移检测。我们的方法检测到平均位移为24.1±6.4mm的早期滑移，总体准确率为85.9%。与使用通过状态估计推断的足部速度的标准运动学基线相比，这代表了3.3倍的更精细检测分辨率和24%的相对准确率提升。本文的工作为足式机器人运动中的力感知步态适应奠定了基础，使未来的控制器能够估计地形摩擦并调整约束，从而提高系统的整体稳定性。",
+      "authors": [
+        "Iris Szu-Yao Liu",
+        "Chien Chern Cheah",
+        "Meng Yee Michael Chuah"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-23",
+      "channels": [
+        "locomotion",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ NTU"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-24350.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-24350-p2.jpg",
+        "assets/img/covers/arxiv-2606-24350-p3.jpg",
+        "assets/img/covers/arxiv-2606-24350-p4.jpg"
+      ],
+      "arxiv_id": "2606.24350",
+      "abs_url": "http://arxiv.org/abs/2606.24350v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.24350v1",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "locomotion",
+        "reason": "提出四足机器人滑移检测新方法，结合多模态传感与LSTM，提升早期滑移检测精度，对足式运动控制有重要价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Nanyang Technological University",
+        "Institute for Infocomm Research, Agency for Science, Technology and Research (A*STAR)"
+      ],
+      "method_tags": [
+        "LSTM",
+        "slip detection",
+        "force-based"
+      ],
+      "platform": [
+        "Unitree Go1"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
       "id": "arxiv-2606-24448",
       "source": "arxiv",
       "title": "Supervise What Survives: Geometry-Guided VLA Adaptation from Synthetic Robot Videos",
@@ -339,6 +404,78 @@
       "github": {}
     },
     {
+      "id": "arxiv-2606-24742",
+      "source": "arxiv",
+      "title": "World Value Models for Robotic Manipulation",
+      "title_zh": "机器人操作的世界价值模型",
+      "tldr_zh": "将世界模型与价值估计结合，构建通用机器人价值模型WVM，在混合质量数据中提升操作性能。",
+      "cover_zh": "机器人价值模型还能这样？世界模型加持，次优数据也能精准评估！",
+      "abstract_zh": "通用价值模型在从大规模、混合质量数据中扩展机器人策略学习中起着关键作用。从数学上讲，准确的价值估计需要深层的时间理解，要求模型既利用历史上下文来锚定当前信念，又对未来结果进行规划。然而，现有的大多数机器人价值模型都建立在视觉-语言模型（VLM）骨干上，这些模型主要针对静态或时间稀疏的视觉观测进行预训练，缺乏价值估计所需的时间建模能力。与VLM不同，世界模型天然擅长时间建模和未来规划，使其成为学习可泛化价值函数的理想基础。受此启发，我们将世界模型与价值估计相结合，构建了一种新的通用机器人价值模型——世界价值模型（WVM），该模型能够提供准确的任务进展来评估数据质量。在标准基准上，WVM取得了最先进的（SOTA）价值顺序相关性（VOC）结果。为了补充仅包含专家数据的标准评估套件，我们进一步引入了Suboptimal-Value-Bench，这是一个多实体基准，包含800条次优轨迹，并带有高保真度、人工标注的帧级注释。我们的评估表明，WVM在Suboptimal-Value-Bench上保持了SOTA性能，证明了其在处理专家和次优数据时的鲁棒性。当部署于策略学习时，WVM在模拟和真实世界的多种策略提取方法中均提升了操作性能，为从混合质量数据中学习提供了稳健的指导。",
+      "authors": [
+        "Zhihao Wang",
+        "Jianxiong Li",
+        "Yu Cui"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-23",
+      "channels": [
+        "manipulation",
+        "world-model",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ 北大"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ 字节"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-24742.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-24742-p2.jpg",
+        "assets/img/covers/arxiv-2606-24742-p3.jpg",
+        "assets/img/covers/arxiv-2606-24742-p4.jpg"
+      ],
+      "arxiv_id": "2606.24742",
+      "abs_url": "http://arxiv.org/abs/2606.24742v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.24742v1",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出世界价值模型WVM，融合世界模型与价值估计，提升机器人操作策略学习，属于world-model方向的高价值工作。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "ByteDance Seed",
+        "Peking University",
+        "Tsinghua University"
+      ],
+      "method_tags": [
+        "World Model",
+        "Value Estimation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
       "id": "arxiv-2606-24552",
       "source": "arxiv",
       "title": "Enabling Robust Cloth Manipulation via Inference-Time Simulator-in-the-Loop Refinement",
@@ -401,141 +538,6 @@
       "sim_stack": [
         "FLASH"
       ],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2606-24742",
-      "source": "arxiv",
-      "title": "World Value Models for Robotic Manipulation",
-      "title_zh": "机器人操作的世界价值模型",
-      "tldr_zh": "将世界模型与价值估计结合，构建通用机器人价值模型WVM，在混合质量数据中提升操作性能。",
-      "cover_zh": "机器人价值模型还能这样？世界模型加持，次优数据也能精准评估！",
-      "abstract_zh": "通用价值模型在从大规模、混合质量数据中扩展机器人策略学习中起着关键作用。从数学上讲，准确的价值估计需要深层的时间理解，要求模型既利用历史上下文来锚定当前信念，又对未来结果进行规划。然而，现有的大多数机器人价值模型都建立在视觉-语言模型（VLM）骨干上，这些模型主要针对静态或时间稀疏的视觉观测进行预训练，缺乏价值估计所需的时间建模能力。与VLM不同，世界模型天然擅长时间建模和未来规划，使其成为学习可泛化价值函数的理想基础。受此启发，我们将世界模型与价值估计相结合，构建了一种新的通用机器人价值模型——世界价值模型（WVM），该模型能够提供准确的任务进展来评估数据质量。在标准基准上，WVM取得了最先进的（SOTA）价值顺序相关性（VOC）结果。为了补充仅包含专家数据的标准评估套件，我们进一步引入了Suboptimal-Value-Bench，这是一个多实体基准，包含800条次优轨迹，并带有高保真度、人工标注的帧级注释。我们的评估表明，WVM在Suboptimal-Value-Bench上保持了SOTA性能，证明了其在处理专家和次优数据时的鲁棒性。当部署于策略学习时，WVM在模拟和真实世界的多种策略提取方法中均提升了操作性能，为从混合质量数据中学习提供了稳健的指导。",
-      "authors": [
-        "Zhihao Wang",
-        "Jianxiong Li",
-        "Yu Cui"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-23",
-      "channels": [
-        "manipulation",
-        "sim2real"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ 清华"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ 北大"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ 字节"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-24742.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-24742-p2.jpg",
-        "assets/img/covers/arxiv-2606-24742-p3.jpg",
-        "assets/img/covers/arxiv-2606-24742-p4.jpg"
-      ],
-      "arxiv_id": "2606.24742",
-      "abs_url": "http://arxiv.org/abs/2606.24742v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.24742v1",
-      "score": 52,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出世界价值模型WVM，融合世界模型与价值估计，提升机器人操作策略学习，属于world-model方向的高价值工作。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "ByteDance Seed",
-        "Peking University",
-        "Tsinghua University"
-      ],
-      "method_tags": [
-        "World Model",
-        "Value Estimation"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {}
-    },
-    {
-      "id": "arxiv-2606-24350",
-      "source": "arxiv",
-      "title": "SlipSense: Multimodal Sensing for Online Slip Detection in Legged Robots",
-      "title_zh": "SlipSense：用于足式机器人在线滑移检测的多模态传感",
-      "tldr_zh": "提出SlipSense框架，用多模态传感和LSTM实现四足机器人早期滑移在线检测，精度提升24%。",
-      "cover_zh": "四足机器人也能提前感知打滑？这个新框架让盲走更稳更准！",
-      "abstract_zh": "足式机器人依赖准确的地面交互感知来穿越多变地形，例如光滑表面。现有的滑移检测方法通常依赖运动学和本体感觉，缺乏对灾难性失稳前早期滑移的敏感性。因此，本文提出SlipSense，一种新颖的在线基于力的滑移检测框架，使用为四足机器人设计的定制轻量化传感足来检测滑移。该框架集成了多模态传感器设计与基于LSTM的模型，以推断地面反作用力并检测运动过程中指示滑移的异常。所提框架部署在Unitree Go1四足机器人上，展示了在光滑地形上的盲在线滑移检测。我们的方法检测到平均位移为24.1±6.4mm的早期滑移，总体准确率为85.9%。与使用通过状态估计推断的足部速度的标准运动学基线相比，这代表了3.3倍的更精细检测分辨率和24%的相对准确率提升。本文的工作为足式机器人运动中的力感知步态适应奠定了基础，使未来的控制器能够估计地形摩擦并调整约束，从而提高系统的整体稳定性。",
-      "authors": [
-        "Iris Szu-Yao Liu",
-        "Chien Chern Cheah",
-        "Meng Yee Michael Chuah"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-23",
-      "channels": [
-        "locomotion"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ NTU"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-24350.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-24350-p2.jpg",
-        "assets/img/covers/arxiv-2606-24350-p3.jpg",
-        "assets/img/covers/arxiv-2606-24350-p4.jpg"
-      ],
-      "arxiv_id": "2606.24350",
-      "abs_url": "http://arxiv.org/abs/2606.24350v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.24350v1",
-      "score": 50,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "locomotion",
-        "reason": "提出四足机器人滑移检测新方法，结合多模态传感与LSTM，提升早期滑移检测精度，对足式运动控制有重要价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Nanyang Technological University",
-        "Institute for Infocomm Research, Agency for Science, Technology and Research (A*STAR)"
-      ],
-      "method_tags": [
-        "LSTM",
-        "slip detection",
-        "force-based"
-      ],
-      "platform": [
-        "Unitree Go1"
-      ],
-      "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
@@ -610,6 +612,66 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-24842",
+      "source": "arxiv",
+      "title": "World Models in Pieces: Structural Certification for General Agents",
+      "title_zh": "碎片化世界模型：通用智能体的结构化认证",
+      "tldr_zh": "提出结构化认证框架，证明通用智能体在特定转换上有可保证的误差界。",
+      "cover_zh": "通用智能体不是万能？新框架定位可靠转换，让长时域规划可认证",
+      "abstract_zh": "在大世界体系中，智能体无法具备通用能力，其能力必然在碎片化的世界模型中专门化。因此，标准的统一保证无法区分对关键瓶颈的理解与无关紧要的失败。我们首先通过证明通用智能体并非万能来形式化这一局限性，这使得标准的最坏情况分析失去意义。为克服这一难题，我们引入了结构化认证，这是一种过渡局部框架，将有界目标条件性能映射到智能体内部世界模型的逐项保证上。我们的主要贡献是建设性的。我们提供了利用深度组合目标过滤特定转换的算法，并证明在这些目标上的通用智能体具有一个误差界为 $\\mathcal{O}(1/n) + \\mathcal{O}(δ)$ 的结构化世界模型。反之，在小 $δ$ 区域内该界是紧的，其存在性由我们的认证明确保证。这些结果通过定位长时域规划可靠的特定转换，实现了通用智能体的可认证部署。",
+      "authors": [
+        "Yikai Lu",
+        "Yifei Wu",
+        "Xinyu Lu"
+      ],
+      "primary_category": "cs.AI",
+      "published": "2026-06-23",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-24842.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-24842-p2.jpg",
+        "assets/img/covers/arxiv-2606-24842-p3.jpg",
+        "assets/img/covers/arxiv-2606-24842-p4.jpg"
+      ],
+      "arxiv_id": "2606.24842",
+      "abs_url": "http://arxiv.org/abs/2606.24842v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.24842v1",
+      "score": 44,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出结构认证框架，为通用智能体的世界模型提供局部保证，理论贡献强",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "School of Data Science, The Chinese University of Hong Kong, Shenzhen"
+      ],
+      "method_tags": [
+        "structural certification",
+        "world model"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -724,6 +786,63 @@
         "transformer",
         "multimodal",
         "reinforcement learning"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-24089",
+      "source": "arxiv",
+      "title": "DynaWM: Dynamics-Aware Distillation with World Model and Momentum Targets for Smooth Locomotion over Continuous Stairs",
+      "title_zh": "DynaWM：基于世界模型和动量目标的动力学感知蒸馏，实现连续楼梯上的平滑运动",
+      "tldr_zh": "提出DynaWM框架，通过世界模型和动量目标提升双足轮式机器人在连续楼梯上的运动平滑性。",
+      "cover_zh": "机器人爬楼梯不再卡顿｜世界模型+动量目标让双足轮式机器人平滑穿越连续楼梯",
+      "abstract_zh": "近期控制领域的进展使双足轮式机器人能够穿越斜坡和单步障碍，但长楼梯遍历仍具挑战性，因为当前的师生框架存在动力学感知表示弱化和地形几何编码不完整的问题。为弥补这一差距，我们提出DynaWM，一种动力学感知表示学习框架。为增强地形编码能力并实现透明评估，我们引入世界模型作为正则化器，强制前向动力学感知，保留完整地形几何同时促进层次化编码可视化。为稳定知识迁移，我们采用动量目标编码器提供一致的蒸馏目标，防止非平稳教师更新导致的维度坍缩。通过主成分分析（PCA）可视化和定量指标对所学表示进行评估，表明我们的编码器层次化地捕捉地形几何，具有更高的地形编码能力，从而增强地形适应性和运动平滑性。仿真和真实硬件实验结果表明，我们的方法实现了优越的地形适应性和运动平滑性，使双足轮式机器人能够克服各种连续楼梯，如图1所示。",
+      "authors": [
+        "Haidong Hou",
+        "Zhangguo Yu",
+        "Hengbo Qi"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-23",
+      "channels": [
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-24089.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-24089-p2.jpg",
+        "assets/img/covers/arxiv-2606-24089-p3.jpg",
+        "assets/img/covers/arxiv-2606-24089-p4.jpg"
+      ],
+      "arxiv_id": "2606.24089",
+      "abs_url": "http://arxiv.org/abs/2606.24089v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.24089v1",
+      "score": 19,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出世界模型作为正则化器增强地形编码，结合动量目标蒸馏，实现双足轮式机器人连续楼梯平滑运动，具有科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Beijing Institute of Technology"
+      ],
+      "method_tags": [
+        "world model",
+        "distillation",
+        "dynamics-aware"
       ],
       "platform": [],
       "sim_stack": [],
