@@ -28,6 +28,7 @@
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import logging
 import os
@@ -268,6 +269,89 @@ def judge_repo(name: str, description: str, readme: str = "", topics: str = "",
     )
 
 
+# ---------- 自定义分类（B 方案：每类独立 prompt）-------------------------
+#
+# 核心 6 类共用上面那段 SYSTEM_PROMPT（带「不要医疗」等全局黑名单）。站长用
+# config/channels.d/*.yaml 新加的分类不走那段，而是**各自一段独立 prompt**：
+# 只判「这篇是否属于<这个新方向>」，互不干扰、天然绕开核心黑名单。
+# 调用前会先用频道关键词预筛，只有命中关键词的论文才送来判，省 token。
+
+def channel_prompt_signature(channel) -> str:
+    """频道判定 prompt 的指纹：desc + judge_prompt 变了就让缓存失效重判。"""
+    basis = f"{channel.desc or ''}\x00{channel.judge_prompt or ''}"
+    return hashlib.sha1(basis.encode("utf-8")).hexdigest()[:12]
+
+
+def _channel_judge_system(channel) -> str:
+    name = channel.name or channel.id
+    parts = [
+        f"你是一位严谨的论文方向分类员。请判断给定论文是否属于「{name}」这个研究方向。\n",
+    ]
+    if channel.desc:
+        parts.append(f"方向定义：{channel.desc}\n")
+    if getattr(channel, "judge_prompt", ""):
+        parts.append(f"站长的收录标准（务必严格遵守）：\n{channel.judge_prompt}\n")
+    examples = getattr(channel, "examples", None) or []
+    ex_titles = [str(e.get("title")).strip() for e in examples
+                 if isinstance(e, dict) and e.get("title")]
+    if ex_titles:
+        parts.append("正例参考（这些是该方向公认的高质量论文，判定时对齐它们的调性）：\n")
+        for t in ex_titles[:6]:
+            parts.append(f"  · {t}\n")
+    parts.append(
+        "只看论文本身是否真的属于这个方向、且对该方向研究者有参考价值。\n"
+        "拿不准 / 只是蹭词 / 跨界但核心贡献不在本方向 → relevant=false，宁缺勿滥。\n"
+        "严格按 JSON 输出（不要 markdown 包裹）：\n"
+        "{\n"
+        '  "relevant": true/false,\n'
+        '  "research_value": "high"/"medium"/"low",\n'
+        '  "reason": "20-40 字中文简评，说明为什么属于 / 不属于这个方向"\n'
+        "}\n"
+    )
+    return "".join(parts)
+
+
+def judge_paper_for_channel(title: str, abstract: str, channel, *,
+                            model: str = DEFAULT_MODEL, api_key: str | None = None,
+                            timeout: float = JUDGE_TIMEOUT) -> Judgment:
+    """用某个自定义频道**自己的 prompt** 判一篇论文是否属于该方向。
+    relevant=true 时 primary_channel 设为该频道 id。"""
+    if os.environ.get("REDPAPER_JUDGE_DISABLE") == "1":
+        raise JudgeUnavailable("REDPAPER_JUDGE_DISABLE=1")
+    key = api_key or os.environ.get("DEEPSEEK_API_KEY")
+    if not key:
+        raise JudgeUnavailable("DEEPSEEK_API_KEY not set")
+
+    user_msg = (
+        f"标题：{title.strip()}\n\n"
+        f"摘要 / 描述：\n{(abstract or '').strip()[:3000]}\n"
+    )
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": _channel_judge_system(channel)},
+            {"role": "user",   "content": user_msg},
+        ],
+        "response_format": {"type": "json_object"},
+        "temperature": 0.0,
+        "thinking": {"type": "disabled"},
+        "max_tokens": 400,
+    }
+    headers = {"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
+    r = requests.post(DEEPSEEK_URL, json=payload, headers=headers, timeout=timeout)
+    r.raise_for_status()
+    raw = r.json()["choices"][0]["message"]["content"]
+    data = _parse_response(raw)
+    relevant = bool(data.get("relevant", False))
+    return Judgment(
+        relevant=relevant,
+        research_value=str(data.get("research_value", "low")).lower(),
+        primary_channel=(channel.id if relevant else "none"),
+        reason=str(data.get("reason", "")).strip()[:200],
+        model=model,
+    )
+
+
 def _parse_response(raw: str) -> dict:
     """LLM 偶尔会在 JSON 周围加 ```json fence；剥掉。"""
     s = raw.strip()
@@ -351,6 +435,58 @@ class JudgeCache:
         for pid in stale:
             self.entries.pop(pid, None)
         return len(stale)
+
+    def save(self) -> None:
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        tmp = self.path.with_suffix(".json.tmp")
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump(self._data, f, ensure_ascii=False, indent=2)
+        tmp.replace(self.path)
+
+
+class CustomChannelCache:
+    """自定义分类判定缓存（data/custom_judge_cache.json）。
+
+    key = "<paper_id>::<channel_id>" → {relevant, reason, sig, ts}。
+    sig 是该频道 prompt 的指纹：站长改了 desc/judge_prompt → sig 变 → get 返回
+    None → 下次 build 自动重判。跨 build 复用，避免重复付费。
+    """
+
+    VERSION = 1
+
+    def __init__(self, path: Path):
+        self.path = path
+        self._data = {"version": self.VERSION, "model": DEFAULT_MODEL, "entries": {}}
+        if path.exists():
+            try:
+                with open(path, encoding="utf-8") as f:
+                    self._data = json.load(f)
+            except Exception as e:
+                log.warning("custom judge cache load failed (%s); starting fresh", e)
+
+    @property
+    def entries(self) -> dict[str, dict]:
+        return self._data.setdefault("entries", {})
+
+    @staticmethod
+    def _key(pid: str, cid: str) -> str:
+        return f"{pid}::{cid}"
+
+    def get(self, pid: str, cid: str, sig: str) -> bool | None:
+        """返回缓存的 relevant 布尔值；缺失或 prompt 指纹不一致返回 None（需重判）。"""
+        e = self.entries.get(self._key(pid, cid))
+        if not e or e.get("sig") != sig:
+            return None
+        return bool(e.get("relevant", False))
+
+    def put(self, pid: str, cid: str, j: Judgment, sig: str) -> None:
+        self.entries[self._key(pid, cid)] = {
+            "relevant": bool(j.relevant),
+            "research_value": j.research_value,
+            "reason": j.reason,
+            "sig": sig,
+            "ts": int(time.time()),
+        }
 
     def save(self) -> None:
         self.path.parent.mkdir(parents=True, exist_ok=True)
