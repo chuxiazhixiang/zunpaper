@@ -1,11 +1,15 @@
 """Load YAML configs from the config/ directory."""
 from __future__ import annotations
 
+import dataclasses
+import logging
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
 import yaml
+
+log = logging.getLogger(__name__)
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 CONFIG_DIR = REPO_ROOT / "config"
@@ -26,6 +30,22 @@ class Channel:
     keywords: list[str] = field(default_factory=list)
     exclude: list[str] = field(default_factory=list)
     max_per_day: int = 30
+    # ---- 自定义分类（config/channels.d/*.yaml 拖入）专用字段 -------------
+    # desc / judge_prompt 同时也用于 judge：有 judge_prompt 的频道走「B 方案」——
+    # 用它自己这段 prompt 独立判定（只判命中本频道关键词的论文），不受核心 6 类
+    # 那段 SYSTEM_PROMPT 的黑名单（如「不要医疗」）影响。详见 judge.judge_paper_for_channel。
+    desc: str = ""                                   # 一句话方向定义（人 / LLM 都看）
+    judge_prompt: str = ""                            # 站长自己写的「什么算 / 不算这个方向」
+    venues: list[str] = field(default_factory=list)   # 关注的会议 / 期刊 → 评分加分
+    examples: list[dict] = field(default_factory=list)  # [{title, url|id}] 示例高质量论文 → pin + few-shot
+    backfill_days: int = 0                            # 首次激活时回填最近 N 天 arxiv（0=不额外回填）
+    custom: bool = False                              # 是否来自 channels.d 的自定义分类
+
+    @property
+    def is_custom(self) -> bool:
+        """自定义分类 = 显式标记 custom 或带了独立 judge_prompt。
+        这类频道走独立 prompt 判定，核心 6 类不受影响。"""
+        return bool(self.custom or self.judge_prompt)
 
 
 @dataclass
@@ -83,9 +103,60 @@ def _load_yaml(path: Path) -> dict[str, Any]:
         return yaml.safe_load(f) or {}
 
 
+def _channel_field_names() -> set[str]:
+    return {f.name for f in dataclasses.fields(Channel)}
+
+
+def _channel_from_dict(d: dict[str, Any], *, custom: bool = False) -> Channel:
+    """从 dict 安全构造 Channel：只取 dataclass 已知字段，忽略多余 key
+    （自定义分类文件里可能带注释性的额外字段），避免 `Channel(**d)` 因未知
+    键直接抛错。"""
+    known = _channel_field_names()
+    kw = {k: v for k, v in d.items() if k in known}
+    if custom:
+        kw["custom"] = True
+    return Channel(**kw)
+
+
 def load_channels() -> list[Channel]:
+    """核心 6 类来自 config/channels.yaml；再合并 config/channels.d/*.yaml 里
+    每个「自定义分类」文件（一个文件 = 一个频道，零格式风险，小白拖进去即可）。
+
+    自定义文件格式（任选其一）：
+      - 顶层就是频道字段：{id, name, emoji, keywords, desc, judge_prompt, ...}
+      - 或 {channels: [ {...}, ... ]}（与 channels.yaml 同构）
+    id 与已有频道冲突的会被跳过（核心配置优先）。
+    """
     raw = _load_yaml(CONFIG_DIR / "channels.yaml")
-    return [Channel(**c) for c in raw.get("channels", [])]
+    chans = [_channel_from_dict(c) for c in raw.get("channels", [])]
+    seen = {c.id for c in chans}
+
+    extra_dir = CONFIG_DIR / "channels.d"
+    if extra_dir.is_dir():
+        for fp in sorted(extra_dir.glob("*.yaml")) + sorted(extra_dir.glob("*.yml")):
+            try:
+                data = _load_yaml(fp)
+            except Exception as e:
+                log.warning("channels.d: skip %s (parse failed: %s)", fp.name, e)
+                continue
+            if not isinstance(data, dict):
+                continue
+            items = data.get("channels") if "channels" in data else [data]
+            for item in items or []:
+                if not isinstance(item, dict) or not item.get("id") or not item.get("name"):
+                    log.warning("channels.d: %s 缺少 id/name，跳过", fp.name)
+                    continue
+                if item["id"] in seen:
+                    log.warning("channels.d: id '%s' 与已有频道冲突，跳过 %s", item["id"], fp.name)
+                    continue
+                try:
+                    chans.append(_channel_from_dict(item, custom=True))
+                    seen.add(item["id"])
+                    log.info("channels.d: loaded custom channel '%s' from %s", item["id"], fp.name)
+                except Exception as e:
+                    log.warning("channels.d: build channel failed for %s: %s", fp.name, e)
+
+    return chans
 
 
 _ARXIV_NUM_RE = __import__("re").compile(r"^(\d{4})\.(\d{4,6})$")

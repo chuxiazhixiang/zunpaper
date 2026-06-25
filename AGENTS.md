@@ -118,6 +118,23 @@ cd site && python -m http.server 8000                       # 本地预览
 - **`video_youtube` / `video_bilibili`**：卡片自带 `demo_videos`（厂商 demo），**`_scrape_demo_videos` 必须跳过 `video_*`**（否则扫 abstract 扫不到会把 embed 覆盖清空）；`retag_and_prune` 也豁免 prune（标题常不含关键词），尽力按关键词归类、没命中就保留现有 channels。
 - **推代码**：`api_push.py`（推 main 的兜底）会先校验 remote HEAD 是本地 HEAD 的祖先，本地落后/分叉就拒绝（防把远端新增文件当删除推上去）。日常用「基于远端 HEAD 增量」的 gh API 推法更安全。
 
+## 自定义分类（`config/channels.d/` + B 方案独立判定）
+
+让非技术站长「零代码加一个新方向」（如医疗机器人）。入口是网页 `add-category.html`（导航「➕ 加分类」）：填名称/方向定义/筛选 prompt/关键词/示例论文/会议 → 一键下载一个 `<id>.yaml` → 上传到 `config/channels.d/` → 下次 build 生效并回填最近一个月。
+
+- **加载**：`config.load_channels()` 在核心 `channels.yaml` 之外，再合并 `config/channels.d/*.yaml`（一文件一频道，未知 key 自动忽略，id 冲突跳过）。这些频道 `Channel.is_custom == True`。
+- **B 方案（每类独立 prompt 判定，关键）**：核心 6 类共用 `judge.py:SYSTEM_PROMPT`（带「不要医疗」等全局黑名单）。自定义分类**不走那段**，而是用各自的 `judge_prompt` 独立判一次（`judge.judge_paper_for_channel`），**只对命中本频道 `keywords` 的论文判**。所以能天然收录被核心黑名单排除的方向（医疗），且零回归——核心 6 类逻辑一行没动。
+  - 选 B 而非「把新方向追加进核心大 prompt」：追加会与黑名单硬冲突、且容易把精调过的 6 类判定带歪。
+- **捞回 + 归属两处接线**（`build.py`）：
+  - `_judge_filter` 里核心 judge 砍掉一篇前，`_custom_rescue` 给自定义频道一次机会（命中关键词 + 独立 judge 收下 → 保留 + 写入 channels）。否则核心 judge 会先把医疗论文丢掉，根本到不了归属步骤。
+  - `assign_custom_channels`（feed 写出前）对盘上所有论文重算自定义成员：不命中关键词→移除；命中→查 `CustomChannelCache`，缺失则在预算内（`REDPAPER_CUSTOM_BACKFILL`，默认 60）调独立 judge，判中加入、判否移除。预算用尽这轮先不动，多 build 摊销。
+  - `retag_and_prune`：核心成员按关键词重算（只看 `core_channels`，零回归）；自定义成员**只保留已判定的**（频道还在 config 就留），不靠关键词增删。删掉 channels.d 文件 → 该频道专属论文下次 build 下架。
+- **缓存**：`data/custom_judge_cache.json`（`judge.CustomChannelCache`），key `pid::cid`，带 `sig`（= `desc + judge_prompt` 指纹）。改了 prompt → sig 变 → 自动重判（不像核心 judge 要手动 evict）。
+- **首月回填**：`data/custom_channels_state.json` 记每个频道 sig + 是否已回填。新加/改过的频道按 `backfill_days`（表单默认 30）用更宽 lookback 抓一次 arxiv，只做一次（避免每天重抓一个月）。
+- **示例论文 / 会议**：`examples`（`{title,url}`）→ 当 manual_pin 立即上墙（`_load_custom_examples` 复用 `manual_arxiv._fetch_entries`）+ 当独立 judge 的正例；`venues` → `scoring._check_conf_venue` 子串匹配加分。
+- **无 token 退化**：`JudgeUnavailable` 时自定义判定退化为「关键词命中即收」（dryrun / 没配 DEEPSEEK_API_KEY），符合「买不起 token 也能用」的取向，噪音多但零成本。
+- 两个新缓存/状态文件已加入 `daily.yml` commit（`custom_judge_cache.json` / `custom_channels_state.json`），否则跨 build 不复用。
+
 ## 已知取舍 / 刻意不修（review 别重复 flag）
 
 - **卡片是 `<a>` 外层里嵌收藏 `<button>`**（`feed.js` 的 `cardHTML` / `githubCardHTML`，favorites / archive 同款）。严格说这是无效 HTML（交互元素嵌套），a11y / Safari / 纯键盘场景理论上「点收藏」可能误触外层链接跳转。**现状刻意保留**，原因：
@@ -140,7 +157,8 @@ cd site && python -m http.server 8000                       # 本地预览
 
 | 想做 | 怎么做 |
 | --- | --- |
-| 加/改方向 | 编 `config/channels.yaml`（关键词）+ `judge.py` SYSTEM_PROMPT（白/黑名单） |
+| 加/改核心方向 | 编 `config/channels.yaml`（关键词）+ `judge.py` SYSTEM_PROMPT（白/黑名单） |
+| 加自定义方向（零代码） | 网页「➕ 加分类」填表 → 下载 `<id>.yaml` 丢进 `config/channels.d/`（见「自定义分类」节，B 方案独立判定，不动核心 prompt） |
 | 加 lab/作者徽章 | 编 `config/famous_labs.yaml`；常见名记得加 `require_affiliation` |
 | 调排序权重 | 编 `config/scoring.yaml` 的 points |
 | 钉一篇论文 | `config/manual_arxiv.yaml` 贴 arxiv id（绕过 judge，永不下架） |

@@ -11,7 +11,10 @@ from pathlib import Path
 
 from . import config as cfg
 from .digest import write_markdown_digest, write_rss
-from .judge import judge_paper, judge_repo, JudgeUnavailable, JudgeCache
+from .judge import (
+    judge_paper, judge_repo, judge_paper_for_channel,
+    channel_prompt_signature, JudgeUnavailable, JudgeCache, CustomChannelCache,
+)
 from .enrich import enrich_paper, EnrichUnavailable, EnrichCache
 from .videos import VideoCache, enrich_paper_videos
 from .labs import detect_labs, lab_badges
@@ -44,18 +47,65 @@ def _existing_papers() -> dict[str, Paper]:
 _CJK_RE = __import__("re").compile(r"[\u4e00-\u9fff]")
 
 
-def _judge_filter(fresh: dict[str, Paper]) -> dict[str, Paper]:
+def _custom_rescue(p: Paper, custom_channels: list[cfg.Channel],
+                   ccache: "CustomChannelCache") -> bool:
+    """核心 judge 砍掉一篇论文前，给自定义分类一次「捞回」机会：若该论文命中某个
+    自定义频道的关键词、且用该频道**独立 prompt** 判定属于该方向，就保留它，并把
+    该频道写入 paper.channels。返回是否被捞回。
+
+    无 API key（dryrun）时退化为纯关键词命中即收（噪音多但零成本，符合「买不起
+    token 也能用」的取向）。
+    """
+    rescued = False
+    for c in custom_channels:
+        if not _matches_channel(p.title, p.abstract, c):
+            continue
+        sig = channel_prompt_signature(c)
+        verdict = ccache.get(p.id, c.id, sig)
+        if verdict is None:
+            try:
+                jj = judge_paper_for_channel(p.title, p.abstract or p.tldr_zh or p.title, c)
+                ccache.put(p.id, c.id, jj, sig)
+                verdict = jj.relevant
+            except JudgeUnavailable:
+                verdict = True  # 无 token → 关键词命中即收
+            except Exception as e:
+                log.warning("custom judge failed for %s @ %s: %s", p.id, c.id, e)
+                verdict = False
+        if verdict:
+            if c.id not in p.channels:
+                p.channels.append(c.id)
+            p.judge = {
+                "relevant": True,
+                "research_value": "medium",
+                "primary_channel": c.id,
+                "reason": f"自定义分类「{c.name}」收录",
+                "model": "custom",
+            }
+            rescued = True
+    return rescued
+
+
+def _judge_filter(fresh: dict[str, Paper],
+                  custom_channels: list[cfg.Channel] | None = None) -> dict[str, Paper]:
     """Run each new paper through the DeepSeek judge. Drop the irrelevant
     ones. Pinned manual papers always pass.
 
     Side effect: persists a `paper.judge` field on each kept paper so the
     UI can show the LLM's reasoning later if we want. Cache is keyed by
     paper id so re-runs don't repay for already-judged papers.
+
+    custom_channels（config/channels.d 来的自定义分类）走「B 方案」：核心 judge
+    判定不相关、但论文命中某自定义频道关键词且该频道独立 prompt 收下时，照样保留。
     """
     # 缓存放在仓库根目录 data/ 下，跟着 git 走，不会被 GitHub Pages 暴露
     cache = JudgeCache(cfg.REPO_ROOT / "data" / "judge_cache.json")
+    custom_channels = custom_channels or []
+    ccache = (CustomChannelCache(cfg.REPO_ROOT / "data" / "custom_judge_cache.json")
+              if custom_channels else None)
     kept: dict[str, Paper] = {}
     skipped_irrelevant = 0
+    rescued_count = 0
     judge_calls = judge_cache_hits = 0
     for pid, p in fresh.items():
         # Pinned / manually-curated papers bypass the gate entirely
@@ -96,14 +146,21 @@ def _judge_filter(fresh: dict[str, Paper]) -> dict[str, Paper]:
             "model": j.model,
         }
         if not j.relevant:
+            # 核心方向不收，但自定义分类可能想要 → 给一次捞回机会。
+            if custom_channels and _custom_rescue(p, custom_channels, ccache):
+                rescued_count += 1
+                kept[pid] = p
+                continue
             skipped_irrelevant += 1
             log.info("judge[skip] %s «%s» → %s", pid, p.title[:50], j.reason[:80])
             continue
         kept[pid] = p
 
     cache.save()
-    log.info("judge: %d called, %d cached, %d dropped as irrelevant",
-             judge_calls, judge_cache_hits, skipped_irrelevant)
+    if ccache is not None:
+        ccache.save()
+    log.info("judge: %d called, %d cached, %d dropped, %d rescued by custom channels",
+             judge_calls, judge_cache_hits, skipped_irrelevant, rescued_count)
     return kept
 
 
@@ -895,6 +952,11 @@ def retag_and_prune(channels: list[cfg.Channel]) -> None:
     if not cfg.PAPERS_DIR.exists():
         return
     valid_ch_ids = {c.id for c in channels}
+    # 核心 6 类按关键词重算 channels（与历史一致，零回归）；自定义分类（channels.d）
+    # 的成员关系由 assign_custom_channels（关键词 + 独立 judge）单独维护，这里只
+    # 「保留」已判定的自定义成员（频道还在 config 里才保留），不靠关键词增删。
+    core_channels = [c for c in channels if not c.is_custom]
+    custom_ids = {c.id for c in channels if c.is_custom}
     kept = 0
     dropped: list[str] = []
     for p in cfg.PAPERS_DIR.glob("*.json"):
@@ -931,11 +993,14 @@ def retag_and_prune(channels: list[cfg.Channel]) -> None:
         pinned = (paper.source or "").lower() in ("manual_arxiv", "manual_xhs") \
                  or "manual_pin" in (paper.source_tags or [])
 
-        matches = [c.id for c in channels if _matches_channel(paper.title, paper.abstract, c)]
+        matches = [c.id for c in core_channels if _matches_channel(paper.title, paper.abstract, c)]
+        # 已被判进、且频道仍存在的自定义分类成员关系予以保留（不靠关键词重算）。
+        preserved_custom = [cid for cid in (paper.channels or []) if cid in custom_ids]
+        effective = matches + [cid for cid in preserved_custom if cid not in matches]
 
-        if matches:
-            if set(paper.channels) != set(matches):
-                paper.channels = matches
+        if effective:
+            if set(paper.channels) != set(effective):
+                paper.channels = effective
                 save_paper(paper, cfg.PAPERS_DIR)
             kept += 1
         elif pinned:
@@ -985,6 +1050,122 @@ def retag_and_prune(channels: list[cfg.Channel]) -> None:
         )
 
 
+_CUSTOM_STATE_PATH = cfg.REPO_ROOT / "data" / "custom_channels_state.json"
+
+
+def _load_custom_state() -> dict:
+    if _CUSTOM_STATE_PATH.exists():
+        try:
+            return json.loads(_CUSTOM_STATE_PATH.read_text(encoding="utf-8"))
+        except Exception:
+            return {}
+    return {}
+
+
+def _save_custom_state(state: dict) -> None:
+    _CUSTOM_STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    tmp = _CUSTOM_STATE_PATH.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
+    tmp.replace(_CUSTOM_STATE_PATH)
+
+
+def _load_custom_examples(custom_channels: list[cfg.Channel]) -> list[Paper]:
+    """把每个自定义分类里站长填的「示例高质量论文」抓成 pin 卡片（立即上墙、
+    跳过 judge），同时归到对应频道。复用 manual_arxiv 的批量抓取逻辑。"""
+    entries: list[dict] = []
+    for c in custom_channels:
+        for ex in (c.examples or []):
+            if not isinstance(ex, dict):
+                continue
+            ref = ex.get("url") or ex.get("id") or ""
+            if not ref:
+                continue
+            entries.append({
+                "id": ref,
+                "note": (ex.get("title") or "").strip(),
+                "channels": [c.id],
+            })
+    if not entries:
+        return []
+    try:
+        # 解析 id + 批量抓取（manual_arxiv 内部做归一化 + arxiv API）。
+        norm = []
+        for e in entries:
+            aid = manual_arxiv_source._extract_id(e["id"])
+            if aid:
+                norm.append({"id": aid, "note": e["note"], "channels": e["channels"]})
+        if not norm:
+            return []
+        return manual_arxiv_source._fetch_entries(norm, [])
+    except Exception as e:
+        log.warning("custom examples fetch failed: %s", e)
+        return []
+
+
+def assign_custom_channels(custom_channels: list[cfg.Channel],
+                           fresh_ids: set[str], budget: int) -> None:
+    """对盘上所有论文重算自定义分类成员关系（回填 + 自愈）：
+
+      - 不命中频道关键词 → 移除该频道（纯本地、不花钱）。
+      - 命中关键词 → 查 CustomChannelCache；缺失则在 budget 内调一次独立 judge；
+        budget 用尽就这轮先不动（下轮继续，多 build 摊销）。
+      - judge 收下 → 加入该频道；判否 → 移除。
+
+    fresh 这轮已在 _judge_filter 捞回逻辑里判过的，缓存命中不再付费。
+    无 API key（dryrun）时退化为纯关键词命中即归类。
+    """
+    if not custom_channels or not cfg.PAPERS_DIR.exists():
+        return
+    ccache = CustomChannelCache(cfg.REPO_ROOT / "data" / "custom_judge_cache.json")
+    calls = 0
+    changed = 0
+    sigs = {c.id: channel_prompt_signature(c) for c in custom_channels}
+    for jp in cfg.PAPERS_DIR.glob("*.json"):
+        try:
+            paper = load_paper(jp)
+        except Exception:
+            continue
+        if (paper.source or "") == "github":
+            continue
+        dirty = False
+        for c in custom_channels:
+            matched = _matches_channel(paper.title, paper.abstract, c)
+            if not matched:
+                if c.id in (paper.channels or []):
+                    paper.channels.remove(c.id)
+                    dirty = True
+                continue
+            sig = sigs[c.id]
+            verdict = ccache.get(paper.id, c.id, sig)
+            if verdict is None:
+                if calls >= budget:
+                    continue  # 这轮预算用尽，成员关系暂不动，下轮再判
+                try:
+                    jj = judge_paper_for_channel(
+                        paper.title, paper.abstract or paper.tldr_zh or paper.title, c)
+                    ccache.put(paper.id, c.id, jj, sig)
+                    calls += 1
+                    verdict = jj.relevant
+                except JudgeUnavailable:
+                    verdict = True  # 无 token → 关键词命中即收
+                except Exception as e:
+                    log.warning("custom judge failed for %s @ %s: %s", paper.id, c.id, e)
+                    verdict = None
+            if verdict is True:
+                if c.id not in (paper.channels or []):
+                    paper.channels.append(c.id)
+                    dirty = True
+            elif verdict is False:
+                if c.id in (paper.channels or []):
+                    paper.channels.remove(c.id)
+                    dirty = True
+        if dirty:
+            save_paper(paper, cfg.PAPERS_DIR)
+            changed += 1
+    ccache.save()
+    log.info("custom channels: %d judge calls, %d papers re-tagged", calls, changed)
+
+
 def run() -> None:
     logging.basicConfig(
         level=logging.INFO,
@@ -993,6 +1174,9 @@ def run() -> None:
     cfg.ensure_dirs()
     channels = cfg.load_channels()
     sources = cfg.load_sources()
+    custom_channels = [c for c in channels if c.is_custom]
+    if custom_channels:
+        log.info("custom channels active: %s", ", ".join(c.id for c in custom_channels))
 
     # 1) Realign existing cached papers with the current channels.yaml BEFORE
     #    fetching anything. Off-topic papers are pruned so the feed stays
@@ -1002,6 +1186,36 @@ def run() -> None:
     fresh: dict[str, Paper] = {}
     if sources.arxiv_enabled:
         fresh.update(arxiv_source.fetch_all(channels, sources))
+
+        # 自定义分类「首月回填」：新加 / prompt 改过的频道，一次性用更宽 lookback
+        # （backfill_days，默认随表单 30 天）把最近一个月命中其关键词的 arxiv 论文
+        # 也抓进来，交给 _judge_filter 的捞回逻辑判定。靠 sig + state 文件保证只做
+        # 一次，避免每天都重抓一个月。
+        if custom_channels:
+            from dataclasses import replace
+            state = _load_custom_state()
+            for c in custom_channels:
+                if c.backfill_days <= 0:
+                    continue
+                sig = channel_prompt_signature(c)
+                st = state.get(c.id) or {}
+                if st.get("sig") == sig and st.get("backfilled"):
+                    continue
+                wider = replace(
+                    sources,
+                    arxiv_lookback_days=max(c.backfill_days, sources.arxiv_lookback_days),
+                )
+                try:
+                    got = arxiv_source.fetch_all([c], wider)
+                    for pid, paper in got.items():
+                        if pid not in fresh:
+                            fresh[pid] = paper
+                    state[c.id] = {"sig": sig, "backfilled": True}
+                    log.info("custom backfill[%s]: +%d papers over %d days",
+                             c.id, len(got), wider.arxiv_lookback_days)
+                except Exception as e:
+                    log.warning("custom backfill[%s] failed: %s", c.id, e)
+            _save_custom_state(state)
 
         # Evergreen 回补：今日窗口太薄就放宽 lookback 再扫一遍。
         # 不影响已经取到的论文（去重靠 dict key），只是把"过去 N 天"里
@@ -1030,6 +1244,14 @@ def run() -> None:
             # override channels), but if both sources have the same id we
             # keep the manual-tagged copy.
             fresh[p.id] = p
+
+    # 自定义分类的「示例高质量论文」→ 当 pin 卡片立即上墙（跳过 judge），归到对应频道。
+    if custom_channels:
+        try:
+            for p in _load_custom_examples(custom_channels):
+                fresh[p.id] = p
+        except Exception as e:
+            log.warning("custom examples load failed: %s", e)
 
     # 公众号 / 行业自媒体 — 没引用 arxiv 的高质量原创科普文章也作为
     # 独立卡片露出。中文已经是中文，跳过翻译；英文走 LLM 翻译。
@@ -1128,7 +1350,7 @@ def run() -> None:
     # (1) 是否真的属于站长方向，(2) 是否有科研价值。relevant=False 的直接
     # 丢弃，并把判定缓存到 data/judge_cache.json，下一轮 build 不再重复付费。
     # 钉过 manual_pin 的（重要论文）跳过 judge。
-    fresh = _judge_filter(fresh)
+    fresh = _judge_filter(fresh, custom_channels)
     log.info("after judge: %d papers kept", len(fresh))
 
     # ----- 二级标签抽取（机构 + 方法 / 问题 + P1 结构化字段） ----------
@@ -1195,6 +1417,14 @@ def run() -> None:
     if backfilled:
         enrich_cache.save()
         log.info("enrich backfill: re-enriched %d schema-outdated existing papers", backfilled)
+
+    # 自定义分类成员关系重算 / 回填（关键词 + 独立 judge，预算限量、多 build 摊销）。
+    if custom_channels:
+        custom_budget = int(os.environ.get("REDPAPER_CUSTOM_BACKFILL", "60") or "60")
+        try:
+            assign_custom_channels(custom_channels, set(fresh.keys()), custom_budget)
+        except Exception as e:
+            log.warning("assign_custom_channels failed: %s", e)
 
     all_papers = list(_existing_papers().values())
     write_feed(all_papers)

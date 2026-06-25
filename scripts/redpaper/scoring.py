@@ -221,12 +221,38 @@ _CONF_VENUE_RE = re.compile(
 )
 
 
+_CUSTOM_VENUES_CACHE: list[str] | None = None
+
+
+def _custom_venues() -> list[str]:
+    """自定义分类（channels.d）里站长填的关注会议 / 期刊，纳入顶会加分。"""
+    global _CUSTOM_VENUES_CACHE
+    if _CUSTOM_VENUES_CACHE is None:
+        out: list[str] = []
+        try:
+            from .config import load_channels
+            for c in load_channels():
+                for v in (getattr(c, "venues", None) or []):
+                    v = str(v).strip()
+                    if v:
+                        out.append(v)
+        except Exception:
+            out = []
+        _CUSTOM_VENUES_CACHE = out
+    return _CUSTOM_VENUES_CACHE
+
+
 def _check_conf_venue(paper: Paper, rule: dict) -> dict | int:
     hay = f"{paper.title or ''}\n{paper.abstract or ''}"
     m = _CONF_VENUE_RE.search(hay)
-    if not m:
-        return 0
-    return {"points": rule["points"], "hint": f'提到了「{m.group(0)}」'}
+    if m:
+        return {"points": rule["points"], "hint": f'提到了「{m.group(0)}」'}
+    # 自定义分类关注的会议 / 期刊（子串匹配，大小写不敏感）。
+    hay_low = hay.lower()
+    for v in _custom_venues():
+        if v.lower() in hay_low:
+            return {"points": rule["points"], "hint": f'提到了「{v}」'}
+    return 0
 
 
 def _check_cross_channel(paper: Paper, rule: dict) -> dict | int:

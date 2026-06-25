@@ -102,6 +102,15 @@ def load_papers(channels: Iterable[Channel] | None = None, path: Path | None = N
     entries = _load_entries(path)
     if not entries:
         return []
+    return _fetch_entries(entries, list(channels or []))
+
+
+def _fetch_entries(entries: list[dict], channels: list[Channel]) -> list[Paper]:
+    """Batch-fetch a list of normalized entries ({id, note, channels}) via the
+    arXiv API and emit pinned Papers. Shared by `load_papers` (manual_arxiv.yaml)
+    and build's custom-channel example pins."""
+    if not entries:
+        return []
 
     channels = list(channels or [])
     fallback_channel = channels[0].id if channels else "llm"

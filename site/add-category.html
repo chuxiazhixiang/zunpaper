@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>加分类 · redpaper</title>
+    <link rel="icon" type="image/jpeg" href="assets/img/setsuna.jpg" />
+    <link rel="apple-touch-icon" href="assets/img/setsuna.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css?v=7adda7f1" />
+  </head>
+  <body>
+    <header class="rp-app-bar">
+      <div class="rp-app-bar__inner">
+        <a class="rp-brand" href="index.html">
+          <span class="rp-brand__logo"><img src="assets/img/setsuna.jpg" alt="" /></span>
+          <span>redpaper</span>
+        </a>
+        <div class="rp-search">
+          <span>🔍</span>
+          <input id="search-input" type="search" placeholder="搜索标题 / 摘要 / 作者，回车跳回首页" />
+        </div>
+        <a class="rp-nav-btn" href="index.html" title="首页">
+          <span class="rp-nav-btn__icon">←</span><span class="rp-nav-btn__label">首页</span>
+        </a>
+        <button id="theme-toggle" class="rp-icon-btn" title="切换主题" aria-label="切换主题">◐</button>
+      </div>
+    </header>
+
+    <main class="rp-container rp-addcat">
+      <section class="rp-section rp-addcat__intro">
+        <h1>➕ 加一个论文分类</h1>
+        <p>
+          想追踪一个新方向（比如「医疗机器人」）？填下面几项，点
+          <b>「生成并下载配置文件」</b>，再把下载到的文件上传到你的仓库
+          <code>config/channels.d/</code> 文件夹，重新构建就会多出这个分类，并自动回填最近一个月的论文。
+          <b>全程不用写代码、不用命令行。</b>
+        </p>
+        <p class="rp-addcat__note">
+          💡 不用担心 token 贵：判定用的是最便宜的 DeepSeek（一个月不到 ¥2）。完全不配 AI key 也能跑，
+          只是会退化成「关键词命中即收」（噪音多一点）。
+        </p>
+      </section>
+
+      <div class="rp-addcat__grid">
+        <!-- ============ 左：表单 ============ -->
+        <form id="cat-form" class="rp-section rp-addcat__form" autocomplete="off">
+          <label class="rp-field">
+            <span class="rp-field__label">分类名称 <em>*</em></span>
+            <input id="f-name" type="text" placeholder="例如：医疗机器人" required />
+            <span class="rp-field__hint">显示在首页 tab 上的名字。</span>
+          </label>
+
+          <div class="rp-field rp-field--row">
+            <label class="rp-field" style="flex:1;">
+              <span class="rp-field__label">分类 ID <em>*</em></span>
+              <input id="f-id" type="text" placeholder="medical-robotics" required />
+              <span class="rp-field__hint">英文小写 + 连字符，URL 用。会随名称自动生成，可改。</span>
+            </label>
+            <label class="rp-field" style="width:96px;">
+              <span class="rp-field__label">图标</span>
+              <input id="f-emoji" type="text" maxlength="4" placeholder="🩺" />
+              <span class="rp-field__hint">一个 emoji</span>
+            </label>
+          </div>
+
+          <label class="rp-field">
+            <span class="rp-field__label">一句话方向定义 <em>*</em></span>
+            <input id="f-desc" type="text" placeholder="手术 / 介入 / 影像引导等医疗场景下的机器人操作与控制算法" required />
+            <span class="rp-field__hint">人和 AI 都靠它理解这个方向是干嘛的。</span>
+          </label>
+
+          <label class="rp-field">
+            <span class="rp-field__label">筛选标准（AI 判定用） <em>*</em></span>
+            <textarea id="f-judge" rows="5" required placeholder="收录：手术机器人 / 介入机器人 / 影像引导操作的算法、策略、系统、数据集。
+不收：纯临床试验报告、没有机器人算法新意的医学影像分类、单纯器械评测。"></textarea>
+            <span class="rp-field__hint">
+              用大白话写「什么算、什么不算这个方向」。<b>这是本分类专属的独立判定标准，不受其它分类影响</b>
+              ——所以即使站点默认排除医疗，这里也能把它收进来。
+            </span>
+          </label>
+
+          <label class="rp-field">
+            <span class="rp-field__label">关键词 <em>*</em>（每行一个，或逗号分隔）</span>
+            <textarea id="f-keywords" rows="5" required placeholder="surgical robot
+medical robot
+laparoscopic
+catheter robot
+手术机器人
+介入机器人"></textarea>
+            <span class="rp-field__hint">命中标题/摘要里任一个就成为候选，再交给上面的 AI 判定。中英文都可以写。</span>
+          </label>
+
+          <label class="rp-field">
+            <span class="rp-field__label">arXiv 分类码（逗号分隔）</span>
+            <input id="f-cats" type="text" placeholder="cs.RO, cs.CV" value="cs.RO" />
+            <span class="rp-field__hint">不确定就保留 <code>cs.RO</code>（机器人）。常见：cs.RO, cs.CV, cs.LG, cs.AI, eess.SY。</span>
+          </label>
+
+          <label class="rp-field">
+            <span class="rp-field__label">排除词（可选，每行/逗号分隔）</span>
+            <input id="f-exclude" type="text" placeholder="留空即可" />
+            <span class="rp-field__hint">命中即排除，用来挡掉明显跑题的。</span>
+          </label>
+
+          <label class="rp-field">
+            <span class="rp-field__label">关注的会议 / 期刊（可选，逗号分隔）</span>
+            <input id="f-venues" type="text" placeholder="ICRA, IROS, MICCAI" />
+            <span class="rp-field__hint">论文提到这些会议/期刊时给排序加分。</span>
+          </label>
+
+          <div class="rp-field">
+            <span class="rp-field__label">示例高质量论文（可选，最多 6 篇）</span>
+            <span class="rp-field__hint">
+              贴几篇你认可的代表作 arXiv 链接 —— 它们会立即上墙，并作为 AI 判定的「正例参考」，让收录更准。
+            </span>
+            <div id="examples-list"></div>
+            <button type="button" id="add-example" class="rp-btn rp-btn--ghost rp-btn--sm">＋ 加一篇示例论文</button>
+          </div>
+
+          <label class="rp-field rp-field--row" style="align-items:center;">
+            <span class="rp-field__label" style="margin:0;">首次回填天数</span>
+            <input id="f-backfill" type="number" min="0" max="180" value="30" style="width:90px;" />
+            <span class="rp-field__hint" style="margin:0;">激活时回填最近 N 天 arXiv（默认 30，设 0 不回填）。</span>
+          </label>
+
+          <div class="rp-addcat__actions">
+            <button type="button" id="btn-download" class="rp-btn rp-btn--primary">⬇ 生成并下载配置文件</button>
+            <button type="button" id="btn-copy" class="rp-btn rp-btn--ghost">📋 复制配置内容</button>
+            <span id="form-msg" class="rp-addcat__msg" role="status"></span>
+          </div>
+        </form>
+
+        <!-- ============ 右：预览 + 引导 ============ -->
+        <aside class="rp-addcat__side">
+          <div class="rp-section">
+            <h2 class="rp-addcat__h2">📄 配置文件预览</h2>
+            <p class="rp-field__hint">下载的文件名将是 <code id="preview-filename">your-id.yaml</code></p>
+            <pre id="yaml-preview" class="rp-addcat__yaml">填好左侧表单，这里会实时生成配置内容…</pre>
+          </div>
+
+          <div class="rp-section">
+            <h2 class="rp-addcat__h2">🚀 怎么用（3 步，不用命令行）</h2>
+            <ol class="rp-addcat__steps">
+              <li>
+                <b>下载</b>上面生成的 <code>&lt;id&gt;.yaml</code> 文件。
+              </li>
+              <li>
+                打开你的 GitHub 仓库 → 进入 <code>config/channels.d/</code> 文件夹 →
+                <b>Add file ▸ Upload files</b> → 把文件拖进去 → <b>Commit changes</b>。
+                <span class="rp-field__hint">（没有 <code>channels.d</code> 文件夹？在 <code>config/</code> 里
+                <b>Add file ▸ Create new file</b>，文件名输入 <code>channels.d/&lt;id&gt;.yaml</code>，把内容粘进去再 Commit。）</span>
+              </li>
+              <li>
+                触发构建：仓库 <b>Actions</b> 页 ▸ 选 <b>daily</b> ▸ <b>Run workflow</b>（或等下一次自动构建）。
+                构建完成后刷新首页，顶部就会出现你的新分类 tab，并已回填最近一个月的论文。
+              </li>
+            </ol>
+            <p class="rp-field__hint">
+              想调整？随时改这个文件里的 <code>judge_prompt</code> / 关键词再 Commit，下次构建会自动对相关论文重新判定。
+              删掉文件则该分类下次构建下架。
+            </p>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="rp-footer">
+      <p>
+        <a href="index.html">← 首页</a> · <a href="about.html">关于</a> · redpaper
+      </p>
+    </footer>
+
+    <script type="module" src="assets/js/add-category.js"></script>
+    <script src="assets/js/mascot.js?v=7adda7f1" defer></script>
+  </body>
+</html>
