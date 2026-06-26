@@ -6,7 +6,7 @@
 // 把页面塞爆。
 // before the user hits the bottom.
 
-import { Favorites, Curated, Reads, Theme } from './storage.js?v=192eb0de';
+import { Favorites, Curated, Reads, Theme } from './storage.js?v=7adda7f1';
 import {
   pickCover,
   loadPalettes,
@@ -18,7 +18,7 @@ import {
   HEART_SVG_FILL,
   showToast,
   fetchJSON,
-} from './utils.js?v=192eb0de';
+} from './utils.js?v=7adda7f1';
 
 const STATE = {
   channels: [],
@@ -99,40 +99,45 @@ function buildChannelTabs() {
   });
 }
 
-// 搜索匹配：分词 + 无序 + 粘连/反序兼容。
-//   - 多词查询（"wang yue" / "yue wang"）：每个 token 都要命中，顺序无关。
-//   - 无空格单词（"wangyue" / "yuewang"）：先整体匹配；不中则尝试在各切点切成
-//     两半，两半都命中即算（这样姓名正反序、有无空格都能搜到 "Yue Wang"）。
-function _searchHay(p) {
+// 搜索匹配（分两路，避免"散落命中"误报）：
+//   1) 正文路：在 标题/摘要/机构/方法/平台（不含作者）里做「整串子串」或「多词全命中」。
+//      处理 "zhejiang"、"diffusion policy"、"humanoid teleoperation" 这类查询。
+//   2) 作者路：把查询当人名，要求命中**同一个作者**（正序或姓名调转后的拼接里
+//      包含去空格的查询）。这样 "wangyue / yuewang / wang yue / yue wang" 都能精确
+//      定位到 "Yue Wang"，而 "Yuran Wang"（含 wang 但不含 yue）不会被误命中。
+function _textHay(p) {
   return [
     p.title, p.title_zh, p.tldr_zh, p.abstract_zh,
-    (p.authors_all || p.authors || []).join(' '),
     (p.institutions || []).join(' '),
     (p.method_tags || []).join(' '),
     (p.platform || []).join(' '),
   ].filter(Boolean).join(' ').toLowerCase();
 }
 
-function _tokenHit(hay, hayCompact, token) {
-  const t = token.replace(/\s+/g, '');
-  if (!t) return true;
-  if (hay.includes(token) || hayCompact.includes(t)) return true;
-  // 纯英文无空格 token：尝试切两半（覆盖 wangyue ↔ yue wang 这类反序/粘连）
-  if (t.length >= 4 && /^[a-z]+$/.test(t)) {
-    for (let i = 2; i <= t.length - 2; i++) {
-      const a = t.slice(0, i);
-      const b = t.slice(i);
-      if (hayCompact.includes(a) && hayCompact.includes(b)) return true;
-    }
+function _authorMatches(name, qCompact) {
+  const lower = (name || '').toLowerCase();
+  const compact = lower.replace(/[^a-z0-9\u4e00-\u9fff]/g, '');
+  if (!compact) return false;
+  if (compact.includes(qCompact)) return true;
+  // 姓/名调转：把 token 反序再拼（"Yue Wang" → "wangyue"），覆盖 family-first 写法
+  const toks = lower.split(/[\s,]+/).filter(Boolean);
+  if (toks.length >= 2) {
+    const rev = toks.slice().reverse().join('').replace(/[^a-z0-9\u4e00-\u9fff]/g, '');
+    if (rev.includes(qCompact)) return true;
   }
   return false;
 }
 
 function matchesQuery(p, q) {
-  const hay = _searchHay(p);
-  const hayCompact = hay.replace(/\s+/g, '');
+  const text = _textHay(p);
+  if (text.includes(q)) return true; // 整串命中（zhejiang / diffusion policy ...）
+  const qCompact = q.replace(/\s+/g, '');
+  const authors = p.authors_all || p.authors || [];
+  if (qCompact.length >= 3 && authors.some((n) => _authorMatches(n, qCompact))) return true;
+  // 多词查询：正文里每个词都出现（顺序无关），不含作者避免散落误报
   const tokens = q.split(/\s+/).filter(Boolean);
-  return tokens.every((tok) => _tokenHit(hay, hayCompact, tok));
+  if (tokens.length > 1 && tokens.every((t) => text.includes(t))) return true;
+  return false;
 }
 
 function visiblePapers() {
@@ -161,6 +166,8 @@ function badgeHTML(badge) {
       ? 'rp-badge rp-badge--lab'
       : badge.kind === 'pin'
       ? 'rp-badge rp-badge--pin'
+      : badge.kind === 'venue'
+      ? 'rp-badge rp-badge--venue'
       : 'rp-badge';
   return `<span class="${cls}">${escapeHTML(badge.label)}</span>`;
 }
@@ -223,8 +230,8 @@ function _domainLabel(url) {
   }
 }
 
-// 外链 pin 卡（source=external_link，如 Nature/Science 等本站抓不到正文的论文）：
-// 点击直达原文，不进 post.html。结构与普通卡一致，复用收藏/甄选按钮。
+// 外链 pin 卡（source=external_link，如 Nature/Science 等本站抓不到 PDF 的论文）：
+// 点进站内详情页（展示作者 / 摘要 / 会议 + 「阅读原文」外链），封面标 🔗 来源域名。
 export function externalCardHTML(p) {
   const cover = pickCover(p.id);
   const titleZh = p.title_zh || p.title;
@@ -233,8 +240,9 @@ export function externalCardHTML(p) {
   const heart = fav ? HEART_SVG_FILL : HEART_SVG_OUTLINE;
   const badges = (p.badges || []).map(badgeHTML).join('');
   const chips = chipRowsHTML(p);
+  const authors = formatAuthors(p.authors || []);
   return `
-    <a class="rp-card" href="${p.abs_url || '#'}" target="_blank" rel="noopener" data-id="${p.id}">
+    <a class="rp-card" href="${paperUrl(p.id)}" data-id="${p.id}">
       <div class="rp-cover ${cover.cls}">
         <span class="rp-cover__source">🔗 ${escapeHTML(_domainLabel(p.abs_url))}</span>
         <p class="rp-cover__headline">${escapeHTML(headline)}</p>
@@ -245,7 +253,7 @@ export function externalCardHTML(p) {
         ${chips}
         ${badges ? `<div class="rp-card__badges">${badges}</div>` : ''}
         <div class="rp-card__meta">
-          <span class="rp-card__authors">阅读原文 ↗</span>
+          <span class="rp-card__authors">${escapeHTML(authors || '阅读原文')}</span>
           <button class="rp-card__gem ${Curated.has(p.id) ? 'is-on' : ''}" data-gem="${p.id}" title="标记为高质量（站长甄选）" aria-label="标记高质量">💎</button>
           <button class="rp-card__like ${fav ? 'is-liked' : ''}" data-fav="${p.id}" title="${fav ? '取消收藏' : '收藏'}" aria-label="收藏">
             ${heart}
@@ -336,10 +344,12 @@ function todayMidnight() {
 }
 
 function paperDate(p) {
-  if (!p.published) return null;
-  // Most papers carry YYYY-MM-DD; Date.parse handles that as UTC midnight,
-  // which is fine for day-bucket math.
-  const d = new Date(p.published);
+  // 取「发布日」与「被收录公告日」里更晚的那个：一篇 2 月挂 arXiv、6 月被 RSS
+  // 收录的论文，会以"收录日"重新冒泡到 feed 顶部（带 🎉 最新收录 徽章）。
+  const cands = [p.published, p.venue_announced].filter(Boolean);
+  if (!cands.length) return null;
+  const iso = cands.sort().slice(-1)[0]; // 字典序最大 = 最新
+  const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return null;
   d.setHours(0, 0, 0, 0);
   return d;

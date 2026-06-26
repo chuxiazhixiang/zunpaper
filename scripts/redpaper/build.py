@@ -20,7 +20,8 @@ from .enrich import enrich_paper, EnrichUnavailable, EnrichCache
 from .videos import VideoCache, enrich_paper_videos
 from .labs import detect_labs, lab_badges
 from .scoring import score_paper
-from .models import Paper, load_paper, save_paper
+from .venues import parse_venue
+from .models import Paper, Author, load_paper, save_paper
 from .render import fetch_and_render, extract_head_text as fetch_head_text
 from .sources import arxiv_source
 from .sources import hf_daily as hf_daily_source
@@ -501,6 +502,14 @@ def process_new_papers(
             for tg in (cached.source_tags or []):
                 if tg not in (paper.source_tags or []):
                     paper.source_tags.append(tg)
+            # venue：本轮重新解析的优先；没解析到则继承 cached。若 cached 原本没
+            # venue、本轮新解析到（= 刚被会议/期刊收录）→ 记一次 venue_announced=今天，
+            # 让它以"今天"重新冒泡到 feed（"最新收录"）。
+            newly_accepted = bool(paper.venue) and not (cached.venue or "")
+            paper.venue = paper.venue or cached.venue
+            paper.venue_announced = paper.venue_announced or cached.venue_announced
+            if newly_accepted and not paper.venue_announced:
+                paper.venue_announced = dt.date.today().isoformat()
 
         if not paper.cover_image and paper.pdf_url:
             rel, previews, pages = fetch_and_render(paper.pdf_url, paper.id, cfg.COVER_DIR)
@@ -577,6 +586,19 @@ class EnrichmentContext:
             if "curated" not in paper.source_tags:
                 paper.source_tags.append("curated")
             paper.badges.append({"kind": "gem", "label": "💎 站长甄选"})
+
+        # 🎓 会议/期刊徽章（venue）。刚检测到（venue_announced 在最近 14 天内）的
+        # 用「🎉 最新收录」更醒目——对应"被 RSS/CoRL 收录后重新上 feed"。
+        if paper.venue:
+            recent = False
+            if paper.venue_announced:
+                try:
+                    ann = dt.datetime.fromisoformat(paper.venue_announced[:10]).date()
+                    recent = (dt.date.today() - ann).days <= 14
+                except ValueError:
+                    recent = False
+            label = (f"🎉 最新收录 · {paper.venue}" if recent else f"🎓 {paper.venue}")
+            paper.badges.append({"kind": "venue", "label": label})
 
         aid = paper.arxiv_id
 
@@ -835,6 +857,8 @@ def _feed_entry(p: Paper) -> dict:
         "arxiv_id": p.arxiv_id,
         "abs_url": p.abs_url,
         "pdf_url": p.pdf_url,
+        "venue": p.venue or "",
+        "venue_announced": p.venue_announced or "",
         "score": p.score,
         # DeepSeek-V4-Flash 的相关性 / 科研价值评论；前端可在详情页展示
         # `reason` 一行。空 dict 表示这条 paper 还没经过 judge（旧数据）。
@@ -1087,6 +1111,62 @@ def _save_custom_state(state: dict) -> None:
     tmp.replace(_CUSTOM_STATE_PATH)
 
 
+def _doi_from_url(url: str) -> str:
+    """从论文 URL 抠出 DOI。science.org / 通用链接里直接含 10.xxxx/...；nature.com
+    的 /articles/<id> 没写 DOI，按 10.1038/<id> 拼。"""
+    m = re.search(r"10\.\d{4,9}/[^\s?#\"'<>]+", url or "")
+    if m:
+        return m.group(0).rstrip(").,;")
+    m = re.search(r"nature\.com/articles/([^\s?#/]+)", url or "")
+    if m:
+        return f"10.1038/{m.group(1)}"
+    return ""
+
+
+def _crossref_meta(url: str) -> dict:
+    """用 Crossref（免费、无需 key）按 DOI 取作者 / 会议期刊 / 日期 / 摘要。
+    取不到返回 {}。"""
+    doi = _doi_from_url(url)
+    if not doi:
+        return {}
+    try:
+        import requests
+        r = requests.get(
+            f"https://api.crossref.org/works/{doi}",
+            params={"mailto": "redpaper@users.noreply.github.com"},
+            timeout=20,
+        )
+        if r.status_code != 200:
+            return {}
+        msg = r.json().get("message") or {}
+    except Exception as e:
+        log.debug("crossref failed for %s: %s", doi, e)
+        return {}
+    authors = []
+    for a in (msg.get("author") or []):
+        nm = " ".join(x for x in [a.get("given"), a.get("family")] if x).strip() or a.get("name") or ""
+        if nm:
+            authors.append(nm)
+    ct = msg.get("container-title") or []
+    venue = ct[0] if ct else ""
+    # 日期：issued > published-print > published-online
+    date = ""
+    for key in ("issued", "published-print", "published-online", "created"):
+        parts = ((msg.get(key) or {}).get("date-parts") or [[]])[0]
+        if parts:
+            date = "-".join(f"{int(x):02d}" if i else f"{int(x):04d}" for i, x in enumerate(parts[:3]))
+            break
+    abstract = msg.get("abstract") or ""
+    abstract = re.sub(r"<[^>]+>", "", abstract).strip()  # 去 JATS 标签
+    return {
+        "authors": authors,
+        "venue": venue,
+        "published": date,
+        "abstract": abstract,
+        "title": (msg.get("title") or [""])[0],
+    }
+
+
 def _load_custom_examples(custom_channels: list[cfg.Channel]) -> list[Paper]:
     """把每个自定义分类里站长填的「示例高质量论文」做成 pin 卡片（立即上墙、
     跳过 judge），同时归到对应频道。
@@ -1112,14 +1192,18 @@ def _load_custom_examples(custom_channels: list[cfg.Channel]) -> list[Paper]:
                 arxiv_entries.append({"id": aid, "note": title, "channels": [c.id]})
             elif ref.startswith("http") and title:
                 pid = "ext-" + hashlib.sha1(ref.encode("utf-8")).hexdigest()[:10]
+                # Crossref 补作者 / 会议 / 摘要 / 日期（拿不到就只有 title）。
+                meta = _crossref_meta(ref)
                 out.append(Paper(
                     id=pid,
                     source="external_link",
-                    title=title,
-                    abstract="",
+                    title=title or meta.get("title", ""),
+                    abstract=meta.get("abstract", ""),
+                    authors=[Author(name=n) for n in meta.get("authors", [])],
                     abs_url=ref,
                     pdf_url="",
-                    published=(ex.get("date") or ""),
+                    published=(ex.get("date") or meta.get("published") or ""),
+                    venue=meta.get("venue", ""),
                     channels=[c.id],
                     source_tags=["manual_pin"],
                 ))
@@ -1199,6 +1283,79 @@ def assign_custom_channels(custom_channels: list[cfg.Channel],
             changed += 1
     ccache.save()
     log.info("custom channels: %d judge calls, %d papers re-tagged", calls, changed)
+
+
+_VENUE_STATE_PATH = cfg.REPO_ROOT / "data" / "venue_check_state.json"
+
+
+def _venue_backfill(budget: int = 50) -> None:
+    """滚动复查存量 arXiv 论文的 venue：很多论文先挂 arXiv，几个月后才被 ICRA/RSS/
+    CoRL 等收录，作者会更新 arXiv `comment`。我们的常规抓取只覆盖最近窗口，老论文
+    的"被收录"信号收不到。这里每轮抽一批（budget 篇、近 21 天没查过的）重查 arXiv
+    元数据，解析到 venue 就回填 + 记 venue_announced=今天（→ 重新冒泡到 feed）。"""
+    if budget <= 0 or not cfg.PAPERS_DIR.exists():
+        return
+    import arxiv
+    # 状态：arxiv_id -> 上次检查日期，避免每轮重查同一批
+    state: dict[str, str] = {}
+    if _VENUE_STATE_PATH.exists():
+        try:
+            state = json.loads(_VENUE_STATE_PATH.read_text(encoding="utf-8"))
+        except Exception:
+            state = {}
+    today = dt.date.today().isoformat()
+    cutoff = (dt.date.today() - dt.timedelta(days=21)).isoformat()
+
+    # 候选：有 arxiv_id、还没 venue、近 21 天没查过的；按发布日倒序（近的更可能刚被收录）
+    cand: list[Paper] = []
+    by_aid: dict[str, list[Paper]] = {}
+    for jp in cfg.PAPERS_DIR.glob("*.json"):
+        try:
+            p = load_paper(jp)
+        except Exception:
+            continue
+        if not p.arxiv_id or p.venue:
+            continue
+        by_aid.setdefault(p.arxiv_id, []).append(p)
+        if state.get(p.arxiv_id, "") >= cutoff:
+            continue
+        cand.append(p)
+    if not cand:
+        return
+    cand.sort(key=lambda p: (p.published or "", p.id), reverse=True)
+    cand = cand[:budget]
+    ids = sorted({p.arxiv_id for p in cand})
+
+    found = 0
+    try:
+        client = arxiv.Client(page_size=100, delay_seconds=3.0, num_retries=3)
+        for r in client.results(arxiv.Search(id_list=ids)):
+            aid = re.sub(r"v\d+$", "", r.get_short_id())
+            v = parse_venue(getattr(r, "comment", "") or "")
+            # 标记已查（无论有没有 venue）
+            state[aid] = today
+            if not v:
+                continue
+            for p in by_aid.get(aid, []):
+                if p.venue:
+                    continue
+                p.venue = v
+                p.venue_announced = today
+                save_paper(p, cfg.PAPERS_DIR)
+                found += 1
+    except Exception as e:
+        log.warning("venue backfill failed: %s", e)
+
+    # 没在结果里出现的也记一次 today，免得每轮都重查（arXiv 偶尔漏返回）
+    for aid in ids:
+        state.setdefault(aid, today)
+    try:
+        _VENUE_STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
+        _VENUE_STATE_PATH.write_text(json.dumps(state, ensure_ascii=False), encoding="utf-8")
+    except Exception:
+        pass
+    if found:
+        log.info("venue backfill: %d papers newly tagged with venue", found)
 
 
 def _expand_custom_keywords(custom_channels: list[cfg.Channel]) -> None:
@@ -1432,6 +1589,12 @@ def run() -> None:
 
     existing = _existing_papers()
     process_new_papers(fresh, existing, ctx)
+
+    # 滚动复查存量 arXiv 论文的「被会议/期刊收录」信号（更新 venue + 重新冒泡）。
+    try:
+        _venue_backfill(int(os.environ.get("REDPAPER_VENUE_BACKFILL", "50") or "50"))
+    except Exception as e:
+        log.warning("venue backfill step failed: %s", e)
 
     # Re-enrich existing papers too (so badges/news stay fresh even if the paper
     # was fetched on an earlier day). Also back-fill translation fields the

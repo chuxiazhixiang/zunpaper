@@ -243,6 +243,10 @@ def _custom_venues() -> list[str]:
 
 
 def _check_conf_venue(paper: Paper, rule: dict) -> dict | int:
+    # 优先用已解析的 venue（来自 arXiv comment / Crossref，最可靠）。
+    v = getattr(paper, "venue", "") or ""
+    if v:
+        return {"points": rule["points"], "hint": f'被「{v}」收录'}
     hay = f"{paper.title or ''}\n{paper.abstract or ''}"
     m = _CONF_VENUE_RE.search(hay)
     if m:

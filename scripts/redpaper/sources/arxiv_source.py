@@ -11,6 +11,7 @@ import arxiv
 
 from ..config import Channel, SourcesConfig
 from ..models import Author, Paper
+from ..venues import parse_venue
 
 log = logging.getLogger(__name__)
 
@@ -113,6 +114,7 @@ def fetch_channel(channel: Channel, cfg: SourcesConfig) -> list[Paper]:
             pdf_url=result.pdf_url or "",
             abs_url=result.entry_id or "",
             channels=[channel.id],
+            venue=parse_venue(getattr(result, "comment", "") or ""),
         )
         out.append(paper)
 
