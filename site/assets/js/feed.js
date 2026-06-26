@@ -6,7 +6,7 @@
 // 把页面塞爆。
 // before the user hits the bottom.
 
-import { Favorites, Curated, Reads, Theme } from './storage.js?v=0e5b8489';
+import { Favorites, Curated, Reads, Theme } from './storage.js?v=7adda7f1';
 import {
   pickCover,
   loadPalettes,
@@ -18,7 +18,7 @@ import {
   HEART_SVG_FILL,
   showToast,
   fetchJSON,
-} from './utils.js?v=0e5b8489';
+} from './utils.js?v=7adda7f1';
 
 const STATE = {
   channels: [],
@@ -775,6 +775,9 @@ async function main() {
     const el = document.querySelector('#search-input');
     if (el) el.value = initialQ;
   }
+  // 会议倒计时点会议名跳来的 ?venue=ICRA —— 进站直接按该会议筛选。
+  const initialVenue = params.get('venue');
+  if (initialVenue) STATE.activeVenue = initialVenue;
   await loadData();
   renderCrawlBanner();
   buildChannelTabs();
