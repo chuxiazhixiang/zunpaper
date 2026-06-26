@@ -82,6 +82,162 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2606-22116",
+      "source": "arxiv",
+      "title": "DeformX: A Versatile Co-Simulation Framework for Deformable Linear Objects",
+      "title_zh": "DeformX：面向可变形线性物体的多功能协同仿真框架",
+      "tldr_zh": "提出DeformX框架，集成Cosserat杆物理引擎与Isaac Sim，实现DLO的高保真仿真与sim-to-real迁移。",
+      "cover_zh": "电线绳索仿真难？DeformX让物理与视觉双逼真，策略直接迁移真实机器人！",
+      "abstract_zh": "可变形线性物体（DLO），如电线、电缆和绳索，在机器人操作任务中很常见，但对其进行兼具视觉真实感和物理精度的仿真仍然具有挑战性。现有的视觉仿真方法通常依赖于缺乏物理基础变形行为的程序化几何基元，而支持机器人学习的基于物理的方法往往将DLO近似为刚性连杆链或通用软体，无法准确捕捉细长弹性结构的弯曲、扭转和剪切力学。在这项工作中，我们提出了DeformX，一个将专用的Cosserat杆物理引擎与NVIDIA Isaac Sim集成的协同仿真框架，实现了既物理逼真又视觉真实的DLO仿真。我们的Cosserat杆引擎模拟了DLO的动力学和自碰撞，以及与任意自由形式网格的接触交互。为了实现高保真可视化，我们采用网格蒙皮将离散的杆变形映射到导入的CAD模型上。据我们所知，DeformX是首批将真实可视化、原理性物理和与机器人学习流水线兼容性统一起来的DLO仿真框架之一。我们通过合成数据生成和DLO操作策略学习展示了其多功能性，并通过与真实世界实验的比较验证了视觉和物理保真度。值得注意的是，在DeformX生成的数据上微调Segment Anything Model 3（SAM3），在真实图像电线分割中获得了10.2%的mAP@75提升；而完全在DeformX中训练的绳索摆动策略在UR5e机械臂的真实世界试验中实现了6.6厘米的平均目标命中误差，突显了其强大的仿真到现实迁移能力。",
+      "authors": [
+        "Yi Yang",
+        "Xiang Fei",
+        "Lehong Wang"
+      ],
+      "authors_all": [
+        "Yi Yang",
+        "Xiang Fei",
+        "Lehong Wang",
+        "Chenhao Li",
+        "Zilin Dai",
+        "Henry Kou",
+        "Lu Li",
+        "Howie Choset"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-20",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ CMU RI"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ SJTU"
+        },
+        {
+          "kind": "venue",
+          "label": "🎉 最新收录 · IROS 2026"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-22116.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-22116-p2.jpg",
+        "assets/img/covers/arxiv-2606-22116-p3.jpg",
+        "assets/img/covers/arxiv-2606-22116-p4.jpg"
+      ],
+      "arxiv_id": "2606.22116",
+      "abs_url": "http://arxiv.org/abs/2606.22116v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.22116v1",
+      "venue": "IROS 2026",
+      "venue_announced": "2026-06-26",
+      "score": 52,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "sim2real",
+        "reason": "提出DLO共仿真框架，结合Cosserat物理引擎与Isaac Sim，支持策略学习与sim-to-real迁移，实验验证充分。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Carnegie Mellon University",
+        "Shanghai Jiao Tong University",
+        "Harvard University"
+      ],
+      "method_tags": [
+        "Cosserat rod",
+        "sim-to-real",
+        "co-simulation"
+      ],
+      "platform": [
+        "UR5e"
+      ],
+      "sim_stack": [
+        "NVIDIA Isaac Sim"
+      ],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2606-22251",
+      "source": "arxiv",
+      "title": "Geometric Reconstruction of Extrinsic Contact Trajectories using Tactile Sensing and Proprioception for Tool Manipulation",
+      "title_zh": "利用触觉感知和本体感觉进行工具操作中外接触轨迹的几何重建",
+      "tldr_zh": "利用抓取处的触觉感知重建工具尖端接触轨迹，精度达毫米级。",
+      "cover_zh": "触觉传感器不在工具尖端？照样重建出毫米级接触轨迹！",
+      "abstract_zh": "触觉感知使机器人能够获取抓取处的丰富接触信息，支持物体识别、手内姿态估计和滑移检测等任务。然而，在许多工具介导的操作任务中，决定任务成败的交互发生在工具尖端，远离触觉传感器，这使得直接感知工具与环境之间的接触变得困难，尤其是在交互过程中接触点移动时。在这项工作中，我们利用触觉感知和机器人本体感觉重建了外部工具尖端的接触轨迹。我们将工具尖端轨迹重建问题建模为单点接触假设下的几何推理问题。我们的方法首先从为近似固定点行为而设计的校准段中估计全局工具尖端接触位置，然后通过组合在连续接触下从触觉标记观测中估计的相对工具运动来重建完整轨迹。在包含多个轨迹、工具、手腕姿态和抓取配置的 n=51 次试验中，所提出的管线在世界坐标系中实现了 8.59 ± 2.41 mm 的轨迹均方根误差（RMSE）和 5.96 ± 1.16 mm 的形状 RMSE，同时以 14.00 ± 4.11 Hz 的频率在线运行。总体而言，结果表明，外部工具尖端轨迹几何形状可以从抓取级别的触觉感知中一致地恢复，并且轨迹形状在不同工具、手腕姿态和抓取配置下保持稳定。",
+      "authors": [
+        "Seojung Min",
+        "Yoonjin Kim",
+        "Jeong-Jung Kim"
+      ],
+      "authors_all": [
+        "Seojung Min",
+        "Yoonjin Kim",
+        "Jeong-Jung Kim",
+        "Jung Kim"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-20",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ KAIST"
+        },
+        {
+          "kind": "venue",
+          "label": "🎉 最新收录 · IROS 2026"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-22251.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-22251-p2.jpg",
+        "assets/img/covers/arxiv-2606-22251-p3.jpg",
+        "assets/img/covers/arxiv-2606-22251-p4.jpg"
+      ],
+      "arxiv_id": "2606.22251",
+      "abs_url": "http://arxiv.org/abs/2606.22251v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.22251v1",
+      "venue": "IROS 2026",
+      "venue_announced": "2026-06-26",
+      "score": 50,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "利用触觉和本体感重建工具末端接触轨迹，属于灵巧操作中的感知与状态估计，有实用价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Korea Advanced Institute of Science and Technology",
+        "Korea Institute of Machinery and Materials"
+      ],
+      "method_tags": [
+        "geometric inference",
+        "tactile sensing",
+        "proprioception"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2606-22113",
       "source": "arxiv",
       "title": "KITE: Decoupling Kinematics and Interaction for Zero-Shot Cross-Embodiment Manipulation",
@@ -149,81 +305,85 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2606-22116",
+      "id": "arxiv-2606-21935",
       "source": "arxiv",
-      "title": "DeformX: A Versatile Co-Simulation Framework for Deformable Linear Objects",
-      "title_zh": "DeformX：面向可变形线性物体的多功能协同仿真框架",
-      "tldr_zh": "提出DeformX框架，集成Cosserat杆物理引擎与Isaac Sim，实现DLO的高保真仿真与sim-to-real迁移。",
-      "cover_zh": "电线绳索仿真难？DeformX让物理与视觉双逼真，策略直接迁移真实机器人！",
-      "abstract_zh": "可变形线性物体（DLO），如电线、电缆和绳索，在机器人操作任务中很常见，但对其进行兼具视觉真实感和物理精度的仿真仍然具有挑战性。现有的视觉仿真方法通常依赖于缺乏物理基础变形行为的程序化几何基元，而支持机器人学习的基于物理的方法往往将DLO近似为刚性连杆链或通用软体，无法准确捕捉细长弹性结构的弯曲、扭转和剪切力学。在这项工作中，我们提出了DeformX，一个将专用的Cosserat杆物理引擎与NVIDIA Isaac Sim集成的协同仿真框架，实现了既物理逼真又视觉真实的DLO仿真。我们的Cosserat杆引擎模拟了DLO的动力学和自碰撞，以及与任意自由形式网格的接触交互。为了实现高保真可视化，我们采用网格蒙皮将离散的杆变形映射到导入的CAD模型上。据我们所知，DeformX是首批将真实可视化、原理性物理和与机器人学习流水线兼容性统一起来的DLO仿真框架之一。我们通过合成数据生成和DLO操作策略学习展示了其多功能性，并通过与真实世界实验的比较验证了视觉和物理保真度。值得注意的是，在DeformX生成的数据上微调Segment Anything Model 3（SAM3），在真实图像电线分割中获得了10.2%的mAP@75提升；而完全在DeformX中训练的绳索摆动策略在UR5e机械臂的真实世界试验中实现了6.6厘米的平均目标命中误差，突显了其强大的仿真到现实迁移能力。",
+      "title": "CoRDE: Concept-Prior Routed Diffusion Experts for Structural Generalization in Robot Manipulation",
+      "title_zh": "CoRDE：基于概念先验路由的扩散专家实现机器人操作的结构泛化",
+      "tldr_zh": "提出概念先验路由扩散专家，解决机器人操作中结构泛化与路由崩溃问题。",
+      "cover_zh": "机器人学不会新任务？这个框架用概念先验路由专家，告别路由崩溃！",
+      "abstract_zh": "扩散模型在机器人模仿学习中擅长捕捉多模态动作分布。然而，在多任务和长时域场景中，单一架构缺乏结构泛化能力，会因不同语义子阶段之间的梯度冲突而受损。纯数据驱动的混合专家（MoE）方法虽然引入了分工，但经常引发路由崩溃，且实例化全规模专家会导致参数爆炸和高扩展成本。为解决这些问题，我们提出了基于概念先验路由的扩散专家（CoRDE），一种结构引导的变分蒸馏框架。CoRDE从冻结的概念编码器中提取语义分布，通过可学习的软映射矩阵指导变分后验责任。该机制引入了一个熵控制的责任推断过程，在可靠的语义预测下鼓励自信路由，同时保留随机扩散项以保持行为多样性。为克服参数膨胀，CoRDE在共享的冻结骨干网络上使用低秩适配（LoRA）构建参数高效的专家池。理论分析表明，混合分数差异受责任加权的局部专家误差约束，支持低秩专家适配下的高保真生成。实验评估证实，与现有基线相比，CoRDE系统性地减少了路由崩溃，形成了鲁棒且语义对齐的专家分配，同时实现了更优的动作质量和增量学习效率。",
       "authors": [
-        "Yi Yang",
-        "Xiang Fei",
-        "Lehong Wang"
+        "Haidong Huang",
+        "Xixin Zhao",
+        "Yaohua Zhou"
       ],
       "authors_all": [
-        "Yi Yang",
-        "Xiang Fei",
-        "Lehong Wang",
-        "Chenhao Li",
-        "Zilin Dai",
-        "Henry Kou",
-        "Lu Li",
-        "Howie Choset"
+        "Haidong Huang",
+        "Xixin Zhao",
+        "Yaohua Zhou",
+        "Jiayu Song",
+        "Jiayi Zhang",
+        "Jun Ma",
+        "Haiyue Zhu",
+        "Xiaocong Li"
       ],
       "primary_category": "cs.RO",
       "published": "2026-06-20",
       "channels": [
-        "manipulation",
-        "sim2real"
+        "manipulation"
       ],
       "badges": [
         {
           "kind": "lab",
-          "label": "⭐ CMU RI"
+          "label": "⭐ HKUST"
         },
         {
           "kind": "lab",
-          "label": "⭐ SJTU"
+          "label": "⭐ HKU"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ NUS"
+        },
+        {
+          "kind": "venue",
+          "label": "🎉 最新收录 · IROS 2026"
         }
       ],
-      "cover_image": "assets/img/covers/arxiv-2606-22116.jpg",
+      "cover_image": "assets/img/covers/arxiv-2606-21935.jpg",
       "preview_pages": [
-        "assets/img/covers/arxiv-2606-22116-p2.jpg",
-        "assets/img/covers/arxiv-2606-22116-p3.jpg",
-        "assets/img/covers/arxiv-2606-22116-p4.jpg"
+        "assets/img/covers/arxiv-2606-21935-p2.jpg",
+        "assets/img/covers/arxiv-2606-21935-p3.jpg",
+        "assets/img/covers/arxiv-2606-21935-p4.jpg"
       ],
-      "arxiv_id": "2606.22116",
-      "abs_url": "http://arxiv.org/abs/2606.22116v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.22116v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 42,
+      "arxiv_id": "2606.21935",
+      "abs_url": "http://arxiv.org/abs/2606.21935v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.21935v1",
+      "venue": "IROS 2026",
+      "venue_announced": "2026-06-26",
+      "score": 44,
       "judge": {
         "relevant": true,
         "research_value": "high",
-        "primary_channel": "sim2real",
-        "reason": "提出DLO共仿真框架，结合Cosserat物理引擎与Isaac Sim，支持策略学习与sim-to-real迁移，实验验证充分。",
+        "primary_channel": "manipulation",
+        "reason": "提出结构引导变分蒸馏框架，解决扩散模型多任务泛化问题，方法新颖且实验充分。",
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Carnegie Mellon University",
-        "Shanghai Jiao Tong University",
-        "Harvard University"
+        "Eastern Institute of Technology, Ningbo",
+        "National University of Singapore",
+        "The Hong Kong University of Science and Technology (Guangzhou)",
+        "University of Nottingham Ningbo China"
       ],
       "method_tags": [
-        "Cosserat rod",
-        "sim-to-real",
-        "co-simulation"
+        "Diffusion Models",
+        "Mixture-of-Experts",
+        "Low-Rank Adaptation"
       ],
-      "platform": [
-        "UR5e"
-      ],
-      "sim_stack": [
-        "NVIDIA Isaac Sim"
-      ],
+      "platform": [],
+      "sim_stack": [],
       "method_family": "",
-      "real_robot": "yes",
+      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -298,154 +458,6 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2606-22251",
-      "source": "arxiv",
-      "title": "Geometric Reconstruction of Extrinsic Contact Trajectories using Tactile Sensing and Proprioception for Tool Manipulation",
-      "title_zh": "利用触觉感知和本体感觉进行工具操作中外接触轨迹的几何重建",
-      "tldr_zh": "利用抓取处的触觉感知重建工具尖端接触轨迹，精度达毫米级。",
-      "cover_zh": "触觉传感器不在工具尖端？照样重建出毫米级接触轨迹！",
-      "abstract_zh": "触觉感知使机器人能够获取抓取处的丰富接触信息，支持物体识别、手内姿态估计和滑移检测等任务。然而，在许多工具介导的操作任务中，决定任务成败的交互发生在工具尖端，远离触觉传感器，这使得直接感知工具与环境之间的接触变得困难，尤其是在交互过程中接触点移动时。在这项工作中，我们利用触觉感知和机器人本体感觉重建了外部工具尖端的接触轨迹。我们将工具尖端轨迹重建问题建模为单点接触假设下的几何推理问题。我们的方法首先从为近似固定点行为而设计的校准段中估计全局工具尖端接触位置，然后通过组合在连续接触下从触觉标记观测中估计的相对工具运动来重建完整轨迹。在包含多个轨迹、工具、手腕姿态和抓取配置的 n=51 次试验中，所提出的管线在世界坐标系中实现了 8.59 ± 2.41 mm 的轨迹均方根误差（RMSE）和 5.96 ± 1.16 mm 的形状 RMSE，同时以 14.00 ± 4.11 Hz 的频率在线运行。总体而言，结果表明，外部工具尖端轨迹几何形状可以从抓取级别的触觉感知中一致地恢复，并且轨迹形状在不同工具、手腕姿态和抓取配置下保持稳定。",
-      "authors": [
-        "Seojung Min",
-        "Yoonjin Kim",
-        "Jeong-Jung Kim"
-      ],
-      "authors_all": [
-        "Seojung Min",
-        "Yoonjin Kim",
-        "Jeong-Jung Kim",
-        "Jung Kim"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-20",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ KAIST"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-22251.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-22251-p2.jpg",
-        "assets/img/covers/arxiv-2606-22251-p3.jpg",
-        "assets/img/covers/arxiv-2606-22251-p4.jpg"
-      ],
-      "arxiv_id": "2606.22251",
-      "abs_url": "http://arxiv.org/abs/2606.22251v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.22251v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 40,
-      "judge": {
-        "relevant": true,
-        "research_value": "medium",
-        "primary_channel": "manipulation",
-        "reason": "利用触觉和本体感重建工具末端接触轨迹，属于灵巧操作中的感知与状态估计，有实用价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Korea Advanced Institute of Science and Technology",
-        "Korea Institute of Machinery and Materials"
-      ],
-      "method_tags": [
-        "geometric inference",
-        "tactile sensing",
-        "proprioception"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2606-21935",
-      "source": "arxiv",
-      "title": "CoRDE: Concept-Prior Routed Diffusion Experts for Structural Generalization in Robot Manipulation",
-      "title_zh": "CoRDE：基于概念先验路由的扩散专家实现机器人操作的结构泛化",
-      "tldr_zh": "提出概念先验路由扩散专家，解决机器人操作中结构泛化与路由崩溃问题。",
-      "cover_zh": "机器人学不会新任务？这个框架用概念先验路由专家，告别路由崩溃！",
-      "abstract_zh": "扩散模型在机器人模仿学习中擅长捕捉多模态动作分布。然而，在多任务和长时域场景中，单一架构缺乏结构泛化能力，会因不同语义子阶段之间的梯度冲突而受损。纯数据驱动的混合专家（MoE）方法虽然引入了分工，但经常引发路由崩溃，且实例化全规模专家会导致参数爆炸和高扩展成本。为解决这些问题，我们提出了基于概念先验路由的扩散专家（CoRDE），一种结构引导的变分蒸馏框架。CoRDE从冻结的概念编码器中提取语义分布，通过可学习的软映射矩阵指导变分后验责任。该机制引入了一个熵控制的责任推断过程，在可靠的语义预测下鼓励自信路由，同时保留随机扩散项以保持行为多样性。为克服参数膨胀，CoRDE在共享的冻结骨干网络上使用低秩适配（LoRA）构建参数高效的专家池。理论分析表明，混合分数差异受责任加权的局部专家误差约束，支持低秩专家适配下的高保真生成。实验评估证实，与现有基线相比，CoRDE系统性地减少了路由崩溃，形成了鲁棒且语义对齐的专家分配，同时实现了更优的动作质量和增量学习效率。",
-      "authors": [
-        "Haidong Huang",
-        "Xixin Zhao",
-        "Yaohua Zhou"
-      ],
-      "authors_all": [
-        "Haidong Huang",
-        "Xixin Zhao",
-        "Yaohua Zhou",
-        "Jiayu Song",
-        "Jiayi Zhang",
-        "Jun Ma",
-        "Haiyue Zhu",
-        "Xiaocong Li"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-20",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ HKUST"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ HKU"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ NUS"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-21935.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-21935-p2.jpg",
-        "assets/img/covers/arxiv-2606-21935-p3.jpg",
-        "assets/img/covers/arxiv-2606-21935-p4.jpg"
-      ],
-      "arxiv_id": "2606.21935",
-      "abs_url": "http://arxiv.org/abs/2606.21935v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.21935v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 34,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出结构引导变分蒸馏框架，解决扩散模型多任务泛化问题，方法新颖且实验充分。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Eastern Institute of Technology, Ningbo",
-        "National University of Singapore",
-        "The Hong Kong University of Science and Technology (Guangzhou)",
-        "University of Nottingham Ningbo China"
-      ],
-      "method_tags": [
-        "Diffusion Models",
-        "Mixture-of-Experts",
-        "Low-Rank Adaptation"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
