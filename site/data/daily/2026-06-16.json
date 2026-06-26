@@ -180,6 +180,185 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2606-20712",
+      "source": "arxiv_discover",
+      "title": "Real-World Deployment of Massively Parallel Sampling-Based MPC for Contact-Rich Manipulation",
+      "title_zh": "大规模并行采样MPC在接触丰富操作中的真实世界部署",
+      "tldr_zh": "基于JAX和MuJoCo的采样MPC框架在真实机器人上部署，MTP变体优于基线，并分析了域随机化信号。",
+      "cover_zh": "机器人操作新突破｜采样MPC首次在真实世界部署，MTP变体碾压传统方法",
+      "abstract_zh": "基于采样的模型预测控制（SMPC）结合了无梯度优化和大规模并行GPU仿真，是接触丰富机器人操作的一种有前景的策略。然而，以往的工作大多依赖简化动力学或局限于仿真。我们提出一个MPC框架，利用JAX进行大规模并行化和高效计算，结合高保真MuJoCo MJX仿真器，并通过完整的真实到仿真再到真实（real-to-sim-to-real）流程，将其部署在Franka Research 3上执行Push-T操作任务。具有结构化全局采样的MTP变体在需要模式切换的任务中，无论是在仿真还是硬件上，都优于CEM、MPPI和PS等单峰基线。此外，我们在MPC样本预算内评估在线域随机化，结果表明接触初始化参数产生可解释的适应信号，而全局物理参数提供的反馈太弱，无法在典型重规划频率下可靠利用。这些发现突出了采样MPC在接触丰富操作中的关键挑战：接触敏感性、严格的计算预算以及实时获取信息性域随机化信号的困难。",
+      "authors": [
+        "Magnus Dierking",
+        "Joao Carvalho",
+        "An Thai Le"
+      ],
+      "authors_all": [
+        "Magnus Dierking",
+        "Joao Carvalho",
+        "An Thai Le",
+        "Georgia Chalvatzaki",
+        "Jan Peters"
+      ],
+      "primary_category": "",
+      "published": "2026-06-16",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ CMU RI"
+        },
+        {
+          "kind": "venue",
+          "label": "🎉 最新收录 · ICRA 2026"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-20712.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-20712-p2.jpg",
+        "assets/img/covers/arxiv-2606-20712-p3.jpg",
+        "assets/img/covers/arxiv-2606-20712-p4.jpg"
+      ],
+      "arxiv_id": "2606.20712",
+      "abs_url": "http://arxiv.org/abs/2606.20712v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.20712v1",
+      "venue": "ICRA 2026",
+      "venue_announced": "2026-06-26",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "真实机器人部署采样MPC，结合JAX并行化与MuJoCo MJX，解决接触丰富操作问题，实验充分，有实际硬件验证。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "TU Darmstadt",
+        "German Research Center for AI (DFKI)",
+        "Hessian.AI",
+        "Robotics Institute Germany (RIG)"
+      ],
+      "method_tags": [
+        "sampling-based MPC",
+        "model tensor planning",
+        "domain randomization"
+      ],
+      "platform": [
+        "Franka Research 3"
+      ],
+      "sim_stack": [
+        "MuJoCo MJX"
+      ],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": [
+        "llm_discover"
+      ]
+    },
+    {
+      "id": "arxiv-2606-18250",
+      "source": "arxiv",
+      "title": "Future Dynamic 3D Reconstruction: A 3D World Model with Disentangled Ego-Motion",
+      "title_zh": "未来动态三维重建：一种解耦自运动的三维世界模型",
+      "tldr_zh": "提出FR3D，通过解耦自运动实现未来动态三维重建，确保几何一致性。",
+      "cover_zh": "未来2秒也能重建？这个3D世界模型让动态场景不再变形",
+      "abstract_zh": "预测动态环境的演变对自主智能体至关重要。尽管生成式世界模型最近通过在图像平面内混合自运动和场景动态，在二维视频合成中实现了高逼真度，但它们存在物理不一致性，例如物体变形或消失，尤其是在长时间跨度下。本文提出FR3D，一种预测持久三维潜在表示的世界模型，用于未来动态三维重建。与先前将世界视为基于图像的特征序列的工作不同，FR3D明确地将场景的三维演化与智能体的轨迹解耦，将推断的自运动视为动作的潜在代理。这种解耦解决了自运动与世界运动之间的歧义，确保了几何一致性。此外，我们引入了一种教师-学生蒸馏策略，利用现成基础模型的空间“常识”，实现了鲁棒的零样本泛化。大量实验表明，FR3D在多个数据集上，甚至对未来2秒的单目观测，都能实现强大的未来动态三维重建性能。项目页面：https://fr3d-wm.github.io。",
+      "authors": [
+        "Nils Morbitzer",
+        "Jonathan Evers",
+        "Artem Savkin"
+      ],
+      "authors_all": [
+        "Nils Morbitzer",
+        "Jonathan Evers",
+        "Artem Savkin",
+        "Thomas Stauner",
+        "Nassir Navab",
+        "Federico Tombari",
+        "Stefano Gasperini"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-06-16",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ TUM"
+        },
+        {
+          "kind": "venue",
+          "label": "🎉 最新收录 · ICML 2026"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-18250.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-18250-p2.jpg",
+        "assets/img/covers/arxiv-2606-18250-p3.jpg",
+        "assets/img/covers/arxiv-2606-18250-p4.jpg"
+      ],
+      "arxiv_id": "2606.18250",
+      "abs_url": "http://arxiv.org/abs/2606.18250v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.18250v1",
+      "venue": "ICML 2026",
+      "venue_announced": "2026-06-26",
+      "score": 47,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出3D世界模型FR3D，解耦自运动与环境动态，实现未来动态3D重建，高科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Technical University of Munich (TUM)",
+        "Munich Center for Machine Learning (MCML)",
+        "BMW Group",
+        "Visualais"
+      ],
+      "method_tags": [
+        "world model",
+        "teacher-student distillation",
+        "3D reconstruction"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [
+        {
+          "embed_url": "https://fr3d-wm.github.io/build/?playbackPath=/recordings/waymo1.viser&initialCameraPosition=0,0,-3&initialCameraLookAt=0,0,0&initialCameraUp=0,-1,0&synchronizedVideoOverlay=/recordings/waymo1.mp4",
+          "kind": "mp4",
+          "source": "project_page",
+          "title": "Future Dynamic 3D Reconstruction: A 3D World Model with Disentangled Ego-Motion",
+          "url": "https://fr3d-wm.github.io/build/?playbackPath=/recordings/waymo1.viser&initialCameraPosition=0,0,-3&initialCameraLookAt=0,0,0&initialCameraUp=0,-1,0&synchronizedVideoOverlay=/recordings/waymo1.mp4"
+        },
+        {
+          "embed_url": "https://fr3d-wm.github.io/build/?playbackPath=/recordings/kitti1.viser&initialCameraPosition=0,0,-3&initialCameraLookAt=0,0,0&initialCameraUp=0,-1,0&synchronizedVideoOverlay=/recordings/kitti1.mp4",
+          "kind": "mp4",
+          "source": "project_page",
+          "title": "Future Dynamic 3D Reconstruction: A 3D World Model with Disentangled Ego-Motion",
+          "url": "https://fr3d-wm.github.io/build/?playbackPath=/recordings/kitti1.viser&initialCameraPosition=0,0,-3&initialCameraLookAt=0,0,0&initialCameraUp=0,-1,0&synchronizedVideoOverlay=/recordings/kitti1.mp4"
+        },
+        {
+          "embed_url": "https://fr3d-wm.github.io/build/?playbackPath=/recordings/nuscenes1.viser&initialCameraPosition=0,0,-3&initialCameraLookAt=0,0,0&initialCameraUp=0,-1,0&synchronizedVideoOverlay=/recordings/nuscenes1.mp4",
+          "kind": "mp4",
+          "source": "project_page",
+          "title": "Future Dynamic 3D Reconstruction: A 3D World Model with Disentangled Ego-Motion",
+          "url": "https://fr3d-wm.github.io/build/?playbackPath=/recordings/nuscenes1.viser&initialCameraPosition=0,0,-3&initialCameraLookAt=0,0,0&initialCameraUp=0,-1,0&synchronizedVideoOverlay=/recordings/nuscenes1.mp4"
+        }
+      ],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2606-17418",
       "source": "arxiv",
       "title": "DexLink Hand: A Compact, Affordable, 16-DOF Linkage-Driven Hand with Human-Like Dexterity",
@@ -465,83 +644,6 @@
       "demo_videos": [],
       "github": {},
       "source_tags": []
-    },
-    {
-      "id": "arxiv-2606-20712",
-      "source": "arxiv_discover",
-      "title": "Real-World Deployment of Massively Parallel Sampling-Based MPC for Contact-Rich Manipulation",
-      "title_zh": "大规模并行采样MPC在接触丰富操作中的真实世界部署",
-      "tldr_zh": "基于JAX和MuJoCo的采样MPC框架在真实机器人上部署，MTP变体优于基线，并分析了域随机化信号。",
-      "cover_zh": "机器人操作新突破｜采样MPC首次在真实世界部署，MTP变体碾压传统方法",
-      "abstract_zh": "基于采样的模型预测控制（SMPC）结合了无梯度优化和大规模并行GPU仿真，是接触丰富机器人操作的一种有前景的策略。然而，以往的工作大多依赖简化动力学或局限于仿真。我们提出一个MPC框架，利用JAX进行大规模并行化和高效计算，结合高保真MuJoCo MJX仿真器，并通过完整的真实到仿真再到真实（real-to-sim-to-real）流程，将其部署在Franka Research 3上执行Push-T操作任务。具有结构化全局采样的MTP变体在需要模式切换的任务中，无论是在仿真还是硬件上，都优于CEM、MPPI和PS等单峰基线。此外，我们在MPC样本预算内评估在线域随机化，结果表明接触初始化参数产生可解释的适应信号，而全局物理参数提供的反馈太弱，无法在典型重规划频率下可靠利用。这些发现突出了采样MPC在接触丰富操作中的关键挑战：接触敏感性、严格的计算预算以及实时获取信息性域随机化信号的困难。",
-      "authors": [
-        "Magnus Dierking",
-        "Joao Carvalho",
-        "An Thai Le"
-      ],
-      "authors_all": [
-        "Magnus Dierking",
-        "Joao Carvalho",
-        "An Thai Le",
-        "Georgia Chalvatzaki",
-        "Jan Peters"
-      ],
-      "primary_category": "",
-      "published": "2026-06-16",
-      "channels": [
-        "manipulation",
-        "sim2real"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ CMU RI"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-20712.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-20712-p2.jpg",
-        "assets/img/covers/arxiv-2606-20712-p3.jpg",
-        "assets/img/covers/arxiv-2606-20712-p4.jpg"
-      ],
-      "arxiv_id": "2606.20712",
-      "abs_url": "http://arxiv.org/abs/2606.20712v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.20712v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 45,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "真实机器人部署采样MPC，结合JAX并行化与MuJoCo MJX，解决接触丰富操作问题，实验充分，有实际硬件验证。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "TU Darmstadt",
-        "German Research Center for AI (DFKI)",
-        "Hessian.AI",
-        "Robotics Institute Germany (RIG)"
-      ],
-      "method_tags": [
-        "sampling-based MPC",
-        "model tensor planning",
-        "domain randomization"
-      ],
-      "platform": [
-        "Franka Research 3"
-      ],
-      "sim_stack": [
-        "MuJoCo MJX"
-      ],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": [
-        "llm_discover"
-      ]
     },
     {
       "id": "arxiv-2606-17408",
@@ -1051,100 +1153,6 @@
       "real_robot": "no",
       "training_summary": "",
       "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2606-18250",
-      "source": "arxiv",
-      "title": "Future Dynamic 3D Reconstruction: A 3D World Model with Disentangled Ego-Motion",
-      "title_zh": "未来动态三维重建：一种解耦自运动的三维世界模型",
-      "tldr_zh": "提出FR3D，通过解耦自运动实现未来动态三维重建，确保几何一致性。",
-      "cover_zh": "未来2秒也能重建？这个3D世界模型让动态场景不再变形",
-      "abstract_zh": "预测动态环境的演变对自主智能体至关重要。尽管生成式世界模型最近通过在图像平面内混合自运动和场景动态，在二维视频合成中实现了高逼真度，但它们存在物理不一致性，例如物体变形或消失，尤其是在长时间跨度下。本文提出FR3D，一种预测持久三维潜在表示的世界模型，用于未来动态三维重建。与先前将世界视为基于图像的特征序列的工作不同，FR3D明确地将场景的三维演化与智能体的轨迹解耦，将推断的自运动视为动作的潜在代理。这种解耦解决了自运动与世界运动之间的歧义，确保了几何一致性。此外，我们引入了一种教师-学生蒸馏策略，利用现成基础模型的空间“常识”，实现了鲁棒的零样本泛化。大量实验表明，FR3D在多个数据集上，甚至对未来2秒的单目观测，都能实现强大的未来动态三维重建性能。项目页面：https://fr3d-wm.github.io。",
-      "authors": [
-        "Nils Morbitzer",
-        "Jonathan Evers",
-        "Artem Savkin"
-      ],
-      "authors_all": [
-        "Nils Morbitzer",
-        "Jonathan Evers",
-        "Artem Savkin",
-        "Thomas Stauner",
-        "Nassir Navab",
-        "Federico Tombari",
-        "Stefano Gasperini"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-06-16",
-      "channels": [
-        "world-model"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ TUM"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-18250.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-18250-p2.jpg",
-        "assets/img/covers/arxiv-2606-18250-p3.jpg",
-        "assets/img/covers/arxiv-2606-18250-p4.jpg"
-      ],
-      "arxiv_id": "2606.18250",
-      "abs_url": "http://arxiv.org/abs/2606.18250v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.18250v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 37,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出3D世界模型FR3D，解耦自运动与环境动态，实现未来动态3D重建，高科研价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Technical University of Munich (TUM)",
-        "Munich Center for Machine Learning (MCML)",
-        "BMW Group",
-        "Visualais"
-      ],
-      "method_tags": [
-        "world model",
-        "teacher-student distillation",
-        "3D reconstruction"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [
-        {
-          "embed_url": "https://fr3d-wm.github.io/build/?playbackPath=/recordings/waymo1.viser&initialCameraPosition=0,0,-3&initialCameraLookAt=0,0,0&initialCameraUp=0,-1,0&synchronizedVideoOverlay=/recordings/waymo1.mp4",
-          "kind": "mp4",
-          "source": "project_page",
-          "title": "Future Dynamic 3D Reconstruction: A 3D World Model with Disentangled Ego-Motion",
-          "url": "https://fr3d-wm.github.io/build/?playbackPath=/recordings/waymo1.viser&initialCameraPosition=0,0,-3&initialCameraLookAt=0,0,0&initialCameraUp=0,-1,0&synchronizedVideoOverlay=/recordings/waymo1.mp4"
-        },
-        {
-          "embed_url": "https://fr3d-wm.github.io/build/?playbackPath=/recordings/kitti1.viser&initialCameraPosition=0,0,-3&initialCameraLookAt=0,0,0&initialCameraUp=0,-1,0&synchronizedVideoOverlay=/recordings/kitti1.mp4",
-          "kind": "mp4",
-          "source": "project_page",
-          "title": "Future Dynamic 3D Reconstruction: A 3D World Model with Disentangled Ego-Motion",
-          "url": "https://fr3d-wm.github.io/build/?playbackPath=/recordings/kitti1.viser&initialCameraPosition=0,0,-3&initialCameraLookAt=0,0,0&initialCameraUp=0,-1,0&synchronizedVideoOverlay=/recordings/kitti1.mp4"
-        },
-        {
-          "embed_url": "https://fr3d-wm.github.io/build/?playbackPath=/recordings/nuscenes1.viser&initialCameraPosition=0,0,-3&initialCameraLookAt=0,0,0&initialCameraUp=0,-1,0&synchronizedVideoOverlay=/recordings/nuscenes1.mp4",
-          "kind": "mp4",
-          "source": "project_page",
-          "title": "Future Dynamic 3D Reconstruction: A 3D World Model with Disentangled Ego-Motion",
-          "url": "https://fr3d-wm.github.io/build/?playbackPath=/recordings/nuscenes1.viser&initialCameraPosition=0,0,-3&initialCameraLookAt=0,0,0&initialCameraUp=0,-1,0&synchronizedVideoOverlay=/recordings/nuscenes1.mp4"
-        }
-      ],
       "github": {},
       "source_tags": []
     },
