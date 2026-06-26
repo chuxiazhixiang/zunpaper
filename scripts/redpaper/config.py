@@ -82,6 +82,11 @@ class SourcesConfig:
     github_min_stars: int = 300
     github_max_repos: int = 120
     github_refresh_days: int = 7
+    # 会议官网源（OpenReview：CoRL/ICLR/NeurIPS 等接收论文）
+    openreview_enabled: bool = True
+    openreview_venue_ids: list[str] = field(default_factory=list)
+    openreview_max_per_venue: int = 80
+    openreview_refresh_days: int = 14
 
 
 @dataclass
@@ -235,6 +240,10 @@ def load_sources() -> SourcesConfig:
         github_min_stars=get("github", "min_stars", 300),
         github_max_repos=get("github", "max_repos", 120),
         github_refresh_days=get("github", "refresh_days", 7),
+        openreview_enabled=get("openreview", "enabled", True),
+        openreview_venue_ids=get("openreview", "venue_ids", []) or [],
+        openreview_max_per_venue=get("openreview", "max_per_venue", 80),
+        openreview_refresh_days=get("openreview", "refresh_days", 14),
     )
 
 

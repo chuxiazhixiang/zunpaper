@@ -193,7 +193,8 @@ def _enrich_papers(fresh: dict[str, Paper]) -> dict[str, Paper]:
             # 读 PDF 首页文本喂给抽取器：真实单位脚注 / 平台型号几乎只在首页，
             # 摘要里没有 → 不给 PDF 的话机构/平台只能靠猜（OASIS 把 G1 猜成 H1）。
             pdf_text = ""
-            if p.pdf_url:
+            # openreview 源量大，不逐篇下 PDF（只用 abstract 抽取），避免拖垮 CI。
+            if p.pdf_url and (p.source or "") != "openreview":
                 try:
                     pdf_text, pc = fetch_head_text(p.pdf_url)
                     if pc > 0 and not p.page_count:
@@ -244,7 +245,7 @@ def _scrape_demo_videos(fresh: dict[str, Paper]) -> None:
         # 视频源卡（video_youtube / video_bilibili）本身就是一条视频，demo_videos
         # 已在 video_channels 里预填好；这里若再扫 abstract/项目页会返回 [] 把它
         # 覆盖清空，所以直接跳过。
-        if src == "github" or src == "external_link" or src.startswith("video_"):
+        if src in ("github", "external_link", "openreview") or src.startswith("video_"):
             continue
         try:
             videos = enrich_paper_videos(p, cache)
@@ -304,6 +305,33 @@ def _github_mark_attempt() -> None:
     _github_write_state(last_attempt=dt.datetime.now(dt.timezone.utc).isoformat())
 
 
+_OPENREVIEW_STATE_PATH = cfg.REPO_ROOT / "data" / "openreview_state.json"
+
+
+def _openreview_should_fetch(refresh_days: int) -> bool:
+    """会议数据是静态的，refresh_days 天才重抓一次。盘上还没 openreview 卡 → 必抓。"""
+    if refresh_days <= 0:
+        return True
+    if not any(cfg.PAPERS_DIR.glob("openreview-*.json")):
+        return True
+    try:
+        last = json.loads(_OPENREVIEW_STATE_PATH.read_text(encoding="utf-8")).get("last_fetch", "")
+        age = (dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(last)).days
+        return age >= refresh_days
+    except Exception:
+        return True
+
+
+def _openreview_mark_fetched() -> None:
+    try:
+        _OPENREVIEW_STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
+        _OPENREVIEW_STATE_PATH.write_text(
+            json.dumps({"last_fetch": dt.datetime.now(dt.timezone.utc).isoformat()}),
+            encoding="utf-8")
+    except Exception:
+        pass
+
+
 # 子方向 slug → 中文短标签（chip 展示用，不暴露内部 id）。
 _GH_DIR_LABEL = {
     "loco-manip-wbc": "全身控制",
@@ -355,6 +383,45 @@ def _process_github_repos(sources: cfg.SourcesConfig) -> tuple[dict[str, Paper],
         # 一次都没召回到（限流 / 网络） → 视为失败，不进冷却、不 reconcile。
         log.warning("github: 0 candidates fetched (treating as failure)")
         return out, False
+
+    # ----- 论文配套代码：从论文摘要 / 相关链接里抽 GitHub 链接，低 star 也收 -----
+    # 很多论文在摘要/项目页贴自己的 github(.io)，即便 star 不高也是该方向的一手代码。
+    # 这里按 owner/repo 直接拉元数据（不受 star 阈值限制），打上 paper_companion 标，
+    # 同样过 judge_repo 把关（砍掉非算法/无关仓）。
+    try:
+        seen_full = {d["full_name"].lower() for d in repos}
+        existing_slugs = {jp.stem for jp in cfg.PAPERS_DIR.glob("github-*.json")}
+        link_budget = int(os.environ.get("REDPAPER_GH_PAPER_LINKS", "40") or "40")
+        candidates: list[str] = []
+        cand_seen: set[str] = set()
+        for p in _existing_papers().values():
+            if (p.source or "") in ("github", "external_link"):
+                continue
+            hay = (p.abstract or "")
+            for rl in (p.related_links or []):
+                hay += " " + (rl.get("url") or "")
+            for full in gh_src.extract_repo_links(hay):
+                fl = full.lower()
+                if fl in seen_full or fl in cand_seen:
+                    continue
+                if gh_src._slug(full) in existing_slugs:
+                    continue  # 已有这张卡，省一次 API
+                cand_seen.add(fl)
+                candidates.append(full)
+        linked = 0
+        for full in candidates:
+            if linked >= link_budget:
+                break
+            d = gh_src.fetch_repo(full)
+            if not d:
+                continue
+            d["paper_linked"] = True
+            repos.append(d)
+            linked += 1
+        if linked:
+            log.info("github: +%d paper-linked repos (low-star ok)", linked)
+    except Exception as e:
+        log.warning("github paper-linked collection failed: %s", e)
 
     cache = JudgeCache(cfg.REPO_ROOT / "data" / "judge_cache.json")
     judged = kept = dropped = cache_hits = 0
@@ -511,7 +578,9 @@ def process_new_papers(
             if newly_accepted and not paper.venue_announced:
                 paper.venue_announced = dt.date.today().isoformat()
 
-        if not paper.cover_image and paper.pdf_url:
+        # openreview 源：一次可能几百篇，逐篇下载+渲染 PDF 会拖垮 CI → 用占位封面，
+        # 不渲染（仍保留 pdf_url 供「下载 PDF」）。
+        if not paper.cover_image and paper.pdf_url and (paper.source or "") != "openreview":
             rel, previews, pages = fetch_and_render(paper.pdf_url, paper.id, cfg.COVER_DIR)
             if rel:
                 paper.cover_image = rel
@@ -876,6 +945,8 @@ def _feed_entry(p: Paper) -> dict:
         "demo_videos": p.demo_videos or [],
         # GitHub 开源项目元数据（source == "github" 时非空）
         "github": p.github or {},
+        # 来源标记（manual_pin / curated / paper_companion …），前端按需展示小标
+        "source_tags": p.source_tags or [],
     }
 
 
@@ -1561,6 +1632,30 @@ def run() -> None:
                 log.warning("github repos step failed: %s", e)
         else:
             log.info("github: within refresh window, skipping fetch (repos kept from disk)")
+
+    # ----- 会议官网源（OpenReview：CoRL/ICLR/NeurIPS 接收论文）----------
+    # 按 venueid 取接收论文 → 频道关键词过滤出机器人相关 → 落 source=openreview。
+    # 与 arXiv 靠标题去重；不渲染封面（占位）。refresh_days 节流（会议数据静态）。
+    if getattr(sources, "openreview_enabled", False) and getattr(sources, "openreview_venue_ids", None):
+        if _openreview_should_fetch(getattr(sources, "openreview_refresh_days", 14)):
+            try:
+                from .sources import openreview as _openreview
+                or_papers = _openreview.fetch_papers(
+                    sources.openreview_venue_ids, channels,
+                    max_per_venue=getattr(sources, "openreview_max_per_venue", 80),
+                )
+                added = 0
+                for p in or_papers:
+                    if p.id not in fresh:
+                        fresh[p.id] = p
+                        added += 1
+                log.info("openreview: +%d papers", added)
+                if or_papers:
+                    _openreview_mark_fetched()
+            except Exception as e:
+                log.warning("openreview step failed: %s", e)
+        else:
+            log.info("openreview: within refresh window, skipping fetch")
 
     log.info("fetched %d unique papers", len(fresh))
 

@@ -6,7 +6,7 @@
 // 把页面塞爆。
 // before the user hits the bottom.
 
-import { Favorites, Curated, Reads, Theme } from './storage.js?v=254b7d3f';
+import { Favorites, Curated, Reads, Theme } from './storage.js?v=7adda7f1';
 import {
   pickCover,
   loadPalettes,
@@ -18,7 +18,7 @@ import {
   HEART_SVG_FILL,
   showToast,
   fetchJSON,
-} from './utils.js?v=254b7d3f';
+} from './utils.js?v=7adda7f1';
 
 const STATE = {
   channels: [],
@@ -27,6 +27,7 @@ const STATE = {
   mode: 'papers',          // 'papers' | 'repos' —— 顶层切换；方向标签对两者通用
   repoSort: 'stars',       // 'stars' | 'updated' —— 开源项目排序方式
   activeChannel: 'all',
+  activeVenue: '',         // 会议/期刊筛选（去年份的 base 名，如 "ICRA"）；'' = 全部
   searchQuery: '',
   // Filled per render: bucket maps + ordered list of bucket keys.
   // 桶 key 形如 "day:0"/"day:1"/"week:1"/"year:2025"，meta 含 emoji/label
@@ -108,6 +109,7 @@ function buildChannelTabs() {
 function _textHay(p) {
   return [
     p.title, p.title_zh, p.tldr_zh, p.abstract_zh,
+    p.venue,                                    // 搜会议名（rss / icra / corl…）能命中
     (p.institutions || []).join(' '),
     (p.method_tags || []).join(' '),
     (p.platform || []).join(' '),
@@ -140,6 +142,11 @@ function matchesQuery(p, q) {
   return false;
 }
 
+// 会议/期刊去年份的 base 名（"ICRA 2026" → "ICRA"），用于下拉筛选归并同会议不同年。
+function venueBase(v) {
+  return (v || '').replace(/\s*\b20\d{2}\b\s*/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 function visiblePapers() {
   const q = STATE.searchQuery.trim().toLowerCase();
   const wantRepos = STATE.mode === 'repos';
@@ -151,9 +158,35 @@ function visiblePapers() {
     if (STATE.activeChannel !== 'all' && !(p.channels || []).includes(STATE.activeChannel)) {
       return false;
     }
+    // 会议/期刊筛选
+    if (STATE.activeVenue && venueBase(p.venue) !== STATE.activeVenue) {
+      return false;
+    }
     if (!q) return true;
     return matchesQuery(p, q);
   });
+}
+
+// 填充会议/期刊下拉（papers 模式有 venue 的论文才有意义）。
+function populateVenueFilter() {
+  const sel = document.querySelector('#venue-filter');
+  if (!sel) return;
+  const counts = new Map();
+  for (const p of STATE.papers) {
+    if ((p.source || '') === 'github') continue;
+    const b = venueBase(p.venue);
+    if (b) counts.set(b, (counts.get(b) || 0) + 1);
+  }
+  if (!counts.size) { sel.hidden = true; return; }
+  const items = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+  sel.innerHTML = '<option value="">全部会议/期刊</option>' +
+    items.map(([name, n]) => `<option value="${escapeHTML(name)}">${escapeHTML(name)} (${n})</option>`).join('');
+  sel.hidden = false;
+  sel.value = STATE.activeVenue || '';
+  sel.onchange = () => {
+    STATE.activeVenue = sel.value;
+    renderFeed();
+  };
 }
 
 function badgeHTML(badge) {
@@ -189,6 +222,7 @@ export function githubCardHTML(p) {
   const heart = fav ? HEART_SVG_FILL : HEART_SVG_OUTLINE;
   const stars = fmtStars(g.stars);
   const lang = g.language || '';
+  const isCompanion = (p.source_tags || []).includes('paper_companion');
   const dir = (p.method_tags || [])[0] || '';
   const url = p.abs_url || `https://github.com/${p.title}`;
   const archived = g.archived ? '<span class="rp-chip rp-chip--inst">已归档</span>' : '';
@@ -203,6 +237,7 @@ export function githubCardHTML(p) {
         <h4 class="rp-card__title">${escapeHTML(p.title)}</h4>
         ${p.tldr_zh ? `<p class="rp-card__tldr">${escapeHTML(p.tldr_zh)}</p>` : ''}
         <div class="rp-card__chips">
+          ${isCompanion ? '<span class="rp-chip rp-chip--plat">📄 论文配套</span>' : ''}
           ${lang ? `<span class="rp-chip rp-chip--sim">${escapeHTML(lang)}</span>` : ''}
           ${dir ? `<span class="rp-chip rp-chip--method">${escapeHTML(dir)}</span>` : ''}
           ${archived}
@@ -631,6 +666,10 @@ function renderFeed() {
   const feed = document.querySelector('#feed');
   if (!feed) return;
 
+  // 会议/期刊筛选只在论文模式有意义；开源模式隐藏。
+  const vsel = document.querySelector('#venue-filter');
+  if (vsel) vsel.hidden = STATE.mode === 'repos' || vsel.options.length <= 1;
+
   teardownObserver();
   feed.innerHTML = '';
 
@@ -739,6 +778,7 @@ async function main() {
   await loadData();
   renderCrawlBanner();
   buildChannelTabs();
+  populateVenueFilter();
   renderFeed();
 }
 
