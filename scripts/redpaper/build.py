@@ -118,6 +118,12 @@ def _judge_filter(fresh: dict[str, Paper],
         if p.source == "github":
             kept[pid] = p
             continue
+        # 会议/期刊源（OpenReview / S2 conf）：已是「被会议接收 + 命中频道关键词」的论文，
+        # 质量本身有保证；不再过核心 judge —— 既避免把会议论文误删，也省下大量 LLM 调用
+        # （之前一次导入数百篇会议论文全过 judge/enrich/翻译，把 CI 拖过 50min 超时）。
+        if p.source in ("openreview", "conf"):
+            kept[pid] = p
+            continue
 
         cached = cache.get(pid)
         if cached is not None:
@@ -176,9 +182,11 @@ def _enrich_papers(fresh: dict[str, Paper]) -> dict[str, Paper]:
     cache = EnrichCache(cfg.REPO_ROOT / "data" / "enrich_cache.json")
     enrich_calls = enrich_cache_hits = enrich_refresh = 0
     for pid, p in fresh.items():
-        # GitHub 开源仓不抽机构/方法 chip（它们展示 star/语言/topics），跳过 enrich。
-        # external_link 外链 pin 没有正文（抓不到），也跳过 enrich。
-        if p.source in ("github", "external_link"):
+        # 跳过 enrich 的源：github（展示 star/语言）、external_link（无正文）、
+        # openreview / conf（会议批量导入，量大；enrich 的 writer+reviewer 两次 LLM
+        # 调用是首轮大批量入库时撞 CI 超时的主因 → 这两类只保留 venue/标题/摘要，
+        # 不抽机构/方法 chip）。
+        if p.source in ("github", "external_link", "openreview", "conf"):
             continue
         cached = cache.get(pid)
         # 当前 schema 且不需要重试 → 复用；老 schema / 上次没读到 PDF → 重抽。
@@ -603,6 +611,9 @@ def process_new_papers(
                 paper.page_count = cached.page_count
             if not paper.related_links:
                 paper.related_links = list(cached.related_links or [])
+            # demo 视频：fresh 没扫到（或这类源跳过了视频抓取）时继承 cached，别丢。
+            if not paper.demo_videos:
+                paper.demo_videos = list(cached.demo_videos or [])
             # source_tags 取并集（保留 manual_pin 等历史标记）。
             for tg in (cached.source_tags or []):
                 if tg not in (paper.source_tags or []):
@@ -633,7 +644,9 @@ def process_new_papers(
                 paper.preview_pages = previews
                 log.info("backfilled previews: %s (+%d)", paper.id, len(previews))
 
-        if not _is_translated(paper):
+        # openreview / conf 会议源：首轮可能数百篇，不在这里逐篇翻译（每篇 1 次 LLM）
+        # 以免撞 CI 超时；标题先以英文展示，交给下方有预算上限的翻译 backfill 慢慢补。
+        if (paper.source or "") not in ("openreview", "conf") and not _is_translated(paper):
             t = translate_with_retry(paper.title, paper.abstract)
             paper.title_zh = t.title_zh or paper.title_zh or paper.title
             paper.abstract_zh = t.abstract_zh or paper.abstract_zh or paper.abstract
@@ -1791,6 +1804,10 @@ def run() -> None:
     # 超时 / 成本突增）；一次性全站迁移用 workflow_dispatch 的 enrich_backfill 调大。
     backfill_budget = int(os.environ.get("REDPAPER_ENRICH_BACKFILL", "30") or "30")
     backfilled = 0
+    # 翻译 backfill 也限量：会议源一次入库数百篇英文论文，若每轮把所有未翻的全翻一遍
+    # （每篇 1 次 LLM）会撞 CI 超时。每轮最多翻 N 篇（按发布日倒序优先近期），其余下轮。
+    translate_budget = int(os.environ.get("REDPAPER_TRANSLATE_BACKFILL", "120") or "120")
+    translated = 0
     all_papers = list(_existing_papers().values())
     all_papers.sort(key=lambda p: (p.published or "", p.id), reverse=True)
     for paper in all_papers:

@@ -97,7 +97,7 @@ sources:
   # 不渲染 PDF 封面（占位），避免几百篇 PDF 渲染拖垮 CI。慢变集合，refresh_days 节流。
   openreview:
     enabled: true
-    max_per_venue: 80
+    max_per_venue: 60
     refresh_days: 14
     venue_ids:
       - "robot-learning.org/CoRL/2024/Conference"
@@ -110,7 +110,7 @@ sources:
   # 双年会注意年份：ICCV 奇数年、ECCV 偶数年。RSS 在 S2 索引不全，靠 arXiv comment。
   conf_papers:
     enabled: true
-    max_per_venue: 40
+    max_per_venue: 20        # 控量：一次别灌太多新论文，避免翻译/enrich 把 CI 拖到超时
     refresh_days: 14
     venues:
       - { query: "CVPR", short: "CVPR", year: 2025 }

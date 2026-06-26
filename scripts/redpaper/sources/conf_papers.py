@@ -23,9 +23,9 @@ log = logging.getLogger(__name__)
 API = "https://api.semanticscholar.org/graph/v1/paper/search/bulk"
 TIMEOUT = 30
 # 召回查询（机器人/具身向）；每个 venue 跑这几条再本地按频道关键词精筛。
+# 控量：少跑几条 query（每条是一次 S2 调用 + 候选），避免一次灌太多拖垮 CI。
 _QUERIES = [
-    "robot", "manipulation", "humanoid", "locomotion",
-    "vision language action", "grasping", "embodied", "policy learning",
+    "robot", "manipulation", "humanoid", "vision language action",
 ]
 
 
