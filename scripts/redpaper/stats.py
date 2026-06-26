@@ -85,6 +85,8 @@ def _src_group(s: str) -> str:
         return "厂商视频"
     if s == "github":
         return "开源项目"
+    if s == "external_link":
+        return "外部链接"
     if s in ("qbitai", "embodied_techdaily", "shenlan_embodied", "jiqizhixin", "manual_xhs"):
         return "公众号/社区"
     return "行业媒体"

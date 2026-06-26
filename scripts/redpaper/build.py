@@ -14,6 +14,7 @@ from .digest import write_markdown_digest, write_rss
 from .judge import (
     judge_paper, judge_repo, judge_paper_for_channel,
     channel_prompt_signature, JudgeUnavailable, JudgeCache, CustomChannelCache,
+    expand_channel_keywords, keyword_expand_signature, KeywordCache,
 )
 from .enrich import enrich_paper, EnrichUnavailable, EnrichCache
 from .videos import VideoCache, enrich_paper_videos
@@ -175,7 +176,8 @@ def _enrich_papers(fresh: dict[str, Paper]) -> dict[str, Paper]:
     enrich_calls = enrich_cache_hits = enrich_refresh = 0
     for pid, p in fresh.items():
         # GitHub 开源仓不抽机构/方法 chip（它们展示 star/语言/topics），跳过 enrich。
-        if p.source == "github":
+        # external_link 外链 pin 没有正文（抓不到），也跳过 enrich。
+        if p.source in ("github", "external_link"):
             continue
         cached = cache.get(pid)
         # 当前 schema 且不需要重试 → 复用；老 schema / 上次没读到 PDF → 重抽。
@@ -241,7 +243,7 @@ def _scrape_demo_videos(fresh: dict[str, Paper]) -> None:
         # 视频源卡（video_youtube / video_bilibili）本身就是一条视频，demo_videos
         # 已在 video_channels 里预填好；这里若再扫 abstract/项目页会返回 [] 把它
         # 覆盖清空，所以直接跳过。
-        if src == "github" or src.startswith("video_"):
+        if src == "github" or src == "external_link" or src.startswith("video_"):
             continue
         try:
             videos = enrich_paper_videos(p, cache)
@@ -821,6 +823,9 @@ def _feed_entry(p: Paper) -> dict:
         "cover_zh": p.cover_zh or p.tldr_zh,
         "abstract_zh": p.abstract_zh,
         "authors": [a.name for a in p.authors[:3]],
+        # 全量作者名，仅供前端搜索用（显示仍取前 3）。通讯/导师常是最后一位，
+        # 只存前 3 会导致搜不到（如搜导师名 Yue Wang 搜不到）。
+        "authors_all": [a.name for a in p.authors],
         "primary_category": p.primary_category,
         "published": p.published,
         "channels": p.channels,
@@ -1083,36 +1088,49 @@ def _save_custom_state(state: dict) -> None:
 
 
 def _load_custom_examples(custom_channels: list[cfg.Channel]) -> list[Paper]:
-    """把每个自定义分类里站长填的「示例高质量论文」抓成 pin 卡片（立即上墙、
-    跳过 judge），同时归到对应频道。复用 manual_arxiv 的批量抓取逻辑。"""
-    entries: list[dict] = []
+    """把每个自定义分类里站长填的「示例高质量论文」做成 pin 卡片（立即上墙、
+    跳过 judge），同时归到对应频道。
+
+    - arXiv 链接：走 arxiv API 抓全量元数据（封面/摘要/作者）。
+    - 非 arXiv 链接（Nature / Science 等，本站抓不到正文）：只要给了 title，就做成
+      一张「外链 pin 卡」（source=external_link，无封面/摘要，点击直达原文）。没给
+      title 的非 arXiv 链接没法做卡，跳过并告警。
+    """
+    import hashlib
+    arxiv_entries: list[dict] = []
+    out: list[Paper] = []
     for c in custom_channels:
         for ex in (c.examples or []):
             if not isinstance(ex, dict):
                 continue
-            ref = ex.get("url") or ex.get("id") or ""
+            ref = (ex.get("url") or ex.get("id") or "").strip()
             if not ref:
                 continue
-            entries.append({
-                "id": ref,
-                "note": (ex.get("title") or "").strip(),
-                "channels": [c.id],
-            })
-    if not entries:
-        return []
-    try:
-        # 解析 id + 批量抓取（manual_arxiv 内部做归一化 + arxiv API）。
-        norm = []
-        for e in entries:
-            aid = manual_arxiv_source._extract_id(e["id"])
+            title = (ex.get("title") or "").strip()
+            aid = manual_arxiv_source._extract_id(ref)
             if aid:
-                norm.append({"id": aid, "note": e["note"], "channels": e["channels"]})
-        if not norm:
-            return []
-        return manual_arxiv_source._fetch_entries(norm, [])
-    except Exception as e:
-        log.warning("custom examples fetch failed: %s", e)
-        return []
+                arxiv_entries.append({"id": aid, "note": title, "channels": [c.id]})
+            elif ref.startswith("http") and title:
+                pid = "ext-" + hashlib.sha1(ref.encode("utf-8")).hexdigest()[:10]
+                out.append(Paper(
+                    id=pid,
+                    source="external_link",
+                    title=title,
+                    abstract="",
+                    abs_url=ref,
+                    pdf_url="",
+                    published=(ex.get("date") or ""),
+                    channels=[c.id],
+                    source_tags=["manual_pin"],
+                ))
+            else:
+                log.warning("custom example skipped (需要 arXiv 链接，或给非 arXiv 链接配 title): %s", ref)
+    if arxiv_entries:
+        try:
+            out.extend(manual_arxiv_source._fetch_entries(arxiv_entries, []))
+        except Exception as e:
+            log.warning("custom arxiv examples fetch failed: %s", e)
+    return out
 
 
 def assign_custom_channels(custom_channels: list[cfg.Channel],
@@ -1139,6 +1157,10 @@ def assign_custom_channels(custom_channels: list[cfg.Channel],
         except Exception:
             continue
         if (paper.source or "") == "github":
+            continue
+        # 钉过的论文（manual_pin / 示例 / manual_arxiv）频道由站长指定，自动归类
+        # 不要去动它（否则示例 pin 可能被独立 judge 判否、丢掉所属频道）。
+        if "manual_pin" in (paper.source_tags or []) or (paper.source or "") in ("manual_arxiv", "external_link"):
             continue
         dirty = False
         for c in custom_channels:
@@ -1179,6 +1201,36 @@ def assign_custom_channels(custom_channels: list[cfg.Channel],
     log.info("custom channels: %d judge calls, %d papers re-tagged", calls, changed)
 
 
+def _expand_custom_keywords(custom_channels: list[cfg.Channel]) -> None:
+    """构建时用 LLM 给每个自定义分类补充召回关键词（缓存，改了定义/标准/关键词才重扩）。
+    只拓宽召回，精度仍由该分类独立 judge 把关。无 API key 时静默跳过。"""
+    if not custom_channels:
+        return
+    cache = KeywordCache(cfg.REPO_ROOT / "data" / "custom_keyword_cache.json")
+    changed = False
+    for c in custom_channels:
+        sig = keyword_expand_signature(c)
+        extra = cache.get(c.id, sig)
+        if extra is None:
+            try:
+                extra = expand_channel_keywords(c)
+                cache.put(c.id, sig, extra)
+                changed = True
+                log.info("keyword expand[%s]: +%d AI keywords", c.id, len(extra))
+            except JudgeUnavailable:
+                extra = []
+            except Exception as e:
+                log.warning("keyword expand[%s] failed: %s", c.id, e)
+                extra = []
+        have = {k.lower() for k in (c.keywords or [])}
+        for k in extra:
+            if k and k.lower() not in have:
+                c.keywords.append(k)
+                have.add(k.lower())
+    if changed:
+        cache.save()
+
+
 def run() -> None:
     logging.basicConfig(
         level=logging.INFO,
@@ -1190,6 +1242,8 @@ def run() -> None:
     custom_channels = [c for c in channels if c.is_custom]
     if custom_channels:
         log.info("custom channels active: %s", ", ".join(c.id for c in custom_channels))
+        # AI 扩展自定义分类的召回关键词（在 retag / fetch 之前，让后续都用上更全的词）。
+        _expand_custom_keywords(custom_channels)
 
     # 1) Realign existing cached papers with the current channels.yaml BEFORE
     #    fetching anything. Off-topic papers are pruned so the feed stays
