@@ -1,7 +1,7 @@
 // 数据看板：读 data/stats.json，用 ECharts 画 8 类图，滚动到哪张图触发哪张
 // 图的入场动画。ECharts 通过 insights.html 的 CDN <script> 提供全局 echarts。
-import { Theme } from './storage.js?v=f2bba5ee';
-import { escapeHTML, attachSearchRedirect, fetchJSON } from './utils.js?v=f2bba5ee';
+import { Theme } from './storage.js?v=7adda7f1';
+import { escapeHTML, attachSearchRedirect, fetchJSON } from './utils.js?v=7adda7f1';
 
 // 站点暖色调色板（跟首页红主题呼应）
 const PALETTE = [
@@ -25,6 +25,39 @@ function selChannels(d) {
 }
 function colorOf(id, fallbackIdx) {
   return STATE.channelColor.get(id) || PALETTE[(fallbackIdx || 0) % PALETTE.length];
+}
+function selIds(d) {
+  return STATE.selectedChannels ? [...STATE.selectedChannels] : d.channels.map((c) => c.id);
+}
+
+// 按勾选方向求和重排「排行类」分布（{cid:{name:count}} → [{name,count}] top N）
+function sumRankByCh(byCh, topN) {
+  if (!byCh) return null;
+  const agg = {};
+  for (const cid of selIds(STATE.data)) {
+    const m = byCh[cid];
+    if (!m) continue;
+    for (const [k, v] of Object.entries(m)) agg[k] = (agg[k] || 0) + v;
+  }
+  return Object.entries(agg)
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, topN);
+}
+
+// 按勾选方向求和「时间序列类」（{cid:{label:{month:n}}} → {label:{month:sum}}）
+function sumTimeByCh(byCh, months) {
+  if (!byCh) return null;
+  const agg = {};
+  for (const cid of selIds(STATE.data)) {
+    const m = byCh[cid];
+    if (!m) continue;
+    for (const [label, series] of Object.entries(m)) {
+      const a = agg[label] || (agg[label] = {});
+      for (const mm of months) a[mm] = (a[mm] || 0) + (series[mm] || 0);
+    }
+  }
+  return agg;
 }
 
 function isDark() {
@@ -175,12 +208,22 @@ function optHBar(items, color) {
 }
 
 function optMethodTime(d) {
-  const tags = Object.keys(d.method_time);
+  // 受方向筛选影响：从 method_time_by_ch 按勾选方向求和，再取前 6 条线。
+  let timeMap = d.method_time;
+  if (d.method_time_by_ch) {
+    const agg = sumTimeByCh(d.method_time_by_ch, d.months);
+    const totals = Object.entries(agg)
+      .map(([k, s]) => [k, Object.values(s).reduce((a, b) => a + b, 0)])
+      .sort((a, b) => b[1] - a[1]);
+    timeMap = {};
+    for (const [k] of totals.slice(0, 6)) timeMap[k] = agg[k];
+  }
+  const tags = Object.keys(timeMap);
   const series = tags.map((t, i) => ({
     name: t, type: 'line', smooth: true, showSymbol: false,
     color: PALETTE[i % PALETTE.length], lineStyle: { width: 2.5 },
     emphasis: { focus: 'series' },
-    data: d.months.map((m) => d.method_time[t][m] || 0),
+    data: d.months.map((m) => timeMap[t][m] || 0),
   }));
   return {
     color: PALETTE,
@@ -194,12 +237,13 @@ function optMethodTime(d) {
 }
 
 function optHot(d) {
-  const labels = Object.keys(d.hot_keywords);
+  const hotMap = d.hot_by_ch ? sumTimeByCh(d.hot_by_ch, d.months) : d.hot_keywords;
+  const labels = Object.keys(hotMap);
   const series = labels.map((t, i) => ({
     name: t, type: 'line', smooth: true, symbol: 'circle', symbolSize: 6,
     color: PALETTE[i % PALETTE.length], lineStyle: { width: 2.5 },
     emphasis: { focus: 'series' },
-    data: d.months.map((m) => d.hot_keywords[t][m] || 0),
+    data: d.months.map((m) => hotMap[t][m] || 0),
   }));
   return {
     color: PALETTE,
@@ -278,15 +322,27 @@ function renderStatCards(d) {
     </div>`).join('');
 }
 
-// 受方向筛选影响的「各方向」三张图
-const CAT_CHARTS = {
+// 受方向筛选影响的排行类图（按勾选方向求和重排），老 stats.json 没 *_by_ch 时回退全站
+const _GRAD_METHOD = () => new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#5AA9E6' }, { offset: 1, color: '#9B6BDF' }]);
+const _GRAD_PLATFORM = () => new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#5AC8B0' }, { offset: 1, color: '#5AA9E6' }]);
+function optInst(d) { return optHBar(sumRankByCh(d.inst_by_ch, 15) || d.institutions); }
+function optMethodTop(d) { return optHBar(sumRankByCh(d.method_by_ch, 12) || d.method_top, _GRAD_METHOD()); }
+function optPlatform(d) { return optHBar(sumRankByCh(d.platform_by_ch, 12) || d.platform, _GRAD_PLATFORM()); }
+
+// 所有受方向筛选影响的图：勾选变化时统一重渲。
+const FILTER_CHARTS = {
   'chart-cat-time': optCatTime,
   'chart-cat-line': optCatLine,
   'chart-cat-count': optCatCount,
+  'chart-inst': optInst,
+  'chart-method-top': optMethodTop,
+  'chart-method-time': optMethodTime,
+  'chart-hot': optHot,
+  'chart-platform': optPlatform,
 };
 
 function rerenderCategoryCharts() {
-  for (const [id, fn] of Object.entries(CAT_CHARTS)) {
+  for (const [id, fn] of Object.entries(FILTER_CHARTS)) {
     const chart = STATE.charts.get(id);
     // notMerge=true：方向数变化时彻底替换 series，避免残留旧曲线
     if (chart) chart.setOption(fn(STATE.data), true);
@@ -372,11 +428,11 @@ async function main() {
   lazyMount('chart-cat-count', optCatCount);
   lazyMount('chart-source', (x) => optDonut(x.source, 'name', 'value'));
   lazyMount('chart-intake', optIntake);
-  lazyMount('chart-inst', (x) => optHBar(x.institutions));
-  lazyMount('chart-method-top', (x) => optHBar(x.method_top, new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#5AA9E6' }, { offset: 1, color: '#9B6BDF' }])));
+  lazyMount('chart-inst', optInst);
+  lazyMount('chart-method-top', optMethodTop);
   lazyMount('chart-method-time', optMethodTime);
   lazyMount('chart-hot', optHot);
-  lazyMount('chart-platform', (x) => optHBar(x.platform, new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#5AC8B0' }, { offset: 1, color: '#5AA9E6' }])));
+  lazyMount('chart-platform', optPlatform);
 
   window.addEventListener('resize', () => {
     for (const c of STATE.charts.values()) c.resize();
