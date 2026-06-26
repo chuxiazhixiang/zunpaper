@@ -289,45 +289,40 @@ img {
   z-index: 40;
   background: var(--rp-bg);
   border-bottom: 1px solid var(--rp-border);
-  display: flex;
+}
+
+/* 会议筛选提示条（从倒计时点会议名跳来时出现） */
+.rp-venuebar {
+  max-width: var(--rp-max-width);
+  margin: 10px auto 0;
+  padding: 0 16px;
+}
+.rp-venuebar__chip {
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-}
-
-.rp-venue-filter {
-  flex: 0 0 auto;
-  margin-right: 14px;
-  max-width: 220px;
-  font: inherit;
-  font-size: 12.5px;
-  font-weight: 600;
+  font-size: 13px;
   color: var(--rp-text-soft);
-  background-color: var(--rp-surface);
-  border: 1px solid var(--rp-border);
+  background: color-mix(in srgb, var(--rp-red) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--rp-red) 25%, transparent);
   border-radius: 999px;
-  padding: 6px 30px 6px 14px;
-  cursor: pointer;
-  transition: all 0.15s;
-  /* 自定义下拉箭头（去掉原生丑箭头）*/
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239A9A9A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 11px center;
+  padding: 5px 12px;
 }
-.rp-venue-filter:hover {
-  border-color: var(--rp-red);
-  color: var(--rp-red);
+.rp-venuebar__chip b { color: var(--rp-red); }
+.rp-venuebar__clear {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--rp-text-soft);
+  background: var(--rp-surface);
+  font-size: 11px;
 }
-.rp-venue-filter:focus {
-  outline: none;
-  border-color: var(--rp-red);
-}
+.rp-venuebar__clear:hover { color: #fff; background: var(--rp-red); }
 
 .rp-tabs__scroll {
-  flex: 1;
-  min-width: 0;
   max-width: var(--rp-max-width);
   margin: 0 auto;
   padding: 10px 16px;
@@ -2277,29 +2272,31 @@ img {
   opacity: 1;
 }
 
-/* ----- 会议投稿倒计时（首页扁卡 + 展开全部）-------------------------- */
+/* ----- 会议投稿倒计时（首页轻量信息条 + 展开全部）------------------- */
 .rp-conf {
   max-width: var(--rp-max-width);
-  margin: 8px auto 0;
+  margin: 6px auto 0;
   padding: 0 16px;
 }
 .rp-conf__bar {
   display: flex;
   align-items: center;
   gap: 10px;
-  flex-wrap: wrap;
-  background: var(--rp-surface);
-  border: 1px solid var(--rp-border);
-  border-radius: 999px;
-  padding: 7px 14px;
-  box-shadow: var(--rp-shadow);
+  flex-wrap: nowrap;
+  padding: 2px 2px;
 }
 .rp-conf__title {
   flex: 0 0 auto;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--rp-text);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--rp-text-dim);
   white-space: nowrap;
+}
+/* 窄屏：省掉文字标题，倒计时药丸横向滚动，"全部会议"按钮始终可见，避免溢出 */
+@media (max-width: 560px) {
+  .rp-conf__title { display: none; }
+  .rp-conf__bar { gap: 6px; }
+  .rp-conf__more { flex: 0 0 auto; }
 }
 .rp-conf__pills {
   display: flex;
