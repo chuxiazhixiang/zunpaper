@@ -6,7 +6,7 @@
 // 把页面塞爆。
 // before the user hits the bottom.
 
-import { Favorites, Curated, Reads, Theme } from './storage.js?v=7b4ce961';
+import { Favorites, Curated, Reads, Theme } from './storage.js?v=7adda7f1';
 import {
   pickCover,
   loadPalettes,
@@ -18,7 +18,7 @@ import {
   HEART_SVG_FILL,
   showToast,
   fetchJSON,
-} from './utils.js?v=7b4ce961';
+} from './utils.js?v=7adda7f1';
 
 const STATE = {
   channels: [],
@@ -180,7 +180,8 @@ function visiblePapers() {
 function renderVenueBar() {
   const bar = document.querySelector('#venue-bar');
   if (!bar) return;
-  if (!STATE.activeVenue) { bar.hidden = true; bar.innerHTML = ''; return; }
+  // 开源项目模式不按 venue 过滤，提示条也别显示（否则文案误导）。
+  if (!STATE.activeVenue || STATE.mode === 'repos') { bar.hidden = true; bar.innerHTML = ''; return; }
   const n = STATE.papers.filter((p) => venueBase(p.venue) === STATE.activeVenue).length;
   bar.innerHTML = `<span class="rp-venuebar__chip">🎓 正在看 <b>${escapeHTML(STATE.activeVenue)}</b> 收录的论文（${n}）
     <a class="rp-venuebar__clear" href="index.html" title="清除筛选">✕</a></span>`;

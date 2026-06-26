@@ -1158,9 +1158,11 @@ def retag_and_prune(channels: list[cfg.Channel]) -> None:
         keep_judged = []
         if jpc and jpc in valid_ch_ids and (paper.judge or {}).get("relevant", True):
             keep_judged = [jpc]
-        # 会议源（有 venue）即便关键词没命中也保留（它们由 venue/关键词预筛过）。
-        if (paper.source or "") in ("openreview", "conf") and not (matches or keep_judged):
-            keep_judged = list(paper.channels) or keep_judged
+        # 会议源(openreview/conf)和 LLM 联网发现(arxiv_discover) 即便关键词没命中也保留：
+        # 它们已被 venue/关键词预筛过 / 是专门补关键词漏召回的。judge 不可用、本轮瞬时、
+        # 或 primary_channel="none" 时，回退保留其现有的有效 channels（codex 指出的漏洞）。
+        if (paper.source or "") in ("openreview", "conf", "arxiv_discover") and not (matches or keep_judged):
+            keep_judged = [c for c in (paper.channels or []) if c in valid_ch_ids]
         effective = matches + [cid for cid in preserved_custom if cid not in matches] \
             + [cid for cid in keep_judged if cid not in matches and cid not in preserved_custom]
 
@@ -1817,7 +1819,7 @@ def run() -> None:
     backfilled = 0
     # 翻译 backfill 也限量：会议源一次入库数百篇英文论文，若每轮把所有未翻的全翻一遍
     # （每篇 1 次 LLM）会撞 CI 超时。每轮最多翻 N 篇（按发布日倒序优先近期），其余下轮。
-    translate_budget = int(os.environ.get("REDPAPER_TRANSLATE_BACKFILL", "120") or "120")
+    translate_budget = int(os.environ.get("REDPAPER_TRANSLATE_BACKFILL", "250") or "250")
     translated = 0
     all_papers = list(_existing_papers().values())
     all_papers.sort(key=lambda p: (p.published or "", p.id), reverse=True)
@@ -1825,7 +1827,11 @@ def run() -> None:
         if paper.id in fresh:
             continue  # already enriched in process_new_papers
 
-        if (paper.source or "") != "github" and backfilled < backfill_budget \
+        # 会议源（openreview/conf）和 github/external 不参与 enrich backfill —— 否则
+        # 每轮还会有 30 篇会议论文去下 PDF + 跑 writer/reviewer，把当初为超时加的 skip
+        # 又从存量这条路漏回来（codex 指出）。
+        if (paper.source or "") not in ("github", "openreview", "conf", "external_link") \
+                and backfilled < backfill_budget \
                 and enrich_cache.needs_reenrich(paper.id, bool(paper.pdf_url)):
             try:
                 authors_text = "、".join(a.name for a in (paper.authors or [])[:8])

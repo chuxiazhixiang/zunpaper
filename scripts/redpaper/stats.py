@@ -182,11 +182,27 @@ def compute_stats(all_papers, channels) -> dict:
 
     # ⑧b 会议 / 期刊（venue）Top —— 用规范化后的「去年份」名合并（ICRA 2025 / ICRA 2026 → ICRA）
     ven = Counter()
+    # 各会议 × 方向（频道）论文数：堆叠柱状图用
+    vc: dict[str, Counter] = {}
     for p in papers:
         v = (_g(p, "venue", "") or "").strip()
-        if v:
-            ven[_venue_base(v)] += 1
+        if not v:
+            continue
+        base = _venue_base(v)
+        ven[base] += 1
+        cc = vc.setdefault(base, Counter())
+        for c in (_g(p, "channels", []) or []):
+            if c in ch_ids:
+                cc[c] += 1
     venues = [{"name": k, "count": v} for k, v in ven.most_common(15)]
+    top_venues = [k for k, _ in ven.most_common(12)]
+    venue_channel = {
+        "venues": top_venues,
+        "series": [
+            {"channel": cid, "data": [vc.get(v, Counter()).get(cid, 0) for v in top_venues]}
+            for cid in ch_ids
+        ],
+    }
 
     # ⑨ 热点关键词随时间
     hot = {label: {mm: 0 for mm in months} for label, _ in _HOT_KEYWORDS}
@@ -279,6 +295,7 @@ def compute_stats(all_papers, channels) -> dict:
         "platform_disclosed": platform_disclosed,
         "source": source,
         "venues": venues,
+        "venue_channel": venue_channel,
         "hot_keywords": hot,
         # 按方向拆分（前端方向筛选用；老前端忽略这些键即可）
         "inst_by_ch": {cid: dict(c) for cid, c in inst_by_ch.items()},

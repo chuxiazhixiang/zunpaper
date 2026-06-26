@@ -2,7 +2,7 @@
 //   - 收起态：只显示最近 2-3 个临近截止的小药丸（不抢下方帖子版面）。
 //   - 「全部会议 ▾」展开一个面板，列出所有会议：截止倒计时 + 开会时间地点 + 主页。
 //   - 点会议名 → 跳到该会议的论文（index.html?venue=<基名>，feed.js 会按 venue 筛选）。
-import { escapeHTML, fetchJSON } from './utils.js?v=7b4ce961';
+import { escapeHTML, fetchJSON } from './utils.js?v=7adda7f1';
 
 const DAY = 86400000;
 
@@ -39,6 +39,19 @@ function daysLeft(date) {
   return Math.ceil((date - todayMidnight()) / DAY);
 }
 
+function _pad2(n) { return String(n).padStart(2, '0'); }
+
+// 实时倒计时文本："80天 23:59:58"，精确到秒（每秒刷新一次即可看到流逝）。
+function fmtCountdown(date) {
+  let ms = date.getTime() - Date.now();
+  if (ms <= 0) return '已截止';
+  const d = Math.floor(ms / DAY); ms -= d * DAY;
+  const h = Math.floor(ms / 3600000); ms -= h * 3600000;
+  const m = Math.floor(ms / 60000); ms -= m * 60000;
+  const s = Math.floor(ms / 1000);
+  return `${d}天 ${_pad2(h)}:${_pad2(m)}:${_pad2(s)}`;
+}
+
 function urgencyClass(days) {
   if (days < 0) return 'is-passed';
   if (days <= 7) return 'is-hot';
@@ -55,18 +68,15 @@ function venueHref(venue) {
 }
 
 function pillHTML(c) {
-  const days = c._days;
-  const cls = urgencyClass(days);
-  const txt = days < 0 ? '已截止' : `还剩 ${days} 天`;
-  return `<a class="rp-conf__pill ${cls}" href="${venueHref(c.venue || c.name)}" title="${escapeHTML(c.full || c.name)} · 截止 ${fmtDate(c._date)}${c._predicted ? '（预计）' : ''}">
-    <b>${escapeHTML(c.name)}</b><span>${txt}</span></a>`;
+  const cls = urgencyClass(c._days);
+  return `<a class="rp-conf__pill ${cls}" href="${venueHref(c.venue || c.name)}" data-ts="${c._date.getTime()}" title="${escapeHTML(c.full || c.name)} · 截止 ${fmtDate(c._date)}${c._predicted ? '（预计）' : ''}">
+    <b>${escapeHTML(c.name)}</b><span class="rp-conf__cd">${fmtCountdown(c._date)}</span></a>`;
 }
 
 function rowHTML(c) {
-  const days = c._has ? c._days : null;
-  const cls = c._has ? urgencyClass(days) : '';
+  const cls = c._has ? urgencyClass(c._days) : '';
   const ddl = c._has
-    ? `<span class="rp-conf__ddl ${cls}">${days < 0 ? '已截止' : `还剩 ${days} 天`} · ${fmtDate(c._date)}${c._predicted ? ' 预计' : ''}</span>`
+    ? `<span class="rp-conf__ddl ${cls}" data-ts="${c._date.getTime()}"><span class="rp-conf__cd">${fmtCountdown(c._date)}</span> · 截止 ${fmtDate(c._date)}${c._predicted ? ' 预计' : ''}</span>`
     : '<span class="rp-conf__ddl">—</span>';
   return `<div class="rp-conf__row">
     <a class="rp-conf__name" href="${venueHref(c.venue || c.name)}" title="查看 ${escapeHTML(c.name)} 收录的论文">${escapeHTML(c.name)}</a>
@@ -74,6 +84,18 @@ function rowHTML(c) {
     <span class="rp-conf__when">${escapeHTML(c.conf || '')}</span>
     ${c.homepage ? `<a class="rp-conf__home" href="${escapeHTML(c.homepage)}" target="_blank" rel="noopener">主页 ↗</a>` : ''}
   </div>`;
+}
+
+// 每秒刷新所有带 data-ts 的倒计时文本（药丸 + 面板行），让用户看到时间流逝。
+function startTicking() {
+  const tick = () => {
+    document.querySelectorAll('#conf-countdown [data-ts]').forEach((el) => {
+      const cd = el.querySelector('.rp-conf__cd');
+      if (cd) cd.textContent = fmtCountdown(new Date(Number(el.getAttribute('data-ts'))));
+    });
+  };
+  tick();
+  setInterval(tick, 1000);
 }
 
 async function main() {
@@ -122,6 +144,7 @@ async function main() {
   });
 
   root.hidden = false;
+  startTicking();
 }
 
 main();
