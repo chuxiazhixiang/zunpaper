@@ -28,6 +28,7 @@ import yaml
 
 from ..config import REPO_ROOT, Channel
 from ..models import Author, Paper
+from ..venues import parse_venue
 
 log = logging.getLogger(__name__)
 
@@ -167,6 +168,7 @@ def _fetch_entries(entries: list[dict], channels: list[Channel]) -> list[Paper]:
             abs_url=r.entry_id or "",
             channels=chs,
             source_tags=["manual_pin"],
+            venue=parse_venue(getattr(r, "comment", "") or ""),
         )
         # User-provided note becomes a related_link of source "note" if any.
         if note_by_id.get(arxiv_id_base):

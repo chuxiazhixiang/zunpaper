@@ -36,6 +36,8 @@ class Paper:
     arxiv_id: str = ""
     pdf_url: str = ""
     abs_url: str = ""
+    venue: str = ""              # 会议/期刊（如 "RSS 2026"），来自 arXiv comment 或 Crossref
+    venue_announced: str = ""    # 首次检测到 venue 的日期（ISO）；用于"被收录后重新上 feed"
     cover_image: str = ""       # site-relative path to first-page PNG
     preview_pages: list[str] = field(default_factory=list)  # extra PDF page jpgs (page 2..N)
     channels: list[str] = field(default_factory=list)
