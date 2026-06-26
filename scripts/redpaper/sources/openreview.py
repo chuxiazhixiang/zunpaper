@@ -35,7 +35,7 @@ def _gv(content: dict, key: str):
     return v
 
 
-def _fetch_venue(venueid: str, limit_total: int = 600, page: int = 200) -> list[dict]:
+def _fetch_venue(venueid: str, limit_total: int = 300, page: int = 200) -> list[dict]:
     out: list[dict] = []
     offset = 0
     while offset < limit_total:

@@ -1,7 +1,7 @@
 // Favorites page: filter the global index to favorited papers, grouped by
 // user-defined categories. All state is local to this browser.
 
-import { Favorites, Curated, Theme } from './storage.js?v=6700cda5';
+import { Favorites, Curated, Theme } from './storage.js?v=7adda7f1';
 import {
   pickCover,
   loadPalettes,
@@ -14,8 +14,8 @@ import {
   HEART_SVG_FILL,
   showToast,
   fetchJSON,
-} from './utils.js?v=6700cda5';
-import { chipRowsHTML, videoBadgeHTML, githubCardHTML, externalCardHTML } from './feed.js?v=6700cda5';
+} from './utils.js?v=7adda7f1';
+import { chipRowsHTML, videoBadgeHTML, githubCardHTML, externalCardHTML } from './feed.js?v=7adda7f1';
 
 const STATE = {
   papers: [],          // master list from index.json
@@ -203,6 +203,18 @@ function renderFeed() {
       Favorites.toggle(id);
       renderAll();
       showToast('已从收藏移除');
+    });
+  });
+  // 复用的 GitHub / 外链卡里也有 💎 按钮（data-gem）。收藏页若不拦截，点 💎 会触发
+  // 外层 <a> 跳转而不是切换站长甄选 —— 这里单独绑定。
+  feed.querySelectorAll('[data-gem]').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const id = btn.dataset.gem;
+      const on = Curated.toggle(id);
+      btn.classList.toggle('is-on', on);
+      showToast(on ? '已标记为高质量 💎' : '已取消高质量标记');
     });
   });
 }

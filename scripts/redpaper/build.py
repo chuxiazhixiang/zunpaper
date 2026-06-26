@@ -1151,7 +1151,18 @@ def retag_and_prune(channels: list[cfg.Channel]) -> None:
         matches = [c.id for c in core_channels if _matches_channel(paper.title, paper.abstract, c)]
         # 已被判进、且频道仍存在的自定义分类成员关系予以保留（不靠关键词重算）。
         preserved_custom = [cid for cid in (paper.channels or []) if cid in custom_ids]
-        effective = matches + [cid for cid in preserved_custom if cid not in matches]
+        # judge/会议源 已判定的方向：discover（LLM 联网找的、专补关键词漏召回的论文）
+        # 和 openreview/conf 论文常不含核心关键词，但 judge.primary_channel 已给了方向。
+        # 不能按"关键词没命中"就删，否则 discover 的价值（补漏召回）被自己抹掉。
+        jpc = (paper.judge or {}).get("primary_channel", "")
+        keep_judged = []
+        if jpc and jpc in valid_ch_ids and (paper.judge or {}).get("relevant", True):
+            keep_judged = [jpc]
+        # 会议源（有 venue）即便关键词没命中也保留（它们由 venue/关键词预筛过）。
+        if (paper.source or "") in ("openreview", "conf") and not (matches or keep_judged):
+            keep_judged = list(paper.channels) or keep_judged
+        effective = matches + [cid for cid in preserved_custom if cid not in matches] \
+            + [cid for cid in keep_judged if cid not in matches and cid not in preserved_custom]
 
         if effective:
             if set(paper.channels) != set(effective):
@@ -1700,7 +1711,7 @@ def run() -> None:
             tmpl = conf.get("openreview")
             if not tmpl:
                 continue
-            for y in (_yr - 1, _yr, _yr + 1):
+            for y in (_yr - 1, _yr):  # 只推当年+去年，少抓几个大 venue，控构建时长
                 vid = tmpl.replace("{year}", str(y))
                 if vid not in or_venue_ids:
                     or_venue_ids.append(vid)
@@ -1833,12 +1844,13 @@ def run() -> None:
             except Exception as ex:
                 log.warning("enrich backfill failed for %s: %s", paper.id, ex)
 
-        if not _is_translated(paper):
+        if translated < translate_budget and not _is_translated(paper):
             t = translate_with_retry(paper.title, paper.abstract)
             paper.title_zh = t.title_zh or paper.title_zh or paper.title
             paper.abstract_zh = t.abstract_zh or paper.abstract_zh or paper.abstract
             paper.tldr_zh = t.tldr_zh or paper.tldr_zh
             paper.cover_zh = t.cover_zh or paper.cover_zh or paper.tldr_zh
+            translated += 1
             log.info("back-fill translation: %s", paper.id)
 
         ctx.apply(paper)
