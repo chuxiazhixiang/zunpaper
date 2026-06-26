@@ -90,8 +90,10 @@ function buildChannelTabs() {
           c.id
         }">${c.emoji || ''} ${escapeHTML(c.name)}</button>`,
     )
-    .join('');
-  wrap.querySelectorAll('.rp-tab').forEach((el) => {
+    .join('') +
+    // 「加分类」放在分类这一行末尾（链接到表单页），不再占顶部导航。
+    '<a class="rp-tab rp-tab--add" href="add-category.html" title="添加论文分类">➕ 加分类</a>';
+  wrap.querySelectorAll('.rp-tab[data-channel]').forEach((el) => {
     el.addEventListener('click', () => {
       STATE.activeChannel = el.dataset.channel;
       buildChannelTabs();
@@ -163,8 +165,8 @@ function visiblePapers() {
     if (STATE.activeChannel !== 'all' && !(p.channels || []).includes(STATE.activeChannel)) {
       return false;
     }
-    // 会议/期刊筛选
-    if (STATE.activeVenue && venueBase(p.venue) !== STATE.activeVenue) {
+    // 会议/期刊筛选只作用于论文模式；开源项目（repo 没有 venue）不套用，否则会被全过滤光。
+    if (!wantRepos && STATE.activeVenue && venueBase(p.venue) !== STATE.activeVenue) {
       return false;
     }
     if (!q) return true;
@@ -769,9 +771,17 @@ async function main() {
     const el = document.querySelector('#search-input');
     if (el) el.value = initialQ;
   }
-  // 会议倒计时点会议名跳来的 ?venue=ICRA —— 进站直接按该会议筛选。
+  // 会议倒计时点会议名跳来的 ?venue=ICRA —— 进站直接按该会议筛选，然后立刻把 venue
+  // 参数从地址栏抹掉：这样「刷新」会回到全部论文，不会一直卡在某个会议（用 ✕ 也能清）。
   const initialVenue = params.get('venue');
-  if (initialVenue) STATE.activeVenue = initialVenue;
+  if (initialVenue) {
+    STATE.activeVenue = initialVenue;
+    try {
+      const u = new URL(window.location.href);
+      u.searchParams.delete('venue');
+      history.replaceState({}, '', u.pathname + u.search + u.hash);
+    } catch (_) { /* noop */ }
+  }
   await loadData();
   renderCrawlBanner();
   buildChannelTabs();
