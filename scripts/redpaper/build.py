@@ -824,6 +824,7 @@ def write_feed(all_papers: list[Paper]) -> None:
                 "accent_color": site.accent_color,
                 "feed_page_size": site.feed_page_size,
                 "default_channel": site.default_channel,
+                "goatcounter": site.goatcounter,
                 # Crawl meta — let the homepage tell users which window
                 # was scraped this run. Used by the "今日抓取" banner.
                 "crawl_lookback_days": sources_cfg.arxiv_lookback_days,

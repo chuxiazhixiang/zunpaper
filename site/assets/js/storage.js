@@ -231,6 +231,18 @@ export const Theme = {
     } else {
       root.setAttribute('data-theme', mode);
     }
+    this._syncBtn(mode);
+  },
+  // 让顶部主题按钮显示当前模式的清晰图标（☀️亮 / 🌙暗 / 🌗跟随系统），所有页面通用。
+  icon(mode) {
+    return mode === 'dark' ? '🌙' : mode === 'light' ? '☀️' : '🌗';
+  },
+  _syncBtn(mode) {
+    const b = document.getElementById('theme-toggle');
+    if (!b) return;
+    b.textContent = this.icon(mode || this.get());
+    b.setAttribute('title', mode === 'dark' ? '暗色（点击切换）'
+      : mode === 'light' ? '亮色（点击切换）' : '跟随系统（点击切换）');
   },
   set(mode) {
     localStorage.setItem(THEME_KEY, mode);

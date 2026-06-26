@@ -103,6 +103,7 @@ class SiteConfig:
     accent_color: str = "#FF6B8A"
     feed_page_size: int = 60
     default_channel: str = ""
+    goatcounter: str = ""        # GoatCounter code（子域名前缀）；空=不统计访问
     translation_backend_env: str = "REDPAPER_LLM_BACKEND"
     translation_default_backend: str = "dryrun"
     translation_cache_dir: str = "site/data/papers"
@@ -285,6 +286,7 @@ def load_site() -> SiteConfig:
         accent_color=site.get("accent_color", "#FF6B8A"),
         feed_page_size=site.get("feed_page_size", 60),
         default_channel=site.get("default_channel", ""),
+        goatcounter=site.get("goatcounter", "") or "",
         translation_backend_env=tr.get("backend_env", "REDPAPER_LLM_BACKEND"),
         translation_default_backend=tr.get("default_backend", "dryrun"),
         translation_cache_dir=tr.get("cache_dir", "site/data/papers"),
