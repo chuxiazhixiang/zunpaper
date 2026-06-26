@@ -11,6 +11,7 @@ from __future__ import annotations
 import datetime as dt
 import json
 import logging
+import re
 from collections import Counter
 
 from . import config as cfg
@@ -165,6 +166,15 @@ def compute_stats(all_papers, channels) -> dict:
     src = Counter(_src_group(_g(p, "source", "")) for p in all_papers)
     source = [{"name": k, "value": v} for k, v in src.most_common()]
 
+    # ⑧b 会议 / 期刊（venue）Top —— 用规范化后的「去年份」名合并（ICRA 2025 / ICRA 2026 → ICRA）
+    ven = Counter()
+    for p in papers:
+        v = (_g(p, "venue", "") or "").strip()
+        if v:
+            base = re.sub(r"\s*\b20\d{2}\b\s*", "", v).strip() or v
+            ven[base] += 1
+    venues = [{"name": k, "count": v} for k, v in ven.most_common(15)]
+
     # ⑨ 热点关键词随时间
     hot = {label: {mm: 0 for mm in months} for label, _ in _HOT_KEYWORDS}
     for p in papers:
@@ -255,6 +265,7 @@ def compute_stats(all_papers, channels) -> dict:
         "platform": platform,
         "platform_disclosed": platform_disclosed,
         "source": source,
+        "venues": venues,
         "hot_keywords": hot,
         # 按方向拆分（前端方向筛选用；老前端忽略这些键即可）
         "inst_by_ch": {cid: dict(c) for cid, c in inst_by_ch.items()},

@@ -81,7 +81,7 @@ jobs:
           # 否则手动 deploy.yml（从 git 部署）会用旧 ?v= 的 HTML 覆盖正确产物。
           # data/*.json 是 LLM 判定 / 翻译 / enrich 的累积缓存 —— 不 commit 回去
           # 的话每天 Actions 都得从零再付费判一遍，跨日复用才省钱 + 稳定。
-          git add site data/judge_cache.json data/enrich_cache.json data/video_cache.json data/github_state.json data/custom_judge_cache.json data/custom_channels_state.json data/custom_keyword_cache.json data/venue_check_state.json || true
+          git add site data/judge_cache.json data/enrich_cache.json data/video_cache.json data/github_state.json data/custom_judge_cache.json data/custom_channels_state.json data/custom_keyword_cache.json data/venue_check_state.json data/openreview_state.json || true
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0

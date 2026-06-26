@@ -91,3 +91,17 @@ sources:
     min_stars: 300            # 硬门槛：兜住 AMO/ExBody/HumanPlus 这档优质论文仓
     max_repos: 120            # 单次召回上限（去重后按 star 截断）
     refresh_days: 7           # 每 N 天才重新召回一次（候选是慢变集合，无需日日扫）
+
+  # 会议官网源：OpenReview 已接收论文（免鉴权 v2 API）。按频道关键词过滤出机器人
+  # 相关的，与 arXiv 靠标题去重。venue_ids 用 OpenReview 的 venueid（放榜后才有数据）。
+  # 不渲染 PDF 封面（占位），避免几百篇 PDF 渲染拖垮 CI。慢变集合，refresh_days 节流。
+  openreview:
+    enabled: true
+    max_per_venue: 80
+    refresh_days: 14
+    venue_ids:
+      - "robot-learning.org/CoRL/2024/Conference"
+      - "robot-learning.org/CoRL/2025/Conference"
+      # 大型 ML 会议里机器人论文多数也在 arXiv（已靠 venue 标注捕获）；如需更全可加：
+      # - "ICLR.cc/2026/Conference"
+      # - "NeurIPS.cc/2025/Conference"

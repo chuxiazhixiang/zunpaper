@@ -136,6 +136,74 @@ def fetch_candidate_repos(
     return repos
 
 
+_GH_LINK_RE = re.compile(r"github\.com/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)", re.IGNORECASE)
+_GHIO_RE = re.compile(r"\b([A-Za-z0-9-]+)\.github\.io/([A-Za-z0-9_.-]+)", re.IGNORECASE)
+# github.com 下这些不是「owner/repo」，是站点功能路径，要排除
+_GH_RESERVED = {
+    "sponsors", "topics", "about", "features", "pricing", "marketplace",
+    "orgs", "login", "join", "settings", "notifications", "search",
+    "collections", "trending", "apps", "readme", "explore", "new",
+}
+
+
+def extract_repo_links(text: str) -> list[str]:
+    """从一段文本（论文摘要 / 相关链接）抽出 GitHub 仓库 full_name（owner/repo）。
+    同时处理 owner.github.io/project 项目页（推断仓库为 owner/project，取不到会被
+    fetch_repo 过滤掉）。"""
+    out: list[str] = []
+    seen: set[str] = set()
+
+    def add(owner: str, repo: str) -> None:
+        repo = re.sub(r"\.git$", "", repo).rstrip(".,);]'\"")
+        owner = owner.strip()
+        if not owner or not repo or owner.lower() in _GH_RESERVED:
+            return
+        full = f"{owner}/{repo}"
+        if full.lower() not in seen:
+            seen.add(full.lower())
+            out.append(full)
+
+    for m in _GH_LINK_RE.finditer(text or ""):
+        add(m.group(1), m.group(2))
+    for m in _GHIO_RE.finditer(text or ""):
+        add(m.group(1), m.group(2))
+    return out
+
+
+def fetch_repo(full_name: str, with_readme: bool = True) -> dict | None:
+    """按 owner/repo 直接拉单个仓库元数据（不走 search、不受 star 阈值限制）。
+    fork / 取不到 返回 None。字段与 fetch_candidate_repos 的 dict 同构。"""
+    url = f"{GITHUB_API}/repos/{full_name}"
+    try:
+        r = requests.get(url, headers=_headers(), timeout=TIMEOUT)
+        if r.status_code != 200:
+            return None
+        it = r.json()
+    except Exception as e:
+        log.debug("github fetch_repo %s failed: %s", full_name, e)
+        return None
+    if it.get("fork"):
+        return None  # 复现/fork 不收
+    full = it.get("full_name") or full_name
+    owner, _, repo = full.partition("/")
+    d = {
+        "full_name": full,
+        "owner": owner,
+        "repo": repo,
+        "stars": it.get("stargazers_count", 0),
+        "language": it.get("language") or "",
+        "description": (it.get("description") or "").strip(),
+        "topics": it.get("topics") or [],
+        "html_url": it.get("html_url") or f"https://github.com/{full}",
+        "pushed_at": (it.get("pushed_at") or "")[:10],
+        "created_at": (it.get("created_at") or "")[:10],
+        "archived": bool(it.get("archived")),
+    }
+    if with_readme:
+        d["readme"] = _fetch_readme_excerpt(full)
+    return d
+
+
 def _slug(full_name: str) -> str:
     s = re.sub(r"[^a-z0-9]+", "-", full_name.lower()).strip("-")
     return f"github-{s}"
@@ -152,6 +220,9 @@ def repo_to_paper(d: dict) -> Paper:
     readme = d.get("readme", "")
     if readme:
         abstract = (abstract + "\n\n" + readme).strip()
+    tags = ["github"]
+    if d.get("paper_linked"):
+        tags.append("paper_companion")   # 论文里贴出的配套代码（低 star 也收）
     return Paper(
         id=_slug(d["full_name"]),
         source="github",
@@ -164,7 +235,7 @@ def repo_to_paper(d: dict) -> Paper:
         # channels 由 _process_github_repos 根据 judge 判定的方向填充
         # （loco-manip-wbc / manipulation / ...），让二级方向标签能过滤开源项目。
         channels=[],
-        source_tags=["github"],
+        source_tags=tags,
         github={
             "owner": d.get("owner", ""),
             "repo": d.get("repo", ""),

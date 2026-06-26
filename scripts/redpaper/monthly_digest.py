@@ -95,6 +95,13 @@ def _filter_month(papers: list[Paper], year_month: str) -> list[Paper]:
             continue
         if pub[:7] != year_month:
             continue
+        # 「被会议/期刊收录后重新冒泡到首页」的老论文（venue_announced 在更晚的月份）
+        # 属于它**原始投稿月**，已在当月综述里覆盖过；不要因为重新露出又被算进
+        # venue_announced 所在月的综述。这里按 published 月归档已天然正确，额外
+        # 显式排除「announce 月 ≠ published 月」时落到 announce 月的情况，双保险。
+        ann = getattr(p, "venue_announced", "") or ""
+        if ann and ann[:7] != pub[:7] and ann[:7] == year_month:
+            continue
         out.append(p)
     return out
 
