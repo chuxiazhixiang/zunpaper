@@ -1110,7 +1110,8 @@
       "published": "2026-06-17",
       "channels": [
         "manipulation",
-        "locomotion"
+        "locomotion",
+        "loco-manip-wbc"
       ],
       "badges": [],
       "cover_image": "assets/img/covers/arxiv-2606-19233.jpg",
@@ -1531,6 +1532,66 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2606-18861",
+      "source": "arxiv",
+      "title": "URDF Synthesis from RGB-D Sequences via Differentiable Joint Inference and Energy-Consistent Verification",
+      "title_zh": "通过可微联合推理和能量一致性验证从RGB-D序列合成URDF",
+      "tldr_zh": "提出KinemaForge，通过可微推理和能量一致性验证，从RGB-D序列合成更准确的URDF。",
+      "cover_zh": "机器人仿真总漂移？这个新方法用能量守恒把误差砍掉一半！",
+      "abstract_zh": "从传感器观测重建可仿真数字孪生（铰接物体）仍受两个持续存在的差距制约：(i) 部件级几何重建与运动学参数估计相互解耦，(ii) 恢复的模型常违反能量守恒等基本动力学不变量，导致URDF在物理仿真器中回放时出现漂移。我们提出KinemaForge，一种约束驱动流水线，从短RGB-D序列联合推断部件级形状、关节拓扑和关节参数，并通过基于可微刚体动力学的能量一致性验证器对结果进行验证。该流水线引入三个组件：将关节-部件关联编码为软边的运动学约束图；通过可微螺旋轴求解器，利用Featherstone铰接体算法将渲染观测的误差反向传播至关节参数；以及能量残差损失，惩罚重建模型非物理的自由响应。在五个PartNet-Mobility类别和一个内部RGB-D基准上，KinemaForge将平均关节轴误差从最强几何基线（PARIS）的4.52度降至2.83度（-37.4%），从基于交互的Ditto基线的5.30度降至2.83度（-46.6%）；在50秒滚动中，长期仿真漂移较PARIS降低64%；初步评估中，其URDF的闭环操作成功率较Ditto提升14.6个百分点。代码和重建数据将在接收后发布。",
+      "authors": [
+        "Xinze Zhang"
+      ],
+      "authors_all": [
+        "Xinze Zhang"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-06-17",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2606-18861.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-18861-p2.jpg",
+        "assets/img/covers/arxiv-2606-18861-p3.jpg",
+        "assets/img/covers/arxiv-2606-18861-p4.jpg"
+      ],
+      "arxiv_id": "2606.18861",
+      "abs_url": "http://arxiv.org/abs/2606.18861v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.18861v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 11,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "sim2real",
+        "reason": "提出从RGB-D序列重建URDF的约束驱动管线，包含可微关节推理和能量一致性验证，显著提升仿真精度，对sim2real有重要价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Southern California"
+      ],
+      "method_tags": [
+        "differentiable physics",
+        "kinematic reasoning",
+        "URDF synthesis"
+      ],
+      "platform": [],
+      "sim_stack": [
+        "PyBullet",
+        "MuJoCo"
+      ],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2606-19089",
       "source": "arxiv",
       "title": "ART-VS: Adaptive Resolution Tiling for Vision Transformer Visual Servoing",
@@ -1661,65 +1722,6 @@
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2606-18861",
-      "source": "arxiv",
-      "title": "URDF Synthesis from RGB-D Sequences via Differentiable Joint Inference and Energy-Consistent Verification",
-      "title_zh": "通过可微联合推理和能量一致性验证从RGB-D序列合成URDF",
-      "tldr_zh": "提出KinemaForge，通过可微推理和能量一致性验证，从RGB-D序列合成更准确的URDF。",
-      "cover_zh": "机器人仿真总漂移？这个新方法用能量守恒把误差砍掉一半！",
-      "abstract_zh": "从传感器观测重建可仿真数字孪生（铰接物体）仍受两个持续存在的差距制约：(i) 部件级几何重建与运动学参数估计相互解耦，(ii) 恢复的模型常违反能量守恒等基本动力学不变量，导致URDF在物理仿真器中回放时出现漂移。我们提出KinemaForge，一种约束驱动流水线，从短RGB-D序列联合推断部件级形状、关节拓扑和关节参数，并通过基于可微刚体动力学的能量一致性验证器对结果进行验证。该流水线引入三个组件：将关节-部件关联编码为软边的运动学约束图；通过可微螺旋轴求解器，利用Featherstone铰接体算法将渲染观测的误差反向传播至关节参数；以及能量残差损失，惩罚重建模型非物理的自由响应。在五个PartNet-Mobility类别和一个内部RGB-D基准上，KinemaForge将平均关节轴误差从最强几何基线（PARIS）的4.52度降至2.83度（-37.4%），从基于交互的Ditto基线的5.30度降至2.83度（-46.6%）；在50秒滚动中，长期仿真漂移较PARIS降低64%；初步评估中，其URDF的闭环操作成功率较Ditto提升14.6个百分点。代码和重建数据将在接收后发布。",
-      "authors": [
-        "Xinze Zhang"
-      ],
-      "authors_all": [
-        "Xinze Zhang"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-06-17",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-18861.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-18861-p2.jpg",
-        "assets/img/covers/arxiv-2606-18861-p3.jpg",
-        "assets/img/covers/arxiv-2606-18861-p4.jpg"
-      ],
-      "arxiv_id": "2606.18861",
-      "abs_url": "http://arxiv.org/abs/2606.18861v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.18861v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 6,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "sim2real",
-        "reason": "提出从RGB-D序列重建URDF的约束驱动管线，包含可微关节推理和能量一致性验证，显著提升仿真精度，对sim2real有重要价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "University of Southern California"
-      ],
-      "method_tags": [
-        "differentiable physics",
-        "kinematic reasoning",
-        "URDF synthesis"
-      ],
-      "platform": [],
-      "sim_stack": [
-        "PyBullet",
-        "MuJoCo"
-      ],
       "method_family": "",
       "real_robot": "",
       "training_summary": "",

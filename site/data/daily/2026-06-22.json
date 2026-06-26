@@ -1107,6 +1107,74 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2606-23574",
+      "source": "arxiv",
+      "title": "A Watermark for Vision-Language-Action and World Action Models",
+      "title_zh": "面向视觉-语言-动作模型与世界动作模型的水印技术",
+      "tldr_zh": "提出一种通过噪声种子为机器人模型添加水印的方法，可检测模型盗用且不影响性能。",
+      "cover_zh": "机器人模型也能打水印？黑盒部署再也不怕被盗用｜新方法让指纹藏进噪声里",
+      "abstract_zh": "视觉-语言-动作（VLA）模型和世界动作模型（WAM）是当前驱动通用机器人控制的生成式模型，能够直接将原始摄像头输入转化为电机指令。它们越来越多地被部署为黑盒服务，合作伙伴通过接口运行策略，而所有者保持权重私有。训练此类模型需要专有数据和大量算力，使得部署的模型本身成为宝贵的知识产权。为此，我们提出了“密钥化潜在来源验证”方法，通过模型在生成前所采高斯噪声向量的种子来对策略进行指纹标记。在注入阶段，所有者将该种子替换为与普通噪声同分布的密钥化种子，使得带指纹的动作在统计上与普通运行无异，攻击者观察输出无法发现可检测或移除的信号。在验证阶段，所有者在授权访问下运行可疑模型，记录机器人执行的动作通道（这是策略输出的部分且可能经过后处理的视图）。基于该视图，验证者通过基于梯度的最大后验（MAP）优化恢复种子，测试其是否包含密钥以对每次运行评分，并汇总这些评分以判断可疑模型是否属于所有者。我们在两个机器人套件上对两个代表性模型进行了评估。实验涵盖指纹检测、识别可疑模型携带的多个密钥中的哪一个、对多种攻击的鲁棒性，以及设计原理分析。在两个模型上，指纹均能被可靠检测，且对任务性能影响很小；在输出侧移除攻击和权重级编辑下仍可检测。",
+      "authors": [
+        "Yule Liu",
+        "Shuai Liu",
+        "Jiaheng Wei"
+      ],
+      "authors_all": [
+        "Yule Liu",
+        "Shuai Liu",
+        "Jiaheng Wei",
+        "Xinlei He"
+      ],
+      "primary_category": "cs.CR",
+      "published": "2026-06-22",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ HKUST"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-23574.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-23574-p2.jpg",
+        "assets/img/covers/arxiv-2606-23574-p3.jpg",
+        "assets/img/covers/arxiv-2606-23574-p4.jpg"
+      ],
+      "arxiv_id": "2606.23574",
+      "abs_url": "http://arxiv.org/abs/2606.23574v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.23574v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 36,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出VLA和世界动作模型的指纹水印方法，保护知识产权，具身机器人领域新贡献。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Hong Kong University of Science and Technology (Guangzhou)",
+        "Wuhan University",
+        "Xi'an Jiao Tong University"
+      ],
+      "method_tags": [
+        "watermarking",
+        "keyed latent-provenance verification"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2606-23589",
       "source": "arxiv",
       "title": "KEMO: Event-Driven Keyframe Memory for Long-Horizon Robot Manipulation with VLA Policies",
@@ -1173,73 +1241,6 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2606-23574",
-      "source": "arxiv",
-      "title": "A Watermark for Vision-Language-Action and World Action Models",
-      "title_zh": "面向视觉-语言-动作模型与世界动作模型的水印技术",
-      "tldr_zh": "提出一种通过噪声种子为机器人模型添加水印的方法，可检测模型盗用且不影响性能。",
-      "cover_zh": "机器人模型也能打水印？黑盒部署再也不怕被盗用｜新方法让指纹藏进噪声里",
-      "abstract_zh": "视觉-语言-动作（VLA）模型和世界动作模型（WAM）是当前驱动通用机器人控制的生成式模型，能够直接将原始摄像头输入转化为电机指令。它们越来越多地被部署为黑盒服务，合作伙伴通过接口运行策略，而所有者保持权重私有。训练此类模型需要专有数据和大量算力，使得部署的模型本身成为宝贵的知识产权。为此，我们提出了“密钥化潜在来源验证”方法，通过模型在生成前所采高斯噪声向量的种子来对策略进行指纹标记。在注入阶段，所有者将该种子替换为与普通噪声同分布的密钥化种子，使得带指纹的动作在统计上与普通运行无异，攻击者观察输出无法发现可检测或移除的信号。在验证阶段，所有者在授权访问下运行可疑模型，记录机器人执行的动作通道（这是策略输出的部分且可能经过后处理的视图）。基于该视图，验证者通过基于梯度的最大后验（MAP）优化恢复种子，测试其是否包含密钥以对每次运行评分，并汇总这些评分以判断可疑模型是否属于所有者。我们在两个机器人套件上对两个代表性模型进行了评估。实验涵盖指纹检测、识别可疑模型携带的多个密钥中的哪一个、对多种攻击的鲁棒性，以及设计原理分析。在两个模型上，指纹均能被可靠检测，且对任务性能影响很小；在输出侧移除攻击和权重级编辑下仍可检测。",
-      "authors": [
-        "Yule Liu",
-        "Shuai Liu",
-        "Jiaheng Wei"
-      ],
-      "authors_all": [
-        "Yule Liu",
-        "Shuai Liu",
-        "Jiaheng Wei",
-        "Xinlei He"
-      ],
-      "primary_category": "cs.CR",
-      "published": "2026-06-22",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ HKUST"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-23574.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-23574-p2.jpg",
-        "assets/img/covers/arxiv-2606-23574-p3.jpg",
-        "assets/img/covers/arxiv-2606-23574-p4.jpg"
-      ],
-      "arxiv_id": "2606.23574",
-      "abs_url": "http://arxiv.org/abs/2606.23574v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.23574v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 31,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出VLA和世界动作模型的指纹水印方法，保护知识产权，具身机器人领域新贡献。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Hong Kong University of Science and Technology (Guangzhou)",
-        "Wuhan University",
-        "Xi'an Jiao Tong University"
-      ],
-      "method_tags": [
-        "watermarking",
-        "keyed latent-provenance verification"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -1845,67 +1846,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2606-23090",
-      "source": "arxiv",
-      "title": "Flow as Flow: Modeling Robot Velocity Fields as Probability Velocity Fields for Flow-Based Object Manipulation",
-      "title_zh": "Flow as Flow: 将机器人速度场建模为概率速度场以实现基于流的目标操作",
-      "tldr_zh": "将机器人速度场建模为概率流，实现更高效、更高质量的生成，速度提升33倍。",
-      "cover_zh": "速度场建模新思路｜机器人操作生成快33倍还更准",
-      "abstract_zh": "跨本体数据已成为训练机器人基础模型的核心。为了利用这种异构数据，我们聚焦于基于流的目标操作，其中机器人流（机器人速度场）作为与本体无关的运动表示。以往的研究并未将机器人流建模为密集速度场，而是稀疏关键点的位移，而速度场更能匹配运动的连续时间特性。我们提出Flow as Flow，一个基于流匹配公式将机器人流建模为概率流的框架。通过在该公式中自然地建模此类速度场，我们的方法实现了高效且高质量的机器人流生成。在标准基准测试中，我们的方法在标准指标上优于代表性基线方法，同时生成速度提升约33倍。此外，通过真实世界实验，在13个操作任务中评估了9种方法，每种方法进行260次试验，结果表明我们的方法平均成功率高于基线方法。我们的项目页面位于https://flow-as-flow-u0n5y.kinsta.page。",
-      "authors": [
-        "Koki Seno",
-        "Daichi Yashima",
-        "Yusuke Takagi"
-      ],
-      "authors_all": [
-        "Koki Seno",
-        "Daichi Yashima",
-        "Yusuke Takagi",
-        "Kento Tokura",
-        "Komei Sugiura"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-22",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-23090.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-23090-p2.jpg",
-        "assets/img/covers/arxiv-2606-23090-p3.jpg",
-        "assets/img/covers/arxiv-2606-23090-p4.jpg"
-      ],
-      "arxiv_id": "2606.23090",
-      "abs_url": "http://arxiv.org/abs/2606.23090v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.23090v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 16,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出基于流匹配的机器人速度场建模，用于跨具身物体操作，性能优且生成快。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Keio University"
-      ],
-      "method_tags": [
-        "flow matching",
-        "flow-based object manipulation"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2606-22987",
       "source": "arxiv",
       "title": "Can Single-View Mesh Reconstruction Generalize to Robot Camera Rotation?",
@@ -2155,6 +2095,67 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2606-23090",
+      "source": "arxiv",
+      "title": "Flow as Flow: Modeling Robot Velocity Fields as Probability Velocity Fields for Flow-Based Object Manipulation",
+      "title_zh": "Flow as Flow: 将机器人速度场建模为概率速度场以实现基于流的目标操作",
+      "tldr_zh": "将机器人速度场建模为概率流，实现更高效、更高质量的生成，速度提升33倍。",
+      "cover_zh": "速度场建模新思路｜机器人操作生成快33倍还更准",
+      "abstract_zh": "跨本体数据已成为训练机器人基础模型的核心。为了利用这种异构数据，我们聚焦于基于流的目标操作，其中机器人流（机器人速度场）作为与本体无关的运动表示。以往的研究并未将机器人流建模为密集速度场，而是稀疏关键点的位移，而速度场更能匹配运动的连续时间特性。我们提出Flow as Flow，一个基于流匹配公式将机器人流建模为概率流的框架。通过在该公式中自然地建模此类速度场，我们的方法实现了高效且高质量的机器人流生成。在标准基准测试中，我们的方法在标准指标上优于代表性基线方法，同时生成速度提升约33倍。此外，通过真实世界实验，在13个操作任务中评估了9种方法，每种方法进行260次试验，结果表明我们的方法平均成功率高于基线方法。我们的项目页面位于https://flow-as-flow-u0n5y.kinsta.page。",
+      "authors": [
+        "Koki Seno",
+        "Daichi Yashima",
+        "Yusuke Takagi"
+      ],
+      "authors_all": [
+        "Koki Seno",
+        "Daichi Yashima",
+        "Yusuke Takagi",
+        "Kento Tokura",
+        "Komei Sugiura"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-22",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2606-23090.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-23090-p2.jpg",
+        "assets/img/covers/arxiv-2606-23090-p3.jpg",
+        "assets/img/covers/arxiv-2606-23090-p4.jpg"
+      ],
+      "arxiv_id": "2606.23090",
+      "abs_url": "http://arxiv.org/abs/2606.23090v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.23090v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 6,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出基于流匹配的机器人速度场建模，用于跨具身物体操作，性能优且生成快。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Keio University"
+      ],
+      "method_tags": [
+        "flow matching",
+        "flow-based object manipulation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},

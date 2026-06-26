@@ -571,94 +571,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2606-13578",
-      "source": "arxiv",
-      "title": "LabVLA: Grounding Vision-Language-Action Models in Scientific Laboratories",
-      "title_zh": "LabVLA：在科学实验室中落地视觉-语言-动作模型",
-      "tldr_zh": "提出LabVLA模型，结合模拟数据引擎RoboGenesis，在科学实验室场景中实现高成功率动作执行。",
-      "cover_zh": "AI终于能动手做实验了｜LabVLA让机器人操作烧杯和仪器",
-      "abstract_zh": "科学实验室越来越依赖AI系统来推理实验，但物理上的实验操作仍然遥不可及。AI可以辅助阅读文献、生成假设和规划方案，但实验台前的执行仍需人类操作员。视觉-语言-动作（VLA）模型为书面方案与机器人执行之间提供了可能的接口，但现有策略主要基于家庭和桌面演示训练，很少涉及科学实验室中的仪器、透明液体或固定协议流程。弥合这一差距既需要实验室特定的监督，也需要一个统一的学习框架来容纳执行实验方案所需的不同机器人形态。因此，我们将数据和形态视为与模型设计并列的核心瓶颈。在数据方面，我们构建了RoboGenesis，这是一个基于模拟的工作流和数据引擎，它从原子技能组合配置的实验室工作流，验证和过滤轨迹，并导出支持机器人配置的结构化演示。在策略方面，我们提出了LabVLA，采用两阶段训练方案：首先通过FAST动作标记预训练使Qwen3-VL-4B-Instruct骨干网络具备动作感知能力，然后进行流匹配后训练，在知识隔离下附加DiT动作专家。在LabUtopia基准上，LabVLA在分布内和分布外设置下均取得了所有评估基线中最高的平均成功率。",
-      "authors": [
-        "Baochang Ren",
-        "Xinjie Liu",
-        "Xi Chen"
-      ],
-      "authors_all": [
-        "Baochang Ren",
-        "Xinjie Liu",
-        "Xi Chen",
-        "Yanshuo Liu",
-        "Chenxi Li",
-        "Daqi Gao",
-        "Zeqin Su",
-        "Jintao Xing",
-        "Zirui Xue",
-        "Rui Li",
-        "Xiangyu Zhao",
-        "Shuofei Qiao",
-        "Minting Pan",
-        "Wangmeng Zuo",
-        "Lei Bai",
-        "Dongzhan Zhou",
-        "Ningyu Zhang",
-        "Huajun Chen"
-      ],
-      "primary_category": "cs.CL",
-      "published": "2026-06-11",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ 上海 AI Lab"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ ZJU"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-13578.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-13578-p2.jpg",
-        "assets/img/covers/arxiv-2606-13578-p3.jpg",
-        "assets/img/covers/arxiv-2606-13578-p4.jpg"
-      ],
-      "arxiv_id": "2606.13578",
-      "abs_url": "http://arxiv.org/abs/2606.13578v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.13578v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 41,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出面向科学实验室的VLA模型，解决数据与具身瓶颈，具有科研价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Zhejiang University",
-        "Shanghai AI Laboratory",
-        "Harbin Institute of Technology"
-      ],
-      "method_tags": [
-        "VLA",
-        "flow matching",
-        "action token pretraining"
-      ],
-      "platform": [],
-      "sim_stack": [
-        "RoboGenesis"
-      ],
-      "method_family": "",
-      "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2606-13886",
       "source": "arxiv",
       "title": "PhysVLA: Towards Physically-Grounded VLA for Embodied Robotic Manipulation",
@@ -730,6 +642,80 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2606-12936",
+      "source": "arxiv",
+      "title": "An Embodied Simulation Platform, Benchmark, and Data-Efficient Augmentation Framework for Wet-Lab Robotics",
+      "title_zh": "湿实验室机器人的具身仿真平台、基准测试与数据高效增强框架",
+      "tldr_zh": "Pipette通过仿真数据增强，仅用30个演示即可显著提升湿实验室机器人性能。",
+      "cover_zh": "30个演示就能训练机器人？这个仿真平台让数据效率飙升",
+      "abstract_zh": "湿实验室机器人能够提高生物医学实验的可重复性、通量和安全性，但扩展其学习能力需要可定制的仿真器以实现安全且可重复的任务生成、开放可编辑的实验室资产，以及将有限演示转化为可用训练数据的高效流程。我们提出了Pipette，一个用于湿实验室机器人学习的具身仿真平台、基准测试和数据高效增强框架。Pipette发布了超过43个开源且可重新编辑的湿实验室资产，以及一个可扩展的资产构建流程。其关键组件是基于仿真的数据增强流程：在仿真中回放人类演示，应用光照、相机、速度和动作扰动，并通过自动任务成功检查过滤生成的片段，从而从有限的手动演示中快速扩展可用训练数据。我们还引入了一个包含11个任务的湿实验室具身基准测试，涵盖样本处理、培养器具操作、设备操作和精确放置。每个任务仅需30个演示，ACT实现了65.5%的平均成功率，而仿真增强将SmolVLA从44.1%提升至74.7%，π0从40.4%提升至46.5%，验证了Pipette在数据高效的VLA训练和评估中的有效性。Pipette还支持自然语言驱动的场景构建和任务注册，降低了非专家用户定义新湿实验室机器人任务的门槛。",
+      "authors": [
+        "Zhe Liu",
+        "Huanbo Jin",
+        "Zhaohui Du"
+      ],
+      "authors_all": [
+        "Zhe Liu",
+        "Huanbo Jin",
+        "Zhaohui Du",
+        "Zhe Wang",
+        "He Xu",
+        "Peijia Li",
+        "Jiaming Gu",
+        "Quan Lu",
+        "Qi Wang",
+        "Bin Ji",
+        "Ting Xiao"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-11",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ SJTU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-12936.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-12936-p2.jpg",
+        "assets/img/covers/arxiv-2606-12936-p3.jpg",
+        "assets/img/covers/arxiv-2606-12936-p4.jpg"
+      ],
+      "arxiv_id": "2606.12936",
+      "abs_url": "http://arxiv.org/abs/2606.12936v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.12936v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 39,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "sim2real",
+        "reason": "提出湿实验室机器人仿真平台、基准和高效数据增强框架，包含仿真到真机迁移关键组件，对sim2real和VLA训练有高价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "East China University of Science and Technology",
+        "Shanghai Jiao Tong University School of Medicine"
+      ],
+      "method_tags": [
+        "simulation-based data augmentation",
+        "VLA"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2606-12965",
       "source": "arxiv",
       "title": "EmbodiSteer: Steering Embodiment-Agnostic Visuomotor Policies with Joint-Space Guidance for Zero-Shot Cross-Embodiment Deployment",
@@ -788,6 +774,90 @@
         "diffusion policy",
         "whole-body collision avoidance",
         "zero-shot cross-embodiment deployment"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2606-13515",
+      "source": "arxiv",
+      "title": "MaskWAM: Unifying Mask Prompting and Prediction for World-Action Models",
+      "title_zh": "MaskWAM：统一掩码提示与预测的世界动作模型",
+      "tldr_zh": "用掩码统一输入和预测，提升世界动作模型在杂乱场景中的鲁棒性。",
+      "cover_zh": "机器人看不懂指令？用掩码做空间锚点，操作精度直接拉满！",
+      "abstract_zh": "世界动作模型（WAM）通过视频预测为机器人控制提供了一种有前景的范式。然而，当前的WAM存在根本性的空间瓶颈：标准文本输入在杂乱场景中引入指代歧义，而无结构的RGB预测缺乏语义基础，且容易受到任务无关背景的干扰。为克服这些限制，我们提出了MaskWAM，一种以对象为中心的世界动作模型。通过统一的混合Transformer（MoT）将掩码同时作为显式输入和预测进行整合，MaskWAM实现了鲁棒的策略泛化。这一设计带来两个关键优势：（1）预测未来掩码提供了以对象为中心的语义监督，抑制了视觉噪声，显著增强了甚至标准文本条件的WAM；（2）将该预测监督与首帧视觉提示（如目标对象掩码）耦合，建立了精确的空间锚点，大幅减少了语言歧义。关键在于，由于WAM本质上是视觉驱动的架构，直接掩码条件比单独文本提供更强的引导，为操作未见对象建立了精确且鲁棒的范式。在LIBERO、RoboTwin和真实世界任务上的评估表明，MaskWAM在语言清晰和语言模糊任务中均显著优于基线。",
+      "authors": [
+        "Hanyang Yu",
+        "Haitao Lin",
+        "Jingbo Zhang"
+      ],
+      "authors_all": [
+        "Hanyang Yu",
+        "Haitao Lin",
+        "Jingbo Zhang",
+        "Wenyao Zhang",
+        "Chenghao Gu",
+        "Heng Li",
+        "Ping Tan"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-06-11",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKUST"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ 腾讯"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-13515.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-13515-p2.jpg",
+        "assets/img/covers/arxiv-2606-13515-p3.jpg",
+        "assets/img/covers/arxiv-2606-13515-p4.jpg"
+      ],
+      "arxiv_id": "2606.13515",
+      "abs_url": "http://arxiv.org/abs/2606.13515v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.13515v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 39,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出世界动作模型MaskWAM，融合掩码提示与预测，提升泛化性，属于world-model方向创新",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "The Hong Kong University of Science and Technology",
+        "Tencent Robotics X",
+        "Tsinghua University"
+      ],
+      "method_tags": [
+        "World Action Models",
+        "Mask Visual Prompting",
+        "Object-Centric Manipulation"
       ],
       "platform": [],
       "sim_stack": [],
@@ -941,79 +1011,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2606-12936",
-      "source": "arxiv",
-      "title": "An Embodied Simulation Platform, Benchmark, and Data-Efficient Augmentation Framework for Wet-Lab Robotics",
-      "title_zh": "湿实验室机器人的具身仿真平台、基准测试与数据高效增强框架",
-      "tldr_zh": "Pipette通过仿真数据增强，仅用30个演示即可显著提升湿实验室机器人性能。",
-      "cover_zh": "30个演示就能训练机器人？这个仿真平台让数据效率飙升",
-      "abstract_zh": "湿实验室机器人能够提高生物医学实验的可重复性、通量和安全性，但扩展其学习能力需要可定制的仿真器以实现安全且可重复的任务生成、开放可编辑的实验室资产，以及将有限演示转化为可用训练数据的高效流程。我们提出了Pipette，一个用于湿实验室机器人学习的具身仿真平台、基准测试和数据高效增强框架。Pipette发布了超过43个开源且可重新编辑的湿实验室资产，以及一个可扩展的资产构建流程。其关键组件是基于仿真的数据增强流程：在仿真中回放人类演示，应用光照、相机、速度和动作扰动，并通过自动任务成功检查过滤生成的片段，从而从有限的手动演示中快速扩展可用训练数据。我们还引入了一个包含11个任务的湿实验室具身基准测试，涵盖样本处理、培养器具操作、设备操作和精确放置。每个任务仅需30个演示，ACT实现了65.5%的平均成功率，而仿真增强将SmolVLA从44.1%提升至74.7%，π0从40.4%提升至46.5%，验证了Pipette在数据高效的VLA训练和评估中的有效性。Pipette还支持自然语言驱动的场景构建和任务注册，降低了非专家用户定义新湿实验室机器人任务的门槛。",
-      "authors": [
-        "Zhe Liu",
-        "Huanbo Jin",
-        "Zhaohui Du"
-      ],
-      "authors_all": [
-        "Zhe Liu",
-        "Huanbo Jin",
-        "Zhaohui Du",
-        "Zhe Wang",
-        "He Xu",
-        "Peijia Li",
-        "Jiaming Gu",
-        "Quan Lu",
-        "Qi Wang",
-        "Bin Ji",
-        "Ting Xiao"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-11",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ SJTU"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-12936.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-12936-p2.jpg",
-        "assets/img/covers/arxiv-2606-12936-p3.jpg",
-        "assets/img/covers/arxiv-2606-12936-p4.jpg"
-      ],
-      "arxiv_id": "2606.12936",
-      "abs_url": "http://arxiv.org/abs/2606.12936v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.12936v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 34,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "sim2real",
-        "reason": "提出湿实验室机器人仿真平台、基准和高效数据增强框架，包含仿真到真机迁移关键组件，对sim2real和VLA训练有高价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "East China University of Science and Technology",
-        "Shanghai Jiao Tong University School of Medicine"
-      ],
-      "method_tags": [
-        "simulation-based data augmentation",
-        "VLA"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2606-13460",
       "source": "arxiv",
       "title": "VISA: VLM-Guided Instance Semantic Auditing for 3D Occupancy World Models",
@@ -1078,89 +1075,6 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2606-13515",
-      "source": "arxiv",
-      "title": "MaskWAM: Unifying Mask Prompting and Prediction for World-Action Models",
-      "title_zh": "MaskWAM：统一掩码提示与预测的世界动作模型",
-      "tldr_zh": "用掩码统一输入和预测，提升世界动作模型在杂乱场景中的鲁棒性。",
-      "cover_zh": "机器人看不懂指令？用掩码做空间锚点，操作精度直接拉满！",
-      "abstract_zh": "世界动作模型（WAM）通过视频预测为机器人控制提供了一种有前景的范式。然而，当前的WAM存在根本性的空间瓶颈：标准文本输入在杂乱场景中引入指代歧义，而无结构的RGB预测缺乏语义基础，且容易受到任务无关背景的干扰。为克服这些限制，我们提出了MaskWAM，一种以对象为中心的世界动作模型。通过统一的混合Transformer（MoT）将掩码同时作为显式输入和预测进行整合，MaskWAM实现了鲁棒的策略泛化。这一设计带来两个关键优势：（1）预测未来掩码提供了以对象为中心的语义监督，抑制了视觉噪声，显著增强了甚至标准文本条件的WAM；（2）将该预测监督与首帧视觉提示（如目标对象掩码）耦合，建立了精确的空间锚点，大幅减少了语言歧义。关键在于，由于WAM本质上是视觉驱动的架构，直接掩码条件比单独文本提供更强的引导，为操作未见对象建立了精确且鲁棒的范式。在LIBERO、RoboTwin和真实世界任务上的评估表明，MaskWAM在语言清晰和语言模糊任务中均显著优于基线。",
-      "authors": [
-        "Hanyang Yu",
-        "Haitao Lin",
-        "Jingbo Zhang"
-      ],
-      "authors_all": [
-        "Hanyang Yu",
-        "Haitao Lin",
-        "Jingbo Zhang",
-        "Wenyao Zhang",
-        "Chenghao Gu",
-        "Heng Li",
-        "Ping Tan"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-06-11",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ 清华"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ HKUST"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ HKU"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ 腾讯"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-13515.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-13515-p2.jpg",
-        "assets/img/covers/arxiv-2606-13515-p3.jpg",
-        "assets/img/covers/arxiv-2606-13515-p4.jpg"
-      ],
-      "arxiv_id": "2606.13515",
-      "abs_url": "http://arxiv.org/abs/2606.13515v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.13515v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 34,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出世界动作模型MaskWAM，融合掩码提示与预测，提升泛化性，属于world-model方向创新",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "The Hong Kong University of Science and Technology",
-        "Tencent Robotics X",
-        "Tsinghua University"
-      ],
-      "method_tags": [
-        "World Action Models",
-        "Mask Visual Prompting",
-        "Object-Centric Manipulation"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -1399,6 +1313,94 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2606-13578",
+      "source": "arxiv",
+      "title": "LabVLA: Grounding Vision-Language-Action Models in Scientific Laboratories",
+      "title_zh": "LabVLA：在科学实验室中落地视觉-语言-动作模型",
+      "tldr_zh": "提出LabVLA模型，结合模拟数据引擎RoboGenesis，在科学实验室场景中实现高成功率动作执行。",
+      "cover_zh": "AI终于能动手做实验了｜LabVLA让机器人操作烧杯和仪器",
+      "abstract_zh": "科学实验室越来越依赖AI系统来推理实验，但物理上的实验操作仍然遥不可及。AI可以辅助阅读文献、生成假设和规划方案，但实验台前的执行仍需人类操作员。视觉-语言-动作（VLA）模型为书面方案与机器人执行之间提供了可能的接口，但现有策略主要基于家庭和桌面演示训练，很少涉及科学实验室中的仪器、透明液体或固定协议流程。弥合这一差距既需要实验室特定的监督，也需要一个统一的学习框架来容纳执行实验方案所需的不同机器人形态。因此，我们将数据和形态视为与模型设计并列的核心瓶颈。在数据方面，我们构建了RoboGenesis，这是一个基于模拟的工作流和数据引擎，它从原子技能组合配置的实验室工作流，验证和过滤轨迹，并导出支持机器人配置的结构化演示。在策略方面，我们提出了LabVLA，采用两阶段训练方案：首先通过FAST动作标记预训练使Qwen3-VL-4B-Instruct骨干网络具备动作感知能力，然后进行流匹配后训练，在知识隔离下附加DiT动作专家。在LabUtopia基准上，LabVLA在分布内和分布外设置下均取得了所有评估基线中最高的平均成功率。",
+      "authors": [
+        "Baochang Ren",
+        "Xinjie Liu",
+        "Xi Chen"
+      ],
+      "authors_all": [
+        "Baochang Ren",
+        "Xinjie Liu",
+        "Xi Chen",
+        "Yanshuo Liu",
+        "Chenxi Li",
+        "Daqi Gao",
+        "Zeqin Su",
+        "Jintao Xing",
+        "Zirui Xue",
+        "Rui Li",
+        "Xiangyu Zhao",
+        "Shuofei Qiao",
+        "Minting Pan",
+        "Wangmeng Zuo",
+        "Lei Bai",
+        "Dongzhan Zhou",
+        "Ningyu Zhang",
+        "Huajun Chen"
+      ],
+      "primary_category": "cs.CL",
+      "published": "2026-06-11",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 上海 AI Lab"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ ZJU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-13578.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-13578-p2.jpg",
+        "assets/img/covers/arxiv-2606-13578-p3.jpg",
+        "assets/img/covers/arxiv-2606-13578-p4.jpg"
+      ],
+      "arxiv_id": "2606.13578",
+      "abs_url": "http://arxiv.org/abs/2606.13578v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.13578v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 31,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出面向科学实验室的VLA模型，解决数据与具身瓶颈，具有科研价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Zhejiang University",
+        "Shanghai AI Laboratory",
+        "Harbin Institute of Technology"
+      ],
+      "method_tags": [
+        "VLA",
+        "flow matching",
+        "action token pretraining"
+      ],
+      "platform": [],
+      "sim_stack": [
+        "RoboGenesis"
+      ],
+      "method_family": "",
+      "real_robot": "no",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2606-13970",
       "source": "arxiv",
       "title": "An Attention-based Model for Robust Forecasting with Missing Modality",
@@ -1462,6 +1464,74 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2606-13674",
+      "source": "arxiv",
+      "title": "RepWAM: World Action Modeling with Representation Visual-Action Tokenizers",
+      "title_zh": "RepWAM：基于表征视觉-动作分词器的世界动作建模",
+      "tldr_zh": "提出基于表征视觉-动作分词器的世界动作模型，提升机器人操作性能。",
+      "cover_zh": "告别像素重建｜新分词器让机器人看懂动作语义",
+      "abstract_zh": "本文提出RepWAM，一种基于表征视觉-动作分词器的以表征为中心的世界动作模型（WAM）。现有的WAM通常从预训练的视频生成模型中继承面向重建的视频分词器。尽管这些分词器保留了视觉保真度，但仅靠像素重建对学习连接未来预测与机器人控制的指令跟随动态提供的指导有限。为此，我们探索了一个语义视觉-动作潜在空间，用于以表征为中心的世界动作建模。具体来说，我们训练了一个表征视觉-动作分词器，将视觉输入映射为对齐的视觉和潜在动作标记。然后，我们预训练WAM，在语言指令下联合建模未来视觉状态以及连接它们的潜在动作，随后适应真实机器人轨迹以实现闭环操作。在真实世界操作任务和模拟基准上的实验表明，RepWAM在多种操作设置下均表现出色，而消融实验凸显了语义视觉-动作分词相对于面向重建替代方案的价值。这些结果确立了表征视觉-动作分词作为世界动作模型有前途的基础，并朝着通用机器人策略迈出了一步。代码和权重将在https://github.com/wdrink/RepWAM提供。",
+      "authors": [
+        "Junke Wang",
+        "Qihang Zhang",
+        "Shuai Yang"
+      ],
+      "authors_all": [
+        "Junke Wang",
+        "Qihang Zhang",
+        "Shuai Yang",
+        "Yiming Luo",
+        "Yujun Shen",
+        "Zuxuan Wu",
+        "Yu-Gang Jiang",
+        "Yinghao Xu"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-06-11",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2606-13674.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-13674-p2.jpg",
+        "assets/img/covers/arxiv-2606-13674-p3.jpg",
+        "assets/img/covers/arxiv-2606-13674-p4.jpg"
+      ],
+      "arxiv_id": "2606.13674",
+      "abs_url": "http://arxiv.org/abs/2606.13674v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.13674v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 22,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出基于表征视觉-动作分词器的世界动作模型，核心贡献在world model，且涉及机器人操作。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Institute of Trustworthy Embodied AI, Fudan University",
+        "Robbyant, Ant Group",
+        "Hongkong University of Science and Technology"
+      ],
+      "method_tags": [
+        "World Action Model",
+        "Visual-Action Tokenizer",
+        "Latent Action Model"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -1988,73 +2058,6 @@
       "sim_stack": [
         "ManiSkill-HAB"
       ],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2606-13674",
-      "source": "arxiv",
-      "title": "RepWAM: World Action Modeling with Representation Visual-Action Tokenizers",
-      "title_zh": "RepWAM：基于表征视觉-动作分词器的世界动作建模",
-      "tldr_zh": "提出基于表征视觉-动作分词器的世界动作模型，提升机器人操作性能。",
-      "cover_zh": "告别像素重建｜新分词器让机器人看懂动作语义",
-      "abstract_zh": "本文提出RepWAM，一种基于表征视觉-动作分词器的以表征为中心的世界动作模型（WAM）。现有的WAM通常从预训练的视频生成模型中继承面向重建的视频分词器。尽管这些分词器保留了视觉保真度，但仅靠像素重建对学习连接未来预测与机器人控制的指令跟随动态提供的指导有限。为此，我们探索了一个语义视觉-动作潜在空间，用于以表征为中心的世界动作建模。具体来说，我们训练了一个表征视觉-动作分词器，将视觉输入映射为对齐的视觉和潜在动作标记。然后，我们预训练WAM，在语言指令下联合建模未来视觉状态以及连接它们的潜在动作，随后适应真实机器人轨迹以实现闭环操作。在真实世界操作任务和模拟基准上的实验表明，RepWAM在多种操作设置下均表现出色，而消融实验凸显了语义视觉-动作分词相对于面向重建替代方案的价值。这些结果确立了表征视觉-动作分词作为世界动作模型有前途的基础，并朝着通用机器人策略迈出了一步。代码和权重将在https://github.com/wdrink/RepWAM提供。",
-      "authors": [
-        "Junke Wang",
-        "Qihang Zhang",
-        "Shuai Yang"
-      ],
-      "authors_all": [
-        "Junke Wang",
-        "Qihang Zhang",
-        "Shuai Yang",
-        "Yiming Luo",
-        "Yujun Shen",
-        "Zuxuan Wu",
-        "Yu-Gang Jiang",
-        "Yinghao Xu"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-06-11",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-13674.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-13674-p2.jpg",
-        "assets/img/covers/arxiv-2606-13674-p3.jpg",
-        "assets/img/covers/arxiv-2606-13674-p4.jpg"
-      ],
-      "arxiv_id": "2606.13674",
-      "abs_url": "http://arxiv.org/abs/2606.13674v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.13674v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 17,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出基于表征视觉-动作分词器的世界动作模型，核心贡献在world model，且涉及机器人操作。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Institute of Trustworthy Embodied AI, Fudan University",
-        "Robbyant, Ant Group",
-        "Hongkong University of Science and Technology"
-      ],
-      "method_tags": [
-        "World Action Model",
-        "Visual-Action Tokenizer",
-        "Latent Action Model"
-      ],
-      "platform": [],
-      "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
       "training_summary": "",

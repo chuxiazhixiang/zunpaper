@@ -341,77 +341,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2605-11567",
-      "source": "arxiv",
-      "title": "Dynamic Execution Commitment of Vision-Language-Action Models",
-      "title_zh": "视觉-语言-动作模型的动态执行承诺",
-      "tldr_zh": "提出自适应动作接受机制，自动确定执行窗口，无需手动调参。",
-      "cover_zh": "不用再手动调执行窗口｜这个新机制让机器人动作更稳更快",
-      "abstract_zh": "视觉-语言-动作（VLA）模型主要采用动作分块策略，即在单次前向传播中预测并承诺执行一段连续的低级动作序列，以分摊大规模骨干网络的推理成本并降低每步延迟。然而，将这些多步预测承诺到真实世界执行需要在成功率与推理效率之间取得平衡，这一决策通常由针对每个任务调整的固定执行窗口决定。这种启发式方法忽略了预测可靠性的状态依赖性，导致在动态或分布外场景中性能脆弱。本文提出A3，一种自适应动作接受机制，将动态执行承诺重新定义为自推测前缀验证问题。A3首先通过组采样计算动作的轨迹级共识分数，然后选择代表性草案并优先进行下游验证。具体而言，它强制执行：（1）共识排序条件不变性，通过判断低共识动作在基于高共识动作重新解码时是否保持一致来验证它们；（2）前缀封闭序列一致性，通过仅接受从起始位置开始的最长连续已验证动作序列来保证物理执行完整性。因此，执行窗口自然成为满足内部模型逻辑和序列执行约束的最长可验证前缀。在多种VLA模型和基准上的实验表明，A3消除了手动调整窗口的需求，同时实现了执行鲁棒性与推理吞吐量之间的优越权衡。",
-      "authors": [
-        "Feng Chen",
-        "Xianghui Wang",
-        "Yuxuan Chen"
-      ],
-      "authors_all": [
-        "Feng Chen",
-        "Xianghui Wang",
-        "Yuxuan Chen",
-        "Boying Li",
-        "Yefei He",
-        "Zeyu Zhang",
-        "Yicheng Wu"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-05-12",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ SJTU"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2605-11567.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2605-11567-p2.jpg",
-        "assets/img/covers/arxiv-2605-11567-p3.jpg",
-        "assets/img/covers/arxiv-2605-11567-p4.jpg"
-      ],
-      "arxiv_id": "2605.11567",
-      "abs_url": "http://arxiv.org/abs/2605.11567v1",
-      "pdf_url": "https://arxiv.org/pdf/2605.11567v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 47,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出VLA模型动态执行承诺机制，提升鲁棒性与效率，对操作领域有高科研价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "University of Adelaide",
-        "Sichuan University",
-        "Shanghai Jiao Tong University",
-        "Monash University"
-      ],
-      "method_tags": [
-        "action chunking",
-        "self-speculative prefix verification"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2605-11817",
       "source": "arxiv",
       "title": "See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model",
@@ -763,6 +692,77 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "no",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2605-11567",
+      "source": "arxiv",
+      "title": "Dynamic Execution Commitment of Vision-Language-Action Models",
+      "title_zh": "视觉-语言-动作模型的动态执行承诺",
+      "tldr_zh": "提出自适应动作接受机制，自动确定执行窗口，无需手动调参。",
+      "cover_zh": "不用再手动调执行窗口｜这个新机制让机器人动作更稳更快",
+      "abstract_zh": "视觉-语言-动作（VLA）模型主要采用动作分块策略，即在单次前向传播中预测并承诺执行一段连续的低级动作序列，以分摊大规模骨干网络的推理成本并降低每步延迟。然而，将这些多步预测承诺到真实世界执行需要在成功率与推理效率之间取得平衡，这一决策通常由针对每个任务调整的固定执行窗口决定。这种启发式方法忽略了预测可靠性的状态依赖性，导致在动态或分布外场景中性能脆弱。本文提出A3，一种自适应动作接受机制，将动态执行承诺重新定义为自推测前缀验证问题。A3首先通过组采样计算动作的轨迹级共识分数，然后选择代表性草案并优先进行下游验证。具体而言，它强制执行：（1）共识排序条件不变性，通过判断低共识动作在基于高共识动作重新解码时是否保持一致来验证它们；（2）前缀封闭序列一致性，通过仅接受从起始位置开始的最长连续已验证动作序列来保证物理执行完整性。因此，执行窗口自然成为满足内部模型逻辑和序列执行约束的最长可验证前缀。在多种VLA模型和基准上的实验表明，A3消除了手动调整窗口的需求，同时实现了执行鲁棒性与推理吞吐量之间的优越权衡。",
+      "authors": [
+        "Feng Chen",
+        "Xianghui Wang",
+        "Yuxuan Chen"
+      ],
+      "authors_all": [
+        "Feng Chen",
+        "Xianghui Wang",
+        "Yuxuan Chen",
+        "Boying Li",
+        "Yefei He",
+        "Zeyu Zhang",
+        "Yicheng Wu"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-05-12",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ SJTU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2605-11567.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2605-11567-p2.jpg",
+        "assets/img/covers/arxiv-2605-11567-p3.jpg",
+        "assets/img/covers/arxiv-2605-11567-p4.jpg"
+      ],
+      "arxiv_id": "2605.11567",
+      "abs_url": "http://arxiv.org/abs/2605.11567v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.11567v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 37,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出VLA模型动态执行承诺机制，提升鲁棒性与效率，对操作领域有高科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Adelaide",
+        "Sichuan University",
+        "Shanghai Jiao Tong University",
+        "Monash University"
+      ],
+      "method_tags": [
+        "action chunking",
+        "self-speculative prefix verification"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -1762,7 +1762,8 @@
       "published": "2026-05-12",
       "channels": [
         "manipulation",
-        "sim2real"
+        "sim2real",
+        "locomotion"
       ],
       "badges": [],
       "cover_image": "assets/img/covers/arxiv-2605-11762.jpg",
