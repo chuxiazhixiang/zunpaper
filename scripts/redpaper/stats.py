@@ -78,6 +78,20 @@ def _ci_display_map(counter: Counter) -> dict[str, str]:
     return {k: v.most_common(1)[0][0] for k, v in groups.items()}
 
 
+_VENUE_TRACK_RE = re.compile(
+    r"\b(poster|oral|spotlight|workshop|findings|demo|track|conference|main|"
+    r"datasets?(\s+and\s+benchmarks)?)\b", re.IGNORECASE)
+
+
+def _venue_base(v: str) -> str:
+    """venue 归并基名：去年份 + 去 track 后缀（"CoRL 2024 Poster"/"CoRL 2024 Oral"
+    → "CoRL"），避免同一会议在筛选/图表里被拆成好几条。"""
+    s = re.sub(r"\b20\d{2}\b", " ", v or "")
+    s = _VENUE_TRACK_RE.sub(" ", s)
+    s = re.sub(r"\s+", " ", s).strip()
+    return s or (v or "").strip()
+
+
 def _src_group(s: str) -> str:
     s = (s or "").lower()
     if s in ("arxiv", "arxiv_discover", "manual_arxiv"):
@@ -171,8 +185,7 @@ def compute_stats(all_papers, channels) -> dict:
     for p in papers:
         v = (_g(p, "venue", "") or "").strip()
         if v:
-            base = re.sub(r"\s*\b20\d{2}\b\s*", "", v).strip() or v
-            ven[base] += 1
+            ven[_venue_base(v)] += 1
     venues = [{"name": k, "count": v} for k, v in ven.most_common(15)]
 
     # ⑨ 热点关键词随时间

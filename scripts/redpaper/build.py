@@ -193,8 +193,8 @@ def _enrich_papers(fresh: dict[str, Paper]) -> dict[str, Paper]:
             # 读 PDF 首页文本喂给抽取器：真实单位脚注 / 平台型号几乎只在首页，
             # 摘要里没有 → 不给 PDF 的话机构/平台只能靠猜（OASIS 把 G1 猜成 H1）。
             pdf_text = ""
-            # openreview 源量大，不逐篇下 PDF（只用 abstract 抽取），避免拖垮 CI。
-            if p.pdf_url and (p.source or "") != "openreview":
+            # openreview / conf 源量大，不逐篇下 PDF（只用 abstract 抽取），避免拖垮 CI。
+            if p.pdf_url and (p.source or "") not in ("openreview", "conf"):
                 try:
                     pdf_text, pc = fetch_head_text(p.pdf_url)
                     if pc > 0 and not p.page_count:
@@ -245,7 +245,7 @@ def _scrape_demo_videos(fresh: dict[str, Paper]) -> None:
         # 视频源卡（video_youtube / video_bilibili）本身就是一条视频，demo_videos
         # 已在 video_channels 里预填好；这里若再扫 abstract/项目页会返回 [] 把它
         # 覆盖清空，所以直接跳过。
-        if src in ("github", "external_link", "openreview") or src.startswith("video_"):
+        if src in ("github", "external_link", "openreview", "conf") or src.startswith("video_"):
             continue
         try:
             videos = enrich_paper_videos(p, cache)
@@ -308,25 +308,63 @@ def _github_mark_attempt() -> None:
 _OPENREVIEW_STATE_PATH = cfg.REPO_ROOT / "data" / "openreview_state.json"
 
 
-def _openreview_should_fetch(refresh_days: int) -> bool:
-    """会议数据是静态的，refresh_days 天才重抓一次。盘上还没 openreview 卡 → 必抓。"""
+def _openreview_should_fetch(refresh_days: int, venue_sig: str = "") -> bool:
+    """会议数据是静态的，refresh_days 天才重抓一次。盘上还没 openreview 卡 → 必抓。
+    另：venueid 集合变了（新增了会议季/会议）也立即重抓，不等冷却。"""
     if refresh_days <= 0:
         return True
     if not any(cfg.PAPERS_DIR.glob("openreview-*.json")):
         return True
     try:
-        last = json.loads(_OPENREVIEW_STATE_PATH.read_text(encoding="utf-8")).get("last_fetch", "")
-        age = (dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(last)).days
+        st = json.loads(_OPENREVIEW_STATE_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return True
+    if venue_sig and st.get("venue_sig", "") != venue_sig:
+        return True  # venueid 集合变化 → 立即抓新会议
+    try:
+        age = (dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(st.get("last_fetch", ""))).days
         return age >= refresh_days
     except Exception:
         return True
 
 
-def _openreview_mark_fetched() -> None:
+def _openreview_mark_fetched(venue_sig: str = "") -> None:
     try:
         _OPENREVIEW_STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
         _OPENREVIEW_STATE_PATH.write_text(
-            json.dumps({"last_fetch": dt.datetime.now(dt.timezone.utc).isoformat()}),
+            json.dumps({"last_fetch": dt.datetime.now(dt.timezone.utc).isoformat(),
+                        "venue_sig": venue_sig}),
+            encoding="utf-8")
+    except Exception:
+        pass
+
+
+_CONF_STATE_PATH = cfg.REPO_ROOT / "data" / "conf_papers_state.json"
+
+
+def _conf_should_fetch(refresh_days: int, sig: str = "") -> bool:
+    if refresh_days <= 0:
+        return True
+    if not _CONF_STATE_PATH.exists():
+        return True  # 首次：必抓
+    try:
+        st = json.loads(_CONF_STATE_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return True
+    if sig and st.get("sig", "") != sig:
+        return True  # venue 配置变了 → 立即重抓
+    try:
+        age = (dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(st.get("last_fetch", ""))).days
+        return age >= refresh_days
+    except Exception:
+        return True
+
+
+def _conf_mark_fetched(sig: str = "") -> None:
+    try:
+        _CONF_STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
+        _CONF_STATE_PATH.write_text(
+            json.dumps({"last_fetch": dt.datetime.now(dt.timezone.utc).isoformat(), "sig": sig}),
             encoding="utf-8")
     except Exception:
         pass
@@ -569,18 +607,15 @@ def process_new_papers(
             for tg in (cached.source_tags or []):
                 if tg not in (paper.source_tags or []):
                     paper.source_tags.append(tg)
-            # venue：本轮重新解析的优先；没解析到则继承 cached。若 cached 原本没
-            # venue、本轮新解析到（= 刚被会议/期刊收录）→ 记一次 venue_announced=今天，
-            # 让它以"今天"重新冒泡到 feed（"最新收录"）。
-            newly_accepted = bool(paper.venue) and not (cached.venue or "")
+            # venue：本轮解析/抓到的优先，没有则继承 cached。venue_announced（"最新收录"
+            # 重新冒泡）只由 _venue_backfill 在「存量 arXiv 论文刚被收录」时打，不在这里
+            # 自动产生——否则 OpenReview/conf 批量导入的去年论文会被误当"今天新收录"刷屏。
             paper.venue = paper.venue or cached.venue
             paper.venue_announced = paper.venue_announced or cached.venue_announced
-            if newly_accepted and not paper.venue_announced:
-                paper.venue_announced = dt.date.today().isoformat()
 
-        # openreview 源：一次可能几百篇，逐篇下载+渲染 PDF 会拖垮 CI → 用占位封面，
-        # 不渲染（仍保留 pdf_url 供「下载 PDF」）。
-        if not paper.cover_image and paper.pdf_url and (paper.source or "") != "openreview":
+        # openreview / conf 源：一次可能几百篇，逐篇下载+渲染 PDF 会拖垮 CI → 用占位
+        # 封面，不渲染（仍保留 pdf_url 供「下载 PDF」）。
+        if not paper.cover_image and paper.pdf_url and (paper.source or "") not in ("openreview", "conf"):
             rel, previews, pages = fetch_and_render(paper.pdf_url, paper.id, cfg.COVER_DIR)
             if rel:
                 paper.cover_image = rel
@@ -1659,8 +1694,9 @@ def run() -> None:
     except Exception as e:
         log.warning("openreview venueid auto-derive failed: %s", e)
 
+    _or_sig = "|".join(sorted(or_venue_ids))
     if getattr(sources, "openreview_enabled", False) and or_venue_ids:
-        if _openreview_should_fetch(getattr(sources, "openreview_refresh_days", 14)):
+        if _openreview_should_fetch(getattr(sources, "openreview_refresh_days", 14), _or_sig):
             try:
                 from .sources import openreview as _openreview
                 or_papers = _openreview.fetch_papers(
@@ -1674,11 +1710,40 @@ def run() -> None:
                         added += 1
                 log.info("openreview: +%d papers", added)
                 if or_papers:
-                    _openreview_mark_fetched()
+                    _openreview_mark_fetched(_or_sig)
             except Exception as e:
                 log.warning("openreview step failed: %s", e)
         else:
             log.info("openreview: within refresh window, skipping fetch")
+
+    # ----- 会议/期刊源（Semantic Scholar 按 venue 检索）------------------
+    # 补 OpenReview 覆盖不到的 CVPR/ICCV/ECCV/RA-L/ICML 等的「去年中稿」论文。
+    if getattr(sources, "conf_papers_enabled", False) and getattr(sources, "conf_papers_venues", None):
+        import hashlib as _hl
+        conf_sig = _hl.sha1(json.dumps(sources.conf_papers_venues, sort_keys=True).encode()).hexdigest()[:12]
+        if _conf_should_fetch(getattr(sources, "conf_papers_refresh_days", 14), conf_sig):
+            try:
+                from .sources import conf_papers as _conf
+                cf_papers = _conf.fetch_papers(
+                    sources.conf_papers_venues, channels,
+                    max_per_venue=getattr(sources, "conf_papers_max_per_venue", 40),
+                )
+                added = tagged = 0
+                for p in cf_papers:
+                    if p.id in fresh:
+                        if not fresh[p.id].venue:
+                            fresh[p.id].venue = p.venue
+                        tagged += 1
+                    else:
+                        fresh[p.id] = p
+                        added += 1
+                log.info("conf_papers: +%d new, %d already-present tagged", added, tagged)
+                if cf_papers:
+                    _conf_mark_fetched(conf_sig)
+            except Exception as e:
+                log.warning("conf_papers step failed: %s", e)
+        else:
+            log.info("conf_papers: within refresh window, skipping fetch")
 
     log.info("fetched %d unique papers", len(fresh))
 

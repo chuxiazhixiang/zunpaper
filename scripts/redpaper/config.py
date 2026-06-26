@@ -87,6 +87,11 @@ class SourcesConfig:
     openreview_venue_ids: list[str] = field(default_factory=list)
     openreview_max_per_venue: int = 80
     openreview_refresh_days: int = 14
+    # 会议/期刊源（Semantic Scholar 按 venue 检索：CVPR/ICCV/ECCV/RA-L/ICML 等）
+    conf_papers_enabled: bool = True
+    conf_papers_venues: list[dict] = field(default_factory=list)
+    conf_papers_max_per_venue: int = 40
+    conf_papers_refresh_days: int = 14
 
 
 @dataclass
@@ -261,6 +266,10 @@ def load_sources() -> SourcesConfig:
         openreview_venue_ids=get("openreview", "venue_ids", []) or [],
         openreview_max_per_venue=get("openreview", "max_per_venue", 80),
         openreview_refresh_days=get("openreview", "refresh_days", 14),
+        conf_papers_enabled=get("conf_papers", "enabled", True),
+        conf_papers_venues=get("conf_papers", "venues", []) or [],
+        conf_papers_max_per_venue=get("conf_papers", "max_per_venue", 40),
+        conf_papers_refresh_days=get("conf_papers", "refresh_days", 14),
     )
 
 
