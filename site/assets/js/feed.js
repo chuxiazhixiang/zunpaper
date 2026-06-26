@@ -172,26 +172,17 @@ function visiblePapers() {
   });
 }
 
-// 填充会议/期刊下拉（papers 模式有 venue 的论文才有意义）。
-function populateVenueFilter() {
-  const sel = document.querySelector('#venue-filter');
-  if (!sel) return;
-  const counts = new Map();
-  for (const p of STATE.papers) {
-    if ((p.source || '') === 'github') continue;
-    const b = venueBase(p.venue);
-    if (b) counts.set(b, (counts.get(b) || 0) + 1);
-  }
-  if (!counts.size) { sel.hidden = true; return; }
-  const items = [...counts.entries()].sort((a, b) => b[1] - a[1]);
-  sel.innerHTML = '<option value="">全部会议/期刊</option>' +
-    items.map(([name, n]) => `<option value="${escapeHTML(name)}">${escapeHTML(name)} (${n})</option>`).join('');
-  sel.hidden = false;
-  sel.value = STATE.activeVenue || '';
-  sel.onchange = () => {
-    STATE.activeVenue = sel.value;
-    renderFeed();
-  };
+// 会议筛选提示条：仅当从倒计时点会议名跳来（STATE.activeVenue 有值）时显示一条
+// 「🎓 正在看 <会议> 的论文 · ✕ 清除」，点 ✕ 回到全部。会议入口统一收敛到上方
+// 倒计时面板，不再单独放下拉，保持 tab 行清爽。
+function renderVenueBar() {
+  const bar = document.querySelector('#venue-bar');
+  if (!bar) return;
+  if (!STATE.activeVenue) { bar.hidden = true; bar.innerHTML = ''; return; }
+  const n = STATE.papers.filter((p) => venueBase(p.venue) === STATE.activeVenue).length;
+  bar.innerHTML = `<span class="rp-venuebar__chip">🎓 正在看 <b>${escapeHTML(STATE.activeVenue)}</b> 收录的论文（${n}）
+    <a class="rp-venuebar__clear" href="index.html" title="清除筛选">✕</a></span>`;
+  bar.hidden = false;
 }
 
 function badgeHTML(badge) {
@@ -671,9 +662,7 @@ function renderFeed() {
   const feed = document.querySelector('#feed');
   if (!feed) return;
 
-  // 会议/期刊筛选只在论文模式有意义；开源模式隐藏。
-  const vsel = document.querySelector('#venue-filter');
-  if (vsel) vsel.hidden = STATE.mode === 'repos' || vsel.options.length <= 1;
+  renderVenueBar();
 
   teardownObserver();
   feed.innerHTML = '';
@@ -786,7 +775,6 @@ async function main() {
   await loadData();
   renderCrawlBanner();
   buildChannelTabs();
-  populateVenueFilter();
   renderFeed();
 }
 
