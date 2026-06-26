@@ -2403,17 +2403,54 @@ img {
   margin-bottom: 10px;
 }
 
-/* ----- 数据看板：方向筛选条 ----------------------------------------- */
+/* ----- 数据看板：方向筛选条（吸顶 + 可收起）------------------------- */
 .rp-chart-filter {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 10px;
+  flex-direction: column;
+  gap: 10px;
   background: var(--rp-surface);
+  border: 1px solid var(--rp-border);
   border-radius: var(--rp-radius-lg);
   padding: 12px 16px;
   margin-bottom: 14px;
   box-shadow: var(--rp-shadow);
+  /* 跟随滚动吸顶在 app-bar（~56px）下方，看下面的图时也能随手改筛选 */
+  position: sticky;
+  top: 56px;
+  z-index: 30;
+}
+.rp-chart-filter__toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--rp-text);
+  text-align: left;
+}
+.rp-chart-filter__caret {
+  font-size: 12px;
+  color: var(--rp-text-dim);
+  transition: transform 0.18s;
+}
+.rp-chart-filter.is-collapsed .rp-chart-filter__caret {
+  transform: rotate(-90deg);
+}
+.rp-chart-filter.is-collapsed .rp-chart-filter__body {
+  display: none;
+}
+.rp-chart-filter__count {
+  font-size: 12px;
+  color: var(--rp-text-dim);
+  font-weight: 400;
+}
+.rp-chart-filter__body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
 }
 .rp-chart-filter__label {
   font-size: 13px;
@@ -2430,6 +2467,7 @@ img {
 .rp-chart-filter__hint {
   font-size: 12px;
   color: var(--rp-text-dim);
+  flex-basis: 100%;
 }
 .rp-filter-chip {
   display: inline-flex;

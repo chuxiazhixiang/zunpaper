@@ -6,7 +6,7 @@
 // 把页面塞爆。
 // before the user hits the bottom.
 
-import { Favorites, Curated, Reads, Theme } from './storage.js?v=b9df2b49';
+import { Favorites, Curated, Reads, Theme } from './storage.js?v=7adda7f1';
 import {
   pickCover,
   loadPalettes,
@@ -18,7 +18,7 @@ import {
   HEART_SVG_FILL,
   showToast,
   fetchJSON,
-} from './utils.js?v=b9df2b49';
+} from './utils.js?v=7adda7f1';
 
 const STATE = {
   channels: [],
@@ -99,6 +99,42 @@ function buildChannelTabs() {
   });
 }
 
+// 搜索匹配：分词 + 无序 + 粘连/反序兼容。
+//   - 多词查询（"wang yue" / "yue wang"）：每个 token 都要命中，顺序无关。
+//   - 无空格单词（"wangyue" / "yuewang"）：先整体匹配；不中则尝试在各切点切成
+//     两半，两半都命中即算（这样姓名正反序、有无空格都能搜到 "Yue Wang"）。
+function _searchHay(p) {
+  return [
+    p.title, p.title_zh, p.tldr_zh, p.abstract_zh,
+    (p.authors_all || p.authors || []).join(' '),
+    (p.institutions || []).join(' '),
+    (p.method_tags || []).join(' '),
+    (p.platform || []).join(' '),
+  ].filter(Boolean).join(' ').toLowerCase();
+}
+
+function _tokenHit(hay, hayCompact, token) {
+  const t = token.replace(/\s+/g, '');
+  if (!t) return true;
+  if (hay.includes(token) || hayCompact.includes(t)) return true;
+  // 纯英文无空格 token：尝试切两半（覆盖 wangyue ↔ yue wang 这类反序/粘连）
+  if (t.length >= 4 && /^[a-z]+$/.test(t)) {
+    for (let i = 2; i <= t.length - 2; i++) {
+      const a = t.slice(0, i);
+      const b = t.slice(i);
+      if (hayCompact.includes(a) && hayCompact.includes(b)) return true;
+    }
+  }
+  return false;
+}
+
+function matchesQuery(p, q) {
+  const hay = _searchHay(p);
+  const hayCompact = hay.replace(/\s+/g, '');
+  const tokens = q.split(/\s+/).filter(Boolean);
+  return tokens.every((tok) => _tokenHit(hay, hayCompact, tok));
+}
+
 function visiblePapers() {
   const q = STATE.searchQuery.trim().toLowerCase();
   const wantRepos = STATE.mode === 'repos';
@@ -111,17 +147,7 @@ function visiblePapers() {
       return false;
     }
     if (!q) return true;
-    const hay = [
-      p.title,
-      p.title_zh,
-      p.tldr_zh,
-      p.abstract_zh,
-      (p.authors || []).join(' '),
-    ]
-      .filter(Boolean)
-      .join(' ')
-      .toLowerCase();
-    return hay.includes(q);
+    return matchesQuery(p, q);
   });
 }
 
@@ -185,8 +211,53 @@ export function githubCardHTML(p) {
     </a>`;
 }
 
+function _domainLabel(url) {
+  try {
+    const h = new URL(url).hostname.replace(/^www\./, '');
+    if (h.includes('science.org')) return 'SCIENCE';
+    if (h.includes('nature.com')) return 'NATURE';
+    if (h.includes('ieee')) return 'IEEE';
+    return (h.split('.')[0] || 'LINK').toUpperCase();
+  } catch (_) {
+    return 'LINK';
+  }
+}
+
+// 外链 pin 卡（source=external_link，如 Nature/Science 等本站抓不到正文的论文）：
+// 点击直达原文，不进 post.html。结构与普通卡一致，复用收藏/甄选按钮。
+export function externalCardHTML(p) {
+  const cover = pickCover(p.id);
+  const titleZh = p.title_zh || p.title;
+  const headline = p.cover_zh || p.tldr_zh || titleZh;
+  const fav = Favorites.has(p.id);
+  const heart = fav ? HEART_SVG_FILL : HEART_SVG_OUTLINE;
+  const badges = (p.badges || []).map(badgeHTML).join('');
+  const chips = chipRowsHTML(p);
+  return `
+    <a class="rp-card" href="${p.abs_url || '#'}" target="_blank" rel="noopener" data-id="${p.id}">
+      <div class="rp-cover ${cover.cls}">
+        <span class="rp-cover__source">🔗 ${escapeHTML(_domainLabel(p.abs_url))}</span>
+        <p class="rp-cover__headline">${escapeHTML(headline)}</p>
+      </div>
+      <div class="rp-card__body">
+        <h4 class="rp-card__title">${escapeHTML(titleZh)}</h4>
+        ${p.tldr_zh ? `<p class="rp-card__tldr">${escapeHTML(p.tldr_zh)}</p>` : ''}
+        ${chips}
+        ${badges ? `<div class="rp-card__badges">${badges}</div>` : ''}
+        <div class="rp-card__meta">
+          <span class="rp-card__authors">阅读原文 ↗</span>
+          <button class="rp-card__gem ${Curated.has(p.id) ? 'is-on' : ''}" data-gem="${p.id}" title="标记为高质量（站长甄选）" aria-label="标记高质量">💎</button>
+          <button class="rp-card__like ${fav ? 'is-liked' : ''}" data-fav="${p.id}" title="${fav ? '取消收藏' : '收藏'}" aria-label="收藏">
+            ${heart}
+          </button>
+        </div>
+      </div>
+    </a>`;
+}
+
 function cardHTML(p) {
   if ((p.source || '') === 'github') return githubCardHTML(p);
+  if ((p.source || '') === 'external_link') return externalCardHTML(p);
   const cover = pickCover(p.id);
   const titleZh = p.title_zh || p.title;
   const headline = p.cover_zh || p.tldr_zh || titleZh;

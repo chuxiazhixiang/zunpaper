@@ -1,7 +1,7 @@
 // 数据看板：读 data/stats.json，用 ECharts 画 8 类图，滚动到哪张图触发哪张
 // 图的入场动画。ECharts 通过 insights.html 的 CDN <script> 提供全局 echarts。
-import { Theme } from './storage.js?v=b9df2b49';
-import { escapeHTML, attachSearchRedirect, fetchJSON } from './utils.js?v=b9df2b49';
+import { Theme } from './storage.js?v=7adda7f1';
+import { escapeHTML, attachSearchRedirect, fetchJSON } from './utils.js?v=7adda7f1';
 
 // 站点暖色调色板（跟首页红主题呼应）
 const PALETTE = [
@@ -350,11 +350,13 @@ function rerenderCategoryCharts() {
 }
 
 function syncAllBtn() {
-  const btn = document.getElementById('cat-filter-all');
-  if (!btn || !STATE.data) return;
+  if (!STATE.data) return;
   const total = STATE.data.channels.length;
-  const allOn = STATE.selectedChannels && STATE.selectedChannels.size >= total;
-  btn.textContent = allOn ? '全不选' : '全选';
+  const sel = STATE.selectedChannels ? STATE.selectedChannels.size : total;
+  const btn = document.getElementById('cat-filter-all');
+  if (btn) btn.textContent = sel >= total ? '全不选' : '全选';
+  const cnt = document.getElementById('cat-filter-count');
+  if (cnt) cnt.textContent = `${sel}/${total}`;
 }
 
 // 构建方向筛选 chips（默认全选）
@@ -383,6 +385,11 @@ function buildCatFilter(d) {
     chips.querySelectorAll('input').forEach((i) => { i.checked = STATE.selectedChannels.has(i.value); });
     syncAllBtn();
     rerenderCategoryCharts();
+  });
+  // 展开 / 收起（吸顶时省空间）
+  document.getElementById('cat-filter-toggle')?.addEventListener('click', () => {
+    const collapsed = wrap.classList.toggle('is-collapsed');
+    document.getElementById('cat-filter-toggle')?.setAttribute('aria-expanded', String(!collapsed));
   });
   wrap.hidden = false;
   syncAllBtn();

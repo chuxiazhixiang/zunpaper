@@ -1,7 +1,7 @@
 // Favorites page: filter the global index to favorited papers, grouped by
 // user-defined categories. All state is local to this browser.
 
-import { Favorites, Curated, Theme } from './storage.js?v=b9df2b49';
+import { Favorites, Curated, Theme } from './storage.js?v=7adda7f1';
 import {
   pickCover,
   loadPalettes,
@@ -14,8 +14,8 @@ import {
   HEART_SVG_FILL,
   showToast,
   fetchJSON,
-} from './utils.js?v=b9df2b49';
-import { chipRowsHTML, videoBadgeHTML, githubCardHTML } from './feed.js?v=b9df2b49';
+} from './utils.js?v=7adda7f1';
+import { chipRowsHTML, videoBadgeHTML, githubCardHTML, externalCardHTML } from './feed.js?v=7adda7f1';
 
 const STATE = {
   papers: [],          // master list from index.json
@@ -30,6 +30,7 @@ async function loadIndex() {
 function cardHTML(p) {
   // 开源仓复用 feed 的 GitHub 卡片（显示 star/语言、直链仓库），保持一致。
   if ((p.source || '') === 'github') return githubCardHTML(p);
+  if ((p.source || '') === 'external_link') return externalCardHTML(p);
   const cover = pickCover(p.id);
   const titleZh = p.title_zh || p.title;
   const headline = p.cover_zh || p.tldr_zh || titleZh;

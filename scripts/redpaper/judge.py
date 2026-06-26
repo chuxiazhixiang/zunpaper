@@ -352,6 +352,113 @@ def judge_paper_for_channel(title: str, abstract: str, channel, *,
     )
 
 
+# ---------- 自定义分类：AI 关键词扩展 ------------------------------------
+#
+# 站长填的关键词往往片面（只想到几个），容易把想看的论文漏掉。这里让 LLM 依据
+# 方向定义 + 收录标准 + 已有关键词 + 示例论文标题，补一批同义/相关/别名关键词
+# （中英都要，arXiv 是英文）。只拓宽**召回**，精度仍由该分类的独立 judge 把关。
+
+def keyword_expand_signature(channel) -> str:
+    """关键词扩展缓存指纹：desc / judge_prompt / 已有关键词 任一变化就重扩。"""
+    basis = "\x00".join([
+        channel.desc or "",
+        getattr(channel, "judge_prompt", "") or "",
+        "|".join(sorted(channel.keywords or [])),
+    ])
+    return hashlib.sha1(basis.encode("utf-8")).hexdigest()[:12]
+
+
+def expand_channel_keywords(channel, *, model: str = DEFAULT_MODEL,
+                            api_key: str | None = None, timeout: float = JUDGE_TIMEOUT) -> list[str]:
+    """让 LLM 给某个自定义分类补充召回关键词。返回新增关键词列表（不含已有的）。"""
+    if os.environ.get("REDPAPER_JUDGE_DISABLE") == "1":
+        raise JudgeUnavailable("REDPAPER_JUDGE_DISABLE=1")
+    key = api_key or os.environ.get("DEEPSEEK_API_KEY")
+    if not key:
+        raise JudgeUnavailable("DEEPSEEK_API_KEY not set")
+
+    examples = getattr(channel, "examples", None) or []
+    ex_titles = [str(e.get("title")).strip() for e in examples
+                 if isinstance(e, dict) and e.get("title")]
+    system = (
+        "你是论文检索关键词专家。我会给你一个研究方向的【定义 + 收录标准 + 已有关键词 + 示例论文标题】，"
+        "请补充一批用于在 arXiv 标题/摘要里**召回**论文的关键词，尽量别漏掉该方向的论文。\n"
+        "要求：\n"
+        "  - 中英文都要，**以英文为主**（arXiv 论文是英文）；覆盖同义词 / 别名 / 相关技术术语 / 常见写法 / 缩写。\n"
+        "  - 不要过于宽泛（别给会把无关方向也大量召回的超通用词，如 'robot'、'learning'）。\n"
+        "  - 不要重复已有关键词。\n"
+        "只输出 JSON（不要 markdown）：{\"keywords\": [\"...\", ...]}，给 15-30 个。"
+    )
+    user = (
+        f"方向定义：{channel.desc or channel.name}\n"
+        f"收录标准：{getattr(channel, 'judge_prompt', '') or '（未填）'}\n"
+        f"已有关键词：{ '、'.join(channel.keywords or []) }\n"
+        f"示例论文标题：{ '；'.join(ex_titles) if ex_titles else '（无）' }\n"
+    )
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
+        "response_format": {"type": "json_object"},
+        "temperature": 0.2,
+        "thinking": {"type": "disabled"},
+        "max_tokens": 800,
+    }
+    headers = {"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
+    r = requests.post(DEEPSEEK_URL, json=payload, headers=headers, timeout=timeout)
+    r.raise_for_status()
+    raw = r.json()["choices"][0]["message"]["content"]
+    data = _parse_response(raw)
+    kws = data.get("keywords") or []
+    out: list[str] = []
+    have = {k.lower() for k in (channel.keywords or [])}
+    for k in kws:
+        k = str(k).strip()
+        if k and k.lower() not in have and len(k) <= 60:
+            out.append(k)
+            have.add(k.lower())
+    return out
+
+
+class KeywordCache:
+    """自定义分类的 AI 扩展关键词缓存（data/custom_keyword_cache.json）。
+    key = channel id → {sig, keywords, ts}；sig 变（站长改了定义/标准/关键词）就重扩。"""
+
+    VERSION = 1
+
+    def __init__(self, path: Path):
+        self.path = path
+        self._data = {"version": self.VERSION, "entries": {}}
+        if path.exists():
+            try:
+                with open(path, encoding="utf-8") as f:
+                    self._data = json.load(f)
+            except Exception as e:
+                log.warning("keyword cache load failed (%s); starting fresh", e)
+
+    @property
+    def entries(self) -> dict[str, dict]:
+        return self._data.setdefault("entries", {})
+
+    def get(self, cid: str, sig: str) -> list[str] | None:
+        e = self.entries.get(cid)
+        if not e or e.get("sig") != sig:
+            return None
+        return list(e.get("keywords") or [])
+
+    def put(self, cid: str, sig: str, keywords: list[str]) -> None:
+        self.entries[cid] = {"sig": sig, "keywords": list(keywords), "ts": int(time.time())}
+
+    def save(self) -> None:
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        tmp = self.path.with_suffix(".json.tmp")
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump(self._data, f, ensure_ascii=False, indent=2)
+        tmp.replace(self.path)
+
+
 def _parse_response(raw: str) -> dict:
     """LLM 偶尔会在 JSON 周围加 ```json fence；剥掉。"""
     s = raw.strip()

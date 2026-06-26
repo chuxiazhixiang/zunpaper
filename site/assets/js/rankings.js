@@ -2,7 +2,7 @@
 // Each ranking row is a slim list item (medal + score + title + meta)
 // so the user can scan top-N quickly.
 
-import { Theme } from './storage.js?v=b9df2b49';
+import { Theme } from './storage.js?v=7adda7f1';
 import {
   escapeHTML,
   formatAuthors,
@@ -10,7 +10,7 @@ import {
   attachSearchRedirect,
   showToast,
   fetchJSON,
-} from './utils.js?v=b9df2b49';
+} from './utils.js?v=7adda7f1';
 
 const DAY_MS = 86400000;
 
@@ -39,7 +39,7 @@ function fmtStars(n) {
 async function loadData() {
   const r = await fetchJSON('data/index.json').then((r) => r.json()).catch(() => ({ papers: [] }));
   // 论文榜（日/周/月/总）排除开源仓；开源仓单独走「🐙 开源 Star 榜」。
-  STATE.papers = (r.papers || []).filter((p) => (p.source || '') !== 'github');
+  STATE.papers = (r.papers || []).filter((p) => (p.source || '') !== 'github' && (p.source || '') !== 'external_link');
   STATE.repos = (r.papers || []).filter((p) => (p.source || '') === 'github');
 }
 
