@@ -68,6 +68,15 @@ def _merge_ci(counter: Counter) -> Counter:
     return out
 
 
+def _ci_display_map(counter: Counter) -> dict[str, str]:
+    """{小写 key → 展示名}，展示名取该 key 下出现最多的原始写法。用来把 per-channel
+    的 tag 归一到与全局榜一致的展示名（method / platform 用）。"""
+    groups: dict[str, Counter] = {}
+    for raw, n in counter.items():
+        groups.setdefault(raw.lower(), Counter())[raw] += n
+    return {k: v.most_common(1)[0][0] for k, v in groups.items()}
+
+
 def _src_group(s: str) -> str:
     s = (s or "").lower()
     if s in ("arxiv", "arxiv_discover", "manual_arxiv"):
@@ -170,6 +179,65 @@ def compute_stats(all_papers, channels) -> dict:
             if any(t in hay for t in terms):
                 hot[label][mm] += 1
 
+    # ---- 按方向拆分（供数据看板「方向筛选」过滤下方图表）-----------------
+    # 机构/方法/本体/热点这些榜原本是全站汇总、没按方向拆，所以前端筛选影响不到。
+    # 这里给每个频道单独存一份分布，前端按勾选的方向求和重排即可。一篇论文若属
+    # 多个频道，会在每个所属频道里各记一次（与 cat_count 的语义一致）。
+    # 为控制体积：机构/方法/本体只保留全站出现 ≥2 次的名字（去掉一次性长尾）。
+    method_disp = _ci_display_map(Counter(
+        t for p in papers for t in (_g(p, "method_tags", []) or []) if t))
+    plat_disp = _ci_display_map(Counter(
+        t for p in papers for t in (_g(p, "platform", []) or []) if t))
+    inst_keep = {k for k, v in inst.items() if v >= 2}
+    method_keep = {k for k, v in mt.items() if v >= 2}
+    plat_keep = {k for k, v in plat.items() if v >= 2}
+    method_top_names = [m["name"] for m in method_top]
+    method_top_set = set(method_top_names)
+
+    inst_by_ch = {cid: Counter() for cid in ch_ids}
+    method_by_ch = {cid: Counter() for cid in ch_ids}
+    platform_by_ch = {cid: Counter() for cid in ch_ids}
+    hot_by_ch = {cid: {label: {mm: 0 for mm in months} for label, _ in _HOT_KEYWORDS} for cid in ch_ids}
+    method_time_by_ch = {cid: {k: {mm: 0 for mm in months} for k in method_top_names} for cid in ch_ids}
+
+    for p in papers:
+        chs = [c for c in (_g(p, "channels", []) or []) if c in inst_by_ch]
+        if not chs:
+            continue
+        mm = (_g(p, "published", "") or "")[:7]
+        for i in (_g(p, "institutions", []) or []):
+            if i and i in inst_keep:
+                for c in chs:
+                    inst_by_ch[c][i] += 1
+        seen_m = set()
+        for t in (_g(p, "method_tags", []) or []):
+            disp = method_disp.get((t or "").lower())
+            if not disp:
+                continue
+            if disp in method_keep:
+                for c in chs:
+                    method_by_ch[c][disp] += 1
+            if disp in method_top_set and mm in mset and disp not in seen_m:
+                for c in chs:
+                    method_time_by_ch[c][disp][mm] += 1
+                seen_m.add(disp)
+        for t in (_g(p, "platform", []) or []):
+            disp = plat_disp.get((t or "").lower())
+            if disp and disp in plat_keep:
+                for c in chs:
+                    platform_by_ch[c][disp] += 1
+        if mm in mset:
+            hay = " ".join([
+                _g(p, "title", "") or "",
+                _g(p, "abstract", "") or "",
+                _g(p, "tldr_zh", "") or "",
+                " ".join(_g(p, "method_tags", []) or []),
+            ]).lower()
+            for label, terms in _HOT_KEYWORDS:
+                if any(t in hay for t in terms):
+                    for c in chs:
+                        hot_by_ch[c][label][mm] += 1
+
     return {
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
         "totals": {"papers": len(papers), "repos": len(repos), "all": len(all_papers)},
@@ -186,6 +254,12 @@ def compute_stats(all_papers, channels) -> dict:
         "platform_disclosed": platform_disclosed,
         "source": source,
         "hot_keywords": hot,
+        # 按方向拆分（前端方向筛选用；老前端忽略这些键即可）
+        "inst_by_ch": {cid: dict(c) for cid, c in inst_by_ch.items()},
+        "method_by_ch": {cid: dict(c) for cid, c in method_by_ch.items()},
+        "platform_by_ch": {cid: dict(c) for cid, c in platform_by_ch.items()},
+        "method_time_by_ch": method_time_by_ch,
+        "hot_by_ch": hot_by_ch,
     }
 
 

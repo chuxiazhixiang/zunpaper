@@ -1053,6 +1053,19 @@ def retag_and_prune(channels: list[cfg.Channel]) -> None:
 _CUSTOM_STATE_PATH = cfg.REPO_ROOT / "data" / "custom_channels_state.json"
 
 
+def _channel_backfill_sig(c: cfg.Channel) -> str:
+    """决定「要不要重新往前收一个月」的指纹：取决于召回相关字段（关键词 / arxiv
+    分类 / 回填天数）。注意不能用 channel_prompt_signature（那只含 desc+judge_prompt）——
+    否则站长只改关键词时，sig 不变 → 永远不再回填，新关键词补不回历史。"""
+    import hashlib
+    basis = "\x00".join([
+        "|".join(sorted(c.keywords or [])),
+        "|".join(sorted(c.arxiv_categories or [])),
+        str(c.backfill_days),
+    ])
+    return hashlib.sha1(basis.encode("utf-8")).hexdigest()[:12]
+
+
 def _load_custom_state() -> dict:
     if _CUSTOM_STATE_PATH.exists():
         try:
@@ -1197,7 +1210,7 @@ def run() -> None:
             for c in custom_channels:
                 if c.backfill_days <= 0:
                     continue
-                sig = channel_prompt_signature(c)
+                sig = _channel_backfill_sig(c)
                 st = state.get(c.id) or {}
                 if st.get("sig") == sig and st.get("backfilled"):
                     continue
