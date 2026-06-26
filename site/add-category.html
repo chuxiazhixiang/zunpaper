@@ -38,12 +38,8 @@
         <p>
           想追踪一个新方向（比如「医疗机器人」）？填下面几项，点
           <b>「生成并下载配置文件」</b>，再把下载到的文件上传到你的仓库
-          <code>config/channels.d/</code> 文件夹，重新构建就会多出这个分类，并自动回填最近一个月的论文。
+          <code>config/channels.d/</code> 文件夹，重新构建就会多出这个分类，并把最近一个月里符合条件的论文一次性收进来。
           <b>全程不用写代码、不用命令行。</b>
-        </p>
-        <p class="rp-addcat__note">
-          💡 不用担心 token 贵：判定用的是最便宜的 DeepSeek（一个月不到 ¥2）。完全不配 AI key 也能跑，
-          只是会退化成「关键词命中即收」（噪音多一点）。
         </p>
       </section>
 
@@ -124,9 +120,9 @@ catheter robot
           </div>
 
           <label class="rp-field rp-field--row" style="align-items:center;">
-            <span class="rp-field__label" style="margin:0;">首次回填天数</span>
+            <span class="rp-field__label" style="margin:0;">第一次往前收多少天</span>
             <input id="f-backfill" type="number" min="0" max="180" value="30" style="width:90px;" />
-            <span class="rp-field__hint" style="margin:0;">激活时回填最近 N 天 arXiv（默认 30，设 0 不回填）。</span>
+            <span class="rp-field__hint" style="margin:0;">分类刚建好时，往前翻最近 N 天的论文一次性收进来（默认 30 ≈ 最近一个月）；之后每天只收当天新增。设 0 = 只从今天起收。</span>
           </label>
 
           <div class="rp-addcat__actions">
@@ -158,7 +154,7 @@ catheter robot
               </li>
               <li>
                 触发构建：仓库 <b>Actions</b> 页 ▸ 选 <b>daily</b> ▸ <b>Run workflow</b>（或等下一次自动构建）。
-                构建完成后刷新首页，顶部就会出现你的新分类 tab，并已回填最近一个月的论文。
+                构建完成后刷新首页，顶部就会出现你的新分类 tab，并把最近一个月符合条件的论文收了进来。
               </li>
             </ol>
             <p class="rp-field__hint">

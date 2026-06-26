@@ -1,7 +1,7 @@
 // 数据看板：读 data/stats.json，用 ECharts 画 8 类图，滚动到哪张图触发哪张
 // 图的入场动画。ECharts 通过 insights.html 的 CDN <script> 提供全局 echarts。
-import { Theme } from './storage.js?v=8def3344';
-import { escapeHTML, attachSearchRedirect, fetchJSON } from './utils.js?v=8def3344';
+import { Theme } from './storage.js?v=7adda7f1';
+import { escapeHTML, attachSearchRedirect, fetchJSON } from './utils.js?v=7adda7f1';
 
 // 站点暖色调色板（跟首页红主题呼应）
 const PALETTE = [
@@ -9,7 +9,23 @@ const PALETTE = [
   '#9B6BDF', '#FF6B8A', '#7ED957', '#E8A317', '#8AB4F8',
 ];
 
-const STATE = { data: null, charts: new Map() };
+const STATE = {
+  data: null,
+  charts: new Map(),
+  // 方向筛选：参与「各方向」图的频道 id 集合（默认全选）
+  selectedChannels: null,
+  // 频道 → 固定颜色（按全量顺序定，筛选时颜色不跳）
+  channelColor: new Map(),
+};
+
+// 当前被勾选、参与可视化的频道（按全量顺序保持稳定）
+function selChannels(d) {
+  if (!STATE.selectedChannels) return d.channels;
+  return d.channels.filter((c) => STATE.selectedChannels.has(c.id));
+}
+function colorOf(id, fallbackIdx) {
+  return STATE.channelColor.get(id) || PALETTE[(fallbackIdx || 0) % PALETTE.length];
+}
 
 function isDark() {
   return document.documentElement.classList.contains('rp-dark') ||
@@ -41,8 +57,8 @@ const ANIM = { animationDuration: 900, animationEasing: 'cubicOut', animationDel
 // ---- 各图 option 构造 --------------------------------------------------
 
 function optCatTime(d) {
-  const chMeta = d.channels;
-  const series = chMeta.map((c, i) => ({
+  const chMeta = selChannels(d);
+  const series = chMeta.map((c) => ({
     name: `${c.emoji || ''} ${c.name}`.trim(),
     type: 'line',
     stack: 'total',
@@ -51,11 +67,11 @@ function optCatTime(d) {
     areaStyle: { opacity: 0.7 },
     emphasis: { focus: 'series' },
     lineStyle: { width: 0 },
-    color: PALETTE[i % PALETTE.length],
-    data: d.months.map((m) => d.cat_time[c.id][m] || 0),
+    color: colorOf(c.id),
+    data: d.months.map((m) => (d.cat_time[c.id] || {})[m] || 0),
   }));
   return {
-    color: PALETTE,
+    color: chMeta.map((c) => colorOf(c.id)),
     tooltip: baseTooltip({ trigger: 'axis' }),
     legend: { type: 'scroll', top: 0, textStyle: { color: ink(true), fontSize: 11 } },
     grid: Object.assign({}, BASE_GRID, { top: 56 }),
@@ -68,16 +84,17 @@ function optCatTime(d) {
 
 // 独立折线（不堆叠）：每个方向一条线，高低直接对应当月数量，一眼看出谁多。
 function optCatLine(d) {
-  const series = d.channels.map((c, i) => ({
+  const chMeta = selChannels(d);
+  const series = chMeta.map((c) => ({
     name: `${c.emoji || ''} ${c.name}`.trim(),
     type: 'line', smooth: true, showSymbol: false,
     lineStyle: { width: 2.5 },
     emphasis: { focus: 'series' },
-    color: PALETTE[i % PALETTE.length],
-    data: d.months.map((m) => d.cat_time[c.id][m] || 0),
+    color: colorOf(c.id),
+    data: d.months.map((m) => (d.cat_time[c.id] || {})[m] || 0),
   }));
   return {
-    color: PALETTE,
+    color: chMeta.map((c) => colorOf(c.id)),
     tooltip: baseTooltip({ trigger: 'axis' }),
     legend: { type: 'scroll', top: 0, textStyle: { color: ink(true), fontSize: 11 } },
     grid: Object.assign({}, BASE_GRID, { top: 56 }),
@@ -101,6 +118,31 @@ function optDonut(items, nameKey, valKey) {
       label: { color: ink(true), fontSize: 11, formatter: '{b}\n{d}%' },
       labelLine: { length: 8, length2: 8 },
       data: items.map((it) => ({ name: it[nameKey], value: it[valKey] })),
+    }],
+    animationDuration: 900,
+    animationEasing: 'cubicOut',
+  };
+}
+
+// 各方向占比环图：受方向筛选影响，颜色与上面两张图保持一致。
+function optCatCount(d) {
+  const items = selChannels(d).map((c) => ({
+    name: `${c.emoji || ''} ${c.name}`.trim(),
+    value: d.cat_count[c.id] || 0,
+    itemStyle: { color: colorOf(c.id) },
+  }));
+  return {
+    tooltip: baseTooltip({ trigger: 'item', formatter: '{b}: {c} ({d}%)' }),
+    legend: { type: 'scroll', bottom: 0, textStyle: { color: ink(true), fontSize: 11 } },
+    series: [{
+      type: 'pie',
+      radius: ['42%', '70%'],
+      center: ['50%', '46%'],
+      avoidLabelOverlap: true,
+      itemStyle: { borderColor: isDark() ? '#1e1e24' : '#fff', borderWidth: 2, borderRadius: 6 },
+      label: { color: ink(true), fontSize: 11, formatter: '{b}\n{d}%' },
+      labelLine: { length: 8, length2: 8 },
+      data: items,
     }],
     animationDuration: 900,
     animationEasing: 'cubicOut',
@@ -236,6 +278,60 @@ function renderStatCards(d) {
     </div>`).join('');
 }
 
+// 受方向筛选影响的「各方向」三张图
+const CAT_CHARTS = {
+  'chart-cat-time': optCatTime,
+  'chart-cat-line': optCatLine,
+  'chart-cat-count': optCatCount,
+};
+
+function rerenderCategoryCharts() {
+  for (const [id, fn] of Object.entries(CAT_CHARTS)) {
+    const chart = STATE.charts.get(id);
+    // notMerge=true：方向数变化时彻底替换 series，避免残留旧曲线
+    if (chart) chart.setOption(fn(STATE.data), true);
+  }
+}
+
+function syncAllBtn() {
+  const btn = document.getElementById('cat-filter-all');
+  if (!btn || !STATE.data) return;
+  const total = STATE.data.channels.length;
+  const allOn = STATE.selectedChannels && STATE.selectedChannels.size >= total;
+  btn.textContent = allOn ? '全不选' : '全选';
+}
+
+// 构建方向筛选 chips（默认全选）
+function buildCatFilter(d) {
+  const wrap = document.getElementById('cat-filter');
+  const chips = document.getElementById('cat-filter-chips');
+  if (!wrap || !chips) return;
+  STATE.selectedChannels = new Set(d.channels.map((c) => c.id));
+  chips.innerHTML = d.channels.map((c) => `
+    <label class="rp-filter-chip">
+      <input type="checkbox" value="${escapeHTML(c.id)}" checked />
+      <span>${escapeHTML(`${c.emoji || ''} ${c.name}`.trim())}</span>
+    </label>`).join('');
+  chips.querySelectorAll('input').forEach((inp) => {
+    inp.addEventListener('change', () => {
+      if (inp.checked) STATE.selectedChannels.add(inp.value);
+      else STATE.selectedChannels.delete(inp.value);
+      syncAllBtn();
+      rerenderCategoryCharts();
+    });
+  });
+  document.getElementById('cat-filter-all')?.addEventListener('click', () => {
+    const total = d.channels.length;
+    const allOn = STATE.selectedChannels.size >= total;
+    STATE.selectedChannels = new Set(allOn ? [] : d.channels.map((c) => c.id));
+    chips.querySelectorAll('input').forEach((i) => { i.checked = STATE.selectedChannels.has(i.value); });
+    syncAllBtn();
+    rerenderCategoryCharts();
+  });
+  wrap.hidden = false;
+  syncAllBtn();
+}
+
 // 滚动到视口才 init（动画在此时播放）
 function lazyMount(id, optFn) {
   const el = document.getElementById(id);
@@ -267,9 +363,13 @@ async function main() {
 
   renderStatCards(d);
 
+  // 频道固定配色（按全量顺序）+ 方向筛选（默认全选）
+  STATE.channelColor = new Map(d.channels.map((c, i) => [c.id, PALETTE[i % PALETTE.length]]));
+  buildCatFilter(d);
+
   lazyMount('chart-cat-time', optCatTime);
   lazyMount('chart-cat-line', optCatLine);
-  lazyMount('chart-cat-count', (x) => optDonut(x.channels.map((c) => ({ name: `${c.emoji || ''} ${c.name}`.trim(), value: x.cat_count[c.id] || 0 })), 'name', 'value'));
+  lazyMount('chart-cat-count', optCatCount);
   lazyMount('chart-source', (x) => optDonut(x.source, 'name', 'value'));
   lazyMount('chart-intake', optIntake);
   lazyMount('chart-inst', (x) => optHBar(x.institutions));
