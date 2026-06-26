@@ -1,0 +1,100 @@
+# 机器人 / 具身相关会议投稿倒计时数据（首页倒计时组件 + venueid 自动推导用）。
+#
+# 维护：这是慢变数据，一年动一次。日期分两种：
+#   deadline:        "MM-DD"  每年大致的投稿截止（递归，前端自动滚到下一个未过的年份，标「预计」）
+#   deadline_exact:  "YYYY-MM-DD"  某一届已公布的确切截止（在未来则优先用，标「已确认」）
+# 双年会（ICCV 奇数年 / ECCV 偶数年）只填 deadline_exact，过了再更新即可。
+#
+# 字段：
+#   name        显示简称（如 ICRA）
+#   full        全称（可选，悬浮/展开里显示）
+#   venue       与论文 venue 字段匹配的「去年份基名」，点会议名跳到该会议论文用
+#   homepage    会议主页
+#   conf        开会时间 / 地点（自由文本，直接展示；未定写「待定」）
+#   openreview  （可选）OpenReview venueid 模板，{year} 占位 → build 按当年/次年自动拉接收论文
+#
+# 期刊（Science Robotics / T-RO / IJRR / RA-L / TAC / T-MECH）是滚动投稿、无年度截止，
+# 故不放进倒计时（它们的论文照常靠 arXiv venue 标注 / Crossref 进站）。
+
+conferences:
+  - name: CoRL
+    full: Conference on Robot Learning
+    venue: CoRL
+    homepage: https://www.corl.org/
+    deadline: "06-10"
+    conf: "2026 秋 · 待定"
+    openreview: "robot-learning.org/CoRL/{year}/Conference"
+
+  - name: RSS
+    full: "Robotics: Science and Systems"
+    venue: RSS
+    homepage: https://roboticsconference.org/
+    deadline: "01-30"
+    conf: "2026.07 · 待定"
+
+  - name: ICRA
+    full: IEEE Int. Conf. on Robotics and Automation
+    venue: ICRA
+    homepage: https://www.ieee-icra.org/
+    deadline: "09-15"
+    conf: "2027.05.24–28 · 首尔 Seoul"
+
+  - name: IROS
+    full: IEEE/RSJ Int. Conf. on Intelligent Robots and Systems
+    venue: IROS
+    homepage: https://www.ieee-ras.org/conferences-workshops/fully-sponsored/iros
+    deadline_exact: "2027-03-01"
+    deadline: "03-01"
+    conf: "2026.10 · 待定 / 2027.10"
+
+  - name: ICLR
+    full: Int. Conf. on Learning Representations
+    venue: ICLR
+    homepage: https://iclr.cc/
+    deadline: "09-24"
+    conf: "2027.04 · 待定"
+    openreview: "ICLR.cc/{year}/Conference"
+
+  - name: NeurIPS
+    full: Conf. on Neural Information Processing Systems
+    venue: NeurIPS
+    homepage: https://neurips.cc/
+    deadline: "05-06"
+    conf: "2026.12.06–12 · 悉尼 Sydney"
+    openreview: "NeurIPS.cc/{year}/Conference"
+
+  - name: ICML
+    full: Int. Conf. on Machine Learning
+    venue: ICML
+    homepage: https://icml.cc/
+    deadline: "01-28"
+    conf: "2027.07 · 待定"
+    openreview: "ICML.cc/{year}/Conference"
+
+  - name: CVPR
+    full: IEEE/CVF Conf. on Computer Vision and Pattern Recognition
+    venue: CVPR
+    homepage: https://cvpr.thecvf.com/
+    deadline: "11-14"
+    conf: "2027.06 · 待定"
+
+  - name: ICCV
+    full: IEEE/CVF Int. Conf. on Computer Vision（双年·奇数年）
+    venue: ICCV
+    homepage: https://iccv.thecvf.com/
+    deadline_exact: "2027-03-07"
+    conf: "2027.10 · 香港 Hong Kong"
+
+  - name: ECCV
+    full: European Conf. on Computer Vision（双年·偶数年）
+    venue: ECCV
+    homepage: https://eccv.ecva.net/
+    deadline_exact: "2028-03-07"
+    conf: "2028 · 待定"
+
+  - name: Humanoids
+    full: IEEE-RAS Int. Conf. on Humanoid Robots
+    venue: Humanoids
+    homepage: https://www.ieee-ras.org/conferences-workshops/financially-co-sponsored/humanoids
+    deadline: "06-01"
+    conf: "2026 秋冬 · 待定"

@@ -194,6 +194,23 @@ def load_curated_ids() -> set[str]:
     return out
 
 
+def load_conferences() -> list[dict]:
+    """读 config/conferences.yaml → 会议倒计时数据（原样透传给前端）。"""
+    path = CONFIG_DIR / "conferences.yaml"
+    if not path.exists():
+        return []
+    try:
+        raw = _load_yaml(path)
+    except Exception as e:
+        log.warning("conferences.yaml parse failed: %s", e)
+        return []
+    out = []
+    for c in raw.get("conferences", []) or []:
+        if isinstance(c, dict) and c.get("name"):
+            out.append(c)
+    return out
+
+
 def load_sources() -> SourcesConfig:
     import os
 

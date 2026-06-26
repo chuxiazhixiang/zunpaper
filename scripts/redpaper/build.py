@@ -756,6 +756,13 @@ def write_feed(all_papers: list[Paper]) -> None:
             indent=2,
         )
 
+    # conferences.json — 会议投稿倒计时数据（前端首页组件用，纯静态透传）。
+    try:
+        with (cfg.DATA_DIR / "conferences.json").open("w", encoding="utf-8") as f:
+            json.dump({"conferences": cfg.load_conferences()}, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        log.warning("conferences.json write failed: %s", e)
+
     # site.json — site-wide settings the frontend may want (title, colors).
     site = cfg.load_site()
     sources_cfg = cfg.load_sources()
@@ -1636,12 +1643,28 @@ def run() -> None:
     # ----- 会议官网源（OpenReview：CoRL/ICLR/NeurIPS 接收论文）----------
     # 按 venueid 取接收论文 → 频道关键词过滤出机器人相关 → 落 source=openreview。
     # 与 arXiv 靠标题去重；不渲染封面（占位）。refresh_days 节流（会议数据静态）。
-    if getattr(sources, "openreview_enabled", False) and getattr(sources, "openreview_venue_ids", None):
+    # venue_ids = sources.yaml 显式配置 + 从 conferences.yaml 的 openreview 模板按
+    # 当年/次年自动推导（这样新会议季放榜后无需手动加 venueid，自动尝试、空就跳过）。
+    or_venue_ids = list(getattr(sources, "openreview_venue_ids", None) or [])
+    try:
+        _yr = dt.date.today().year
+        for conf in cfg.load_conferences():
+            tmpl = conf.get("openreview")
+            if not tmpl:
+                continue
+            for y in (_yr - 1, _yr, _yr + 1):
+                vid = tmpl.replace("{year}", str(y))
+                if vid not in or_venue_ids:
+                    or_venue_ids.append(vid)
+    except Exception as e:
+        log.warning("openreview venueid auto-derive failed: %s", e)
+
+    if getattr(sources, "openreview_enabled", False) and or_venue_ids:
         if _openreview_should_fetch(getattr(sources, "openreview_refresh_days", 14)):
             try:
                 from .sources import openreview as _openreview
                 or_papers = _openreview.fetch_papers(
-                    sources.openreview_venue_ids, channels,
+                    or_venue_ids, channels,
                     max_per_venue=getattr(sources, "openreview_max_per_venue", 80),
                 )
                 added = 0

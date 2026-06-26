@@ -13,7 +13,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/css/style.css?v=0e5b8489" />
+    <link rel="stylesheet" href="assets/css/style.css?v=7adda7f1" />
   </head>
   <body>
     <header class="rp-app-bar">
@@ -58,6 +58,17 @@
       </button>
     </div>
 
+    <!-- 会议投稿倒计时（最近 2-3 个 + 展开看全部；点会议名跳到该会议论文）。
+         数据来自 config/conferences.yaml → data/conferences.json，倒计时前端实时算。 -->
+    <div class="rp-conf" id="conf-countdown" hidden>
+      <div class="rp-conf__bar">
+        <span class="rp-conf__title">⏳ 会议投稿倒计时</span>
+        <div class="rp-conf__pills" id="conf-pills"></div>
+        <button class="rp-conf__more" id="conf-more" aria-expanded="false">全部会议 ▾</button>
+      </div>
+      <div class="rp-conf__panel" id="conf-panel" hidden></div>
+    </div>
+
     <nav class="rp-tabs">
       <div id="channel-tabs" class="rp-tabs__scroll"></div>
       <select id="venue-filter" class="rp-venue-filter" title="按会议 / 期刊筛选" hidden>
@@ -79,7 +90,8 @@
       </p>
     </footer>
 
-    <script type="module" src="assets/js/feed.js?v=0e5b8489"></script>
-    <script src="assets/js/mascot.js?v=0e5b8489" defer></script>
+    <script type="module" src="assets/js/feed.js?v=7adda7f1"></script>
+    <script type="module" src="assets/js/conferences.js?v=7adda7f1"></script>
+    <script src="assets/js/mascot.js?v=7adda7f1" defer></script>
   </body>
 </html>
