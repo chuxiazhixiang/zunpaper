@@ -1,7 +1,82 @@
 {
   "date": "2026-06-24",
-  "count": 18,
+  "count": 25,
   "papers": [
+    {
+      "id": "arxiv-2606-26428",
+      "source": "arxiv",
+      "title": "Play2Perfect: What Matters in Dexterous Play Pretraining for Precise Assembly?",
+      "title_zh": "Play2Perfect：灵巧操作预训练中什么因素对精密装配至关重要？",
+      "tldr_zh": "通过玩耍预训练获取操作先验，使精密装配样本效率提升33倍，并实现零样本迁移。",
+      "cover_zh": "先玩再装｜机器人学玩耍后，精密装配成功率飙升33倍",
+      "abstract_zh": "多指机器人有望实现人类手的灵巧与速度，但精密装配等挑战性问题仍遥不可及。这些任务接触密集，使得模仿学习的数据收集困难，且奖励稀疏，导致直接使用强化学习（RL）进行探索不可行。因此，先前的工作通过使用专用夹爪、工具附件和环境固定装置来结构化问题，取得了进展。在这项工作中，我们认为，在机器人能够完美完成精密装配之前，它必须首先学会玩耍。我们进一步提出疑问：在玩耍学习过程中，哪些因素对精密装配至关重要？我们提出了Play2Perfect，一个通过在不同物体和目标上玩耍进行任务无关预训练的RL框架，然后在精密装配上进行微调。玩耍的目标是获取可复用的操作先验，如抓取、手内重定向和姿态到达。微调则使这一通用先验适应装配任务，将探索集中在最终接触密集、高精度的交互上。我们系统地研究了玩耍预训练中的关键设计选择，包括物体多样性、训练目标、轨迹多样性和目标精度。我们表明，即使提供了密集的多阶段奖励，我们的先验也比从零开始的RL训练样本效率高33倍。我们展示了零样本的仿真到现实迁移，在仅0.5毫米接触间隙的紧装配中实现了60%的成功率，并在长时程多部件装配和拧螺丝中实现了超过50%的成功率。",
+      "authors": [
+        "Tyler Ga Wei Lum",
+        "Kushal Kedia",
+        "C. Karen Liu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-24",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Stanford"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Cornell"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ C. Karen Liu"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Jeannette Bohg"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-26428.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-26428-p2.jpg",
+        "assets/img/covers/arxiv-2606-26428-p3.jpg",
+        "assets/img/covers/arxiv-2606-26428-p4.jpg"
+      ],
+      "arxiv_id": "2606.26428",
+      "abs_url": "http://arxiv.org/abs/2606.26428v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.26428v1",
+      "score": 75,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出play pretraining框架提升灵巧手精密装配，样本效率高且有sim2real，对操作学习有重要参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Stanford University",
+        "Cornell University"
+      ],
+      "method_tags": [
+        "Reinforcement Learning",
+        "Dexterous Manipulation",
+        "Sim-to-Real"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
     {
       "id": "arxiv-2606-25706",
       "source": "arxiv",
@@ -134,6 +209,82 @@
       ],
       "method_family": "",
       "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-26423",
+      "source": "arxiv",
+      "title": "CoStream: Composing Simple Behaviors for Generalizable Complex Manipulation",
+      "title_zh": "CoStream：组合简单行为实现可泛化的复杂操作",
+      "tldr_zh": "通过组合简单行为实现复杂操作的高精度与泛化，无需重新训练。",
+      "cover_zh": "插GPU也能自学？组合简单行为，复杂操作精度与泛化兼得！",
+      "abstract_zh": "长时域、高接触的复杂操作任务，例如将GPU插入PCIe插槽，既需要毫米级高精度，又需要对新任务具备开箱即用的泛化能力。现有范式难以同时满足这两点：经典流程使用脆弱且任务特定的接口实现高精度控制，但适应新任务需要昂贵的流程重新设计；而端到端单一策略虽提供更好的泛化性，但在复杂、分布外任务上缺乏高精度，除非用新数据重新训练。两种范式都隐含一个假设：一旦获得操作能力，就必须以刚性流程或单一整体的方式部署，而不能自由分解和重组。本文表明，复杂操作能力可以从简单、独立行为的组合中自然涌现。我们不部署单一策略或刚性流程，而是提出CoStream框架，将基础模型和多种感知模态编排成多个可组合的核心行为：语义行为通过基础模型提取空间约束；预测行为通过跟踪想象视频中的关键点来预测轨迹；反应行为提供高频触觉和力校正。在共享的SE(3)接口上，这些输出通过右乘组合成每个控制步的单一姿态指令，由柔顺控制器执行。我们在8个真实世界任务上展示了CoStream，涵盖日常操作和精密装配，在接触密集的装配和物体转移任务中提升最为显著，并展示了在执行过程中对人工扰动的鲁棒恢复。网站：https://costream-simple.github.io",
+      "authors": [
+        "Haonan Chen",
+        "Yuxiang Ma",
+        "Stephen Tian"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-24",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Stanford"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ MIT CSAIL"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Jiajun Wu"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Yunzhu Li"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-26423.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-26423-p2.jpg",
+        "assets/img/covers/arxiv-2606-26423-p3.jpg",
+        "assets/img/covers/arxiv-2606-26423-p4.jpg"
+      ],
+      "arxiv_id": "2606.26423",
+      "abs_url": "http://arxiv.org/abs/2606.26423v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.26423v1",
+      "score": 67,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出组合简单行为实现复杂操作的新框架，结合基础模型和多模态感知，在精密装配任务上表现优异，具有高科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Harvard University",
+        "Stanford University",
+        "Massachusetts Institute of Technology",
+        "Columbia University"
+      ],
+      "method_tags": [
+        "Behavior Composition",
+        "SE(3) Control",
+        "Tactile Manipulation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -348,6 +499,68 @@
       ],
       "method_family": "",
       "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-26341",
+      "source": "arxiv",
+      "title": "Scaling Nonlinear Optimization: Many Problems One GPU",
+      "title_zh": "扩展非线性优化：许多问题，一个GPU",
+      "tldr_zh": "首个GPU批处理NLP求解器jaxipm，基于IPOPT，吞吐量提升32.85倍。",
+      "cover_zh": "CPU求解器太慢？这个GPU批处理NLP求解器让吞吐量飙升32倍！",
+      "abstract_zh": "许多机器人问题，包括轨迹优化、逆运动学和接触丰富的运动规划，都可以归结为非线性规划（NLP）。成熟的NLP求解器如IPOPT可以解决这些问题，提供硬约束满足、最优性保证以及随问题维度扩展的良好性能。这些求解器支撑着机器人学中的梯度方法，但它们仍然受限于CPU，并且一次只能求解一个问题，这阻碍了它们集成到GPU批处理学习流程中。另一方面，基于采样的方法，如强化学习、模型预测路径积分和模仿学习，由于能够利用GPU批处理模拟器，已成为现代机器人学研究的核心。这些模拟器每秒可以生成比以往多几个数量级的动力学滚动。如果存在一个GPU批处理的NLP求解器，它将解锁在每秒生成的约束局部最优解数量上的类似加速。这种同时求解多个问题与一次求解一个问题的模式，是将NLP求解器集成到现代GPU批处理机器人框架中的关键要求。为此，我们引入了jaxipm，这是第一个基于IPOPT并在JAX中实现的GPU批处理NLP求解器。我们通过重新设计IPOPT的算法，使用异构迭代融合消除控制流，并使用迭代级批处理最小化GPU空闲时间来实现这一点。我们在各种四旋翼非线性模型预测控制基准上评估了jaxipm，包括存在障碍物时的参考跟踪、多四旋翼无碰撞导航以及杂乱环境中的导航。我们展示了相比IPOPT高达32.85倍的吞吐量提升。我们的完整开源代码库可在https://github.com/johnviljoen/jaxipm获取。",
+      "authors": [
+        "John Viljoen",
+        "Johanna Haffner",
+        "Masayoshi Tomizuka"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-24",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ ETH (RSL)"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-26341.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-26341-p2.jpg",
+        "assets/img/covers/arxiv-2606-26341-p3.jpg",
+        "assets/img/covers/arxiv-2606-26341-p4.jpg"
+      ],
+      "arxiv_id": "2606.26341",
+      "abs_url": "http://arxiv.org/abs/2606.26341v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.26341v1",
+      "score": 52,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "sim2real",
+        "reason": "GPU批处理NLP求解器，可大幅加速轨迹优化等机器人问题，对sim2real和learning pipeline有重要价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of California, Berkeley",
+        "ETH Zürich"
+      ],
+      "method_tags": [
+        "GPU-batched NLP solver",
+        "heterogeneous iteration fusion",
+        "iteration level batching"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "no",
       "training_summary": "",
       "demo_videos": [],
       "github": {}
@@ -1103,6 +1316,120 @@
       "github": {}
     },
     {
+      "id": "arxiv-2606-26321",
+      "source": "arxiv",
+      "title": "KRVF: A Source-Aware Semantic Voxel World Representation for Edge Mobile Manipulation",
+      "title_zh": "KRVF：面向边缘移动操作的一种源感知语义体素世界表示",
+      "tldr_zh": "KRVF是一种源感知语义体素表示，用于边缘移动操作，支持深度失效下的物体推理。",
+      "cover_zh": "机器人也能边看边想｜这个新表示让边缘端操作更聪明",
+      "abstract_zh": "移动操作机器人需要当前、可查询、语义丰富且能在边缘计算约束下使用的世界模型。本技术报告提出KRVF，一种面向边缘移动操作的源感知语义体素世界表示。与主要优化全局几何保真度的重建中心式建图管线不同，KRVF将局部世界状态表示为任务导向的体素，编码占据、颜色、语义证据、时间新鲜度和证据来源。该表示将测量占据与语义先验假设分离，使得在深度失效时仍能进行物体推理，而不会静默破坏持久几何。KRVF还通过渲染地图先验深度进行修复，闭合了建图与感知之间的反馈循环，并暴露了用于语义物体和抓取候选的任务级查询算子。本报告形式化定义了KRVF表示，并记录了一个ROS 2实现，该实现将在线RGB-D观测转化为面向任务的机器人记忆。",
+      "authors": [
+        "Runfeng Ling"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-24",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-26321.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-26321-p2.jpg",
+        "assets/img/covers/arxiv-2606-26321-p3.jpg",
+        "assets/img/covers/arxiv-2606-26321-p4.jpg"
+      ],
+      "arxiv_id": "2606.26321",
+      "abs_url": "http://arxiv.org/abs/2606.26321v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.26321v1",
+      "score": 19,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "world-model",
+        "reason": "提出语义体素世界表示KRVF，面向边缘移动操作，属于具身世界模型，有科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "The University of Manchester"
+      ],
+      "method_tags": [
+        "semantic mapping",
+        "voxel representation",
+        "mobile manipulation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-26443",
+      "source": "arxiv",
+      "title": "WatchAct: A Benchmark for Behavior-Grounded Robot Manipulation",
+      "title_zh": "WatchAct：基于行为理解的机器人操作基准",
+      "tldr_zh": "提出基于人类行为视频的机器人操作基准，当前最佳模型成功率仅16.3%。",
+      "cover_zh": "机器人看视频学操作？最佳模型成功率仅16%，人类97%｜新基准WatchAct",
+      "abstract_zh": "与人类协作的机器人需要理解人类已完成的行为、顺序及意图。视频包含了语言无法明确描述的空间布局、物体历史与手势，但当前的操作基准仅将指令与单张当前图像配对，无法评估对观察到的行为的推理能力。我们提出WatchAct，一个基于观察到的行为进行机器人操作的基准。每个实例将真实世界的人类动作视频和语言指令与对齐的模拟器场景及可执行的LIBERO任务配对，实现可扩展且可复现的评估。WatchAct包含3000个长时域实例，涵盖四个能力领域的14个任务，这些领域源自观察他人行为时的认知需求：事件解析（事件基础）、程序结构恢复（程序推理）、未明示意图推断（隐式意图推理）以及场景变化追踪（情景推理）。我们进一步提出解耦评估协议，分别衡量(i)视觉语言模型的视频到规划推理、(ii)在理想规划下的策略执行，以及(iii)集成规划-策略管线的完整任务完成。在仿真和Franka Research 3机器人上，当前系统远未解决WatchAct。最佳管线Gemini-3.1-Pro与π₀.₅在仿真中仅达到16.3%的成功率（SR），在真实机器人上为14.0%。Gemini-3.1-Pro的规划成功率仅为36.8%（人类为97.1%），而π₀.₅在理想规划下的任务成功率为21.5%，在域外场景下降至10.6%。数据集和代码见https://baiqi-li.github.io/watchact_page/。",
+      "authors": [
+        "Baiqi Li",
+        "Ce Zhang",
+        "Yu Fang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-24",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-26443.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-26443-p2.jpg",
+        "assets/img/covers/arxiv-2606-26443-p3.jpg",
+        "assets/img/covers/arxiv-2606-26443-p4.jpg"
+      ],
+      "arxiv_id": "2606.26443",
+      "abs_url": "http://arxiv.org/abs/2606.26443v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.26443v1",
+      "score": 19,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出行为推理基准，含视频理解与操作执行，对VLA评估有重要价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of North Carolina at Chapel Hill"
+      ],
+      "method_tags": [
+        "long-horizon",
+        "video-to-plan reasoning",
+        "policy execution"
+      ],
+      "platform": [
+        "Franka Research 3"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
       "id": "arxiv-2606-26046",
       "source": "arxiv",
       "title": "RoboAtlas: Contextual Active SLAM",
@@ -1154,6 +1481,125 @@
       ],
       "platform": [
         "Unitree Go2"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-26392",
+      "source": "arxiv",
+      "title": "MPC-Injection: Biasing Off-Policy Locomotion RL Toward Controller-Induced Behavior Basins",
+      "title_zh": "MPC-Injection：将离线运动强化学习偏向控制器诱导的行为盆地",
+      "tldr_zh": "通过注入MPC转移，将强化学习策略引导至控制器偏好的步态，无需复杂奖励或判别器。",
+      "cover_zh": "不用手调21项奖励｜MPC注入让四足机器人走出自然步态",
+      "abstract_zh": "运动强化学习常常收敛到局部最优但不可部署的行为，例如肢体振动或躯干滑行，这些行为最大化回报却无法产生可用的步态。我们提出MPC-Injection，一种低开销方法，通过将模型预测控制器求解同一马尔可夫决策过程产生的转移插入回放缓冲区，将强化学习引导至设计者偏好的步态。与奖励塑形不同，MPC-Injection无需重新设计任务奖励；与对抗模仿学习不同，它不添加判别器、运动学重定向或辅助目标。相反，控制器的偏好行为仅通过回放状态分布传递给策略。在2D模拟行走器和Go2四足机器人的仿真到真实评估中，我们展示了MPC-Injection使用一到两项任务奖励将策略驱动到控制器的行为盆地，产生的步态在质量上与使用二十一项调优奖励的奖励塑形以及不使用判别器和重定向开销的对抗运动先验相当。我们进一步分析了注入的转移如何将演员-评论家更新偏向控制器访问的状态，使策略能够学习纯强化学习在简单奖励函数下可能无法达到的行为。",
+      "authors": [
+        "Roy Xing",
+        "Seyoung Ree",
+        "Brian Plancher"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-24",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-26392.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-26392-p2.jpg",
+        "assets/img/covers/arxiv-2606-26392-p3.jpg",
+        "assets/img/covers/arxiv-2606-26392-p4.jpg"
+      ],
+      "arxiv_id": "2606.26392",
+      "abs_url": "http://arxiv.org/abs/2606.26392v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.26392v1",
+      "score": 16,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "locomotion",
+        "reason": "提出MPC-Injection方法，将MPC轨迹注入离线RL回放缓冲区，引导四足机器人运动策略学习，实验在仿真和真机Go2上验证，方法新颖且实用。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Dartmouth College",
+        "Harvard University"
+      ],
+      "method_tags": [
+        "MPC-Injection",
+        "reinforcement learning",
+        "model predictive control"
+      ],
+      "platform": [
+        "Go2"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {}
+    },
+    {
+      "id": "arxiv-2606-26425",
+      "source": "arxiv",
+      "title": "A System for Fast, Resilient, and Adaptable Loco-Manipulation Behaviors on Humanoid Robots",
+      "title_zh": "人形机器人快速、鲁棒且可适应的全身操控行为系统",
+      "tldr_zh": "提出一个运行时可编辑的人形机器人行为系统，支持快速创建和组合全身操控行为。",
+      "cover_zh": "人形机器人也能即兴发挥？这个系统让行为编辑像搭积木一样快",
+      "abstract_zh": "人形机器人可以承担为人类设计的空间中那些体力要求高、危险且重复的工作。然而，一个有用的机器人必须协调运动、全身动作、感知、接触和操作员监督。本论文提出一个机器人本地、运行时可编辑的行为编写与运行时系统。我们的系统遵循DARPA机器人挑战赛期间开发的协同设计原则，力求最大程度地可观察、可预测和可引导。操作员界面与机器人持续同步，支持运行时编写、监控和修复。我们的行为架构独特地结合了以对象为中心的可供性模板、受行为树启发的组织与逻辑，以及通过行为场景和原始场景动作实现的运行时可编辑感知。动作原语建立在支持行走时移动手臂的全身控制器之上，并使用并发动作分层算法以提高速度。本工作中开发的行为库涵盖了二十多种真实机器人任务变体，包括推拉带有旋钮、推杆和杠杆手柄的门、多步探索序列、障碍物清除以及反应式桌间操控任务。该行为系统已部署在多个人形机器人上，如波士顿动力的DRC Atlas、NASA的Valkyrie、IHMC和Boardwalk Robotics的Nadia、宇树科技的H1-2以及IHMC的Alex。我们从能力、速度、可靠性以及行为创建、适应、扩展和组合的速度方面评估了我们的系统。实验表明，我们可以在几分钟或几小时内适应、扩展和组合现有行为，以创建新颖的全身操控行为。视频：https://www.youtube.com/playlist?list=PLJK5CTyotYqsfgfnXb-09YNFeBose6uEY。",
+      "authors": [
+        "Duncan William Calvert"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-24",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-26425.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-26425-p2.jpg",
+        "assets/img/covers/arxiv-2606-26425-p3.jpg",
+        "assets/img/covers/arxiv-2606-26425-p4.jpg"
+      ],
+      "arxiv_id": "2606.26425",
+      "abs_url": "http://arxiv.org/abs/2606.26425v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.26425v1",
+      "score": 16,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出人形机器人全身移动操作行为系统，涵盖多机器人部署与实验，科研价值高。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of West Florida"
+      ],
+      "method_tags": [
+        "Behavior Trees",
+        "Affordance Templates",
+        "whole-body control"
+      ],
+      "platform": [
+        "DRC Atlas",
+        "Valkyrie",
+        "Nadia"
       ],
       "sim_stack": [],
       "method_family": "",

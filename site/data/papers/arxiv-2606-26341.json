@@ -1,0 +1,115 @@
+{
+  "id": "arxiv-2606-26341",
+  "source": "arxiv",
+  "title": "Scaling Nonlinear Optimization: Many Problems One GPU",
+  "title_zh": "扩展非线性优化：许多问题，一个GPU",
+  "abstract": "Many robotics problems, including trajectory optimization, inverse kinematics, and contact-rich motion planning, reduce to nonlinear programs (NLPs). Mature NLP solvers such as IPOPT can solve these problems, offering hard constraint satisfaction, optimality guarantees, and favorable scaling with problem dimension. These solvers underpin gradient-based methods in robotics, yet remain CPU-bound and solve only one problem at a time, preventing their integration into GPU-batched learning pipelines. On the other hand, sampling-based approaches such as reinforcement learning, model predictive path integral, and imitation learning have become the core of modern robotics research due to their ability to leverage GPU-batched simulators. These simulators can generate orders of magnitude more dynamics rollouts per second than was previously possible. If a GPU-batched NLP solver existed, it would unlock similar speedups in the number of constrained, locally optimal solutions generated per second. This regime of solving many problems concurrently versus solving a single problem at a time is a key requirement for integrating NLP solvers in modern GPU-batched robotics frameworks. To this end, we introduce \\texttt{jaxipm}, the first GPU-batched NLP solver, based on IPOPT, and implemented in JAX. We accomplish this by redesigning IPOPT's algorithm to eliminate control flow with \\textit{heterogeneous iteration fusion}, and by minimizing GPU idle time with \\textit{iteration level batching}. We evaluate \\texttt{jaxipm} on a variety of quadrotor nonlinear model predictive control benchmarks, including reference tracking in the presence of obstacles, multi-quadrotor navigation without collision, and navigation in a cluttered environment. We demonstrate up to a $32.85\\times$ increase in throughput over IPOPT. Our complete open-source codebase is available at https://github.com/johnviljoen/jaxipm.",
+  "abstract_zh": "许多机器人问题，包括轨迹优化、逆运动学和接触丰富的运动规划，都可以归结为非线性规划（NLP）。成熟的NLP求解器如IPOPT可以解决这些问题，提供硬约束满足、最优性保证以及随问题维度扩展的良好性能。这些求解器支撑着机器人学中的梯度方法，但它们仍然受限于CPU，并且一次只能求解一个问题，这阻碍了它们集成到GPU批处理学习流程中。另一方面，基于采样的方法，如强化学习、模型预测路径积分和模仿学习，由于能够利用GPU批处理模拟器，已成为现代机器人学研究的核心。这些模拟器每秒可以生成比以往多几个数量级的动力学滚动。如果存在一个GPU批处理的NLP求解器，它将解锁在每秒生成的约束局部最优解数量上的类似加速。这种同时求解多个问题与一次求解一个问题的模式，是将NLP求解器集成到现代GPU批处理机器人框架中的关键要求。为此，我们引入了jaxipm，这是第一个基于IPOPT并在JAX中实现的GPU批处理NLP求解器。我们通过重新设计IPOPT的算法，使用异构迭代融合消除控制流，并使用迭代级批处理最小化GPU空闲时间来实现这一点。我们在各种四旋翼非线性模型预测控制基准上评估了jaxipm，包括存在障碍物时的参考跟踪、多四旋翼无碰撞导航以及杂乱环境中的导航。我们展示了相比IPOPT高达32.85倍的吞吐量提升。我们的完整开源代码库可在https://github.com/johnviljoen/jaxipm获取。",
+  "tldr_zh": "首个GPU批处理NLP求解器jaxipm，基于IPOPT，吞吐量提升32.85倍。",
+  "cover_zh": "CPU求解器太慢？这个GPU批处理NLP求解器让吞吐量飙升32倍！",
+  "authors": [
+    {
+      "name": "John Viljoen",
+      "affiliation": ""
+    },
+    {
+      "name": "Johanna Haffner",
+      "affiliation": ""
+    },
+    {
+      "name": "Masayoshi Tomizuka",
+      "affiliation": ""
+    },
+    {
+      "name": "Negar Mehr",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-06-24",
+  "updated": "2026-06-24",
+  "arxiv_id": "2606.26341",
+  "pdf_url": "https://arxiv.org/pdf/2606.26341v1",
+  "abs_url": "http://arxiv.org/abs/2606.26341v1",
+  "cover_image": "assets/img/covers/arxiv-2606-26341.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2606-26341-p2.jpg",
+    "assets/img/covers/arxiv-2606-26341-p3.jpg",
+    "assets/img/covers/arxiv-2606-26341-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ ETH (RSL)"
+    },
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 52,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “ETH (RSL)” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 6,
+      "hint": "频道关键词命中 2 个（imitation learning、contact-rich）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 2 天前"
+    },
+    {
+      "id": "github_repo",
+      "label": "附带开源仓库",
+      "points": 8,
+      "hint": "摘要里出现 github.com / huggingface.co 链接"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "sim2real",
+    "reason": "GPU批处理NLP求解器，可大幅加速轨迹优化等机器人问题，对sim2real和learning pipeline有重要价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University of California, Berkeley",
+    "ETH Zürich"
+  ],
+  "method_tags": [
+    "GPU-batched NLP solver",
+    "heterogeneous iteration fusion",
+    "iteration level batching"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "no",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {}
+}
