@@ -1,7 +1,7 @@
 // 数据看板：读 data/stats.json，用 ECharts 画 8 类图，滚动到哪张图触发哪张
 // 图的入场动画。ECharts 通过 insights.html 的 CDN <script> 提供全局 echarts。
-import { Theme } from './storage.js?v=7b4ce961';
-import { escapeHTML, attachSearchRedirect, fetchJSON } from './utils.js?v=7b4ce961';
+import { Theme } from './storage.js?v=7adda7f1';
+import { escapeHTML, attachSearchRedirect, fetchJSON } from './utils.js?v=7adda7f1';
 
 // 站点暖色调色板（跟首页红主题呼应）
 const PALETTE = [
@@ -207,6 +207,32 @@ function optHBar(items, color) {
   };
 }
 
+// 各会议 × 方向 论文数（堆叠柱状）：x=会议，每个频道一段，颜色与「各方向」图一致。
+function optVenueChannel(d) {
+  const vc = d.venue_channel || {};
+  const venues = vc.venues || [];
+  const chName = new Map((d.channels || []).map((c) => [c.id, `${c.emoji || ''} ${c.name}`.trim()]));
+  const series = (vc.series || [])
+    .filter((s) => (s.data || []).some((n) => n > 0))
+    .map((s) => ({
+      name: chName.get(s.channel) || s.channel,
+      type: 'bar',
+      stack: 'total',
+      emphasis: { focus: 'series' },
+      color: colorOf(s.channel),
+      data: s.data,
+    }));
+  return {
+    tooltip: baseTooltip({ trigger: 'axis', axisPointer: { type: 'shadow' } }),
+    legend: { type: 'scroll', top: 0, textStyle: { color: ink(true), fontSize: 11 } },
+    grid: Object.assign({}, BASE_GRID, { top: 56 }),
+    xAxis: { type: 'category', data: venues, axisLabel: { color: ink(true), fontSize: 11 }, axisLine: { lineStyle: { color: ink(true) } } },
+    yAxis: { type: 'value', axisLabel: { color: ink(true) }, splitLine: splitLine() },
+    series,
+    ...ANIM,
+  };
+}
+
 function optMethodTime(d) {
   // 受方向筛选影响：从 method_time_by_ch 按勾选方向求和，再取前 6 条线。
   let timeMap = d.method_time;
@@ -408,9 +434,24 @@ function lazyMount(id, optFn) {
   io.observe(el);
 }
 
+// 重渲所有已挂载的图表（主题切换后用：option 里的文字/网格/tooltip 颜色是 mount 时
+// 按当时主题定的，切暗色/亮色后要重算一次，否则颜色停在旧主题）。
+function rerenderAllCharts() {
+  if (!STATE.data || !STATE.chartDefs) return;
+  for (const [id, fn] of Object.entries(STATE.chartDefs)) {
+    const chart = STATE.charts.get(id);
+    if (chart) {
+      try { chart.setOption(fn(STATE.data), true); } catch (_) { /* noop */ }
+    }
+  }
+}
+
 async function main() {
   Theme.init();
-  document.querySelector('#theme-toggle')?.addEventListener('click', () => { Theme.cycle(); });
+  document.querySelector('#theme-toggle')?.addEventListener('click', () => {
+    Theme.cycle();
+    rerenderAllCharts();
+  });
   attachSearchRedirect();
 
   const d = await fetchJSON('data/stats.json').then((r) => r.json()).catch(() => null);
@@ -430,22 +471,33 @@ async function main() {
   STATE.channelColor = new Map(d.channels.map((c, i) => [c.id, PALETTE[i % PALETTE.length]]));
   buildCatFilter(d);
 
-  lazyMount('chart-cat-time', optCatTime);
-  lazyMount('chart-cat-line', optCatLine);
-  lazyMount('chart-cat-count', optCatCount);
-  lazyMount('chart-source', (x) => optDonut(x.source, 'name', 'value'));
+  // 所有图表的 id → option 构造器，统一注册（lazyMount 用 + 主题切换重渲用）。
+  const defs = {
+    'chart-cat-time': optCatTime,
+    'chart-cat-line': optCatLine,
+    'chart-cat-count': optCatCount,
+    'chart-source': (x) => optDonut(x.source, 'name', 'value'),
+    'chart-intake': optIntake,
+    'chart-inst': optInst,
+    'chart-method-top': optMethodTop,
+    'chart-method-time': optMethodTime,
+    'chart-hot': optHot,
+    'chart-platform': optPlatform,
+  };
   if ((d.venues || []).length) {
-    lazyMount('chart-venue', (x) => optHBar(x.venues, new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#9B6BDF' }, { offset: 1, color: '#FF6B8A' }])));
+    defs['chart-venue'] = (x) => optHBar(x.venues, new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#9B6BDF' }, { offset: 1, color: '#FF6B8A' }]));
   } else {
     const card = document.getElementById('chart-venue');
     if (card && card.parentElement) card.parentElement.style.display = 'none';
   }
-  lazyMount('chart-intake', optIntake);
-  lazyMount('chart-inst', optInst);
-  lazyMount('chart-method-top', optMethodTop);
-  lazyMount('chart-method-time', optMethodTime);
-  lazyMount('chart-hot', optHot);
-  lazyMount('chart-platform', optPlatform);
+  if (((d.venue_channel || {}).venues || []).length) {
+    defs['chart-venue-channel'] = optVenueChannel;
+  } else {
+    const card = document.getElementById('chart-venue-channel');
+    if (card && card.parentElement) card.parentElement.style.display = 'none';
+  }
+  STATE.chartDefs = defs;
+  for (const [id, fn] of Object.entries(defs)) lazyMount(id, fn);
 
   window.addEventListener('resize', () => {
     for (const c of STATE.charts.values()) c.resize();
