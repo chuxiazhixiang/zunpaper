@@ -1470,6 +1470,70 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2606-13856",
+      "source": "arxiv",
+      "title": "Output-Level Regularization Eliminates the Seed Lottery in Single-GPU VLA Fine-Tuning",
+      "title_zh": "输出级正则化消除单GPU VLA微调中的种子彩票",
+      "tldr_zh": "输出级正则化可消除单GPU微调中随机种子导致的性能暴跌问题。",
+      "cover_zh": "同一个代码跑13次，1次突然崩了？输出级正则化一招解决种子彩票",
+      "abstract_zh": "在单GPU上微调视觉-语言-动作模型（VLA-JEPA）本应很简单：加载预训练检查点，运行训练，部署。但存在一个隐藏风险。用相同的微调代码运行十三次——相同数据、相同架构、不同随机种子——其中十二次运行的机器人成功率为91-94%，而有一次运行悄无声息地降至65.2%：29个百分点的差距，没有错误信息、没有警告，也无法预测哪个种子会失败。我们称之为种子彩票。我们将原因追溯到输出坍缩：动作预测器悄悄学会产生几乎相同的输出，无论机器人看到什么。现有的权重级方法（L2、EWC）在结构上对此坍缩视而不见——它们惩罚权重变化，但坍缩发生在权重可以自由移动而不影响输出的方向上，我们通过雅可比零空间形式化了这一差距。在7种方法×最多13个种子×3个LIBERO基准测试中，三种输出级正则化器——VICReg（n=12个种子）、Dropout（n=4）和减半学习率（n=5）——各自消除了所有灾难性种子（共0/21次坍缩，对比基线1/13；F(12,11)=28.7，p<0.001），而权重级方法（L2、EWC）保留了彩票。最简单的修复是在优化器配置中更改一个数字。",
+      "authors": [
+        "Jeffrin Sam",
+        "Dzmitry Tsetserukou"
+      ],
+      "authors_all": [
+        "Jeffrin Sam",
+        "Dzmitry Tsetserukou"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-11",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎉 最新收录 · CoRL 2026"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-13856.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-13856-p2.jpg",
+        "assets/img/covers/arxiv-2606-13856-p3.jpg",
+        "assets/img/covers/arxiv-2606-13856-p4.jpg"
+      ],
+      "arxiv_id": "2606.13856",
+      "abs_url": "http://arxiv.org/abs/2606.13856v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.13856v1",
+      "venue": "CoRL 2026",
+      "venue_announced": "2026-06-26",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "针对VLA微调中种子彩票问题的系统性研究，提出输出级正则化方法，实验扎实，对实操有重要指导意义。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Skolkovo Institute of Science and Technology (Skoltech)"
+      ],
+      "method_tags": [
+        "VLA fine-tuning",
+        "output-level regularization",
+        "VICReg"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2606-13674",
       "source": "arxiv",
       "title": "RepWAM: World Action Modeling with Representation Visual-Action Tokenizers",
@@ -1814,65 +1878,6 @@
       "source_tags": [
         "llm_discover"
       ]
-    },
-    {
-      "id": "arxiv-2606-13856",
-      "source": "arxiv",
-      "title": "Output-Level Regularization Eliminates the Seed Lottery in Single-GPU VLA Fine-Tuning",
-      "title_zh": "输出级正则化消除单GPU VLA微调中的种子彩票",
-      "tldr_zh": "输出级正则化可消除单GPU微调中随机种子导致的性能暴跌问题。",
-      "cover_zh": "同一个代码跑13次，1次突然崩了？输出级正则化一招解决种子彩票",
-      "abstract_zh": "在单GPU上微调视觉-语言-动作模型（VLA-JEPA）本应很简单：加载预训练检查点，运行训练，部署。但存在一个隐藏风险。用相同的微调代码运行十三次——相同数据、相同架构、不同随机种子——其中十二次运行的机器人成功率为91-94%，而有一次运行悄无声息地降至65.2%：29个百分点的差距，没有错误信息、没有警告，也无法预测哪个种子会失败。我们称之为种子彩票。我们将原因追溯到输出坍缩：动作预测器悄悄学会产生几乎相同的输出，无论机器人看到什么。现有的权重级方法（L2、EWC）在结构上对此坍缩视而不见——它们惩罚权重变化，但坍缩发生在权重可以自由移动而不影响输出的方向上，我们通过雅可比零空间形式化了这一差距。在7种方法×最多13个种子×3个LIBERO基准测试中，三种输出级正则化器——VICReg（n=12个种子）、Dropout（n=4）和减半学习率（n=5）——各自消除了所有灾难性种子（共0/21次坍缩，对比基线1/13；F(12,11)=28.7，p<0.001），而权重级方法（L2、EWC）保留了彩票。最简单的修复是在优化器配置中更改一个数字。",
-      "authors": [
-        "Jeffrin Sam",
-        "Dzmitry Tsetserukou"
-      ],
-      "authors_all": [
-        "Jeffrin Sam",
-        "Dzmitry Tsetserukou"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-11",
-      "channels": [
-        "manipulation",
-        "world-model"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-13856.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-13856-p2.jpg",
-        "assets/img/covers/arxiv-2606-13856-p3.jpg",
-        "assets/img/covers/arxiv-2606-13856-p4.jpg"
-      ],
-      "arxiv_id": "2606.13856",
-      "abs_url": "http://arxiv.org/abs/2606.13856v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.13856v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 20,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "针对VLA微调中种子彩票问题的系统性研究，提出输出级正则化方法，实验扎实，对实操有重要指导意义。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Skolkovo Institute of Science and Technology (Skoltech)"
-      ],
-      "method_tags": [
-        "VLA fine-tuning",
-        "output-level regularization",
-        "VICReg"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
     },
     {
       "id": "arxiv-2606-13877",
