@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import datetime as dt
 import logging
+import re
 
 import requests
 
@@ -89,7 +90,12 @@ def note_to_paper(n: dict, channels: list[Channel]) -> Paper | None:
     matched = _matched_channels(f"{title} {abstract} {kw_text}", channels)
     if not matched:
         return None
+    # venue 字段常带 track 后缀（"CoRL 2024 Poster"/"Oral"/"Spotlight"）→ 去掉，
+    # 统一成 "CoRL 2024"，避免同会议被拆成多条。
     venue = (_gv(c, "venue") or "").strip()
+    venue = re.sub(r"\s+(Poster|Oral|Spotlight|Workshop|Findings|Demo|Track|"
+                   r"Datasets?(\s+and\s+Benchmarks)?(\s+Track)?)\b.*$", "",
+                   venue, flags=re.IGNORECASE).strip()
     authors = _gv(c, "authors") or []
     if not isinstance(authors, list):
         authors = []

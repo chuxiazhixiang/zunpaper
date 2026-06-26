@@ -297,15 +297,28 @@ img {
 .rp-venue-filter {
   flex: 0 0 auto;
   margin-right: 14px;
-  max-width: 200px;
+  max-width: 220px;
   font: inherit;
   font-size: 12.5px;
-  color: var(--rp-text);
-  background: var(--rp-surface);
+  font-weight: 600;
+  color: var(--rp-text-soft);
+  background-color: var(--rp-surface);
   border: 1px solid var(--rp-border);
   border-radius: 999px;
-  padding: 6px 10px;
+  padding: 6px 30px 6px 14px;
   cursor: pointer;
+  transition: all 0.15s;
+  /* 自定义下拉箭头（去掉原生丑箭头）*/
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239A9A9A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 11px center;
+}
+.rp-venue-filter:hover {
+  border-color: var(--rp-red);
+  color: var(--rp-red);
 }
 .rp-venue-filter:focus {
   outline: none;

@@ -102,6 +102,21 @@ sources:
     venue_ids:
       - "robot-learning.org/CoRL/2024/Conference"
       - "robot-learning.org/CoRL/2025/Conference"
-      # 大型 ML 会议里机器人论文多数也在 arXiv（已靠 venue 标注捕获）；如需更全可加：
-      # - "ICLR.cc/2026/Conference"
-      # - "NeurIPS.cc/2025/Conference"
+      # 其余（ICLR/NeurIPS/ICML/CoRL 当年+次年）由 conferences.yaml 的 openreview 模板自动推导。
+
+  # 会议/期刊源（Semantic Scholar 按 venue+year 检索）：补 OpenReview 覆盖不到的
+  # CVPR/ICCV/ECCV/RA-L/ICML 等。返回带 arXiv id → 与站内 arXiv 论文按 slug 去重/合并。
+  # query 是 S2 的 venue 检索名；short 是展示简称；year 是要回填的「去年中稿」年份。
+  # 双年会注意年份：ICCV 奇数年、ECCV 偶数年。RSS 在 S2 索引不全，靠 arXiv comment。
+  conf_papers:
+    enabled: true
+    max_per_venue: 40
+    refresh_days: 14
+    venues:
+      - { query: "CVPR", short: "CVPR", year: 2025 }
+      - { query: "ICCV", short: "ICCV", year: 2025 }
+      - { query: "ECCV", short: "ECCV", year: 2024 }
+      - { query: "IEEE Robotics and Automation Letters", short: "RA-L", year: 2025 }
+      - { query: "ICML", short: "ICML", year: 2025 }
+      - { query: "International Conference on Learning Representations", short: "ICLR", year: 2025 }
+      - { query: "NeurIPS", short: "NeurIPS", year: 2024 }

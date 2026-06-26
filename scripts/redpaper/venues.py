@@ -49,17 +49,22 @@ def parse_venue(text: str) -> str:
     （要求 venue 与某个年份相邻，避免"对比了 CVPR 方法"之类顺带提及）。"""
     if not text:
         return ""
-    years = [m.start() for m in _YEAR_RE.finditer(text)]
+    years = [(m.start(), m.group(1)) for m in _YEAR_RE.finditer(text)]
     if not years:
         return ""  # 没有年份不认，降低误报
-    year = _YEAR_RE.search(text).group(1)
     has_hint = bool(_ACCEPT_HINT.search(text))
     for pat, label in _VENUE_PATTERNS:
         starts = [m.start() for m in re.finditer(pat, text, re.IGNORECASE)]
         if not starts:
             continue
-        # 取 venue 出现位置与任一年份的最近距离；有录用语境则直接认。
-        nearest = min(abs(s - y) for s in starts for y in years)
-        if has_hint or nearest <= 30:
-            return f"{label} {year}"
+        # 取「紧挨 venue 名（≤30 字符）的年份」里**最大的那个**——录用年份通常是
+        # 最近一届，且能避开 "extends our CoRL 2024 work, accepted to CoRL 2026"
+        # 这种把往届误当成录用届的情况。
+        near = [int(yv) for (yp, yv) in years if any(abs(s - yp) <= 30 for s in starts)]
+        if near:
+            return f"{label} {max(near)}"
+        # 没有紧挨的年份，但有明确录用语境 → 用离 venue 最近的年份兜底。
+        if has_hint:
+            _, yv = min(((abs(s - yp), yv) for s in starts for (yp, yv) in years), key=lambda x: x[0])
+            return f"{label} {yv}"
     return ""

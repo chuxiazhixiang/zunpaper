@@ -6,7 +6,7 @@
 // 把页面塞爆。
 // before the user hits the bottom.
 
-import { Favorites, Curated, Reads, Theme } from './storage.js?v=6700cda5';
+import { Favorites, Curated, Reads, Theme } from './storage.js?v=7adda7f1';
 import {
   pickCover,
   loadPalettes,
@@ -18,7 +18,7 @@ import {
   HEART_SVG_FILL,
   showToast,
   fetchJSON,
-} from './utils.js?v=6700cda5';
+} from './utils.js?v=7adda7f1';
 
 const STATE = {
   channels: [],
@@ -142,9 +142,14 @@ function matchesQuery(p, q) {
   return false;
 }
 
-// 会议/期刊去年份的 base 名（"ICRA 2026" → "ICRA"），用于下拉筛选归并同会议不同年。
+// 会议/期刊 base 名（"ICRA 2026" → "ICRA"，"CoRL 2024 Poster" → "CoRL"），
+// 去年份 + 去 track 后缀，用于下拉筛选/跳转归并同会议不同年/不同 track。
 function venueBase(v) {
-  return (v || '').replace(/\s*\b20\d{2}\b\s*/g, ' ').replace(/\s+/g, ' ').trim();
+  return (v || '')
+    .replace(/\b20\d{2}\b/g, ' ')
+    .replace(/\b(poster|oral|spotlight|workshop|findings|demo|track|conference|main|datasets?(\s+and\s+benchmarks)?)\b/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function visiblePapers() {
