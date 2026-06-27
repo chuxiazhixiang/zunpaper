@@ -2,7 +2,7 @@
 //   - 收起态：只显示最近 2-3 个临近截止的小药丸（不抢下方帖子版面）。
 //   - 「全部会议 ▾」展开一个面板，列出所有会议：截止倒计时 + 开会时间地点 + 主页。
 //   - 点会议名 → 跳到该会议的论文（index.html?venue=<基名>，feed.js 会按 venue 筛选）。
-import { escapeHTML, fetchJSON } from './utils.js?v=002b0683';
+import { escapeHTML, fetchJSON } from './utils.js?v=644824d0';
 
 const DAY = 86400000;
 
@@ -41,15 +41,15 @@ function daysLeft(date) {
 
 function _pad2(n) { return String(n).padStart(2, '0'); }
 
-// 实时倒计时文本："80天 23:59:58"，精确到秒（每秒刷新一次即可看到流逝）。
+// 实时倒计时文本，按「总小时数」展示（不再拆成天）：例如还差 79 天 → "1896小时 59:58"，
+// 分秒每秒刷新可见流逝。这样直观感受"离截稿还有多少个小时"。
 function fmtCountdown(date) {
   let ms = date.getTime() - Date.now();
   if (ms <= 0) return '已截止';
-  const d = Math.floor(ms / DAY); ms -= d * DAY;
-  const h = Math.floor(ms / 3600000); ms -= h * 3600000;
+  const totalH = Math.floor(ms / 3600000); ms -= totalH * 3600000;
   const m = Math.floor(ms / 60000); ms -= m * 60000;
   const s = Math.floor(ms / 1000);
-  return `${d}天 ${_pad2(h)}:${_pad2(m)}:${_pad2(s)}`;
+  return `${totalH}小时 ${_pad2(m)}:${_pad2(s)}`;
 }
 
 function urgencyClass(days) {
