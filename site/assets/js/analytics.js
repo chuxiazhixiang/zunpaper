@@ -1,7 +1,7 @@
 // 访问统计（GoatCounter，免费/隐私友好/无 cookie）。只有 config/site.yaml 里填了
 // goatcounter code 才启用：注入官方 count.js 上报本次访问，并在页脚显示累计访问数。
 // 每日明细在 GoatCounter 自己的面板看（https://<code>.goatcounter.com）。
-import { fetchJSON } from './utils.js?v=8beb6b24';
+import { fetchJSON } from './utils.js?v=c57b4656';
 
 async function main() {
   let code = '';
