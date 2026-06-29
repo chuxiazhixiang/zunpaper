@@ -1,0 +1,124 @@
+{
+  "id": "arxiv-2606-27755",
+  "source": "arxiv",
+  "title": "Drop-Then-Recovery: How Redundant Are Vision-Language-Action Models?",
+  "title_zh": "Drop-Then-Recovery：视觉-语言-动作模型有多冗余？",
+  "abstract": "Vision-Language-Action (VLA) models enable instruction-driven robotic manipulation, but they inherit oversized language backbones from pretrained VLMs whose capacity far exceeds what is needed for short robotic instructions. This raises a basic question: how much of a VLA model is actually necessary for closed-loop control? In this work, we study architectural redundancy in VLA models by using transformer block removal as a controlled intervention. We introduce \\textbf{Drop-Then-Recovery (DTR)}, an analysis protocol that removes selected blocks from a pretrained VLA model and then fine-tunes the resulting model to measure whether the removed capacity was necessary for downstream control. To make this intervention reliable, we propose \\textbf{GateProbe}, a one-shot virtual-gate sensitivity metric that ranks blocks by their contribution to the downstream action loss. Across multiple VLA architectures, manipulation benchmarks and even real-robot industrial scenarios, we find a strong asymmetry in post-removal recoverability: \\ul{\\textit{language backbones are highly redundant for standard robotic manipulation tasks, whereas vision and action pathways are substantially less tolerant to removal}}. On LIBERO, removing half of the LLM blocks even improves OpenVLA-OFT from 95.0% to 98.3% under the same downstream fine-tuning budget, and retaining only two language blocks still recovers baseline-level performance. These results suggest that current VLA benchmarks may exert limited pressure on deep language grounding and compositional instruction understanding, and that future VLA architectures should allocate capacity more deliberately across language, vision, and action components. The code is available at https://github.com/s1ghhh/VLADrop.",
+  "abstract_zh": "视觉-语言-动作（VLA）模型实现了指令驱动的机器人操作，但它们继承了预训练VLM中过大的语言主干，其容量远超短机器人指令所需。这引出一个基本问题：VLA模型中有多少部分对于闭环控制是真正必要的？在本工作中，我们通过使用Transformer块移除作为受控干预来研究VLA模型中的架构冗余。我们提出了Drop-Then-Recovery（DTR），一种分析协议，它从预训练的VLA模型中移除选定的块，然后微调得到的模型，以衡量被移除的容量是否对下游控制是必要的。为了使这种干预可靠，我们提出了GateProbe，一种一次性虚拟门灵敏度度量，它根据块对下游动作损失的贡献进行排序。在多种VLA架构、操作基准甚至真实机器人工业场景中，我们发现移除后的可恢复性存在强烈不对称性：语言主干对于标准机器人操作任务高度冗余，而视觉和动作通路则对移除的容忍度显著较低。在LIBERO上，移除一半的LLM块甚至将OpenVLA-OFT从95.0%提升到98.3%（在相同的下游微调预算下），仅保留两个语言块仍能恢复基线性能。这些结果表明，当前的VLA基准可能对深层语言基础和组合指令理解施加了有限压力，未来的VLA架构应更审慎地在语言、视觉和动作组件之间分配容量。代码见https://github.com/s1ghhh/VLADrop。",
+  "tldr_zh": "VLA模型中语言主干高度冗余，移除一半LLM块甚至提升性能。",
+  "cover_zh": "砍掉一半语言模型，机器人反而更聪明？｜VLA冗余大揭秘",
+  "authors": [
+    {
+      "name": "Guoheng Sun",
+      "affiliation": ""
+    },
+    {
+      "name": "Kaixi Feng",
+      "affiliation": ""
+    },
+    {
+      "name": "Shwai He",
+      "affiliation": ""
+    },
+    {
+      "name": "Xiaochuan Gong",
+      "affiliation": ""
+    },
+    {
+      "name": "Yexiao He",
+      "affiliation": ""
+    },
+    {
+      "name": "Ziyao Wang",
+      "affiliation": ""
+    },
+    {
+      "name": "Zheyu Shen",
+      "affiliation": ""
+    },
+    {
+      "name": "Wanghao Ye",
+      "affiliation": ""
+    },
+    {
+      "name": "Ramana Rao Kompella",
+      "affiliation": ""
+    },
+    {
+      "name": "Gaowen Liu",
+      "affiliation": ""
+    },
+    {
+      "name": "Ang Li",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.AI"
+  ],
+  "published": "2026-06-26",
+  "updated": "2026-06-26",
+  "arxiv_id": "2606.27755",
+  "pdf_url": "https://arxiv.org/pdf/2606.27755v1",
+  "abs_url": "http://arxiv.org/abs/2606.27755v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2606-27755.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2606-27755-p2.jpg",
+    "assets/img/covers/arxiv-2606-27755-p3.jpg",
+    "assets/img/covers/arxiv-2606-27755-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 22,
+  "source_tags": [],
+  "score": 23,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 5 个（vision-language-action、vla model、openvla、manipulation）"
+    },
+    {
+      "id": "github_repo",
+      "label": "附带开源仓库",
+      "points": 8,
+      "hint": "摘要里出现 github.com / huggingface.co 链接"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 22 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "系统分析VLA模型冗余性，提出DTR和GateProbe方法，对架构设计有重要指导意义。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University of Maryland, College Park",
+    "Cisco Research"
+  ],
+  "method_tags": [
+    "Drop-Then-Recovery",
+    "GateProbe"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {}
+}
