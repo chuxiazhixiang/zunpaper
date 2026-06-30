@@ -1,7 +1,374 @@
 {
   "date": "2026-06-29",
-  "count": 20,
+  "count": 31,
   "papers": [
+    {
+      "id": "arxiv-2606-30645",
+      "source": "arxiv",
+      "title": "VLK: Learning Humanoid Loco-Manipulation from Synthetic Interactions in Reconstructed Scenes",
+      "title_zh": "VLK：从重建场景中的合成交互学习人形机器人全身操控",
+      "tldr_zh": "在重建场景中合成视觉-语言-运动学数据，训练人形机器人全身操控策略。",
+      "cover_zh": "不用真人数据也能训练人形机器人？合成交互让全身操控直接落地",
+      "abstract_zh": "基于感知的人形机器人全身操控需要将自我中心观察和任务指令与全身运动连接起来。学习这种映射需要同步的自我中心图像、语言指令和机器人兼容的运动轨迹，但现有数据源无法大规模提供完整的这一组合。我们通过在重建场景中合成视觉-语言-运动学（VLK）监督来解决这一瓶颈。我们的流程利用3D高斯泼溅重建公制尺度的室内环境，利用特权场景信息合成导航和物体交互轨迹，并在事后渲染配对的自我中心观察。我们在无需人工干预的情况下生成了48,000条配对轨迹，并训练了一个VLK策略，该策略预测短时域的全身运动轨迹。一个全身跟踪器将这些预测转换为物理人形机器人的动作。我们在物理Unitree G1上评估了导航和单物体运输任务，结果表明重建场景中的合成交互为基于感知的人形机器人全身操控提供了有效的模拟到现实监督。项目网站：https://vision-language-kinematics.github.io/",
+      "authors": [
+        "Yen-Jen Wang",
+        "Jiaman Li",
+        "Sirui Chen"
+      ],
+      "authors_all": [
+        "Yen-Jen Wang",
+        "Jiaman Li",
+        "Sirui Chen",
+        "Takara E. Truong",
+        "Pei Xu",
+        "Pieter Abbeel",
+        "Rocky Duan",
+        "Koushil Sreenath",
+        "Angjoo Kanazawa",
+        "Carmelo Sferrazza",
+        "Guanya Shi",
+        "Karen Liu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-29",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Berkeley (BAIR)"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Stanford"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ CMU RI"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Guanya Shi"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ C. Karen Liu"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Koushil Sreenath"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Pieter Abbeel"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Angjoo Kanazawa"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-30645.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-30645-p2.jpg",
+        "assets/img/covers/arxiv-2606-30645-p3.jpg",
+        "assets/img/covers/arxiv-2606-30645-p4.jpg"
+      ],
+      "arxiv_id": "2606.30645",
+      "abs_url": "http://arxiv.org/abs/2606.30645v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.30645v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 75,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出合成数据生成方法解决人形全身控制数据瓶颈，在真机上验证，创新性强",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Amazon FAR",
+        "UC Berkeley",
+        "Stanford University",
+        "Carnegie Mellon University"
+      ],
+      "method_tags": [
+        "sim-to-real",
+        "loco-manipulation",
+        "whole-body control"
+      ],
+      "platform": [
+        "Unitree G1"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2606-30362",
+      "source": "arxiv",
+      "title": "ReactiveBFM: Reactive Closed-Loop Motion Planning Towards Universal Humanoid Whole-Body Control",
+      "title_zh": "ReactiveBFM：面向通用人形全身控制的反应式闭环运动规划",
+      "tldr_zh": "提出反应式闭环框架，解决人形机器人生成式规划中的暴露偏差与延迟问题。",
+      "cover_zh": "人形机器人也能实时追目标？这个新框架让全身协调直接拉满！",
+      "abstract_zh": "当前的行为基础模型（BFMs）为人形机器人提供了鲁棒的控制先验，但它们仅执行预定义的参考运动，因此对环境变化脆弱且无法实现反应式全身协调。简单地将它们与生成式运动规划器级联无法实现真正的反应性，因为不可避免的跟踪差异会导致致命的累积暴露偏差。为弥补这一差距，我们提出ReactiveBFM，一个实时闭环规划-控制框架。其核心是通过一种调度前缀采样课程有效缓解暴露偏差，迫使生成式规划器主动从非完美物理状态而非真实轨迹中学习纠错行为。系统层面，为协调自回归规划与高频跟踪之间的严重延迟不匹配，我们引入异步重规划机制。结合轨迹分块以时间上集成空间参考，我们的系统保证时空流畅的执行而无物理抖动。部署在Unitree G1人形机器人上，ReactiveBFM在大量文本条件闭环运动中展现出前所未有的物理敏捷性。值得注意的是，ReactiveBFM实现了零样本移动目标追踪，展示了复杂的全身协调和即时重规划。在严重扰动下的模拟到模拟基准测试中，ReactiveBFM达到93.1%的成功率，显著优于级联开环基线28.6%。",
+      "authors": [
+        "Xiao Chen",
+        "Weishuai Zeng",
+        "Xiaojie Niu"
+      ],
+      "authors_all": [
+        "Xiao Chen",
+        "Weishuai Zeng",
+        "Xiaojie Niu",
+        "Zirui Wang",
+        "Jianan Li",
+        "Huayi Wang",
+        "Furui Xu",
+        "Jiahe Chen",
+        "Weixiang Zhong",
+        "Lihe Ding",
+        "Kailin Li",
+        "Jiangmiao Pang",
+        "Tai Wang",
+        "Tianfan Xue",
+        "Jingbo Wang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-29",
+      "channels": [
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 上海 AI Lab"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Jingbo Wang"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Jiangmiao Pang"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-30362.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-30362-p2.jpg",
+        "assets/img/covers/arxiv-2606-30362-p3.jpg",
+        "assets/img/covers/arxiv-2606-30362-p4.jpg"
+      ],
+      "arxiv_id": "2606.30362",
+      "abs_url": "http://arxiv.org/abs/2606.30362v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.30362v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 70,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出人形机器人全身闭环运动规划框架，解决暴露偏差与延迟问题，在G1上验证零样本目标追踪，价值高。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "The Chinese University of Hong Kong",
+        "Shanghai AI Laboratory"
+      ],
+      "method_tags": [
+        "closed-loop planning",
+        "reactive whole-body control",
+        "exposure bias mitigation"
+      ],
+      "platform": [
+        "Unitree G1"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2606-30457",
+      "source": "arxiv",
+      "title": "Behavior Prompting Policy: Demonstrations as Prompts for Manipulation",
+      "title_zh": "行为提示策略：将演示作为操作提示",
+      "tldr_zh": "一次人类演示即可让机器人执行新任务，无需微调。",
+      "cover_zh": "一次演示就能教会机器人新技能｜告别昂贵微调",
+      "abstract_zh": "我们研究行为提示（behavior prompting），这是一种使机器人能够在推理时仅凭一次人类演示（称为行为提示）执行新任务的范式。为实现这一能力，我们在算法、数据和评估方面做出了贡献。在算法上，我们引入了行为提示策略（BPP），这是一种上下文视觉运动架构，将行为提示和当前观测转化为机器人动作。在数据上，我们发现任务多样性是提示能力的主要驱动因素，并引入了iPhUMI，一种手持式操作界面，用于收集多样化的训练数据。在评估上，我们引入了DrawAnything和LIBERO-Gen来评估对未见过的绘图和桌面操作任务的测试时适应能力。我们还证明了iPhUMI作为在测试时指定行为提示的实用界面，使人类能够通过一次演示命令机器人完成已知任务或定义新的机器人能力。总之，行为提示提供了一种灵活且可扩展的方式来教授机器人新技能，无需昂贵的微调。我们的项目网站位于https://behavior-prompting.github.io/。",
+      "authors": [
+        "Austin Patel",
+        "Ben Pekarek",
+        "Joel Enrique Castro Hernandez"
+      ],
+      "authors_all": [
+        "Austin Patel",
+        "Ben Pekarek",
+        "Joel Enrique Castro Hernandez",
+        "Shuran Song"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-29",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Stanford"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Shuran Song"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-30457.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-30457-p2.jpg",
+        "assets/img/covers/arxiv-2606-30457-p3.jpg",
+        "assets/img/covers/arxiv-2606-30457-p4.jpg"
+      ],
+      "arxiv_id": "2606.30457",
+      "abs_url": "http://arxiv.org/abs/2606.30457v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.30457v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 64,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出行为提示策略，实现单次演示推理时新任务，算法、数据、评估贡献完整，对操作领域有高参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Stanford University",
+        "University of California, Berkeley"
+      ],
+      "method_tags": [
+        "Behavior Prompting",
+        "In-Context Learning",
+        "Visuomotor Policy"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2606-30552",
+      "source": "arxiv",
+      "title": "Training Vision-Language-Action Models with Dense Embodied Chain-of-Thought Supervision",
+      "title_zh": "使用密集具身思维链监督训练视觉-语言-动作模型",
+      "tldr_zh": "提出ZR-0模型，用密集具身思维链监督实现跨机器人平台的迁移学习。",
+      "cover_zh": "机器人也能“思考”再行动？这个新模型让跨平台迁移变得简单",
+      "abstract_zh": "跨具身迁移在视觉-语言-动作（VLA）模型中仍然具有挑战性，因为不同机器人平台的低级状态和动作空间根本不同。我们观察到，操作背后的高级认知过程，包括场景感知、物体识别、任务规划和子任务分解，在不同具身之间是高度共享的。基于这一观察，我们提出了ZR-0，一个26亿参数的端到端VLA模型，它使用密集的具身思维链（ECoT）监督来对齐视觉-语言模型（VLM）中的跨具身表示。ZR-0采用双流架构：一个预训练的VLM（系统2）在训练期间生成结构化的ECoT推理，而一个基于扩散Transformer的动作专家（系统1）通过流匹配产生连续的动作块。这两个组件通过交叉注意力耦合，并带有一个注意力掩码，限制动作专家仅输入提示特征，从而在推理时完全跳过ECoT生成而不损失任何性能。ZR-0在ProcCorpus-60M上进行了预训练，这是一个大规模数据集，包含约6000万帧（约1000小时）来自超过40万条轨迹的数据，并带有覆盖96.8%帧的密集ECoT注释。我们在三个模拟基准上评估了ZR-0，涵盖单臂（LIBERO）、双臂（RoboTwin 2.0）和类人（RoboCasa GR-1 Tabletop）具身，以及在xArm平台上的真实世界实验，展示了在所有设置中的强大性能。代码和模型检查点可在https://github.com/RUCKBReasoning/ZR-0获取。",
+      "authors": [
+        "Haoyang Li",
+        "Guanlin Li",
+        "Youhe Feng"
+      ],
+      "authors_all": [
+        "Haoyang Li",
+        "Guanlin Li",
+        "Youhe Feng",
+        "Chen Zhao",
+        "Zhuoran Wang",
+        "Yang Li",
+        "Qizhe Wei",
+        "Shifeng Bao",
+        "Haitao Shen",
+        "Yihan Zhao",
+        "Tong Yang",
+        "Jing Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-29",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 智谱"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-30552.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-30552-p2.jpg",
+        "assets/img/covers/arxiv-2606-30552-p3.jpg",
+        "assets/img/covers/arxiv-2606-30552-p4.jpg"
+      ],
+      "arxiv_id": "2606.30552",
+      "abs_url": "http://arxiv.org/abs/2606.30552v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.30552v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 63,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出ECoT监督的VLA模型ZR-0，跨本体迁移，仿真和真实实验验证，科研价值高",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Renmin University of China",
+        "Zhipu AI"
+      ],
+      "method_tags": [
+        "VLA",
+        "Embodied Chain-of-Thought",
+        "Diffusion Transformer"
+      ],
+      "platform": [
+        "GR-1",
+        "xArm"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
     {
       "id": "arxiv-2606-29898",
       "source": "arxiv",
@@ -158,6 +525,153 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2606-30474",
+      "source": "arxiv",
+      "title": "Grasp-Oriented Non-Prehensile Manipulation via Learning a Graspability Field",
+      "title_zh": "面向抓取的非抓取操作：通过学习可抓取性场实现",
+      "tldr_zh": "通过可抓取性场优化物体构型，实现无需预设位姿的闭环操作到抓取。",
+      "cover_zh": "不用预设目标位姿｜机器人靠“可抓取性场”自己摆好物体再抓取",
+      "abstract_zh": "非抓取操作通常作为机器人抓取的准备步骤，但现有方法往往需要预先定义目标物体位姿。然而在实践中，物体存在多种可抓取构型，且期望位姿事先未知。我们将用于抓取的非抓取操作重新定义为优化以物体为中心的可抓取性目标，而非达到特定位姿。我们从合成抓取中构建可抓取集，并定义了一个可抓取性场，用于衡量物体构型对成功执行抓取的适宜程度。该标量度量提供了密集的强化学习信号，并决定何时终止操作。这产生了一个由单一策略驱动的闭环操作到抓取流程。在仿真和真实机器人上的实验表明，该策略能可靠地将物体重新配置为可抓取状态，并过渡到抓取，无需外部规划器或手动指定的停止条件。预测的可抓取性距离与真实世界抓取成功率相关，表明学习到的表示捕捉了物体构型的抓取可行性。",
+      "authors": [
+        "Licheng Zhong",
+        "Gim Hee Lee"
+      ],
+      "authors_all": [
+        "Licheng Zhong",
+        "Gim Hee Lee"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-29",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ NUS"
+        },
+        {
+          "kind": "venue",
+          "label": "🎓 ECCV 2026"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-30474.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-30474-p2.jpg",
+        "assets/img/covers/arxiv-2606-30474-p3.jpg",
+        "assets/img/covers/arxiv-2606-30474-p4.jpg"
+      ],
+      "arxiv_id": "2606.30474",
+      "abs_url": "http://arxiv.org/abs/2606.30474v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.30474v1",
+      "venue": "ECCV 2026",
+      "venue_announced": "",
+      "score": 57,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出抓取性场实现非抓取操作，结合强化学习，仿真和真机验证，有算法创新",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "National University of Singapore"
+      ],
+      "method_tags": [
+        "Reinforcement Learning",
+        "Graspability Field"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2606-29846",
+      "source": "arxiv",
+      "title": "Legible Shared Autonomy: Implicit Communication of Robot Belief through Motion",
+      "title_zh": "可读共享自主：通过运动隐式传达机器人信念",
+      "tldr_zh": "通过可读运动让机器人清晰传达其推断目标，减少用户控制负担。",
+      "cover_zh": "机器人不再“闷声干活”｜新方法让它主动告诉你它猜到了什么",
+      "abstract_zh": "共享自主系统结合用户输入与自主辅助，通过推断用户目标并提供适当引导，帮助运动障碍用户控制机械臂完成日常操作任务。然而，机器人关于用户目标的内部信念无法被用户观察。传统共享自主系统沿高效最短路径向推断目标提供辅助，但当多个物体位于相似方向时，此类辅助运动仍显模糊，无法揭示机器人识别的具体目标。这导致两个关键问题：第一，当机器人正确推断目标时，用户因无法从模糊辅助运动中感知理解而继续控制，浪费了本可自主完成时的精力；第二，当机器人误解意图时，用户无法快速发现错误，直到辅助运动显著偏离，需要大量纠正输入。我们通过将可读运动引入共享自主来解决这一问题，其中机器人动作必须既向目标前进，又清晰揭示已推断的目标，使用户能够理解机器人的信念并相应调整控制。机器人通过置信度感知的自适应权限分配来调节通信强度：在置信时提供果断的可读辅助动作，在不确定时增加用户权限，将共享自主转变为透明的双向协作。用户研究（包括仿真和六自由度机械臂物理实验）表明，与标准共享自主相比，可读共享自主显著提高了用户对机器人信念的理解，并减少了用户控制努力。",
+      "authors": [
+        "Jinwei Liu",
+        "Pengfei Li",
+        "Shaofeng Chen"
+      ],
+      "authors_all": [
+        "Jinwei Liu",
+        "Pengfei Li",
+        "Shaofeng Chen",
+        "Tao Wang",
+        "Yun-Bo Zhao"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-29",
+      "channels": [
+        "manipulation",
+        "teleop"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ USTC"
+        },
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2026"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-29846.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-29846-p2.jpg",
+        "assets/img/covers/arxiv-2606-29846-p3.jpg",
+        "assets/img/covers/arxiv-2606-29846-p4.jpg"
+      ],
+      "arxiv_id": "2606.29846",
+      "abs_url": "http://arxiv.org/abs/2606.29846v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.29846v1",
+      "venue": "IROS 2026",
+      "venue_announced": "",
+      "score": 56,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "teleop",
+        "reason": "提出可读共享自主性，通过运动隐式通信机器人信念，提升人机协作透明度，有用户实验验证。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Science and Technology of China",
+        "Hefei University of Technology",
+        "Beijing Institute of Technology"
+      ],
+      "method_tags": [
+        "shared autonomy",
+        "legible motion"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2606-30113",
       "source": "arxiv",
       "title": "SA-VLA: State-aware tokenizer for improving Vision-Language-Action Models' performance",
@@ -258,9 +772,9 @@
       "primary_category": "cs.RO",
       "published": "2026-06-29",
       "channels": [
-        "loco-manip-wbc",
         "manipulation",
-        "locomotion"
+        "locomotion",
+        "loco-manip-wbc"
       ],
       "badges": [
         {
@@ -383,6 +897,81 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2606-30290",
+      "source": "arxiv",
+      "title": "X-Morph: Human Motion Priors for Scalable Robot Learning Across Morphologies",
+      "title_zh": "X-Morph：面向跨形态可扩展机器人学习的人体运动先验",
+      "tldr_zh": "将人体运动转化为四足、六足等非人形机器人的可部署策略。",
+      "cover_zh": "人形运动数据太多？X-Morph让四足六足机器人也能直接学｜跨形态通用行为先验",
+      "abstract_zh": "近期人形行为模型的进展很大程度上得益于丰富的人体运动数据，但对于非人形腿式机器人（如四足、六足和四足机械臂）而言，类似的数据却十分稀缺。一个可行的替代方案是跨形态重用人体运动；然而，直接重定向往往会产生视觉上合理但物理上不一致或难以在机器人动力学下跟踪的运动。我们提出X-Morph，一个将人体运动转化为适用于多种非人形腿式形态的可部署运动与运动-操作策略的流水线。跨形态重定向阶段将人体运动转化为运动学上合理、意图保留的机器人参考，随后由特权强化学习策略跟踪并蒸馏为因果学生策略。我们在三种形态不同的平台上评估X-Morph：四足机器人、六足机器人以及配备机械臂的四足机器人。所得策略能够跟踪多样化的重定向运动，泛化到未见的人体运动，并支持下游应用，包括基于视频的遥操作、行为先验控制以及文本条件运动生成。这些结果表明，大规模人体运动可以作为学习超越人形机器人的广泛、可重用行为先验的基础。项目页面：https://maker-rat.github.io/morph/",
+      "authors": [
+        "Ritwik Sharma",
+        "Shivam Sood",
+        "Arhaan Jain"
+      ],
+      "authors_all": [
+        "Ritwik Sharma",
+        "Shivam Sood",
+        "Arhaan Jain",
+        "Shyam Charan Kesavamoorthi",
+        "Chengyang He",
+        "Guillaume Sartoretti"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-29",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation",
+        "teleop",
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ NUS"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-30290.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-30290-p2.jpg",
+        "assets/img/covers/arxiv-2606-30290-p3.jpg",
+        "assets/img/covers/arxiv-2606-30290-p4.jpg"
+      ],
+      "arxiv_id": "2606.30290",
+      "abs_url": "http://arxiv.org/abs/2606.30290v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.30290v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "跨形态人体运动重定向到四足/六足/带臂四足，生成locomotion和loco-manipulation策略，具科研价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "National University of Singapore"
+      ],
+      "method_tags": [
+        "RL",
+        "privileged RL",
+        "distillation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2606-29941",
       "source": "arxiv",
       "title": "Seeing Touch from Motion: A Unified Modality-Aware Visuo-Tactile Policy with Tactile Motion Correlation",
@@ -460,82 +1049,6 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2606-29846",
-      "source": "arxiv",
-      "title": "Legible Shared Autonomy: Implicit Communication of Robot Belief through Motion",
-      "title_zh": "可读共享自主：通过运动隐式传达机器人信念",
-      "tldr_zh": "通过可读运动让机器人清晰传达其推断目标，减少用户控制负担。",
-      "cover_zh": "机器人不再“闷声干活”｜新方法让它主动告诉你它猜到了什么",
-      "abstract_zh": "共享自主系统结合用户输入与自主辅助，通过推断用户目标并提供适当引导，帮助运动障碍用户控制机械臂完成日常操作任务。然而，机器人关于用户目标的内部信念无法被用户观察。传统共享自主系统沿高效最短路径向推断目标提供辅助，但当多个物体位于相似方向时，此类辅助运动仍显模糊，无法揭示机器人识别的具体目标。这导致两个关键问题：第一，当机器人正确推断目标时，用户因无法从模糊辅助运动中感知理解而继续控制，浪费了本可自主完成时的精力；第二，当机器人误解意图时，用户无法快速发现错误，直到辅助运动显著偏离，需要大量纠正输入。我们通过将可读运动引入共享自主来解决这一问题，其中机器人动作必须既向目标前进，又清晰揭示已推断的目标，使用户能够理解机器人的信念并相应调整控制。机器人通过置信度感知的自适应权限分配来调节通信强度：在置信时提供果断的可读辅助动作，在不确定时增加用户权限，将共享自主转变为透明的双向协作。用户研究（包括仿真和六自由度机械臂物理实验）表明，与标准共享自主相比，可读共享自主显著提高了用户对机器人信念的理解，并减少了用户控制努力。",
-      "authors": [
-        "Jinwei Liu",
-        "Pengfei Li",
-        "Shaofeng Chen"
-      ],
-      "authors_all": [
-        "Jinwei Liu",
-        "Pengfei Li",
-        "Shaofeng Chen",
-        "Tao Wang",
-        "Yun-Bo Zhao"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-29",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ USTC"
-        },
-        {
-          "kind": "venue",
-          "label": "🎓 IROS 2026"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-29846.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-29846-p2.jpg",
-        "assets/img/covers/arxiv-2606-29846-p3.jpg",
-        "assets/img/covers/arxiv-2606-29846-p4.jpg"
-      ],
-      "arxiv_id": "2606.29846",
-      "abs_url": "http://arxiv.org/abs/2606.29846v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.29846v1",
-      "venue": "IROS 2026",
-      "venue_announced": "",
-      "score": 51,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "teleop",
-        "reason": "提出可读共享自主性，通过运动隐式通信机器人信念，提升人机协作透明度，有用户实验验证。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "University of Science and Technology of China",
-        "Hefei University of Technology",
-        "Beijing Institute of Technology"
-      ],
-      "method_tags": [
-        "shared autonomy",
-        "legible motion"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -777,13 +1290,85 @@
       "training_summary": "",
       "demo_videos": [
         {
-          "kind": "youtube",
-          "url": "https://www.youtube.com/watch?v=idgpSHDUcIQ",
           "embed_url": "https://www.youtube.com/embed/idgpSHDUcIQ",
+          "kind": "youtube",
+          "source": "project_page",
           "title": "Heterogeneous Tactile Transformer",
-          "source": "project_page"
+          "url": "https://www.youtube.com/watch?v=idgpSHDUcIQ"
         }
       ],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2606-30639",
+      "source": "arxiv",
+      "title": "Self-Evolving World Models for LLM Agent Planning",
+      "title_zh": "面向LLM智能体规划的自进化世界模型",
+      "tldr_zh": "提出自进化世界模型，通过测试时记忆修正提升LLM智能体规划性能。",
+      "cover_zh": "智能体规划总翻车？这个自进化世界模型让预测越来越准",
+      "abstract_zh": "世界模型为长程LLM智能体提供了一种原则性的前瞻能力：在执行前预测行动后果。然而，不可靠的前瞻可能被忽略、误用，甚至降低下游决策质量。本文提出WorldEvolver，一种自进化世界模型框架，它在保持下游智能体和所有模型参数冻结的同时，修正部署时的上下文。WorldEvolver集成了三个模块：(i) 情景记忆，通过基于检索的模拟利用真实行动转换；(ii) 语义记忆，从预测-观察不匹配中提取持久启发式规则；(iii) 选择性前瞻，在将低置信度预测整合到智能体推理上下文之前进行过滤。我们在ALFWorld和ScienceWorld上评估WorldEvolver，在Word2World上测量世界模型预测准确率，在AgentBoard上测量下游智能体成功率。大量实验表明，WorldEvolver在三个骨干网络上取得了最高预测准确率，并在下游智能体成功率上领先其他世界模型基线，证明测试时记忆修正同时提升了预测保真度和规划性能。",
+      "authors": [
+        "Xuan Zhang",
+        "Wenxuan Zhang",
+        "See-Kiong Ng"
+      ],
+      "authors_all": [
+        "Xuan Zhang",
+        "Wenxuan Zhang",
+        "See-Kiong Ng",
+        "Yang Deng"
+      ],
+      "primary_category": "cs.AI",
+      "published": "2026-06-29",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ NUS"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-30639.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-30639-p2.jpg",
+        "assets/img/covers/arxiv-2606-30639-p3.jpg",
+        "assets/img/covers/arxiv-2606-30639-p4.jpg"
+      ],
+      "arxiv_id": "2606.30639",
+      "abs_url": "http://arxiv.org/abs/2606.30639v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.30639v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 44,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出自进化世界模型框架，结合记忆与选择性预测，提升LLM agent规划性能，属于world model方向。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "National University of Singapore",
+        "Singapore University of Technology and Design",
+        "Singapore Management University"
+      ],
+      "method_tags": [
+        "World Model",
+        "Self-evolving",
+        "Memory"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
       "github": {},
       "source_tags": []
     },
@@ -863,6 +1448,211 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2606-30632",
+      "source": "arxiv",
+      "title": "GROW$^2$: Grounding Which and Where for Robot Tool Use",
+      "title_zh": "GROW$^2$：为机器人工具使用确定“哪个”和“哪里”",
+      "tldr_zh": "GROW$^2$通过分层语义和几何定位，实现机器人零样本工具使用。",
+      "cover_zh": "没有刀？机器人用盘子切蛋糕｜GROW$^2$让工具使用更聪明",
+      "abstract_zh": "如果没有刀，机器人能用盘子切蛋糕吗？工具使用极大地扩展了机器人的能力，但要创造性地使用工具超出其预期功能，机器人面临开放世界可供性定位的挑战：选择一个开放类别的物体作为工具，并定位其具体的动作区域。为此，我们提出了GROW$^2$（确定哪个和哪里），它利用物体部分作为自然抽象，将定位过程分层为语义和几何层面，从而绕过了对数据密集型端到端训练的需求。在语义上，GROW$^2$利用视觉语言模型（VLM）的常识推理来解析自然语言任务指令，选择合适的物体作为工具，并识别工具和目标物体上任务相关的部分。在几何上，视觉基础模型随后从单个RGB-D图像中将所选部分定位到精确的3D区域。在已有基准上的实验表明，GROW$^2$在可供性预测基准上优于最先进的基线。此外，它在开放类别物体上实现了零样本泛化，并在模拟和真实世界的机器人工具使用实验中均优于基线。",
+      "authors": [
+        "Yuhong Deng",
+        "Yuyao Liu",
+        "David Hsu"
+      ],
+      "authors_all": [
+        "Yuhong Deng",
+        "Yuyao Liu",
+        "David Hsu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-29",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ MIT CSAIL"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ NUS"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-30632.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-30632-p2.jpg",
+        "assets/img/covers/arxiv-2606-30632-p3.jpg",
+        "assets/img/covers/arxiv-2606-30632-p4.jpg"
+      ],
+      "arxiv_id": "2606.30632",
+      "abs_url": "http://arxiv.org/abs/2606.30632v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.30632v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 41,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出开放世界工具使用的语义-几何分层接地方法，结合VLM和视觉基础模型，零样本泛化，有仿真和真机实验。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "National University of Singapore",
+        "Massachusetts Institute of Technology"
+      ],
+      "method_tags": [
+        "open-world affordance grounding",
+        "Vision-Language Models",
+        "vision foundation models"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2606-30534",
+      "source": "arxiv",
+      "title": "Orca: The World is in Your Mind",
+      "title_zh": "Orca：世界在你心中",
+      "tldr_zh": "Orca通过统一世界潜在空间和下一状态预测，在多模态任务上超越专用基线。",
+      "cover_zh": "不预测下一个词，而是预测世界状态｜Orca让AI真正理解世界",
+      "abstract_zh": "我们提出了Orca，一个通用世界基础模型的初始实例。Orca从多模态世界信号中学习统一的世界潜在空间，并通过多模态读出接口将其暴露出来。我们不是优化孤立的下一词元、下一帧或下一动作预测，而是聚焦于下一状态预测建模，提供一种统一的状态转换建模路径，以理解、预测和作用于世界。Orca通过两种互补范式学习：无意识学习从连续视频中捕捉密集的自然状态转换，有意识学习通过语言描述的事件和VQA监督来建模稀疏的有意义状态转换。在预训练中，我们构建了一个大规模的世界学习库存数据，包括125K小时的视频数据和1.6亿事件注释。预训练后，Orca学习到一个统一的世界潜在空间。为了检验学到的潜在表示是否支持下游任务，我们通过三个代表性的下游读出进行评估：文本生成、图像预测和具身动作生成。Orca的主干被冻结，只有轻量级的模态特定解码器是可训练的。实验证明了所提出范式的可扩展性，并验证了更强的世界潜在表示能够带来更强的下游读出。Orca在相似规模的专用基线上表现更优。这些结果表明，Orca作为一个通用世界基础模型，为理解、预测和作用于世界提供了一种有前景的方法。最后，我们讨论了当前的局限性，旨在为社区提供有用的见解和启发。",
+      "authors": [
+        "Yihao Wang",
+        "Yuheng Ji",
+        "Mingyu Cao"
+      ],
+      "authors_all": [
+        "Yihao Wang",
+        "Yuheng Ji",
+        "Mingyu Cao",
+        "Yanqing Shen",
+        "Runze Xiao",
+        "Huaihai Lyu",
+        "Senwei Xie",
+        "Euan Liu",
+        "Klara Tian",
+        "Tianfeng Long",
+        "Yichi Zhang",
+        "Zhengliang Cai",
+        "Ruike Chen",
+        "Jifan Zhao",
+        "Ruochuan Shi",
+        "Zihan Tang",
+        "Jing Lyu",
+        "Wenxing Tan",
+        "Ningbo Zhang",
+        "Yangtao Hu",
+        "Yuming Gao",
+        "Xiansheng Chen",
+        "Junkai Zhao",
+        "Congsheng Xu",
+        "Boan Zhu",
+        "Ziqi Wang",
+        "Yupu Feng",
+        "Qiongqiong Zhang",
+        "Yingli Zhao",
+        "Yulong Ao",
+        "Shaoxuan Xie",
+        "You Liu",
+        "Guocai Yao",
+        "Leiduo Zhang",
+        "Xiaodan Liu",
+        "Yunyan Zhang",
+        "Yance Jiao",
+        "Xinyan Yang",
+        "Jiaxing Wei",
+        "Xu Liu",
+        "Tengfei Pan",
+        "Shaokai Nie",
+        "Chunlei Men",
+        "Sen Cui",
+        "Xiaojie Jin",
+        "Hongyang Li",
+        "Jianlan Luo",
+        "Yao Mu",
+        "Yunchao Wei",
+        "Jun Yan",
+        "Hang Zhao",
+        "Xiaolong Zheng",
+        "Jiaming Li",
+        "Yonghua Lin",
+        "Tiejun Huang",
+        "Zhongyuan Wang",
+        "Pengwei Wang"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-06-29",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Hongyang Li"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Hongyang Li (SAIL)"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Hang Zhao"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-30534.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-30534-p2.jpg",
+        "assets/img/covers/arxiv-2606-30534-p3.jpg",
+        "assets/img/covers/arxiv-2606-30534-p4.jpg"
+      ],
+      "arxiv_id": "2606.30534",
+      "abs_url": "http://arxiv.org/abs/2606.30534v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.30534v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 36,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出通用世界基础模型Orca，核心贡献是Next-State-Prediction和统一世界潜在空间，属于world-model频道",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Beijing Academy of Artificial Intelligence"
+      ],
+      "method_tags": [
+        "Next-State-Prediction",
+        "world foundation model",
+        "multimodal learning"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2606-29940",
       "source": "arxiv",
       "title": "WARP: Whole-Body Retargeting for Learning from Offline Human Demonstrations",
@@ -934,6 +1724,79 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2606-30613",
+      "source": "arxiv",
+      "title": "Sequential Planning via Anchored Robotic Keypoints",
+      "title_zh": "基于锚定机器人关键点的顺序规划",
+      "tldr_zh": "无需训练的神经符号系统SPARK通过锚定关键点规划，在机器人操作任务上超越VLA基线。",
+      "cover_zh": "不用训练就能吊打VLA？这个机器人规划系统靠关键点锚定直接翻倍成功率",
+      "abstract_zh": "我们提出了基于锚定机器人关键点的顺序规划（SPARK），这是一个无需训练的神经符号操作系统，在六个LIBERO-PRO位置和任务单元上达到43.7%的成功率，是CaP-Agent0和视觉-语言-动作（VLA）基线的两倍以上。CaP-Agent0是一个多轮代码生成智能体，每轮重新查询LLM，成功率为18.2%，但其从头开始重新启动的策略在面对轻微策略失败时代价高昂。感知层在位置和任务变化下失败最多，因此SPARK将计算资源集中于此。一次Gemini调用将计划组合为类型化行为树（BT），其中包含可组合的原语，每个原语已包含低级控制（运动、抓取、深度几何），而代码生成智能体每次试验都需要重新生成这些控制。剩余预算用于感知：第二次Gemini调用为每个对象提出三个替代文本提示，SAM3评估每个提示，我们保留检测置信度最高的提示-标签对，然后恢复循环针对新检测到的对象重试失败的原语，无需新的LLM调用。替代提示在空间套件上增加了27.7个百分点，在对象套件上增加了10.0个百分点，恢复循环整体增加了5.0个百分点。SPARK在三个机器人系列（UR10e、Franka FR3、双臂Franka）上执行相同的原语，涵盖九个不同任务，每个任务二十次试验，平均成功率为68%。由于检测器、规划器和控制器模块位于类型化计划之后，它们可以独立交换而无需训练，每个原语的可检查后置条件将失败追溯到相应模块或运动学限制。每次试验记录一个经过验证、标记的轨迹，因此一个已经击败VLA的无需训练规划器可以提供这些策略所需的数据，而无需远程操作。项目页面：https://cwru-aism.github.io/spark-page/",
+      "authors": [
+        "Bryce Grant",
+        "Aryeh Rothenberg",
+        "Logan Senning"
+      ],
+      "authors_all": [
+        "Bryce Grant",
+        "Aryeh Rothenberg",
+        "Logan Senning",
+        "Zonghe Chua",
+        "Zach Patterson",
+        "Peng Wang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-29",
+      "channels": [
+        "manipulation",
+        "teleop"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-30613.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-30613-p2.jpg",
+        "assets/img/covers/arxiv-2606-30613-p3.jpg",
+        "assets/img/covers/arxiv-2606-30613-p4.jpg"
+      ],
+      "arxiv_id": "2606.30613",
+      "abs_url": "http://arxiv.org/abs/2606.30613v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.30613v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出训练无关的神经符号操作系统，在LIBERO-PRO上超越VLA基线，支持多机器人平台，具有高科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Case Western Reserve University"
+      ],
+      "method_tags": [
+        "neurosymbolic",
+        "behavior tree",
+        "perception"
+      ],
+      "platform": [
+        "UR10e",
+        "Franka FR3",
+        "bimanual Franka"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "qbitai-7ac55266e6",
       "source": "qbitai",
       "title": "全球首个：隐空间世界模型，打通长时序双向物理因果链了！",
@@ -985,33 +1848,37 @@
       ]
     },
     {
-      "id": "arxiv-2606-30290",
+      "id": "arxiv-2606-30318",
       "source": "arxiv",
-      "title": "X-Morph: Human Motion Priors for Scalable Robot Learning Across Morphologies",
-      "title_zh": "X-Morph：面向跨形态可扩展机器人学习的人体运动先验",
-      "tldr_zh": "将人体运动转化为四足、六足等非人形机器人的可部署策略。",
-      "cover_zh": "人形运动数据太多？X-Morph让四足六足机器人也能直接学｜跨形态通用行为先验",
-      "abstract_zh": "近期人形行为模型的进展很大程度上得益于丰富的人体运动数据，但对于非人形腿式机器人（如四足、六足和四足机械臂）而言，类似的数据却十分稀缺。一个可行的替代方案是跨形态重用人体运动；然而，直接重定向往往会产生视觉上合理但物理上不一致或难以在机器人动力学下跟踪的运动。我们提出X-Morph，一个将人体运动转化为适用于多种非人形腿式形态的可部署运动与运动-操作策略的流水线。跨形态重定向阶段将人体运动转化为运动学上合理、意图保留的机器人参考，随后由特权强化学习策略跟踪并蒸馏为因果学生策略。我们在三种形态不同的平台上评估X-Morph：四足机器人、六足机器人以及配备机械臂的四足机器人。所得策略能够跟踪多样化的重定向运动，泛化到未见的人体运动，并支持下游应用，包括基于视频的遥操作、行为先验控制以及文本条件运动生成。这些结果表明，大规模人体运动可以作为学习超越人形机器人的广泛、可重用行为先验的基础。项目页面：https://maker-rat.github.io/morph/",
+      "title": "Chronos: A Physics-Informed Full-History Framework for Non-Markovian Long-Horizon Manipulation",
+      "title_zh": "Chronos：一种物理信息驱动的全历史框架，用于非马尔可夫长期操控",
+      "tldr_zh": "Chronos将观测历史作为策略潜在状态，在记忆依赖任务上大幅超越马尔可夫基线。",
+      "cover_zh": "机器人记不住之前做了什么？这个框架用全历史状态让成功率飙升6倍！",
+      "abstract_zh": "通用机器人策略应建模为动力系统，但许多VLA和生成式模仿策略仍依赖当前观测或短时间窗口。这种马尔可夫捷径在依赖记忆的操控中失效：相同观测在不同历史后可能要求不同动作。我们提出Chronos，一种物理信息驱动的全历史框架，用于非马尔可夫长期操控。关键思想是将观测历史从辅助上下文提升为策略动力学的潜在状态。在每个物理控制步，Chronos通过融合观测和本体感知形成一个状态代表令牌，使令牌序列与物理时间一一对齐。选择性状态空间模型传播这个因果历史状态，通过隐式最大似然估计（IMLE）条件化一个多模态粗动作先验。该先验随后由二阶薛定谔启发桥细化，预测加速度场，产生更平滑、更物理合理的机器人运动。在16个模拟任务和4个真实世界实验中，Chronos在精密插入、通用操控和依赖记忆的长期控制上进行了评估。在RMBench上，成功需要记住任务阶段，Chronos达到73.6%平均成功率，超过马尔可夫VLA基线pi0.5达62.4个百分点（相对提升6.6倍），同时使用少10倍的参数。它还超过记忆VLA Mem-0达22.8个百分点，同时使用少30倍以上的参数。在真实世界双臂实验中，使用单个RGB相机，Chronos在四个任务上达到78%平均成功率，包括三个依赖记忆任务上的72%，而pi0.5总体为7%，依赖记忆子集为0%。这些结果表明，历史不应被视为辅助上下文，而应作为操控策略的潜在状态。",
       "authors": [
-        "Ritwik Sharma",
-        "Shivam Sood",
-        "Arhaan Jain"
+        "Yulin Zhou",
+        "Yimeng Wang",
+        "Nengyu Wang"
       ],
       "authors_all": [
-        "Ritwik Sharma",
-        "Shivam Sood",
-        "Arhaan Jain",
-        "Shyam Charan Kesavamoorthi",
-        "Chengyang He",
-        "Guillaume Sartoretti"
+        "Yulin Zhou",
+        "Yimeng Wang",
+        "Nengyu Wang",
+        "Shaojia Xing",
+        "Shiyun Tu",
+        "Xiang Li",
+        "Jingkai Zhang",
+        "Ningbo Jiang",
+        "Yuankai Lin",
+        "Hua Yang",
+        "Xiangrui Zeng",
+        "Zhouping Yin"
       ],
       "primary_category": "cs.RO",
       "published": "2026-06-29",
       "channels": [
         "loco-manip-wbc",
-        "manipulation",
-        "teleop",
-        "locomotion"
+        "manipulation"
       ],
       "badges": [
         {
@@ -1019,26 +1886,107 @@
           "label": "⚡ 新鲜出炉"
         }
       ],
-      "cover_image": "",
-      "preview_pages": [],
-      "arxiv_id": "2606.30290",
-      "abs_url": "http://arxiv.org/abs/2606.30290v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.30290v1",
+      "cover_image": "assets/img/covers/arxiv-2606-30318.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-30318-p2.jpg",
+        "assets/img/covers/arxiv-2606-30318-p3.jpg",
+        "assets/img/covers/arxiv-2606-30318-p4.jpg"
+      ],
+      "arxiv_id": "2606.30318",
+      "abs_url": "http://arxiv.org/abs/2606.30318v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.30318v1",
       "venue": "",
       "venue_announced": "",
       "score": 27,
       "judge": {
         "relevant": true,
         "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "跨形态人体运动重定向到四足/六足/带臂四足，生成locomotion和loco-manipulation策略，具科研价值",
+        "primary_channel": "manipulation",
+        "reason": "提出非马尔可夫长程操作框架，结合物理信息与状态空间模型，显著超越VLA基线，具有高科研价值。",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "Huazhong University of Science and Technology"
+      ],
       "method_tags": [
-        "RL",
-        "retargeting",
-        "loco-manipulation"
+        "imitation learning",
+        "non-Markovian policies",
+        "state space models"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2606-30421",
+      "source": "arxiv",
+      "title": "OWMDrive: Causality-Aware End-to-End Autonomous Driving via 4D Occupancy World Model",
+      "title_zh": "OWMDrive：基于4D占用世界模型的因果感知端到端自动驾驶",
+      "tldr_zh": "提出基于4D占用世界模型的端到端驾驶框架，通过显式建模未来场景演化提升规划鲁棒性。",
+      "cover_zh": "未来场景一眼看穿｜这个端到端驾驶框架靠因果建模碾压保守规划",
+      "abstract_zh": "自动驾驶系统正逐步转向端到端范式，以缓解基于规则的流水线在复杂交通环境中适应性有限的问题。然而，现有大多数基于学习的方法仍从当前场景的静态表示中做出决策，缺乏对未来展开的显式建模或对交通交互中时间因果动态的建模。这种局限性通常导致在高不确定性条件（如遮挡和意外事件）下产生不稳定或过于保守的规划。为克服这些挑战，我们提出了OWMDrive，这是一个基于占用世界模型的生成式端到端驾驶框架，用于多步3D占用预测，作为条件先验来引导基于扩散的规划。在同时以当前观测和预测的未来状态为条件下，规划器迭代地优化轨迹候选，生成增强的驾驶轨迹。通过显式建模未来时间范围内的场景演化，OWMDrive捕获了关键的时空因果依赖关系，从而产生更具前瞻性和鲁棒性的轨迹生成。大量实验表明，OWMDrive显著提高了规划的可靠性和安全性，尤其是在具有挑战性和部分可观测的驾驶场景中。",
+      "authors": [
+        "Junjie Cheng",
+        "Ruiqi Song",
+        "Ye Wu"
+      ],
+      "authors_all": [
+        "Junjie Cheng",
+        "Ruiqi Song",
+        "Ye Wu",
+        "Nanxing Zeng",
+        "Ximiao Li",
+        "Yunfeng Ai"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-06-29",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2026"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-30421.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-30421-p2.jpg",
+        "assets/img/covers/arxiv-2606-30421-p3.jpg",
+        "assets/img/covers/arxiv-2606-30421-p4.jpg"
+      ],
+      "arxiv_id": "2606.30421",
+      "abs_url": "http://arxiv.org/abs/2606.30421v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.30421v1",
+      "venue": "IROS 2026",
+      "venue_announced": "",
+      "score": 26,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出基于4D占用世界模型的端到端自动驾驶框架，明确使用world model进行未来预测和因果建模，属于world-model频道。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Chinese Academy of Sciences",
+        "Waytous Inc.",
+        "Institute of Automation, Chinese Academy of Sciences",
+        "Tongji University"
+      ],
+      "method_tags": [
+        "Occupancy World Model",
+        "diffusion-based planning",
+        "end-to-end autonomous driving"
       ],
       "platform": [],
       "sim_stack": [],
@@ -1118,37 +2066,93 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2606-30318",
+      "id": "arxiv-2606-30456",
       "source": "arxiv",
-      "title": "Chronos: A Physics-Informed Full-History Framework for Non-Markovian Long-Horizon Manipulation",
-      "title_zh": "Chronos：一种物理信息驱动的全历史框架，用于非马尔可夫长期操控",
-      "tldr_zh": "Chronos将观测历史作为策略潜在状态，在记忆依赖任务上大幅超越马尔可夫基线。",
-      "cover_zh": "机器人记不住之前做了什么？这个框架用全历史状态让成功率飙升6倍！",
-      "abstract_zh": "通用机器人策略应建模为动力系统，但许多VLA和生成式模仿策略仍依赖当前观测或短时间窗口。这种马尔可夫捷径在依赖记忆的操控中失效：相同观测在不同历史后可能要求不同动作。我们提出Chronos，一种物理信息驱动的全历史框架，用于非马尔可夫长期操控。关键思想是将观测历史从辅助上下文提升为策略动力学的潜在状态。在每个物理控制步，Chronos通过融合观测和本体感知形成一个状态代表令牌，使令牌序列与物理时间一一对齐。选择性状态空间模型传播这个因果历史状态，通过隐式最大似然估计（IMLE）条件化一个多模态粗动作先验。该先验随后由二阶薛定谔启发桥细化，预测加速度场，产生更平滑、更物理合理的机器人运动。在16个模拟任务和4个真实世界实验中，Chronos在精密插入、通用操控和依赖记忆的长期控制上进行了评估。在RMBench上，成功需要记住任务阶段，Chronos达到73.6%平均成功率，超过马尔可夫VLA基线pi0.5达62.4个百分点（相对提升6.6倍），同时使用少10倍的参数。它还超过记忆VLA Mem-0达22.8个百分点，同时使用少30倍以上的参数。在真实世界双臂实验中，使用单个RGB相机，Chronos在四个任务上达到78%平均成功率，包括三个依赖记忆任务上的72%，而pi0.5总体为7%，依赖记忆子集为0%。这些结果表明，历史不应被视为辅助上下文，而应作为操控策略的潜在状态。",
+      "title": "Vision-Language-Action Models: Experimental Insights from a Real-World UR5 Platform",
+      "title_zh": "视觉-语言-动作模型：来自真实UR5平台的实验洞察",
+      "tldr_zh": "VLA模型在真实机器人上部署的关键在于系统级控制而非模型能力提升。",
+      "cover_zh": "别只盯着模型｜真实机器人告诉你VLA落地的真正瓶颈在哪",
+      "abstract_zh": "本项目探究了近期视觉-语言-动作（VLA）模型能否以可复现且具有操作意义的方式，从受控研究基准迁移到真实机器人平台（具体为UR5e机械臂）。工作整合了真实机器人数据采集、数据集工程（兼容RLDS格式）、OpenVLA和OpenVLA-OFT模型的微调与部署，并对动作表示和控制接口进行了系统验证。项目产出了若干基础资产：（i）完整的真实机器人数据采集流程，（ii）符合RLDS标准的数据集转换工作流，（iii）VLA模型的初始微调与推理基础设施，（iv）基于真实机器人试验的结构化实验观察集。这些要素共同建立了一个可复现的框架，用于评估超越仿真的基于学习的操控系统。实验经验揭示，有前景的离线指标与物理系统上不稳定的闭环行为之间存在持续差距：这一差距不能仅归因于模型限制，还受到动作语义、坐标系约定、模态间时间对齐、图像预处理一致性以及数据集覆盖范围和质量的影响。这些观察引出一个关键解读：VLA系统在真实环境中的成功部署，较少依赖于模型能力的渐进提升，而更多依赖于对整个数据-模型-控制流程的精确控制。该项目将基于VLA的机器人技术从以模型为中心的挑战重新定义为系统级问题；它强调了在真实机器人上运行稳健任务执行的困难，并提供了对可靠部署所需条件的清晰、基于实验的理解。",
       "authors": [
-        "Yulin Zhou",
-        "Yimeng Wang",
-        "Nengyu Wang"
+        "Mathilde Hochedel",
+        "Marc Lalonde"
       ],
       "authors_all": [
-        "Yulin Zhou",
-        "Yimeng Wang",
-        "Nengyu Wang",
-        "Shaojia Xing",
-        "Shiyun Tu",
-        "Xiang Li",
-        "Jingkai Zhang",
-        "Ningbo Jiang",
-        "Yuankai Lin",
-        "Hua Yang",
-        "Xiangrui Zeng",
-        "Zhouping Yin"
+        "Mathilde Hochedel",
+        "Marc Lalonde"
       ],
       "primary_category": "cs.RO",
       "published": "2026-06-29",
       "channels": [
-        "loco-manip-wbc",
         "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-30456.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-30456-p2.jpg",
+        "assets/img/covers/arxiv-2606-30456-p3.jpg",
+        "assets/img/covers/arxiv-2606-30456-p4.jpg"
+      ],
+      "arxiv_id": "2606.30456",
+      "abs_url": "http://arxiv.org/abs/2606.30456v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.30456v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 25,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "聚焦UR5平台VLA模型从仿真到真机的迁移，系统分析数据-模型-控制管线问题，对操作领域有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Luqia Technologies"
+      ],
+      "method_tags": [
+        "VLA",
+        "fine-tuning",
+        "real-robot"
+      ],
+      "platform": [
+        "UR5e"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2606-29980",
+      "source": "arxiv",
+      "title": "Exploration and Online Transfer with Behavioral Foundation Models",
+      "title_zh": "基于行为基础模型的探索与在线迁移",
+      "tldr_zh": "用行为基础模型本身生成探索策略，实现零样本在线迁移。",
+      "cover_zh": "零样本RL也能在线学？用BFM自己探索，不用离线数据也能找到最优策略！",
+      "abstract_zh": "零样本迁移强化学习旨在训练一个智能体，使其能够针对任意奖励函数生成最优策略，而无需在迁移时进行额外学习，且仅基于无奖励轨迹进行训练。由于任务通用性，这类模型有时被称为“行为基础模型”（BFM）。尽管近年来它们展现出强劲性能和进步，但当前的框架和算法仍假设在迁移阶段，智能体通过状态-奖励对数据集离线获知奖励（待解决的任务），并据此选择最佳策略部署。然而，在实际中，如果奖励是黑箱（例如直接用户反馈），则无法生成这样的数据集：必须通过与环境的交互来观察奖励。换言之，当前的离线迁移框架与传统的通过试错进行在线学习的强化学习设定不一致，后者需要探索以发现奖励。本文提出在零样本强化学习中解决这种新的在线迁移问题，关键洞察在于BFM本身可用于生成探索策略。我们证明可以将该在线学习问题建模为类似赌博机的探索-利用问题。更精确地说，每一步赌博机算法推荐一个策略，BFM在环境中执行该策略，获得奖励和新状态；重复此过程直至收敛到最优策略。在线性奖励近似的常见背景下，我们推导出基于上置信界（UCB）的公式，并表明探索可以通过最小化不确定性矩阵的特征值来实现。我们在一个简单环境上定性和定量评估了我们的框架，以验证该方法的概念。",
+      "authors": [
+        "Louis Bagot",
+        "Mathieu Lefort",
+        "Laëtitia Matignon"
+      ],
+      "authors_all": [
+        "Louis Bagot",
+        "Mathieu Lefort",
+        "Laëtitia Matignon"
+      ],
+      "primary_category": "cs.AI",
+      "published": "2026-06-29",
+      "channels": [
+        "sim2real",
+        "world-model"
       ],
       "badges": [
         {
@@ -1158,29 +2162,32 @@
       ],
       "cover_image": "",
       "preview_pages": [],
-      "arxiv_id": "2606.30318",
-      "abs_url": "http://arxiv.org/abs/2606.30318v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.30318v1",
+      "arxiv_id": "2606.29980",
+      "abs_url": "http://arxiv.org/abs/2606.29980v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.29980v1",
       "venue": "",
       "venue_announced": "",
-      "score": 24,
+      "score": 21,
       "judge": {
         "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出非马尔可夫长程操作框架，结合物理信息与状态空间模型，显著超越VLA基线，具有高科研价值。",
+        "research_value": "medium",
+        "primary_channel": "world-model",
+        "reason": "提出Behavioral Foundation Models在线迁移框架，属于世界模型/基础模型方向，有理论贡献。",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "Université Lyon 1, CNRS, INSA Lyon, LIRIS - UMR5205",
+        "Université Rennes, Inria, CNRS, IRISA - UMR 6074"
+      ],
       "method_tags": [
-        "physics-informed",
-        "non-Markovian",
-        "long-horizon manipulation"
+        "Zero-shot Transfer",
+        "Reinforcement Learning",
+        "Behavioral Foundation Models"
       ],
       "platform": [],
       "sim_stack": [],
       "method_family": "",
-      "real_robot": "yes",
+      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -1313,65 +2320,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2606-29980",
-      "source": "arxiv",
-      "title": "Exploration and Online Transfer with Behavioral Foundation Models",
-      "title_zh": "基于行为基础模型的探索与在线迁移",
-      "tldr_zh": "用行为基础模型本身生成探索策略，实现零样本在线迁移。",
-      "cover_zh": "零样本RL也能在线学？用BFM自己探索，不用离线数据也能找到最优策略！",
-      "abstract_zh": "零样本迁移强化学习旨在训练一个智能体，使其能够针对任意奖励函数生成最优策略，而无需在迁移时进行额外学习，且仅基于无奖励轨迹进行训练。由于任务通用性，这类模型有时被称为“行为基础模型”（BFM）。尽管近年来它们展现出强劲性能和进步，但当前的框架和算法仍假设在迁移阶段，智能体通过状态-奖励对数据集离线获知奖励（待解决的任务），并据此选择最佳策略部署。然而，在实际中，如果奖励是黑箱（例如直接用户反馈），则无法生成这样的数据集：必须通过与环境的交互来观察奖励。换言之，当前的离线迁移框架与传统的通过试错进行在线学习的强化学习设定不一致，后者需要探索以发现奖励。本文提出在零样本强化学习中解决这种新的在线迁移问题，关键洞察在于BFM本身可用于生成探索策略。我们证明可以将该在线学习问题建模为类似赌博机的探索-利用问题。更精确地说，每一步赌博机算法推荐一个策略，BFM在环境中执行该策略，获得奖励和新状态；重复此过程直至收敛到最优策略。在线性奖励近似的常见背景下，我们推导出基于上置信界（UCB）的公式，并表明探索可以通过最小化不确定性矩阵的特征值来实现。我们在一个简单环境上定性和定量评估了我们的框架，以验证该方法的概念。",
-      "authors": [
-        "Louis Bagot",
-        "Mathieu Lefort",
-        "Laëtitia Matignon"
-      ],
-      "authors_all": [
-        "Louis Bagot",
-        "Mathieu Lefort",
-        "Laëtitia Matignon"
-      ],
-      "primary_category": "cs.AI",
-      "published": "2026-06-29",
-      "channels": [
-        "sim2real"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "",
-      "preview_pages": [],
-      "arxiv_id": "2606.29980",
-      "abs_url": "http://arxiv.org/abs/2606.29980v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.29980v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 13,
-      "judge": {
-        "relevant": true,
-        "research_value": "medium",
-        "primary_channel": "world-model",
-        "reason": "提出Behavioral Foundation Models在线迁移框架，属于世界模型/基础模型方向，有理论贡献。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "Zero-shot Transfer",
-        "Reinforcement Learning",
-        "Behavioral Foundation Models"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2606-30292",
       "source": "arxiv",
       "title": "DreamForge-World 0.1 Preview: A Low-Compute Real-Time Controllable World Model",
@@ -1405,7 +2353,7 @@
       "pdf_url": "https://arxiv.org/pdf/2606.30292v1",
       "venue": "",
       "venue_announced": "",
-      "score": 13,
+      "score": 16,
       "judge": {
         "relevant": true,
         "research_value": "medium",
@@ -1413,10 +2361,12 @@
         "reason": "提出低计算实时可控世界模型，面向具身机器人仿真，有科研参考价值",
         "model": "deepseek-v4-flash"
       },
-      "institutions": [],
+      "institutions": [
+        "DreamForge AI Lab"
+      ],
       "method_tags": [
         "world model",
-        "autoregressive video",
+        "autoregressive video stack",
         "residual action pathway"
       ],
       "platform": [],

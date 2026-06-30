@@ -1,0 +1,119 @@
+{
+  "id": "arxiv-2606-30613",
+  "source": "arxiv",
+  "title": "Sequential Planning via Anchored Robotic Keypoints",
+  "title_zh": "基于锚定机器人关键点的顺序规划",
+  "abstract": "We present Sequential Planning via Anchored Robotic Keypoints, SPARK, a training-free neurosymbolic manipulation system that reaches 43.7% on six LIBERO-PRO position \\& task cells, more than doubling CaP-Agent0 and Vision-Language-Action (VLA) baselines. CaP-Agent0, a multi-turn code-generation agent, achieves 18.2% by re-querying an LLM at every turn, but its restart-from-scratch solution proves costly against minor policy failures. Perception is the layer that fails most under position and task changes so SPARK spends its computation there. A single Gemini call composes the plan as a typed behavior tree (BT) of composable primitives, each already containing the low-level control (motion, grasping, depth geometry) a code-generation agent would otherwise regenerate on every trial. The rest of the budget goes to perception: a second Gemini call proposes three alternative text prompts per object, SAM3 evaluates each, and we keep the prompt$\\to$label pair with the most confident detection and a recovery loop then retries a failed primitive against freshly detected objects, with no new LLM call. The alternative prompts add +27.7 points on the spatial suite and +10.0 on the object suite, with the recovery loop adding +5.0 overall. SPARK runs the same primitives on three robot families (UR10e, Franka FR3, bimanual Franka) across nine unique tasks at twenty trials each, averaging 68%. Since the detector, planner, and controller modules sit behind the typed plan, they swap independently without training, and each primitive's checkable post-condition traces a failure to the corresponding module or a kinematic limit. Every trial logs a verified, labeled trajectory, so a training-free planner that already beats VLAs can supply the data those policies need without teleoperation. Project page: https://cwru-aism.github.io/spark-page/",
+  "abstract_zh": "我们提出了基于锚定机器人关键点的顺序规划（SPARK），这是一个无需训练的神经符号操作系统，在六个LIBERO-PRO位置和任务单元上达到43.7%的成功率，是CaP-Agent0和视觉-语言-动作（VLA）基线的两倍以上。CaP-Agent0是一个多轮代码生成智能体，每轮重新查询LLM，成功率为18.2%，但其从头开始重新启动的策略在面对轻微策略失败时代价高昂。感知层在位置和任务变化下失败最多，因此SPARK将计算资源集中于此。一次Gemini调用将计划组合为类型化行为树（BT），其中包含可组合的原语，每个原语已包含低级控制（运动、抓取、深度几何），而代码生成智能体每次试验都需要重新生成这些控制。剩余预算用于感知：第二次Gemini调用为每个对象提出三个替代文本提示，SAM3评估每个提示，我们保留检测置信度最高的提示-标签对，然后恢复循环针对新检测到的对象重试失败的原语，无需新的LLM调用。替代提示在空间套件上增加了27.7个百分点，在对象套件上增加了10.0个百分点，恢复循环整体增加了5.0个百分点。SPARK在三个机器人系列（UR10e、Franka FR3、双臂Franka）上执行相同的原语，涵盖九个不同任务，每个任务二十次试验，平均成功率为68%。由于检测器、规划器和控制器模块位于类型化计划之后，它们可以独立交换而无需训练，每个原语的可检查后置条件将失败追溯到相应模块或运动学限制。每次试验记录一个经过验证、标记的轨迹，因此一个已经击败VLA的无需训练规划器可以提供这些策略所需的数据，而无需远程操作。项目页面：https://cwru-aism.github.io/spark-page/",
+  "tldr_zh": "无需训练的神经符号系统SPARK通过锚定关键点规划，在机器人操作任务上超越VLA基线。",
+  "cover_zh": "不用训练就能吊打VLA？这个机器人规划系统靠关键点锚定直接翻倍成功率",
+  "authors": [
+    {
+      "name": "Bryce Grant",
+      "affiliation": ""
+    },
+    {
+      "name": "Aryeh Rothenberg",
+      "affiliation": ""
+    },
+    {
+      "name": "Logan Senning",
+      "affiliation": ""
+    },
+    {
+      "name": "Zonghe Chua",
+      "affiliation": ""
+    },
+    {
+      "name": "Zach Patterson",
+      "affiliation": ""
+    },
+    {
+      "name": "Peng Wang",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-06-29",
+  "updated": "2026-06-29",
+  "arxiv_id": "2606.30613",
+  "pdf_url": "https://arxiv.org/pdf/2606.30613v1",
+  "abs_url": "http://arxiv.org/abs/2606.30613v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2606-30613.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2606-30613-p2.jpg",
+    "assets/img/covers/arxiv-2606-30613-p3.jpg",
+    "assets/img/covers/arxiv-2606-30613-p4.jpg"
+  ],
+  "channels": [
+    "manipulation",
+    "teleop"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 29,
+  "source_tags": [],
+  "score": 30,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 8 个（vision-language-action、manipulation、grasp、grasping）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 29 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出训练无关的神经符号操作系统，在LIBERO-PRO上超越VLA基线，支持多机器人平台，具有高科研价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Case Western Reserve University"
+  ],
+  "method_tags": [
+    "neurosymbolic",
+    "behavior tree",
+    "perception"
+  ],
+  "platform": [
+    "UR10e",
+    "Franka FR3",
+    "bimanual Franka"
+  ],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {}
+}
