@@ -1,0 +1,96 @@
+{
+  "id": "arxiv-2606-29699",
+  "source": "arxiv_discover",
+  "title": "Early Warning Signals for OpenVLA Failure under Visual Distribution Shift",
+  "title_zh": "视觉分布偏移下 OpenVLA 故障的早期预警信号",
+  "abstract": "Vision Language Action models combine perception, language grounding, and control in a single policy, but their failures are hard to diagnose once visual conditions shift. We test whether OpenVLA feedforward activations contain linearly decodable information about near term task failure in LIBERO manipulation rollouts. The policy is fixed throughout. We log internal activations during execution and fit lightweight monitors after the rollouts are collected. Occlusion is the main controlled stress test. It reduces OpenVLA success from $57\\%$ to $17\\%$ over $100$ episodes per condition. Under this shift, a logistic probe at layer 16 reaches AUROC $0.972$ and AUPRC $0.352$ for predicting failure within a $15$ step horizon. It outperforms both a mean difference direction and an action disagreement baseline. A sparse layer sweep finds uneven decodability across depth: layer 16 is strongest among the tested layers, layer 8 remains informative, and layer 10 is weaker. To check whether the monitor is just an occlusion detector, we also evaluate color shift and camera jitter without refitting. Color shift produces no failures in this setting, so it is a benign control rather than a failure benchmark. Camera jitter does induce failures, and the occlusion trained monitor remains above random. The result is deliberately limited: OpenVLA internal states contain failure relevant structure under controlled perceptual shift, but these experiments do not establish a causal mechanism, task held out generalization, or a deployable recovery system.",
+  "abstract_zh": "视觉-语言-动作模型将感知、语言理解和控制整合在单一策略中，但当视觉条件发生变化时，其故障难以诊断。我们测试了在 LIBERO 操作任务中，OpenVLA 的前馈激活是否包含关于近期任务失败的线性可解码信息。策略在整个过程中固定不变。我们在执行期间记录内部激活，并在收集 rollout 后拟合轻量级监控器。遮挡是主要的受控压力测试。在每种条件下进行 100 个 episode，遮挡使 OpenVLA 的成功率从 57% 降至 17%。在此偏移下，第 16 层的逻辑回归探针在 15 步时间范围内预测失败的 AUROC 达到 0.972，AUPRC 达到 0.352，优于均值差异方向和动作不一致基线。稀疏层扫描发现不同深度的可解码性不均匀：第 16 层在测试层中最强，第 8 层仍有信息，第 10 层较弱。为了检查监控器是否仅仅是遮挡检测器，我们还评估了颜色偏移和相机抖动，无需重新拟合。颜色偏移在此设置中未导致失败，因此是良性控制而非故障基准。相机抖动确实导致失败，而基于遮挡训练的监控器仍优于随机。结果有意限定：OpenVLA 内部状态在受控感知偏移下包含与失败相关的结构，但这些实验并未建立因果机制、任务外泛化或可部署的恢复系统。",
+  "tldr_zh": "OpenVLA 内部激活可线性解码近期任务失败，第16层探针AUROC达0.972。",
+  "cover_zh": "机器人翻车预警｜OpenVLA内部信号提前15步预测失败，准确率97%",
+  "authors": [
+    {
+      "name": "Dipesh Tharu Mahato",
+      "affiliation": ""
+    },
+    {
+      "name": "Rachel Ren",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [
+    "cs.CV",
+    "cs.AI"
+  ],
+  "published": "2026-06-29",
+  "updated": "2026-06-29",
+  "arxiv_id": "2606.29699",
+  "pdf_url": "https://arxiv.org/pdf/2606.29699v1",
+  "abs_url": "http://arxiv.org/abs/2606.29699v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2606-29699.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2606-29699-p2.jpg",
+    "assets/img/covers/arxiv-2606-29699-p3.jpg",
+    "assets/img/covers/arxiv-2606-29699-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 10,
+  "source_tags": [
+    "llm_discover"
+  ],
+  "score": 22,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（openvla、manipulation、libero）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 10 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "研究OpenVLA在视觉分布偏移下的故障预测，属于VLA可靠性分析，对操作领域有参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "New York University"
+  ],
+  "method_tags": [
+    "logistic probe",
+    "failure prediction"
+  ],
+  "platform": [],
+  "sim_stack": [
+    "LIBERO"
+  ],
+  "method_family": "",
+  "real_robot": "no",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {}
+}
