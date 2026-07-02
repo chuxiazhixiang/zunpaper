@@ -1,8 +1,8 @@
 // 「加分类」表单：把站长填的内容生成一个 channels.d/<id>.yaml 配置文件，
 // 供下载 / 复制。纯前端，不依赖后端。生成的 YAML 与 config/channels.d 加载器
 // （config.load_channels）和 B 方案独立判定（judge.judge_paper_for_channel）对齐。
-import { Theme } from './storage.js?v=3c77ba9a';
-import { attachSearchRedirect } from './utils.js?v=3c77ba9a';
+import { Theme } from './storage.js?v=ef909092';
+import { attachSearchRedirect } from './utils.js?v=ef909092';
 
 Theme.init();
 attachSearchRedirect();
