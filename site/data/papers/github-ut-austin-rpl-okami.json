@@ -1,0 +1,73 @@
+{
+  "id": "github-ut-austin-rpl-okami",
+  "source": "github",
+  "title": "UT-Austin-RPL/OKAMI",
+  "title_zh": "UT-Austin-RPL/OKAMI",
+  "abstract": "OKAMI: Teaching Humanoid Robots Manipulation Skills through Single Video Imitation\n\n# OKAMI_release ## Installation Run the following command in root directory to install packages and third parties: Set your `OPENAI_API_KEY` in the environment variables. ### Vision modules You need to first download some smpl models from official websites: 1. Please visit the [MANO website](https://mano.is.tue.mpg.de/) and register to get access to the downloads sections. Download MANO models and put `MANO_RIGHT.pkl` in folder `configs/smpl_models/mano`. Download smplh models and put TODO. 2. Please visit the [SMPLX website](https://smpl-x.is.tue.mpg.de/) and register to get access to the downloads sections. Download SMPLX models and put `SMPLX_NEUTRAL.npz` in folder `configs/smpl_models/smplx`. Create a new environment for human body reconstruction from videos. Run the following command in root directory to install packages and third parties: For common trouble-shooting in this part, you can refer to [this](https://github.com/vye16/slahmr/issues). ## Stage 1: Reference Manipulation Plan Generation Record an rgbd human video, and save it as an hdf5 file with the following structure: Put the hdf5 file in folder `datasets/rgbd`. Example hdf5 files can be downloaded from [here](https://drive.google.com/drive/folders/1pA-fp_fnwdxLCLEfESq-NelgQRAJbgGi?usp=sharing). Then simply run `sh run_plan_generation.sh HDF5_FILE_PATH`, where `HDF5_FILE_PATH` is the path to the hdf5 file you just saved. Or, you can run the following commands step by step: All results will be saved to the annotation folder `annotations/human_demo/DEMO_NAME/`. ## Stage 2: Object-aware retargeting Run the following command to simulate the object-aware retargeting process. Currently support two simulation environments: HumanoidPour and HumanoidDrawer. The HumanoidPour environment is used for `salt_demo.hdf5`, and the HumanoidDrawer environment is used for `drawer_demo.hdf5`. where `SIMULATION_ENVIRONMENT` can be either `HumanoidPour` or `HumanoidDrawer`. The resulting rollout trajectories will be saved",
+  "abstract_zh": "OKAMI 是一个通过单段人类视频教会人形机器人操作技能的系统。它分为两个阶段：首先从 RGB-D 人类视频生成参考操作计划，然后通过物体感知的重定向将人类动作映射到机器人上，使其能够执行如倒液体和开抽屉等任务。该系统利用现成的视觉和运动模型，无需大量机器人数据即可实现技能迁移。",
+  "tldr_zh": "通过单段人类视频教会人形机器人操作技能的新系统",
+  "cover_zh": "看一遍就会｜人形机器人看人类视频学倒水开抽屉",
+  "authors": [
+    {
+      "name": "UT-Austin-RPL",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2025-06-18",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/UT-Austin-RPL/OKAMI",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "loco-manip-wbc"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 31,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 31,
+      "hint": "⭐ 37"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "loco-manip-wbc",
+    "reason": "单视频模仿学习人形操作，含全身重定向与仿真验证，方向前沿",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "全身控制"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "UT-Austin-RPL",
+    "repo": "OKAMI",
+    "stars": 37,
+    "language": "Python",
+    "pushed_at": "2025-06-18",
+    "created_at": "2024-06-14",
+    "topics": [],
+    "archived": false
+  }
+}
