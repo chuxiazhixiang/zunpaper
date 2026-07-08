@@ -3,6 +3,83 @@
   "count": 25,
   "papers": [
     {
+      "id": "arxiv-2607-05966",
+      "source": "arxiv",
+      "title": "Imagined Rollouts are Kinematic, Not Dynamic: A Diagnosis of Long-Horizon World-Model Failure",
+      "title_zh": "想象展开是运动学的，而非动力学的：长时域世界模型失败的诊断",
+      "tldr_zh": "世界模型长时域失败源于运动学而非动力学想象，新诊断指标iKCE可区分二者。",
+      "cover_zh": "世界模型为何长时域失败？不是误差累积，而是它只会“运动学想象”",
+      "abstract_zh": "世界模型在长时域上的失败通常归因于误差累积，但这种泛化描述并未区分何种误差在累积。我们提出一种运动学-动力学重新框架：世界模型倾向于进行运动学想象而非动力学想象。我们将此操作化为想象运动学一致性误差（iKCE），这是一种逐步骤诊断指标，用于衡量展开偏离闭式运动学零点的程度，并配以扰动协议，测试当物理条件跨越状态边界时iKCE是否响应。我们在一个已发布的、在DMC walker-walk上训练的DreamerV3检查点上实例化该诊断，发现想象iKCE比匹配的真实物理展开高出约两个数量级。在跨越步态崩溃边界的摩擦扫描中，即使训练策略的奖励在同一范围内崩溃，模型的iKCE在统计上保持平坦，从而提供了运动学而非动力学的特征。该诊断在超过本体步态周期的时域上区分了运动学与动力学想象。",
+      "authors": [
+        "Finn Rasmus Schäfer",
+        "Korbinian Moller",
+        "Yuan Gao"
+      ],
+      "authors_all": [
+        "Finn Rasmus Schäfer",
+        "Korbinian Moller",
+        "Yuan Gao",
+        "Christian Oefinger",
+        "Sebastian Schmidt",
+        "Johannes Betz"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-07",
+      "channels": [
+        "locomotion",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ TUM"
+        },
+        {
+          "kind": "venue",
+          "label": "🎓 RSS 2026"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-05966.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-05966-p2.jpg",
+        "assets/img/covers/arxiv-2607-05966-p3.jpg",
+        "assets/img/covers/arxiv-2607-05966-p4.jpg"
+      ],
+      "arxiv_id": "2607.05966",
+      "abs_url": "http://arxiv.org/abs/2607.05966v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.05966v1",
+      "venue": "RSS 2026",
+      "venue_announced": "",
+      "score": 65,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出运动学-动力学诊断框架，揭示世界模型长期失败根源，对世界模型研究有重要价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Technical University of Munich"
+      ],
+      "method_tags": [
+        "world model",
+        "kinematic-vs-dynamic reframing",
+        "long-horizon failure"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "no",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2607-06018",
       "source": "arxiv",
       "title": "RoboTALES: Learning Reasoning-Guided Robot Policies via Task-Aligned Simulated Futures",
@@ -177,7 +254,8 @@
       "published": "2026-07-07",
       "channels": [
         "manipulation",
-        "teleop"
+        "teleop",
+        "loco-manip-wbc"
       ],
       "badges": [
         {
@@ -228,6 +306,168 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2607-06052",
+      "source": "arxiv",
+      "title": "ThorArena: Benchmarking Humanoid Physical Interaction with Human Motion-Force Demonstrations",
+      "title_zh": "ThorArena：基于人体运动-力示教的仿人机器人物理交互基准",
+      "tldr_zh": "提出ThorArena基准，通过同步运动-力示教评估仿人机器人的力感知交互能力。",
+      "cover_zh": "仿人机器人只会走路？这个新基准用真实交互力暴露了隐藏的性能差距",
+      "abstract_zh": "仿人机器人越来越需要执行接触密集型任务，这些任务不仅要求精确的全身运动，还需要与周围物体和人进行稳健的物理交互。尽管近年来仿人运动模仿和全身控制取得了显著的跟踪性能，但现有数据集和基准主要关注运动学，而很大程度上忽略了同步的交互力。因此，当前的评估无法捕捉外部交互力如何影响跟踪精度、稳定性和控制鲁棒性。本文提出ThorArena，一个基于同步运动和力测量的人体示教来评估力感知仿人交互的基准。我们收集了一个真实世界的交互数据集，在六个代表性的物理交互任务中同时捕获全身人体运动和双手施加的力。基于这些示教，我们提出了力感知评估指标，通过力感知跟踪分数（FATS）和补充诊断指标，联合评估全身跟踪精度、不同力水平下的鲁棒性、控制努力和任务存活率。我们进一步建立了一个统一的基准协议，在仿真中回放记录的交互力，并为不同的仿人控制策略提供标准化评估接口。在代表性全身控制策略上的实验表明，力感知评估揭示了在传统无力评估下基本隐藏的显著性能差异。ThorArena为研究力感知仿人交互提供了一个实用且可复现的框架，并为评估接触密集型仿人行为提供了一个新基准。",
+      "authors": [
+        "Chenhao Yu",
+        "Hongwu Wang",
+        "Weitao Zhang"
+      ],
+      "authors_all": [
+        "Chenhao Yu",
+        "Hongwu Wang",
+        "Weitao Zhang",
+        "Youhao Hu",
+        "Jiachen Zhang",
+        "Gangyang Li",
+        "Alois Knoll",
+        "Shaqi Luo"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-07",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ TUM"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-06052.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-06052-p2.jpg",
+        "assets/img/covers/arxiv-2607-06052-p3.jpg",
+        "assets/img/covers/arxiv-2607-06052-p4.jpg"
+      ],
+      "arxiv_id": "2607.06052",
+      "abs_url": "http://arxiv.org/abs/2607.06052v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.06052v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "首个包含同步运动与力的人形交互基准，填补力感知评估空白，对全身控制研究有重要价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Beijing Academy of Artificial Intelligence",
+        "Technical University of Munich"
+      ],
+      "method_tags": [
+        "whole-body control",
+        "force-aware evaluation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "no",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-06537",
+      "source": "arxiv",
+      "title": "UniLM-Nav: A Unified Framework for Zero-Shot Last-Mile Navigation",
+      "title_zh": "UniLM-Nav：零样本最后一英里导航的统一框架",
+      "tldr_zh": "提出零样本开放词汇最后一英里导航统一框架，在OVMM基准上超越先前方法。",
+      "cover_zh": "机器人导航到目标却摆不对姿势？这个零样本框架直接搞定最后一英里！",
+      "abstract_zh": "移动操作要求机器人导航到目标物体或容器，然后执行预期操作。然而，到达目标附近并不能保证操作就绪的基座姿态，这一问题被称为最后一英里导航。先前的最后一英里导航方法要么依赖手动姿态标注，要么依赖特定任务训练，限制了其在具有细粒度空间约束的开放词汇场景中的可扩展性。我们提出UniLM-Nav，一个用于零样本开放词汇最后一英里导航的统一框架。UniLM-Nav将最后一英里导航分解为视图选择、任务条件化可操作性定位和几何感知基座姿态推理，所有步骤均由共享的多模态大语言模型（MLLM）后端解决。具体来说，UniLM-Nav首先从最近收集的观测中选择最能捕捉目标物体或容器的参考视图。然后，它在选定视图中定位任务相关的可操作性点，并将结果提升到机器人中心坐标系。最后，基于定位的可操作性、任务上下文和机器人几何形状，它推断出机器人操作就绪的基座姿态。我们在OVMM基准上评估UniLM-Nav，它比先前最先进的方法MoTo高出3.13个百分点。分析表明，我们方法的各个组件对最终性能至关重要，并且MLLM的选择也有显著影响。我们进一步将UniLM-Nav部署在配备6自由度Unitree Z1机械臂的Unitree B2四足机器人上，验证了其在真实世界移动操作任务中的适用性。",
+      "authors": [
+        "Zhuofan Zhang",
+        "Tianxu Wang",
+        "Guoxi Zhang"
+      ],
+      "authors_all": [
+        "Zhuofan Zhang",
+        "Tianxu Wang",
+        "Guoxi Zhang",
+        "Yixiong Lin",
+        "Xilin Wang",
+        "Hongming Xu",
+        "Qing Li",
+        "Song-Chun Zhu",
+        "Lifeng Fan"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-07",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation",
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ 北大"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-06537.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-06537-p2.jpg",
+        "assets/img/covers/arxiv-2607-06537-p3.jpg",
+        "assets/img/covers/arxiv-2607-06537-p4.jpg"
+      ],
+      "arxiv_id": "2607.06537",
+      "abs_url": "http://arxiv.org/abs/2607.06537v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.06537v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出零样本最后一段导航框架，结合MLLM与移动操作，在四足机器人上验证，属于loco-manipulation范畴。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Tsinghua University",
+        "State Key Laboratory of General Artificial Intelligence, BIGAI",
+        "Harbin Institute of Technology",
+        "Peking University"
+      ],
+      "method_tags": [
+        "zero-shot",
+        "MLLM",
+        "last-mile navigation"
+      ],
+      "platform": [
+        "Unitree B2",
+        "Unitree Z1"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2607-06558",
       "source": "arxiv",
       "title": "RynnWorld-Teleop: An Action-Conditioned World Model for Digital Teleoperation",
@@ -254,6 +494,7 @@
       "primary_category": "cs.RO",
       "published": "2026-07-07",
       "channels": [
+        "loco-manip-wbc",
         "manipulation",
         "teleop",
         "world-model",
@@ -385,162 +626,75 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2607-06537",
+      "id": "arxiv-2607-05765",
       "source": "arxiv",
-      "title": "UniLM-Nav: A Unified Framework for Zero-Shot Last-Mile Navigation",
-      "title_zh": "UniLM-Nav：零样本最后一英里导航的统一框架",
-      "tldr_zh": "提出零样本开放词汇最后一英里导航统一框架，在OVMM基准上超越先前方法。",
-      "cover_zh": "机器人导航到目标却摆不对姿势？这个零样本框架直接搞定最后一英里！",
-      "abstract_zh": "移动操作要求机器人导航到目标物体或容器，然后执行预期操作。然而，到达目标附近并不能保证操作就绪的基座姿态，这一问题被称为最后一英里导航。先前的最后一英里导航方法要么依赖手动姿态标注，要么依赖特定任务训练，限制了其在具有细粒度空间约束的开放词汇场景中的可扩展性。我们提出UniLM-Nav，一个用于零样本开放词汇最后一英里导航的统一框架。UniLM-Nav将最后一英里导航分解为视图选择、任务条件化可操作性定位和几何感知基座姿态推理，所有步骤均由共享的多模态大语言模型（MLLM）后端解决。具体来说，UniLM-Nav首先从最近收集的观测中选择最能捕捉目标物体或容器的参考视图。然后，它在选定视图中定位任务相关的可操作性点，并将结果提升到机器人中心坐标系。最后，基于定位的可操作性、任务上下文和机器人几何形状，它推断出机器人操作就绪的基座姿态。我们在OVMM基准上评估UniLM-Nav，它比先前最先进的方法MoTo高出3.13个百分点。分析表明，我们方法的各个组件对最终性能至关重要，并且MLLM的选择也有显著影响。我们进一步将UniLM-Nav部署在配备6自由度Unitree Z1机械臂的Unitree B2四足机器人上，验证了其在真实世界移动操作任务中的适用性。",
+      "title": "Image2Sim: Scaling Embodied Navigation via Generative Neural Simulator",
+      "title_zh": "Image2Sim：通过生成式神经模拟器实现具身导航的规模化",
+      "tldr_zh": "提出神经模拟框架Image2Sim，从RGB-D图像生成交互场景，用于训练导航智能体。",
+      "cover_zh": "不用真实世界也能训练导航｜这个神经模拟器让机器人零样本迁移",
+      "abstract_zh": "具身导航旨在构建能够解释多模态目标、在3D空间中推理并在现实世界中可靠到达目标位置的智能体。然而，由于缺乏可扩展、高保真且物理基础扎实的交互环境，进展仍然受限。尽管真实世界扫描数据集提供了视觉真实感，但其规模有限。相比之下，合成模拟器更易扩展，但通常存在较大的模拟到现实差距。我们提出Image2Sim，一种实时神经模拟框架，能够从带姿态的RGB-D图像序列构建高质量交互环境。核心思想是将3D空间锚定与逼真观察合成解耦。在场景构建方面，Image2Sim使用前馈特征高斯模型，将带姿态的RGB-D观测一次性提升为3D特征高斯表示。在渲染方面，我们提出几何感知单步像素流模型，将稀疏且带噪声的高斯投影转化为高质量全景RGB-D观测。Image2Sim还充当全自动具身数据引擎，可大规模生成高保真观测、可执行动作和多样化导航指令。它将大量视频和图像集合转化为近2万个交互场景，并合成超过1000万个导航训练样本。完全在这些神经环境中训练的导航模型在主要基准测试上取得了显著改进，并有效迁移到现实世界的零样本设置中。这些结果表明，可扩展的神经模拟可以作为大规模具身导航的实用训练基础。",
       "authors": [
-        "Zhuofan Zhang",
-        "Tianxu Wang",
-        "Guoxi Zhang"
+        "Zihan Wang",
+        "Seungjun Lee",
+        "Yinghao Xu"
       ],
       "authors_all": [
-        "Zhuofan Zhang",
-        "Tianxu Wang",
-        "Guoxi Zhang",
-        "Yixiong Lin",
-        "Xilin Wang",
-        "Hongming Xu",
-        "Qing Li",
-        "Song-Chun Zhu",
-        "Lifeng Fan"
+        "Zihan Wang",
+        "Seungjun Lee",
+        "Yinghao Xu",
+        "Gim Hee Lee"
       ],
-      "primary_category": "cs.RO",
+      "primary_category": "cs.CV",
       "published": "2026-07-07",
       "channels": [
-        "manipulation",
-        "locomotion"
+        "sim2real",
+        "world-model"
       ],
       "badges": [
         {
           "kind": "lab",
-          "label": "⭐ 清华"
+          "label": "⭐ HKUST"
         },
         {
           "kind": "lab",
-          "label": "⭐ 北大"
+          "label": "⭐ NUS"
         },
         {
           "kind": "fresh",
           "label": "⚡ 新鲜出炉"
         }
       ],
-      "cover_image": "assets/img/covers/arxiv-2607-06537.jpg",
+      "cover_image": "assets/img/covers/arxiv-2607-05765.jpg",
       "preview_pages": [
-        "assets/img/covers/arxiv-2607-06537-p2.jpg",
-        "assets/img/covers/arxiv-2607-06537-p3.jpg",
-        "assets/img/covers/arxiv-2607-06537-p4.jpg"
+        "assets/img/covers/arxiv-2607-05765-p2.jpg",
+        "assets/img/covers/arxiv-2607-05765-p3.jpg",
+        "assets/img/covers/arxiv-2607-05765-p4.jpg"
       ],
-      "arxiv_id": "2607.06537",
-      "abs_url": "http://arxiv.org/abs/2607.06537v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.06537v1",
+      "arxiv_id": "2607.05765",
+      "abs_url": "http://arxiv.org/abs/2607.05765v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.05765v1",
       "venue": "",
       "venue_announced": "",
       "score": 52,
       "judge": {
         "relevant": true,
         "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "提出零样本最后一段导航框架，结合MLLM与移动操作，在四足机器人上验证，属于loco-manipulation范畴。",
+        "primary_channel": "sim2real",
+        "reason": "提出神经模拟器Image2Sim，从RGB-D构建交互环境，大规模生成训练数据，显著缩小sim-to-real差距，对具身导航和sim2real研究有高价值。",
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Tsinghua University",
-        "State Key Laboratory of General Artificial Intelligence, BIGAI",
-        "Harbin Institute of Technology",
-        "Peking University"
+        "National University of Singapore",
+        "HKUST"
       ],
       "method_tags": [
-        "zero-shot",
-        "MLLM",
-        "last-mile navigation"
-      ],
-      "platform": [
-        "Unitree B2",
-        "Unitree Z1"
-      ],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2607-05966",
-      "source": "arxiv",
-      "title": "Imagined Rollouts are Kinematic, Not Dynamic: A Diagnosis of Long-Horizon World-Model Failure",
-      "title_zh": "想象展开是运动学的，而非动力学的：长时域世界模型失败的诊断",
-      "tldr_zh": "世界模型长时域失败源于运动学而非动力学想象，新诊断指标iKCE可区分二者。",
-      "cover_zh": "世界模型为何长时域失败？不是误差累积，而是它只会“运动学想象”",
-      "abstract_zh": "世界模型在长时域上的失败通常归因于误差累积，但这种泛化描述并未区分何种误差在累积。我们提出一种运动学-动力学重新框架：世界模型倾向于进行运动学想象而非动力学想象。我们将此操作化为想象运动学一致性误差（iKCE），这是一种逐步骤诊断指标，用于衡量展开偏离闭式运动学零点的程度，并配以扰动协议，测试当物理条件跨越状态边界时iKCE是否响应。我们在一个已发布的、在DMC walker-walk上训练的DreamerV3检查点上实例化该诊断，发现想象iKCE比匹配的真实物理展开高出约两个数量级。在跨越步态崩溃边界的摩擦扫描中，即使训练策略的奖励在同一范围内崩溃，模型的iKCE在统计上保持平坦，从而提供了运动学而非动力学的特征。该诊断在超过本体步态周期的时域上区分了运动学与动力学想象。",
-      "authors": [
-        "Finn Rasmus Schäfer",
-        "Korbinian Moller",
-        "Yuan Gao"
-      ],
-      "authors_all": [
-        "Finn Rasmus Schäfer",
-        "Korbinian Moller",
-        "Yuan Gao",
-        "Christian Oefinger",
-        "Sebastian Schmidt",
-        "Johannes Betz"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-07-07",
-      "channels": [
-        "locomotion"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ TUM"
-        },
-        {
-          "kind": "venue",
-          "label": "🎓 RSS 2026"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2607-05966.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2607-05966-p2.jpg",
-        "assets/img/covers/arxiv-2607-05966-p3.jpg",
-        "assets/img/covers/arxiv-2607-05966-p4.jpg"
-      ],
-      "arxiv_id": "2607.05966",
-      "abs_url": "http://arxiv.org/abs/2607.05966v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.05966v1",
-      "venue": "RSS 2026",
-      "venue_announced": "",
-      "score": 51,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出运动学-动力学诊断框架，揭示世界模型长期失败根源，对世界模型研究有重要价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Technical University of Munich"
-      ],
-      "method_tags": [
-        "world model",
-        "kinematic-vs-dynamic reframing",
-        "long-horizon failure"
+        "neural simulation",
+        "embodied navigation"
       ],
       "platform": [],
       "sim_stack": [],
       "method_family": "",
-      "real_robot": "no",
+      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -785,80 +939,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2607-05765",
-      "source": "arxiv",
-      "title": "Image2Sim: Scaling Embodied Navigation via Generative Neural Simulator",
-      "title_zh": "Image2Sim：通过生成式神经模拟器实现具身导航的规模化",
-      "tldr_zh": "提出神经模拟框架Image2Sim，从RGB-D图像生成交互场景，用于训练导航智能体。",
-      "cover_zh": "不用真实世界也能训练导航｜这个神经模拟器让机器人零样本迁移",
-      "abstract_zh": "具身导航旨在构建能够解释多模态目标、在3D空间中推理并在现实世界中可靠到达目标位置的智能体。然而，由于缺乏可扩展、高保真且物理基础扎实的交互环境，进展仍然受限。尽管真实世界扫描数据集提供了视觉真实感，但其规模有限。相比之下，合成模拟器更易扩展，但通常存在较大的模拟到现实差距。我们提出Image2Sim，一种实时神经模拟框架，能够从带姿态的RGB-D图像序列构建高质量交互环境。核心思想是将3D空间锚定与逼真观察合成解耦。在场景构建方面，Image2Sim使用前馈特征高斯模型，将带姿态的RGB-D观测一次性提升为3D特征高斯表示。在渲染方面，我们提出几何感知单步像素流模型，将稀疏且带噪声的高斯投影转化为高质量全景RGB-D观测。Image2Sim还充当全自动具身数据引擎，可大规模生成高保真观测、可执行动作和多样化导航指令。它将大量视频和图像集合转化为近2万个交互场景，并合成超过1000万个导航训练样本。完全在这些神经环境中训练的导航模型在主要基准测试上取得了显著改进，并有效迁移到现实世界的零样本设置中。这些结果表明，可扩展的神经模拟可以作为大规模具身导航的实用训练基础。",
-      "authors": [
-        "Zihan Wang",
-        "Seungjun Lee",
-        "Yinghao Xu"
-      ],
-      "authors_all": [
-        "Zihan Wang",
-        "Seungjun Lee",
-        "Yinghao Xu",
-        "Gim Hee Lee"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-07-07",
-      "channels": [
-        "sim2real"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ HKUST"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ NUS"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2607-05765.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2607-05765-p2.jpg",
-        "assets/img/covers/arxiv-2607-05765-p3.jpg",
-        "assets/img/covers/arxiv-2607-05765-p4.jpg"
-      ],
-      "arxiv_id": "2607.05765",
-      "abs_url": "http://arxiv.org/abs/2607.05765v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.05765v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 44,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "sim2real",
-        "reason": "提出神经模拟器Image2Sim，从RGB-D构建交互环境，大规模生成训练数据，显著缩小sim-to-real差距，对具身导航和sim2real研究有高价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "National University of Singapore",
-        "HKUST"
-      ],
-      "method_tags": [
-        "neural simulation",
-        "embodied navigation"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2607-06401",
       "source": "arxiv",
       "title": "A Definition and Roadmap for World Models",
@@ -938,80 +1018,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2607-06052",
-      "source": "arxiv",
-      "title": "ThorArena: Benchmarking Humanoid Physical Interaction with Human Motion-Force Demonstrations",
-      "title_zh": "ThorArena：基于人体运动-力示教的仿人机器人物理交互基准",
-      "tldr_zh": "提出ThorArena基准，通过同步运动-力示教评估仿人机器人的力感知交互能力。",
-      "cover_zh": "仿人机器人只会走路？这个新基准用真实交互力暴露了隐藏的性能差距",
-      "abstract_zh": "仿人机器人越来越需要执行接触密集型任务，这些任务不仅要求精确的全身运动，还需要与周围物体和人进行稳健的物理交互。尽管近年来仿人运动模仿和全身控制取得了显著的跟踪性能，但现有数据集和基准主要关注运动学，而很大程度上忽略了同步的交互力。因此，当前的评估无法捕捉外部交互力如何影响跟踪精度、稳定性和控制鲁棒性。本文提出ThorArena，一个基于同步运动和力测量的人体示教来评估力感知仿人交互的基准。我们收集了一个真实世界的交互数据集，在六个代表性的物理交互任务中同时捕获全身人体运动和双手施加的力。基于这些示教，我们提出了力感知评估指标，通过力感知跟踪分数（FATS）和补充诊断指标，联合评估全身跟踪精度、不同力水平下的鲁棒性、控制努力和任务存活率。我们进一步建立了一个统一的基准协议，在仿真中回放记录的交互力，并为不同的仿人控制策略提供标准化评估接口。在代表性全身控制策略上的实验表明，力感知评估揭示了在传统无力评估下基本隐藏的显著性能差异。ThorArena为研究力感知仿人交互提供了一个实用且可复现的框架，并为评估接触密集型仿人行为提供了一个新基准。",
-      "authors": [
-        "Chenhao Yu",
-        "Hongwu Wang",
-        "Weitao Zhang"
-      ],
-      "authors_all": [
-        "Chenhao Yu",
-        "Hongwu Wang",
-        "Weitao Zhang",
-        "Youhao Hu",
-        "Jiachen Zhang",
-        "Gangyang Li",
-        "Alois Knoll",
-        "Shaqi Luo"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-07-07",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ TUM"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2607-06052.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2607-06052-p2.jpg",
-        "assets/img/covers/arxiv-2607-06052-p3.jpg",
-        "assets/img/covers/arxiv-2607-06052-p4.jpg"
-      ],
-      "arxiv_id": "2607.06052",
-      "abs_url": "http://arxiv.org/abs/2607.06052v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.06052v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 41,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "首个包含同步运动与力的人形交互基准，填补力感知评估空白，对全身控制研究有重要价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Beijing Academy of Artificial Intelligence",
-        "Technical University of Munich"
-      ],
-      "method_tags": [
-        "whole-body control",
-        "force-aware evaluation"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2607-06438",
       "source": "arxiv",
       "title": "WristMimic: Full-Body Humanoid Control with Wrist-Guided Manipulation",
@@ -1032,6 +1038,7 @@
       "primary_category": "cs.RO",
       "published": "2026-07-07",
       "channels": [
+        "loco-manip-wbc",
         "manipulation"
       ],
       "badges": [
@@ -1055,7 +1062,7 @@
       "pdf_url": "https://arxiv.org/pdf/2607.06438v1",
       "venue": "ECCV 2026",
       "venue_announced": "",
-      "score": 32,
+      "score": 40,
       "judge": {
         "relevant": true,
         "research_value": "high",
@@ -1078,6 +1085,85 @@
       "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-06388",
+      "source": "arxiv",
+      "title": "Learning to Throw Objects Safely in Multi-Obstacle Environments",
+      "title_zh": "在多障碍物环境中学习安全投掷物体",
+      "tldr_zh": "提出势场状态表示，使机器人学会在杂乱环境中安全投掷物体。",
+      "cover_zh": "机器人投掷新突破｜在杂乱环境中也能精准避障，成功率高达90%",
+      "abstract_zh": "机器人投掷能够实现超出其工作空间的快速高效物体放置，但在杂乱环境中的可靠投掷仍未被充分探索。现有方法（如TossingBot）从视觉输入学习投掷策略，但假设无障碍环境。本文解决了将物体投掷到目标篮子中同时避开场景中随机放置的障碍物的问题。我们引入了一种势场状态表示，它在固定大小的网格上紧凑地编码了篮子吸引和障碍物排斥，使得强化学习策略能够泛化到任意数量和配置的障碍物。策略从动觉演示初始化，并使用三种最先进的强化学习算法（SAC、DDPG、TD3）在仿真中优化。其中，SAC在多种场景下表现最一致。我们将势场表示与显式状态编码进行比较，证明其实现了更高的成功率和更好的对未见障碍物配置的可扩展性。使用未见投掷物体的真实机器人实验证实了稳健的仿真到现实迁移，在杂乱场景中成功率高达90%。这些结果表明，PFR为非结构化环境中安全高效的机器人投掷提供了一种实用且稳健的表示。展示我们实验的视频见：https://youtu.be/ZZnJf8ua2dE",
+      "authors": [
+        "Mohammadreza Kasaei",
+        "Klemen Voncina",
+        "Hamidreza Kasaei"
+      ],
+      "authors_all": [
+        "Mohammadreza Kasaei",
+        "Klemen Voncina",
+        "Hamidreza Kasaei"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-07",
+      "channels": [
+        "sim2real",
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 ICRA 2026"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-06388.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-06388-p2.jpg",
+        "assets/img/covers/arxiv-2607-06388-p3.jpg",
+        "assets/img/covers/arxiv-2607-06388-p4.jpg"
+      ],
+      "arxiv_id": "2607.06388",
+      "abs_url": "http://arxiv.org/abs/2607.06388v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.06388v1",
+      "venue": "ICRA 2026",
+      "venue_announced": "",
+      "score": 31,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "研究机器人投掷避障，结合RL和势场表示，有仿真和真机实验，属于操作领域",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Groningen",
+        "University of Edinburgh"
+      ],
+      "method_tags": [
+        "Reinforcement Learning",
+        "Potential Field Representation",
+        "Sim-to-Real"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [
+        {
+          "embed_url": "https://www.youtube.com/embed/ZZnJf8ua2dE",
+          "kind": "youtube",
+          "source": "abstract",
+          "title": "",
+          "url": "https://www.youtube.com/watch?v=ZZnJf8ua2dE"
+        }
+      ],
       "github": {},
       "source_tags": []
     },
@@ -1172,6 +1258,7 @@
       "primary_category": "cs.RO",
       "published": "2026-07-07",
       "channels": [
+        "loco-manip-wbc",
         "manipulation",
         "locomotion"
       ],
@@ -1220,80 +1307,248 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2607-06388",
+      "id": "arxiv-2607-06370",
       "source": "arxiv",
-      "title": "Learning to Throw Objects Safely in Multi-Obstacle Environments",
-      "title_zh": "在多障碍物环境中学习安全投掷物体",
-      "tldr_zh": "提出势场状态表示，使机器人学会在杂乱环境中安全投掷物体。",
-      "cover_zh": "机器人投掷新突破｜在杂乱环境中也能精准避障，成功率高达90%",
-      "abstract_zh": "机器人投掷能够实现超出其工作空间的快速高效物体放置，但在杂乱环境中的可靠投掷仍未被充分探索。现有方法（如TossingBot）从视觉输入学习投掷策略，但假设无障碍环境。本文解决了将物体投掷到目标篮子中同时避开场景中随机放置的障碍物的问题。我们引入了一种势场状态表示，它在固定大小的网格上紧凑地编码了篮子吸引和障碍物排斥，使得强化学习策略能够泛化到任意数量和配置的障碍物。策略从动觉演示初始化，并使用三种最先进的强化学习算法（SAC、DDPG、TD3）在仿真中优化。其中，SAC在多种场景下表现最一致。我们将势场表示与显式状态编码进行比较，证明其实现了更高的成功率和更好的对未见障碍物配置的可扩展性。使用未见投掷物体的真实机器人实验证实了稳健的仿真到现实迁移，在杂乱场景中成功率高达90%。这些结果表明，PFR为非结构化环境中安全高效的机器人投掷提供了一种实用且稳健的表示。展示我们实验的视频见：https://youtu.be/ZZnJf8ua2dE",
+      "title": "Training-Free Acceleration for Vision-Language-Action Models with Action Caching and Refinement",
+      "title_zh": "无需训练的视觉-语言-动作模型加速：动作缓存与精炼",
+      "tldr_zh": "提出ActionCache缓存中间动作，实现流匹配VLA模型高达34倍推理加速。",
+      "cover_zh": "机器人动作生成太慢？这个缓存技巧让VLA模型推理加速34倍！",
+      "abstract_zh": "视觉-语言-动作（VLA）模型已成为通用机器人操作的一种有前景的方法。特别是基于流匹配的VLA模型，因其能够生成精确平滑的动作序列并捕获多模态分布而表现出显著成功。然而，动作头中的迭代去噪过程构成了主要的计算瓶颈，对实时部署提出了关键挑战。为解决这一问题，我们提出了ActionCache，一种即插即用的外部缓存，它机会性地重用过去的中间动作，从目标动作附近热启动生成，从而大幅降低推理延迟。具体而言，ActionCache以紧凑的多模态键存储中间动作，使得能够从不同回合甚至不同任务的相似过去上下文中进行检索。在仿真和真实环境中的实验结果表明，ActionCache在低延迟场景下保持了高任务成功率，对于代表性的基于流的VLA模型$π_{0.5}$和GR00T-N1.6，分别实现了高达$11.75×$和$34.43×$的推理加速。",
       "authors": [
-        "Mohammadreza Kasaei",
-        "Klemen Voncina",
-        "Hamidreza Kasaei"
+        "Ryuji Oi",
+        "Hikari Otsuka",
+        "Kosuke Matsushima"
       ],
       "authors_all": [
-        "Mohammadreza Kasaei",
-        "Klemen Voncina",
-        "Hamidreza Kasaei"
+        "Ryuji Oi",
+        "Hikari Otsuka",
+        "Kosuke Matsushima",
+        "Yuki Ichikawa",
+        "Masato Motomura",
+        "Tatsuya Kaneko",
+        "Daichi Fujiki"
       ],
       "primary_category": "cs.RO",
       "published": "2026-07-07",
       "channels": [
-        "sim2real"
+        "loco-manip-wbc",
+        "manipulation"
       ],
       "badges": [
-        {
-          "kind": "venue",
-          "label": "🎓 ICRA 2026"
-        },
         {
           "kind": "fresh",
           "label": "⚡ 新鲜出炉"
         }
       ],
-      "cover_image": "assets/img/covers/arxiv-2607-06388.jpg",
+      "cover_image": "assets/img/covers/arxiv-2607-06370.jpg",
       "preview_pages": [
-        "assets/img/covers/arxiv-2607-06388-p2.jpg",
-        "assets/img/covers/arxiv-2607-06388-p3.jpg",
-        "assets/img/covers/arxiv-2607-06388-p4.jpg"
+        "assets/img/covers/arxiv-2607-06370-p2.jpg",
+        "assets/img/covers/arxiv-2607-06370-p3.jpg",
+        "assets/img/covers/arxiv-2607-06370-p4.jpg"
       ],
-      "arxiv_id": "2607.06388",
-      "abs_url": "http://arxiv.org/abs/2607.06388v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.06388v1",
-      "venue": "ICRA 2026",
+      "arxiv_id": "2607.06370",
+      "abs_url": "http://arxiv.org/abs/2607.06370v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.06370v1",
+      "venue": "",
       "venue_announced": "",
-      "score": 26,
+      "score": 30,
       "judge": {
         "relevant": true,
-        "research_value": "medium",
+        "research_value": "high",
         "primary_channel": "manipulation",
-        "reason": "研究机器人投掷避障，结合RL和势场表示，有仿真和真机实验，属于操作领域",
+        "reason": "提出VLA模型推理加速方法，实验在π0.5和GR00T上验证，对实时部署有重要价值",
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "University of Groningen",
-        "University of Edinburgh"
+        "Institute of Science Tokyo"
       ],
       "method_tags": [
-        "Reinforcement Learning",
-        "Potential Field Representation",
-        "Sim-to-Real"
+        "Action Caching",
+        "Flow Matching",
+        "Inference Acceleration"
       ],
       "platform": [],
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
-      "demo_videos": [
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-06403",
+      "source": "arxiv",
+      "title": "From Foundation to Application: Improving VLA Models in Practice",
+      "title_zh": "从基础到应用：在实践中改进VLA模型",
+      "tldr_zh": "提出LingBot-VLA 2.0，通过数据、动作空间和预测建模改进VLA模型的实际应用能力。",
+      "cover_zh": "实验室到现实｜VLA模型如何突破瓶颈？新版本用6万小时数据让机器人更全能",
+      "abstract_zh": "尽管VLA基础模型近期取得了进展，但实验室条件与现实应用之间的差距仍然阻碍着其实际部署。为弥合这一鸿沟，我们提出了LingBot-VLA 2.0，通过三个功能域的改进来推进LingBot-VLA。（1）跨任务和本体的泛化能力。与先前版本相比，我们改进了数据处理流程，并整理了约6万小时的数据用于预训练，包括5万小时的机器人轨迹（涵盖20种机器人配置）和1万小时的自我中心人类视频。（2）在双臂硬件平台基础上扩展了动作空间。具体而言，我们的系统支持头部、腰部、移动底座和灵巧手的自由度，从而使机器人能够在实际场景中处理更复杂的任务。（3）用于改进时间推理的预测动力学建模。具体地，我们将未来预测作为代理任务，借助视频表示模型提供语义先验，深度估计模型提供几何线索。在通用设置下，基于GM-100基准的评估验证了这些改进的有效性。此外，得益于覆盖全身自由度的扩展预训练数据，LingBot-VLA-2.0在两个机器人平台上展示了强大的跨本体长时域移动操作能力。",
+      "authors": [
+        "Wei Wu",
+        "Fangjing Wang",
+        "Fan Lu"
+      ],
+      "authors_all": [
+        "Wei Wu",
+        "Fangjing Wang",
+        "Fan Lu",
+        "He Sun",
+        "Shi Liu",
+        "Yunnan Wang",
+        "Yibin Yan",
+        "Yong Wang",
+        "Shuailei Ma",
+        "Xinyang Wang",
+        "Yibin Liu",
+        "Shuai Yang",
+        "Tianxiang Zhou",
+        "Kejia Zhang",
+        "Lei Zhou",
+        "Cheng Su",
+        "Nan Xue",
+        "Bin Tan",
+        "Han Zhang",
+        "Youchao Zhang",
+        "Fei Liao",
+        "Xing Zhu",
+        "Yujun Shen",
+        "Kecheng Zheng"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-07",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation"
+      ],
+      "badges": [
         {
-          "kind": "youtube",
-          "url": "https://www.youtube.com/watch?v=ZZnJf8ua2dE",
-          "embed_url": "https://www.youtube.com/embed/ZZnJf8ua2dE",
-          "title": "",
-          "source": "abstract"
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
         }
       ],
+      "cover_image": "assets/img/covers/arxiv-2607-06403.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-06403-p2.jpg",
+        "assets/img/covers/arxiv-2607-06403-p3.jpg",
+        "assets/img/covers/arxiv-2607-06403-p4.jpg"
+      ],
+      "arxiv_id": "2607.06403",
+      "abs_url": "http://arxiv.org/abs/2607.06403v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.06403v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出LingBot-VLA 2.0，涵盖全身自由度、跨本体移动操作，含预测动力学建模，具高科研价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "VLA",
+        "predictive dynamics modeling"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-06216",
+      "source": "arxiv",
+      "title": "MoWorld: A Flash World Model",
+      "title_zh": "MoWorld：一个闪电世界模型",
+      "tldr_zh": "MoWorld是首个在NPU上实现50 FPS实时交互的闪电世界模型，推理成本仅为现有模型的30%-50%。",
+      "cover_zh": "不用高端GPU也能50帧实时交互｜这个世界模型在NPU上跑得飞起",
+      "abstract_zh": "世界模型的未来不仅取决于模型能力的扩展，还取决于实用性和推理效率的提升。高帧率推理能够实现真实世界自主系统中的响应式感知、规划和控制。为此，我们提出了MoWorld，一个经济高效且高性能的闪电世界模型，它拥有端到端的框架，涵盖数据生成、预训练、蒸馏和高效推理，无需高端GPU即可实现高达50 FPS的实时交互，并具有电影级的视觉质量。为了实现大规模真实世界部署，MoWorld在整个开发流程中联合优化了模型能力和成本。具体来说，与主要依赖大规模视频语料库的现有方法不同，MoWorld基于一个可扩展的3D原生数据引擎构建，该引擎积累自我们的大规模3D视觉和生成建模流程，能够高效构建跨多样真实世界和合成环境的几何一致训练数据。在此基础上，我们提出了课程式跨帧预训练策略以实现稳定且可扩展的世界模型学习，一种高效的去噪步蒸馏算法以降低扩散训练成本，以及一个混合精度并行推理框架以实现低成本的实时部署。MoWorld是首个在神经处理单元（NPU）上构建的实时交互式世界模型，可在该设备上达到高达50 FPS，从而实现大规模实用且高效的部署。综合评估表明，MoWorld取得了领先性能；值得注意的是，其平均推理成本仅为现有世界模型的30%-50%，为世界模型的大规模真实世界应用提供了实用基础。我们还展示了MoWorld的多种应用。",
+      "authors": [
+        "Team Moxin",
+        "Deyi Ji",
+        "Tianrun Chen"
+      ],
+      "authors_all": [
+        "Team Moxin",
+        "Deyi Ji",
+        "Tianrun Chen",
+        "Xin Zhang",
+        "Jiale Yang",
+        "Qi Zhu",
+        "An Zhao",
+        "Zihao Xie",
+        "Han Wang",
+        "Xuanyi Liu",
+        "Yixiang Zhou",
+        "Pei Liu",
+        "Yi Tan",
+        "Cheng Chen",
+        "Dayi Zhu",
+        "Mingyu Wei",
+        "Hanjie Xu",
+        "Jun Liao",
+        "Siqi Li",
+        "Lingyu Lu",
+        "Hongye Fang",
+        "Hongming Tan",
+        "Youjiang Zhu",
+        "Taiyu Zhang",
+        "Zejian Li",
+        "Chaotao Ding",
+        "Lanyun Zhu",
+        "Yunhe Pan",
+        "Lingyun Sun"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-07-07",
+      "channels": [
+        "world-model",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-06216.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-06216-p2.jpg",
+        "assets/img/covers/arxiv-2607-06216-p3.jpg",
+        "assets/img/covers/arxiv-2607-06216-p4.jpg"
+      ],
+      "arxiv_id": "2607.06216",
+      "abs_url": "http://arxiv.org/abs/2607.06216v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.06216v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 27,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出Flash World Model MoWorld，实现50FPS实时交互，优化推理效率，具身机器人领域有应用潜力。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Moxin Technology"
+      ],
+      "method_tags": [
+        "World Model",
+        "distillation",
+        "mixed-precision parallel inference"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
       "github": {},
       "source_tags": []
     },
@@ -1376,89 +1631,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2607-06403",
-      "source": "arxiv",
-      "title": "From Foundation to Application: Improving VLA Models in Practice",
-      "title_zh": "从基础到应用：在实践中改进VLA模型",
-      "tldr_zh": "提出LingBot-VLA 2.0，通过数据、动作空间和预测建模改进VLA模型的实际应用能力。",
-      "cover_zh": "实验室到现实｜VLA模型如何突破瓶颈？新版本用6万小时数据让机器人更全能",
-      "abstract_zh": "尽管VLA基础模型近期取得了进展，但实验室条件与现实应用之间的差距仍然阻碍着其实际部署。为弥合这一鸿沟，我们提出了LingBot-VLA 2.0，通过三个功能域的改进来推进LingBot-VLA。（1）跨任务和本体的泛化能力。与先前版本相比，我们改进了数据处理流程，并整理了约6万小时的数据用于预训练，包括5万小时的机器人轨迹（涵盖20种机器人配置）和1万小时的自我中心人类视频。（2）在双臂硬件平台基础上扩展了动作空间。具体而言，我们的系统支持头部、腰部、移动底座和灵巧手的自由度，从而使机器人能够在实际场景中处理更复杂的任务。（3）用于改进时间推理的预测动力学建模。具体地，我们将未来预测作为代理任务，借助视频表示模型提供语义先验，深度估计模型提供几何线索。在通用设置下，基于GM-100基准的评估验证了这些改进的有效性。此外，得益于覆盖全身自由度的扩展预训练数据，LingBot-VLA-2.0在两个机器人平台上展示了强大的跨本体长时域移动操作能力。",
-      "authors": [
-        "Wei Wu",
-        "Fangjing Wang",
-        "Fan Lu"
-      ],
-      "authors_all": [
-        "Wei Wu",
-        "Fangjing Wang",
-        "Fan Lu",
-        "He Sun",
-        "Shi Liu",
-        "Yunnan Wang",
-        "Yibin Yan",
-        "Yong Wang",
-        "Shuailei Ma",
-        "Xinyang Wang",
-        "Yibin Liu",
-        "Shuai Yang",
-        "Tianxiang Zhou",
-        "Kejia Zhang",
-        "Lei Zhou",
-        "Cheng Su",
-        "Nan Xue",
-        "Bin Tan",
-        "Han Zhang",
-        "Youchao Zhang",
-        "Fei Liao",
-        "Xing Zhu",
-        "Yujun Shen",
-        "Kecheng Zheng"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-07-07",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2607-06403.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2607-06403-p2.jpg",
-        "assets/img/covers/arxiv-2607-06403-p3.jpg",
-        "assets/img/covers/arxiv-2607-06403-p4.jpg"
-      ],
-      "arxiv_id": "2607.06403",
-      "abs_url": "http://arxiv.org/abs/2607.06403v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.06403v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 25,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "提出LingBot-VLA 2.0，涵盖全身自由度、跨本体移动操作，含预测动力学建模，具高科研价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "VLA",
-        "predictive dynamics modeling"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2607-06165",
       "source": "arxiv",
       "title": "EAGOR: Embodied Reasoning in Omni-direction",
@@ -1521,6 +1693,73 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-06337",
+      "source": "arxiv",
+      "title": "OrchardBench: A Physically-Grounded, GPU-Parallel Apple-Orchard Simulation Benchmark for Agricultural Robotics",
+      "title_zh": "OrchardBench：面向农业机器人的物理真实、GPU并行苹果园仿真基准",
+      "tldr_zh": "提出物理真实、GPU并行的苹果园仿真基准，解决农业机器人实验成本高和不可重复问题",
+      "cover_zh": "果园实验一年只几周？这个GPU仿真让机器人天天练采摘｜物理真实还跑在笔记本上",
+      "abstract_zh": "机器人果树采摘是农业自动化的标志性问题，但进展受限于田间实验的成本和不可重复性：果园每年仅开放数周，每棵树都不同，控制错误可能永久损坏作物或植株。图形学和农学中使用的树木模型几何细节丰富但物理惰性，而机器人学习中使用的GPU并行模拟器则没有合理的树木。我们提出了OrchardBench，一个基于Newton引擎的物理真实、GPU并行的苹果园仿真。每棵树由随机L系统生长并实例化为完全铰接体：树枝是柔顺的扭簧阻尼器，其刚度遵循欧拉-伯努利梁理论，在木材断裂模量处断裂并作为自由铰链下落；苹果是独立物体，通过茎系绳连接，在文献支持的拉力下脱离，并在拉动时加载树枝。移动的密度可控叶片层像真实叶子一样遮挡树冠。每个物理参数都关联到已发表来源。每环境域随机化使每个批次的世界成为不同的树，带有腕部深度相机的移动机械手通过几何水果感知和自主采摘基线形成闭环。对求解器和模型的精心设计使得OrchardBench能在笔记本电脑GPU上以交互速率运行多个并行环境。我们定义了任务和一套涵盖采摘完整性、吞吐量和植物损伤（按树冠区域细分）的度量套件，并报告了跨叶片、果实负载、地形、树冠区域和并行性的基线结果。分析基线成功检测到约40%的水果，但仅采摘了树上约八分之一的可达水果，为新颖的自主方法留下了明确的空间。",
+      "authors": [
+        "Humphrey Munn"
+      ],
+      "authors_all": [
+        "Humphrey Munn"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-07",
+      "channels": [
+        "loco-manip-wbc",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-06337.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-06337-p2.jpg",
+        "assets/img/covers/arxiv-2607-06337-p3.jpg",
+        "assets/img/covers/arxiv-2607-06337-p4.jpg"
+      ],
+      "arxiv_id": "2607.06337",
+      "abs_url": "http://arxiv.org/abs/2607.06337v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.06337v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 24,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "sim2real",
+        "reason": "农业机器人仿真benchmark，物理真实且GPU并行，填补sim2real空白，具高科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "School of EECS, The University of Queensland"
+      ],
+      "method_tags": [
+        "domain randomization",
+        "fruit harvesting"
+      ],
+      "platform": [
+        "Clearpath Ridgeback",
+        "Franka"
+      ],
+      "sim_stack": [
+        "Newton",
+        "MuJoCo-Warp"
+      ],
+      "method_family": "",
+      "real_robot": "no",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -1598,232 +1837,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2607-06370",
-      "source": "arxiv",
-      "title": "Training-Free Acceleration for Vision-Language-Action Models with Action Caching and Refinement",
-      "title_zh": "无需训练的视觉-语言-动作模型加速：动作缓存与精炼",
-      "tldr_zh": "提出ActionCache缓存中间动作，实现流匹配VLA模型高达34倍推理加速。",
-      "cover_zh": "机器人动作生成太慢？这个缓存技巧让VLA模型推理加速34倍！",
-      "abstract_zh": "视觉-语言-动作（VLA）模型已成为通用机器人操作的一种有前景的方法。特别是基于流匹配的VLA模型，因其能够生成精确平滑的动作序列并捕获多模态分布而表现出显著成功。然而，动作头中的迭代去噪过程构成了主要的计算瓶颈，对实时部署提出了关键挑战。为解决这一问题，我们提出了ActionCache，一种即插即用的外部缓存，它机会性地重用过去的中间动作，从目标动作附近热启动生成，从而大幅降低推理延迟。具体而言，ActionCache以紧凑的多模态键存储中间动作，使得能够从不同回合甚至不同任务的相似过去上下文中进行检索。在仿真和真实环境中的实验结果表明，ActionCache在低延迟场景下保持了高任务成功率，对于代表性的基于流的VLA模型$π_{0.5}$和GR00T-N1.6，分别实现了高达$11.75×$和$34.43×$的推理加速。",
-      "authors": [
-        "Ryuji Oi",
-        "Hikari Otsuka",
-        "Kosuke Matsushima"
-      ],
-      "authors_all": [
-        "Ryuji Oi",
-        "Hikari Otsuka",
-        "Kosuke Matsushima",
-        "Yuki Ichikawa",
-        "Masato Motomura",
-        "Tatsuya Kaneko",
-        "Daichi Fujiki"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-07-07",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2607-06370.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2607-06370-p2.jpg",
-        "assets/img/covers/arxiv-2607-06370-p3.jpg",
-        "assets/img/covers/arxiv-2607-06370-p4.jpg"
-      ],
-      "arxiv_id": "2607.06370",
-      "abs_url": "http://arxiv.org/abs/2607.06370v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.06370v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 22,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出VLA模型推理加速方法，实验在π0.5和GR00T上验证，对实时部署有重要价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Institute of Science Tokyo"
-      ],
-      "method_tags": [
-        "Action Caching",
-        "Flow Matching",
-        "Inference Acceleration"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2607-06216",
-      "source": "arxiv",
-      "title": "MoWorld: A Flash World Model",
-      "title_zh": "MoWorld：一个闪电世界模型",
-      "tldr_zh": "MoWorld是首个在NPU上实现50 FPS实时交互的闪电世界模型，推理成本仅为现有模型的30%-50%。",
-      "cover_zh": "不用高端GPU也能50帧实时交互｜这个世界模型在NPU上跑得飞起",
-      "abstract_zh": "世界模型的未来不仅取决于模型能力的扩展，还取决于实用性和推理效率的提升。高帧率推理能够实现真实世界自主系统中的响应式感知、规划和控制。为此，我们提出了MoWorld，一个经济高效且高性能的闪电世界模型，它拥有端到端的框架，涵盖数据生成、预训练、蒸馏和高效推理，无需高端GPU即可实现高达50 FPS的实时交互，并具有电影级的视觉质量。为了实现大规模真实世界部署，MoWorld在整个开发流程中联合优化了模型能力和成本。具体来说，与主要依赖大规模视频语料库的现有方法不同，MoWorld基于一个可扩展的3D原生数据引擎构建，该引擎积累自我们的大规模3D视觉和生成建模流程，能够高效构建跨多样真实世界和合成环境的几何一致训练数据。在此基础上，我们提出了课程式跨帧预训练策略以实现稳定且可扩展的世界模型学习，一种高效的去噪步蒸馏算法以降低扩散训练成本，以及一个混合精度并行推理框架以实现低成本的实时部署。MoWorld是首个在神经处理单元（NPU）上构建的实时交互式世界模型，可在该设备上达到高达50 FPS，从而实现大规模实用且高效的部署。综合评估表明，MoWorld取得了领先性能；值得注意的是，其平均推理成本仅为现有世界模型的30%-50%，为世界模型的大规模真实世界应用提供了实用基础。我们还展示了MoWorld的多种应用。",
-      "authors": [
-        "Team Moxin",
-        "Deyi Ji",
-        "Tianrun Chen"
-      ],
-      "authors_all": [
-        "Team Moxin",
-        "Deyi Ji",
-        "Tianrun Chen",
-        "Xin Zhang",
-        "Jiale Yang",
-        "Qi Zhu",
-        "An Zhao",
-        "Zihao Xie",
-        "Han Wang",
-        "Xuanyi Liu",
-        "Yixiang Zhou",
-        "Pei Liu",
-        "Yi Tan",
-        "Cheng Chen",
-        "Dayi Zhu",
-        "Mingyu Wei",
-        "Hanjie Xu",
-        "Jun Liao",
-        "Siqi Li",
-        "Lingyu Lu",
-        "Hongye Fang",
-        "Hongming Tan",
-        "Youjiang Zhu",
-        "Taiyu Zhang",
-        "Zejian Li",
-        "Chaotao Ding",
-        "Lanyun Zhu",
-        "Yunhe Pan",
-        "Lingyun Sun"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-07-07",
-      "channels": [
-        "world-model"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2607-06216.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2607-06216-p2.jpg",
-        "assets/img/covers/arxiv-2607-06216-p3.jpg",
-        "assets/img/covers/arxiv-2607-06216-p4.jpg"
-      ],
-      "arxiv_id": "2607.06216",
-      "abs_url": "http://arxiv.org/abs/2607.06216v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.06216v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 19,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出Flash World Model MoWorld，实现50FPS实时交互，优化推理效率，具身机器人领域有应用潜力。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Moxin Technology"
-      ],
-      "method_tags": [
-        "World Model",
-        "distillation",
-        "mixed-precision parallel inference"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2607-06337",
-      "source": "arxiv",
-      "title": "OrchardBench: A Physically-Grounded, GPU-Parallel Apple-Orchard Simulation Benchmark for Agricultural Robotics",
-      "title_zh": "OrchardBench：面向农业机器人的物理真实、GPU并行苹果园仿真基准",
-      "tldr_zh": "提出物理真实、GPU并行的苹果园仿真基准，解决农业机器人实验成本高和不可重复问题",
-      "cover_zh": "果园实验一年只几周？这个GPU仿真让机器人天天练采摘｜物理真实还跑在笔记本上",
-      "abstract_zh": "机器人果树采摘是农业自动化的标志性问题，但进展受限于田间实验的成本和不可重复性：果园每年仅开放数周，每棵树都不同，控制错误可能永久损坏作物或植株。图形学和农学中使用的树木模型几何细节丰富但物理惰性，而机器人学习中使用的GPU并行模拟器则没有合理的树木。我们提出了OrchardBench，一个基于Newton引擎的物理真实、GPU并行的苹果园仿真。每棵树由随机L系统生长并实例化为完全铰接体：树枝是柔顺的扭簧阻尼器，其刚度遵循欧拉-伯努利梁理论，在木材断裂模量处断裂并作为自由铰链下落；苹果是独立物体，通过茎系绳连接，在文献支持的拉力下脱离，并在拉动时加载树枝。移动的密度可控叶片层像真实叶子一样遮挡树冠。每个物理参数都关联到已发表来源。每环境域随机化使每个批次的世界成为不同的树，带有腕部深度相机的移动机械手通过几何水果感知和自主采摘基线形成闭环。对求解器和模型的精心设计使得OrchardBench能在笔记本电脑GPU上以交互速率运行多个并行环境。我们定义了任务和一套涵盖采摘完整性、吞吐量和植物损伤（按树冠区域细分）的度量套件，并报告了跨叶片、果实负载、地形、树冠区域和并行性的基线结果。分析基线成功检测到约40%的水果，但仅采摘了树上约八分之一的可达水果，为新颖的自主方法留下了明确的空间。",
-      "authors": [
-        "Humphrey Munn"
-      ],
-      "authors_all": [
-        "Humphrey Munn"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-07-07",
-      "channels": [
-        "sim2real"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2607-06337.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2607-06337-p2.jpg",
-        "assets/img/covers/arxiv-2607-06337-p3.jpg",
-        "assets/img/covers/arxiv-2607-06337-p4.jpg"
-      ],
-      "arxiv_id": "2607.06337",
-      "abs_url": "http://arxiv.org/abs/2607.06337v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.06337v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 16,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "sim2real",
-        "reason": "农业机器人仿真benchmark，物理真实且GPU并行，填补sim2real空白，具高科研价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "School of EECS, The University of Queensland"
-      ],
-      "method_tags": [
-        "domain randomization",
-        "fruit harvesting"
-      ],
-      "platform": [
-        "Clearpath Ridgeback",
-        "Franka"
-      ],
-      "sim_stack": [
-        "Newton",
-        "MuJoCo-Warp"
-      ],
-      "method_family": "",
-      "real_robot": "no",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2607-06499",
       "source": "arxiv",
       "title": "Clustering-Embedded Model Predictive Path Integral Control: Avoiding Averaging-Induced Failure and Enabling Efficient Cluster Selection for Dynamic Obstacles",
@@ -1844,7 +1857,8 @@
       "primary_category": "cs.RO",
       "published": "2026-07-07",
       "channels": [
-        "sim2real"
+        "sim2real",
+        "manipulation"
       ],
       "badges": [
         {
@@ -1863,7 +1877,7 @@
       "pdf_url": "https://arxiv.org/pdf/2607.06499v1",
       "venue": "",
       "venue_announced": "",
-      "score": 16,
+      "score": 21,
       "judge": {
         "relevant": true,
         "research_value": "high",
