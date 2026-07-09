@@ -1,6 +1,6 @@
 {
   "date": "2026-07-06",
-  "count": 17,
+  "count": 19,
   "papers": [
     {
       "id": "arxiv-2607-05390",
@@ -490,6 +490,75 @@
       "demo_videos": [],
       "github": {},
       "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-04837",
+      "source": "arxiv_discover",
+      "title": "Athena-WBC: Capability-Aligned Policy Experts for Long-Tail Humanoid Whole-Body Control",
+      "title_zh": "Athena-WBC：面向长尾人形全身控制的能力对齐策略专家",
+      "tldr_zh": "提出能力对齐专家策略，解决人形机器人长尾动作训练失败问题。",
+      "cover_zh": "人形机器人总学不会高难度动作？不是练得少，是能力没对齐！",
+      "abstract_zh": "大规模人形运动跟踪控制器通常通过重新分配训练努力来改进：困难动作被更频繁地采样、隔离成更小的子集或分配给专门的专家。我们表明这种观点是不完整的。在强大的全身控制基线中，即使在针对性训练下，一组可行的训练片段仍然无法解决，尤其是对于高动态过渡和平衡关键动作。这些失败不仅源于训练不足，还源于运动需求与默认训练配方所诱导的有效能力之间的不匹配。我们提出Athena-WBC，一种紧凑的教师-学生流水线，具有能力对齐的策略专家，用于长尾人形全身控制。动态专家使用跟踪导向、约束感知的目标，该目标在保留物理可行性约束的同时消除了保守努力和时间控制惩罚；平衡专家使用重力课程来提高早期训练的可生存性。得到的特权教师通过运动路由进行DAgger蒸馏，然后压缩成一个具有可部署观测的单一控制器，随后进行RL微调。在全尺寸人形机器人上的实验表明，与强大的SONIC配方基线相比，仅使用少量专家就能改善训练集中长尾动作的恢复和更好的保留跟踪。",
+      "authors": [
+        "Yuan Jiang",
+        "Ningyuan Zhang",
+        "Xicun Yang"
+      ],
+      "authors_all": [
+        "Yuan Jiang",
+        "Ningyuan Zhang",
+        "Xicun Yang",
+        "Yuzhi Jiang",
+        "Jie Chen"
+      ],
+      "primary_category": "",
+      "published": "2026-07-06",
+      "channels": [
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ XPENG Robotics"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-04837.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-04837-p2.jpg",
+        "assets/img/covers/arxiv-2607-04837-p3.jpg",
+        "assets/img/covers/arxiv-2607-04837-p4.jpg"
+      ],
+      "arxiv_id": "2607.04837",
+      "abs_url": "http://arxiv.org/abs/2607.04837v2",
+      "pdf_url": "https://arxiv.org/pdf/2607.04837v2",
+      "venue": "",
+      "venue_announced": "",
+      "score": 40,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出针对人形机器人全身控制的长尾运动专家策略，方法新颖且实验充分，对WBC领域有高参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "XPENG Robotics"
+      ],
+      "method_tags": [
+        "teacher-student pipeline",
+        "DAgger distillation",
+        "RL fine-tuning"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": [
+        "llm_discover"
+      ]
     },
     {
       "id": "arxiv-2607-04681",
@@ -1183,6 +1252,69 @@
       "demo_videos": [],
       "github": {},
       "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-04978",
+      "source": "arxiv_discover",
+      "title": "Qantara: Bridge-Flow Training for Multi-Paradigm JEPA Control",
+      "title_zh": "Qantara：面向多范式JEPA控制的桥流训练",
+      "tldr_zh": "Qantara通过桥流训练使单一JEPA模型支持多种推理范式，无需重新训练。",
+      "cover_zh": "一个模型三种玩法｜JEPA世界模型终于不用重新训练了",
+      "abstract_zh": "联合嵌入预测架构（JEPA）支撑着越来越多从原始像素进行控制的潜在世界模型，但每个现有的JEPA世界模型在训练时都承诺采用单一推理范式：要么在学习的动力学模型中进行轨迹优化，要么直接进行行为克隆。一个同时服务于两者的单一检查点会将这一选择推迟到推理阶段，此时部署约束（展开成本、观测可访问性）决定了哪条路径更优。我们提出Qantara，一个端到端的JEPA，其联合训练目标将状态轴上连续干净潜在之间的布朗桥插值与动作轴上的噪声到数据流匹配配对。同一检查点无需重新训练即可服务于三种推理范式：潜在规划、行为克隆动作采样和逆动力学，我们通过一种视频逆组合来查询这些范式，该组合首先在没有动作条件的情况下预测下一个潜在，然后提取动作。训练将质量集中在（动作时间，状态时间）噪声正方形的边缘，推理在此处查询预测器：将其替换为均匀内部采样会使Push-T规划从90.1成功率下降到53.3成功率（在相同计算量下）。在LeWM控制套件上，Qantara达到了91.2成功率的三个训练种子平均值，并在OGBench-Cube上创造了新的SOTA（比DINO-WM高+7.7成功率，比LeWM高+19.7成功率）。来自相同权重，行为克隆和视频逆路径在Push-T上达到82-83成功率，在Cube上达到71-73成功率。这些结果将JEPA世界模型从单范式规划器转变为多范式控制器。",
+      "authors": [
+        "Ruslan Rakhimov",
+        "George Bredis",
+        "Yuriy Maksyuta"
+      ],
+      "authors_all": [
+        "Ruslan Rakhimov",
+        "George Bredis",
+        "Yuriy Maksyuta",
+        "Daniil Gavrilov"
+      ],
+      "primary_category": "",
+      "published": "2026-07-06",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2607-04978.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-04978-p2.jpg",
+        "assets/img/covers/arxiv-2607-04978-p3.jpg",
+        "assets/img/covers/arxiv-2607-04978-p4.jpg"
+      ],
+      "arxiv_id": "2607.04978",
+      "abs_url": "http://arxiv.org/abs/2607.04978v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.04978v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 15,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出多范式JEPA世界模型Qantara，实现规划、行为克隆、逆动力学统一，SOTA性能，高科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "T-Tech"
+      ],
+      "method_tags": [
+        "JEPA",
+        "flow matching",
+        "multi-paradigm control"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": [
+        "llm_discover"
+      ]
     },
     {
       "id": "arxiv-2607-05352",
