@@ -1,12 +1,12 @@
 // Monthly digest page: load monthly_index.json, render tab bar; on tab click,
 // load digest/monthly/<ym>.json and render headline + summary as HTML.
 
-import { Theme } from './storage.js?v=153d9508';
+import { Theme } from './storage.js?v=64102d78';
 import {
   escapeHTML,
   attachSearchRedirect,
   fetchJSON,
-} from './utils.js?v=153d9508';
+} from './utils.js?v=64102d78';
 
 const STATE = {
   digests: [],     // index entries
