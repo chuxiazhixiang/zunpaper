@@ -96,5 +96,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"CLAP: Direct VLM-to-VLA Adaptation via Language-Action Grounding\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.08974v1\n---\n>[!abstract] 一句话总结：在数值动作序列前插入自然语言动作描述，形成因果语言-动作预测，无需修改骨干架构即可条件化动作生成。\n\n\n# 一、动机\n\n> 现有VLA方法在大规模后训练和架构修改后难以分辨VLM对控制的真实贡献，且直接输出数值动作令牌会导致分布偏移，破坏预训练语言能力。\n\n\n# 二、方法\n\n> 在数值动作序列前插入自然语言动作描述，形成因果语言-动作预测，无需修改骨干架构即可条件化动作生成。\n\n\n# 三、核心实验结果\n\n> 2B CLAP在LIBERO上达到90.8%准确率，超过VLA-0 14.9个百分点，并在LIBERO-PRO的语言、物体、空间扰动下鲁棒性提升。\n\n\n# 四、对我的启发\n\n> 单epoch微调即有效，提供0.8B/2B/4B多尺度模型族，便于分析VLM到VLA的能力迁移，但未探讨在真实机器人上的部署效果。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Task/RoboticManipulation\n  - Domain/Robotics\nTitle: \"CLAP: Direct VLM-to-VLA Adaptation via Language-Action Grounding\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.08974v1\n---\n>[!abstract] 一句话总结：CLAP方法在数值动作序列前添加自然语言动作描述，因果地条件化精确动作预测，不修改骨干架构。\n\n\n# 一、动机\n\n> 直接转换预训练VLM为VLA时，预测数值动作序列导致输出分布偏离VLM的语言分布，降低了保留下来的语义能力，需要解决分布不匹配问题。\n\n\n# 二、方法\n\n> CLAP方法在数值动作序列前添加自然语言动作描述，因果地条件化精确动作预测，不修改骨干架构。\n\n\n# 三、核心实验结果\n\n> 2B CLAP在LIBERO任务上达到90.8%准确率，相比VLA-0提升14.9个百分点，并在LIBERO-PRO的语言、物体和空间扰动下表现出更强的鲁棒性。\n\n\n# 四、对我的启发\n\n> 与课题相关，展示了通过语言-动作对齐实现VLM到VLA高效迁移，但可能依赖单轮微调，需更多实验验证泛化性。\n"
 }

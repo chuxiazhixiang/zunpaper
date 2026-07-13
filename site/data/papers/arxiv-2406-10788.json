@@ -43,7 +43,8 @@
     "assets/img/covers/arxiv-2406-10788-p4.jpg"
   ],
   "channels": [
-    "world-model"
+    "world-model",
+    "manipulation"
   ],
   "badges": [
     {
@@ -107,5 +108,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/CV\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Physically Embodied Gaussian Splatting: A Realtime Correctable World Model for Robotics\"\nYear: \"2024\"\nURL: http://arxiv.org/abs/2406.10788v1\n---\n>[!abstract] 一句话总结：提出一种双高斯-粒子表示，粒子用于物理模拟和位置预测，附着的3D高斯通过抛雪球渲染图像，通过比较预测与观测图像生成视觉力来校正粒子位置，融合物理模型与视觉校正。\n\n\n# 一、动机\n\n> 现有机器人世界模型无法同时实现物理预测和视觉校正，且难以实时运行，导致机器人对动态环境的鲁棒理解与交互受限。\n\n\n# 二、方法\n\n> 提出一种双高斯-粒子表示，粒子用于物理模拟和位置预测，附着的3D高斯通过抛雪球渲染图像，通过比较预测与观测图像生成视觉力来校正粒子位置，融合物理模型与视觉校正。\n\n\n# 三、核心实验结果\n\n> 系统在30Hz实时运行，仅需3个摄像头；在2D和3D跟踪任务上验证了有效性；光度量重建质量优于基线方法。\n\n\n# 四、对我的启发\n\n> 该方法将物理模拟与视觉校正优雅结合，实现了实时闭环的世界模型更新，但可能依赖于初始粒子状态且对复杂非线性物理的建模能力有限，未来可扩展至更丰富的物理交互场景。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/CV\n  - Task/EmbodiedAI\nTitle: \"Physically Embodied Gaussian Splatting: A Realtime Correctable World Model for Robotics\"\nYear: \"2024\"\nURL: http://arxiv.org/abs/2406.10788v1\n---\n>[!abstract] 一句话总结：提出双高斯-粒子表示，粒子用于物理模拟，3D高斯用于视觉渲染，通过比较预测图像与观测图像生成视觉矫正力，实时更新粒子位置并保持物理合理性。\n\n\n# 一、动机\n\n> 现有机器人世界模型难以同时实现实时性、物理预测和视觉观测修正，该文提出一种可实时在线纠正的物理世界表征方法。\n\n\n# 二、方法\n\n> 提出双高斯-粒子表示，粒子用于物理模拟，3D高斯用于视觉渲染，通过比较预测图像与观测图像生成视觉矫正力，实时更新粒子位置并保持物理合理性。\n\n\n# 三、核心实验结果\n\n> 系统以30Hz实时运行，仅需3个相机；在2D/3D追踪任务和光度重建质量上验证有效性。\n\n\n# 四、对我的启发\n\n> 与课题相关，该可修正世界模型有望用于机器人动态场景下的感知与控制。\n"
 }
