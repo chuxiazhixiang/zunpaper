@@ -1,0 +1,104 @@
+{
+  "id": "arxiv-2607-08925",
+  "source": "arxiv",
+  "title": "SafeExplorer: An Unbiased Policy Gradient for Reinforcement Learning with Recovery Interventions",
+  "title_zh": "SafeExplorer：一种用于带恢复干预的强化学习的无偏策略梯度",
+  "abstract": "Training reinforcement-learning agents directly on physical robots makes every fall costly, since a fall can damage the platform and cannot be undone like a simulator reset; the goal is therefore to minimize falls during training rather than trade them off against return, as constrained Markov decision process (MDP) formulations do. A standard mitigation hands control to a separate recovery policy whenever the agent leaves a designer-specified safe region (a subset of state space it should stay within), but the resulting mixed-policy rollouts silently bias every on-policy update, and the importance-sampling correction that would remove this bias is ill-defined whenever the recovery policy is deterministic. We address this bias with a drop-in modification of proximal policy optimization (PPO). Its core is an unbiased policy-gradient estimator that uses the score function only at safe timesteps and never evaluates the recovery policy's density, so it stays valid even when the recovery policy is deterministic, exactly where importance sampling breaks, and it empirically dominates importance sampling even when the recovery policy is stochastic. Because the recovery policy still makes credit assignment slow near the safe-region boundary, two further components accelerate learning: a closed-form value for recovery-triggering states when dynamics and recovery are deterministic, and an imitation loss that copies recovery actions only when recovery succeeds. On a three-environment, five-seed benchmark, the resulting algorithm reduces training-time falls by factors of 233x, 48x, and 26x on HalfCheetah, Ant, and Unitree Go1 over standard PPO, while matching or exceeding PPO's final reward, and on Ant, where the recovery policy is unreliable, it is the only method that reaches 80% of the best final reward.",
+  "abstract_zh": "直接在物理机器人上训练强化学习智能体使得每一次摔倒代价高昂，因为摔倒会损坏平台且无法像仿真器重置那样恢复；因此目标是在训练过程中最小化摔倒次数，而不是像约束马尔可夫决策过程（MDP）那样在摔倒和回报之间权衡。一种标准的缓解方法是在智能体离开设计者指定的安全区域（它应保持的状态空间子集）时将控制权交给一个独立的恢复策略，但由此产生的混合策略轨迹会无声地偏置每一次在策略更新，而消除这种偏置所需的重要性采样校正当恢复策略是确定性时是病态的。我们通过一种对近端策略优化（PPO）的即插即用修改来解决这种偏置。其核心是一个无偏的策略梯度估计器，它仅在安全时间步使用得分函数，从不评估恢复策略的密度，因此即使在恢复策略是确定性时（正是重要性采样失效的地方）也保持有效，并且在恢复策略是随机时经验上优于重要性采样。由于恢复策略在安全区域边界附近仍使信用分配变慢，两个额外组件加速了学习：当动力学和恢复都是确定性时，对触发恢复的状态的闭式价值函数，以及仅在恢复成功时复制恢复动作的模仿损失。在三个环境、五个种子的基准测试中，与标准PPO相比，所得算法在HalfCheetah、Ant和Unitree Go1上将训练期间的摔倒次数分别减少了233倍、48倍和26倍，同时匹配或超过了PPO的最终奖励；在Ant上，当恢复策略不可靠时，它是唯一达到最佳最终奖励80%的方法。",
+  "tldr_zh": "提出无偏策略梯度方法，在带恢复干预的强化学习中大幅减少训练摔倒次数。",
+  "cover_zh": "摔倒次数直降233倍｜这个强化学习算法让机器人训练不再摔坏",
+  "authors": [
+    {
+      "name": "Elham Daneshmand",
+      "affiliation": ""
+    },
+    {
+      "name": "Majid Khadiv",
+      "affiliation": ""
+    },
+    {
+      "name": "Glen Berseth",
+      "affiliation": ""
+    },
+    {
+      "name": "Hsiu-Chin Lin",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.LG",
+  "categories": [
+    "cs.LG"
+  ],
+  "published": "2026-07-09",
+  "updated": "2026-07-09",
+  "arxiv_id": "2607.08925",
+  "pdf_url": "https://arxiv.org/pdf/2607.08925v1",
+  "abs_url": "http://arxiv.org/abs/2607.08925v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2607-08925.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2607-08925-p2.jpg",
+    "assets/img/covers/arxiv-2607-08925-p3.jpg",
+    "assets/img/covers/arxiv-2607-08925-p4.jpg"
+  ],
+  "channels": [
+    "locomotion"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ TUM"
+    }
+  ],
+  "related_links": [],
+  "page_count": 39,
+  "source_tags": [],
+  "score": 31,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “TUM” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（unitree go）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 39 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "locomotion",
+    "reason": "提出无偏策略梯度方法减少训练中摔倒，在Unitree Go1真机验证，对具身机器人RL有重要参考价值",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "McGill University & Mila",
+    "Technical University of Munich",
+    "Université de Montréal & Mila"
+  ],
+  "method_tags": [
+    "PPO",
+    "unbiased policy gradient",
+    "recovery interventions"
+  ],
+  "platform": [
+    "Unitree Go1"
+  ],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "no",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {}
+}
