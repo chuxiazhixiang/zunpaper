@@ -18,7 +18,7 @@ log = logging.getLogger(__name__)
 
 DIGEST_DIR = SITE_DIR / "digest"
 RSS_PATH = SITE_DIR / "rss.xml"
-SITE_URL = "https://Nangongyeee.github.io/redpaper"
+SITE_URL = "https://chuxiazhixiang.github.io/zunpaper"
 
 
 def _md_paper(p: Paper) -> str:
@@ -50,7 +50,7 @@ def write_markdown_digest(papers: list[Paper], day: str | None = None) -> Path |
         return None
     DIGEST_DIR.mkdir(parents=True, exist_ok=True)
     out = DIGEST_DIR / f"{day}.md"
-    body = ["# redpaper · " + day, "", f"今天精选 {len(day_papers)} 篇人形机器人论文：", ""]
+    body = ["# Zunpaper · " + day, "", f"今天精选 {len(day_papers)} 篇论文：", ""]
     for p in day_papers:
         body.append(_md_paper(p))
         body.append("")
@@ -87,9 +87,9 @@ def write_rss(papers: list[Paper], limit: int = 50) -> Path:
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
         "<rss version=\"2.0\">\n"
         "  <channel>\n"
-        "    <title>redpaper</title>\n"
+        "    <title>Zunpaper</title>\n"
         f"    <link>{SITE_URL}/</link>\n"
-        "    <description>每日人形机器人论文小红书</description>\n"
+        "    <description>每日人形机器人论文呐诺达</description>\n"
         f"    <lastBuildDate>{dt.datetime.now(dt.timezone.utc).strftime('%a, %d %b %Y %H:%M:%S +0000')}</lastBuildDate>\n"
         f"{items}\n"
         "  </channel>\n"

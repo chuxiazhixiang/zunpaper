@@ -40,7 +40,7 @@ TIMEOUT = 90
 
 
 SYSTEM_PROMPT = (
-    "你是人形 / 机器人领域月度综述编辑。我会给你一个月内被 redpaper 收录的论文 + 视频"
+    "你是人形 / 机器人领域月度综述编辑。我会给你一个月内被 Zunpaper 收录的论文 + 视频"
     "清单（每条已经经过 DeepSeek 把关，质量都过关）。请写一份 1500–2000 字的中文综述，"
     "面向已经在做人形 / 机器人研究的读者（不是科普）。\n"
     "\n"
@@ -126,7 +126,7 @@ def _format_paper_brief(p: Paper) -> str:
 
 
 def _build_user_prompt(year_month: str, papers: list[Paper]) -> str:
-    head = f"以下是 redpaper 在 {year_month} 月份收录的 {len(papers)} 篇论文 / 视频：\n\n"
+    head = f"以下是 Zunpaper 在 {year_month} 月份收录的 {len(papers)} 篇论文 / 视频：\n\n"
     body = "\n".join(_format_paper_brief(p) for p in papers)
     tail = "\n\n请按 system prompt 里的 4 段结构写综述，输出 JSON。"
     return head + body + tail
@@ -224,7 +224,7 @@ def write_digest_files(d: MonthlyDigest, repo_root: Path | None = None) -> Path:
     md_lines = [
         f"# {d.year_month} 月度领域综述",
         "",
-        f"_由 redpaper（{d.model}）自动生成，覆盖 {d.paper_count} 篇论文 / 视频；{d.generated_at}_",
+        f"_由 Zunpaper（{d.model}）自动生成，覆盖 {d.paper_count} 篇论文 / 视频；{d.generated_at}_",
         "",
         f"**一句话：** {d.headline}",
         "",

@@ -1,8 +1,10 @@
-/* redpaper — Xiaohongshu-inspired daily paper feed */
+/* Zunpaper — Xiaohongshu-inspired daily paper feed */
 
 :root {
-  --rp-red: #FF2442;
-  --rp-red-soft: #FF6B8A;
+  --rp-red: #7BC83A;
+  --rp-red-soft: #A3DD68;
+  --rp-primary: #7BC83A;
+  --rp-accent: #A3DD68;
   --rp-bg: #F7F7F7;
   --rp-surface: #FFFFFF;
   --rp-text: #1F1F1F;
@@ -103,7 +105,7 @@ img {
   height: 32px;
   border-radius: 8px;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--rp-red), var(--rp-red-soft));
+  background: transparent;
   color: white;
   font-weight: 800;
   align-items: center;
@@ -255,7 +257,7 @@ img {
   background: var(--rp-red);
   color: #fff;
   border-color: var(--rp-red);
-  box-shadow: 0 2px 10px rgba(255, 36, 66, 0.28);
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--rp-red) 28%, transparent);
 }
 
 .rp-modeswitch__icon {
@@ -452,7 +454,7 @@ img {
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.5px;
-  box-shadow: 0 4px 14px rgba(255, 46, 77, 0.22);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--rp-red) 22%, transparent);
 }
 .rp-week__chip-emoji {
   font-size: 16px;
@@ -847,10 +849,10 @@ img {
    Pastel paper, decorative "washi tape" top-left, subtle dot grid.
    ================================================================ */
 .rp-cover--washi {
-  --rp-washi-bg: #fef0f3;
-  --rp-washi-tape: #ff8aa0;
-  --rp-washi-text: #6b2030;
-  --rp-washi-grid: rgba(120, 60, 80, 0.10);
+  --rp-washi-bg: #edf7e8;
+  --rp-washi-tape: #7BC83A;
+  --rp-washi-text: #2a5a20;
+  --rp-washi-grid: rgba(60, 120, 40, 0.10);
   background-color: var(--rp-washi-bg);
   color: var(--rp-washi-text);
 }
@@ -892,7 +894,7 @@ img {
 }
 
 /* 6 light pastel washi variants — pink / blue / green / purple / yellow / peach */
-.rp-cover--washi.c0 { --rp-washi-bg: #fef0f3; --rp-washi-tape: #ff8aa0; --rp-washi-text: #6b2030; --rp-washi-grid: rgba(120, 60, 80, 0.10); }
+.rp-cover--washi.c0 { --rp-washi-bg: #edf7e8; --rp-washi-tape: #7BC83A; --rp-washi-text: #2a5a20; --rp-washi-grid: rgba(60, 120, 40, 0.10); }
 .rp-cover--washi.c1 { --rp-washi-bg: #eef4fc; --rp-washi-tape: #7eb0e0; --rp-washi-text: #1a3050; --rp-washi-grid: rgba(50, 80, 130, 0.10); }
 .rp-cover--washi.c2 { --rp-washi-bg: #eef7eb; --rp-washi-tape: #82c179; --rp-washi-text: #1f4326; --rp-washi-grid: rgba(50, 100, 60, 0.10); }
 .rp-cover--washi.c3 { --rp-washi-bg: #f3edf9; --rp-washi-tape: #b294d2; --rp-washi-text: #3a1a55; --rp-washi-grid: rgba(90, 60, 130, 0.10); }
@@ -952,7 +954,7 @@ img {
 }
 
 /* 6 light pastel magazine variants — pink / blue / green / purple / yellow / lavender */
-.rp-cover--magazine.c0 { --rp-mag-bg: #fbe9ed; --rp-mag-accent: #c52a4a; --rp-mag-text: #2a1018; }
+.rp-cover--magazine.c0 { --rp-mag-bg: #e8f5e0; --rp-mag-accent: #5BAF3A; --rp-mag-text: #1a3a10; }
 .rp-cover--magazine.c1 { --rp-mag-bg: #e6f0f9; --rp-mag-accent: #2c5d8c; --rp-mag-text: #11233a; }
 .rp-cover--magazine.c2 { --rp-mag-bg: #ebf5e6; --rp-mag-accent: #4a8a4f; --rp-mag-text: #1a3220; }
 .rp-cover--magazine.c3 { --rp-mag-bg: #f0e8f7; --rp-mag-accent: #6a3d9a; --rp-mag-text: #21143a; }
@@ -1509,13 +1511,13 @@ img {
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(255, 36, 66, 0.32);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--rp-red) 32%, transparent);
   transition: transform 0.2s, box-shadow 0.2s;
   z-index: 5;
 }
 .rp-post-deck__scroll-cta:hover {
   transform: translateX(-50%) translateY(-2px);
-  box-shadow: 0 6px 18px rgba(255, 36, 66, 0.45);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--rp-red) 45%, transparent);
 }
 
 /* The "body article" — full post content rendered NORMALLY below the
@@ -1523,6 +1525,31 @@ img {
 .rp-post__body {
   max-width: 720px;
   margin: 28px auto 0;
+  transition: max-width 0.25s ease, margin 0.25s ease;
+}
+
+/* 面板打开时页眉下方所有内容左移 */
+@media (min-width: 1024px) {
+  .rp-note-open main,
+  .rp-note-open .rp-modeswitch,
+  .rp-note-open .rp-tabs,
+  .rp-note-open .rp-footer,
+  .rp-note-open .rp-conf,
+  .rp-note-open .rp-venuebar {
+    margin-right: min(50vw, 720px);
+    margin-left: 24px;
+    transition: margin-right 0.25s ease, margin-left 0.25s ease;
+  }
+}
+@media (max-width: 1023px) {
+  /* 中窄屏：内容不动，面板覆盖在上方 */
+  .rp-note-open main,
+  .rp-note-open .rp-modeswitch,
+  .rp-note-open .rp-tabs,
+  .rp-note-open .rp-footer,
+  .rp-note-open .rp-conf,
+  .rp-note-open .rp-venuebar { margin-right: 0; }
+}
   padding: 24px 28px 56px;
   background: var(--rp-surface);
   border-radius: var(--rp-radius-lg);
@@ -1633,9 +1660,19 @@ img {
 
 .rp-post__actions {
   display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0 24px;
+}
+.rp-post__actions-row {
+  display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 16px 0 24px;
+  align-items: center;
+}
+.rp-post__actions-row + .rp-post__actions-row {
+  padding-top: 10px;
+  border-top: 1px solid var(--rp-border);
 }
 
 .rp-btn {
@@ -1663,8 +1700,8 @@ img {
 }
 
 .rp-btn--primary:hover {
-  background: #e91d3a;
-  border-color: #e91d3a;
+  background: color-mix(in srgb, var(--rp-red) 85%, black);
+  border-color: color-mix(in srgb, var(--rp-red) 85%, black);
   color: white;
 }
 
@@ -2001,7 +2038,7 @@ img {
   transition: transform 0.18s, background 0.18s;
 }
 .rp-video__facade:hover .rp-video__play {
-  background: rgba(255, 0, 0, 1);
+  background: rgba(123, 200, 58, 1);
   transform: translate(-50%, -50%) scale(1.06);
 }
 .rp-video__brand {
@@ -2657,3 +2694,85 @@ img {
   color: var(--rp-text);
   background: color-mix(in srgb, var(--rp-red) 8%, transparent);
 }
+
+/* ====== 笔记面板 ====== */
+.rp-note-panel {
+  position: fixed;
+  top: 56px;
+  right: 0;
+  width: 50%;
+  max-width: 720px;
+  height: calc(100vh - 56px);
+  z-index: 9999;
+  background: var(--rp-surface);
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  animation: rp-slide-in 0.25s ease;
+}
+@keyframes rp-slide-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+/* 窄屏：面板占满全屏（仍不盖页眉） */
+@media (max-width: 768px) {
+  .rp-note-panel { width: 100%; max-width: 100%; box-shadow: none; }
+}
+.rp-note-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--rp-border);
+  font-weight: 700;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.rp-note-panel__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 18px;
+}
+
+/* 笔记渲染样式 */
+.rp-note-render {
+  font-size: 14px;
+  line-height: 1.7;
+  word-break: break-word;
+}
+.rp-note-render .rp-note-frontmatter {
+  font-size: 12px;
+  color: var(--rp-text-dim);
+  background: color-mix(in srgb, var(--rp-text) 4%, transparent);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  font-family: monospace;
+  line-height: 1.5;
+}
+.rp-note-render h1, .rp-note-render h2, .rp-note-render h3, .rp-note-render h4 {
+  font-family: var(--rp-font-serif);
+  margin: 16px 0 8px;
+}
+.rp-note-render h1 { font-size: 18px; }
+.rp-note-render h2 { font-size: 16px; }
+.rp-note-render h3 { font-size: 15px; }
+.rp-note-render p { margin: 8px 0; }
+.rp-note-render blockquote {
+  border-left: 3px solid var(--rp-red);
+  margin: 8px 0;
+  padding: 4px 12px;
+  color: var(--rp-text-soft);
+  background: color-mix(in srgb, var(--rp-red) 4%, transparent);
+  border-radius: 0 6px 6px 0;
+}
+.rp-note-render ul, .rp-note-render ol { padding-left: 20px; margin: 8px 0; }
+.rp-note-render li { margin: 4px 0; }
+.rp-note-render hr { border: none; border-top: 1px solid var(--rp-border); margin: 16px 0; }
+.rp-note-render code {
+  background: color-mix(in srgb, var(--rp-text) 8%, transparent);
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-size: 13px;
+}
+

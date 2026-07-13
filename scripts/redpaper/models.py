@@ -67,6 +67,9 @@ class Paper:
     # GitHub 开源项目卡专属元数据（source == "github" 时填充）。前端用来在卡片上
     # 展示 ⭐ star / 语言 / 最近更新，并直链到仓库。
     github: dict = field(default_factory=dict)                            # {owner, repo, stars, language, pushed_at, created_at, topics}
+    # DeepSeek 生成的论文笔记（markdown 格式），包含动机/方法/结果/启发等结构化内容。
+    # build 时生成并缓存，同一篇不重复付费。可手动删除重新生成。
+    note: str = ""
 
     def to_dict(self) -> dict[str, Any]:
         d = asdict(self)

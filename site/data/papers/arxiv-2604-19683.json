@@ -166,5 +166,6 @@
   "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
-  "github": {}
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/VideoGen\nTitle: \"Mask World Model: Predicting What Matters for Robust Robot Policy Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2604.19683v2\n---\n>[!abstract] 一句话总结：提出Mask World Model (MWM)，使用视频扩散架构预测语义掩码的演化而非像素，引入几何信息瓶颈，再与扩散策略头集成实现端到端鲁棒控制。\n\n\n# 一、动机\n\n> 标准世界模型基于RGB像素预测，容易过拟合动态背景和光照变化等无关因素，导致泛化能力弱和控制策略不可靠。\n\n\n# 二、方法\n\n> 提出Mask World Model (MWM)，使用视频扩散架构预测语义掩码的演化而非像素，引入几何信息瓶颈，再与扩散策略头集成实现端到端鲁棒控制。\n\n\n# 三、核心实验结果\n\n> 在LIBERO和RLBench仿真基准上，MWM显著优于基于RGB的世界模型（例如LIBERO-90成功率提升约10个百分点）；真实世界实验和随机token剪枝测试表明其泛化能力和对纹理信息损失的鲁棒性更强。\n\n\n# 四、对我的启发\n\n> 通过预测语义掩码而非像素，强制模型关注核心物理动态和接触关系，提升了策略的鲁棒性；但掩码的获取依赖语义分割，可能引入标注成本，且对复杂场景的适用性有待验证。\n"
 }

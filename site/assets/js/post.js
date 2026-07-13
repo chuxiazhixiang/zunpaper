@@ -1,6 +1,6 @@
 // Detail page: load /data/papers/{id}.json, render hero + bilingual content.
 
-import { Favorites, Curated, Reads, Theme } from './storage.js?v=6737526f';
+import { Favorites, Curated, Reads, Theme } from './storage.js?v=6b44cc98';
 import {
   escapeHTML,
   formatAuthors,
@@ -13,7 +13,7 @@ import {
   HEART_SVG_OUTLINE,
   HEART_SVG_FILL,
   fetchJSON,
-} from './utils.js?v=6737526f';
+} from './utils.js?v=6b44cc98';
 
 let _palettes = [];
 
@@ -281,7 +281,7 @@ function renderPaper(p, all) {
   const source = (p.source || '').toUpperCase();
   const paletteStyle = coverStyleAttr(p.id, _palettes, cover.style);
 
-  document.title = `${titleZh} · redpaper`;
+  document.title = `${titleZh} · Zunpaper`;
 
   // The post layout = visual 2-slide carousel (cover + PDF preview) + a normal
   // page-flow body section below. The body is ALWAYS in the document; the
@@ -373,19 +373,24 @@ function renderPaper(p, all) {
       ${postVideosHTML(p)}
 
       <div class="rp-post__actions">
-        ${p.abs_url ? `<a class="rp-btn rp-btn--primary" href="${escapeHTML(p.abs_url)}" target="_blank" rel="noopener">${
-          (p.source || '').toLowerCase() === 'arxiv' ? '打开 arXiv'
-            : (p.source || '').toLowerCase() === 'qbitai' ? '阅读 · 量子位'
-            : (p.source || '').toLowerCase() === 'jiqizhixin' ? '阅读 · 机器之心'
-            : (p.source || '').toLowerCase() === 'synced_review' ? '阅读 · 新智元'
-            : '阅读原文'
-        }</a>` : ''}
-        ${p.pdf_url ? `<a class="rp-btn" href="${escapeHTML(p.pdf_url)}" target="_blank" rel="noopener">下载 PDF</a>` : ''}
-        <button class="rp-btn" id="bibtex-btn">复制 BibTeX</button>
-        <button class="rp-btn" id="share-btn">复制链接</button>
-        <button class="rp-btn ${Favorites.has(p.id) ? 'rp-btn--primary' : ''}" id="fav-btn">${heart} <span id="fav-label">${Favorites.has(p.id) ? '已收藏' : '收藏'}</span></button>
-        <button class="rp-btn" id="fav-cat-btn" title="分类管理">📁 分类</button>
-        <button class="rp-btn ${Curated.has(p.id) ? 'rp-btn--primary' : ''}" id="gem-btn" title="标记为高质量（站长甄选）">💎 <span id="gem-label">${Curated.has(p.id) ? '已标高质量' : '标记高质量'}</span></button>
+        <div class="rp-post__actions-row">
+          ${p.abs_url ? `<a class="rp-btn rp-btn--primary" href="${escapeHTML(p.abs_url)}" target="_blank" rel="noopener">${
+            (p.source || '').toLowerCase() === 'arxiv' ? '打开 arXiv'
+              : (p.source || '').toLowerCase() === 'qbitai' ? '阅读 · 量子位'
+              : (p.source || '').toLowerCase() === 'jiqizhixin' ? '阅读 · 机器之心'
+              : (p.source || '').toLowerCase() === 'synced_review' ? '阅读 · 新智元'
+              : '阅读原文'
+          }</a>` : ''}
+          ${p.pdf_url ? `<a class="rp-btn" href="${escapeHTML(p.pdf_url)}" target="_blank" rel="noopener">下载 PDF</a>` : ''}
+          <button class="rp-btn" id="bibtex-btn">复制 BibTeX</button>
+          <button class="rp-btn" id="share-btn">复制链接</button>
+          <button class="rp-btn" id="note-btn">查看笔记</button>
+        </div>
+        <div class="rp-post__actions-row">
+          <button class="rp-btn ${Favorites.has(p.id) ? 'rp-btn--primary' : ''}" id="fav-btn">${heart} <span id="fav-label">${Favorites.has(p.id) ? '已收藏' : '收藏'}</span></button>
+          <button class="rp-btn" id="fav-cat-btn" title="分类管理">📁 分类</button>
+          <button class="rp-btn ${Curated.has(p.id) ? 'rp-btn--primary' : ''}" id="gem-btn" title="标记为高质量（站长甄选）">💎 <span id="gem-label">${Curated.has(p.id) ? '已标高质量' : '标记高质量'}</span></button>
+        </div>
       </div>
 
       ${
@@ -452,6 +457,124 @@ function renderPaper(p, all) {
       showToast('复制失败');
     }
   });
+
+  // ====== 笔记面板 ======
+  const noteBtn = document.querySelector('#note-btn');
+  const notePanel = document.querySelector('#note-panel');
+  const noteCloseBtn = document.querySelector('#note-panel-close');
+  const noteEmpty = document.querySelector('#note-empty');
+  const noteContent = document.querySelector('#note-content');
+  const noteText = document.querySelector('#note-text');
+
+  function noteOpen() { notePanel.style.display = 'flex'; document.body.classList.add('rp-note-open'); }
+  function noteClose() { notePanel.style.display = 'none'; document.body.classList.remove('rp-note-open'); }
+
+  noteBtn?.addEventListener('click', () => {
+    noteOpen();
+    if (p.note) {
+      noteEmpty.style.display = 'none';
+      noteContent.style.display = 'block';
+      noteText.innerHTML = renderMarkdown(p.note);
+    } else {
+      noteEmpty.style.display = 'block';
+      noteContent.style.display = 'none';
+    }
+  });
+
+  document.querySelector('#note-copy-btn')?.addEventListener('click', async () => {
+    if (!p.note) return;
+    try {
+      await navigator.clipboard.writeText(p.note);
+      showToast('笔记已复制');
+    } catch {
+      // 降级：创建临时 textarea
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = p.note;
+        ta.style.position = 'fixed'; ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        showToast('笔记已复制');
+      } catch {
+        showToast('复制失败，请手动复制');
+      }
+    }
+  });
+
+  document.querySelector('#note-download-btn')?.addEventListener('click', () => {
+    if (!p.note) return;
+    const blob = new Blob([p.note], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = p.id + '.md';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  noteCloseBtn?.addEventListener('click', noteClose);
+  notePanel?.addEventListener('click', (e) => {
+    if (e.target === notePanel) noteClose();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && notePanel?.style.display === 'flex') noteClose();
+  });
+
+  // 简单 markdown → HTML 渲染
+  function renderMarkdown(md) {
+    // YAML front matter
+    let body = md;
+    let frontHtml = '';
+    const ym = body.match(/^---\n([\s\S]*?)\n---\n/);
+    if (ym) {
+      const yaml = ym[1].replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+      frontHtml = '<div class="rp-note-frontmatter">' + yaml + '</div>';
+      body = body.slice(ym[0].length);
+    }
+
+    function esc(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function inline(t) {
+      return t
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    }
+
+    const lines = body.split('\n');
+    const out = [];
+    let inBq = false;
+
+    for (let i = 0; i < lines.length; i++) {
+      let line = lines[i];
+      if (line.trim() === '') { if (inBq) { out.push('</blockquote>'); inBq = false; } continue; }
+      if (line.trim() === '---') continue;
+
+      const bqm = line.match(/^>\s?(.*)$/);
+      if (bqm) {
+        if (!inBq) { out.push('<blockquote>'); inBq = true; }
+        out.push(inline(esc(bqm[1])));
+        continue;
+      }
+      if (inBq) { out.push('</blockquote>'); inBq = false; }
+
+      const hm = line.match(/^(#{1,4})\s+(.+)$/);
+      if (hm) { out.push('<h' + hm[1].length + '>' + inline(esc(hm[2])) + '</h' + hm[1].length + '>'); continue; }
+
+      if (/^[-*_]{3,}\s*$/.test(line.trim())) { out.push('<hr>'); continue; }
+
+      const lm = line.match(/^[-*+]\s+(.+)$/);
+      if (lm) { out.push('<li>' + inline(esc(lm[1])) + '</li>'); continue; }
+
+      out.push('<p>' + inline(esc(line)) + '</p>');
+    }
+    if (inBq) out.push('</blockquote>');
+
+    const html = out.join('\n').replace(/((?:<li>.*?<\/li>\n?)+)/g, '<ul>$1</ul>');
+    return frontHtml + html;
+  }
 
   // Trigger KaTeX after dynamic insert (the inline onload only handles the
   // initial body, which is empty when modules execute).

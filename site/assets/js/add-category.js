@@ -1,8 +1,8 @@
 // 「加分类」表单：把站长填的内容生成一个 channels.d/<id>.yaml 配置文件，
 // 供下载 / 复制。纯前端，不依赖后端。生成的 YAML 与 config/channels.d 加载器
 // （config.load_channels）和 B 方案独立判定（judge.judge_paper_for_channel）对齐。
-import { Theme } from './storage.js?v=6737526f';
-import { attachSearchRedirect } from './utils.js?v=6737526f';
+import { Theme } from './storage.js?v=6b44cc98';
+import { attachSearchRedirect } from './utils.js?v=6b44cc98';
 
 Theme.init();
 attachSearchRedirect();
@@ -86,7 +86,7 @@ function collectExamples() {
 // ---- 生成 YAML 文本 --------------------------------------------------------
 function buildYAML(d) {
   let s = '';
-  s += '# redpaper 自定义分类 —— 由网页「加分类」表单生成\n';
+  s += '# Zunpaper 自定义分类 —— 由网页「加分类」表单生成\n';
   s += '# 用法：把本文件放进仓库 config/channels.d/ 文件夹，提交后重新构建即可。\n';
   s += `id: ${q(d.id || 'your-id')}\n`;
   s += `name: ${q(d.name || '未命名分类')}\n`;

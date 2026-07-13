@@ -3,7 +3,7 @@
 // every visitor's data is private to their browser — nothing flows back to
 // the static repo.
 
-const NS = 'redpaper:';
+const NS = 'zunpaper:';
 
 function readSet(key) {
   try {

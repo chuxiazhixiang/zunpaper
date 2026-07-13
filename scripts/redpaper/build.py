@@ -23,6 +23,7 @@ from .scoring import score_paper
 from .venues import parse_venue
 from .models import Paper, Author, load_paper, save_paper
 from .render import fetch_and_render, extract_head_text as fetch_head_text
+from .note import generate_note
 from .sources import arxiv_source
 from .sources import hf_daily as hf_daily_source
 from .sources import semantic_scholar as ss_source
@@ -656,6 +657,13 @@ def process_new_papers(
 
         if enrich_ctx is not None:
             enrich_ctx.apply(paper)
+
+        # 生成论文笔记：只对没有 note 的论文生成，有缓存的跳过
+        if not paper.note:
+            note = generate_note(paper)
+            if note:
+                paper.note = note
+                log.info("note generated: %s (%d chars)", paper.id, len(note))
 
         save_paper(paper, cfg.PAPERS_DIR)
         processed.append(paper)
@@ -1822,6 +1830,9 @@ def run() -> None:
     # （每篇 1 次 LLM）会撞 CI 超时。每轮最多翻 N 篇（按发布日倒序优先近期），其余下轮。
     translate_budget = int(os.environ.get("REDPAPER_TRANSLATE_BACKFILL", "250") or "250")
     translated = 0
+    # 笔记 backfill：存量未生成笔记的论文，每轮补 N 篇。
+    note_budget = int(os.environ.get("REDPAPER_NOTE_BACKFILL", "30") or "30")
+    noted = 0
     all_papers = list(_existing_papers().values())
     all_papers.sort(key=lambda p: (p.published or "", p.id), reverse=True)
     for paper in all_papers:
@@ -1859,6 +1870,13 @@ def run() -> None:
             paper.cover_zh = t.cover_zh or paper.cover_zh or paper.tldr_zh
             translated += 1
             log.info("back-fill translation: %s", paper.id)
+
+        if noted < note_budget and not paper.note:
+            note = generate_note(paper)
+            if note:
+                paper.note = note
+                noted += 1
+                log.info("note backfill: %s (%d chars)", paper.id, len(note))
 
         ctx.apply(paper)
         save_paper(paper, cfg.PAPERS_DIR)
