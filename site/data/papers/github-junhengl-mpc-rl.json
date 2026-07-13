@@ -1,0 +1,73 @@
+{
+  "id": "github-junhengl-mpc-rl",
+  "source": "github",
+  "title": "junhengl/mpc-rl",
+  "title_zh": "junhengl/mpc-rl",
+  "abstract": "MPC-guided RL for Humanoid Locomotion and Manipulation\n\n# Training-time MPC Guidance in Reinforcement Learning for Humanoid Loco-Manipulation Accelerating and Scaling MPC-Guided Reinforcement Learning for Humanoid Locomotion and Manipulation Junheng Li · Liang Wu · Sergio A. Esteban · Lizhi Yang · Ján Drgoňa · Aaron D. Ames arXiv:2606.05687 Humanoid locomotion and manipulation RL, guided at training time by a **GPU-batched centroidal model-predictive controller (MPC)**, solved in parallel by **$\\pi^n$ MPC**. A centroidal QP-MPC is solved for every environment at the policy rate. Its optimal plan — CoM and momentum trajectory, ground-reaction forces, foot placements, and (for manipulation) hand push forces — is fed into the RL environment to shape the reward and inform the critic. The policy therefore learns to *track an optimal model-based plan* rather than to discover dynamic locomotion and manipulation from scratch. This repository contains only the training environments, the MPC, and the proposed batch MPC solver **$\\pi^n$ MPC** in JAX and PyTorch. ## Tasks | Task ID | Description | |---|---| | `Mjlab-MPC-Guided-Locomotion-Themis` | MPC-guided velocity locomotion on flat terrain. | | `Mjlab-MPC-Guided-Loco-manipulation-Themis` | MPC-guided loco-manipulation — walking and pushing a box. | ## Setup Requires Python 3.11–3.13 and a CUDA 12 GPU. This installs everything: `mjlab` (MuJoCo / `mujoco-warp` / PyTorch / `rsl_rl`), `scipy`, and `jax[cuda12]` for the JAX PiMPC solver. ## Training Trained with mjlab's `train` entry point and 4096 parallel environments: Resume from a checkpoint (regex match on the run-directory timestamp; omit `--agent.load-checkpoint` to take the latest): Play back a trained policy: ## MPC & solvers The centroidal MPC lives in [`src/themis_mpc/`](src/themis_mpc/): `CentroidalMPC` (locomotion) and `LocoManipMPC` (adds hand push-force variables). The QP is built over a short horizon from a phase-driven contact schedule and solved **batched across all environments in a single call**, selected per task",
+  "abstract_zh": "本文提出一种训练时由GPU批处理质心模型预测控制器（MPC）引导的强化学习方法，用于人形机器人的行走与操作任务。该MPC通过$\\pi^n$ MPC并行求解，为每个环境以策略频率求解质心QP-MPC，其最优规划——包括质心与动量轨迹、地面反作用力、落脚点以及（对于操作任务）手部推力——被输入到RL环境中以塑造奖励并指导评论家。因此，策略学习的是跟踪最优模型规划，而非从头发现动态行走与操作。本仓库仅包含训练环境、MPC以及所提出的批处理MPC求解器$\\pi^n$ MPC（基于JAX和PyTorch实现）。",
+  "tldr_zh": "训练时用GPU批处理MPC引导RL，让人形机器人学会跟踪最优模型规划。",
+  "cover_zh": "训练时开挂｜MPC引导RL让人形机器人行走操作一步到位",
+  "authors": [
+    {
+      "name": "junhengl",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2026-06-10",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/junhengl/mpc-rl",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "loco-manip-wbc"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 39,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 39,
+      "hint": "⭐ 86"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "loco-manip-wbc",
+    "reason": "官方算法仓库，MPC引导的人形全身控制RL，含批处理MPC求解器，方向吻合且实用。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "全身控制"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "junhengl",
+    "repo": "mpc-rl",
+    "stars": 86,
+    "language": "Python",
+    "pushed_at": "2026-06-10",
+    "created_at": "2026-06-03",
+    "topics": [],
+    "archived": false
+  }
+}

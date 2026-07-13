@@ -2,7 +2,7 @@
 //   - 收起态：只显示最近 2-3 个临近截止的小药丸（不抢下方帖子版面）。
 //   - 「全部会议 ▾」展开一个面板，列出所有会议：截止倒计时 + 开会时间地点 + 主页。
 //   - 点会议名 → 跳到该会议的论文（index.html?venue=<基名>，feed.js 会按 venue 筛选）。
-import { escapeHTML, fetchJSON } from './utils.js?v=fd0e13f6';
+import { escapeHTML, fetchJSON } from './utils.js?v=6737526f';
 
 const DAY = 86400000;
 
