@@ -96,5 +96,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/PointCloud\n  - 状态/待读\nTitle: \"Cross4D-JEPA: Dense Cross-modal Correspondence Distillation for 4D Point Cloud Representation Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.00514v1\n---\n>[!abstract] 一句话总结：提出Cross4D-JEPA，采用教师-学生框架，将冻结的2D图像/视频基础模型（DINOv2或V-JEPA 2）的密集块特征蒸馏到4D点编码器，通过每点映射对应和潜在空间匹配目标（无掩码、负样本或解码器）进行训练。\n\n\n# 一、动机\n\n> 现有4D点云自监督预训练大多为模态内任务，少数跨模态方法使用全局嵌入丢弃了局部语义，导致表示不够丰富。本文旨在利用冻结的2D基础模型的密集逐块特征，通过跨模态对应蒸馏学习更有效的4D点云表示。\n\n\n# 二、方法\n\n> 提出Cross4D-JEPA，采用教师-学生框架，将冻结的2D图像/视频基础模型（DINOv2或V-JEPA 2）的密集块特征蒸馏到4D点编码器，通过每点映射对应和潜在空间匹配目标（无掩码、负样本或解码器）进行训练。\n\n\n# 三、核心实验结果\n\n> 在MSR-Action3D、DeformingThings4D、NTU-RGB+D 60和HOI4D四个基准上，Cross4D-JEPA一致优于模态内和全局跨模态基线，且与更重的已发表方法性能相当；全标签微调下，13倍小的编码器（参数更少）即可匹配重池化骨干的识别准确率。\n\n\n# 四、对我的启发\n\n> 密集跨模态对应的粒度是性能提升的关键而非教师模态本身，表明局部语义蒸馏对4D点云表示学习至关重要；该方法在标签效率和跨域迁移上也有优势，但教师模型的选择可能影响泛化，未来可探索更高效的对应策略或联合多种模态教师。\n"
 }
