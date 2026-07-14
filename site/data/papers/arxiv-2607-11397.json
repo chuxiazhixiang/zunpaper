@@ -91,7 +91,8 @@
     "assets/img/covers/arxiv-2607-11397-p4.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -102,13 +103,13 @@
   "related_links": [],
   "page_count": 12,
   "source_tags": [],
-  "score": 22,
+  "score": 30,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 9,
-      "hint": "频道关键词命中 3 个（manipulation、robocasa、robotwin）"
+      "points": 12,
+      "hint": "频道关键词命中 5 个（manipulation、robocasa、robotwin、world model）"
     },
     {
       "id": "freshness",
@@ -121,6 +122,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 12 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -148,5 +155,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"WALA Learning Executable Latent Actions from Action-Labeled Demonstrations and Action-Free Videos\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.11397v1\n---\n>[!abstract] 一句话总结：WALA预训练语义-几何潜在动作模型，通过预测观测在DINOv3特征和深度空间的差异；策略训练联合监督动作预测、潜在目标匹配和动力学预测。\n\n\n# 一、动机\n\n> 机器人策略依赖昂贵的动作标签数据，难以规模化。WALA通过利用无动作视频和少量标签数据学习可执行潜在动作，降低数据成本。\n\n\n# 二、方法\n\n> WALA预训练语义-几何潜在动作模型，通过预测观测在DINOv3特征和深度空间的差异；策略训练联合监督动作预测、潜在目标匹配和动力学预测。\n\n\n# 三、核心实验结果\n\n> 在RoboTwin上表现强劲，在RoboCasa上达到75.2%平均成功率（新SOTA），真实世界操作任务提升性能和泛化。\n\n\n# 四、对我的启发\n\n> 结合无动作视频和少量标签数据预训练潜在动作，减少人工依赖；但潜在动作可解释性及泛化性需进一步验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"WALA Learning Executable Latent Actions from Action-Labeled Demonstrations and Action-Free Videos\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.11397v1\n---\n>[!abstract] 一句话总结：WALA先利用视频预训练语义-几何潜在动作模型（通过预测观测在DINOv3特征和密集深度空间中的未来变化），然后在策略训练中联合优化动作预测、潜在动作匹配和未来动态预测，使有标签数据提供执行监督，无标签视频提供动态监督。\n\n\n# 一、动机\n\n> 有动作标签的机器人演示数据昂贵且难以扩展，而大规模人类和机器人视频缺乏可执行的动作标签，限制了策略泛化。\n\n\n# 二、方法\n\n> WALA先利用视频预训练语义-几何潜在动作模型（通过预测观测在DINOv3特征和密集深度空间中的未来变化），然后在策略训练中联合优化动作预测、潜在动作匹配和未来动态预测，使有标签数据提供执行监督，无标签视频提供动态监督。\n\n\n# 三、核心实验结果\n\n> 在RoboCasa上达到75.2%的平均成功率，刷新最先进水平；在RoboTwin上表现强劲，并在真实世界操控任务中提升了策略性能和泛化能力。\n\n\n# 四、对我的启发\n\n> 与课题相关，创新点在于利用无动作视频的语义-几何演化作为额外监督信号，减少对昂贵动作标签的依赖，可启发更高效的数据利用方法。\n"
 }

@@ -55,7 +55,9 @@
     "assets/img/covers/arxiv-2607-11041-p4.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc",
+    "locomotion"
   ],
   "badges": [
     {
@@ -86,7 +88,7 @@
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 61,
+  "score": 75,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -103,8 +105,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（manipulation）"
+      "points": 12,
+      "hint": "频道关键词命中 9 个（manipulation、whole-body、whole-body control、motion tracking）"
     },
     {
       "id": "freshness",
@@ -117,6 +119,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 9 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 3 个频道"
     }
   ],
   "judge": {
@@ -144,5 +152,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/WholeBodyControl\nTitle: \"PAKE: Learning Whole-Body Loco-Manipulation with Partial Kinematic Embeddings\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.11041v1\n---\n>[!abstract] 一句话总结：提出PAKE框架，将问题分解为部分参考运动生成和低级模仿控制，通过Kinematic Normalizing Flow模型生成多样可行的部分参考运动，并在潜空间中搜索冗余解。\n\n\n# 一、动机\n\n> 现有全身运动操控方法在高自由度下难以实现高精度控制、管理高维动作空间并充分利用冗余自由度。\n\n\n# 二、方法\n\n> 提出PAKE框架，将问题分解为部分参考运动生成和低级模仿控制，通过Kinematic Normalizing Flow模型生成多样可行的部分参考运动，并在潜空间中搜索冗余解。\n\n\n# 三、核心实验结果\n\n> 在四足机器人（含六自由度臂）上，末端执行器位姿跟踪误差为4.5 cm和0.14 rad，线速度和角速度误差分别为0.1 m/s和0.01 rad/s，显著优于现有方法。\n\n\n# 四、对我的启发\n\n> 该方法提供了高精度、高泛化性的全身控制方案，但当前依赖仿真与特定硬件，未来可拓展至更复杂任务与真实环境。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/LocoManipulation\nTitle: \"PAKE: Learning Whole-Body Loco-Manipulation with Partial Kinematic Embeddings\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.11041v1\n---\n>[!abstract] 一句话总结：提出基于部分运动学嵌入的全身控制框架，通过Kinematic Normalizing Flow生成可行的部分参考运动，并利用高低级控制器分别探索冗余解和执行精确跟踪。\n\n\n# 一、动机\n\n> 现有全身移动操作研究面临高维动作空间导致控制精度低、以及难以充分利用系统冗余性的挑战。\n\n\n# 二、方法\n\n> 提出基于部分运动学嵌入的全身控制框架，通过Kinematic Normalizing Flow生成可行的部分参考运动，并利用高低级控制器分别探索冗余解和执行精确跟踪。\n\n\n# 三、核心实验结果\n\n> 在四足机器人移动操作任务中，端到端位置误差4.5 cm，角度误差0.14 rad，线速度误差0.1 m/s，角速度误差0.01 rad/s，显著优于现有方法。\n\n\n# 四、对我的启发\n\n> 该框架通过分解问题降低了复杂度，并利用运动学归一化流有效处理高自由度系统的冗余性，可推广至其他高自由度机器人系统。\n"
 }
