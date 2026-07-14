@@ -1,0 +1,128 @@
+{
+  "id": "arxiv-2607-11603",
+  "source": "arxiv",
+  "title": "WarpMPC: Large-Batch MPC on GPU via ADMM with Unrolled $LDL^\\top$ Factorization",
+  "title_zh": "WarpMPC：通过ADMM与展开的$LDL^top$分解在GPU上实现大批量MPC",
+  "abstract": "This paper introduces numerical optimizations for maximizing throughput on GPU when solving large batches (10,000 to over 100,000) of sequential quadratic programming (SQP) iterations, where all problems have the same structure. The optimizations are implemented in a toolbox WarpMPC for model-predictive control (MPC) in JAX and Warp. Based on the insight that all MPC problem instances in a batch share the same sparsity in time, cost, and constraints, we propose unrolling sparse linear factorizations and solves, which dominate alternating direction method of multipliers (ADMM) solver runtime. We avoid memory access bottlenecks and wasting computations via optimized memory layout, padding-reducing segmentation of the unrolled factorization, and dependency level scheduled backsolves, additionally accelerating sensitivity computation. We achieve throughputs of 8,000 to 250,000 SQP iterations per second on nonlinear cartpole, quadrotor, and humanoid robot benchmarks, outperforming baselines by 3$\\times$ to 25$\\times$. We illustrate practical usefulness by synthesizing a dataset and training a neural network approximation of an MPC in under 4 minutes that stabilizes a nano quadrotor in hardware experiments.",
+  "abstract_zh": "本文提出了数值优化方法，以最大化GPU上求解大批量（10,000到超过100,000个）序列二次规划（SQP）迭代的吞吐量，其中所有问题具有相同的结构。这些优化在工具箱WarpMPC中实现，用于JAX和Warp中的模型预测控制（MPC）。基于批处理中所有MPC问题实例在时间、成本和约束上共享相同稀疏性的洞察，我们提出展开稀疏线性分解和求解，这主导了交替方向乘子法（ADMM）求解器的运行时间。通过优化的内存布局、减少填充的展开分解分段以及依赖级别调度的回代，我们避免了内存访问瓶颈和计算浪费，并额外加速了灵敏度计算。在非线性倒立摆、四旋翼和人形机器人基准测试中，我们实现了每秒8,000到250,000次SQP迭代的吞吐量，比基线快3倍到25倍。我们通过合成数据集并在不到4分钟内训练MPC的神经网络近似来展示实际用途，该近似在硬件实验中稳定了纳米四旋翼。",
+  "tldr_zh": "提出WarpMPC，通过展开稀疏分解优化GPU大批量MPC求解，吞吐量提升3-25倍。",
+  "cover_zh": "GPU上跑MPC快25倍｜展开分解+ADMM让大批量求解起飞",
+  "authors": [
+    {
+      "name": "Henrik Hose",
+      "affiliation": ""
+    },
+    {
+      "name": "Se Hwan Jeon",
+      "affiliation": ""
+    },
+    {
+      "name": "Charles Khazoom",
+      "affiliation": ""
+    },
+    {
+      "name": "Sangbae Kim",
+      "affiliation": ""
+    },
+    {
+      "name": "Sebastian Trimpe",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "eess.SY",
+    "math.OC"
+  ],
+  "published": "2026-07-13",
+  "updated": "2026-07-13",
+  "arxiv_id": "2607.11603",
+  "pdf_url": "https://arxiv.org/pdf/2607.11603v1",
+  "abs_url": "http://arxiv.org/abs/2607.11603v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2607-11603.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2607-11603-p2.jpg",
+    "assets/img/covers/arxiv-2607-11603-p3.jpg",
+    "assets/img/covers/arxiv-2607-11603-p4.jpg"
+  ],
+  "channels": [
+    "loco-manip-wbc"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ MIT CSAIL"
+    },
+    {
+      "kind": "lab",
+      "label": "⭐ Sangbae Kim"
+    },
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 61,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “MIT CSAIL” 关键词"
+    },
+    {
+      "id": "key_author",
+      "label": "关键作者上榜",
+      "points": 20,
+      "hint": "作者列表里有 Sangbae Kim"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（humanoid robot）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "loco-manip-wbc",
+    "reason": "提出GPU大规模MPC加速方法，在humanoid基准上验证，对具身机器人控制有高参考价值",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "RWTH Aachen University",
+    "Massachusetts Institute of Technology"
+  ],
+  "method_tags": [
+    "MPC",
+    "ADMM",
+    "SQP"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"WarpMPC: Large-Batch MPC on GPU via ADMM with Unrolled $LDL^\\top$ Factorization\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.11603v1\n---\n>[!abstract] 一句话总结：提出WarpMPC，通过在GPU上利用ADMM结合展开的$LDL^\\top$因子分解、优化的内存布局和依赖调度，实现相同结构的大批量MPC问题高效求解。\n\n\n# 一、动机\n\n> 现有MPC求解器在处理大规模批量问题时（如数据集生成和神经网络训练）因内存瓶颈和稀疏结构利用率不足而性能受限。\n\n\n# 二、方法\n\n> 提出WarpMPC，通过在GPU上利用ADMM结合展开的$LDL^\\top$因子分解、优化的内存布局和依赖调度，实现相同结构的大批量MPC问题高效求解。\n\n\n# 三、核心实验结果\n\n> 在非线性小车倒立摆、四旋翼和人形机器人基准上实现每秒8,000至250,000次SQP迭代，比基线快3至25倍；可在4分钟内合成数据集并训练神经网络MPC近似控制器。\n\n\n# 四、对我的启发\n\n> 与课题不相关（机器人控制优化，非具身智能核心方向）。\n"
+}
