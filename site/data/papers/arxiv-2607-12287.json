@@ -105,5 +105,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/CV\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"Reducing Temporal Redundancy for Efficient Vision-Language-Action Inference\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.12287v1\n---\n>[!abstract] 一句话总结：提出系统级加速策略：感知端仅增量更新动态区域令牌，动作端将扩散采样压缩为2步高效调度。\n\n\n# 一、动机\n\n> 现有VLA模型推理延迟高，主要源于对连续相似帧重复视觉编码和扩散策略的多步迭代采样，限制了实时部署。\n\n\n# 二、方法\n\n> 提出系统级加速策略：感知端仅增量更新动态区域令牌，动作端将扩散采样压缩为2步高效调度。\n\n\n# 三、核心实验结果\n\n> 在Libero、RobotWin和真实机器人平台上实现超过2倍加速，成功率高达98%。\n\n\n# 四、对我的启发\n\n> 与课题相关。局限：对高度动态场景的增量更新精度需进一步验证；启发：系统级联合加速感知与动作生成是提升VLA推理效率的有效方向。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"Reducing Temporal Redundancy for Efficient Vision-Language-Action Inference\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.12287v1\n---\n>[!abstract] 一句话总结：提出系统级加速策略，在感知端仅增量更新动态区域的token，在动作生成端通过效率导向训练将扩散采样压缩为2步，同时保持动作精度。\n\n\n# 一、动机\n\n> 现有的视觉-语言-动作（VLA）模型推理延迟高，限制了实时机器人部署，主要原因在于连续帧的重复视觉编码和扩散策略中的多步迭代采样造成的时间冗余。\n\n\n# 二、方法\n\n> 提出系统级加速策略，在感知端仅增量更新动态区域的token，在动作生成端通过效率导向训练将扩散采样压缩为2步，同时保持动作精度。\n\n\n# 三、核心实验结果\n\n> 在Libero、RobotWin和真实机器人平台上实现超过2倍加速，保持高性能，在通用操作基准上最高达到98%的成功率。\n\n\n# 四、对我的启发\n\n> 该方法通过减少时间冗余显著提升推理速度，适用于对实时性要求高的机器人操作任务，但可能对场景动态性有依赖，静态场景下收益有限。\n"
 }

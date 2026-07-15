@@ -112,5 +112,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"UR-VC: Unsupervised Robotic Value Correction for Time-Derived Progress Proxies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.12892v1\n---\n>[!abstract] 一句话总结：提出UR-VC，一种离线、无需训练的修正方法，通过检索不同轨迹中相似状态并聚合其时间标签来校正当前状态的进度估计。\n\n\n# 一、动机\n\n> 现有的时间衍生进度标签在接触丰富的操作任务中不能反映物理进展的局部倒退，导致信号质量差。\n\n\n# 二、方法\n\n> 提出UR-VC，一种离线、无需训练的修正方法，通过检索不同轨迹中相似状态并聚合其时间标签来校正当前状态的进度估计。\n\n\n# 三、核心实验结果\n\n> 在真实双臂布料折叠与展开任务上，修正后的标签能捕获局部回归和非均匀进展；用于VLA优势标签训练后，真实机器人任务成功率呈现积极趋势。\n\n\n# 四、对我的启发\n\n> 局限性：依赖多轨迹中相似状态的存在，对低变异性任务可能效果有限。启发：利用多轨迹一致性修正噪声标签的方法简洁有效，可推广至其他基于时序代理信号的学习任务。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"UR-VC: Unsupervised Robotic Value Correction for Time-Derived Progress Proxies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.12892v1\n---\n>[!abstract] 一句话总结：提出UR-VC，一种离线无训练方法，跨不同episode检索相似状态并聚合其时间标签以修正当前状态进度，无需人工标注或价值模型。\n\n\n# 一、动机\n\n> 时间衍生的进度标签（如归一化时间）在接触丰富操作中无法反映进度倒退（如滑落、抓取失败），是噪声代理，需要校正。\n\n\n# 二、方法\n\n> 提出UR-VC，一种离线无训练方法，跨不同episode检索相似状态并聚合其时间标签以修正当前状态进度，无需人工标注或价值模型。\n\n\n# 三、核心实验结果\n\n> 在真实双臂布料折叠任务上，校正标签捕捉了局部倒退和非均匀进度，用于优势标签训练VLA时，在相同数据、模型和训练设置下展示正向成功趋势。\n\n\n# 四、对我的启发\n\n> 与课题紧密相关，提供一种无需额外监督的进度信号校正方式，可用于改进机器人策略学习中的中间状态评估。\n"
 }
