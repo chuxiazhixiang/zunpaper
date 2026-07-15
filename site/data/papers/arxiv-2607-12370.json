@@ -111,7 +111,7 @@
   },
   "institutions": [],
   "method_tags": [
-    "RL",
+    "Mamba",
     "temporal modeling",
     "obstacle avoidance"
   ],
@@ -127,5 +127,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/ObstacleAvoidance\nTitle: \"StratMamba: Strategic and Reactive Stream Partitioning for Path-Efficient LiDAR-Based Obstacle Avoidance\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.12370v1\n---\n>[!abstract] 一句话总结：提出StratMamba双流Mamba架构，快速衰减流处理高频LiDAR数据实现反应式避障，慢速衰减流维持长期目标信息用于战略规划。\n\n\n# 一、动机\n\n> 现有时序模型在复杂障碍环境中长时依赖捕获效率不足，难以同时兼顾反应式避障和战略规划。\n\n\n# 二、方法\n\n> 提出StratMamba双流Mamba架构，快速衰减流处理高频LiDAR数据实现反应式避障，慢速衰减流维持长期目标信息用于战略规划。\n\n\n# 三、核心实验结果\n\n> 在IsaacLab和Gazebo仿真中，StratMamba实现最快导航速度（中位数576步，比Vanilla-Mamba提升5.0%），最高路径效率（0.915），且超时率最低；真实世界部署在Unitree GO1上，在延长LiDAR范围下比Vanilla Mamba和Transformer更鲁棒。\n\n\n# 四、对我的启发\n\n> 双流分区有效平衡了反应式安全与战略导航，但需进一步验证在更复杂动态场景和不同机器人平台上的泛化能力。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"StratMamba: Strategic and Reactive Stream Partitioning for Path-Efficient LiDAR-Based Obstacle Avoidance\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.12370v1\n---\n>[!abstract] 一句话总结：提出双流Mamba架构，包含快速衰减流处理高频LiDAR数据实现反应式避障，慢速衰减流保持长时目标信息实现战略规划，通过双流分区平衡实时与长期决策。\n\n\n# 一、动机\n\n> 现有时域建模方法（如LSTM、Transformer、Vanilla-Mamba）在机器人避障中难以高效同时捕获反应式避障所需的高频信号和战略规划所需的长时依赖，导致导航效率或安全性不足。\n\n\n# 二、方法\n\n> 提出双流Mamba架构，包含快速衰减流处理高频LiDAR数据实现反应式避障，慢速衰减流保持长时目标信息实现战略规划，通过双流分区平衡实时与长期决策。\n\n\n# 三、核心实验结果\n\n> 在模拟中，StratMamba中位数导航步数为576步（比Vanilla-Mamba快5.0%），路径效率达0.915，为所有基线最高；真实世界测试中在扩展LiDAR范围（如7m）下保持更低超时率，双流分区有效提升鲁棒性。\n\n\n# 四、对我的启发\n\n> 双流时域分区是平衡反应安全与战略导航的有效范式，但当前仅依赖LiDAR单模态，未来可融合视觉等感知信息以提升复杂场景适应性。\n"
 }

@@ -111,5 +111,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/TrajectoryOptimization\nTitle: \"Scaling Nonlinear Optimization: Many Problems One GPU\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2606.26341v1\n---\n>[!abstract] 一句话总结：提出jaxipm，基于IPOPT并使用JAX实现，通过异质迭代融合消除控制流，以及迭代级批处理最小化GPU空闲时间，实现GPU批处理NLP求解。\n\n\n# 一、动机\n\n> 现有的NLP求解器（如IPOPT）是CPU-bound且一次只解一个问题，无法融入GPU批处理学习管道。而采样方法（如RL、MPPI）已利用GPU批处理模拟器实现大规模加速，因此需要一种GPU批处理NLP求解器来解锁类似速度提升。\n\n\n# 二、方法\n\n> 提出jaxipm，基于IPOPT并使用JAX实现，通过异质迭代融合消除控制流，以及迭代级批处理最小化GPU空闲时间，实现GPU批处理NLP求解。\n\n\n# 三、核心实验结果\n\n> 在四旋翼非线性模型预测控制基准测试中，jaxipm相比IPOPT的吞吐量提升高达32.85倍。\n\n\n# 四、对我的启发\n\n> 该工作首次将NLP求解器扩展到GPU批处理模式，可显著加速机器人领域中的轨迹优化、逆运动学等非线性规划问题，但需注意其依赖JAX生态，且对高度非凸问题可能仍需进一步改进。\n"
 }
