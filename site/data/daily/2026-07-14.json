@@ -65,7 +65,7 @@
       "method_tags": [
         "Unsupervised Robotic Value Correction",
         "time-derived progress proxies",
-        "VLA"
+        "contact-rich manipulation"
       ],
       "platform": [],
       "sim_stack": [],
@@ -144,6 +144,134 @@
         "IsaacLab",
         "Gazebo"
       ],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-12861",
+      "source": "arxiv",
+      "title": "Unveiling Complex Collective Behaviors from Simple Rewards",
+      "title_zh": "从简单奖励中揭示复杂集体行为",
+      "tldr_zh": "提出ARM工具揭示MARL中简单奖励如何涌现复杂集体行为的几何机制。",
+      "cover_zh": "机器人集群的隐藏几何密码｜ARM工具揭示简单奖励如何涌现复杂行为",
+      "abstract_zh": "多智能体强化学习（MARL）在机器人集群中具有巨大潜力，但神经策略的黑箱特性使得策略分析复杂化，限制了多机器人应用。此外，复杂的集群行为可以从简单的奖励中惊人地涌现，而无需明确的聚合激励。揭示这种涌现背后的机制至关重要，但简单奖励与集体行为之间的脱节加剧了可解释性挑战。本文旨在揭示这一过程中的隐藏机制。我们提出了一个两阶段的EEC（LinkIII）解释框架，其中包括一种名为智能体响应图（ARM）的新型分析工具，该工具揭示了智能体在空间上的决策模式，并识别出聚合和回避区域。ARM揭示，机器人隐式地学习了环境的几何场，并利用这些结构作为协调运动的期望目标。我们在两个不同的任务中验证了这一发现：合作的多机器人形状组装和竞争的捕食者-猎物追逐-逃避。1）在合作任务中，ARM将未占据的目标内部识别为机器人导航的期望目的地。随着中心被占据，该目标区域自动向边界移动，展示了机器人自主探索未占据区域的能力。2）在竞争任务中，ARM惊人地将捕食者Voronoi图的边界识别为猎物智能体的收敛目的地。这两个任务共同展示了ARM发现机器人集群中MARL策略背后隐藏几何结构的能力。",
+      "authors": [
+        "Yize Mi",
+        "Jianan Li",
+        "Liang Li"
+      ],
+      "authors_all": [
+        "Yize Mi",
+        "Jianan Li",
+        "Liang Li",
+        "Shiyu Zhao"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-14",
+      "channels": [
+        "manipulation",
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2026"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2607.12861",
+      "abs_url": "http://arxiv.org/abs/2607.12861v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.12861v1",
+      "venue": "IROS 2026",
+      "venue_announced": "",
+      "score": 28,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "多机器人集群涌现行为解释框架，对具身智能体协同控制有参考价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "Multi-agent Reinforcement Learning",
+        "explainability"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-12965",
+      "source": "arxiv",
+      "title": "MAMMOTH: A Multi-Modal End-to-End Policy for Off-Road Mobility Robust to Missing Modality",
+      "title_zh": "MAMMOTH：一种对缺失模态鲁棒的多模态端到端越野移动策略",
+      "tldr_zh": "提出一种多模态端到端越野导航策略，通过模态丢弃训练实现对缺失模态的鲁棒性。",
+      "cover_zh": "传感器坏了也能开？这个越野导航策略靠热成像和点云照样跑",
+      "abstract_zh": "在非结构化越野环境中实现可靠的自主导航仍然是一个关键未解决的挑战，原因是极端地形多样性、剧烈的光照变化和严重的传感器退化。最近的研究将该问题视为可通行性代价地图估计或视觉导航任务。然而，许多方法过度依赖RGB模态，导致在眩光、阴影或低环境光等不同光照条件下性能不佳。要在这些条件下实现鲁棒泛化，需要集成提供补充场景信息的模态。这类多模态方法存在对近乎完美传感器输入的刚性依赖，无法鲁棒地处理传感器退化或单个模态故障。为解决这些限制，我们提出了MAMMOTH（通过掩码多模态输入实现越野可通行性启发式导航），一种统一的端到端导航策略，用于鲁棒的越野视觉目标导向导航和无向探索。具体来说，MAMMOTH高效融合多模态观测（RGB、热成像、3D点云和自车速度），并通过模态丢弃方案进行训练，使其能够在推理时泛化到缺失模态。此外，我们采用扩散策略来学习物理接地轨迹和内在可通行性启发式的联合条件概率分布。MAMMOTH利用该启发式来偏好更安全、更平滑的轨迹。我们通过在包括夜间操作在内的不同越野环境中进行大量真实机器人实验来验证MAMMOTH。结果表明其性能优越，在碰撞避免、地形感知规划和缺失模态泛化方面有显著改进。本工作使用的代码和数据集将公开提供。",
+      "authors": [
+        "Ahaan Kotian",
+        "Shivani Subramanyan",
+        "Suresh Sundaram"
+      ],
+      "authors_all": [
+        "Ahaan Kotian",
+        "Shivani Subramanyan",
+        "Suresh Sundaram"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-14",
+      "channels": [
+        "manipulation",
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2026"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2607.12965",
+      "abs_url": "http://arxiv.org/abs/2607.12965v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.12965v1",
+      "venue": "IROS 2026",
+      "venue_announced": "",
+      "score": 28,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "locomotion",
+        "reason": "端到端越野导航策略，融合多模态并处理缺失模态，具身机器人相关",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "diffusion policy",
+        "modality dropout",
+        "off-road navigation"
+      ],
+      "platform": [],
+      "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
@@ -323,8 +451,7 @@
       "institutions": [],
       "method_tags": [
         "Reinforcement Learning",
-        "Privileged Representation Learning",
-        "Loco-Manipulation"
+        "Privileged Representation Learning"
       ],
       "platform": [
         "Booster T1"
@@ -476,132 +603,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2607-12861",
-      "source": "arxiv",
-      "title": "Unveiling Complex Collective Behaviors from Simple Rewards",
-      "title_zh": "从简单奖励中揭示复杂集体行为",
-      "tldr_zh": "提出ARM工具揭示MARL中简单奖励如何涌现复杂集体行为的几何机制。",
-      "cover_zh": "机器人集群的隐藏几何密码｜ARM工具揭示简单奖励如何涌现复杂行为",
-      "abstract_zh": "多智能体强化学习（MARL）在机器人集群中具有巨大潜力，但神经策略的黑箱特性使得策略分析复杂化，限制了多机器人应用。此外，复杂的集群行为可以从简单的奖励中惊人地涌现，而无需明确的聚合激励。揭示这种涌现背后的机制至关重要，但简单奖励与集体行为之间的脱节加剧了可解释性挑战。本文旨在揭示这一过程中的隐藏机制。我们提出了一个两阶段的EEC（LinkIII）解释框架，其中包括一种名为智能体响应图（ARM）的新型分析工具，该工具揭示了智能体在空间上的决策模式，并识别出聚合和回避区域。ARM揭示，机器人隐式地学习了环境的几何场，并利用这些结构作为协调运动的期望目标。我们在两个不同的任务中验证了这一发现：合作的多机器人形状组装和竞争的捕食者-猎物追逐-逃避。1）在合作任务中，ARM将未占据的目标内部识别为机器人导航的期望目的地。随着中心被占据，该目标区域自动向边界移动，展示了机器人自主探索未占据区域的能力。2）在竞争任务中，ARM惊人地将捕食者Voronoi图的边界识别为猎物智能体的收敛目的地。这两个任务共同展示了ARM发现机器人集群中MARL策略背后隐藏几何结构的能力。",
-      "authors": [
-        "Yize Mi",
-        "Jianan Li",
-        "Liang Li"
-      ],
-      "authors_all": [
-        "Yize Mi",
-        "Jianan Li",
-        "Liang Li",
-        "Shiyu Zhao"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-07-14",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "venue",
-          "label": "🎓 IROS 2026"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "",
-      "preview_pages": [],
-      "arxiv_id": "2607.12861",
-      "abs_url": "http://arxiv.org/abs/2607.12861v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.12861v1",
-      "venue": "IROS 2026",
-      "venue_announced": "",
-      "score": 23,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "多机器人集群涌现行为解释框架，对具身智能体协同控制有参考价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "Multi-agent Reinforcement Learning",
-        "Agent Response Map"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2607-12965",
-      "source": "arxiv",
-      "title": "MAMMOTH: A Multi-Modal End-to-End Policy for Off-Road Mobility Robust to Missing Modality",
-      "title_zh": "MAMMOTH：一种对缺失模态鲁棒的多模态端到端越野移动策略",
-      "tldr_zh": "提出一种多模态端到端越野导航策略，通过模态丢弃训练实现对缺失模态的鲁棒性。",
-      "cover_zh": "传感器坏了也能开？这个越野导航策略靠热成像和点云照样跑",
-      "abstract_zh": "在非结构化越野环境中实现可靠的自主导航仍然是一个关键未解决的挑战，原因是极端地形多样性、剧烈的光照变化和严重的传感器退化。最近的研究将该问题视为可通行性代价地图估计或视觉导航任务。然而，许多方法过度依赖RGB模态，导致在眩光、阴影或低环境光等不同光照条件下性能不佳。要在这些条件下实现鲁棒泛化，需要集成提供补充场景信息的模态。这类多模态方法存在对近乎完美传感器输入的刚性依赖，无法鲁棒地处理传感器退化或单个模态故障。为解决这些限制，我们提出了MAMMOTH（通过掩码多模态输入实现越野可通行性启发式导航），一种统一的端到端导航策略，用于鲁棒的越野视觉目标导向导航和无向探索。具体来说，MAMMOTH高效融合多模态观测（RGB、热成像、3D点云和自车速度），并通过模态丢弃方案进行训练，使其能够在推理时泛化到缺失模态。此外，我们采用扩散策略来学习物理接地轨迹和内在可通行性启发式的联合条件概率分布。MAMMOTH利用该启发式来偏好更安全、更平滑的轨迹。我们通过在包括夜间操作在内的不同越野环境中进行大量真实机器人实验来验证MAMMOTH。结果表明其性能优越，在碰撞避免、地形感知规划和缺失模态泛化方面有显著改进。本工作使用的代码和数据集将公开提供。",
-      "authors": [
-        "Ahaan Kotian",
-        "Shivani Subramanyan",
-        "Suresh Sundaram"
-      ],
-      "authors_all": [
-        "Ahaan Kotian",
-        "Shivani Subramanyan",
-        "Suresh Sundaram"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-07-14",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "venue",
-          "label": "🎓 IROS 2026"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "",
-      "preview_pages": [],
-      "arxiv_id": "2607.12965",
-      "abs_url": "http://arxiv.org/abs/2607.12965v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.12965v1",
-      "venue": "IROS 2026",
-      "venue_announced": "",
-      "score": 23,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "locomotion",
-        "reason": "端到端越野导航策略，融合多模态并处理缺失模态，具身机器人相关",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "diffusion policy",
-        "modality dropout",
-        "off-road navigation"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2607-12287",
       "source": "arxiv",
       "title": "Reducing Temporal Redundancy for Efficient Vision-Language-Action Inference",
@@ -693,7 +694,8 @@
       "published": "2026-07-14",
       "channels": [
         "loco-manip-wbc",
-        "manipulation"
+        "manipulation",
+        "world-model"
       ],
       "badges": [
         {
