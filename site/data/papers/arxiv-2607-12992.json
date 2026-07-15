@@ -1,0 +1,97 @@
+{
+  "id": "arxiv-2607-12992",
+  "source": "arxiv",
+  "title": "ChunkFlow: Towards Continuity-Consistent Chunked Policy Learning",
+  "title_zh": "ChunkFlow：面向连续性一致的分块策略学习",
+  "abstract": "Vision-language action (VLA) models increasingly adopt chunked action heads to satisfy real-time constraints; however, this introduces boundary jitter: overlapping regions between consecutive chunks often yield inconsistent predictions, degrading temporal coherence and the task success rate. Existing methods, such as inference-time blending, merely reweight mismatched proposals without correcting underlying errors, leading to residual accumulation under biased or noisy histories. We propose ChunkFlow, a seam-aware training-and-execution framework for chunked policies that aligns chunk structure with boundary execution. It partitions each chunk into frozen, editable, and future zones, applies deterministic overlap blending at execution, and trains raw predictions with seam and first- and second-order continuity losses. History corruption and scheduled sampling improve robustness to executed-history errors, while an AWAC fine-tuning stage adapts the policy without removing these structural regularizers. Under mild smoothness assumptions, pre-blending seam discrepancies provably decay with increasing overlap. Experiments on CALVIN, LIBERO, and real robots show an improved success-stability trade-off with low-latency inference. Project page: https://cytoderm-ai.github.io/chunkflow.",
+  "abstract_zh": "视觉-语言-动作（VLA）模型越来越多地采用分块动作头以满足实时性要求；然而，这引入了边界抖动：连续块之间的重叠区域往往产生不一致的预测，降低了时间连贯性和任务成功率。现有方法（如推理时混合）仅重新加权不匹配的提议而不纠正潜在错误，导致在有偏或噪声历史下残差累积。我们提出ChunkFlow，一种面向分块策略的接缝感知训练与执行框架，将块结构与边界执行对齐。它将每个块划分为冻结区、可编辑区和未来区，在执行时应用确定性重叠混合，并使用接缝损失以及一阶和二阶连续性损失训练原始预测。历史损坏和计划采样提高了对已执行历史错误的鲁棒性，而AWAC微调阶段在不移除这些结构正则化器的情况下调整策略。在温和的光滑性假设下，预混合接缝差异随重叠增加而可证明地衰减。在CALVIN、LIBERO和真实机器人上的实验显示了改进的成功-稳定性权衡，且推理延迟低。项目页面：https://cytoderm-ai.github.io/chunkflow。",
+  "tldr_zh": "提出ChunkFlow，通过接缝感知训练与执行解决分块策略的边界抖动问题。",
+  "cover_zh": "分块策略总抖成筛子？ChunkFlow用接缝感知训练让动作连贯不卡顿",
+  "authors": [
+    {
+      "name": "Zhao Yang",
+      "affiliation": ""
+    },
+    {
+      "name": "Yinan Shi",
+      "affiliation": ""
+    },
+    {
+      "name": "Mingyuan Yao",
+      "affiliation": ""
+    },
+    {
+      "name": "Wenyao Xue",
+      "affiliation": ""
+    },
+    {
+      "name": "Yawei Jueluo",
+      "affiliation": ""
+    },
+    {
+      "name": "Longjun Liu",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-07-14",
+  "updated": "2026-07-14",
+  "arxiv_id": "2607.12992",
+  "pdf_url": "https://arxiv.org/pdf/2607.12992v1",
+  "abs_url": "http://arxiv.org/abs/2607.12992v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [],
+  "score": 13,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（libero）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出VLA chunked policy的连续性一致训练框架，解决边界抖动问题，实验充分，有理论分析。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "chunked policy",
+    "continuity loss",
+    "scheduled sampling"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"ChunkFlow: Towards Continuity-Consistent Chunked Policy Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.12992v1\n---\n>[!abstract] 一句话总结：提出ChunkFlow，通过将每个chunk划分为冻结区、可编辑区和未来区，应用确定性重叠混合，并引入 seam、一阶和二阶连续性损失训练，结合历史损坏和计划采样鲁棒性处理，最后用AWAC微调。\n\n\n# 一、动机\n\n> 现有VLA模型的chunked action heads存在边界抖动，重叠区域预测不一致，而推理时混合方法仅重新加权而不纠正错误，导致误差累积。\n\n\n# 二、方法\n\n> 提出ChunkFlow，通过将每个chunk划分为冻结区、可编辑区和未来区，应用确定性重叠混合，并引入 seam、一阶和二阶连续性损失训练，结合历史损坏和计划采样鲁棒性处理，最后用AWAC微调。\n\n\n# 三、核心实验结果\n\n> 在CALVIN、LIBERO和真实机器人上，ChunkFlow实现了更好的成功-稳定性权衡与低延迟推理。\n\n\n# 四、对我的启发\n\n> 与课题不相关\n"
+}

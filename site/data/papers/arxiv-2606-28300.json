@@ -91,5 +91,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"CacheMPC: Certified Cached Model Predictive Control for Quadruped Locomotion\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2606.28300v1\n---\n>[!abstract] 一句话总结：提出Certified CacheMPC，使用局部敏感哈希缓存水平接触力轨迹，按接触模式分区，查询时检索并在后验认证（验证原始可行性和拉格朗日对偶间隙）通过后接受，结合top-K认证检索、截止时间QP求解和上次认证回退的有界预算控制器调度。\n\n\n# 一、动机\n\n> Model Predictive Control (MPC) 在分层四足控制器中计算开销大，每周期求解QP限制了嵌入式处理器上的更新速率，而腿式步态访问的状态空间有限，存在缓存重复利用的机会。\n\n\n# 二、方法\n\n> 提出Certified CacheMPC，使用局部敏感哈希缓存水平接触力轨迹，按接触模式分区，查询时检索并在后验认证（验证原始可行性和拉格朗日对偶间隙）通过后接受，结合top-K认证检索、截止时间QP求解和上次认证回退的有界预算控制器调度。\n\n\n# 三、核心实验结果\n\n> 在Unitree Go2上，未经认证的缓存实现模拟中25倍中位数求解加速，硬件上18.7倍加速；在n=50的600次试验中，缓存变体与无缓存基线在闭环稳定率上无统计学显著差异。\n\n\n# 四、对我的启发\n\n> 证书对闭环安全的贡献在当前样本量下无法分辨，可能需要更大规模实验；该方法适用于腿式运动等状态空间有限的场景，与课题相关。\n"
 }

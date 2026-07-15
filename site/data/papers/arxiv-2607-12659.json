@@ -1,0 +1,118 @@
+{
+  "id": "arxiv-2607-12659",
+  "source": "arxiv",
+  "title": "Jetson-PI: Towards Onboard Real-Time Robot Control via Foresight-Aligned Asynchronous Inference",
+  "title_zh": "Jetson-PI：通过前瞻对齐异步推理实现机载实时机器人控制",
+  "abstract": "Vision-Language-Action (VLA) models have achieved impressive performance on diverse embodied tasks. However, deploying VLA models on low-power onboard devices, such as the Jetson Orin, remains challenging due to their high computational complexity, which leads to substantial inference latency and low control frequency. Asynchronous inference can partially mask this latency by parallelizing action execution and subsequent inference, but it introduces two critical issues: perception-execution misalignment and long reaction time. In this paper, we propose Jetson-PI, a method for efficient VLA deployment on onboard devices via Foresight-Aligned Asynchronous Correction. To address misalignment, we train a lightweight future correction module that predicts future environment representation conditioned on committed actions, enabling the action expert to directly predict actions from the future time step. To reduce reaction time, we introduce confidence-based scheduling optimization that adaptively balances VLM and action expert invocations, complemented by system-level accelerations including CUDA graph reuse, GPU-resident intermediate buffering, and flow unrolling. Extensive experiments demonstrate that Jetson-PI achieves 8.66x and 5.41x improvements in control frequency compared with naive PyTorch and vla.cpp on NVIDIA Jetson Orin, while outperforming VLASH by 14.8\\% in average success rate on the LIBERO benchmark. The code of our asynchronous algorithm is available on https://github.com/PKU-SEC-Lab/Jetson-PI, and our efficient llama.cpp-based inference engine is available on https://github.com/PKU-SEC-Lab/Jetson-PI-Edge.",
+  "abstract_zh": "视觉-语言-动作（VLA）模型在多种具身任务中取得了令人瞩目的性能。然而，在低功耗机载设备（如Jetson Orin）上部署VLA模型仍然具有挑战性，因为其高计算复杂度导致显著的推理延迟和低控制频率。异步推理可以通过并行化动作执行和后续推理来部分掩盖这种延迟，但它引入了两个关键问题：感知-执行错位和长反应时间。在本文中，我们提出Jetson-PI，一种通过前瞻对齐异步校正实现VLA在机载设备上高效部署的方法。为解决错位问题，我们训练了一个轻量级的未来校正模块，该模块根据已提交的动作预测未来环境表示，使动作专家能够直接从未来时间步预测动作。为减少反应时间，我们引入了基于置信度的调度优化，自适应地平衡VLM和动作专家的调用，并辅以系统级加速，包括CUDA图重用、GPU驻留中间缓冲和流展开。大量实验表明，在NVIDIA Jetson Orin上，与朴素PyTorch和vla.cpp相比，Jetson-PI在控制频率上分别实现了8.66倍和5.41倍的提升，同时在LIBERO基准测试中，平均成功率比VLASH高出14.8%。我们的异步算法代码可在https://github.com/PKU-SEC-Lab/Jetson-PI获取，基于llama.cpp的高效推理引擎可在https://github.com/PKU-SEC-Lab/Jetson-PI-Edge获取。",
+  "tldr_zh": "提出Jetson-PI，通过异步推理和未来校正模块，在Jetson Orin上实现VLA模型的高效实时控制。",
+  "cover_zh": "机器人控制慢如蜗牛？这个新方法让Jetson Orin推理速度飙升8倍！",
+  "authors": [
+    {
+      "name": "Zebin Yang",
+      "affiliation": ""
+    },
+    {
+      "name": "Qi Wang",
+      "affiliation": ""
+    },
+    {
+      "name": "Yunhe Wang",
+      "affiliation": ""
+    },
+    {
+      "name": "Xiurui Guo",
+      "affiliation": ""
+    },
+    {
+      "name": "Bo Yu",
+      "affiliation": ""
+    },
+    {
+      "name": "Shaoshan Liu",
+      "affiliation": ""
+    },
+    {
+      "name": "Jiafeng Xu",
+      "affiliation": ""
+    },
+    {
+      "name": "Hao Dong",
+      "affiliation": ""
+    },
+    {
+      "name": "Meng Li",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.AI"
+  ],
+  "published": "2026-07-14",
+  "updated": "2026-07-14",
+  "arxiv_id": "2607.12659",
+  "pdf_url": "https://arxiv.org/pdf/2607.12659v1",
+  "abs_url": "http://arxiv.org/abs/2607.12659v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [],
+  "score": 27,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（vision-language-action、vla model、libero）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "github_repo",
+      "label": "附带开源仓库",
+      "points": 8,
+      "hint": "摘要里出现 github.com / huggingface.co 链接"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出异步推理校正方法，显著提升VLA在边缘设备上的控制频率，对部署有重要价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "VLA",
+    "asynchronous inference",
+    "future correction module"
+  ],
+  "platform": [
+    "Jetson Orin"
+  ],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"Jetson-PI: Towards Onboard Real-Time Robot Control via Foresight-Aligned Asynchronous Inference\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.12659v1\n---\n>[!abstract] 一句话总结：提出Jetson-PI，通过训练轻量级未来校正模块预测未来环境表示来对齐感知与执行，并采用置信度调度优化平衡VLM与动作专家调用，辅以CUDA图复用等系统加速。\n\n\n# 一、动机\n\n> VLA模型在低功耗设备（如Jetson Orin）上推理延迟大，异步推理导致感知-执行不对齐和反应时间长。\n\n\n# 二、方法\n\n> 提出Jetson-PI，通过训练轻量级未来校正模块预测未来环境表示来对齐感知与执行，并采用置信度调度优化平衡VLM与动作专家调用，辅以CUDA图复用等系统加速。\n\n\n# 三、核心实验结果\n\n> 在LIBERO基准上，Jetson-PI平均成功率比VLASH高14.8%，在Jetson Orin上控制频率比PyTorch和vla.cpp分别提升8.66倍和5.41倍。\n\n\n# 四、对我的启发\n\n> 与机器人具身智能直接相关，提供了一种高效部署VLA的异步推理方案，但未来校正模块依赖于动作序列的预测，可能对动态环境敏感。\n"
+}
