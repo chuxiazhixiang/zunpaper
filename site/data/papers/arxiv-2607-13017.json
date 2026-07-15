@@ -85,8 +85,12 @@
   "abs_url": "http://arxiv.org/abs/2607.13017v1",
   "venue": "",
   "venue_announced": "",
-  "cover_image": "",
-  "preview_pages": [],
+  "cover_image": "assets/img/covers/arxiv-2607-13017.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2607-13017-p2.jpg",
+    "assets/img/covers/arxiv-2607-13017-p3.jpg",
+    "assets/img/covers/arxiv-2607-13017-p4.jpg"
+  ],
   "channels": [
     "manipulation",
     "world-model"
@@ -98,9 +102,9 @@
     }
   ],
   "related_links": [],
-  "page_count": 0,
+  "page_count": 27,
   "source_tags": [],
-  "score": 27,
+  "score": 30,
   "score_breakdown": [
     {
       "id": "keyword_density",
@@ -113,6 +117,12 @@
       "label": "刚出锅 (≤2 天)",
       "points": 10,
       "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 27 页"
     },
     {
       "id": "cross_channel",
@@ -141,5 +151,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/VideoGen\nTitle: \"FlowWAM: Optical Flow as a Unified Action Representation for World Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.13017v1\n---\n>[!abstract] 一句话总结：FlowWAM是一种双流扩散框架，采用光流作为视频原生的统一动作表示，与RGB视频在共享预训练视频生成器中联合建模，实现策略模式（生成光流预测动作）和世界模型模式（用目标光流引导未来视频生成），并利用无标签视频数据进行预训练。\n\n\n# 一、动机\n\n> 现有World Action Models中，动作表示难以同时对齐预训练视频生成器并携带足够运动线索；数值动作不符合视频格式，视觉动作表示忽略帧间时间运动结构。\n\n\n# 二、方法\n\n> FlowWAM是一种双流扩散框架，采用光流作为视频原生的统一动作表示，与RGB视频在共享预训练视频生成器中联合建模，实现策略模式（生成光流预测动作）和世界模型模式（用目标光流引导未来视频生成），并利用无标签视频数据进行预训练。\n\n\n# 三、核心实验结果\n\n> 在RoboTwin操作任务中，FlowWAM在Clean设置下成功率达到92.94%，Random设置下92.14%，优于VLA和WAM基线；在WorldArena世界建模中，获得最佳整体EWMScore 63.71，轨迹精度相对提升18.4%。\n\n\n# 四、对我的启发\n\n> 光流作为中间表示能有效连接动作和视觉生成，并利用无标签数据，但光流估计误差可能影响性能，未来可探索更鲁棒的运动表示。与课题相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"FlowWAM: Optical Flow as a Unified Action Representation for World Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.13017v1\n---\n>[!abstract] 一句话总结：FlowWAM是一个双流扩散框架，采用光流作为动作表示。在策略模式下生成光流用于动作预测；在世界模型模式下用目标光流序列引导未来视频生成。光流可从无动作标签的视频中提取，从而利用大规模无标注视频数据预训练。\n\n\n# 一、动机\n\n> 直接利用预训练视频生成器进行控制面临动作表示问题：现有数值动作无法与视频生成器对齐，视觉动作表示忽略帧间时序运动结构。FlowWAM提出光流作为统一、视频原生的动作表示，同时编码像素位移，与RGB视频格式一致，可自然嵌入预训练视频生成器。\n\n\n# 二、方法\n\n> FlowWAM是一个双流扩散框架，采用光流作为动作表示。在策略模式下生成光流用于动作预测；在世界模型模式下用目标光流序列引导未来视频生成。光流可从无动作标签的视频中提取，从而利用大规模无标注视频数据预训练。\n\n\n# 三、核心实验结果\n\n> 在RoboTwin操作任务上，FlowWAM在Clean设置下成功率达92.94%，Random设置下92.14%，优于VLA和WAM基线。在WorldArena世界建模上，EWMScore最佳63.71，轨迹精度相对提升18.4%。\n\n\n# 四、对我的启发\n\n> 光流作为动作表示有效，并且可以利用无标签视频数据，是未来机器人学习的一个有前途的方向。但可能对精细控制或不同机器人平台泛化性需要进一步验证。与课题相关。\n"
 }

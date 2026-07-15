@@ -57,8 +57,12 @@
   "abs_url": "http://arxiv.org/abs/2607.12659v1",
   "venue": "",
   "venue_announced": "",
-  "cover_image": "",
-  "preview_pages": [],
+  "cover_image": "assets/img/covers/arxiv-2607-12659.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2607-12659-p2.jpg",
+    "assets/img/covers/arxiv-2607-12659-p3.jpg",
+    "assets/img/covers/arxiv-2607-12659-p4.jpg"
+  ],
   "channels": [
     "manipulation"
   ],
@@ -69,9 +73,9 @@
     }
   ],
   "related_links": [],
-  "page_count": 0,
+  "page_count": 16,
   "source_tags": [],
-  "score": 27,
+  "score": 30,
   "score_breakdown": [
     {
       "id": "keyword_density",
@@ -90,6 +94,12 @@
       "label": "附带开源仓库",
       "points": 8,
       "hint": "摘要里出现 github.com / huggingface.co 链接"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 16 页"
     }
   ],
   "judge": {
@@ -114,5 +124,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"Jetson-PI: Towards Onboard Real-Time Robot Control via Foresight-Aligned Asynchronous Inference\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.12659v1\n---\n>[!abstract] 一句话总结：提出Jetson-PI，通过训练轻量级未来校正模块预测未来环境状态，结合置信度调度优化及CUDA图重用、GPU驻留中间缓冲等系统级加速，实现高效异步推理。\n\n\n# 一、动机\n\n> 现有VLA模型在低功耗设备（如Jetson Orin）上推理延迟大、控制频率低，异步推理虽能掩盖延迟但引入感知-执行不对齐和长反应时间两个关键问题。\n\n\n# 二、方法\n\n> 提出Jetson-PI，通过训练轻量级未来校正模块预测未来环境状态，结合置信度调度优化及CUDA图重用、GPU驻留中间缓冲等系统级加速，实现高效异步推理。\n\n\n# 三、核心实验结果\n\n> 在NVIDIA Jetson Orin上，控制频率相比naive PyTorch提升8.66倍，相比vla.cpp提升5.41倍；在LIBERO基准上平均成功率比VLASH高14.8%。\n\n\n# 四、对我的启发\n\n> 该方法通过轻量级校正模块和调度优化有效缓解异步推理的缺陷，且代码和高效推理引擎已开源，对机器人低功耗部署有参考价值。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\nTitle: \"Jetson-PI: Towards Onboard Real-Time Robot Control via Foresight-Aligned Asynchronous Inference\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.12659v1\n---\n>[!abstract] 一句话总结：提出Jetson-PI，通过未来对齐异步校正，训练轻量未来校正模块预测未来环境表示，并引入置信度调度优化和系统级加速。\n\n\n# 一、动机\n\n> VLA模型在低功耗设备上推理延迟大，异步推理导致感知执行错位和反应时间长。\n\n\n# 二、方法\n\n> 提出Jetson-PI，通过未来对齐异步校正，训练轻量未来校正模块预测未来环境表示，并引入置信度调度优化和系统级加速。\n\n\n# 三、核心实验结果\n\n> 在NVIDIA Jetson Orin上，控制频率相比naive PyTorch和vla.cpp分别提升8.66倍和5.41倍，在LIBERO基准上平均成功率比VLASH高14.8%。\n\n\n# 四、对我的启发\n\n> 该方法有效提升低功耗设备上的实时控制性能，但优化依赖特定硬件，可泛化性需进一步验证。\n"
 }

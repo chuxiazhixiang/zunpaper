@@ -105,5 +105,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/Navigation\n  - Task/ObstacleAvoidance\n  - 状态/待读\nTitle: \"LP-NavOA: Integrated Local Navigation and Obstacle Avoidance for Humanoid Robots under Limited Perception\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2606.23249v1\n---\n>[!abstract] 一句话总结：提出LP-NavOA框架，先训练一个基于射线投射条件化感知-动作的PPO运动骨干网络，然后冻结骨干网络，利用A*和waypoint教师生成轨迹，蒸馏出递归局部规划器，在推理时仅覆盖航向命令，保持全身策略不变。\n\n\n# 一、动机\n\n> 现有的人形机器人导航方法在有限感知条件下（短程、部分可观测）难以同时解决避障、稀疏目标恢复和全身稳定运动问题，显式规划-控制分解存在延迟和命令跟踪不匹配，纯反应式控制器在障碍遮挡后容易丢失目标。\n\n\n# 二、方法\n\n> 提出LP-NavOA框架，先训练一个基于射线投射条件化感知-动作的PPO运动骨干网络，然后冻结骨干网络，利用A*和waypoint教师生成轨迹，蒸馏出递归局部规划器，在推理时仅覆盖航向命令，保持全身策略不变。\n\n\n# 三、核心实验结果\n\n> 在MuJoCo开放墙壁和室内布局中，蒸馏规划器将教师校准的准时到达率从38-40%提升至85-97%，并减少了与障碍物的碰撞/接触，骨干网络速度达3.0 m/s。\n\n\n# 四、对我的启发\n\n> 动态路径塑造、教师主动数据收集和圆形命令接口对导航效率和骨干训练至关重要；Unitree G1部署分析表明硬件可执行性，但实际物理实验尚未验证，与具身智能的跨体现转移等任务不直接相关。\n"
 }
