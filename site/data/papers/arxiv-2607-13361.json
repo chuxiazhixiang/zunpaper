@@ -84,5 +84,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/Detection\nTitle: \"Detector Confidence Signals Presence Rather Than Occlusion in Cluttered Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.13361v1\n---\n>[!abstract] 一句话总结：通过几何分割真值对照，系统评估三个检测器在多种遮挡场景下的置信度行为。\n\n\n# 一、动机\n\n> 现有方法将检测器置信度作为可见性信号，但该文发现遮挡后置信度几乎不变，导致指标和门控失效。\n\n\n# 二、方法\n\n> 通过几何分割真值对照，系统评估三个检测器在多种遮挡场景下的置信度行为。\n\n\n# 三、核心实验结果\n\n> 置信度与可见性几乎不相关，在99%的遮挡帧中仍报告物体存在；基于置信度的主动感知指标低估了约10倍（8 vs 88分）。\n\n\n# 四、对我的启发\n\n> 单视图信号无法检测遮挡，建议使用目标接地信号替代置信度进行门控和评估；与机器人操作中感知遮挡问题相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/RoboticManipulation\nTitle: \"Detector Confidence Signals Presence Rather Than Occlusion in Cluttered Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.13361v1\n---\n>[!abstract] 一句话总结：通过几何分割Oracle提供真值可见性，对比三种开放词汇检测器（Grounding DINO、OWLv2、SAM 3）的置信度，分析其在模拟和真实视频中的表现。\n\n\n# 一、动机\n\n> 现有方法将目标检测器置信度作为可见性信号，但研究发现即使目标被严重遮挡（仅剩八分之一），置信度几乎不变，甚至因杂乱而升高，导致在机器人操作等任务中误判目标存在。\n\n\n# 二、方法\n\n> 通过几何分割Oracle提供真值可见性，对比三种开放词汇检测器（Grounding DINO、OWLv2、SAM 3）的置信度，分析其在模拟和真实视频中的表现。\n\n\n# 三、核心实验结果\n\n> 置信度与真实可见性几乎不相关；在主动感知设置中，基于置信度的指标仅得8分，而基于真值可见性的指标为88分（低估约10倍）；检测器在99%的遮挡帧中仍报告目标存在，且易被同类干扰物误导。\n\n\n# 四、对我的启发\n\n> 检测器存在误校准和目标幻觉，单视角信号无法有效检测遮挡；推荐使用目标定位信号（如几何信息）进行门控和评估。该发现对机器人操作中的遮挡感知有直接指导意义。\n"
 }
