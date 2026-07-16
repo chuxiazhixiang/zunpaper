@@ -96,5 +96,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/RL\n  - Task/RepresentationLearning\n  - Task/ContinuousControl\nTitle: \"Factorized Spectral Representations for Reinforcement Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.13498v1\n---\n>[!abstract] 一句话总结：提出FaStR，通过CP分解和噪声对比目标学习转移核的因子化谱表示，分别生成状态、动作和下一状态的编码器。\n\n\n# 一、动机\n\n> 现有谱表示方法将转移核视为矩阵，未能充分利用其作为状态、动作、下一状态三模张量的结构，导致样本效率受限。\n\n\n# 二、方法\n\n> 提出FaStR，通过CP分解和噪声对比目标学习转移核的因子化谱表示，分别生成状态、动作和下一状态的编码器。\n\n\n# 三、核心实验结果\n\n> 在具有分解结构的高维运动任务上，FaStR取得最大性能提升；学习到的状态编码器可完整迁移至新的执行器，仅需重新训练动作编码器。\n\n\n# 四、对我的启发\n\n> 与课题不相关\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"Factorized Spectral Representations for Reinforcement Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.13498v1\n---\n>[!abstract] 一句话总结：提出FaStR，对过渡核进行CP分解（将张量分解为三个特征向量的外积和），并采用噪声对比目标独立学习状态、动作和下一状态的编码器，从而得到可分解的谱表示。\n\n\n# 一、动机\n\n> 现有谱表示方法将过渡核视为二元矩阵，忽略了其本质的三阶张量结构（状态、动作、下一状态），导致表示学习的样本复杂度高，尤其在高维控制任务中效率不足。\n\n\n# 二、方法\n\n> 提出FaStR，对过渡核进行CP分解（将张量分解为三个特征向量的外积和），并采用噪声对比目标独立学习状态、动作和下一状态的编码器，从而得到可分解的谱表示。\n\n\n# 三、核心实验结果\n\n> 在DeepMind Control Suite的高维运动任务（如Humanoid）中，FaStR相比基线取得了最大性能提升，样本效率提升因子与状态和动作维度的较小者成比例；学习到的状态编码器在迁移（更换执行器）时可直接保留，仅需重训动作编码器。\n\n\n# 四、对我的启发\n\n> 该方法通过显式利用张量结构减小假设类，提升了表示学习的样本效率，并支持编码器的模块化迁移，对机器人技能学习和跨形态迁移具有潜在价值。\n"
 }

@@ -113,5 +113,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"MimicIK: Real-Time Generative Inverse Kinematics from Teleoperation with FK Consistency\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2606.15148v2\n---\n>[!abstract] 一句话总结：提出MimicIK，使用条件流匹配学习平滑关节空间运动先验，通过最小迭代策略（MIP）骨干进行两步迭代细化，并引入可微前向运动学一致性损失（FK loss）以惩罚任务空间偏差。\n\n\n# 一、动机\n\n> 传统数值逆运动学求解器在闭环部署中易出现不连续分支切换和奇异点不稳定，而基于学习的方法难以同时兼顾空间精度、运动平滑性和实时效率，尤其在噪声遥操作数据上训练时。\n\n\n# 二、方法\n\n> 提出MimicIK，使用条件流匹配学习平滑关节空间运动先验，通过最小迭代策略（MIP）骨干进行两步迭代细化，并引入可微前向运动学一致性损失（FK loss）以惩罚任务空间偏差。\n\n\n# 三、核心实验结果\n\n> 在6-DOF机器人真实数据集上，平均位置误差4.65mm，10mm成功率92.01%，轨迹尖峰率7.99%，推理延迟6.74ms（UNet扩散基线为21.66ms），实现20Hz实时控制；相比确定性MLP基线，在奇异点附近仍保持稳定。\n\n\n# 四、对我的启发\n\n> 方法有效利用噪声遥操作数据学习鲁棒IK，但泛化到高自由度机器人或不同结构机器人可能需要更多验证；FK一致性损失是提升精度的关键正则化手段。\n"
 }
