@@ -167,5 +167,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"Mask World Model: Predicting What Matters for Robust Robot Policy Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2604.19683v2\n---\n>[!abstract] 一句话总结：利用视频扩散架构预测语义掩码的演化，强制几何信息瓶颈，过滤视觉噪声，并与扩散策略头集成实现端到端控制。\n\n\n# 一、动机\n\n> 现有世界模型基于RGB视频预测，容易过拟合动态背景和光照变化等无关因素，导致策略泛化能力差。\n\n\n# 二、方法\n\n> 利用视频扩散架构预测语义掩码的演化，强制几何信息瓶颈，过滤视觉噪声，并与扩散策略头集成实现端到端控制。\n\n\n# 三、核心实验结果\n\n> 在LIBERO和RLBench仿真基准上显著优于SOTA的RGB世界模型；真实世界实验和鲁棒性评估显示对纹理信息损失具有强韧的泛化能力。\n\n\n# 四、对我的启发\n\n> 依赖语义掩码的获取，可能限制了无标注场景的适用性；但几何信息瓶颈为去除任务无关视觉变异提供了有效思路。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"Mask World Model: Predicting What Matters for Robust Robot Policy Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2604.19683v2\n---\n>[!abstract] 一句话总结：提出Mask World Model，利用视频扩散架构预测语义掩码而非像素，通过几何信息瓶颈强制模型学习物理动态和接触关系，并集成扩散策略头实现端到端控制。\n\n\n# 一、动机\n\n> 标准世界模型过度关注高保真RGB视频预测，导致过拟合动态背景和光照变化等无关因素，影响策略泛化能力。\n\n\n# 二、方法\n\n> 提出Mask World Model，利用视频扩散架构预测语义掩码而非像素，通过几何信息瓶颈强制模型学习物理动态和接触关系，并集成扩散策略头实现端到端控制。\n\n\n# 三、核心实验结果\n\n> 在LIBERO和RLBench基准上显著优于RGB世界模型；真实实验和随机token剪枝测试下，MWM展现出更强的泛化能力和对纹理信息丢失的鲁棒性。\n\n\n# 四、对我的启发\n\n> 语义掩码作为中间表示有效滤除视觉噪声，但依赖预训练分割模型，对未见类别或复杂场景的泛化可能受限。\n"
 }

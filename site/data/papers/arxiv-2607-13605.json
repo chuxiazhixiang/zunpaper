@@ -1,0 +1,93 @@
+{
+  "id": "arxiv-2607-13605",
+  "source": "arxiv",
+  "title": "An Empirical Study on Stage-Information Interfaces for VLA Fine-Tuning",
+  "title_zh": "VLA微调中阶段信息接口的实证研究",
+  "abstract": "One high-level instruction in long-horizon manipulation can cover several action stages. We use segmented action annotations as an intermediate representation between the full-task instruction and VLA action chunks. A progress module tracks the active stage, while the action policy receives stage information either as current-stage text or as a normalized ordinal stage index in robot state. We compare these interfaces with GR00T N1.6 on LIBERO-10 under direct fine-tuning and continuation fine-tuning from a full-task instruction baseline. Under direct fine-tuning, full-task instruction, current-stage text, and Ordinal Stage-State achieve mean success rates of 57.45%, 50.24%, and 54.36%, respectively, showing that explicit stage information does not automatically improve the policy. Under continuation, the corresponding means are 49.07%, 50.00%, and 53.75%, with Ordinal Stage-State exceeding both alternatives in all three paired runs. The observed benefit differs across interface representations and training arrangements.",
+  "abstract_zh": "在长程操作任务中，一条高级指令可能涵盖多个动作阶段。我们使用分段动作标注作为全任务指令与VLA动作块之间的中间表示。一个进度模块跟踪当前活跃阶段，而动作策略通过两种方式接收阶段信息：当前阶段文本，或机器人状态中归一化的序数阶段索引。我们将这些接口与GR00T N1.6在LIBERO-10上进行比较，采用直接微调和从全任务指令基线继续微调两种方式。在直接微调下，全任务指令、当前阶段文本和序数阶段状态的平均成功率分别为57.45%、50.24%和54.36%，表明显式阶段信息并未自动提升策略性能。在继续微调下，对应均值分别为49.07%、50.00%和53.75%，其中序数阶段状态在所有三次配对运行中均优于其他两种方案。观察到的收益因接口表示和训练安排而异。",
+  "tldr_zh": "显式阶段信息不一定提升VLA微调性能，序数阶段状态在继续微调中表现更优。",
+  "cover_zh": "给机器人加个“进度条”反而变笨了？这个实验颠覆直觉",
+  "authors": [
+    {
+      "name": "Yingwei Ji",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-07-15",
+  "updated": "2026-07-15",
+  "arxiv_id": "2607.13605",
+  "pdf_url": "https://arxiv.org/pdf/2607.13605v1",
+  "abs_url": "http://arxiv.org/abs/2607.13605v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2607-13605.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2607-13605-p2.jpg",
+    "assets/img/covers/arxiv-2607-13605-p3.jpg",
+    "assets/img/covers/arxiv-2607-13605-p4.jpg"
+  ],
+  "channels": [
+    "loco-manip-wbc",
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 5,
+  "source_tags": [],
+  "score": 30,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 5 个（long-horizon manipulation、gr00t、vla fine-tuning、manipulation）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 5 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "研究VLA微调中的阶段信息接口，涉及操作策略，属于manipulation方向。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "VLA",
+    "fine-tuning"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"An Empirical Study on Stage-Information Interfaces for VLA Fine-Tuning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.13605v1\n---\n>[!abstract] 一句话总结：使用分段的动作注释作为全任务指令与VLA动作块之间的中间表示，通过进度模块跟踪当前阶段，并将阶段信息以文本或归一化序数索引的形式输入动作策略，在LIBERO-10数据集上与GR00T N1.6基线进行直接微调和续微调对比。\n\n\n# 一、动机\n\n> 在长程操控任务中，一个高级指令可能覆盖多个动作阶段，现有VLA模型直接使用全任务指令进行微调，缺乏明确的阶段信息，导致策略性能受限。本文探索如何通过阶段信息接口（当前阶段文本或归一化序数阶段状态）提升VLA策略的微调效果。\n\n\n# 二、方法\n\n> 使用分段的动作注释作为全任务指令与VLA动作块之间的中间表示，通过进度模块跟踪当前阶段，并将阶段信息以文本或归一化序数索引的形式输入动作策略，在LIBERO-10数据集上与GR00T N1.6基线进行直接微调和续微调对比。\n\n\n# 三、核心实验结果\n\n> 直接微调下，全任务指令、当前阶段文本、序数阶段状态的平均成功率分别为57.45%、50.24%、54.36%；续微调下，对应平均值分别为49.07%、50.00%、53.75%，其中序数阶段状态在三次配对实验中均优于另外两种接口。\n\n\n# 四、对我的启发\n\n> 明确的阶段信息并不自动提升VLA策略性能，其效果依赖于接口表示形式和训练安排；序数阶段状态在续微调场景下表现更优，但整体改进有限，需要进一步研究更有效的阶段信息集成方式。\n"
+}
