@@ -89,5 +89,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"Reflex: Real-Time VLA Control through Streaming Inference\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.14695v1\n---\n>[!abstract] 一句话总结：利用时间步不变性将注意力上下文划分为静态、滑动和动态区域，实现O(1)增量缓存更新；提出AdaRMSNorm防止数值崩溃；结合异步流水线和算子融合提升吞吐量。\n\n\n# 一、动机\n\n> 现有流匹配VLA模型因全局时间步注入导致KV缓存失效，只能在慢速完整重计算和错误缓存重用间二选一，无法满足实时推理需求。\n\n\n# 二、方法\n\n> 利用时间步不变性将注意力上下文划分为静态、滑动和动态区域，实现O(1)增量缓存更新；提出AdaRMSNorm防止数值崩溃；结合异步流水线和算子融合提升吞吐量。\n\n\n# 三、核心实验结果\n\n> 在LIBERO和Kinetix基准上，推理速度提升2.58倍，实现50Hz稳定流式推理，反应延迟降低54%。\n\n\n# 四、对我的启发\n\n> 该方法依赖流匹配模型的时间步不变性，对于其他生成范式可能不直接适用；但为VLA模型的实时部署提供了高效框架，启发利用模型结构特性设计流式推理机制。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"Reflex: Real-Time VLA Control through Streaming Inference\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.14695v1\n---\n>[!abstract] 一句话总结：利用时间步不变性划分子注意力上下文实现O(1)增量缓存更新，并引入AdaRMSNorm、异步流水线和算子融合提升稳定性和吞吐量。\n\n\n# 一、动机\n\n> 解决流匹配VLA模型迭代去噪导致实时推理效率低下的问题，避免慢速O(N^2)重计算或数学不正确的缓存重用。\n\n\n# 二、方法\n\n> 利用时间步不变性划分子注意力上下文实现O(1)增量缓存更新，并引入AdaRMSNorm、异步流水线和算子融合提升稳定性和吞吐量。\n\n\n# 三、核心实验结果\n\n> 在LIBERO和Kinetix基准上实现2.58倍推理加速和50Hz稳定流式推理，反应延迟降低54%，性能无下降。\n\n\n# 四、对我的启发\n\n> 该方法显著提升了VLA模型的实时性，但可能对特定模型架构有依赖，需进一步验证泛化性；对具身智能机器人控制具有实际应用价值。\n"
 }
