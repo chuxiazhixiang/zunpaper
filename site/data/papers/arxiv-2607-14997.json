@@ -72,7 +72,8 @@
   ],
   "channels": [
     "manipulation",
-    "sim2real"
+    "sim2real",
+    "world-model"
   ],
   "badges": [
     {
@@ -107,7 +108,7 @@
       "id": "cross_channel",
       "label": "跨多个方向",
       "points": 5,
-      "hint": "同时命中 2 个频道"
+      "hint": "同时命中 3 个频道"
     }
   ],
   "judge": {
@@ -136,5 +137,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/Navigation\nTitle: \"AeroAct: Action-Centered World-Action Models for Language-Conditioned Quadrotor Flight\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.14997v1\n---\n>[!abstract] 一句话总结：AeroAct是一个以动作为中心的世界动作模型（WAM），通过预训练视频扩散Transformer，从第一人称视觉历史、本体感知和语言指令中预测局部轨迹动作块，训练时利用未来帧提供密集后果监督，部署时直接输出动作而不生成视频。\n\n\n# 一、动机\n\n> 现有空中视觉语言导航和视觉语言动作方法使用离散动作、高层航点或瞬时速度命令，对飞行动作如何改变未来观测的监督有限，导致在快速变化的第一人称视角下难以保持平滑和动态可执行的控制。\n\n\n# 二、方法\n\n> AeroAct是一个以动作为中心的世界动作模型（WAM），通过预训练视频扩散Transformer，从第一人称视觉历史、本体感知和语言指令中预测局部轨迹动作块，训练时利用未来帧提供密集后果监督，部署时直接输出动作而不生成视频。\n\n\n# 三、核心实验结果\n\n> 在闭环仿真和真实四旋翼飞行实验中，AeroAct成功部署并展示了时间视觉上下文对目标跟踪和物体搜索性能的提升，验证了世界动作模型在真实飞行中的可行性。\n\n\n# 四、对我的启发\n\n> 首次将世界动作模型应用于真实四旋翼飞行，证明了视频扩散模型用于动作预测的有效性；未来可探索更高效的推理或结合更丰富的传感器输入，但依赖对齐的多模态数据采集管道和低成本的采集设备仍有改进空间。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"AeroAct: Action-Centered World-Action Models for Language-Conditioned Quadrotor Flight\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.14997v1\n---\n>[!abstract] 一句话总结：提出AeroAct，一种改编预训练视频扩散Transformer的世界-动作模型；利用自我视觉历史、本体感觉和语言输入预测轨迹-动作块，训练阶段使用未来第一人称帧作为后果监督，部署时直接解码动作。\n\n\n# 一、动机\n\n> 现有语言条件四旋翼飞行方法使用离散动作或瞬时速度命令，缺乏对动作如何改变未来观察的密集监督，导致视觉语义理解和动态控制能力不足。\n\n\n# 二、方法\n\n> 提出AeroAct，一种改编预训练视频扩散Transformer的世界-动作模型；利用自我视觉历史、本体感觉和语言输入预测轨迹-动作块，训练阶段使用未来第一人称帧作为后果监督，部署时直接解码动作。\n\n\n# 三、核心实验结果\n\n> 闭环仿真和真实世界实验中，AeroAct在目标跟踪和物体搜索任务上优于基线方法，并成功在物理四旋翼上执行，具体数值（如位置误差、成功率）详见论文。\n\n\n# 四、对我的启发\n\n> 首次将世界-动作模型（WAM）应用于真实四旋翼飞行，验证了未来视觉后果作为训练监督的有效性；手持采集设备降低了数据获取成本，但模型对数据质量依赖高，复杂动态环境下的泛化性仍需进一步研究。\n"
 }
