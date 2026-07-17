@@ -1,0 +1,97 @@
+{
+  "id": "arxiv-2607-14698",
+  "source": "arxiv",
+  "title": "Lights, Camera, Malfunction: When Illumination Robustness Leaves VLA Models Blind to Color",
+  "title_zh": "灯光，摄像机，故障：当光照鲁棒性使VLA模型对颜色失明",
+  "abstract": "Vision-Language-Action (VLA) models have emerged as a powerful paradigm for general-purpose robot manipulation; however, their transition to real-world environments reveals vulnerabilities to minor environmental perturbations. We propose FLARE, an optimized physical spotlight attack framework that exploits these vulnerabilities via targeted illuminations, dropping baseline task success rates to zero without any access to model internals. While adversarial training is the standard countermeasure, we identify a critical and previously underestimated defensive pitfall: naive data augmentations incorrectly condition VLA models to discard color as noise, collapsing their visual perception into a purely shape-biased processor. We expose this degradation through a diagnostic grayscale evaluation, in which the defended model maintains high success rates on grayscale inputs, while its success rate on benign, color-dependent real-world tasks drops to at most 47.5%, well below the undefended baseline. To address this, we propose ChromaGuard, a chroma-preserving adversarial training method. On a physical 6-DoF robotic platform, we demonstrate that ChromaGuard achieves 97.5% and 92.5% success rates in benign and attacked color-dependent tasks, respectively.",
+  "abstract_zh": "视觉-语言-动作（VLA）模型已成为通用机器人操作的有力范式；然而，它们向真实世界环境的过渡揭示了其对微小环境扰动的脆弱性。我们提出了FLARE，一种优化的物理聚光灯攻击框架，通过目标照明利用这些脆弱性，在无需访问模型内部的情况下将基线任务成功率降至零。虽然对抗训练是标准的防御措施，但我们发现了一个关键且此前被低估的防御陷阱：朴素的数据增强错误地使VLA模型将颜色视为噪声而丢弃，将其视觉感知坍缩为纯形状偏好的处理器。我们通过诊断性灰度评估揭示了这种退化，其中防御模型在灰度输入上保持高成功率，但在良性的、依赖颜色的真实世界任务上成功率降至最多47.5%，远低于未防御基线。为解决此问题，我们提出了ChromaGuard，一种保留色度的对抗训练方法。在物理6自由度机器人平台上，我们证明ChromaGuard在良性和受攻击的颜色依赖任务中分别实现了97.5%和92.5%的成功率。",
+  "tldr_zh": "光照攻击使VLA模型失效，朴素防御导致颜色失明，新方法ChromaGuard恢复性能",
+  "cover_zh": "光照攻击让机器人瞬间失明？新防御竟能反杀，成功率飙到97.5%",
+  "authors": [
+    {
+      "name": "Marino Watanabe",
+      "affiliation": ""
+    },
+    {
+      "name": "Takami Sato",
+      "affiliation": ""
+    },
+    {
+      "name": "Kentaro Yoshioka",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-07-16",
+  "updated": "2026-07-16",
+  "arxiv_id": "2607.14698",
+  "pdf_url": "https://arxiv.org/pdf/2607.14698v1",
+  "abs_url": "http://arxiv.org/abs/2607.14698v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2607-14698.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2607-14698-p2.jpg",
+    "assets/img/covers/arxiv-2607-14698-p3.jpg",
+    "assets/img/covers/arxiv-2607-14698-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 10,
+  "source_tags": [],
+  "score": 22,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（vision-language-action、vla model、manipulation）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 10 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "针对VLA模型在真实环境中的光照鲁棒性提出攻击与防御方法，有实验验证，对操作领域有参考价值",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Keio University"
+  ],
+  "method_tags": [
+    "adversarial attack",
+    "adversarial training",
+    "VLA"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - 论文/训练\n  - Domain/CV\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"Lights, Camera, Malfunction: When Illumination Robustness Leaves VLA Models Blind to Color\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.14698v1\n---\n>[!abstract] 一句话总结：提出FLARE物理光照攻击框架和ChromaGuard颜色保留对抗训练方法。\n\n\n# 一、动机\n\n> 现有VLA模型对光照变化等环境扰动鲁棒性不足，且标准对抗训练引入的朴素数据增强会导致模型丢弃颜色信息，损害颜色依赖任务的性能。\n\n\n# 二、方法\n\n> 提出FLARE物理光照攻击框架和ChromaGuard颜色保留对抗训练方法。\n\n\n# 三、核心实验结果\n\n> FLARE攻击使基线任务成功率降至0%；ChromaGuard在颜色依赖的良性任务上达到97.5%成功率，在受攻击任务上达到92.5%，而未防御基线在良性任务上仅为47.5%。\n\n\n# 四、对我的启发\n\n> 颜色信息对VLA模型至关重要，防御策略需保留颜色特征以避免视觉退化为形状偏置；此发现适用于具身智能中的鲁棒性研究。\n"
+}

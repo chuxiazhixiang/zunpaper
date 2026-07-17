@@ -1,0 +1,93 @@
+{
+  "id": "arxiv-2607-14695",
+  "source": "arxiv",
+  "title": "Reflex: Real-Time VLA Control through Streaming Inference",
+  "title_zh": "Reflex：通过流式推理实现实时VLA控制",
+  "abstract": "Flow matching Vision-Language-Action (VLA) models promise precise continuous control, but their iterative denoising nature introduces fundamental incompatibilities with real-time robotics: global timestep injection invalidates KV-caching, forcing a choice between slow $O(N^2)$ re-computation or mathematically incorrect cache reuse. We present \\textbf{Reflex}, a framework that enables \\textit{real-time streaming inference} for flow matching policies by exploiting the \\textit{Timestep-Invariance Property} -- that perception encoders are functionally independent of the denoising loop. Reflex partitions the attention context into static, sliding, and dynamic regions, enabling $O(1)$ incremental cache updates while preserving full-batch-equivalent attention outputs for fixed inputs. To ensure stability under continuous high-frequency inference, we introduce \\textit{AdaRMSNorm}, an adaptive normalization layer that prevents BFloat16 numerical collapse by gating on flow phase. We further maximize throughput through an \\textit{async pipeline} that decouples visual encoding from action generation, combined with \\textit{operator fusion} that reduces kernel overhead. On LIBERO and Kinetix benchmarks, Reflex achieves a 2.58$\\times$ inference speedup and 50Hz stable streaming, reducing reaction latency by up to 54\\% and enabling efficient deployment without performance degradation.",
+  "abstract_zh": "流匹配视觉-语言-动作（VLA）模型有望实现精确的连续控制，但其迭代去噪特性与实时机器人系统存在根本性不兼容：全局时间步注入使KV缓存失效，迫使在缓慢的O(N²)重计算或数学上不正确的缓存重用之间做出选择。我们提出Reflex框架，该框架利用时间步不变性——即感知编码器在功能上独立于去噪循环——实现流匹配策略的实时流式推理。Reflex将注意力上下文划分为静态、滑动和动态区域，实现O(1)增量缓存更新，同时为固定输入保留全批量等价的注意力输出。为确保连续高频推理下的稳定性，我们引入AdaRMSNorm，一种通过流相位门控防止BFloat16数值崩溃的自适应归一化层。我们进一步通过异步流水线（将视觉编码与动作生成解耦）和算子融合（减少内核开销）最大化吞吐量。在LIBERO和Kinetix基准测试中，Reflex实现了2.58倍的推理加速和50Hz稳定流式处理，反应延迟降低高达54%，且性能无下降。",
+  "tldr_zh": "Reflex通过时间步不变性和增量缓存实现流匹配VLA模型的实时流式推理，加速2.58倍。",
+  "cover_zh": "机器人控制慢如蜗牛？这个框架让推理速度飙升2.58倍！",
+  "authors": [
+    {
+      "name": "Yuanchun Guo",
+      "affiliation": ""
+    },
+    {
+      "name": "Bingyan Liu",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-07-16",
+  "updated": "2026-07-16",
+  "arxiv_id": "2607.14695",
+  "pdf_url": "https://arxiv.org/pdf/2607.14695v1",
+  "abs_url": "http://arxiv.org/abs/2607.14695v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2607-14695.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2607-14695-p2.jpg",
+    "assets/img/covers/arxiv-2607-14695-p3.jpg",
+    "assets/img/covers/arxiv-2607-14695-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 16,
+  "source_tags": [],
+  "score": 19,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 6,
+      "hint": "频道关键词命中 2 个（vision-language-action、libero）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 16 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出实时流推理框架，解决VLA模型推理效率瓶颈，实验在操作benchmark上验证，对具身操作有高价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "School of Computer Science, Beijing University of Posts and Telecommunications"
+  ],
+  "method_tags": [
+    "flow matching",
+    "streaming inference",
+    "KV-caching"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"Reflex: Real-Time VLA Control through Streaming Inference\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.14695v1\n---\n>[!abstract] 一句话总结：提出Reflex框架，利用时间步不变性将注意力上下文分为静态、滑动和动态区域，实现O(1)增量缓存更新；引入AdaRMSNorm自适应归一化层防止数值崩溃；通过异步流水线将视觉编码与动作生成解耦，并结合算子融合提升吞吐。\n\n\n# 一、动机\n\n> 现有流匹配VLA模型因迭代去噪过程导致推理速度慢，且KV缓存无法复用，无法满足实时机器人控制需求。\n\n\n# 二、方法\n\n> 提出Reflex框架，利用时间步不变性将注意力上下文分为静态、滑动和动态区域，实现O(1)增量缓存更新；引入AdaRMSNorm自适应归一化层防止数值崩溃；通过异步流水线将视觉编码与动作生成解耦，并结合算子融合提升吞吐。\n\n\n# 三、核心实验结果\n\n> 在LIBERO和Kinetix基准上，推理速度提升2.58倍，实现50Hz稳定流式推理，反应延迟降低54%，且无性能下降。\n\n\n# 四、对我的启发\n\n> 与具身智能任务高度相关，但真实机器人部署的鲁棒性和实时性仍需进一步验证。\n"
+}

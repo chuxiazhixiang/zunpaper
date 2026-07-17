@@ -104,5 +104,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/3DOccupancy\nTitle: \"VISA: VLM-Guided Instance Semantic Auditing for 3D Occupancy World Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2606.13460v1\n---\n>[!abstract] 一句话总结：提出VISA训练时语义审计方法，利用离线VLM对每个物理对象实例的典型裁剪查询结构化审计结果（类假设、混淆、可靠性等），沿目标轨迹传播，通过可靠性加权分类、属性因子和场景级审计图损失将审计知识蒸馏到3D体素语义logits中，推理时无VLM开销。\n\n\n# 一、动机\n\n> 现有VLM对齐3D体素特征与裁剪-标题嵌入的方法虽然提高了文本空间相似度，但未能显著提升闭集占用mIoU，因此需要更可靠的语义审计策略来改善世界模型中的物体和罕见类错误。\n\n\n# 二、方法\n\n> 提出VISA训练时语义审计方法，利用离线VLM对每个物理对象实例的典型裁剪查询结构化审计结果（类假设、混淆、可靠性等），沿目标轨迹传播，通过可靠性加权分类、属性因子和场景级审计图损失将审计知识蒸馏到3D体素语义logits中，推理时无VLM开销。\n\n\n# 三、核心实验结果\n\n> 在nuScenes上三次平均：OccWorld mIoU从19.06提升至20.05；GaussianWorld mIoU从21.36提升至21.91，其中物体mIoU从18.18提升至19.16，罕见类mIoU从15.60提升至16.79。\n\n\n# 四、对我的启发\n\n> VLM作为可靠性感知语义审计器比作为通用嵌入对齐目标更适合闭集占用预测，方法可推广到机器人决策中的场景理解，但当前仅针对自动驾驶数据集验证，计算开销依赖离线VLM。\n"
 }
