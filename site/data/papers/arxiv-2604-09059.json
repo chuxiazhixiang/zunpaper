@@ -128,5 +128,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/AutonomousDriving\nTitle: \"Learning Vision-Language-Action World Models for Autonomous Driving\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2604.09059v1\n---\n>[!abstract] 一句话总结：提出VLA-World，首先用动作轨迹生成下一帧图像以捕捉时空线索，再对自生成的未来帧进行推理以优化预测轨迹。\n\n\n# 一、动机\n\n> 现有VLA模型缺乏时间动态建模和全局世界一致性，世界模型难以推理和评估其生成的未来场景。\n\n\n# 二、方法\n\n> 提出VLA-World，首先用动作轨迹生成下一帧图像以捕捉时空线索，再对自生成的未来帧进行推理以优化预测轨迹。\n\n\n# 三、核心实验结果\n\n> 在nuScenes数据集上，规划L2误差从0.32m降至0.23m（降低28%），未来帧FID从15.3降至12.5（提升18%），优于SOTA VLA和世界模型基线。\n\n\n# 四、对我的启发\n\n> 与课题不相关（聚焦于自动驾驶而非机器人/具身智能）。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/AutonomousDriving\nTitle: \"Learning Vision-Language-Action World Models for Autonomous Driving\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2604.09059v1\n---\n>[!abstract] 一句话总结：提出VLA-World，先利用动作衍生的可行轨迹引导生成下一帧图像，再对自生成的未来想象帧进行推理以修正预测轨迹，结合三阶段训练（预训练、监督微调、强化学习）。\n\n\n# 一、动机\n\n> 现有VLA模型缺乏对时间动态和全局世界一致性的显式建模，限制了预见性和安全性；世界模型能模拟未来场景但难以推理或评估生成的未来。\n\n\n# 二、方法\n\n> 提出VLA-World，先利用动作衍生的可行轨迹引导生成下一帧图像，再对自生成的未来想象帧进行推理以修正预测轨迹，结合三阶段训练（预训练、监督微调、强化学习）。\n\n\n# 三、核心实验结果\n\n> 在nuScenes数据集上的规划与未来生成基准测试中，VLA-World一致超越现有VLA和世界模型基线（具体数值参见论文原文）。\n\n\n# 四、对我的启发\n\n> 该方法通过预测+推理增强驾驶预见性，但依赖高质量未来帧生成，可能受限于合成图像质量；启发：将世界模型与VLA结合是提升具身智能安全性的有效方向。\n"
 }
