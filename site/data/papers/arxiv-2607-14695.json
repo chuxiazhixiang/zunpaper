@@ -58,7 +58,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -89,5 +89,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"Reflex: Real-Time VLA Control through Streaming Inference\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.14695v1\n---\n>[!abstract] 一句话总结：提出Reflex框架，利用时间步不变性将注意力上下文分为静态、滑动和动态区域，实现O(1)增量缓存更新，并引入AdaRMSNorm防止BF16数值崩溃，以及异步流水线和算子融合提升吞吐量。\n\n\n# 一、动机\n\n> 流匹配视觉-语言-动作（VLA）模型的迭代去噪过程与实时机器人控制存在根本冲突：全局时间步注入使得KV缓存无效，导致要么慢速O(N^2)重计算，要么数学上不正确的缓存重用。\n\n\n# 二、方法\n\n> 提出Reflex框架，利用时间步不变性将注意力上下文分为静态、滑动和动态区域，实现O(1)增量缓存更新，并引入AdaRMSNorm防止BF16数值崩溃，以及异步流水线和算子融合提升吞吐量。\n\n\n# 三、核心实验结果\n\n> 在LIBERO和Kinetix基准上，Reflex实现2.58倍推理加速和50Hz稳定流式推理，反应延迟降低高达54%，且无性能下降。\n\n\n# 四、对我的启发\n\n> 与课题相关，展示了通过巧妙利用模型结构特性（时间步不变性）和工程优化（异步流水线、算子融合）可显著提升VLA策略的实时性，对于机器人灵巧操控等高频场景具有直接启发意义。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"Reflex: Real-Time VLA Control through Streaming Inference\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.14695v1\n---\n>[!abstract] 一句话总结：利用时间步不变性将注意力上下文分区为静态/滑动/动态区域，实现O(1)增量缓存更新；提出AdaRMSNorm防止BF16数值崩溃；采用异步流水线解耦视觉编码与动作生成，并融合算子减少开销。\n\n\n# 一、动机\n\n> 流匹配VLA模型因迭代去噪导致全局时间步注入破坏KV缓存，迫使在慢速O(N²)重计算或数学不正确的缓存重用间选择，无法实现实时控制。\n\n\n# 二、方法\n\n> 利用时间步不变性将注意力上下文分区为静态/滑动/动态区域，实现O(1)增量缓存更新；提出AdaRMSNorm防止BF16数值崩溃；采用异步流水线解耦视觉编码与动作生成，并融合算子减少开销。\n\n\n# 三、核心实验结果\n\n> 在LIBERO和Kinetix基准上，推理速度提升2.58倍，达到50Hz稳定流式推理，反应延迟降低54%，且性能无下降。\n\n\n# 四、对我的启发\n\n> 该方法有效降低了VLA模型的推理延迟，适合实时机器人控制部署，但需验证长序列或复杂场景下的稳定性。\n"
 }

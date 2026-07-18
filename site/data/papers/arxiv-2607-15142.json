@@ -67,7 +67,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -98,5 +98,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\nTitle: \"Concept-Guided Spatial Regularization for World Models in Atari Pong\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.15142v1\n---\n>[!abstract] 一句话总结：提出概念引导的空间正则化（CGSReg），对分割出的任务关键概念区域（如Pong中的球）施加辅助像素重构损失，以提升世界模型对关键概念的建模能力。\n\n\n# 一、动机\n\n> 现有世界模型在孤立评估时出现球消失、运动错误等失败，导致模型基强化学习（MBRL）性能下降，而现有工作很少单独评估世界模型。\n\n\n# 二、方法\n\n> 提出概念引导的空间正则化（CGSReg），对分割出的任务关键概念区域（如Pong中的球）施加辅助像素重构损失，以提升世界模型对关键概念的建模能力。\n\n\n# 三、核心实验结果\n\n> 在Atari Pong中，五种代表性世界模型（DreamerV3、DIAMOND、TWISTER、Simulus、STORM）的闭环rollout均存在明显失败；零样本MBRL中DreamerV3的平均回报从-5.5降至-20.9（接近最低值-21），而CGSReg可改善DreamerV3、DIAMOND和TWISTER的rollout和零样本MBRL性能，但对其他模型效果不一。\n\n\n# 四、对我的启发\n\n> CGSReg虽能缓解部分世界模型的关键概念建模不足，但无法解决所有瓶颈，表明世界模型改进需要更全面的方法，与课题不直接相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/CV\nTitle: \"Concept-Guided Spatial Regularization for World Models in Atari Pong\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.15142v1\n---\n>[!abstract] 一句话总结：提出概念引导空间正则化（CGSReg），一种应用于分割概念区域的辅助像素重建损失，以增强世界模型对关键概念的建模能力。\n\n\n# 一、动机\n\n> 现有世界模型作为模型基强化学习（MBRL）组件时很少被单独评估，本文发现五个代表世界模型在Atari Pong中存在球消失、运动错误等明显失败，提出概念引导空间正则化以改进对任务关键概念的建模。\n\n\n# 二、方法\n\n> 提出概念引导空间正则化（CGSReg），一种应用于分割概念区域的辅助像素重建损失，以增强世界模型对关键概念的建模能力。\n\n\n# 三、核心实验结果\n\n> CGSReg改善了DreamerV3、DIAMOND、TWISTER的闭环rollout和像素空间零样本MBRL性能，但未完全解决所有模型瓶颈；DreamerV3在原始MBRL中均回报为-5.5，冻结模型零样本MBRL降至-20.9。\n\n\n# 四、对我的启发\n\n> CGSReg不能全面解决世界模型瓶颈，提示需要更综合的机制；本研究基于Atari游戏，与机器人/具身智能不直接相关。\n"
 }

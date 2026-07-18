@@ -62,7 +62,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -93,5 +93,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"Lights, Camera, Malfunction: When Illumination Robustness Leaves VLA Models Blind to Color\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.14698v1\n---\n>[!abstract] 一句话总结：提出FLARE物理照明攻击框架，在不访问模型内部的情况下通过定向照明使任务成功率降至零；提出ChromaGuard颜色保持对抗训练方法，在防御的同时保留颜色感知能力。\n\n\n# 一、动机\n\n> 视觉-语言-动作(VLA)模型在真实世界环境中对光照扰动等微小环境扰动很脆弱，且标准对抗训练（如数据增强）导致模型丢弃颜色信息、依赖形状，严重降低颜色相关任务的性能。\n\n\n# 二、方法\n\n> 提出FLARE物理照明攻击框架，在不访问模型内部的情况下通过定向照明使任务成功率降至零；提出ChromaGuard颜色保持对抗训练方法，在防御的同时保留颜色感知能力。\n\n\n# 三、核心实验结果\n\n> FLARE攻击将基线任务成功率降至0%；ChromaGuard在受攻击和未受攻击的颜色相关任务上分别达到92.5%和97.5%的成功率，而使用朴素数据增强的模型在颜色相关任务上成功率最高仅47.5%。\n\n\n# 四、对我的启发\n\n> 揭示了VLA模型对颜色信息的关键依赖性，以及朴素数据增强导致颜色信息丢失的缺陷。ChromaGuard通过保留颜色信息有效提升了鲁棒性，但该工作主要针对物理光照攻击，对更广泛的环境扰动可能仍需进一步验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/CV\n  - Task/RoboticManipulation\nTitle: \"Lights, Camera, Malfunction: When Illumination Robustness Leaves VLA Models Blind to Color\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.14698v1\n---\n>[!abstract] 一句话总结：提出ChromaGuard，一种保留颜色的对抗训练方法，通过在训练中引入物理光照攻击模拟，同时保持颜色信息不变，增强模型对光照扰动的鲁棒性。\n\n\n# 一、动机\n\n> VLA模型在真实环境中对光照扰动敏感，现有对抗训练方法错误地丢弃颜色信息，导致模型在颜色依赖任务上性能大幅下降。\n\n\n# 二、方法\n\n> 提出ChromaGuard，一种保留颜色的对抗训练方法，通过在训练中引入物理光照攻击模拟，同时保持颜色信息不变，增强模型对光照扰动的鲁棒性。\n\n\n# 三、核心实验结果\n\n> 在物理6-DoF机器人平台上，ChromaGuard在良性颜色依赖任务上成功率达97.5%，在攻击下成功率达92.5%，而未防御基线在攻击下成功率为0%，且标准对抗训练后模型在颜色依赖任务上成功率降至47.5%。\n\n\n# 四、对我的启发\n\n> 揭示了对抗训练中数据增强不当会导致VLA模型颜色感知崩溃，提出了保留颜色信息的对抗训练策略；与课题相关，可用于提升机器人操作对光照变化的鲁棒性。\n"
 }

@@ -67,7 +67,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -110,5 +110,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/Teleoperation\nTitle: \"Beyond Implicit Force: Evaluating Explicit Force-Torque Proxies in Action Chunking with Transformers\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.14578v1\n---\n>[!abstract] 一句话总结：通过去除遥操作隐式线索的观察中心ACT变体，并评估基于电机电流或关节力的简单力矩代理能否恢复力感知行为。\n\n\n# 一、动机\n\n> Action Chunking with Transformers (ACT) 在接触丰富的操作中依赖遥操作跟踪误差作为隐式力线索，但该线索并非普遍可用，且遮挡或摩擦变化时不可靠。\n\n\n# 二、方法\n\n> 通过去除遥操作隐式线索的观察中心ACT变体，并评估基于电机电流或关节力的简单力矩代理能否恢复力感知行为。\n\n\n# 三、核心实验结果\n\n> 在四个真实任务中，去除隐式线索导致严重失败；而力矩增强策略恢复了鲁棒接触行为，并改进了基础ACT策略。\n\n\n# 四、对我的启发\n\n> 力矩代理可以有效替代隐式力线索，但需要传感器或估计，与课题直接相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"Beyond Implicit Force: Evaluating Explicit Force-Torque Proxies in Action Chunking with Transformers\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.14578v1\n---\n>[!abstract] 一句话总结：通过修改 ACT 的观测目标（预测未来跟随者关节状态而非领导者命令）来消除隐式遥操作差异信号，并引入基于电机电流或关节力矩的简单力矩代理作为额外输入，对比不同配置的性能。\n\n\n# 一、动机\n\n> 探究 Action Chunking with Transformers (ACT) 在接触丰富任务中是否隐式依赖遥操作过程中的跟踪误差作为力感知线索，并验证简单的关节力矩代理能否替代显式力/力矩传感器。\n\n\n# 二、方法\n\n> 通过修改 ACT 的观测目标（预测未来跟随者关节状态而非领导者命令）来消除隐式遥操作差异信号，并引入基于电机电流或关节力矩的简单力矩代理作为额外输入，对比不同配置的性能。\n\n\n# 三、核心实验结果\n\n> 在四个真实世界任务（表面跟随、插入、刚度判别、力基停止）中，移除隐式遥操作差异信号导致力关键阶段严重失败；而引入力矩代理的策略能恢复鲁棒接触行为，并提升或超越基础 ACT 策略。\n\n\n# 四、对我的启发\n\n> 力矩信号（低成本代理）可作为显式力传感器的有效替代，提供接触感知能力；但遥操作隐式线索在某些场景下可能足够，需根据硬件条件权衡。\n"
 }
