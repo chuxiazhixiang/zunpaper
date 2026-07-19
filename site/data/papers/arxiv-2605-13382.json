@@ -90,5 +90,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"BlockVLA: Accelerating Autoregressive VLA via Block Diffusion Finetuning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2605.13382v1\n---\n>[!abstract] 一句话总结：提出BlockVLA，通过块扩散范式将预训练自回归骨干适配为离散扩散策略：块间保持自回归依赖（全局因果性），块内并行去噪，并复用已生成块的前缀KV缓存。\n\n\n# 一、动机\n\n> 自回归视觉-语言-动作模型推理延迟高且长时程误差累积，离散扩散模型虽支持并行生成但多次去噪开销大且KV缓存复用困难，需要桥接两种范式以实现高效机器人控制。\n\n\n# 二、方法\n\n> 提出BlockVLA，通过块扩散范式将预训练自回归骨干适配为离散扩散策略：块间保持自回归依赖（全局因果性），块内并行去噪，并复用已生成块的前缀KV缓存。\n\n\n# 三、核心实验结果\n\n> 在LIBERO和SimplerEnv基准上，BlockVLA相比标准离散扩散基线实现3.3倍推理加速；训练早期（复杂长时任务）成功率收敛更快，性能显著优于基线。\n\n\n# 四、对我的启发\n\n> 块扩散为大规模预训练自回归模型向高效实时机器人控制的迁移提供了稳健桥梁，但块大小选择可能影响性能与效率平衡，且仍需探索更简洁的去噪步骤。\n"
 }
