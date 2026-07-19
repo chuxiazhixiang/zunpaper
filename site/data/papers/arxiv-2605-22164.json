@@ -90,5 +90,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"Beyond Euclidean Proximity: Repairing Latent World Models with Horizon-Matched Trajectory Reachability Metrics\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2605.22164v1\n---\n>[!abstract] 一句话总结：提出轨迹可达性度量（TRM），在固定潜在世界模型上训练一个小型成对头，从记录轨迹结构中学习度量，用于替代或混合原始终端代价。关键设计是水平感知监督，在广泛的时间跨度上训练以匹配长时域候选排名问题。\n\n\n# 一、动机\n\n> 潜在世界模型中，终端代价使用欧几里得距离排名候选轨迹，但该距离未能正确加权与可达性相关的变量，导致规划器接收到错误的决策信息。\n\n\n# 二、方法\n\n> 提出轨迹可达性度量（TRM），在固定潜在世界模型上训练一个小型成对头，从记录轨迹结构中学习度量，用于替代或混合原始终端代价。关键设计是水平感知监督，在广泛的时间跨度上训练以匹配长时域候选排名问题。\n\n\n# 三、核心实验结果\n\n> 在TwoRoom基准上，原始原始潜在规划成功率为7.0%，完整TRM达到97.0%（打乱标签控制为0.0%）；PLDM基线从32.7%提升到84.0%（三种子）；短视TRM仅达到35.0%。在TwoRoom中，TRM改善了排序和选择的端点。\n\n\n# 四、对我的启发\n\n> TRM是规划器层面的修复，通过审计揭示了原始潜在MSE中方向信息占比极小（<1%），而TRM通过考虑轨迹结构改善了可达性排名；在连续操作任务中，TRM风格的度量在排序和最终距离上表现更好，但闭环成功率提升不明显，启示混合代价可能更有用。\n"
 }
