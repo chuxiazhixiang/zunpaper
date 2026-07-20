@@ -1,0 +1,81 @@
+{
+  "id": "arxiv-2607-15733",
+  "source": "arxiv",
+  "title": "A Task-Space Receding Horizon Controller for Fast Collision Avoidance",
+  "title_zh": "面向快速避障的任务空间滚动时域控制器",
+  "abstract": "Real-time collision avoidance for robotic manipulators requires fast reactions to unexpected obstacle motion and lookahead to avoid becoming trapped by near-future constraints. Full model predictive control can provide this foresight, but its online cost may grow quickly with horizon length, model fidelity, and the number of active geometric constraints. Conversely, horizon-free reactive methods are computationally efficient but can be short-sighted in dynamic clutter. We present a task-space receding-horizon controller that uses a short contact-consistent rollout to generate a terminal kinematic reference satisfying internal non-penetration constraints, then computes only the first input of a smooth minimum-acceleration transition toward that reference. Starting from a closed-loop inverse-kinematics regulation law, the rollout is performed with an iterative dynamics solver operating on inflated convex robot and obstacle geometries, so that robot-obstacle contacts, dynamic obstacle motion, and self-collisions can shape the terminal reference without requiring full constrained trajectory optimization. We analyze the contact-inactive closed loop and show local exponential task-space regulation under standard regularity assumptions. For contacts activated inside the rollout, we characterize the corresponding discrete updates and bound the effect of moving obstacles on regular operating sets. Simulations on a 40-DOF multi-chain system show that intermediate horizons balance anticipation, responsiveness, and computational cost. Hardware experiments on a 6-DOF platform demonstrate consistent sim-to-real behavior without accurate inertial parameter estimation, and comparisons against dynamic optimization fabrics and model predictive control (MPC) baselines show improved success rates in dynamic clutter while preserving solve times compatible with real-time execution in the tested regimes.",
+  "abstract_zh": "机器人操作臂的实时避障需要快速响应意外障碍物运动，并具备前瞻性以避免被近未来约束困住。全模型预测控制能提供这种预见性，但其在线计算成本会随预测时域长度、模型保真度和活跃几何约束数量迅速增长。相反，无时域的反应式方法计算高效，但在动态杂乱环境中可能短视。我们提出一种任务空间滚动时域控制器，它使用短时接触一致滚动生成满足内部非穿透约束的终端运动学参考，然后仅计算朝向该参考的光滑最小加速度过渡的第一个输入。从闭环逆运动学调节律出发，滚动通过迭代动力学求解器在膨胀的凸机器人和障碍物几何体上执行，使得机器人-障碍物接触、动态障碍物运动和自碰撞能够塑造终端参考，而无需完整的约束轨迹优化。我们分析了无接触闭环，并展示了在标准正则性假设下的局部指数任务空间调节。对于在滚动内激活的接触，我们描述了相应的离散更新，并界定了移动障碍物对正则运行集的影响。在40自由度多链系统上的仿真表明，中等时域长度平衡了预见性、响应性和计算成本。在6自由度平台上的硬件实验展示了无需精确惯性参数估计的一致仿真到现实行为，与动态优化织物和模型预测控制基线的比较表明，在动态杂乱环境中成功率提高，同时保持与测试场景中实时执行兼容的求解时间。",
+  "tldr_zh": "提出一种任务空间滚动时域控制器，用短时滚动生成参考，实现快速避障且计算高效。",
+  "cover_zh": "避障还能这么快？短时滚动+最小加速度，动态杂乱环境成功率飙升",
+  "authors": [
+    {
+      "name": "Mattia Penzotti",
+      "affiliation": ""
+    },
+    {
+      "name": "Marco Controzzi",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-07-17",
+  "updated": "2026-07-17",
+  "arxiv_id": "2607.15733",
+  "pdf_url": "https://arxiv.org/pdf/2607.15733v1",
+  "abs_url": "http://arxiv.org/abs/2607.15733v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2607-15733.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2607-15733-p2.jpg",
+    "assets/img/covers/arxiv-2607-15733-p3.jpg",
+    "assets/img/covers/arxiv-2607-15733-p4.jpg"
+  ],
+  "channels": [
+    "sim2real"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 12,
+  "source_tags": [],
+  "score": 6,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（sim-to-real）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 12 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出任务空间滚动时域控制器，结合短时滚动与避碰，实验验证效果好，对操作规划有参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Scuola Superiore Sant'Anna"
+  ],
+  "method_tags": [
+    "task-space receding horizon control",
+    "collision avoidance"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"A Task-Space Receding Horizon Controller for Fast Collision Avoidance\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.15733v1\n---\n>[!abstract] 一句话总结：提出任务空间滚动时域控制器，通过短接触一致展开生成满足非穿透约束的终端运动学参考，仅计算朝向参考的平滑最小加速度过渡的第一个输入。\n\n\n# 一、动机\n\n> 实时碰撞避免需要在动态杂乱中快速反应并具有前瞻性，现有MPC计算成本高，反应式方法短视。\n\n\n# 二、方法\n\n> 提出任务空间滚动时域控制器，通过短接触一致展开生成满足非穿透约束的终端运动学参考，仅计算朝向参考的平滑最小加速度过渡的第一个输入。\n\n\n# 三、核心实验结果\n\n> 在40-DOF多链系统仿真和6-DOF硬件平台实验中，与动态优化织物和MPC基线相比，在动态杂乱中成功率更高，求解时间与实时执行兼容。\n\n\n# 四、对我的启发\n\n> 与课题直接相关，提供了计算高效且具有前瞻性的碰撞避免方法。\n"
+}
