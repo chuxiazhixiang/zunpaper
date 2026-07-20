@@ -84,5 +84,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"A Task-Space Receding Horizon Controller for Fast Collision Avoidance\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.15733v1\n---\n>[!abstract] 一句话总结：提出任务空间滚动时域控制器，通过短时接触一致滚动生成满足内部非穿透约束的终端运动学参考，再计算朝向该参考的最小加速度平滑过渡的第一个输入，避免完整约束轨迹优化。\n\n\n# 一、动机\n\n> 全模型预测控制在线计算成本随预见范围快速增长，而无预见能力的反应式方法在动态杂乱环境中短视，难以避免未来约束。\n\n\n# 二、方法\n\n> 提出任务空间滚动时域控制器，通过短时接触一致滚动生成满足内部非穿透约束的终端运动学参考，再计算朝向该参考的最小加速度平滑过渡的第一个输入，避免完整约束轨迹优化。\n\n\n# 三、核心实验结果\n\n> 在40自由度多链系统仿真中，中间预见范围平衡了预测、响应和计算成本；6自由度平台硬件实验显示，与动态优化织物和MPC基线相比，在动态杂乱环境中成功率更高，且求解时间兼容实时执行。\n\n\n# 四、对我的启发\n\n> 与课题不相关\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"A Task-Space Receding Horizon Controller for Fast Collision Avoidance\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.15733v1\n---\n>[!abstract] 一句话总结：提出任务空间滚动时域控制器，通过短接触一致性rollout生成满足内部非穿透约束的终端运动学参考，仅计算平滑最小加速度过渡的第一个输入，避免完整轨迹优化。\n\n\n# 一、动机\n\n> 实时避障需兼顾快速反应和前瞻性，但完整MPC计算成本高，反应式方法短视，现有方法难以平衡。\n\n\n# 二、方法\n\n> 提出任务空间滚动时域控制器，通过短接触一致性rollout生成满足内部非穿透约束的终端运动学参考，仅计算平滑最小加速度过渡的第一个输入，避免完整轨迹优化。\n\n\n# 三、核心实验结果\n\n> 40-DOF多链系统仿真中中等视界平衡了预测与计算；6-DOF硬件实验显示仿真到现实一致性，与动态优化织物和MPC基线相比在动态杂波中成功率提升，求解时间满足实时需求。\n\n\n# 四、对我的启发\n\n> 与课题相关，该方法在动态环境中表现良好，但需要进一步验证在更复杂场景和更高自由度系统的泛化性。\n"
 }

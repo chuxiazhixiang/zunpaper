@@ -1,0 +1,74 @@
+{
+  "id": "github-huixi-ai-rhinovla",
+  "source": "github",
+  "title": "HUIXI-AI/RhinoVLA",
+  "title_zh": "HUIXI-AI/RhinoVLA",
+  "abstract": "RhinoVLA 中文 | English | Paper 面向机器人端侧实时控制的跨本体 Vision-Language-Action 模型 RhinoVLA 是辉羲智能自研的跨本体 VLA 系统，面向机器人本体端实时控制设计。技术报告展示了辉羲自研 VLA、辉羲 R1 芯片，以及智元、银河通用机器人组成的模型-芯片-机器人部署链路。 RhinoVLA 在辉羲 R1 芯片上实现了 **11.69Hz** 端到端推理频率，跨过机器人实时闭环控制常用的 10Hz 门槛。同时，RhinoVLA 通过统一状态-动作接口和实例适配机制，支持同一策略迁移到不同机器人平台。 ## 主要特性 - **端侧实时部署**：围绕机器人本体端运行设计，在 R1 芯片上实现实时 VLA 推理。 - **算法-系统联合优化**：采用 Qwen3-VL Backbone + Action Expert 结构，并结合芯片、算子和运行时优化降低端侧开销。 - **跨本体适配**：通过 View Registry、72D 状态-动作接口和 Instance LoRA 处理视觉输入、动作接口和机器人实例差异。 ## 🚀 快速开始 Quickstart 训练环境、数据 mapping、checkpoint 路径和启动脚本配置请参考 [Finetuning Guide](docs/FINETUNING_GUIDE.md)。 数据准备见 [数据准备指南](docs/DATA_PREPARATION.md)。 ### 预训练权重 预训练参数统一从 Hugging Face 下载: [HuixiAI/RhinoVLA](https://huggingface.co/HuixiAI/RhinoVLA)。 Hugging Face 仓库提供默认训练配置使用的 `rhinovla_pretrain.ckpt`。 也可从 ModelScope 下载: [huixiAI/RhinoVLA](https://www.modelscope.cn/models/huixiAI/RhinoVLA)。 下载到本仓库的 `checkpoints/` 后即可微调。默认配置加载 `trainer.pretrained_checkpoint: checkpoints/rhinovla_pretrain.ckpt`。 权重的 model card、license 和使用限制以 Hugging Face 仓库页面为准。 ### 仓库结构 - `rhinovla/`：核心 Python 包，包含模型框架、Qwen3-VL 封装、Action Expert、LeRobot 数据加载和训练逻辑。 - `rhinovla/assets/qwen3_vl_processor/`：本地 Qwen3-VL processor / tokenizer 配置。 - `configs/training/`：训练配置，包括 Action Expert 微调、全参微调。 - `configs/data_mappings/`：LeRobot v3 原始 state/action 字段到 RhinoVLA 72D slots 的 mapping。 - `datasets/example_lerobot_v3/`：可直接跑通 `demo_ae_finetune.yaml` 的最小 LeRobot v3 示例数据。 - `checkpoints/`：预训练权重。 - `scripts/train/`：训练启动脚本。 - `docs/`：微调说明文档。 ## 🎬 演示 Demo ### Galbot G1：指令跟随 RhinoVLA 运行在银河 G1 与辉羲 R1 芯片上，连续执行三次自然语言指令。 ### AgiBot G2：长程任务 RhinoVLA 运行在智元 G2 与辉羲 R1 芯片上，通过一次长指令完成多步骤任务。 ### AgiBot G1：双臂叠毛巾 RhinoVLA 运行在智元 G1 与辉羲 R1 芯片上，完成双臂柔性物体操作。 ## 📦 Release Plan - [x] 模型训练代码 - [x] 模型参数 ## 📄 Citation 如果 RhinoVLA 对你的研究有帮助，请引用我们的技术报告： ## ⚖️ License 本项目采用 Apache-2.0 License。第三方组件和随仓库提供的第三方资源文件的许可证与来源见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。 ## 💬 Contact 微信公众号： ## Acknowledgments RhinoVLA 的视觉语言模型部分参考并使用了 [Qwen3-VL](https://github.com/Q",
+  "abstract_zh": "RhinoVLA 是辉羲智能自研的跨本体 VLA 系统，面向机器人本体端实时控制设计。技术报告展示了辉羲自研 VLA、辉羲 R1 芯片，以及智元、银河通用机器人组成的模型-芯片-机器人部署链路。RhinoVLA 在辉羲 R1 芯片上实现了 11.69Hz 端到端推理频率，跨过机器人实时闭环控制常用的 10Hz 门槛。同时，RhinoVLA 通过统一状态-动作接口和实例适配机制，支持同一策略迁移到不同机器人平台。",
+  "tldr_zh": "RhinoVLA 在 R1 芯片上实现 11.69Hz 端到端推理，跨过 10Hz 实时控制门槛。",
+  "cover_zh": "机器人实时控制新突破｜11.69Hz 端到端推理，跨过 10Hz 门槛",
+  "authors": [
+    {
+      "name": "HUIXI-AI",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2026-07-15",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/HUIXI-AI/RhinoVLA",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "loco-manip-wbc"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 29,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 29,
+      "hint": "⭐ 29"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "loco-manip-wbc",
+    "reason": "跨本体VLA系统，端侧实时推理，支持多种机器人平台，含代码和权重。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "全身控制"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "HUIXI-AI",
+    "repo": "RhinoVLA",
+    "stars": 29,
+    "language": "Python",
+    "pushed_at": "2026-07-15",
+    "created_at": "2026-06-05",
+    "topics": [],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/CrossEmbodimentTransfer\n  - Task/EmbodiedAI\nTitle: \"HUIXI-AI/RhinoVLA\"\nYear: \"\"\nURL: https://github.com/HUIXI-AI/RhinoVLA\n---\n>[!abstract] 一句话总结：RhinoVLA采用Qwen3-VL Backbone + Action Expert结构，通过View Registry、72D状态-动作接口和Instance LoRA实现跨本体适配，并在辉羲R1芯片上进行算法-系统联合优化以实现端侧实时推理。\n\n\n# 一、动机\n\n> 现有VLA模型在机器人端侧实时推理效率不足，且难以跨本体迁移，亟需一套兼顾实时性与跨本体适配的解决方案。\n\n\n# 二、方法\n\n> RhinoVLA采用Qwen3-VL Backbone + Action Expert结构，通过View Registry、72D状态-动作接口和Instance LoRA实现跨本体适配，并在辉羲R1芯片上进行算法-系统联合优化以实现端侧实时推理。\n\n\n# 三、核心实验结果\n\n> 在辉羲R1芯片上实现11.69Hz端到端推理频率，超过10Hz的实时闭环控制门槛；支持同一策略迁移至不同机器人平台（如智元G2、银河G1）。\n\n\n# 四、对我的启发\n\n> 算法与芯片联合优化是提升机器人端侧实时性的有效路径，但模型对特定芯片（R1）有依赖，泛化到其他硬件需额外适配。\n"
+}

@@ -1,0 +1,74 @@
+{
+  "id": "github-gewu-lab-motion-based-self-reflection-framework",
+  "source": "github",
+  "title": "GeWu-Lab/Motion-based-Self-Reflection-Framework",
+  "title_zh": "GeWu-Lab/Motion-based-Self-Reflection-Framework",
+  "abstract": "# Motion-based-Self-Reflection-Framework [Project Page](https://xwinks.github.io/motion_instruction_for_correction/) [Arxiv](https://www.arxiv.org/abs/2504.14588) ## Overview In this work, we propose a motion-based self-reflection framework for fine-grained robotic action correction, which leverages motion instruction as a bridge to connect high-level semantic reflection with low-level robotic action correction. Concretely, we borrow the inferential capability of Multi-modal Large Language Models (MLLMs) for motion instruction correction, and propose a multi-task motion-conditioned diffusion policy for low-level robotic action correction. The results prove the effectiveness of our method: ## Installation First, install the simulation environment, please refer to the [mimicgen documentation](https://mimicgen.github.io/docs/introduction/installation.html) for more details: ### MimicGen Installation ### Robosuite Installation ### Robomimic Installation ### Robosuite_task_zoo Installation ### Llava Installation please refer to the [Llava Documentation](https://github.com/haotian-liu/LLaVA): ## Usage ### Motion Instruction Generation To train our motion prediction module, motion correction module, and the corresponding motion-conditioned diffusion policy, we need to annotate the trajectories with their corresponding motion instruction. #### Dataset for Motion-conditioned Diffusion Policy 1. Mimicgen Dataset Download Here we utilize \"Coffee_D0\" task for example: 2. Motion Instruction Generation This script will generate the motion information and save it in the adjust_llava_motion folder. 3. Data Format Conversion To improve model training efficiency and GPU utilization, we found that the original hdf5 format stores the entire trajectory as a single meta information, which causes redundant observation and action information to be read during __getitem__ calls. Therefore, we use timestamps as the meta information for storage. While this increases the dataset overhead, it e",
+  "abstract_zh": "本文提出了一种基于运动自反思的细粒度机器人动作校正框架，利用运动指令作为桥梁，连接高层语义反思与低层机器人动作校正。具体地，我们借用多模态大语言模型（MLLMs）的推理能力进行运动指令校正，并提出一种多任务运动条件扩散策略用于低层机器人动作校正。实验结果证明了该方法的有效性。",
+  "tldr_zh": "提出运动自反思框架，用MLLM和扩散策略实现机器人动作校正。",
+  "cover_zh": "机器人犯错不用怕｜这个框架让动作自己反思修正",
+  "authors": [
+    {
+      "name": "GeWu-Lab",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2025-04-30",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/GeWu-Lab/Motion-based-Self-Reflection-Framework",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 22,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 22,
+      "hint": "⭐ 13"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "提出基于运动指令的自我反思框架，结合MLLM和扩散策略进行精细机器人动作修正，有仿真实验验证。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "操作"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "GeWu-Lab",
+    "repo": "Motion-based-Self-Reflection-Framework",
+    "stars": 13,
+    "language": "Python",
+    "pushed_at": "2025-04-30",
+    "created_at": "2025-03-14",
+    "topics": [],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"GeWu-Lab/Motion-based-Self-Reflection-Framework\"\nYear: \"\"\nURL: https://github.com/GeWu-Lab/Motion-based-Self-Reflection-Framework\n---\n>[!abstract] 一句话总结：提出基于运动指令的自反思框架，利用多模态大语言模型进行运动指令校正，并设计多任务运动条件扩散策略实现底层动作校正。\n\n\n# 一、动机\n\n> 解决细粒度机器人动作校正中高层语义反思与低层动作校正之间的鸿沟，现有方法缺乏有效的连接机制。\n\n\n# 二、方法\n\n> 提出基于运动指令的自反思框架，利用多模态大语言模型进行运动指令校正，并设计多任务运动条件扩散策略实现底层动作校正。\n\n\n# 三、核心实验结果\n\n> 在模拟环境中验证了有效性，具体性能指标请参考原论文。\n\n\n# 四、对我的启发\n\n> 运动指令作为语义与动作的桥梁具有潜力，但需进一步验证在真实场景中的泛化性和实时性。\n"
+}

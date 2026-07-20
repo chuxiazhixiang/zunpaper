@@ -1,0 +1,74 @@
+{
+  "id": "github-xianzhefan-dreamavoid",
+  "source": "github",
+  "title": "XianzheFan/DreamAvoid",
+  "title_zh": "XianzheFan/DreamAvoid",
+  "abstract": "DreamAvoid: Critical-Phase Test-Time Dreaming to Avoid Failures in VLA Policies\n\n# DreamAvoid DreamAvoid is a critical-phase test-time dreaming framework for VLA (Vision-Language-Action) manipulation. The base policy is executed directly during routine steps, and test-time dreaming is invoked only when the system predicts an imminent transition into a critical phase. The system has three modules: a **Dream Trigger** that decides when to intervene, an **Action Proposer** that samples multiple candidate action chunks, and a **Dream Evaluator** that scores candidates by forward-simulating their short-horizon futures with an action-conditioned world model and a value model. ## Repository Layout ## Method to Code ### 1. Dream Trigger A lightweight network `f_phi(O_{t-K+1:t}, s_t) -> p_t` that takes the recent K-frame multi-view observations plus the proprioceptive state and outputs the probability that the system has entered a critical phase. Triggers when `p_t >= gamma`. | Component | File | |---|---| | Critical-phase annotation tool (`t_crit`) | `openpi-da/agilex/annotate_t_crit.py` | | Trainer (soft label `sigmoid((t - t_crit) / beta)`, class-balanced BCE with `w_+ = N_-/N_+`) | `openpi-da/agilex/train_dream_trigger.py` | | Online inference + threshold gating | `openpi-da/agilex/agilex_infer_dream_trigger.py` | ### 2. Action Proposer Replaces the deterministic ODE inference of the flow-matching base policy with the corresponding SDE `du = v_theta(u, rho | o_t, l) drho + sigma(rho) dW_rho`, generating multiple candidate action chunks per critical step. A constant noise schedule is used; per-task `sigma` values are configured at the policy level. | Component | File | |---|---| | SDE flow-matching model (config + sampler) | `openpi-da/src/openpi/models/pi0_sde.py` | | SDE policy server (multi-candidate sampling) | `openpi-da/scripts/serve_sde_policy.py` | | Combined policy server (base + SDE proposer) | `openpi-da/scripts/serve_combined_policy.py` | ### 3. Dream Evaluator Pairs an action-conditioned world model with a value model. For each candidate",
+  "abstract_zh": "DreamAvoid是一个针对VLA（视觉-语言-动作）操作的关键阶段测试时梦境框架。在常规步骤中直接执行基础策略，仅当系统预测即将进入关键阶段时才调用测试时梦境。该系统包含三个模块：**梦境触发器**决定何时干预，**动作提议器**采样多个候选动作块，**梦境评估器**通过动作条件世界模型和价值模型对候选动作进行前向模拟短时未来并评分。",
+  "tldr_zh": "仅在关键阶段触发测试时梦境，避免VLA策略失败。",
+  "cover_zh": "机器人操作总翻车？只在关键时刻“做梦”就能避免失败！",
+  "authors": [
+    {
+      "name": "XianzheFan",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2026-05-20",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/XianzheFan/DreamAvoid",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 25,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 25,
+      "hint": "⭐ 18"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "VLA策略的测试时梦境框架，含世界模型与价值模型，创新性强且可落地。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "操作"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "XianzheFan",
+    "repo": "DreamAvoid",
+    "stars": 18,
+    "language": "Python",
+    "pushed_at": "2026-05-20",
+    "created_at": "2026-05-12",
+    "topics": [],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - Task/RoboticManipulation\n  - Domain/CV\nTitle: \"XianzheFan/DreamAvoid\"\nYear: \"\"\nURL: https://github.com/XianzheFan/DreamAvoid\n---\n>[!abstract] 一句话总结：提出DreamAvoid框架，通过梦境触发器预测临界阶段，动作提议器生成多个候选动作，梦境评估器利用世界模型和价值模型筛选最优动作。\n\n\n# 一、动机\n\n> 现有VLA策略在面临关键阶段（如临界操作）时容易失败，缺乏在线纠错机制。\n\n\n# 二、方法\n\n> 提出DreamAvoid框架，通过梦境触发器预测临界阶段，动作提议器生成多个候选动作，梦境评估器利用世界模型和价值模型筛选最优动作。\n\n\n# 三、核心实验结果\n\n> 未在摘要中提供具体数字。\n\n\n# 四、对我的启发\n\n> 与课题不相关\n"
+}

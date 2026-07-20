@@ -1,0 +1,74 @@
+{
+  "id": "github-mlzxy-rla-wm",
+  "source": "github",
+  "title": "mlzxy/rla-wm",
+  "title_zh": "mlzxy/rla-wm",
+  "abstract": "Learning Visual Feature-Based World Models via Residual Latent Action\n\n# Learning Visual Feature-Based World Models via Residual Latent Action Arxiv &nbsp;|&nbsp; Project page &nbsp;|&nbsp; Colab demo Code for the paper. Four artifacts in this repo: - **RLA** — Residual Latent-Action autoencoder over DINOv3 patch tokens. - **RLA-WM** — flow-matching world model that predicts future RLA latents conditioned on the current frame and robot actions. - **BC / BC-RLA** — learning-from-actionless-video policies, optionally augmented with the RLA latent objective on videos-only data. - **WMRL** — on-policy visual RL inside the RLA-WM environment. Plus **Maniskill3DWorld** — multi-modal ManiSkill trajectories (7-camera RGB, depth, masks, animated robot meshes, voxel point clouds). Standalone dataset for 3D / multi-view research; see [docs/applications.md](docs/applications.md#3d--multi-view-visualization-optional). ## Quickstart **Easiest path — try in Colab.** The [Colab demo](https://colab.research.google.com/github/mlzxy/rla-wm/blob/main/notebooks/colab_demo.ipynb) runs a pretrained PushT RLA-WM rollout and trains 50 WMRL iterations (400 updates) on a free T4. No local setup. **RLA-WM inference demo:** This setup covers RLA-WM inference only. For training, evaluation, BC/BC-RLA, or WMRL, see the docs below — each may need additional splits (see [docs/data-and-checkpoints.md](docs/data-and-checkpoints.md)). If `uv sync` fails or you need detail on environment requirements, see [docs/setup.md](docs/setup.md). ## Docs | Goal | Doc | |---|---| | Set up the environment | [docs/setup.md](docs/setup.md) | | Download datasets & weights | [docs/data-and-checkpoints.md](docs/data-and-checkpoints.md) | | Train RLA / RLA-WM / decoder | [docs/training.md](docs/training.md) | | RLA-WM Evaluation | [docs/evaluation.md](docs/evaluation.md) | | Learn from Actionless Videos, WMRL | [docs/applications.md](docs/applications.md) | ## Repository layout | Path | Purpose | |---|---| | [train.py](train.py) | Single entry point for RLA, RLA-WM, and UNet training | | [",
+  "abstract_zh": "本文提出了一种基于残差潜在动作（RLA）的视觉特征世界模型。RLA 在 DINOv3 的 patch token 上构建残差潜在动作自编码器，RLA-WM 则是一个流匹配世界模型，根据当前帧和机器人动作预测未来的 RLA 潜在表示。此外，我们还提供了从无动作视频中学习策略的方法（BC/BC-RLA），以及在 RLA-WM 环境中进行在线视觉强化学习（WMRL）。同时发布了 Maniskill3DWorld 多模态数据集，包含 7 视角 RGB、深度、掩码、动画机器人网格和体素点云，用于 3D/多视角研究。",
+  "tldr_zh": "提出残差潜在动作世界模型，从无动作视频学习策略并支持在线强化学习。",
+  "cover_zh": "机器人看视频就能学动作？这个新世界模型让无动作数据也能训练策略",
+  "authors": [
+    {
+      "name": "mlzxy",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2026-05-11",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/mlzxy/rla-wm",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "world-model"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 32,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 32,
+      "hint": "⭐ 42"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "world-model",
+    "reason": "官方代码，提出残差隐动作世界模型，含流匹配预测、无动作视频学习、在线RL，方向吻合且完整可复现。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "世界模型"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "mlzxy",
+    "repo": "rla-wm",
+    "stars": 42,
+    "language": "Jupyter Notebook",
+    "pushed_at": "2026-05-11",
+    "created_at": "2026-05-09",
+    "topics": [],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"mlzxy/rla-wm\"\nYear: \"\"\nURL: https://github.com/mlzxy/rla-wm\n---\n>[!abstract] 一句话总结：使用残差潜在动作自编码器（RLA）在DINOv3 patch tokens上学习潜在动作，结合流匹配世界模型（RLA-WM）预测未来潜在状态，并支持无动作视频的行为克隆和世界模型内策略优化（WMRL）。\n\n\n# 一、动机\n\n> 现有世界模型通常需要大规模动作标签数据，无法有效利用无动作视频；提出残差潜在动作（RLA）以学习视觉特征基世界模型，从无动作视频中提取行为信息。\n\n\n# 二、方法\n\n> 使用残差潜在动作自编码器（RLA）在DINOv3 patch tokens上学习潜在动作，结合流匹配世界模型（RLA-WM）预测未来潜在状态，并支持无动作视频的行为克隆和世界模型内策略优化（WMRL）。\n\n\n# 三、核心实验结果\n\n> 在PushT任务上，预训练RLA-WM可成功生成轨迹；经过50次WMRL迭代（400次更新）训练，策略可在世界模型内有效优化（具体数字未直接给出，但Colab演示展示了可行性和收敛性）。\n\n\n# 四、对我的启发\n\n> 该方法有效结合了视觉特征和潜在动作，但依赖于大规模预训练（如DINOv3），且仅在简单操控任务上验证；未来可扩展到更复杂场景和跨本体迁移。\n"
+}

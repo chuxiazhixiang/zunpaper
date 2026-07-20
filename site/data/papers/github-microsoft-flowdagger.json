@@ -1,0 +1,74 @@
+{
+  "id": "github-microsoft-flowdagger",
+  "source": "github",
+  "title": "microsoft/FlowDAgger",
+  "title_zh": "microsoft/FlowDAgger",
+  "abstract": "FlowDAgger: Human-in-the-Loop Adaptation of Generative Robot Policies in Latent Space\n\n# FlowDAgger Reference implementation for the paper *FlowDAgger: Human-in-the-Loop Adaptation of Generative Robot Policies in Latent Space*. Project page: https://microsoft.github.io/FlowDAgger FlowDAgger is latent-space DAgger for flow-matching and diffusion based robot policies. Instead of fine-tuning the base policy, it learns a small steering network that predicts the initial noise fed to the policy's sampler. Expert corrections are mapped back into that noise space by inverting the policy's sampling ODE, and the steering network is trained on the inverted targets with a behavior-cloning loss. This repo is a minimal, self-contained reference implementation on the pi0.5 base policy (JAX / openpi), running the MetaWorld assembly task. ## How this example works 1. Roll out the base policy. A steering network predicts the sampling noise. 2. An intervention handler hands control to a scripted expert. 3. Each expert action chunk is inverted through the policy's sampler to recover the noise that would have produced it. 4. The steering network is trained to predict those noise targets (MSE). 5. Repeat. Over time the steering network reproduces expert behavior without touching the base-policy weights. ## Layout ## Getting started Then follow [flowdagger_pi05/README.md](flowdagger_pi05/README.md) for install and the exact launch command. The pi0.5 checkpoint is fetched from the Hub automatically on the first run. ## Citation ## License MIT. See [LICENSE](LICENSE).",
+  "abstract_zh": "FlowDAgger 是一种针对基于流匹配和扩散的机器人策略的隐空间 DAgger 方法。它不微调基础策略，而是学习一个小型引导网络，用于预测输入到策略采样器中的初始噪声。通过反转策略的采样 ODE，将专家修正映射回该噪声空间，并使用行为克隆损失在反转后的目标上训练引导网络。本仓库是基于 pi0.5 基础策略（JAX / openpi）的最小化自包含参考实现，运行 MetaWorld 组装任务。",
+  "tldr_zh": "通过隐空间噪声引导实现机器人策略的在线自适应，无需修改基础模型权重。",
+  "cover_zh": "不调大模型权重｜隐空间噪声引导让机器人秒学专家操作",
+  "authors": [
+    {
+      "name": "microsoft",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2026-07-19",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/microsoft/FlowDAgger",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 33,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 33,
+      "hint": "⭐ 46"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "官方算法，DAgger适配流匹配策略，有代码和实验，方向吻合",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "操作"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "microsoft",
+    "repo": "FlowDAgger",
+    "stars": 46,
+    "language": "Python",
+    "pushed_at": "2026-07-19",
+    "created_at": "2026-06-06",
+    "topics": [],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"microsoft/FlowDAgger\"\nYear: \"\"\nURL: https://github.com/microsoft/FlowDAgger\n---\n>[!abstract] 一句话总结：提出FlowDAgger，在潜空间中使用人类在环路的DAgger，通过逆策略采样ODE将专家修正映射到噪声空间，训练小型引导网络预测初始噪声，以行为克隆损失适应策略，不修改基础策略权重。\n\n\n# 一、动机\n\n> 现有生成式机器人策略（如扩散策略）在部署时因环境变化或分布偏移表现不佳，微调基础策略计算成本高且可能遗忘先前技能。\n\n\n# 二、方法\n\n> 提出FlowDAgger，在潜空间中使用人类在环路的DAgger，通过逆策略采样ODE将专家修正映射到噪声空间，训练小型引导网络预测初始噪声，以行为克隆损失适应策略，不修改基础策略权重。\n\n\n# 三、核心实验结果\n\n> 在MetaWorld assembly任务上基于pi0.5策略展示了有效性，但摘要未提供具体数值。\n\n\n# 四、对我的启发\n\n> 该方法依赖可逆的采样ODE，不适用于非ODE采样器；需人类专家在线干预，可能限制扩展性。启发是潜空间适应可高效调整生成式策略，适用于具身智能中的策略迁移。\n"
+}
