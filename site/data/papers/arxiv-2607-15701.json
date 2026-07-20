@@ -51,25 +51,32 @@
     "assets/img/covers/arxiv-2607-15701-p4.jpg"
   ],
   "channels": [
-    "locomotion"
+    "locomotion",
+    "loco-manip-wbc"
   ],
   "badges": [],
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 6,
+  "score": 14,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（locomotion）"
+      "points": 6,
+      "hint": "频道关键词命中 2 个（locomotion、mpc humanoid）"
     },
     {
       "id": "longer_paper",
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -96,5 +103,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/Navigation\n  - 论文/训练\nTitle: \"RAVEN: Reinforcement-Adaptive Visibility-Graph Planning for Robust Humanoid Navigation with Collision-Free MPC\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.15701v1\n---\n>[!abstract] 一句话总结：提出RAVEN分层框架，上层强化学习通过调整可见性图规划器的障碍物膨胀和几何参数来重塑自由空间拓扑以补偿延迟和噪声，下层无碰撞MPC跟踪规划轨迹并强制执行速度和避障约束。\n\n\n# 一、动机\n\n> 传统可见性图规划器结合MPC在动态环境中依赖手动调参和精确系统建模，实际系统中控制延迟、状态估计噪声和步态不确定性导致过冲和约束违反，而现有学习方法要么调整成本权重要么完全替代规划，缺乏可解释性和约束保证。\n\n\n# 二、方法\n\n> 提出RAVEN分层框架，上层强化学习通过调整可见性图规划器的障碍物膨胀和几何参数来重塑自由空间拓扑以补偿延迟和噪声，下层无碰撞MPC跟踪规划轨迹并强制执行速度和避障约束。\n\n\n# 三、核心实验结果\n\n> 在延迟和观测噪声场景下，RAVEN相比手动调参的可见性图MPC基线和纯RL策略，在障碍物附近过冲减少，狭窄通道中鲁棒性提高，导航更可靠。具体数据见论文。\n\n\n# 四、对我的启发\n\n> 该方法保留了几何规划的可解释性和MPC的约束优化，通过强化学习自适应调整规划几何，为鲁棒人形导航提供了有效替代端到端学习的思路。局限可能在于训练环境与真实机器人部署之间的差距。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"RAVEN: Reinforcement-Adaptive Visibility-Graph Planning for Robust Humanoid Navigation with Collision-Free MPC\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.15701v1\n---\n>[!abstract] 一句话总结：提出层次化RL-MPC框架RAVEN，用RL自适应调整可见性图规划器的障碍物膨胀等几何参数以改变全局路径拓扑，再由碰撞避免MPC跟踪并显式施加速度与避障约束\n\n\n# 一、动机\n\n> 现有的可见性图+MPC方法依赖手动调参和精确系统建模，在真实机器人中因控制延迟、状态估计噪声和运动不确定性导致过冲和约束违反\n\n\n# 二、方法\n\n> 提出层次化RL-MPC框架RAVEN，用RL自适应调整可见性图规划器的障碍物膨胀等几何参数以改变全局路径拓扑，再由碰撞避免MPC跟踪并显式施加速度与避障约束\n\n\n# 三、核心实验结果\n\n> 在延迟和噪声条件下，与手动调参的可见性图MPC基线和纯RL策略相比，RAVEN减少了障碍物附近的过冲，提高了窄通道的鲁棒性，实现了更可靠的导航（具体数值请参阅论文全文）\n\n\n# 四、对我的启发\n\n> 与课题相关；该方法增强了可解释性和鲁棒性，但需要训练阶段模拟延迟和噪声，且自适应图构造的计算开销可能较大，未来可探索更高效的适应策略或与端到端方法结合\n"
 }

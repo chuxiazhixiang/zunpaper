@@ -35,13 +35,14 @@
     "assets/img/covers/arxiv-2607-15733-p4.jpg"
   ],
   "channels": [
-    "sim2real"
+    "sim2real",
+    "manipulation"
   ],
   "badges": [],
   "related_links": [],
   "page_count": 12,
   "source_tags": [],
-  "score": 6,
+  "score": 11,
   "score_breakdown": [
     {
       "id": "keyword_density",
@@ -54,6 +55,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 12 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -77,5 +84,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"A Task-Space Receding Horizon Controller for Fast Collision Avoidance\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.15733v1\n---\n>[!abstract] 一句话总结：提出任务空间滚动时域控制器，通过短接触一致展开生成满足非穿透约束的终端运动学参考，仅计算朝向参考的平滑最小加速度过渡的第一个输入。\n\n\n# 一、动机\n\n> 实时碰撞避免需要在动态杂乱中快速反应并具有前瞻性，现有MPC计算成本高，反应式方法短视。\n\n\n# 二、方法\n\n> 提出任务空间滚动时域控制器，通过短接触一致展开生成满足非穿透约束的终端运动学参考，仅计算朝向参考的平滑最小加速度过渡的第一个输入。\n\n\n# 三、核心实验结果\n\n> 在40-DOF多链系统仿真和6-DOF硬件平台实验中，与动态优化织物和MPC基线相比，在动态杂乱中成功率更高，求解时间与实时执行兼容。\n\n\n# 四、对我的启发\n\n> 与课题直接相关，提供了计算高效且具有前瞻性的碰撞避免方法。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\nTitle: \"A Task-Space Receding Horizon Controller for Fast Collision Avoidance\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.15733v1\n---\n>[!abstract] 一句话总结：提出任务空间滚动时域控制器，通过短时接触一致滚动生成满足内部非穿透约束的终端运动学参考，再计算朝向该参考的最小加速度平滑过渡的第一个控制输入，避免完整约束轨迹优化。\n\n\n# 一、动机\n\n> 现有实时避障方法中，MPC计算成本随预测时域增大而激增，而纯反应式方法在动态密集环境中缺乏前瞻性，容易陷入局部约束。\n\n\n# 二、方法\n\n> 提出任务空间滚动时域控制器，通过短时接触一致滚动生成满足内部非穿透约束的终端运动学参考，再计算朝向该参考的最小加速度平滑过渡的第一个控制输入，避免完整约束轨迹优化。\n\n\n# 三、核心实验结果\n\n> 在40自由度仿真中验证了中间时域长度平衡了预见性与响应性；6自由度硬件实验表明无需精确惯量参数即可实现仿真到现实的一致性；与动态优化织物和MPC基线相比，在动态杂波中成功率更高（具体数值未明确给出，但指出改进）。\n\n\n# 四、对我的启发\n\n> 该方法对惯性参数不敏感且计算效率高，但滚动时域长度与实时性的权衡仍需进一步研究。与机器人避障控制课题高度相关。\n"
 }

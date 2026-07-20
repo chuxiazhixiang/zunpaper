@@ -304,6 +304,72 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2607-15701",
+      "source": "arxiv",
+      "title": "RAVEN: Reinforcement-Adaptive Visibility-Graph Planning for Robust Humanoid Navigation with Collision-Free MPC",
+      "title_zh": "RAVEN：基于强化学习自适应可见性图规划与无碰撞MPC的鲁棒人形机器人导航",
+      "tldr_zh": "用强化学习自适应调整可见性图规划，结合MPC提升人形机器人导航鲁棒性",
+      "cover_zh": "机器人导航总撞墙？RL调一下图结构，延迟噪声下照样稳如老狗",
+      "abstract_zh": "在动态环境中，人形机器人导航需要在满足短期动态和安全约束的同时进行长时域规划。经典的可见性图规划器结合模型预测控制（MPC）能够高效生成无碰撞轨迹，但其性能依赖于手动调参和精确的系统建模。在实际机器人系统中，控制延迟、状态估计噪声和运动不确定性可能导致超调量和约束违反，即使名义路径在几何上是最优的。我们提出RAVEN，一种分层强化学习（RL）-MPC框架，用于鲁棒的人形机器人导航。与先前使用学习来调整代价权重或完全替代规划的方法不同，RAVEN通过修改障碍物膨胀和相关图参数，利用RL自适应调整可见性图规划器的几何构建。通过直接重塑自由空间几何，学习到的规划器改变全局路径的拓扑结构，以补偿延迟和跟踪缺陷。然后，一个无碰撞MPC层跟踪规划轨迹，同时显式强制执行速度边界和避障约束。通过在真实延迟和观测噪声下训练，RAVEN学习到提高鲁棒性的规划自适应，同时保留显式的长时域几何规划和约束优化，这与端到端学习方法形成对比。我们将RAVEN与手动调参的可见性图MPC基线和纯RL导航策略进行了评估。结果表明，在障碍物附近超调量减少，狭窄通道中的鲁棒性提高，并且在延迟和噪声下导航更可靠。这些发现表明，强化自适应图构建结合约束MPC为鲁棒人形机器人导航提供了一种有效且可解释的端到端学习替代方案。",
+      "authors": [
+        "Ruochen Hou",
+        "Shiqi Wang",
+        "Beom Jun Kim"
+      ],
+      "authors_all": [
+        "Ruochen Hou",
+        "Shiqi Wang",
+        "Beom Jun Kim",
+        "Hanzhang Fang",
+        "Mehak Singal",
+        "Dennis W. Hong"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-17",
+      "channels": [
+        "locomotion",
+        "loco-manip-wbc"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2607-15701.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-15701-p2.jpg",
+        "assets/img/covers/arxiv-2607-15701-p3.jpg",
+        "assets/img/covers/arxiv-2607-15701-p4.jpg"
+      ],
+      "arxiv_id": "2607.15701",
+      "abs_url": "http://arxiv.org/abs/2607.15701v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.15701v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 14,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "人形机器人导航结合RL与MPC，提出RAVEN框架，提升鲁棒性，属于loco-manip-wbc方向",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of California, Los Angeles"
+      ],
+      "method_tags": [
+        "RL",
+        "MPC",
+        "visibility-graph planning"
+      ],
+      "platform": [
+        "T1 Booster"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2607-15642",
       "source": "arxiv",
       "title": "Difference-Based Relational Learning for Zero-Shot Object-Goal Visual Navigation With Direct Sim-to-Real Transfer",
@@ -477,6 +543,64 @@
         "Simulation-Based Inference",
         "visuo-tactile pose estimation",
         "peg-in-hole insertion"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-15733",
+      "source": "arxiv",
+      "title": "A Task-Space Receding Horizon Controller for Fast Collision Avoidance",
+      "title_zh": "面向快速避障的任务空间滚动时域控制器",
+      "tldr_zh": "提出一种任务空间滚动时域控制器，用短时滚动生成参考，实现快速避障且计算高效。",
+      "cover_zh": "避障还能这么快？短时滚动+最小加速度，动态杂乱环境成功率飙升",
+      "abstract_zh": "机器人操作臂的实时避障需要快速响应意外障碍物运动，并具备前瞻性以避免被近未来约束困住。全模型预测控制能提供这种预见性，但其在线计算成本会随预测时域长度、模型保真度和活跃几何约束数量迅速增长。相反，无时域的反应式方法计算高效，但在动态杂乱环境中可能短视。我们提出一种任务空间滚动时域控制器，它使用短时接触一致滚动生成满足内部非穿透约束的终端运动学参考，然后仅计算朝向该参考的光滑最小加速度过渡的第一个输入。从闭环逆运动学调节律出发，滚动通过迭代动力学求解器在膨胀的凸机器人和障碍物几何体上执行，使得机器人-障碍物接触、动态障碍物运动和自碰撞能够塑造终端参考，而无需完整的约束轨迹优化。我们分析了无接触闭环，并展示了在标准正则性假设下的局部指数任务空间调节。对于在滚动内激活的接触，我们描述了相应的离散更新，并界定了移动障碍物对正则运行集的影响。在40自由度多链系统上的仿真表明，中等时域长度平衡了预见性、响应性和计算成本。在6自由度平台上的硬件实验展示了无需精确惯性参数估计的一致仿真到现实行为，与动态优化织物和模型预测控制基线的比较表明，在动态杂乱环境中成功率提高，同时保持与测试场景中实时执行兼容的求解时间。",
+      "authors": [
+        "Mattia Penzotti",
+        "Marco Controzzi"
+      ],
+      "authors_all": [
+        "Mattia Penzotti",
+        "Marco Controzzi"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-17",
+      "channels": [
+        "sim2real",
+        "manipulation"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2607-15733.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-15733-p2.jpg",
+        "assets/img/covers/arxiv-2607-15733-p3.jpg",
+        "assets/img/covers/arxiv-2607-15733-p4.jpg"
+      ],
+      "arxiv_id": "2607.15733",
+      "abs_url": "http://arxiv.org/abs/2607.15733v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.15733v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 11,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出任务空间滚动时域控制器，结合短时滚动与避碰，实验验证效果好，对操作规划有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Scuola Superiore Sant'Anna"
+      ],
+      "method_tags": [
+        "task-space receding horizon control",
+        "collision avoidance"
       ],
       "platform": [],
       "sim_stack": [],
@@ -673,128 +797,6 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2607-15701",
-      "source": "arxiv",
-      "title": "RAVEN: Reinforcement-Adaptive Visibility-Graph Planning for Robust Humanoid Navigation with Collision-Free MPC",
-      "title_zh": "RAVEN：基于强化学习自适应可见性图规划与无碰撞MPC的鲁棒人形机器人导航",
-      "tldr_zh": "用强化学习自适应调整可见性图规划，结合MPC提升人形机器人导航鲁棒性",
-      "cover_zh": "机器人导航总撞墙？RL调一下图结构，延迟噪声下照样稳如老狗",
-      "abstract_zh": "在动态环境中，人形机器人导航需要在满足短期动态和安全约束的同时进行长时域规划。经典的可见性图规划器结合模型预测控制（MPC）能够高效生成无碰撞轨迹，但其性能依赖于手动调参和精确的系统建模。在实际机器人系统中，控制延迟、状态估计噪声和运动不确定性可能导致超调量和约束违反，即使名义路径在几何上是最优的。我们提出RAVEN，一种分层强化学习（RL）-MPC框架，用于鲁棒的人形机器人导航。与先前使用学习来调整代价权重或完全替代规划的方法不同，RAVEN通过修改障碍物膨胀和相关图参数，利用RL自适应调整可见性图规划器的几何构建。通过直接重塑自由空间几何，学习到的规划器改变全局路径的拓扑结构，以补偿延迟和跟踪缺陷。然后，一个无碰撞MPC层跟踪规划轨迹，同时显式强制执行速度边界和避障约束。通过在真实延迟和观测噪声下训练，RAVEN学习到提高鲁棒性的规划自适应，同时保留显式的长时域几何规划和约束优化，这与端到端学习方法形成对比。我们将RAVEN与手动调参的可见性图MPC基线和纯RL导航策略进行了评估。结果表明，在障碍物附近超调量减少，狭窄通道中的鲁棒性提高，并且在延迟和噪声下导航更可靠。这些发现表明，强化自适应图构建结合约束MPC为鲁棒人形机器人导航提供了一种有效且可解释的端到端学习替代方案。",
-      "authors": [
-        "Ruochen Hou",
-        "Shiqi Wang",
-        "Beom Jun Kim"
-      ],
-      "authors_all": [
-        "Ruochen Hou",
-        "Shiqi Wang",
-        "Beom Jun Kim",
-        "Hanzhang Fang",
-        "Mehak Singal",
-        "Dennis W. Hong"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-07-17",
-      "channels": [
-        "locomotion"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2607-15701.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2607-15701-p2.jpg",
-        "assets/img/covers/arxiv-2607-15701-p3.jpg",
-        "assets/img/covers/arxiv-2607-15701-p4.jpg"
-      ],
-      "arxiv_id": "2607.15701",
-      "abs_url": "http://arxiv.org/abs/2607.15701v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.15701v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 6,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "人形机器人导航结合RL与MPC，提出RAVEN框架，提升鲁棒性，属于loco-manip-wbc方向",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "University of California, Los Angeles"
-      ],
-      "method_tags": [
-        "RL",
-        "MPC",
-        "visibility-graph planning"
-      ],
-      "platform": [
-        "T1 Booster"
-      ],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2607-15733",
-      "source": "arxiv",
-      "title": "A Task-Space Receding Horizon Controller for Fast Collision Avoidance",
-      "title_zh": "面向快速避障的任务空间滚动时域控制器",
-      "tldr_zh": "提出一种任务空间滚动时域控制器，用短时滚动生成参考，实现快速避障且计算高效。",
-      "cover_zh": "避障还能这么快？短时滚动+最小加速度，动态杂乱环境成功率飙升",
-      "abstract_zh": "机器人操作臂的实时避障需要快速响应意外障碍物运动，并具备前瞻性以避免被近未来约束困住。全模型预测控制能提供这种预见性，但其在线计算成本会随预测时域长度、模型保真度和活跃几何约束数量迅速增长。相反，无时域的反应式方法计算高效，但在动态杂乱环境中可能短视。我们提出一种任务空间滚动时域控制器，它使用短时接触一致滚动生成满足内部非穿透约束的终端运动学参考，然后仅计算朝向该参考的光滑最小加速度过渡的第一个输入。从闭环逆运动学调节律出发，滚动通过迭代动力学求解器在膨胀的凸机器人和障碍物几何体上执行，使得机器人-障碍物接触、动态障碍物运动和自碰撞能够塑造终端参考，而无需完整的约束轨迹优化。我们分析了无接触闭环，并展示了在标准正则性假设下的局部指数任务空间调节。对于在滚动内激活的接触，我们描述了相应的离散更新，并界定了移动障碍物对正则运行集的影响。在40自由度多链系统上的仿真表明，中等时域长度平衡了预见性、响应性和计算成本。在6自由度平台上的硬件实验展示了无需精确惯性参数估计的一致仿真到现实行为，与动态优化织物和模型预测控制基线的比较表明，在动态杂乱环境中成功率提高，同时保持与测试场景中实时执行兼容的求解时间。",
-      "authors": [
-        "Mattia Penzotti",
-        "Marco Controzzi"
-      ],
-      "authors_all": [
-        "Mattia Penzotti",
-        "Marco Controzzi"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-07-17",
-      "channels": [
-        "sim2real"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2607-15733.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2607-15733-p2.jpg",
-        "assets/img/covers/arxiv-2607-15733-p3.jpg",
-        "assets/img/covers/arxiv-2607-15733-p4.jpg"
-      ],
-      "arxiv_id": "2607.15733",
-      "abs_url": "http://arxiv.org/abs/2607.15733v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.15733v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 6,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出任务空间滚动时域控制器，结合短时滚动与避碰，实验验证效果好，对操作规划有参考价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Scuola Superiore Sant'Anna"
-      ],
-      "method_tags": [
-        "task-space receding horizon control",
-        "collision avoidance"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
