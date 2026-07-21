@@ -104,5 +104,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/VisualNavigation\nTitle: \"Learning Adaptive Safety Margins for Visual Navigation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.18200v1\n---\n>[!abstract] 一句话总结：提出上下文条件安全批评者，通过安全、效率和距离约束匹配三项分解来排序扩散轨迹候选，并使用特权ESDF训练后蒸馏为纯感知选择器。\n\n\n# 一、动机\n\n> 固定安全裕度导致机器人导航要么保守绕路、要么危险近边界，需要自适应安全边际。\n\n\n# 二、方法\n\n> 提出上下文条件安全批评者，通过安全、效率和距离约束匹配三项分解来排序扩散轨迹候选，并使用特权ESDF训练后蒸馏为纯感知选择器。\n\n\n# 三、核心实验结果\n\n> 在HM3D和MP3D的PointGoal导航任务中，该方法在成功率和路径长度加权成功率上均超过扩散、优化和RL基线，且从模拟直接迁移到Unitree G1人形机器人在真实场景中成功导航。\n\n\n# 四、对我的启发\n\n> 与课题相关，为具身智能中基于学习的安全边际自适应提供思路。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/PointGoalNavigation\nTitle: \"Learning Adaptive Safety Margins for Visual Navigation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.18200v1\n---\n>[!abstract] 一句话总结：提出上下文条件的安全评论家，通过学习自适应间隙偏好来排序扩散规划提议，分解为安全项、效率项和距离约束匹配项，并采用教师-学生蒸馏从特权几何环境转移到纯感知选择器。\n\n\n# 一、动机\n\n> 固定安全边际在杂乱室内环境中会导致误校准：保守引起绕路和超时，宽松引起感知偏差下的近边界捷径。\n\n\n# 二、方法\n\n> 提出上下文条件的安全评论家，通过学习自适应间隙偏好来排序扩散规划提议，分解为安全项、效率项和距离约束匹配项，并采用教师-学生蒸馏从特权几何环境转移到纯感知选择器。\n\n\n# 三、核心实验结果\n\n> 在HM3D和MP3D的PointGoal导航任务中，包括跨数据集迁移，所提方法实现了最高的成功率（SR）和路径长度加权的成功率（SPL）。纯仿真训练后可直接迁移到Unitree G1人形机器人，无需特定调参。\n\n\n# 四、对我的启发\n\n> 与课题相关，采用教师-学生蒸馏从特权信息到纯感知有效，但依赖仿真环境中的ESDF几何信息，可能限制泛化能力。\n"
 }
