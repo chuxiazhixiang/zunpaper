@@ -103,5 +103,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/Planning\nTitle: \"SAGE: Subgoal-Conditioned Action Generation for Latent World Model Planning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.17973v1\n---\n>[!abstract] 一句话总结：提出先验条件规划器，通过目标条件生成器预测可达子目标，并基于子目标生成高质量动作序列，结合冻结世界模型进行评估与细化。\n\n\n# 一、动机\n\n> 潜世界模型在长视野规划中候选动作质量差，固定预算下搜索空间指数增长，导致性能受限。\n\n\n# 二、方法\n\n> 提出先验条件规划器，通过目标条件生成器预测可达子目标，并基于子目标生成高质量动作序列，结合冻结世界模型进行评估与细化。\n\n\n# 三、核心实验结果\n\n> 在目标偏移150时，PushT成功率从12.7%提升至64.7%，OGBench Cube成功率从26.7%提升至67.3%。\n\n\n# 四、对我的启发\n\n> 与课题相关，该方法为机器人长视野操作规划提供了有效思路，但子目标分解的粒度需进一步自适应调整。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"SAGE: Subgoal-Conditioned Action Generation for Latent World Model Planning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.17973v1\n---\n>[!abstract] 一句话总结：提出子目标条件动作生成器，在每个规划阶段先预测下一段持续时间的潜在子目标，再以此条件生成候选动作序列，由冻结的世界模型评估优化。\n\n\n# 一、动机\n\n> 潜在世界模型在长规划时间步长时，固定候选预算下动作搜索空间指数增长，导致候选动作质量低下，难以生成高质量的未来状态进行有效评估。\n\n\n# 二、方法\n\n> 提出子目标条件动作生成器，在每个规划阶段先预测下一段持续时间的潜在子目标，再以此条件生成候选动作序列，由冻结的世界模型评估优化。\n\n\n# 三、核心实验结果\n\n> 在PushT和OGBench Cube任务上，目标偏移150时，成功率分别从12.7%提升至64.7%，从26.7%提升至67.3%。\n\n\n# 四、对我的启发\n\n> 子目标分解有效缓解长地平线规划中的搜索困难，但子目标持续时间的选择可能影响性能，且方法依赖高质量的世界模型预训练。\n"
 }
