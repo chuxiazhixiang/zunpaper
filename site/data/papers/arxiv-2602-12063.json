@@ -140,5 +140,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"VLAW: Iterative Co-Improvement of Vision-Language-Action Policy and World Model\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2602.12063v2\n---\n>[!abstract] 一句话总结：提出迭代共同改进算法：使用真实 rollout 数据提升世界模型 fidelity，再用世界模型生成合成数据增强 VLA 策略训练。\n\n\n# 一、动机\n\n> 真实世界收集策略 rollout 数据昂贵，现有世界模型（动作条件视频生成模型）物理保真度不足，无法用于策略改进。\n\n\n# 二、方法\n\n> 提出迭代共同改进算法：使用真实 rollout 数据提升世界模型 fidelity，再用世界模型生成合成数据增强 VLA 策略训练。\n\n\n# 三、核心实验结果\n\n> 在真实机器人上，绝对成功率提升 39.2%，使用生成合成 rollout 训练额外提升 11.6%。\n\n\n# 四、对我的启发\n\n> 与课题不相关（偏机器人操作，非具身智能通用方法）。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"VLAW: Iterative Co-Improvement of Vision-Language-Action Policy and World Model\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2602.12063v2\n---\n>[!abstract] 一句话总结：提出迭代共同改进算法，先用真实世界rollout数据提升世界模型的保真度，再使用该世界模型生成合成数据来增强VLA策略的训练，如此循环迭代。\n\n\n# 一、动机\n\n> VLA模型通过在线交互改进性能，但真实世界策略部署成本高；现有世界模型因训练数据缺乏交互多样性（尤其是失败案例）而物理保真度不足，难以生成有效合成数据用于策略改进。\n\n\n# 二、方法\n\n> 提出迭代共同改进算法，先用真实世界rollout数据提升世界模型的保真度，再使用该世界模型生成合成数据来增强VLA策略的训练，如此循环迭代。\n\n\n# 三、核心实验结果\n\n> 在真实机器人任务上，相比基础策略绝对成功率提升39.2%，其中使用合成数据额外带来11.6%的性能提升。\n\n\n# 四、对我的启发\n\n> 结合真实与合成数据的迭代框架有效降低了在线交互成本，但世界模型对接触丰富的精细物理细节建模依然存在挑战；与课题（具身智能/机器人操作）高度相关。\n"
 }
