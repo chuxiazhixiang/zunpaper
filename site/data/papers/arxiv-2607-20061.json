@@ -155,5 +155,5 @@
     }
   ],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"ReferTrack: Referring Then Tracking for Embodied Visual Tracking\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.20061v1\n---\n>[!abstract] 一句话总结：提出ReferTrack，采用先指代再跟踪的范式，通过从索引的边界框集合中选择目标，然后基于图像决策解码跟踪路径点，并利用滑动窗口队列和TVBI标记保留目标运动线索。\n\n\n# 一、动机\n\n> 现有VLA策略中的链式思维推理在抽象空间潜伏中难以监督且与图像空间检测对齐弱，导致目标识别和轨迹规划效果不佳。\n\n\n# 二、方法\n\n> 提出ReferTrack，采用先指代再跟踪的范式，通过从索引的边界框集合中选择目标，然后基于图像决策解码跟踪路径点，并利用滑动窗口队列和TVBI标记保留目标运动线索。\n\n\n# 三、核心实验结果\n\n> 在EVT-Bench上，单目标、干扰和歧义跟踪分组的成功率分别达到89.4%、73.3%和74.1%，匹配甚至超越多相机基线；真实机器人部署验证了仿真到现实迁移能力。\n\n\n# 四、对我的启发\n\n> 与课题不相关\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/EmbodiedAI\nTitle: \"ReferTrack: Referring Then Tracking for Embodied Visual Tracking\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.20061v1\n---\n>[!abstract] 一句话总结：提出ReferTrack，采用先指代后跟踪的范式，先从索引的边界框中选出目标，再基于图像决策解码跟踪路径点，并通过滑动窗口队列和TVBI令牌保留时间信息，同时利用自定义Refer-QA数据集联合训练增强目标识别。\n\n\n# 一、动机\n\n> 现有视觉-语言-动作（VLA）策略在抽象空间中进行链式推理，难以监督且与显式的图像空间检测弱对齐，导致指代跟踪效果不佳。\n\n\n# 二、方法\n\n> 提出ReferTrack，采用先指代后跟踪的范式，先从索引的边界框中选出目标，再基于图像决策解码跟踪路径点，并通过滑动窗口队列和TVBI令牌保留时间信息，同时利用自定义Refer-QA数据集联合训练增强目标识别。\n\n\n# 三、核心实验结果\n\n> 在EVT-Bench上，单目标、分散和模糊跟踪分片成功率分别达到89.4%、73.3%和74.1%，匹配甚至超越多个多摄像头基线方法。\n\n\n# 四、对我的启发\n\n> TVBI令牌有效融合历史几何特征，但模型可能受限于单视角视野，未来可探索多模态融合或动态遮挡处理。\n"
 }
