@@ -72,7 +72,8 @@
     "assets/img/covers/arxiv-2607-19745-p4.jpg"
   ],
   "channels": [
-    "teleop"
+    "teleop",
+    "manipulation"
   ],
   "badges": [
     {
@@ -83,7 +84,7 @@
   "related_links": [],
   "page_count": 31,
   "source_tags": [],
-  "score": 22,
+  "score": 27,
   "score_breakdown": [
     {
       "id": "keyword_density",
@@ -102,6 +103,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 31 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -128,5 +135,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/EmbodiedAI\nTitle: \"EgoRecovery: Acquiring Failure Recovery Ability Through Human Recovery Demonstration\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.19745v1\n---\n>[!abstract] 一句话总结：提出EgoRecovery框架，利用人类第一人称恢复演示数据，通过协同训练将其对齐到与机器人数据共享的纠正意图空间，并用少量机器人演示学习动作映射，同时使用恢复门在部署时激活纠正。\n\n\n# 一、动机\n\n> 通过机器人遥操作收集失败恢复数据效率低且难以覆盖多样化的失败模式，因此需要更可扩展的数据来源。\n\n\n# 二、方法\n\n> 提出EgoRecovery框架，利用人类第一人称恢复演示数据，通过协同训练将其对齐到与机器人数据共享的纠正意图空间，并用少量机器人演示学习动作映射，同时使用恢复门在部署时激活纠正。\n\n\n# 三、核心实验结果\n\n> 人类数据收集效率是机器人遥操作的10倍以上；在真实世界恢复任务中，EgoRecovery从失败状态开始的任务成功率显著优于机器人纯恢复、直接协同训练人类数据和直接意图转移基线（具体数值详见论文）。\n\n\n# 四、对我的启发\n\n> 依赖人类演示数据，跨实体对齐仍需少量机器人数据；未来可探索多种机器人平台和更复杂的任务恢复场景。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/Teleoperation\nTitle: \"EgoRecovery: Acquiring Failure Recovery Ability Through Human Recovery Demonstration\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.19745v1\n---\n>[!abstract] 一句话总结：提出EgoRecovery共训练框架，利用人类第一人称恢复演示，将人类数据对齐到与机器人数据共享的紧凑纠正意图空间，仅需少量机器人恢复演示连接意图到可执行动作，并通过学习恢复门控在部署时激活纠正。\n\n\n# 一、动机\n\n> 机器人需要从失败中恢复以在非结构化环境中可靠运行，但通过机器人遥操作收集恢复数据难以缩放，因为诱导失败、执行纠正和重置环境耗时，且失败模式多样需要大量数据。\n\n\n# 二、方法\n\n> 提出EgoRecovery共训练框架，利用人类第一人称恢复演示，将人类数据对齐到与机器人数据共享的紧凑纠正意图空间，仅需少量机器人恢复演示连接意图到可执行动作，并通过学习恢复门控在部署时激活纠正。\n\n\n# 三、核心实验结果\n\n> 在人类数据收集协议下，操作员每小时可生成比机器人遥操作多10倍以上的有效恢复数据；在真实世界恢复任务中，EgoRecovery从失败状态开始的成功率优于仅机器人恢复、直接共训练和直接意图迁移基线。\n\n\n# 四、对我的启发\n\n> 利用人类演示进行机器人恢复学习是高效可扩展的，但需要处理人机具身差异；未来可探索更细粒度的纠正意图表示和跨场景泛化。\n"
 }
