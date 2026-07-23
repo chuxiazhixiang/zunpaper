@@ -1,14 +1,563 @@
 {
   "date": "2026-07-22",
-  "count": 1,
+  "count": 14,
   "papers": [
+    {
+      "id": "arxiv-2607-20061",
+      "source": "arxiv",
+      "title": "ReferTrack: Referring Then Tracking for Embodied Visual Tracking",
+      "title_zh": "ReferTrack：面向具身视觉跟踪的“先指认后跟踪”范式",
+      "tldr_zh": "提出先指认后跟踪范式，单摄像头实现具身视觉跟踪SOTA。",
+      "cover_zh": "单摄像头也能精准跟踪｜新范式先指认再追踪，性能反超多摄像头方案",
+      "abstract_zh": "具身视觉跟踪（EVT）要求移动智能体仅凭机载视觉，持续跟随自然语言描述的特定目标。尽管最近的视觉-语言-动作（VLA）策略统一了目标识别与轨迹规划，但其链式思维（CoT）推理通常在抽象的空间潜变量中进行，难以监督且与显式的图像空间检测弱对齐。为此，我们提出ReferTrack，一种“先指认后跟踪”的范式，利用单个前向摄像头实现EVT。我们的模型首先从一组索引化的边界框中选出目标，然后基于这一图像锚定的决策解码跟踪航点。为保留目标运动线索，ReferTrack维护一个滑动窗口队列存储先前选中的边界框，并通过时间-视角-边界框指示器（TVBI）令牌将其几何特征注入视觉历史。我们进一步通过在自定义Refer-QA数据集上的联合训练来增强目标识别。在EVT-Bench上，ReferTrack在单目标、干扰和模糊跟踪子集上分别取得了89.4%、73.3%和74.1%的成功率，达到单视角最优性能，在识别密集型任务上匹配甚至超越多个多摄像头基线。最后，在腿式机器人和人形机器人上的真实部署验证了其稳健的仿真到现实迁移能力。代码已开源：https://github.com/MedlarTea/referTrack。",
+      "authors": [
+        "Hanjing Ye",
+        "Tianle Zeng",
+        "Jiazhao Zhang"
+      ],
+      "authors_all": [
+        "Hanjing Ye",
+        "Tianle Zeng",
+        "Jiazhao Zhang",
+        "Shaoan Wang",
+        "Zibo Zhang",
+        "Weisi Situ",
+        "Yuchen Zhou",
+        "Yonggen Ling",
+        "Hong Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-22",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 北大"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ 腾讯"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-20061.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-20061-p2.jpg",
+        "assets/img/covers/arxiv-2607-20061-p3.jpg",
+        "assets/img/covers/arxiv-2607-20061-p4.jpg"
+      ],
+      "arxiv_id": "2607.20061",
+      "abs_url": "http://arxiv.org/abs/2607.20061v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.20061v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 63,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出指代跟踪范式，在四足和人形机器人上验证，涉及移动跟踪与sim-to-real，属于loco-manip-wbc",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "RCV Laboratory, SUSTech",
+        "Tencent Robotics X",
+        "Peking University",
+        "Futian Laboratory"
+      ],
+      "method_tags": [
+        "referring-then-tracking",
+        "sim-to-real"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [
+        {
+          "kind": "youtube",
+          "url": "https://www.youtube.com/watch?v=CP7h-tWWABU",
+          "embed_url": "https://www.youtube.com/embed/CP7h-tWWABU",
+          "title": "GitHub - MedlarTea/referTrack: ReferTrack: Referring Then Tracking for Embodied Visual Tracking · GitHub",
+          "source": "project_page"
+        }
+      ],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-19876",
+      "source": "arxiv",
+      "title": "KineBench: Benchmarking Embodied World Models via IDM-Free Kinematic Grounding",
+      "title_zh": "KineBench：通过无IDM运动学基准测试具身世界模型",
+      "tldr_zh": "提出无IDM闭环基准KineBench，通过显式运动学提取评估具身世界模型。",
+      "cover_zh": "告别IDM｜新基准直接提取6D位姿，闭环评估更靠谱",
+      "abstract_zh": "评估具身世界模型（EWM）的物理一致性是一个关键且开放的挑战。虽然通过模拟器展开的闭环评估比开环方法能更忠实地评估物理合理性，但现有框架几乎都依赖逆动力学模型（IDM）进行动作提取。由于从2D像素空间到3D运动空间的映射复杂，学习到的IDM在面对训练分布外的数据时可能脆弱，导致从包含新物体和场景的生成视频中提取动作不可靠。这造成了世界模型不准确与提取器错误之间不可避免的归因模糊性。为减少这种模糊性，我们提出了KineBench，一个基于显式运动学管线的无IDM闭环基准测试。给定生成的视频，KineBench使用级联视觉基础模型直接从各帧提取6D末端执行器位姿，然后在物理模拟器中执行以进行闭环验证。除了基于执行的任务成功，KineBench还引入了两个经典3D运动学指标——频谱弧长（SPARC）和丸山可操作性指数——从机器人中心角度表征轨迹平滑性和运动学可行性。基于ManiSkill3中的20个多样化操作任务，KineBench在四个渐进套件中评估EWM：基本执行、任务迁移、视觉分布外泛化和复杂度条件缩放。对前沿模型的评估揭示了具身视频生成中任务复杂度有界的非线性缩放，为未来的数据缩放策略提供了经验指导。",
+      "authors": [
+        "Zeyu Liu",
+        "Zhangzhe Zhu",
+        "Yang Zhang"
+      ],
+      "authors_all": [
+        "Zeyu Liu",
+        "Zhangzhe Zhu",
+        "Yang Zhang",
+        "Chenyou Fan",
+        "Chenjia Bai",
+        "Xuelong Li"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-22",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ TeleAI"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ NUS"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Xuelong Li"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-19876.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-19876-p2.jpg",
+        "assets/img/covers/arxiv-2607-19876-p3.jpg",
+        "assets/img/covers/arxiv-2607-19876-p4.jpg"
+      ],
+      "arxiv_id": "2607.19876",
+      "abs_url": "http://arxiv.org/abs/2607.19876v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.19876v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 61,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出具身世界模型benchmark，聚焦物理一致性评估，方法新颖，科研价值高。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Institute of Artificial Intelligence (TeleAI), China Telecom, China",
+        "National University of Singapore, Singapore",
+        "Fudan University, China",
+        "Tsinghua University, China"
+      ],
+      "method_tags": [
+        "IDM-free closed-loop evaluation",
+        "kinematic grounding",
+        "6D end-effector pose extraction"
+      ],
+      "platform": [],
+      "sim_stack": [
+        "ManiSkill3"
+      ],
+      "method_family": "",
+      "real_robot": "no",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-20293",
+      "source": "arxiv",
+      "title": "Evolving Cache Schedules for Fast Diffusion Policy Inference",
+      "title_zh": "演化缓存调度实现快速扩散策略推理",
+      "tldr_zh": "EVO通过演化搜索全局缓存调度，免训练加速扩散策略推理，性能几乎无损。",
+      "cover_zh": "扩散策略推理太慢？EVO免训练加速8倍，性能几乎不掉！",
+      "abstract_zh": "扩散策略通过迭代去噪动作块实现强大的视觉运动控制，但重复去噪使得实时部署计算量巨大。基于缓存的方法通过重用中间激活来降低推理成本，但现有的免训练调度通常跨块均匀分配计算，忽略了块间的异构冗余，导致性能-效率权衡欠佳。为弥补这一差距，我们引入演化缓存调度（EVO），一种免训练加速框架，通过演化搜索全局调度缓存刷新。EVO将每个候选表示为块-时间步网格上的完整调度。因此，迭代去噪过程中冗余的Transformer计算可通过缓存重用跳过，同时保持闭环部署性能。为使搜索实用，EVO引入冗余感知初始化，用有前景的调度播种种群，以及目标条件早停，一旦达到期望性能目标即验证并终止。离线优化的调度可直接插入预训练扩散策略，无需重新训练。大量操作基准测试表明，EVO在保持接近完整性能的同时大幅减少计算，实现高达8.05倍动作生成加速，并将FLOPs从15.77G降至低至1.96G。源代码见https://github.com/pillom/EVO。",
+      "authors": [
+        "Siying Wang",
+        "Kangye Ji",
+        "Di Wang"
+      ],
+      "authors_all": [
+        "Siying Wang",
+        "Kangye Ji",
+        "Di Wang",
+        "Fei Cheng"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-07-22",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-20293.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-20293-p2.jpg",
+        "assets/img/covers/arxiv-2607-20293-p3.jpg",
+        "assets/img/covers/arxiv-2607-20293-p4.jpg"
+      ],
+      "arxiv_id": "2607.20293",
+      "abs_url": "http://arxiv.org/abs/2607.20293v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.20293v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 52,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出加速扩散策略推理的缓存调度方法，直接提升操作任务实时性，具有实用价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Xidian University",
+        "Tsinghua University"
+      ],
+      "method_tags": [
+        "Diffusion Policy",
+        "Evolutionary Search",
+        "Cache-based Acceleration"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-20207",
+      "source": "arxiv",
+      "title": "SeededGrasp: Language-Guided Grasping in Complex Scenes with Multiple Embodiments",
+      "title_zh": "SeededGrasp：多实体复杂场景中的语言引导抓取",
+      "tldr_zh": "提出SeededGrasp框架，用VLM预测种子点引导轻量抓取模型，实现多实体高效抓取。",
+      "cover_zh": "不用端到端训练｜VLM点个种子点，抓取成功率直接飙到78%",
+      "abstract_zh": "复杂场景中的实用机器人抓取需要同时具备3D空间推理能力和对任务特定要求的对齐能力。视觉-语言模型（VLM）提供了一种通过语言指定这些要求的自然方式，但现有方法要么直接使用VLM预测抓取，空间感知能力有限，要么将VLM与抓取模型联合训练，这需要显著更多的数据和计算资源。这些局限性阻碍了性能，并阻止了在复杂场景中扩展到多个实体。我们通过提出SeededGrasp来解决这一问题，这是一种新颖的数据高效框架，使VLM能够预测一个种子点，作为后续轻量级抓取生成模型的条件。我们的架构将高层语义推理与低层几何执行解耦，在避免昂贵端到端训练的同时支持多实体。为了训练此类模型，我们发布了首个多实体桌面抓取数据集，包含杂乱场景中超过250万个抓取。实验结果表明，我们的方法优于现有基线，在仿真中达到72%的成功率，在真实世界抓取实验中达到78%。数据和代码见项目网站：https://uoft-isl.github.io/seeded-grasp/",
+      "authors": [
+        "Yang Xu",
+        "Gurpreet Singh Mukker",
+        "Raymond Wang"
+      ],
+      "authors_all": [
+        "Yang Xu",
+        "Gurpreet Singh Mukker",
+        "Raymond Wang",
+        "Jasper Gerigk",
+        "Maria Attarian",
+        "Igor Gilitschenski"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-22",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Google DeepMind"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-20207.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-20207-p2.jpg",
+        "assets/img/covers/arxiv-2607-20207-p3.jpg",
+        "assets/img/covers/arxiv-2607-20207-p4.jpg"
+      ],
+      "arxiv_id": "2607.20207",
+      "abs_url": "http://arxiv.org/abs/2607.20207v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.20207v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 44,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出语言引导抓取框架，支持多形态，数据集和代码开源，对操作领域有参考价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Toronto",
+        "Vector Institute",
+        "University of British Columbia",
+        "Google Deepmind"
+      ],
+      "method_tags": [
+        "language-guided grasping",
+        "seed point",
+        "multi-embodiment"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-20033",
+      "source": "arxiv",
+      "title": "Robots Acquire Manipulation Skills in Seconds from a Single Human Video",
+      "title_zh": "机器人从单个人类视频中秒级获取操作技能",
+      "tldr_zh": "HOST框架让机器人从单个人类视频中秒级学会新技能并保留旧技能。",
+      "cover_zh": "看一遍就会｜机器人从人类视频秒学技能，还不会忘掉老本行",
+      "abstract_zh": "快速且轻松地获取新技能同时保留已掌握技能的能力对机器人至关重要。然而，当前方法仍依赖于繁琐且缓慢的训练循环，同时会侵蚀已掌握的技能。本文提出HOST（Human-to-robot One-Shot Skill AcquisiTion）框架，使机器人能够从单个人类视频中在数秒内获取技能，同时保留先前掌握的技能。HOST通过一系列自接地预测来解决技能获取问题：首先估计机器人在演示任务中的进度，然后将后续进展转化为机器人自身的未来观测，最后从这些预测观测中推导出动作。该级联过程在耦合到视频演示的目标上训练，这些目标通过将机器人轨迹和视频演示映射到共享的任务进度流形上获得，然后重新定义每个目标以对齐视频的未来进展。HOST使机器人能够主动跟随演示过程并适应自身具身形态。在推理时，HOST从单个人类视频中平均29秒获取新技能，平均成功率达62%，超过零样本基线45%，同时保留已掌握技能。HOST甚至超过了每个任务使用50次机器人演示微调的基线，而所需演示次数减少50倍，技能获取速度快507倍。更多信息请访问项目网站。",
+      "authors": [
+        "Guangyan Chen",
+        "Meiling Wang",
+        "Te Cui"
+      ],
+      "authors_all": [
+        "Guangyan Chen",
+        "Meiling Wang",
+        "Te Cui",
+        "Zichen Zhou",
+        "Qi Shao",
+        "Shalfun Li",
+        "Hang Su",
+        "Roy Gan",
+        "Hao Wang",
+        "Mengyin Fu",
+        "Yi Yang",
+        "Yufeng Yue"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-22",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-20033.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-20033-p2.jpg",
+        "assets/img/covers/arxiv-2607-20033-p3.jpg",
+        "assets/img/covers/arxiv-2607-20033-p4.jpg"
+      ],
+      "arxiv_id": "2607.20033",
+      "abs_url": "http://arxiv.org/abs/2607.20033v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.20033v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 41,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "单个人类视频实现机器人秒级技能获取，方法新颖，性能显著，属于操作技能学习前沿。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Beijing Institute of Technology",
+        "X SQUARE ROBOT",
+        "Tsinghua University"
+      ],
+      "method_tags": [
+        "One-Shot Skill Acquisition",
+        "Self-Grounded Prediction"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-20399",
+      "source": "arxiv",
+      "title": "Towards Miniature Humanoid Tele-Loco-Manipulation Using Virtual Reality and Reinforcement Learning",
+      "title_zh": "迈向微型人形机器人的远程全身操控：基于虚拟现实与强化学习",
+      "tldr_zh": "为微型人形机器人开发了基于VR和强化学习的远程全身操控框架，实现0.45米/秒行走与物体搬运。",
+      "cover_zh": "微型机器人也能远程操控？VR+强化学习让OP3自主行走搬运，速度达0.45m/s！",
+      "abstract_zh": "近年来，全尺寸人形机器人的能力呈指数级增长，旨在实现人类环境中的通用部署。制造商常用的一种控制方法利用虚拟现实进行上半身远程操作，并利用强化学习控制下半身的平衡与运动。这样，单个远程操作员就能观察、操控并导航至真实的远程物理环境。这种强大的控制栈通常仅限于昂贵的全尺寸机器人，其中许多对研究社区而言难以获取。微型人形机器人更为普遍，但其设计仿生性较低（例如传感器、自由度更少），且缺乏类似的发展。本文描述了一种从零开始为微型人形机器人开发的柔顺全身远程呈现控制栈。在ROBOTIS OP3硬件上的框架实验展示了独立于手臂运动的行走速度可达0.45米/秒。通过专家操作员进行的立方体重定位实验，展示了远程全身操控能力。平均而言，远程操作系统在10分钟内移动了2个不同的40克立方体，总行走距离为5米。总体而言，所开发的系统展示了微型人形机器人远程全身操控的潜力。",
+      "authors": [
+        "Nicolas Kosanovic",
+        "Jordan Dowdy",
+        "Jean Chagas Vaz"
+      ],
+      "authors_all": [
+        "Nicolas Kosanovic",
+        "Jordan Dowdy",
+        "Jean Chagas Vaz"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-22",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation",
+        "teleop",
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 Humanoids 2025"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-20399.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-20399-p2.jpg",
+        "assets/img/covers/arxiv-2607-20399-p3.jpg",
+        "assets/img/covers/arxiv-2607-20399-p4.jpg"
+      ],
+      "arxiv_id": "2607.20399",
+      "abs_url": "http://arxiv.org/abs/2607.20399v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.20399v1",
+      "venue": "Humanoids 2025",
+      "venue_announced": "",
+      "score": 40,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出微型人形机器人全身遥操作+强化学习控制栈，涉及loco-manipulation和teleoperation，但硬件规模小，创新有限。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Louisville"
+      ],
+      "method_tags": [
+        "Reinforcement Learning",
+        "Virtual Reality teleoperation",
+        "tele-loco-manipulation"
+      ],
+      "platform": [
+        "ROBOTIS OP3"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-20345",
+      "source": "arxiv",
+      "title": "Closing the Lab-to-Store Gap: A Data-Efficient Post-Training and Experience-Driven Learning VLA Framework for Retail Humanoids",
+      "title_zh": "弥合实验室到商店的鸿沟：面向零售人形机器人的数据高效后训练与经验驱动学习VLA框架",
+      "tldr_zh": "提出DEED框架，通过数据高效后训练和经验驱动学习，仅用单GPU将失败策略转化为可靠零售机器人。",
+      "cover_zh": "单GPU就能让机器人从实验室菜鸟变超市高手？这个框架做到了",
+      "abstract_zh": "缩小基准性能与可靠现实操作之间的差距，仍然是视觉-语言-动作（VLA）人形机器人面临的核心挑战，这类机器人必须处理执行错误、分布偏移和环境变化。本文提出DEED（数据高效后训练与经验驱动学习），这是一个系统级方法，在超市补货任务中使用Unitree G1-Edu人形机器人和GR00T N1.6基础模型进行评估。DEED包含三个关键组件：（1）数据高效后训练流程，包括控制频率对齐、数据整理、任务相关视觉高亮和降低VLA依赖；（2）基于RECAP改编的经验驱动精炼的真实世界研究，通过基于文本的优势前缀和视觉-语言价值函数实现；（3）用于研究分布内和分布外行为的潜在空间分析工具。我们的结果表明，弥合实验室到商店的鸿沟主要是一个系统集成挑战，而非架构挑战：精心设计的数据和有针对性的后训练可以将一个在朴素微调下失败的策略转化为仅使用单个GPU就能胜任的真实世界系统。",
+      "authors": [
+        "Roger Sala Sisó",
+        "Tiago Silvério",
+        "Jakob Sand"
+      ],
+      "authors_all": [
+        "Roger Sala Sisó",
+        "Tiago Silvério",
+        "Jakob Sand",
+        "Tran Nguyen Le"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-22",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-20345.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-20345-p2.jpg",
+        "assets/img/covers/arxiv-2607-20345-p3.jpg",
+        "assets/img/covers/arxiv-2607-20345-p4.jpg"
+      ],
+      "arxiv_id": "2607.20345",
+      "abs_url": "http://arxiv.org/abs/2607.20345v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.20345v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "人形机器人零售场景VLA框架，涉及全身控制与操作，系统级方法有实用价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "HIVE Robots, Denmark",
+        "Department of Engineering Technology, Technical University of Denmark, Denmark"
+      ],
+      "method_tags": [
+        "VLA",
+        "post-training",
+        "experience-driven learning"
+      ],
+      "platform": [
+        "Unitree G1-Edu"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
     {
       "id": "qbitai-79075c996b",
       "source": "qbitai",
       "title": "酷哇科技亮相WAIC 2026，解密行业首个双层智能体世界模型",
       "title_zh": "酷哇科技亮相WAIC 2026，解密行业首个双层智能体世界模型",
-      "tldr_zh": "机器人真正需要的世界模型，并不是单一物理世界模型，而是物理世界模型与人类社会世界模型的统一",
-      "cover_zh": "机器人真正需要的世界模型，并不是单一物理世界模型，而是物理世界模型与人类社会世界模型的统一",
+      "tldr_zh": "酷哇科技亮相WAIC 2026，解密行业首个双层智能体世界模型",
+      "cover_zh": "酷哇科技亮相WAIC 2026，解密行业首个双层智能体世界模型",
       "abstract_zh": "机器人真正需要的世界模型，并不是单一物理世界模型，而是物理世界模型与人类社会世界模型的统一",
       "authors": [],
       "authors_all": [],
@@ -30,7 +579,7 @@
       "pdf_url": "",
       "venue": "",
       "venue_announced": "",
-      "score": 31,
+      "score": 28,
       "judge": {
         "relevant": true,
         "research_value": "low",
@@ -50,6 +599,447 @@
       "source_tags": [
         "qbitai"
       ]
+    },
+    {
+      "id": "arxiv-2607-19633",
+      "source": "arxiv",
+      "title": "LENS: LLM-guided Environment Simplification for Planning and Control in Clutter",
+      "title_zh": "LENS：LLM引导的环境简化用于杂乱场景中的规划与控制",
+      "tldr_zh": "LENS利用LLM自动简化杂乱场景，提升机器人规划与控制性能。",
+      "cover_zh": "机器人也能自动整理杂物？LLM一招简化场景，规划控制全提升！",
+      "abstract_zh": "尽管通用机器人操作取得了近期进展，现实世界中的多物体杂乱场景对当前主流方法仍然具有挑战性。由于更多物体和碰撞、更不可预测的接触物理、干扰物以及任务歧义，问题复杂度呈指数级增长。弥合与现实部署之间的差距需要有效的场景抽象；然而，目前生成此类抽象需要大量特定于任务的手动工程，这无法扩展。这些抽象生成成本高且难以调整或微调。我们提出了一种即插即用的修复方法，在现有规划和控制栈之上自动生成场景特定、任务特定且自适应更新的抽象。LLM引导的环境简化（LENS）通过合并（例如堆叠物体）或修剪（例如远处物体）场景实体，以闭环方式响应任务进展，生成去杂乱的抽象场景表示。这些动态的、任务相关的抽象通用且易于使用。实验表明，LENS在多种高度杂乱的操纵场景中改进了经典规划、基于模型的控制以及视觉-语言-动作模型。项目网站：https://lens-2026.github.io/。",
+      "authors": [
+        "Aileen Liao",
+        "Rachel Holladay",
+        "Dinesh Jayaraman"
+      ],
+      "authors_all": [
+        "Aileen Liao",
+        "Rachel Holladay",
+        "Dinesh Jayaraman",
+        "Michael Posa"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-22",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-19633.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-19633-p2.jpg",
+        "assets/img/covers/arxiv-2607-19633-p3.jpg",
+        "assets/img/covers/arxiv-2607-19633-p4.jpg"
+      ],
+      "arxiv_id": "2607.19633",
+      "abs_url": "http://arxiv.org/abs/2607.19633v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.19633v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 27,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出LLM引导的场景简化方法，提升杂乱环境下的操作规划与控制，实验涵盖经典规划、模型控制和VLA模型，具有较高科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Pennsylvania"
+      ],
+      "method_tags": [
+        "LLM-guided Environment Simplification",
+        "planning and control"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [
+        {
+          "kind": "youtube",
+          "url": "https://www.youtube.com/watch?v=0ofX1lrGMc8",
+          "embed_url": "https://www.youtube.com/embed/0ofX1lrGMc8",
+          "title": "LENS: LLM-guided Environment Simplification for Planning and Control in Clutter",
+          "source": "project_page"
+        },
+        {
+          "kind": "mp4",
+          "url": "https://media.githubusercontent.com/media/lens-2026/lens-2026.github.io/main/static/videos/tamp_clutter.mp4",
+          "embed_url": "https://media.githubusercontent.com/media/lens-2026/lens-2026.github.io/main/static/videos/tamp_clutter.mp4",
+          "title": "LENS: LLM-guided Environment Simplification for Planning and Control in Clutter",
+          "source": "project_page"
+        },
+        {
+          "kind": "mp4",
+          "url": "https://media.githubusercontent.com/media/lens-2026/lens-2026.github.io/main/static/videos/tamp_clutterandstack.mp4",
+          "embed_url": "https://media.githubusercontent.com/media/lens-2026/lens-2026.github.io/main/static/videos/tamp_clutterandstack.mp4",
+          "title": "LENS: LLM-guided Environment Simplification for Planning and Control in Clutter",
+          "source": "project_page"
+        },
+        {
+          "kind": "mp4",
+          "url": "https://media.githubusercontent.com/media/lens-2026/lens-2026.github.io/main/static/videos/c3_pruning.mp4",
+          "embed_url": "https://media.githubusercontent.com/media/lens-2026/lens-2026.github.io/main/static/videos/c3_pruning.mp4",
+          "title": "LENS: LLM-guided Environment Simplification for Planning and Control in Clutter",
+          "source": "project_page"
+        }
+      ],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-19745",
+      "source": "arxiv",
+      "title": "EgoRecovery: Acquiring Failure Recovery Ability Through Human Recovery Demonstration",
+      "title_zh": "EgoRecovery：通过人类恢复演示获取故障恢复能力",
+      "tldr_zh": "利用人类自我中心恢复数据，通过协同训练框架提升机器人故障恢复能力。",
+      "cover_zh": "机器人摔倒了怎么办？｜用人类第一视角教它自己爬起来！",
+      "abstract_zh": "鲁棒的具身机器人应能从故障中恢复并重试任务，以便在非结构化和嘈杂的真实环境中可靠运行。实现这一能力需要在捕捉恢复行为的数据上训练策略。然而，通过机器人遥操作收集此类数据难以规模化，因为诱导多样化的故障状态、执行纠正动作以及重置环境非常耗时。故障模式的高度多样性进一步加剧了这一挑战，这需要比成功演示多得多的恢复数据。在这项工作中，我们展示了捕捉故障恢复过程的自我中心人类数据提供了一种可扩展的替代方案。通过高效安排任务级故障配置并记录短恢复片段，人类操作员在我们的协议下每小时可生成比机器人遥操作多10倍以上的有效恢复数据。为了解决人类与机器人之间的具身差距，我们提出了EgoRecovery，一种用于学习恢复行为的协同训练框架，其中人类恢复演示被对齐到一个与机器人数据共享的紧凑纠正意图空间，该空间捕捉纠正的时机和幅度。只需要少量机器人恢复演示即可将此意图连接到可执行的机器人动作。在部署时，一个学习的恢复门从机器人观测中预测何时需要纠正，并仅在恢复状态下激活纠正意图。在真实世界恢复任务上的实验表明，EgoRecovery在从故障开始的成功率上优于仅机器人恢复、直接与人类恢复数据协同训练以及直接意图转移基线。",
+      "authors": [
+        "Zuhao Ge",
+        "Yuchen Zhou",
+        "Weitao Zhou"
+      ],
+      "authors_all": [
+        "Zuhao Ge",
+        "Yuchen Zhou",
+        "Weitao Zhou",
+        "Minglei Li",
+        "Xinyu Li",
+        "Chao Wu",
+        "Hanwen Zhao",
+        "Haotian Wang",
+        "Zuxuan Wu",
+        "Xiaosong Jia",
+        "Yu-Gang Jiang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-22",
+      "channels": [
+        "teleop"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-19745.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-19745-p2.jpg",
+        "assets/img/covers/arxiv-2607-19745-p3.jpg",
+        "assets/img/covers/arxiv-2607-19745-p4.jpg"
+      ],
+      "arxiv_id": "2607.19745",
+      "abs_url": "http://arxiv.org/abs/2607.19745v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.19745v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 22,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出利用人类示教数据学习机器人恢复能力，解决失败恢复数据稀缺问题，具有实际价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Institute of Trustworthy Embodied AI (TEAI), Fudan University",
+        "Shanghai Key Laboratory of Multimodal Embodied AI",
+        "Simple AI"
+      ],
+      "method_tags": [
+        "co-training",
+        "corrective-intent space",
+        "recovery gate"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-19903",
+      "source": "arxiv",
+      "title": "What Matters in Humanoid General Motion Tracking? An Empirical Study",
+      "title_zh": "人形机器人通用运动跟踪的关键因素：一项实证研究",
+      "tldr_zh": "实证研究揭示人形机器人运动跟踪的关键设计因素，并开源框架YAHMP。",
+      "cover_zh": "人形机器人运动跟踪的秘密｜开源框架YAHMP揭示关键因素",
+      "abstract_zh": "人形机器人通用运动跟踪需要策略能够跟随多样化的全身参考动作，同时保持平衡。构建这样的策略涉及许多实际设计选择，而它们各自的影响往往难以评估。我们通过对近期人形机器人运动模仿流程中常见的建模和训练因素进行实证研究来解决这个问题。为了使研究可控且可复现，我们开发了YAHMP，一个用于在Unitree G1上训练、评估和部署全身运动跟踪策略的开源模块化框架。在YAHMP中，我们定义了一个名义配置，并比较了在运动指令表示、观测历史、动作表示、驱动配置、训练过程中的手部力随机化以及训练方法上不同的变体。我们在一个重定向人体运动测试集上评估生成的策略，并将名义策略与在同一运动集上训练的外部基线TWIST2进行比较。结果区分了具有明显跟踪效果的选择与主要改变驱动努力、训练复杂度或物理交互能力的选择。最后，我们在真实Unitree G1上零样本部署YAHMP策略，展示了多样化的全身运动跟踪、外部扰动下的平衡以及强力交互。",
+      "authors": [
+        "Fabio Amadio",
+        "Enrico Mingo Hoffman"
+      ],
+      "authors_all": [
+        "Fabio Amadio",
+        "Enrico Mingo Hoffman"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-22",
+      "channels": [
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-19903.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-19903-p2.jpg",
+        "assets/img/covers/arxiv-2607-19903-p3.jpg",
+        "assets/img/covers/arxiv-2607-19903-p4.jpg"
+      ],
+      "arxiv_id": "2607.19903",
+      "abs_url": "http://arxiv.org/abs/2607.19903v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.19903v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 22,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "人形全身运动跟踪的实证研究，开源框架YAHMP，对WBC和模仿学习有高参考价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Inria",
+        "Université de Lorraine",
+        "CNRS"
+      ],
+      "method_tags": [
+        "Reinforcement Learning",
+        "motion imitation",
+        "sim-to-real"
+      ],
+      "platform": [
+        "Unitree G1"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-20110",
+      "source": "arxiv",
+      "title": "Extreme-RGMT: Continual Learning of Highly Dynamic Skills for Robust Generalist Humanoid Control",
+      "title_zh": "Extreme-RGMT：面向鲁棒通用人形机器人控制的持续学习高动态技能",
+      "tldr_zh": "提出两阶段持续学习框架，提升人形机器人高动态运动跟踪性能。",
+      "cover_zh": "人形机器人也能学会高难度动作？这个框架让通用控制不再怕动态技能",
+      "abstract_zh": "人类能够逐步习得高动态运动技能，同时保持可靠的日常运动能力。相比之下，现有的人形机器人控制器面临通用与专长之间的权衡：通用运动跟踪策略难以可靠执行罕见的高动态运动，而专长训练可能退化已习得的行为。我们提出Extreme-RGMT，一个两阶段持续学习框架，用于鲁棒的通用人形机器人控制。该方法首先从多样化的多源运动数据中学习通用运动跟踪基础策略，然后采用非对称技能获取与能力巩固机制，在强调困难动态片段的同时约束已掌握运动上的策略漂移。为解决高动态运动稀缺、高失败率以及由此导致的信息样本不足问题，Extreme-RGMT结合了难度感知采样与优势优先轨迹重采样，以强调关键片段。实验表明，Extreme-RGMT在通用全身运动跟踪性能上达到最先进水平，包括显著提升具有挑战性的高动态运动的完成度。所得控制器能在固定参考和在线惯性运动捕捉输入下直接执行各种未见过的动态运动，推动通用全身运动跟踪控制器向人类专家级别的高动态运动能力迈进。",
+      "authors": [
+        "Yubiao Ma",
+        "Han Yu",
+        "Kai Guo"
+      ],
+      "authors_all": [
+        "Yubiao Ma",
+        "Han Yu",
+        "Kai Guo",
+        "Changtai Lv",
+        "Zhengquan Mao",
+        "Boyang Xing",
+        "Xuemei Ren",
+        "Dongdong Zheng"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-22",
+      "channels": [
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-20110.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-20110-p2.jpg",
+        "assets/img/covers/arxiv-2607-20110-p3.jpg",
+        "assets/img/covers/arxiv-2607-20110-p4.jpg"
+      ],
+      "arxiv_id": "2607.20110",
+      "abs_url": "http://arxiv.org/abs/2607.20110v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.20110v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 22,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "人形全身控制+动态技能持续学习，高科研价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Beijing Institute of Technology",
+        "Humanoid Robotics (Shanghai) Co., Ltd.",
+        "Shandong University"
+      ],
+      "method_tags": [
+        "continual learning",
+        "motion tracking"
+      ],
+      "platform": [
+        "Unitree G1"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-19919",
+      "source": "arxiv",
+      "title": "Diffusion ReRoll: Revisable Denoising for Robotic Sequential Prediction",
+      "title_zh": "Diffusion ReRoll：面向机器人序列预测的可修正去噪",
+      "tldr_zh": "提出结构化重新加噪机制，实现跨时间范围的可修正去噪，提升机器人序列预测性能。",
+      "cover_zh": "去噪还能回头改？这个新框架让机器人预测更灵活｜Diffusion ReRoll",
+      "abstract_zh": "我们提出Diffusion ReRoll，一个基于扩散的机器人序列预测框架，支持跨时间范围的可修正去噪。现有的基于扩散的序列预测器通常执行单一单调的去噪过程。相比之下，Diffusion ReRoll选择性地对已局部稳定的区域重新加噪，而其余区域继续去噪，这样重新加噪的区域可以利用整个时间范围其他部分的上下文再次细化。这种结构化的重新加噪实现了迭代的跨时间范围修正，允许早期和晚期片段相互修正，同时保持局部一致性。我们在长时程规划、策略学习和统一视频-动作建模上，将Diffusion ReRoll与基于Diffusion Forcing的全序列去噪和因果去噪进行了评估。在OGBench PointMaze和AntMaze上，Diffusion ReRoll在匹配的引导规划中平均成功率相对Diffusion Forcing提升21%，在匹配的目标修补中相对Diffuser提升23%。在扩散策略风格的动作预测中，Diffusion ReRoll在LIBERO-10多任务基准上，相对于Diffusion Policy在不同预测范围和历史长度下平均成功率提升56.5%。在统一视频-动作预测中，Diffusion ReRoll提升了策略和逆动力学性能，尤其在分布外评估下，并实现了最佳的动作-视频一致性。这些结果支持结构化重新加噪作为可修正机器人序列生成的有效机制。",
+      "authors": [
+        "Seonsoo Kim",
+        "Seongil Hong",
+        "Jun-Gill Kang"
+      ],
+      "authors_all": [
+        "Seonsoo Kim",
+        "Seongil Hong",
+        "Jun-Gill Kang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-22",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-19919.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-19919-p2.jpg",
+        "assets/img/covers/arxiv-2607-19919-p3.jpg",
+        "assets/img/covers/arxiv-2607-19919-p4.jpg"
+      ],
+      "arxiv_id": "2607.19919",
+      "abs_url": "http://arxiv.org/abs/2607.19919v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.19919v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 19,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出可修正去噪的扩散框架，在规划、策略学习、视频-动作建模上显著提升，对机器人序列预测有高科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Agency for Defense Development"
+      ],
+      "method_tags": [
+        "Diffusion",
+        "Sequential Prediction",
+        "Cross-Horizon Revision"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-19850",
+      "source": "arxiv",
+      "title": "SOPD-SocialNav: Selective On-Policy Distillation for Vision-Language Social Navigation",
+      "title_zh": "SOPD-SocialNav: 面向视觉语言社交导航的选择性在线策略蒸馏",
+      "tldr_zh": "提出选择性在线策略蒸馏，将大模型社交导航知识高效迁移至轻量模型。",
+      "cover_zh": "大模型太重跑不动？这个蒸馏方法让轻量模型也能学会社交导航",
+      "abstract_zh": "视觉语言模型通过利用复杂环境和人类行为的丰富语义理解，在社交机器人导航中展现出巨大潜力。然而，大规模VLM难以部署在资源受限的机器人平台上，而轻量级VLM往往缺乏足够的社交推理能力。为解决这一问题，我们提出SOPD-SocialNav，一种选择性在线策略蒸馏（SOPD）方法，将社交导航知识从大型教师VLM迁移到轻量级学生VLM。SOPD引入基于熵的令牌选择机制，利用教师的不确定性识别社交信息丰富的决策令牌，同时抑制对应于平凡导航状态的低熵令牌的梯度。然后使用温度控制的Jensen-Shannon散度目标来对齐学生和教师在所选令牌上的分布。在SNEI和MUSON基准上的实验表明，SOPD在动作预测、感知一致性和推理一致性方面始终优于监督微调、离线策略蒸馏和标准在线策略蒸馏基线。在Scout Mini机器人上的实际部署进一步表明，蒸馏后的模型能够在对话和排队场景中生成更符合社交规范的导航行为。这些结果表明，SOPD是构建轻量级且具有社交意识的VLM导航系统的有效策略。",
+      "authors": [
+        "Xinyu Zhang",
+        "Zishuo Wang",
+        "Ling Xiao"
+      ],
+      "authors_all": [
+        "Xinyu Zhang",
+        "Zishuo Wang",
+        "Ling Xiao"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-22",
+      "channels": [
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-19850.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-19850-p2.jpg",
+        "assets/img/covers/arxiv-2607-19850-p3.jpg",
+        "assets/img/covers/arxiv-2607-19850-p4.jpg"
+      ],
+      "arxiv_id": "2607.19850",
+      "abs_url": "http://arxiv.org/abs/2607.19850v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.19850v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 16,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "locomotion",
+        "reason": "提出选择性策略蒸馏方法，将VLM知识迁移至轻量模型用于社交导航，涉及真实机器人部署，属于具身导航方向。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Hokkaido University"
+      ],
+      "method_tags": [
+        "on-policy distillation",
+        "social navigation"
+      ],
+      "platform": [
+        "Scout Mini"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
     }
   ]
 }
