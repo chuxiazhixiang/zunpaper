@@ -59,7 +59,8 @@
     "assets/img/covers/arxiv-2607-20912-p4.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -70,13 +71,13 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 16,
+  "score": 24,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（manipulation）"
+      "points": 6,
+      "hint": "频道关键词命中 2 个（manipulation、motion tracking）"
     },
     {
       "id": "freshness",
@@ -89,6 +90,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -112,5 +119,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/ContactAwareManipulation\nTitle: \"URF: A Unified Robot Control-Policy Framework for Stable Contact Aware Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.20912v1\n---\n>[!abstract] 一句话总结：提出统一阻抗-导纳控制框架（URF），通过预测虚拟目标、刚度矩阵和开关比值，结合接触力监督学习控制器模式。\n\n\n# 一、动机\n\n> 解决了学习型操作策略与底层控制器分离导致的刚接触不稳定问题，如跟踪误差、过大载荷和工具损坏。\n\n\n# 二、方法\n\n> 提出统一阻抗-导纳控制框架（URF），通过预测虚拟目标、刚度矩阵和开关比值，结合接触力监督学习控制器模式。\n\n\n# 三、核心实验结果\n\n> 在盒翻转和线按压任务中，URF比纯导纳控制提高了任务成功率，并减少了力快速累积、大力振荡、工具断裂和机器人安全停止等故障模式。\n\n\n# 四、对我的启发\n\n> 局限：需要测量接触力来构造标签，可能依赖精确力传感器；启发：接触感知策略应联合预测动作和控制器行为，而非仅预测动作。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"URF: A Unified Robot Control-Policy Framework for Stable Contact Aware Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.20912v1\n---\n>[!abstract] 一句话总结：提出URF框架，通过多模态观测预测虚拟目标、刚度矩阵和阻抗-导纳切换比率，并利用接触力标签监督控制器模式预测，从而统一顺应动作预测与阻抗-导纳控制。\n\n\n# 一、动机\n\n> 基于学习的操控策略通常预测机器人动作，然后由底层控制器执行。在刚性接触中，这种分离会导致不稳定接触、跟踪误差、过载或工具损坏等问题，因为不同的底层控制器表现不同。\n\n\n# 二、方法\n\n> 提出URF框架，通过多模态观测预测虚拟目标、刚度矩阵和阻抗-导纳切换比率，并利用接触力标签监督控制器模式预测，从而统一顺应动作预测与阻抗-导纳控制。\n\n\n# 三、核心实验结果\n\n> 在翻箱子和按线任务中，URF实现了更高的任务成功率，并减少了快速力积累、大力振荡、工具断裂和机器人安全停止等失败模式。\n\n\n# 四、对我的启发\n\n> 该研究强调了在接触感知操控策略中预测控制器行为的重要性，但需要接触力标签来监督切换比率预测，未来可探索自适应切换规则或无需接触力标签的方法。\n"
 }

@@ -44,7 +44,8 @@
     "assets/img/covers/arxiv-2607-20988-p4.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -55,13 +56,13 @@
   "related_links": [],
   "page_count": 20,
   "source_tags": [],
-  "score": 16,
+  "score": 30,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（vision-language-action）"
+      "points": 12,
+      "hint": "频道关键词命中 4 个（vision-language-action、world model、world models、world modeling）"
     },
     {
       "id": "freshness",
@@ -74,6 +75,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 20 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -98,5 +105,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/AutonomousDriving\nTitle: \"HyWorldVLA: A Vision-Language-Action Model with Hybrid World Modeling for Autonomous Driving\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.20988v1\n---\n>[!abstract] 一句话总结：提出HyWorldVLA框架，在预训练阶段同时预测预训练视频VAE编码的潜在特征并重建视频帧以提供像素级监督；在后续微调阶段仅预测潜在特征，并将其输入动作专家生成轨迹。\n\n\n# 一、动机\n\n> 像素级世界模型虽然能进行细粒度时空推理，但在噪声驾驶场景下鲁棒性差；潜在级世界模型缓解了敏感性，但缺乏像素级监督导致可解释性不足和表示退化。HyWorldVLA通过混合世界建模统一两者，以兼顾鲁棒性和可解释性。\n\n\n# 二、方法\n\n> 提出HyWorldVLA框架，在预训练阶段同时预测预训练视频VAE编码的潜在特征并重建视频帧以提供像素级监督；在后续微调阶段仅预测潜在特征，并将其输入动作专家生成轨迹。\n\n\n# 三、核心实验结果\n\n> 在NAVSIM v1和v2基准上，HyWorldVLA显著优于像素级和潜在级世界模型基线，并首次对自动驾驶世界模型噪声鲁棒性进行了全面的定性和定量分析，具体数值请参见论文。\n\n\n# 四、对我的启发\n\n> 与课题不相关（聚焦自动驾驶，而非机器人/具身智能），但混合世界建模的思想可能为机器人领域的世界模型设计提供参考。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/AutonomousDriving\nTitle: \"HyWorldVLA: A Vision-Language-Action Model with Hybrid World Modeling for Autonomous Driving\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.20988v1\n---\n>[!abstract] 一句话总结：提出HyWorldVLA，在预训练阶段同时预测视频潜在和重构像素帧以提供像素级监督，在协同微调阶段仅预测潜在特征并输入动作专家生成轨迹。\n\n\n# 一、动机\n\n> 现有像素级未来预测在噪声驾驶场景中鲁棒性差，而基于潜在的世界模型可解释性有限且表征退化，本文提出混合世界建模方法以平衡两者。\n\n\n# 二、方法\n\n> 提出HyWorldVLA，在预训练阶段同时预测视频潜在和重构像素帧以提供像素级监督，在协同微调阶段仅预测潜在特征并输入动作专家生成轨迹。\n\n\n# 三、核心实验结果\n\n> 在NAVSIM v1和v2基准上，HyWorldVLA显著优于基于像素和基于潜在的世界模型基线，并首次对世界模型噪声鲁棒性进行了全面定性与定量分析。\n\n\n# 四、对我的启发\n\n> 与课题不相关\n"
 }
