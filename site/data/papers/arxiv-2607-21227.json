@@ -1,0 +1,103 @@
+{
+  "id": "arxiv-2607-21227",
+  "source": "arxiv",
+  "title": "FORGE-plus: Force-Budgeted Recovery for Contact-Rich Assembly with a Frozen LLM Supervisor",
+  "title_zh": "FORGE-plus: 基于力预算的接触密集装配恢复方法，配备冻结的LLM监督器",
+  "abstract": "Force-conditioned reinforcement learning (RL) enables tight-clearance assembly under a commanded force ceiling, but practical deployment requires determining an appropriate force limit for each object and recovering from insertion failures without exceeding it. We present a two-layer framework in which a frozen, text-only large language model (LLM) assigns a per-object force ceiling before execution and selects recovery maneuvers from a fixed action menu using compact textual force signatures. The LLM never controls force directly: a low-level controller enforces the force ceiling, the recovery policy cannot increase it, and the hidden breaking-force threshold is known only to the evaluator.   We evaluate the framework on fragile bottle placement and 0.4 mm diametral-clearance gear insertion using two grippers (Robotiq 2F-140 and Franka Panda hand). A single policy passes 256/256 evaluation episodes on both fragile and robust objects without breakage, correctly predicts release timing, and completes a full table-pick-and-insert pipeline with a mean peak force of 5.4 N. Under injected in-grip slip, the force-signature recovery strategy resolves 40% and 64% of failures on the two grippers, whereas a press-harder baseline is either ineffective or causes frequent breakage. We also report negative results, including the failure of PPO to solve the task under strict force constraints and unsuccessful learned release strategies. All experiments are conducted in rigid-body simulation with hidden force-threshold breakage; no sim-to-real claim is made.",
+  "abstract_zh": "力条件强化学习能够在指定的力上限下实现紧间隙装配，但实际部署需要为每个物体确定合适的力极限，并在不超过该极限的情况下从插入失败中恢复。我们提出一个双层框架：一个冻结的、仅文本的大语言模型在执行前为每个物体分配力上限，并使用紧凑的文本力特征从固定动作菜单中选择恢复操作。LLM从不直接控制力：底层控制器强制执行力上限，恢复策略不能增加该上限，且隐藏的断裂力阈值仅评估者知晓。我们在易碎瓶子放置和0.4毫米直径间隙齿轮插入任务上，使用两种夹爪（Robotiq 2F-140和Franka Panda手）评估该框架。单个策略在易碎和坚固物体上均通过256/256次评估回合，无破损，正确预测释放时机，并完成完整的桌面拾取插入流程，平均峰值力为5.4 N。在注入的夹持滑动下，力特征恢复策略在两种夹爪上分别解决了40%和64%的失败，而“更用力按压”基线要么无效，要么频繁导致破损。我们还报告了负面结果，包括PPO在严格力约束下未能解决任务，以及学习到的释放策略不成功。所有实验均在刚体仿真中进行，具有隐藏的力阈值断裂；未声称仿真到现实的迁移。",
+  "tldr_zh": "冻结的LLM通过文本力特征分配力上限并选择恢复动作，实现无破损装配。",
+  "cover_zh": "LLM不直接控力却让装配零破损？这个双层框架做到了！",
+  "authors": [
+    {
+      "name": "Kyupaeck Jeff Rah",
+      "affiliation": ""
+    },
+    {
+      "name": "Midum Oh",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-07-23",
+  "updated": "2026-07-23",
+  "arxiv_id": "2607.21227",
+  "pdf_url": "https://arxiv.org/pdf/2607.21227v1",
+  "abs_url": "http://arxiv.org/abs/2607.21227v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2607-21227.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2607-21227-p2.jpg",
+    "assets/img/covers/arxiv-2607-21227-p3.jpg",
+    "assets/img/covers/arxiv-2607-21227-p4.jpg"
+  ],
+  "channels": [
+    "manipulation",
+    "sim2real"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 14,
+  "source_tags": [],
+  "score": 27,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（contact-rich、assembly、sim-to-real）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 14 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "接触丰富的装配任务，结合力约束RL和LLM监督，属于操作领域",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Independent Researcher"
+  ],
+  "method_tags": [
+    "Force-conditioned RL",
+    "LLM supervisor",
+    "force signature recovery"
+  ],
+  "platform": [
+    "Robotiq 2F-140",
+    "Franka Panda hand"
+  ],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "no",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"FORGE-plus: Force-Budgeted Recovery for Contact-Rich Assembly with a Frozen LLM Supervisor\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.21227v1\n---\n>[!abstract] 一句话总结：提出两层次框架：上层用冻结的纯文本大语言模型（LLM）分配每个物体的力上限，并基于紧凑文本力特征从固定动作菜单中选择恢复策略；下层控制器强制执行力上限，恢复策略不能增加力上限。\n\n\n# 一、动机\n\n> 现有力条件强化学习需要针对每个物体设定力上限，且无法在不超过力上限的前提下从插入失败中恢复，导致在接触丰富的装配任务中难以部署。\n\n\n# 二、方法\n\n> 提出两层次框架：上层用冻结的纯文本大语言模型（LLM）分配每个物体的力上限，并基于紧凑文本力特征从固定动作菜单中选择恢复策略；下层控制器强制执行力上限，恢复策略不能增加力上限。\n\n\n# 三、核心实验结果\n\n> 在易碎瓶子放置和0.4mm间隙齿轮插入任务中，单一策略在256/256评估轮次中无破损，平均峰值力5.4N；在抓取滑动情况下，基于力特征的恢复策略在两种夹爪上分别解决了40%和64%的失败，而直接加压策略无效或频繁导致破损。\n\n\n# 四、对我的启发\n\n> 仅基于仿真的结果，未进行sim-to-real迁移；PPO等强化学习方法在严格力约束下失败，且学习释放策略无效；LLM作为监督器不直接控制力，提供了可解释性，但实验环境高度简化，实际物理部署可能面临挑战。\n"
+}

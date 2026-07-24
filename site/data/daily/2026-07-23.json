@@ -1,14 +1,244 @@
 {
   "date": "2026-07-23",
-  "count": 1,
+  "count": 13,
   "papers": [
+    {
+      "id": "arxiv-2607-21341",
+      "source": "arxiv",
+      "title": "Grasp, Handover, Rotate: Bimanual Object Reorientation via Compositional Diffusion and Energy-Based Optimization",
+      "title_zh": "抓取、交接、旋转：基于组合扩散和能量优化的双臂物体重定向",
+      "tldr_zh": "提出BiCompoDiff框架，通过组合扩散和能量优化实现双臂物体重定向，成功率提升20%以上。",
+      "cover_zh": "双手不够用？这个AI框架让机器人抓取、交接、旋转一气呵成｜成功率飙升20%",
+      "abstract_zh": "双臂物体重定向——抓取物体、在两臂之间交接、并将其放置到期望的目标姿态——在初始抓取因碰撞、运动学约束或最终方向不佳而无法直接放置时非常有用。然而，在多个竞争目标下实现这一过程仍然具有挑战性。我们提出了BiCompoDiff，一个组合扩散和能量框架，它在多个约束下联合优化抓取选择、交接、重新抓取和运动规划。通过将预训练的抓取扩散模型与双臂规划能量模型（EBMs）相结合，我们的方法在反向扩散过程中注入梯度引导，以强制执行碰撞避免、轨迹平滑性（通过可微逆运动学）、交接可行性和重新抓取安全性。退火MCMC采样进一步在组合能量景观上优化抓取姿态。在多种模拟家庭重定向任务中的实验表明，与强采样基线相比，BiCompoDiff的成功率提高了20%以上，轨迹平滑性（以关节位移衡量）提高了37%。真实世界验证确认了有效的模拟到现实迁移以及在挑战性场景中的稳健性能。",
+      "authors": [
+        "Wun Lam Yeung",
+        "Wenjun Liu",
+        "Yui Cheung Yu"
+      ],
+      "authors_all": [
+        "Wun Lam Yeung",
+        "Wenjun Liu",
+        "Yui Cheung Yu",
+        "Zhengyan Lambo Qin",
+        "Qijin She",
+        "Heng Li",
+        "Ziqi Wang",
+        "Ping Tan"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-23",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ HKUST"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
+        },
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2026"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-21341.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-21341-p2.jpg",
+        "assets/img/covers/arxiv-2607-21341-p3.jpg",
+        "assets/img/covers/arxiv-2607-21341-p4.jpg"
+      ],
+      "arxiv_id": "2607.21341",
+      "abs_url": "http://arxiv.org/abs/2607.21341v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.21341v1",
+      "venue": "IROS 2026",
+      "venue_announced": "",
+      "score": 62,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出组合扩散与能量优化框架解决双臂物体重定向，方法新颖且实验充分",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "The Hong Kong University of Science and Technology",
+        "Shenzhen Loop Area Institute"
+      ],
+      "method_tags": [
+        "compositional diffusion",
+        "energy-based optimization",
+        "bimanual planning"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-21017",
+      "source": "arxiv",
+      "title": "TableVerse: A Large-scale Tabletop Dataset with Real-world Grounded Layouts for Generalizable Manipulation",
+      "title_zh": "TableVerse：面向通用操作的大规模桌面数据集与真实世界布局",
+      "tldr_zh": "提出全自动Real2Sim流水线，从互联网图像重建高保真桌面环境并生成大规模数据集。",
+      "cover_zh": "从互联网图片直接生成机器人训练环境｜这个数据集让操作策略更通用",
+      "abstract_zh": "通用机器人操作策略的发展受限于大规模、高保真场景数据的可用性。虽然最近的自动合成方法试图通过文本到布局的幻觉生成或简化的程序化生成来弥补这一差距，但它们常常存在物理不合理性，且无法捕捉真实人类环境中复杂密集的杂乱场景。在本文中，我们提出了TableVerse，一个全自动的Real2Sim流水线，将范式从想象性布局生成转变为从非结构化、野外图像数据中进行确定性重建。我们的框架无缝地将无脚本的互联网媒体处理成高保真、可模拟的桌面环境，具有精确的公制尺度、真实的拓扑结构和经过验证的机械稳定性。此外，集成了一个自动任务条件轨迹生成框架，以合成高质量、无碰撞的抓取和放置演示。利用这一完整流水线，我们构建了TableVerse-100K数据集，这是一个包含10万个独特、物理一致的环境及其交互操作轨迹的大规模语料库。通过捕捉多样化的资产组成、真实的空间分布和高质量的演示，TableVerse-100K建立了一个高度可扩展且高保真的数据基础，为促进未来通用机器人操作任务的研究提供了重要价值。",
+      "authors": [
+        "Boyuan Wang",
+        "Yue Zhang",
+        "Xutao Xue"
+      ],
+      "authors_all": [
+        "Boyuan Wang",
+        "Yue Zhang",
+        "Xutao Xue",
+        "Xueyu Song",
+        "Yu Sun"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-23",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 字节"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-21017.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-21017-p2.jpg",
+        "assets/img/covers/arxiv-2607-21017-p3.jpg",
+        "assets/img/covers/arxiv-2607-21017-p4.jpg"
+      ],
+      "arxiv_id": "2607.21017",
+      "abs_url": "http://arxiv.org/abs/2607.21017v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.21017v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 52,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "大规模桌面操作数据集，Real2Sim管道，对泛化操作研究有重要价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "ByteDance"
+      ],
+      "method_tags": [
+        "Real2Sim",
+        "pick-and-place"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "no",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-21582",
+      "source": "arxiv",
+      "title": "Scale Up Strategically: Learning Compositional Generalization via Bias-Aware Evaluation and Data Collection for Robotic Manipulation",
+      "title_zh": "战略性扩展：通过偏差感知评估与数据收集学习机器人操作的组合泛化",
+      "tldr_zh": "提出诊断框架量化指令因素偏差，并基于此优化数据收集，提升机器人组合泛化。",
+      "cover_zh": "机器人总学偏？新框架揪出“颜色”作弊，一招让泛化能力翻倍",
+      "abstract_zh": "组合泛化对于机器人遵循多样化指令至关重要。然而，预训练策略已知会走捷径，依赖显著线索而非语言基础。我们引入了一个诊断框架，将这种失败定位到单个指令因素，例如可重用的语义组件，如颜色、动词、物体、大小和空间属性。我们的框架形式化了指令因素偏差，即微调策略过度依赖主导因素作为捷径的倾向，并通过两个指标量化：因素主导率（FDR）捕捉因素间的成对偏差，因素主导层级（FDH）将其聚合为全局排名。对六种基础策略的评估揭示了广泛一致的排序，即颜色 ≥ 物体 ≥ 空间 ≥ 动词 ≥ 大小，其中颜色占主导，动词和大小最缺乏基础。我们进一步展示了诊断的可操作性：一种偏差感知数据收集策略，将固定预算重新分配给基础不足的因素，在仿真和真实机器人上使用一半的演示次数优于基线，从而实现更样本高效和可泛化的策略学习。",
+      "authors": [
+        "Yu Qi",
+        "Zhang Ye",
+        "Xinyi Xu"
+      ],
+      "authors_all": [
+        "Yu Qi",
+        "Zhang Ye",
+        "Xinyi Xu",
+        "Yuxuan Lu",
+        "Amitoj Sandhu",
+        "Boce Hu",
+        "Haojie Huang",
+        "Jonathan Tremblay",
+        "Lawson L. S. Wong"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-23",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ NVIDIA"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-21582.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-21582-p2.jpg",
+        "assets/img/covers/arxiv-2607-21582-p3.jpg",
+        "assets/img/covers/arxiv-2607-21582-p4.jpg"
+      ],
+      "arxiv_id": "2607.21582",
+      "abs_url": "http://arxiv.org/abs/2607.21582v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.21582v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 41,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "聚焦操作策略的组合泛化，提出偏置诊断框架与数据收集策略，有仿真和真机验证，科研价值高。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Northeastern University",
+        "NVIDIA"
+      ],
+      "method_tags": [
+        "compositional generalization",
+        "bias-aware data collection"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
     {
       "id": "qbitai-b875390b87",
       "source": "qbitai",
       "title": "超越π0，中国团队用1B参数模型登顶具身智能榜单",
       "title_zh": "超越π0，中国团队用1B参数模型登顶具身智能榜单",
-      "tldr_zh": "具身智能正在从「参数竞赛」进入「架构竞赛」。",
-      "cover_zh": "具身智能正在从「参数竞赛」进入「架构竞赛」。",
+      "tldr_zh": "超越π0，中国团队用1B参数模型登顶具身智能榜单",
+      "cover_zh": "超越π0，中国团队用1B参数模型登顶具身智能榜单",
       "abstract_zh": "具身智能正在从「参数竞赛」进入「架构竞赛」。",
       "authors": [],
       "authors_all": [],
@@ -51,6 +281,636 @@
       "source_tags": [
         "qbitai"
       ]
+    },
+    {
+      "id": "arxiv-2607-21588",
+      "source": "arxiv",
+      "title": "AXIS: A Growable Community-Driven Data Engine for Scalable Robot Manipulation",
+      "title_zh": "AXIS：一种可扩展的社区驱动数据引擎，用于机器人操作",
+      "tldr_zh": "AXIS是社区驱动的机器人操作数据引擎，含207任务5万+轨迹，持续预训练提升成功率。",
+      "cover_zh": "浏览器就能收集机器人数据？这个社区引擎让成功率飙升37%",
+      "abstract_zh": "学习有效的机器人操作策略需要多样、高质量的演示数据，然而现有的数据流水线往往难以扩展，因为它们依赖于专用硬件、集中式操作员或固定的任务集。我们提出了AXIS，一种可扩展的社区驱动数据引擎和基准，用于可扩展的机器人学习。它支持基于浏览器的远程操作以进行大规模演示收集，自动生成并验证新的操作任务，并通过自动成功检查、质量过滤、轨迹平滑以及视觉和基于物理的数据增强，将社区收集的演示转化为训练就绪的数据。AXIS数据集目前包含207个多样化任务和5万+条轨迹。同时，AXIS将数据组织成任务快照，并通过系统化的留出协议评估策略。我们在统一的AXIS评估套件下比较了视觉-语言-动作（VLA）策略，并分析了不同数据量下的扩展行为。在AXIS上持续预训练使π₀.₅的整体成功率提高了5.8%，比在RoboCasa365上预训练的模型高出37.3%，并且随着数据量的增加表现出一致的扩展性，在布局、传感器噪声和相机扰动下增益最大。",
+      "authors": [
+        "Mengfei Zhao",
+        "Dihong Huang",
+        "Yikai Tang"
+      ],
+      "authors_all": [
+        "Mengfei Zhao",
+        "Dihong Huang",
+        "Yikai Tang",
+        "Peihao Li",
+        "Mingxuan Yan",
+        "Ruiqi Zhuang",
+        "Yanjia Huang",
+        "Jie Wang",
+        "Hai Zhai",
+        "Tony Zhou",
+        "Rui Zhang",
+        "Zhexi Luo",
+        "Yuchen Huang",
+        "Jianfei Yang",
+        "Jiachen Li"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-23",
+      "channels": [
+        "manipulation",
+        "teleop"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-21588.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-21588-p2.jpg",
+        "assets/img/covers/arxiv-2607-21588-p3.jpg",
+        "assets/img/covers/arxiv-2607-21588-p4.jpg"
+      ],
+      "arxiv_id": "2607.21588",
+      "abs_url": "http://arxiv.org/abs/2607.21588v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.21588v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出可扩展社区驱动数据引擎，含遥操作、任务生成、数据增强，对VLA策略有显著提升，科研价值高。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Axis Robotics",
+        "University of California, Berkeley",
+        "Georgia Institute of Technology",
+        "Texas A&M University"
+      ],
+      "method_tags": [
+        "VLA",
+        "data augmentation",
+        "sim-to-real"
+      ],
+      "platform": [],
+      "sim_stack": [
+        "MuJoCo",
+        "IsaacLab"
+      ],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-21227",
+      "source": "arxiv",
+      "title": "FORGE-plus: Force-Budgeted Recovery for Contact-Rich Assembly with a Frozen LLM Supervisor",
+      "title_zh": "FORGE-plus: 基于力预算的接触密集装配恢复方法，配备冻结的LLM监督器",
+      "tldr_zh": "冻结的LLM通过文本力特征分配力上限并选择恢复动作，实现无破损装配。",
+      "cover_zh": "LLM不直接控力却让装配零破损？这个双层框架做到了！",
+      "abstract_zh": "力条件强化学习能够在指定的力上限下实现紧间隙装配，但实际部署需要为每个物体确定合适的力极限，并在不超过该极限的情况下从插入失败中恢复。我们提出一个双层框架：一个冻结的、仅文本的大语言模型在执行前为每个物体分配力上限，并使用紧凑的文本力特征从固定动作菜单中选择恢复操作。LLM从不直接控制力：底层控制器强制执行力上限，恢复策略不能增加该上限，且隐藏的断裂力阈值仅评估者知晓。我们在易碎瓶子放置和0.4毫米直径间隙齿轮插入任务上，使用两种夹爪（Robotiq 2F-140和Franka Panda手）评估该框架。单个策略在易碎和坚固物体上均通过256/256次评估回合，无破损，正确预测释放时机，并完成完整的桌面拾取插入流程，平均峰值力为5.4 N。在注入的夹持滑动下，力特征恢复策略在两种夹爪上分别解决了40%和64%的失败，而“更用力按压”基线要么无效，要么频繁导致破损。我们还报告了负面结果，包括PPO在严格力约束下未能解决任务，以及学习到的释放策略不成功。所有实验均在刚体仿真中进行，具有隐藏的力阈值断裂；未声称仿真到现实的迁移。",
+      "authors": [
+        "Kyupaeck Jeff Rah",
+        "Midum Oh"
+      ],
+      "authors_all": [
+        "Kyupaeck Jeff Rah",
+        "Midum Oh"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-23",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-21227.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-21227-p2.jpg",
+        "assets/img/covers/arxiv-2607-21227-p3.jpg",
+        "assets/img/covers/arxiv-2607-21227-p4.jpg"
+      ],
+      "arxiv_id": "2607.21227",
+      "abs_url": "http://arxiv.org/abs/2607.21227v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.21227v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 27,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "接触丰富的装配任务，结合力约束RL和LLM监督，属于操作领域",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Independent Researcher"
+      ],
+      "method_tags": [
+        "Force-conditioned RL",
+        "LLM supervisor",
+        "force signature recovery"
+      ],
+      "platform": [
+        "Robotiq 2F-140",
+        "Franka Panda hand"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "no",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-21049",
+      "source": "arxiv",
+      "title": "GuidedAttention: Interpretable and Correctable Visual Attention for OOD-Robust Robot Manipulation via Imitation Learning",
+      "title_zh": "GuidedAttention：通过模仿学习实现可解释和可修正的视觉注意力以提升机器人操作的OOD鲁棒性",
+      "tldr_zh": "提出可解释和可修正的视觉注意力框架，提升机器人操作在分布外条件下的鲁棒性。",
+      "cover_zh": "机器人也能听懂人话？修正注意力关键点，OOD操作性能飙升！",
+      "abstract_zh": "端到端的视觉运动策略很少为人类提供理解或修正策略视觉注意力的机会。我们提出GuidedAttention，一种视觉运动模仿学习框架，将可解释和可修正的视觉注意力作为显式的中间表示。从相机图像中预测与任务相关的注意力关键点，并条件化一个基于扩散的动作策略。用户可以在 rollout 初始化时检查并可选地修正选中的关键点，之后修正后的注意力通过跟踪模块在执行过程中自动传播。在仿真和真实世界的实验表明，GuidedAttention 持续提升了机器人操作性能，特别是在位置和外观分布外（OOD）条件下。",
+      "authors": [
+        "Masaki Murooka",
+        "Ryoichi Nakajo",
+        "Keisuke Shirai"
+      ],
+      "authors_all": [
+        "Masaki Murooka",
+        "Ryoichi Nakajo",
+        "Keisuke Shirai",
+        "Tomohiro Motoda",
+        "Hanbit Oh",
+        "Ryo Hanai",
+        "Yukiyasu Domae"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-23",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-21049.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-21049-p2.jpg",
+        "assets/img/covers/arxiv-2607-21049-p3.jpg",
+        "assets/img/covers/arxiv-2607-21049-p4.jpg"
+      ],
+      "arxiv_id": "2607.21049",
+      "abs_url": "http://arxiv.org/abs/2607.21049v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.21049v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 19,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出可解释可纠正的视觉注意力机制，提升模仿学习在OOD下的操作性能，有创新性和实用性。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "CNRS-AIST JRL (Joint Robotics Laboratory)",
+        "National Institute of Advanced Industrial Science and Technology (AIST)"
+      ],
+      "method_tags": [
+        "Imitation Learning",
+        "Diffusion Policy",
+        "Visual Attention"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-21594",
+      "source": "arxiv",
+      "title": "Streaming Multi-Agent Autoregressive Diffusion Model with World State Registers",
+      "title_zh": "流式多智能体自回归扩散模型与世界状态寄存器",
+      "tldr_zh": "提出带世界状态寄存器的流式多智能体扩散模型，提升视频生成一致性。",
+      "cover_zh": "多智能体视频生成总崩？这个模型用“世界状态寄存器”让逻辑起飞",
+      "abstract_zh": "多智能体交互世界模型不仅应生成一致的观测结果，还应维护跨智能体持久存在且随视角演变的世界状态。现有的自回归视频扩散流程将观测历史作为条件上下文传递，这使得在多智能体和多视角设置下难以维护共享状态。我们提出WorldWeaver (W^2)，一种流式多智能体视频扩散模型，通过跨智能体世界状态寄存器增强生成过程：这些可学习令牌存储共享世界信息、跟踪个体智能体状态，并在每个生成块后动态更新。我们利用涵盖个体智能体状态、全局状态视图（包括鸟瞰图）和场景文本的监督信号来约束这些寄存器。我们进一步通过混合Transformer设计改进架构，该设计使用独立的权重进行世界状态建模和视觉帧建模。在两个智能体的Minecraft视频生成实验中，显式的世界状态建模提高了逻辑一致性和生成质量。",
+      "authors": [
+        "Sicheng Mo",
+        "Yuheng Li",
+        "Ziyang Leng"
+      ],
+      "authors_all": [
+        "Sicheng Mo",
+        "Yuheng Li",
+        "Ziyang Leng",
+        "Krishna Kumar Singh",
+        "Bolei Zhou"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-07-23",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-21594.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-21594-p2.jpg",
+        "assets/img/covers/arxiv-2607-21594-p3.jpg",
+        "assets/img/covers/arxiv-2607-21594-p4.jpg"
+      ],
+      "arxiv_id": "2607.21594",
+      "abs_url": "http://arxiv.org/abs/2607.21594v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.21594v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 19,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出多智能体世界模型WorldWeaver，含世界状态寄存器，属于world-model方向，创新性强。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of California, Los Angeles",
+        "Adobe Research"
+      ],
+      "method_tags": [
+        "autoregressive video diffusion",
+        "world state registers",
+        "Mixture-of-Transformers"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "no",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-20912",
+      "source": "arxiv",
+      "title": "URF: A Unified Robot Control-Policy Framework for Stable Contact Aware Manipulation",
+      "title_zh": "URF：一种用于稳定接触感知操作任务的统一机器人控制策略框架",
+      "tldr_zh": "提出URF框架，统一柔顺动作预测与阻抗-导纳控制，提升刚性接触任务成功率。",
+      "cover_zh": "机器人接触不稳？URF框架统一控制策略，任务成功率飙升！",
+      "abstract_zh": "基于学习的操作策略通常从传感器观测中预测机器人动作，并将其执行交给单独的低层控制器。在刚性接触中，这种分离可能带来问题：相同的虚拟目标运动或柔顺运动指令，根据低层控制器的不同，可能导致接触不稳定、跟踪误差、过载或工具损坏。本文提出了一种统一机器人控制策略框架（URF），它将柔顺动作预测与统一的阻抗-导纳控制相结合。给定多模态观测，URF预测虚拟目标、刚度矩阵和阻抗-导纳切换比率。切换比率决定了控制器何时应更像导纳控制以实现精确运动跟踪，何时应转向阻抗控制以实现更安全的刚性接触。由于演示数据不提供真实的环境刚度，我们根据测量的接触力构建切换比率标签，并用于监督控制器模式预测。在翻转箱子和按压线条任务中，URF实现了更高的任务成功率，同时减少了仅使用导纳执行时观察到的故障模式，包括快速力积累、大力振荡、工具断裂和机器人安全停止。这些结果表明，接触感知策略不仅受益于预测柔顺动作，还受益于预测用于执行这些动作的控制器行为。项目页面：https://jiyou384.github.io/urf_project_page/",
+      "authors": [
+        "Jiyou Shin",
+        "Youngjin Seo",
+        "Jaeseog Won"
+      ],
+      "authors_all": [
+        "Jiyou Shin",
+        "Youngjin Seo",
+        "Jaeseog Won",
+        "Sungwon Seo",
+        "Hyunjun Kim",
+        "Seokmin Yoon",
+        "Tuan Luong",
+        "Hyungpil Moon"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-23",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-20912.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-20912-p2.jpg",
+        "assets/img/covers/arxiv-2607-20912-p3.jpg",
+        "assets/img/covers/arxiv-2607-20912-p4.jpg"
+      ],
+      "arxiv_id": "2607.20912",
+      "abs_url": "http://arxiv.org/abs/2607.20912v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.20912v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 16,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出统一阻抗-导纳控制框架，结合学习策略与接触感知，提升操作稳定性，有创新性。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Sungkyunkwan University"
+      ],
+      "method_tags": [
+        "impedance-admittance control",
+        "Diffusion Policy"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-20988",
+      "source": "arxiv",
+      "title": "HyWorldVLA: A Vision-Language-Action Model with Hybrid World Modeling for Autonomous Driving",
+      "title_zh": "HyWorldVLA：面向自动驾驶的混合世界建模视觉-语言-动作模型",
+      "tldr_zh": "提出混合世界VLA模型，统一像素与潜在表示，提升自动驾驶鲁棒性。",
+      "cover_zh": "像素级预测太脆弱？这个混合世界模型让自动驾驶更鲁棒｜HyWorldVLA",
+      "abstract_zh": "结合世界建模的视觉-语言-动作（VLA）模型是端到端自动驾驶的一种有前景的范式。像素级未来预测能够实现细粒度的时空推理，但在噪声驾驶场景中会损害鲁棒性。相反，基于潜在空间的世界模型减轻了这种敏感性，但由于缺乏像素级基础，往往导致可解释性有限和表示退化。为了调和这种权衡，我们提出了HyWorldVLA，一个混合世界VLA框架，统一了像素级监督和潜在表示学习。在预训练阶段，HyWorldVLA预测由预训练视频VAE编码的视频潜在特征，同时重建视频帧以提供精确的像素级基础。在后续的协同微调阶段，模型仅预测潜在特征，这些特征被输入动作专家以生成轨迹。在NAVSIM v1和v2基准上的大量实验表明，HyWorldVLA显著优于基于像素和基于潜在的世界模型基线。值得注意的是，我们首次对自动驾驶中的世界模型噪声鲁棒性进行了全面的定性和定量分析，为评估未来架构建立了新的基准。",
+      "authors": [
+        "Quanfu Yu",
+        "Xian Wu",
+        "Hao Xu"
+      ],
+      "authors_all": [
+        "Quanfu Yu",
+        "Xian Wu",
+        "Hao Xu",
+        "Liulong Ma"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-07-23",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-20988.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-20988-p2.jpg",
+        "assets/img/covers/arxiv-2607-20988-p3.jpg",
+        "assets/img/covers/arxiv-2607-20988-p4.jpg"
+      ],
+      "arxiv_id": "2607.20988",
+      "abs_url": "http://arxiv.org/abs/2607.20988v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.20988v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 16,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出混合世界模型HyWorldVLA，融合像素级与潜在表示，用于自动驾驶，属于world-model方向。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Automotive New Technology Research Institute, BYD Company Limited"
+      ],
+      "method_tags": [
+        "Vision-Language-Action",
+        "World Model",
+        "Hybrid World Modeling"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "no",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-21025",
+      "source": "arxiv",
+      "title": "ZONDA: Zero-shot Object Navigation with Dynamic Avoidance in Multi-floor Environments",
+      "title_zh": "ZONDA：多楼层环境中具有动态避让的零样本目标导航",
+      "tldr_zh": "提出ZONDA框架，实现多楼层动态环境下的零样本目标导航与避让。",
+      "cover_zh": "机器人也能跨楼层找东西？零样本导航新框架，动态避让行人稳如老司机",
+      "abstract_zh": "在目标导航任务中，现有方法通常局限于静态单楼层环境，忽略了跨楼层拓扑和动态行人，这限制了它们的实际部署。为了解决这些限制，我们提出了ZONDA，一个具有动态避让的零样本目标导航框架。具体而言，ZONDA集成了三个核心组件：（i）启发式多楼层规划：基于高度差可通行地图，无需特定平台的学习控制器即可实现楼梯穿越和跨楼层探索；（ii）多视角目标验证：利用视觉语言模型交叉检查多尺度观测，显著减少误报；（iii）动态行人避让：显式跟踪和预测移动行人以生成预期行为。在真实的Direct Drive Tech TITA双足机器人以及HM3D和MP3D上的大量仿真评估中，ZONDA取得了显著改进的结果。此外，与现有基线相比，ZONDA能够在动态基准HM3D-DYNA上保持鲁棒的导航。",
+      "authors": [
+        "Shaomin Liang",
+        "Xuanhong Liao",
+        "Shiyao Zhang"
+      ],
+      "authors_all": [
+        "Shaomin Liang",
+        "Xuanhong Liao",
+        "Shiyao Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-23",
+      "channels": [
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-21025.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-21025-p2.jpg",
+        "assets/img/covers/arxiv-2607-21025-p3.jpg",
+        "assets/img/covers/arxiv-2607-21025-p4.jpg"
+      ],
+      "arxiv_id": "2607.21025",
+      "abs_url": "http://arxiv.org/abs/2607.21025v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.21025v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 16,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "locomotion",
+        "reason": "零样本物体导航结合动态避障，在双足机器人上验证，涉及跨楼层规划与行人预测",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Southern University of Science and Technology",
+        "Guangdong Direct Drive Technology Limited",
+        "South China University of Technology",
+        "Great Bay University"
+      ],
+      "method_tags": [
+        "zero-shot",
+        "object goal navigation",
+        "dynamic avoidance"
+      ],
+      "platform": [
+        "Direct Drive Tech TITA"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-21071",
+      "source": "arxiv",
+      "title": "TransBiolab: A Real-World Multi-View Dataset of Cluttered Transparent Biomedical Objects",
+      "title_zh": "TransBiolab：真实世界中杂乱透明生物医学物体的多视角数据集",
+      "tldr_zh": "首个针对杂乱透明生物医学物体的多视角真实世界数据集，含16万帧和103万标注。",
+      "cover_zh": "透明塑料也能精准抓取？这个新数据集让机器人实验室操作不再“瞎”",
+      "abstract_zh": "自主生物医学实验室越来越依赖视觉感知来识别、定位和操作透明塑料器皿，然而针对这一场景的高质量真实世界数据集仍然有限。领域相关数据的稀缺在杂乱多物体场景中尤为突出，即使对于当代视觉基础模型而言，相互遮挡和视角依赖的外观变化仍具挑战性。现有的透明物体数据集推动了分割、深度和姿态估计的发展，但它们通常不评估真实实验室操作场景中多物体杂乱、遮挡和校准多视角捕获的组合设置。为填补这一空白，我们提出了TransBiolab，一个真实世界的RGB-D数据集，包含杂乱透明生物医学物体的校准多视角序列。TransBiolab包含来自98个场景的161,315帧图像，以及15种实验室物体类型的103万实例标注，包括6D姿态、完整和可见掩码、深度以及每帧相机标定。数据集按三个反映操作难度的轴组织：物体类别、帧中物体总数和相机视角。我们进一步定义了基于数据集的基准测试，用于分割、深度估计与补全以及6D姿态估计，并报告了利用已发布的标注和标定实现的系统级机器人操作评估。通过聚焦重复透明实例、杂乱和多视角实验室捕获，TransBiolab为自主实验室操作中的分割、深度估计、6D姿态估计和多视角推理提供了资源。项目页面：https://dualtransparency.github.io/TransBiolab/。",
+      "authors": [
+        "Ke Ma",
+        "Yifei Wang",
+        "Meng Wang"
+      ],
+      "authors_all": [
+        "Ke Ma",
+        "Yifei Wang",
+        "Meng Wang",
+        "Tian Xia"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-07-23",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-21071.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-21071-p2.jpg",
+        "assets/img/covers/arxiv-2607-21071-p3.jpg",
+        "assets/img/covers/arxiv-2607-21071-p4.jpg"
+      ],
+      "arxiv_id": "2607.21071",
+      "abs_url": "http://arxiv.org/abs/2607.21071v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.21071v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 16,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提供透明物体多视图数据集，支持分割、深度、6D位姿估计和机器人操作评估，对操作研究有价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Huazhong University of Science and Technology",
+        "Tongji University",
+        "Shanghai Institute for Intelligent Autonomous Systems"
+      ],
+      "method_tags": [
+        "segmentation",
+        "depth estimation",
+        "6D pose estimation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-21522",
+      "source": "arxiv",
+      "title": "GS-Agent: Creating 4D Physical Worlds With Generative Simulation",
+      "title_zh": "GS-Agent：通过生成式仿真创建4D物理世界",
+      "tldr_zh": "多智能体框架GS-Agent从自然语言自动生成物理真实的4D世界。",
+      "cover_zh": "一句话生成4D物理世界｜多智能体协作自动调材质、控运动",
+      "abstract_zh": "从自然语言描述创建动态且物理真实的4D世界既迷人又充满挑战。传统计算机图形学方法依赖手动创建，需要大量人力来微调材质、运动和视觉保真度。近期生成式基础模型的进展激发了从大规模数据学习生成此类4D世界的兴趣；然而，现有方法仍难以保证物理合理性和可控性。在这项工作中，我们另辟蹊径，利用基础模型构建一个模拟人类传统创建4D世界方式但自动化整个过程的智能体系统。我们提出GS-Agent，一个端到端的多智能体框架，它将物理引擎集成到循环中，从自然语言生成真实、动态且可控的4D物理世界。受人类构建4D世界方式的启发，GS-Agent将任务分解为实体管理（涵盖3D资产策划、材质调优、放置和运动控制）和渲染配置（包括相机和光照操作）。多个具有不同专长的智能体通过代码与物理引擎交互，获取多模态反馈，并协作迭代构建与给定描述一致的4D世界。实验结果表明，GS-Agent能有效将自然语言转换为多样且物理合理的4D世界，展示液体、可变形物体和刚体之间的丰富交互，同时实现电影级的相机和光照控制。我们视GS-Agent为4D世界生成新范式的基础，赋能创意内容创作和物理AI。项目页面：https://umass-embodied-agi.github.io/gs-agent/",
+      "authors": [
+        "Hongxin Zhang",
+        "Chunru Lin",
+        "Junyan Li"
+      ],
+      "authors_all": [
+        "Hongxin Zhang",
+        "Chunru Lin",
+        "Junyan Li",
+        "Zhou Xian",
+        "Tsun-Hsuan Wang",
+        "Chuang Gan"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-23",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-21522.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-21522-p2.jpg",
+        "assets/img/covers/arxiv-2607-21522-p3.jpg",
+        "assets/img/covers/arxiv-2607-21522-p4.jpg"
+      ],
+      "arxiv_id": "2607.21522",
+      "abs_url": "http://arxiv.org/abs/2607.21522v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.21522v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 16,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出生成式仿真框架，构建4D物理世界，与具身世界模型高度相关",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Massachusetts Amherst",
+        "Genesis AI"
+      ],
+      "method_tags": [
+        "multi-agent framework",
+        "generative simulation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
     }
   ]
 }

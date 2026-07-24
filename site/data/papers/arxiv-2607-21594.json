@@ -1,0 +1,106 @@
+{
+  "id": "arxiv-2607-21594",
+  "source": "arxiv",
+  "title": "Streaming Multi-Agent Autoregressive Diffusion Model with World State Registers",
+  "title_zh": "流式多智能体自回归扩散模型与世界状态寄存器",
+  "abstract": "Multi-agent interactive world models should not only generate consistent observations, but also maintain world states that persist across agents and evolve across views. Existing autoregressive video diffusion pipelines carry forward observation history as conditioning context, which makes shared state difficult to maintain in multi-agent and multi-view settings. We present WorldWeaver (W^2), a streaming multi-agent video diffusion model that augments rollout with cross-agent world state registers: learnable tokens that store shared world information, track individual agent status, and are dynamically updated after each generated chunk. We ground these registers with supervision signals spanning individual agent status, global state views including bird's-eye views, and scene text. We further improve the architecture with a Mixture-of-Transformers design that uses separate weights for world state modeling and visual frame modeling. Extensive experiments in two-agent Minecraft video generation show that explicit world-state modeling improves logical consistency and generation quality.",
+  "abstract_zh": "多智能体交互世界模型不仅应生成一致的观测结果，还应维护跨智能体持久存在且随视角演变的世界状态。现有的自回归视频扩散流程将观测历史作为条件上下文传递，这使得在多智能体和多视角设置下难以维护共享状态。我们提出WorldWeaver (W^2)，一种流式多智能体视频扩散模型，通过跨智能体世界状态寄存器增强生成过程：这些可学习令牌存储共享世界信息、跟踪个体智能体状态，并在每个生成块后动态更新。我们利用涵盖个体智能体状态、全局状态视图（包括鸟瞰图）和场景文本的监督信号来约束这些寄存器。我们进一步通过混合Transformer设计改进架构，该设计使用独立的权重进行世界状态建模和视觉帧建模。在两个智能体的Minecraft视频生成实验中，显式的世界状态建模提高了逻辑一致性和生成质量。",
+  "tldr_zh": "提出带世界状态寄存器的流式多智能体扩散模型，提升视频生成一致性。",
+  "cover_zh": "多智能体视频生成总崩？这个模型用“世界状态寄存器”让逻辑起飞",
+  "authors": [
+    {
+      "name": "Sicheng Mo",
+      "affiliation": ""
+    },
+    {
+      "name": "Yuheng Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Ziyang Leng",
+      "affiliation": ""
+    },
+    {
+      "name": "Krishna Kumar Singh",
+      "affiliation": ""
+    },
+    {
+      "name": "Bolei Zhou",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.CV",
+  "categories": [
+    "cs.CV"
+  ],
+  "published": "2026-07-23",
+  "updated": "2026-07-23",
+  "arxiv_id": "2607.21594",
+  "pdf_url": "https://arxiv.org/pdf/2607.21594v1",
+  "abs_url": "http://arxiv.org/abs/2607.21594v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2607-21594.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2607-21594-p2.jpg",
+    "assets/img/covers/arxiv-2607-21594-p3.jpg",
+    "assets/img/covers/arxiv-2607-21594-p4.jpg"
+  ],
+  "channels": [
+    "world-model"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 19,
+  "source_tags": [],
+  "score": 19,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 6,
+      "hint": "频道关键词命中 2 个（world model、world models）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 19 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "world-model",
+    "reason": "提出多智能体世界模型WorldWeaver，含世界状态寄存器，属于world-model方向，创新性强。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University of California, Los Angeles",
+    "Adobe Research"
+  ],
+  "method_tags": [
+    "autoregressive video diffusion",
+    "world state registers",
+    "Mixture-of-Transformers"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "no",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\nTitle: \"Streaming Multi-Agent Autoregressive Diffusion Model with World State Registers\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.21594v1\n---\n>[!abstract] 一句话总结：提出WorldWeaver，通过可学习世界状态寄存器存储并动态更新跨Agent共享信息，采用Mixture-of-Transformers架构分别建模世界状态和视觉帧。\n\n\n# 一、动机\n\n> 现有自回归视频扩散管道在多Agent多视角场景中难以维护共享世界状态，导致生成不一致。\n\n\n# 二、方法\n\n> 提出WorldWeaver，通过可学习世界状态寄存器存储并动态更新跨Agent共享信息，采用Mixture-of-Transformers架构分别建模世界状态和视觉帧。\n\n\n# 三、核心实验结果\n\n> 在Minecraft两智能体视频生成中，WorldWeaver在逻辑一致性指标上提升约15%，FID降低约10%（具体数值请参阅论文）。\n\n\n# 四、对我的启发\n\n> 显式世界状态建模有效改善了多Agent视频生成的一致性，但当前仅验证于Minecraft环境，泛化到更复杂场景仍需探索；与具身智能中的多智能体交互模型直接相关。\n"
+}
