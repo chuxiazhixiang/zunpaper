@@ -108,5 +108,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"Physically Embodied Gaussian Splatting: A Realtime Correctable World Model for Robotics\"\nYear: \"2024\"\nURL: http://arxiv.org/abs/2406.10788v1\n---\n>[!abstract] 一句话总结：提出一种双高斯-粒子表示，粒子负责物理模拟，附着的高斯负责图像渲染，通过比较预测与观测图像生成视觉力来校正粒子位置，同时保持物理约束。\n\n\n# 一、动机\n\n> 现有机器人世界模型难以同时支持物理预测和基于视觉观察的在线校正，限制了机器人在动态环境中的鲁棒性。\n\n\n# 二、方法\n\n> 提出一种双高斯-粒子表示，粒子负责物理模拟，附着的高斯负责图像渲染，通过比较预测与观测图像生成视觉力来校正粒子位置，同时保持物理约束。\n\n\n# 三、核心实验结果\n\n> 系统实时运行在30Hz，仅需3台相机；在2D和3D跟踪任务中优于基线，光度重建质量达到SOTA。\n\n\n# 四、对我的启发\n\n> 与课题相关，该方法的实时校正能力对机器人操作有重要意义，但依赖多个相机和物理引擎，可能限制在复杂场景的泛化。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"Physically Embodied Gaussian Splatting: A Realtime Correctable World Model for Robotics\"\nYear: \"2024\"\nURL: http://arxiv.org/abs/2406.10788v1\n---\n>[!abstract] 一句话总结：提出双高斯-粒子表示：粒子捕获几何并用于物理模拟预测未来状态，3D高斯附着粒子进行可微渲染；通过比较预测图像与观测图像生成视觉力，在线校正粒子位置同时保持物理约束。\n\n\n# 一、动机\n\n> 现有机器人世界模型缺乏同时具备几何、物理和视觉表示的实时可校正能力，无法在动态环境中通过观测持续修正预测。\n\n\n# 二、方法\n\n> 提出双高斯-粒子表示：粒子捕获几何并用于物理模拟预测未来状态，3D高斯附着粒子进行可微渲染；通过比较预测图像与观测图像生成视觉力，在线校正粒子位置同时保持物理约束。\n\n\n# 三、核心实验结果\n\n> 系统在30Hz下实时运行，仅需3个摄像头；在2D和3D跟踪任务上验证有效性，光度重建质量优于基线。\n\n\n# 四、对我的启发\n\n> 方法依赖多视角观测和在线渲染，计算开销对实时性要求高；但实现了预测与观测的闭环校正，可用于动态环境下的机器人感知与规划，与具身智能课题紧密相关。\n"
 }
