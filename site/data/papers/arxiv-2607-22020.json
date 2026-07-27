@@ -1,0 +1,97 @@
+{
+  "id": "arxiv-2607-22020",
+  "source": "arxiv",
+  "title": "Embodying Multi-Hand Manipulation Policies by Searching the Assignment and Null Spaces",
+  "title_zh": "通过搜索分配和零空间实现多手操作策略",
+  "abstract": "Learned manipulation policies increasingly predict motions for abstract \"hands\" and are attractive in practice because they rely on easily collected demonstrations and transfer across robot platforms. Executing these trajectories on multi-arm robots, however, is not trivial. Multi-hand policy outputs must be assigned to physical arms, each arm must realize a configuration-space motion that tracks its prescribed end-effector trajectory, and all arms must respect kinematic limits and avoid collisions. In the absence of algorithms that directly address this problem, practitioners typically extend single-arm inverse-kinematics (IK) pipelines in an ad hoc way, with no guarantees of feasibility or safety. In this work, we close this execution gap with a search-based framework that is theoretically complete for grounding policy-generated multi-hand trajectories onto physical multi-arm systems. Building on Conflict-Based Search, our method explicitly searches over both the discrete assignment of trajectories to arms and the continuous Jacobian null spaces of redundant manipulators, using redundancy to avoid inter-arm collisions while tracking the prescribed motions. This unified treatment of assignment and null-space motion yields a practically efficient planner that safely realizes coordinated manipulation-policy outputs on multi-arm robots. See omcbsa.github.io for more.",
+  "abstract_zh": "学习到的操作策略越来越多地预测抽象“手”的运动，并在实践中具有吸引力，因为它们依赖于易于收集的演示并可在不同机器人平台上迁移。然而，在多臂机器人上执行这些轨迹并非易事。多手策略的输出必须分配给物理手臂，每个手臂必须实现一个配置空间运动以跟踪其规定的末端执行器轨迹，并且所有手臂必须遵守运动学限制并避免碰撞。在缺乏直接解决此问题的算法的情况下，从业者通常以临时方式扩展单臂逆运动学（IK）流水线，无法保证可行性或安全性。在这项工作中，我们通过一个基于搜索的框架来弥合这一执行差距，该框架在理论上完备地将策略生成的多手轨迹落地到物理多臂系统上。基于冲突搜索，我们的方法显式搜索轨迹到手臂的离散分配以及冗余机械臂的连续雅可比零空间，利用冗余性在跟踪规定运动的同时避免手臂间碰撞。这种对分配和零空间运动的统一处理产生了一个实际高效的规划器，能够安全地在多臂机器人上实现协调的操作策略输出。更多信息请参见 omcbsa.github.io。",
+  "tldr_zh": "提出搜索框架，统一分配轨迹与零空间运动，实现多臂机器人安全执行多手策略",
+  "cover_zh": "多手策略落地多臂机器人？这个搜索框架让分配与避碰一步到位",
+  "authors": [
+    {
+      "name": "Yorai Shaoul",
+      "affiliation": ""
+    },
+    {
+      "name": "Jiaoyang Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Maxim Likhachev",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-07-24",
+  "updated": "2026-07-24",
+  "arxiv_id": "2607.22020",
+  "pdf_url": "https://arxiv.org/pdf/2607.22020v1",
+  "abs_url": "http://arxiv.org/abs/2607.22020v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2607-22020.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2607-22020-p2.jpg",
+    "assets/img/covers/arxiv-2607-22020-p3.jpg",
+    "assets/img/covers/arxiv-2607-22020-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ CMU RI"
+    }
+  ],
+  "related_links": [],
+  "page_count": 5,
+  "source_tags": [],
+  "score": 31,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “CMU RI” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（manipulation）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 5 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出多臂操作策略执行框架，解决分配与零空间搜索问题，对多臂机器人操作有重要价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Carnegie Mellon University"
+  ],
+  "method_tags": [
+    "search-based planning",
+    "Conflict-Based Search",
+    "Jacobian null space"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"Embodying Multi-Hand Manipulation Policies by Searching the Assignment and Null Spaces\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.22020v1\n---\n>[!abstract] 一句话总结：提出基于Conflict-Based Search的搜索框架，同时搜索轨迹到手臂的离散分配和冗余机械臂的连续Jacobian零空间，以在跟踪轨迹的同时避免碰撞。\n\n\n# 一、动机\n\n> 现有方法缺乏将多手策略输出安全可行地执行到多臂机器人上的保证，常见做法是扩展单臂IK，无可行性或安全性保证。\n\n\n# 二、方法\n\n> 提出基于Conflict-Based Search的搜索框架，同时搜索轨迹到手臂的离散分配和冗余机械臂的连续Jacobian零空间，以在跟踪轨迹的同时避免碰撞。\n\n\n# 三、核心实验结果\n\n> 理论上完备，实际中高效，能安全实现协调操作，具体数字见论文原文。\n\n\n# 四、对我的启发\n\n> 与课题相关，可启发多臂机器人策略部署中的执行问题解决。\n"
+}
