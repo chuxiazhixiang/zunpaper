@@ -1,0 +1,98 @@
+{
+  "id": "arxiv-2607-22535",
+  "source": "arxiv",
+  "title": "Robot-Factored World Models via Robot Rendering",
+  "title_zh": "通过机器人渲染实现机器人因子化世界模型",
+  "abstract": "Action-conditioned video world models predict future observations from an initial observation and an action signal. In robotics, actions influence future observations through two distinct processes: they are first realized into robot motion by the robot body and controller, and the scene then responds through contact and object motion. Conditioning directly on action commands asks the world model to learn the realization process itself, while conditioning on logged future states leaks the interaction outcomes it is meant to predict. We propose robot-factored world models, which move two robot-specific factors outside the world model. First, action realization: each command is rolled through the robot's own controller and kinematics into a deployment-available nominal trajectory, a middle signal that avoids both action-realization learning and future-state leakage. Second, robot rendering: this nominal trajectory is rendered through the robot URDF, factoring the robot's geometry, kinematics, and appearance out of the model and into explicit rendered robot geometry. To resolve depth ambiguity, we pair end-effector depth with scene depth, giving geometric cues for contact and occlusion beyond image-plane overlap. Together, camera-aware static RGB/depth context and rendered robot geometry form a shared visual world-model interface that stays consistent across viewpoints and robot embodiments, so the model sees the action only as visible robot geometry and learns how objects respond to it. Our experiments show that the rendered interface outperforms vector-conditioned baselines and generalizes to unseen robot embodiments at inference. We further demonstrate that our model generates robot manipulation videos from human demonstrations by retargeting and rendering the hand motion as robot geometry.",
+  "abstract_zh": "动作条件视频世界模型根据初始观测和动作信号预测未来观测。在机器人学中，动作通过两个不同过程影响未来观测：首先由机器人本体和控制器实现为机器人运动，然后场景通过接触和物体运动做出响应。直接以动作命令为条件要求世界模型学习实现过程本身，而以记录的未来状态为条件则会泄露其旨在预测的交互结果。我们提出机器人因子化世界模型，将两个机器人特定因子移出世界模型。第一，动作实现：每个命令通过机器人自身的控制器和运动学滚动为部署可用的名义轨迹，这是一种中间信号，既避免了动作实现学习，又避免了未来状态泄露。第二，机器人渲染：该名义轨迹通过机器人URDF渲染，将机器人的几何、运动学和外观从模型中分解出来，变为显式渲染的机器人几何。为解决深度模糊，我们将末端执行器深度与场景深度配对，提供超出图像平面重叠的接触和遮挡几何线索。结合相机感知的静态RGB/深度上下文和渲染的机器人几何，形成共享的视觉世界模型接口，该接口在不同视角和机器人本体间保持一致，因此模型仅将动作视为可见的机器人几何，并学习物体如何对其做出响应。我们的实验表明，渲染接口优于向量条件基线，并在推理时泛化到未见过的机器人本体。我们进一步证明，通过重定向和将手部运动渲染为机器人几何，我们的模型可以从人类演示生成机器人操作视频。",
+  "tldr_zh": "将机器人几何显式渲染为视觉输入，提升世界模型泛化能力",
+  "cover_zh": "机器人学新突破｜把机器人“画”进世界模型，泛化能力直接拉满",
+  "authors": [
+    {
+      "name": "Byungjun Kim",
+      "affiliation": ""
+    },
+    {
+      "name": "Taeksoo Kim",
+      "affiliation": ""
+    },
+    {
+      "name": "Hyunsoo Cha",
+      "affiliation": ""
+    },
+    {
+      "name": "Hanbyul Joo",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.CV"
+  ],
+  "published": "2026-07-24",
+  "updated": "2026-07-24",
+  "arxiv_id": "2607.22535",
+  "pdf_url": "https://arxiv.org/pdf/2607.22535v1",
+  "abs_url": "http://arxiv.org/abs/2607.22535v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2607-22535.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2607-22535-p2.jpg",
+    "assets/img/covers/arxiv-2607-22535-p3.jpg",
+    "assets/img/covers/arxiv-2607-22535-p4.jpg"
+  ],
+  "channels": [
+    "loco-manip-wbc",
+    "world-model"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 17,
+  "source_tags": [],
+  "score": 20,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 5 个（retargeting、world model、world models、video world model）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 17 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "world-model",
+    "reason": "提出机器人分解世界模型，通过渲染机器人几何结构提升视频预测与泛化能力，对世界模型与机器人结合有重要贡献。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Seoul National University",
+    "RLWRLD"
+  ],
+  "method_tags": [
+    "world model",
+    "robot rendering"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Robot-Factored World Models via Robot Rendering\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.22535v1\n---\n>[!abstract] 一句话总结：提出机器人因子世界模型，通过机器人渲染将机器人的几何、运动学和外观显式分解为渲染的机器人几何，并用标称轨迹代替原始动作命令作为中间信号，形成一致的视觉接口。\n\n\n# 一、动机\n\n> 现有动作条件视频世界模型要么要求模型学习动作实现过程，要么通过条件化未来状态泄露交互结果，导致泛化能力差。\n\n\n# 二、方法\n\n> 提出机器人因子世界模型，通过机器人渲染将机器人的几何、运动学和外观显式分解为渲染的机器人几何，并用标称轨迹代替原始动作命令作为中间信号，形成一致的视觉接口。\n\n\n# 三、核心实验结果\n\n> 所提渲染接口在性能上优于向量条件基线，能泛化到未见机器人实施例，并实现从人类演示通过动作重定向和手部运动渲染生成机器人操作视频。\n\n\n# 四、对我的启发\n\n> 与课题不相关（机器人视频预测，但非直接相关于具身智能控制）\n"
+}
