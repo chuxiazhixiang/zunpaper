@@ -83,5 +83,5 @@
     ],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"AndrejOrsula/drl_grasping\"\nYear: \"\"\nURL: https://github.com/AndrejOrsula/drl_grasping\n---\n>[!abstract] 一句话总结：采用TD3/SAC等模型无关actor-critic算法，在仿真环境中基于八叉树观测训练连续动作策略，并零样本迁移到真实机器人。\n\n\n# 一、动机\n\n> 现有机器人抓取依赖RGB或深度图，易受遮挡和光照影响；使用紧凑八叉树观测可提升泛化性，但强化学习训练与Sim-to-Real迁移仍具挑战。\n\n\n# 二、方法\n\n> 采用TD3/SAC等模型无关actor-critic算法，在仿真环境中基于八叉树观测训练连续动作策略，并零样本迁移到真实机器人。\n\n\n# 三、核心实验结果\n\n> 策略在未见过的相机位姿、物体和地形纹理等新场景下表现鲁棒，并成功实现零样本从仿真到真实的迁移（未提供具体抓取成功率数字）。\n\n\n# 四、对我的启发\n\n> 八叉树作为紧凑3D观测在RL抓取中有效，但真实环境复杂性与仿真差异可能限制性能，未来需增强域随机化或结合域适应技术。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"AndrejOrsula/drl_grasping\"\nYear: \"\"\nURL: https://github.com/AndrejOrsula/drl_grasping\n---\n>[!abstract] 一句话总结：使用深度强化学习（TD3/SAC/TQC）从八叉树观测学习连续抓取策略，支持多种观测变体，并兼容Gym API实现算法互换。\n\n\n# 一、动机\n\n> 传统机器人抓取依赖精确建模或大量真实数据，难以适应新场景。该方法利用八叉树紧凑3D表示和深度强化学习，学习鲁棒抓取策略，实现零样本仿真到现实迁移。\n\n\n# 二、方法\n\n> 使用深度强化学习（TD3/SAC/TQC）从八叉树观测学习连续抓取策略，支持多种观测变体，并兼容Gym API实现算法互换。\n\n\n# 三、核心实验结果\n\n> 在仿真环境中，训练的策略能够抓取多样物体（如月球岩石），并在未见过的相机姿态、物体和纹理下保持鲁棒；零样本迁移至真实机器人成功。\n\n\n# 四、对我的启发\n\n> 八叉树表示比RGB或深度图更紧凑、对视角变化鲁棒；但训练依赖仿真，真实环境泛化可能受域差影响，且八叉树生成可能成为计算瓶颈。\n"
 }
