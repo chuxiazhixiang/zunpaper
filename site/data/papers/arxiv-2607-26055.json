@@ -1,0 +1,114 @@
+{
+  "id": "arxiv-2607-26055",
+  "source": "arxiv",
+  "title": "$π\\mathbf{R}^2$: Reactive Real-time Flow Policies",
+  "title_zh": "πR²：反应式实时流策略",
+  "abstract": "Generalist manipulation policies increasingly take the form of action-chunking flow policies built on large pretrained backbones. Such chunks run open-loop, so the policy cannot react to sensory input arriving mid-execution, sacrificing \\emph{reactivity}. Replanning more often would restore it, but the perception-to-action pipeline (a large backbone plus multiple denoising steps) is too slow: this \\emph{latency} forbids frequent replanning and leaves committed actions stale, making such policies ill-suited for dynamic, closed-loop control. We present $π\\mathbf{R}^2$, which makes these policies reactive and real-time while retaining large backbones, expressive multi-modal policies, and multi-action prediction. Built on the per-position noise schedule of diffusion forcing, $π\\mathbf{R}^2$ contributes two ideas. First, it splits conditioning into a fast channel (proprioception, fresh every tick) and an asynchronously updated slow channel (vision-language features), so the policy reacts to proprioception within a chunk while tolerating stale vision. Second, a latency-adaptive flow schedule treats in-flight actions as inpainting conditioning and emits actions in one denoising step per call, letting one trained model adapt to varying hardware latency. Requiring minimal modification to existing architectures, $π\\mathbf{R}^2$ can be finetuned from a pretrained policy: applied to GR00T-N1.7 on a real xArm6+XHand platform, it replans closed-loop roughly $4\\times$ faster than the base policy (~$25$Hz on an A5000 GPU), acting on a fresh observation every $40$ms. Across simulation and real-world manipulation tasks, $π\\mathbf{R}^2$ improves the success rate by up to $23\\%$ in simulation and $30\\%$ in the real world over the strongest baseline. Project page: https://pi-r2-flow.github.io/",
+  "abstract_zh": "通用操作策略越来越多地采用基于大型预训练骨干网络的动作块流策略。这些动作块以开环方式运行，因此策略无法对执行过程中到达的感官输入做出反应，牺牲了反应性。更频繁地重新规划可以恢复反应性，但感知到动作的流水线（大型骨干网络加上多个去噪步骤）速度太慢：这种延迟阻碍了频繁重新规划，并使已提交的动作变得陈旧，使得此类策略不适合动态的闭环控制。我们提出了πR²，它在保留大型骨干网络、表达性多模态策略和多动作预测的同时，使这些策略具有反应性和实时性。基于扩散强制中的逐位置噪声调度，πR²贡献了两个想法。首先，它将条件输入分为快速通道（本体感觉，每个时钟周期更新）和异步更新的慢速通道（视觉语言特征），使得策略在动作块内对本体感觉做出反应，同时容忍陈旧的视觉信息。其次，一种延迟自适应流调度将正在执行的动作视为修复条件，并在每次调用时通过一个去噪步骤发出动作，使单个训练模型能够适应不同的硬件延迟。πR²需要对现有架构进行最小修改，可以从预训练策略微调得到：应用于真实xArm6+XHand平台上的GR00T-N1.7，它以约4倍于基础策略的速度进行闭环重新规划（在A5000 GPU上约25Hz），每40ms对新的观测做出反应。在仿真和真实世界操作任务中，πR²的成功率比最强基线在仿真中提高高达23%，在真实世界中提高30%。项目页面：https://pi-r2-flow.github.io/",
+  "tldr_zh": "πR²通过双通道条件和延迟自适应流调度，使大型动作块策略实现实时闭环反应。",
+  "cover_zh": "动作块策略也能实时反应？πR²让机器人每40ms闭环重规划，成功率飙升30%！",
+  "authors": [
+    {
+      "name": "Sungjae Park",
+      "affiliation": ""
+    },
+    {
+      "name": "Shubham Tulsiani",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.AI",
+    "cs.LG"
+  ],
+  "published": "2026-07-28",
+  "updated": "2026-07-28",
+  "arxiv_id": "2607.26055",
+  "pdf_url": "https://arxiv.org/pdf/2607.26055v1",
+  "abs_url": "http://arxiv.org/abs/2607.26055v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2607-26055.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2607-26055-p2.jpg",
+    "assets/img/covers/arxiv-2607-26055-p3.jpg",
+    "assets/img/covers/arxiv-2607-26055-p4.jpg"
+  ],
+  "channels": [
+    "loco-manip-wbc",
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ CMU RI"
+    },
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 20,
+  "source_tags": [],
+  "score": 52,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “CMU RI” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（gr00t、generalist manipulation、manipulation）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 20 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出πR²，提升大模型流策略的实时反应性，在真机xArm6+XHand上验证，显著提升成功率。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Carnegie Mellon University"
+  ],
+  "method_tags": [
+    "flow matching",
+    "action chunking",
+    "diffusion forcing"
+  ],
+  "platform": [
+    "xArm6+XHand"
+  ],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"$π\\mathbf{R}^2$: Reactive Real-time Flow Policies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.26055v1\n---\n>[!abstract] 一句话总结：提出πR²，通过分离快速本体感觉通道和异步慢速视觉语言通道，并结合延迟自适应流调度（将飞行中动作视为修复条件，每次调用单步去噪），使预训练策略微调后实现实时闭环重规划。\n\n\n# 一、动机\n\n> 现有通用操作策略采用action-chunking flow policies，但开环执行缺乏反应性，频繁重规划受限于高延迟（大骨干网络+多步去噪），难以用于动态闭环控制。\n\n\n# 二、方法\n\n> 提出πR²，通过分离快速本体感觉通道和异步慢速视觉语言通道，并结合延迟自适应流调度（将飞行中动作视为修复条件，每次调用单步去噪），使预训练策略微调后实现实时闭环重规划。\n\n\n# 三、核心实验结果\n\n> 在xArm6+XHand机器人平台上，πR²以约25Hz频率闭环重规划（每40ms处理一次新观测），比基线快约4倍；在模拟和真实操控任务中，成功率分别比最强基线提升23%和30%。\n\n\n# 四、对我的启发\n\n> 该方法有效提升基于chunk的策略的反应性，但慢速视觉通道在快速变化场景中可能成为瓶颈，且微调依赖预训练模型质量。\n"
+}
