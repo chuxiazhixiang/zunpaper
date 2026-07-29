@@ -36,7 +36,8 @@
     "assets/img/covers/arxiv-2607-25236-p4.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -47,13 +48,13 @@
   "related_links": [],
   "page_count": 17,
   "source_tags": [],
-  "score": 27,
+  "score": 38,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 6,
-      "hint": "频道关键词命中 2 个（grasp、contact-rich）"
+      "points": 12,
+      "hint": "频道关键词命中 4 个（grasp、contact-rich、world model、world models）"
     },
     {
       "id": "freshness",
@@ -72,6 +73,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 17 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -95,5 +102,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\nTitle: \"VisualPatchWorld: Code World Models as Latent Structured Representations for Planning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.25236v1\n---\n>[!abstract] 一句话总结：VPW首先通过短主动探测选择定性动力学形式，然后从状态-行动轨迹拟合参数，得到代码形式的世界模型，可用于模拟和MPC规划。\n\n\n# 一、动机\n\n> 现有世界模型要么是隐含动力学的神经预测器，要么是难以大规模构建的手工物理引擎。VPW通过代码表示动力学，使得模型既可自动构建又可解释。\n\n\n# 二、方法\n\n> VPW首先通过短主动探测选择定性动力学形式，然后从状态-行动轨迹拟合参数，得到代码形式的世界模型，可用于模拟和MPC规划。\n\n\n# 三、核心实验结果\n\n> VPW达到69.0%平均规划成功率，比最强代码基线高23.5个百分点；在导航和抓取任务上接近真实引擎效果（具体数字未给出），推动任务仍存在残差但可通过引擎检查缩小大部分差距。\n\n\n# 四、对我的启发\n\n> 代码世界模型提供可解释性和自动构建能力，但在接触密集型任务（如推动）上仍需改进；与具身智能的规划任务直接相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/Planning\n  - Task/RoboticManipulation\nTitle: \"VisualPatchWorld: Code World Models as Latent Structured Representations for Planning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.25236v1\n---\n>[!abstract] 一句话总结：通过短主动探测选择定性动力学形式，然后从状态-动作轨迹中拟合参数最小化多步预测误差，生成可执行、可检查的程序，用于模型预测控制。\n\n\n# 一、动机\n\n> 现有世界模型要么是隐式神经预测器难以检查编辑，要么是手工物理引擎难以大规模构建，本文提出用代码表示世界动力学，兼具可解释性和数据驱动扩展性。\n\n\n# 二、方法\n\n> 通过短主动探测选择定性动力学形式，然后从状态-动作轨迹中拟合参数最小化多步预测误差，生成可执行、可检查的程序，用于模型预测控制。\n\n\n# 三、核心实验结果\n\n> 规划任务平均成功率69.0%，超过最强代码基线23.5个百分点；在导航和抓取控制中接近真实引擎性能，接触丰富的推动任务中通过引擎检查少量候选计划可弥补差距。\n\n\n# 四、对我的启发\n\n> 该方法在需要正确选择定性动力学时增益最大，但接触丰富任务仍有局限，未来可结合更多动力学形式或混合代码-引擎策略。\n"
 }
