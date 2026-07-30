@@ -1,0 +1,95 @@
+{
+  "id": "arxiv-2607-26460",
+  "source": "arxiv",
+  "title": "RLMM-Flow: A Flow-based Mobile Manipulation Framework with Latent-Space Reinforcement Learning",
+  "title_zh": "RLMM-Flow：基于流模型与潜在空间强化学习的移动操作框架",
+  "abstract": "Mobile manipulation requires generating whole-body action chunks that jointly satisfy goal reaching, collision avoidance, base kinematic constraints, manipulator joint limits, and trajectory smoothness. Flow-based generative policies provide an efficient paradigm for learning multimodal and temporally consistent motion priors from expert demonstrations, but imitation-only training cannot improve policy quality beyond the demonstration distribution. We propose RLMM-Flow, a flow-based mobile manipulation framework that combines expert flow-policy pretraining with latent-space reinforcement learning post-training. The framework first learns a flow policy that captures a multimodal whole-body motion prior from expert demonstrations. The pretrained flow policy is then frozen, while a latent steering network steers its initial noise toward higher-value action chunks. To stabilize high-dimensional latent optimization, we warm up an action-space critic before jointly training the latent critic and latent actor, and introduce coarse-to-fine latent steering that progressively expands control from a horizon-shared latent representation to a full-dimensional residual representation. Experiments on mobile manipulation motion-planning benchmarks show that RLMM-Flow substantially improves task success, collision avoidance, and trajectory quality over imitation-only flow policies and existing reinforcement learning post-training baselines, while preserving fast flow-based inference.",
+  "abstract_zh": "移动操作需要生成全身动作块，同时满足目标到达、碰撞避免、基座运动学约束、机械臂关节限制和轨迹平滑性。基于流的生成策略为从专家演示中学习多模态且时间一致的运动先验提供了高效范式，但仅靠模仿训练无法提升策略质量超越演示分布。我们提出RLMM-Flow，一种基于流的移动操作框架，结合了专家流策略预训练与潜在空间强化学习后训练。该框架首先学习一个流策略，从专家演示中捕获多模态全身运动先验。预训练的流策略随后被冻结，而一个潜在引导网络将其初始噪声引导至更高价值的动作块。为了稳定高维潜在优化，我们在联合训练潜在评论家和潜在演员之前，先预热一个动作空间评论家，并引入由粗到细的潜在引导，逐步将控制从共享潜在表示扩展到全维残差表示。在移动操作运动规划基准上的实验表明，RLMM-Flow在任务成功率、碰撞避免和轨迹质量上显著优于仅模仿的流策略和现有的强化学习后训练基线，同时保持了基于流的快速推理。",
+  "tldr_zh": "结合流模型预训练与潜在空间强化学习后训练，提升移动操作性能。",
+  "cover_zh": "模仿学习不够？用潜在空间RL微调流策略，移动操作成功率飙升！",
+  "authors": [
+    {
+      "name": "Shuhang Wang",
+      "affiliation": ""
+    },
+    {
+      "name": "Ziming Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Hui Cheng",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-07-29",
+  "updated": "2026-07-29",
+  "arxiv_id": "2607.26460",
+  "pdf_url": "https://arxiv.org/pdf/2607.26460v1",
+  "abs_url": "http://arxiv.org/abs/2607.26460v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2607-26460.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2607-26460-p2.jpg",
+    "assets/img/covers/arxiv-2607-26460-p3.jpg",
+    "assets/img/covers/arxiv-2607-26460-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 14,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（manipulation）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 14 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "loco-manip-wbc",
+    "reason": "提出结合流策略与潜在空间强化学习的移动操作框架，解决全身动作生成问题，具有高科研价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "Flow-based generative policy",
+    "latent-space reinforcement learning",
+    "mobile manipulation"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"RLMM-Flow: A Flow-based Mobile Manipulation Framework with Latent-Space Reinforcement Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.26460v1\n---\n>[!abstract] 一句话总结：先通过流学习专家演示的多模态全身动作先验，冻结模型后使用潜在引导网络在潜在空间中进行强化学习后训练，并采用粗到细的潜在引导策略稳定优化。\n\n\n# 一、动机\n\n> 模仿学习只能学习演示分布内的行为，无法提升策略质量超出演示范围。\n\n\n# 二、方法\n\n> 先通过流学习专家演示的多模态全身动作先验，冻结模型后使用潜在引导网络在潜在空间中进行强化学习后训练，并采用粗到细的潜在引导策略稳定优化。\n\n\n# 三、核心实验结果\n\n> 在移动操作运动规划基准上显著提升了任务成功率、碰撞避免和轨迹质量，具体数值需参考论文。\n\n\n# 四、对我的启发\n\n> 与课题相关，该方法结合了流模型的高效推理和强化学习的优化能力，但演示质量对性能有重要影响。\n"
+}
