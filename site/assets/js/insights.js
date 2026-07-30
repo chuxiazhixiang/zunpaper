@@ -1,7 +1,7 @@
 // 数据看板：读 data/stats.json，用 ECharts 画 8 类图，滚动到哪张图触发哪张
 // 图的入场动画。ECharts 通过 insights.html 的 CDN <script> 提供全局 echarts。
-import { Theme } from './storage.js?v=16734b84';
-import { escapeHTML, attachSearchRedirect, fetchJSON } from './utils.js?v=16734b84';
+import { Theme } from './storage.js?v=9a35711a';
+import { escapeHTML, attachSearchRedirect, fetchJSON } from './utils.js?v=9a35711a';
 
 // 站点暖色调色板（跟首页红主题呼应）
 const PALETTE = [

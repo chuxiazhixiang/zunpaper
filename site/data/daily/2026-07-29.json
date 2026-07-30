@@ -3,6 +3,81 @@
   "count": 18,
   "papers": [
     {
+      "id": "arxiv-2607-26452",
+      "source": "arxiv",
+      "title": "CG-World: A Large-Scale World-State Dataset and Protocol for World Models",
+      "title_zh": "CG-World：面向世界模型的大规模世界状态数据集与协议",
+      "tldr_zh": "从工业CG流程构建的大规模世界状态数据集，支持干预学习和反事实推理。",
+      "cover_zh": "世界模型缺数据？这个从工业CG流水线挖出的数据集，连反事实都给你标好了！",
+      "abstract_zh": "世界模型必须学习状态、动作、事件和观测的联合动态，但现有的视频、机器人和仿真数据集通常只捕获了这种结构的一部分。我们引入了CG-World，一个从工业计算机图形制作流程中衍生的大规模世界状态数据集和协议。CG-World显式记录了中间状态，包括多模态语义、空间结构、骨骼和控制器状态、运动曲线、相机和光照参数、物理缓存、接触事件以及多通道渲染。CG-World v1包含约85万个1-5秒的时间对齐片段。它将潜在状态、观测、关系、事件和分支元数据分离，并组织成统一的时空样本。为了支持干预学习和反事实推理，CG-World定义了一个分支谱系，涵盖事实轨迹、观测干预、动作干预、机制干预和严格反事实分支，并显式记录了干预目标、不变量和替代结果。我们在几何条件视频生成、动作预测和闭环视觉-语言-动作策略迁移上评估了该数据集。结果表明，CG-World为受控生成、动作建模和具身策略迁移提供了可复用的结构化监督。我们计划通过持续的数据收集和社区合作来扩展CG-World，以构建面向世界模型、物理AI和具身智能的共享数据基础设施。",
+      "authors": [
+        "Yiming Cai",
+        "Fangjie Yu",
+        "Meiqing Yu"
+      ],
+      "authors_all": [
+        "Yiming Cai",
+        "Fangjie Yu",
+        "Meiqing Yu",
+        "Ziyue Shi",
+        "Pengfei Yuan",
+        "Yong Guo"
+      ],
+      "primary_category": "cs.AI",
+      "published": "2026-07-29",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-26452.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-26452-p2.jpg",
+        "assets/img/covers/arxiv-2607-26452-p3.jpg",
+        "assets/img/covers/arxiv-2607-26452-p4.jpg"
+      ],
+      "arxiv_id": "2607.26452",
+      "abs_url": "http://arxiv.org/abs/2607.26452v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.26452v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "大规模世界状态数据集，明确面向世界模型，支持干预学习和反事实推理，科研价值高。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "CGyear World Model Lab",
+        "Tsinghua University",
+        "University of New South Wales"
+      ],
+      "method_tags": [
+        "world models",
+        "intervention learning",
+        "counterfactual reasoning"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2607-26789",
       "source": "arxiv",
       "title": "CheckVLA: Execution-Time Verification with Action-Conditioned World Model for Long-Horizon Mobile Manipulation",
@@ -261,6 +336,87 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2607-26657",
+      "source": "arxiv",
+      "title": "Enfold: Folding World-Generator Computation into Predictive Representations for Efficient Embodied Control",
+      "title_zh": "Enfold：将世界生成器计算折叠进预测表征以实现高效具身控制",
+      "tldr_zh": "将世界生成器的计算折叠进当前表征，实现高效具身控制，延迟降低3.7倍。",
+      "cover_zh": "未来不用算？把生成器“折叠”进当前表征，控制延迟直降3.7倍！",
+      "abstract_zh": "世界生成模型通常通过其产出来使用：渲染的未来、视频条件动作或由昂贵生成分支计算的潜在上下文。我们认为其更可重用的资产是构建未来的计算。当生成器将损坏的未来转换为连贯轨迹时，其中间状态在抽象层次上组织外观、空间布局和交互。这种未来生成计算能否内化到仅从当前推断的表征中？我们提出Enfold，将这种计算转移到从当前视觉上下文和语言指令预测的表征中。训练期间，生成器处理观察到的未来时暴露的多级状态监督仅当前编码器。学习到的表征被反馈以调节未来生成，并由任务头读取，而不允许任务梯度重塑编码器。部署时，动作预测不再执行生成器。在LIBERO、RoboTwin2.0和真实机器人任务中，Enfold支持强控制，同时相对于Fast-WAM将动作延迟降低3.7倍，Enfold-Flash达到10.1倍。表征分析表明，它抑制了无关变化，并优先捕获在更长视界中出现的改变。当当前场景因人为干预而改变时，生成的延续和执行的行动都会适应，这与固定轨迹回放不一致。这些结果将世界生成器重新定位为预测控制表征的来源：如果其内部结构可以折叠进当前，则无需在每一步都具体化其未来。",
+      "authors": [
+        "Weili Zeng",
+        "Yitong Xing",
+        "Fulong Liu"
+      ],
+      "authors_all": [
+        "Weili Zeng",
+        "Yitong Xing",
+        "Fulong Liu",
+        "Chengqun Yang",
+        "Antao Xiang",
+        "Feng Tian",
+        "Jingnan Gao",
+        "Jisong Cai",
+        "Xin Wang",
+        "Xiaomin Wu",
+        "Yao Mu",
+        "Yichao Yan"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-29",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ SJTU"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-26657.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-26657-p2.jpg",
+        "assets/img/covers/arxiv-2607-26657-p3.jpg",
+        "assets/img/covers/arxiv-2607-26657-p4.jpg"
+      ],
+      "arxiv_id": "2607.26657",
+      "abs_url": "http://arxiv.org/abs/2607.26657v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.26657v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 49,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出将世界生成器的计算内化为预测表示，用于高效具身控制，核心贡献在世界模型与机器人控制结合。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Shanghai Jiao Tong University",
+        "South China University of Technology",
+        "Qilu University of Technology (Shandong Academy of Sciences)"
+      ],
+      "method_tags": [
+        "world generative model",
+        "predictive representation",
+        "action latency reduction"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2607-27017",
       "source": "arxiv",
       "title": "What Can Latent World Models Know? Physical Parameter Identifiability in Multimodal Predictive Representations",
@@ -399,160 +555,6 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2607-26452",
-      "source": "arxiv",
-      "title": "CG-World: A Large-Scale World-State Dataset and Protocol for World Models",
-      "title_zh": "CG-World：面向世界模型的大规模世界状态数据集与协议",
-      "tldr_zh": "从工业CG流程构建的大规模世界状态数据集，支持干预学习和反事实推理。",
-      "cover_zh": "世界模型缺数据？这个从工业CG流水线挖出的数据集，连反事实都给你标好了！",
-      "abstract_zh": "世界模型必须学习状态、动作、事件和观测的联合动态，但现有的视频、机器人和仿真数据集通常只捕获了这种结构的一部分。我们引入了CG-World，一个从工业计算机图形制作流程中衍生的大规模世界状态数据集和协议。CG-World显式记录了中间状态，包括多模态语义、空间结构、骨骼和控制器状态、运动曲线、相机和光照参数、物理缓存、接触事件以及多通道渲染。CG-World v1包含约85万个1-5秒的时间对齐片段。它将潜在状态、观测、关系、事件和分支元数据分离，并组织成统一的时空样本。为了支持干预学习和反事实推理，CG-World定义了一个分支谱系，涵盖事实轨迹、观测干预、动作干预、机制干预和严格反事实分支，并显式记录了干预目标、不变量和替代结果。我们在几何条件视频生成、动作预测和闭环视觉-语言-动作策略迁移上评估了该数据集。结果表明，CG-World为受控生成、动作建模和具身策略迁移提供了可复用的结构化监督。我们计划通过持续的数据收集和社区合作来扩展CG-World，以构建面向世界模型、物理AI和具身智能的共享数据基础设施。",
-      "authors": [
-        "Yiming Cai",
-        "Fangjie Yu",
-        "Meiqing Yu"
-      ],
-      "authors_all": [
-        "Yiming Cai",
-        "Fangjie Yu",
-        "Meiqing Yu",
-        "Ziyue Shi",
-        "Pengfei Yuan",
-        "Yong Guo"
-      ],
-      "primary_category": "cs.AI",
-      "published": "2026-07-29",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ 清华"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2607-26452.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2607-26452-p2.jpg",
-        "assets/img/covers/arxiv-2607-26452-p3.jpg",
-        "assets/img/covers/arxiv-2607-26452-p4.jpg"
-      ],
-      "arxiv_id": "2607.26452",
-      "abs_url": "http://arxiv.org/abs/2607.26452v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.26452v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 44,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "大规模世界状态数据集，明确面向世界模型，支持干预学习和反事实推理，科研价值高。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "CGyear World Model Lab",
-        "Tsinghua University",
-        "University of New South Wales"
-      ],
-      "method_tags": [
-        "world models",
-        "intervention learning",
-        "counterfactual reasoning"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2607-26657",
-      "source": "arxiv",
-      "title": "Enfold: Folding World-Generator Computation into Predictive Representations for Efficient Embodied Control",
-      "title_zh": "Enfold：将世界生成器计算折叠进预测表征以实现高效具身控制",
-      "tldr_zh": "将世界生成器的计算折叠进当前表征，实现高效具身控制，延迟降低3.7倍。",
-      "cover_zh": "未来不用算？把生成器“折叠”进当前表征，控制延迟直降3.7倍！",
-      "abstract_zh": "世界生成模型通常通过其产出来使用：渲染的未来、视频条件动作或由昂贵生成分支计算的潜在上下文。我们认为其更可重用的资产是构建未来的计算。当生成器将损坏的未来转换为连贯轨迹时，其中间状态在抽象层次上组织外观、空间布局和交互。这种未来生成计算能否内化到仅从当前推断的表征中？我们提出Enfold，将这种计算转移到从当前视觉上下文和语言指令预测的表征中。训练期间，生成器处理观察到的未来时暴露的多级状态监督仅当前编码器。学习到的表征被反馈以调节未来生成，并由任务头读取，而不允许任务梯度重塑编码器。部署时，动作预测不再执行生成器。在LIBERO、RoboTwin2.0和真实机器人任务中，Enfold支持强控制，同时相对于Fast-WAM将动作延迟降低3.7倍，Enfold-Flash达到10.1倍。表征分析表明，它抑制了无关变化，并优先捕获在更长视界中出现的改变。当当前场景因人为干预而改变时，生成的延续和执行的行动都会适应，这与固定轨迹回放不一致。这些结果将世界生成器重新定位为预测控制表征的来源：如果其内部结构可以折叠进当前，则无需在每一步都具体化其未来。",
-      "authors": [
-        "Weili Zeng",
-        "Yitong Xing",
-        "Fulong Liu"
-      ],
-      "authors_all": [
-        "Weili Zeng",
-        "Yitong Xing",
-        "Fulong Liu",
-        "Chengqun Yang",
-        "Antao Xiang",
-        "Feng Tian",
-        "Jingnan Gao",
-        "Jisong Cai",
-        "Xin Wang",
-        "Xiaomin Wu",
-        "Yao Mu",
-        "Yichao Yan"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-07-29",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ SJTU"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2607-26657.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2607-26657-p2.jpg",
-        "assets/img/covers/arxiv-2607-26657-p3.jpg",
-        "assets/img/covers/arxiv-2607-26657-p4.jpg"
-      ],
-      "arxiv_id": "2607.26657",
-      "abs_url": "http://arxiv.org/abs/2607.26657v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.26657v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 44,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出将世界生成器的计算内化为预测表示，用于高效具身控制，核心贡献在世界模型与机器人控制结合。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Shanghai Jiao Tong University",
-        "South China University of Technology",
-        "Qilu University of Technology (Shandong Academy of Sciences)"
-      ],
-      "method_tags": [
-        "world generative model",
-        "predictive representation",
-        "action latency reduction"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -870,6 +872,76 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2607-26579",
+      "source": "arxiv",
+      "title": "ContactFlow: A video action conditioning that transfers across embodiments",
+      "title_zh": "ContactFlow：一种跨本体的视频动作条件控制方法",
+      "tldr_zh": "提出Contact Flow动作表示，实现人类与机器人间的视频条件控制迁移。",
+      "cover_zh": "机器人学人类动作？这个新方法让不同本体都能看懂操作！",
+      "abstract_zh": "世界模型通过让智能体在执行前想象并验证动作的后果，为机器人规划提供了一条有前景的路径。然而，当前的基于视频的世界模型往往难以捕捉控制操作过程的物理约束，特别是接触。此外，它们的动作条件控制通常局限于特定本体，例如平行夹爪。我们提出Contact Flow，一种与本体无关的动作表示，通过编码操作者与目标物体之间3D接触点的轨迹来表示操作。通过忽略操作者特定的外观和运动学，Contact Flow为人类演示和机器人执行提供了共享的条件控制信号。因此，我们可以在人类和机器人物体交互视频上训练一个大规模视频生成模型，以Contact Flow为条件，得到一个能够预测物理上合理的操作结果的世界模型。我们将该模型集成到一个“提出-想象-验证-执行”流程中，在执行前由视觉语言模型评估生成的轨迹。在DROID数据集和真实桌面操作任务上的实验表明，Contact Flow能够实现人类演示与不同机器人本体之间的迁移。",
+      "authors": [
+        "Sami Azirar",
+        "Enrico Pallotta",
+        "Jan Nogga"
+      ],
+      "authors_all": [
+        "Sami Azirar",
+        "Enrico Pallotta",
+        "Jan Nogga",
+        "Jürgen Gall",
+        "Sven Behnke",
+        "Hermann Blum"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-29",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-26579.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-26579-p2.jpg",
+        "assets/img/covers/arxiv-2607-26579-p3.jpg",
+        "assets/img/covers/arxiv-2607-26579-p4.jpg"
+      ],
+      "arxiv_id": "2607.26579",
+      "abs_url": "http://arxiv.org/abs/2607.26579v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.26579v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出Contact Flow动作表示，训练视频世界模型，实现跨本体操作预测，具身规划价值高。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Bonn",
+        "Lamarr Institute"
+      ],
+      "method_tags": [
+        "World Model",
+        "Contact Flow",
+        "video generative model"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2607-26924",
       "source": "arxiv",
       "title": "Temporally Centered SIGReg Improves Multi-Task LeWorldModel Learning: From Analysis to Method",
@@ -1011,6 +1083,144 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2607-26460",
+      "source": "arxiv",
+      "title": "RLMM-Flow: A Flow-based Mobile Manipulation Framework with Latent-Space Reinforcement Learning",
+      "title_zh": "RLMM-Flow：基于流模型与潜在空间强化学习的移动操作框架",
+      "tldr_zh": "结合流模型预训练与潜在空间强化学习后训练，提升移动操作性能。",
+      "cover_zh": "模仿学习不够？用潜在空间RL微调流策略，移动操作成功率飙升！",
+      "abstract_zh": "移动操作需要生成全身动作块，同时满足目标到达、碰撞避免、基座运动学约束、机械臂关节限制和轨迹平滑性。基于流的生成策略为从专家演示中学习多模态且时间一致的运动先验提供了高效范式，但仅靠模仿训练无法提升策略质量超越演示分布。我们提出RLMM-Flow，一种基于流的移动操作框架，结合了专家流策略预训练与潜在空间强化学习后训练。该框架首先学习一个流策略，从专家演示中捕获多模态全身运动先验。预训练的流策略随后被冻结，而一个潜在引导网络将其初始噪声引导至更高价值的动作块。为了稳定高维潜在优化，我们在联合训练潜在评论家和潜在演员之前，先预热一个动作空间评论家，并引入由粗到细的潜在引导，逐步将控制从共享潜在表示扩展到全维残差表示。在移动操作运动规划基准上的实验表明，RLMM-Flow在任务成功率、碰撞避免和轨迹质量上显著优于仅模仿的流策略和现有的强化学习后训练基线，同时保持了基于流的快速推理。",
+      "authors": [
+        "Shuhang Wang",
+        "Ziming Li",
+        "Hui Cheng"
+      ],
+      "authors_all": [
+        "Shuhang Wang",
+        "Ziming Li",
+        "Hui Cheng"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-29",
+      "channels": [
+        "manipulation",
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-26460.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-26460-p2.jpg",
+        "assets/img/covers/arxiv-2607-26460-p3.jpg",
+        "assets/img/covers/arxiv-2607-26460-p4.jpg"
+      ],
+      "arxiv_id": "2607.26460",
+      "abs_url": "http://arxiv.org/abs/2607.26460v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.26460v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 27,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出结合流策略与潜在空间强化学习的移动操作框架，解决全身动作生成问题，具有高科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "Flow-based generative policy",
+        "latent-space reinforcement learning",
+        "mobile manipulation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2607-26567",
+      "source": "arxiv",
+      "title": "Speech2Grasp: Data-Efficient Transfer of Text-Conditioned Grasp Detection to Speech in Humanoid Robots",
+      "title_zh": "Speech2Grasp：将文本条件抓取检测数据高效迁移至语音的人形机器人方法",
+      "tldr_zh": "用轻量MLP将文本抓取模型高效迁移至语音，人形机器人实验优于ASR流水线。",
+      "cover_zh": "不用ASR也能听懂指令？这个框架让机器人直接听懂语音抓取物体",
+      "abstract_zh": "人形机器人越来越需要多模态理解能力以实现与人类的自然交互。尽管视觉-语言模型备受关注，但它们通常假设输入为文本而非更自然的语音。本文研究能否将成熟的文本条件模型以数据高效的方式迁移至语音。以ALBEF为例，诊断分析表明，轻量级MLP投影器能有效适配语音，同时保持语义区分性和鲁棒性。基于这些发现，我们提出Speech2Grasp框架，实现文本条件抓取检测到语音的数据高效迁移。真实人形机器人实验显示，Speech2Grasp优于级联ASR流水线，同时降低推理延迟。我们的研究为将成熟的文本条件系统扩展至语音提供了一种实用范式。",
+      "authors": [
+        "Hung Nguyen",
+        "Kim Nhat Minh Nguyen",
+        "Van Duc Vu"
+      ],
+      "authors_all": [
+        "Hung Nguyen",
+        "Kim Nhat Minh Nguyen",
+        "Van Duc Vu",
+        "Van-Danh Le",
+        "Hoang Huy Le",
+        "Dinh Tuan Nguyen",
+        "Pham Tuyen Le",
+        "Van-Truong Nguyen",
+        "Quan Nguyen"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-29",
+      "channels": [
+        "manipulation",
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-26567.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-26567-p2.jpg",
+        "assets/img/covers/arxiv-2607-26567-p3.jpg",
+        "assets/img/covers/arxiv-2607-26567-p4.jpg"
+      ],
+      "arxiv_id": "2607.26567",
+      "abs_url": "http://arxiv.org/abs/2607.26567v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.26567v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 24,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "人形机器人上实现语音到抓取，涉及全身控制与操作，有真实实验",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of California San Diego",
+        "VinMotion",
+        "Hanoi University of Science and Technology",
+        "VinUniversity"
+      ],
+      "method_tags": [
+        "transfer learning",
+        "grasp detection"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2607-26985",
       "source": "arxiv",
       "title": "SymmGrid: Super-Scaling On-Robot Learning with Parallelized Symmetries and Egocentric-Exocentric Visual Perception",
@@ -1067,211 +1277,6 @@
         "Deep Reinforcement Learning",
         "Symmetry Augmentation",
         "On-Robot Learning"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2607-26579",
-      "source": "arxiv",
-      "title": "ContactFlow: A video action conditioning that transfers across embodiments",
-      "title_zh": "ContactFlow：一种跨本体的视频动作条件控制方法",
-      "tldr_zh": "提出Contact Flow动作表示，实现人类与机器人间的视频条件控制迁移。",
-      "cover_zh": "机器人学人类动作？这个新方法让不同本体都能看懂操作！",
-      "abstract_zh": "世界模型通过让智能体在执行前想象并验证动作的后果，为机器人规划提供了一条有前景的路径。然而，当前的基于视频的世界模型往往难以捕捉控制操作过程的物理约束，特别是接触。此外，它们的动作条件控制通常局限于特定本体，例如平行夹爪。我们提出Contact Flow，一种与本体无关的动作表示，通过编码操作者与目标物体之间3D接触点的轨迹来表示操作。通过忽略操作者特定的外观和运动学，Contact Flow为人类演示和机器人执行提供了共享的条件控制信号。因此，我们可以在人类和机器人物体交互视频上训练一个大规模视频生成模型，以Contact Flow为条件，得到一个能够预测物理上合理的操作结果的世界模型。我们将该模型集成到一个“提出-想象-验证-执行”流程中，在执行前由视觉语言模型评估生成的轨迹。在DROID数据集和真实桌面操作任务上的实验表明，Contact Flow能够实现人类演示与不同机器人本体之间的迁移。",
-      "authors": [
-        "Sami Azirar",
-        "Enrico Pallotta",
-        "Jan Nogga"
-      ],
-      "authors_all": [
-        "Sami Azirar",
-        "Enrico Pallotta",
-        "Jan Nogga",
-        "Jürgen Gall",
-        "Sven Behnke",
-        "Hermann Blum"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-07-29",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2607-26579.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2607-26579-p2.jpg",
-        "assets/img/covers/arxiv-2607-26579-p3.jpg",
-        "assets/img/covers/arxiv-2607-26579-p4.jpg"
-      ],
-      "arxiv_id": "2607.26579",
-      "abs_url": "http://arxiv.org/abs/2607.26579v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.26579v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 19,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出Contact Flow动作表示，训练视频世界模型，实现跨本体操作预测，具身规划价值高。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "University of Bonn",
-        "Lamarr Institute"
-      ],
-      "method_tags": [
-        "World Model",
-        "Contact Flow",
-        "video generative model"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2607-26460",
-      "source": "arxiv",
-      "title": "RLMM-Flow: A Flow-based Mobile Manipulation Framework with Latent-Space Reinforcement Learning",
-      "title_zh": "RLMM-Flow：基于流模型与潜在空间强化学习的移动操作框架",
-      "tldr_zh": "结合流模型预训练与潜在空间强化学习后训练，提升移动操作性能。",
-      "cover_zh": "模仿学习不够？用潜在空间RL微调流策略，移动操作成功率飙升！",
-      "abstract_zh": "移动操作需要生成全身动作块，同时满足目标到达、碰撞避免、基座运动学约束、机械臂关节限制和轨迹平滑性。基于流的生成策略为从专家演示中学习多模态且时间一致的运动先验提供了高效范式，但仅靠模仿训练无法提升策略质量超越演示分布。我们提出RLMM-Flow，一种基于流的移动操作框架，结合了专家流策略预训练与潜在空间强化学习后训练。该框架首先学习一个流策略，从专家演示中捕获多模态全身运动先验。预训练的流策略随后被冻结，而一个潜在引导网络将其初始噪声引导至更高价值的动作块。为了稳定高维潜在优化，我们在联合训练潜在评论家和潜在演员之前，先预热一个动作空间评论家，并引入由粗到细的潜在引导，逐步将控制从共享潜在表示扩展到全维残差表示。在移动操作运动规划基准上的实验表明，RLMM-Flow在任务成功率、碰撞避免和轨迹质量上显著优于仅模仿的流策略和现有的强化学习后训练基线，同时保持了基于流的快速推理。",
-      "authors": [
-        "Shuhang Wang",
-        "Ziming Li",
-        "Hui Cheng"
-      ],
-      "authors_all": [
-        "Shuhang Wang",
-        "Ziming Li",
-        "Hui Cheng"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-07-29",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2607-26460.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2607-26460-p2.jpg",
-        "assets/img/covers/arxiv-2607-26460-p3.jpg",
-        "assets/img/covers/arxiv-2607-26460-p4.jpg"
-      ],
-      "arxiv_id": "2607.26460",
-      "abs_url": "http://arxiv.org/abs/2607.26460v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.26460v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 16,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "提出结合流策略与潜在空间强化学习的移动操作框架，解决全身动作生成问题，具有高科研价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "Flow-based generative policy",
-        "latent-space reinforcement learning",
-        "mobile manipulation"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2607-26567",
-      "source": "arxiv",
-      "title": "Speech2Grasp: Data-Efficient Transfer of Text-Conditioned Grasp Detection to Speech in Humanoid Robots",
-      "title_zh": "Speech2Grasp：将文本条件抓取检测数据高效迁移至语音的人形机器人方法",
-      "tldr_zh": "用轻量MLP将文本抓取模型高效迁移至语音，人形机器人实验优于ASR流水线。",
-      "cover_zh": "不用ASR也能听懂指令？这个框架让机器人直接听懂语音抓取物体",
-      "abstract_zh": "人形机器人越来越需要多模态理解能力以实现与人类的自然交互。尽管视觉-语言模型备受关注，但它们通常假设输入为文本而非更自然的语音。本文研究能否将成熟的文本条件模型以数据高效的方式迁移至语音。以ALBEF为例，诊断分析表明，轻量级MLP投影器能有效适配语音，同时保持语义区分性和鲁棒性。基于这些发现，我们提出Speech2Grasp框架，实现文本条件抓取检测到语音的数据高效迁移。真实人形机器人实验显示，Speech2Grasp优于级联ASR流水线，同时降低推理延迟。我们的研究为将成熟的文本条件系统扩展至语音提供了一种实用范式。",
-      "authors": [
-        "Hung Nguyen",
-        "Kim Nhat Minh Nguyen",
-        "Van Duc Vu"
-      ],
-      "authors_all": [
-        "Hung Nguyen",
-        "Kim Nhat Minh Nguyen",
-        "Van Duc Vu",
-        "Van-Danh Le",
-        "Hoang Huy Le",
-        "Dinh Tuan Nguyen",
-        "Pham Tuyen Le",
-        "Van-Truong Nguyen",
-        "Quan Nguyen"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-07-29",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2607-26567.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2607-26567-p2.jpg",
-        "assets/img/covers/arxiv-2607-26567-p3.jpg",
-        "assets/img/covers/arxiv-2607-26567-p4.jpg"
-      ],
-      "arxiv_id": "2607.26567",
-      "abs_url": "http://arxiv.org/abs/2607.26567v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.26567v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 16,
-      "judge": {
-        "relevant": true,
-        "research_value": "medium",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "人形机器人上实现语音到抓取，涉及全身控制与操作，有真实实验",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "University of California San Diego",
-        "VinMotion",
-        "Hanoi University of Science and Technology",
-        "VinUniversity"
-      ],
-      "method_tags": [
-        "transfer learning",
-        "grasp detection"
       ],
       "platform": [],
       "sim_stack": [],

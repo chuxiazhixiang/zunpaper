@@ -75,7 +75,8 @@
     "assets/img/covers/arxiv-2607-26657-p4.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -90,7 +91,7 @@
   "related_links": [],
   "page_count": 26,
   "source_tags": [],
-  "score": 44,
+  "score": 49,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -115,6 +116,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 26 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -141,5 +148,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"Enfold: Folding World-Generator Computation into Predictive Representations for Efficient Embodied Control\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.26657v1\n---\n>[!abstract] 一句话总结：Enfold通过将世界生成器处理未来轨迹时的多级中间状态折叠到从当前视觉和语言指令预测的表示中，部署时动作预测不再需要执行生成器。\n\n\n# 一、动机\n\n> 现有世界生成模型在具身控制中需执行昂贵的生成分支（如渲染未来帧或计算隐编码），导致推理延迟高，限制了实时应用。\n\n\n# 二、方法\n\n> Enfold通过将世界生成器处理未来轨迹时的多级中间状态折叠到从当前视觉和语言指令预测的表示中，部署时动作预测不再需要执行生成器。\n\n\n# 三、核心实验结果\n\n> 在LIBERO、RoboTwin2.0和真实机器人任务上，Enfold相比Fast-WAM减少动作延迟3.7倍，Enfold-Flash达到10.1倍；表示分析显示其抑制噪声变化并优先捕获长程变化。\n\n\n# 四、对我的启发\n\n> 该方法有效利用了生成器的内部计算结构，避免了逐帧生成，但表示质量依赖于训练时生成器的表现，且对动态非结构化环境的适应性有待验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - 论文/应用\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Enfold: Folding World-Generator Computation into Predictive Representations for Efficient Embodied Control\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.26657v1\n---\n>[!abstract] 一句话总结：Enfold将生成器内部的中间状态作为监督信号，训练一个从当前观测和语言指令直接预测表示的单级编码器，部署时无需运行生成器。\n\n\n# 一、动机\n\n> 现有世界生成模型通常需要生成未来轨迹或视频作为条件，计算成本高，导致动作延迟大。\n\n\n# 二、方法\n\n> Enfold将生成器内部的中间状态作为监督信号，训练一个从当前观测和语言指令直接预测表示的单级编码器，部署时无需运行生成器。\n\n\n# 三、核心实验结果\n\n> 在LIBERO、RoboTwin2.0和真实机器人任务上，Enfold相比Fast-WAM降低动作延迟3.7倍，Enfold-Flash达到10.1倍。\n\n\n# 四、对我的启发\n\n> 与课题不相关\n"
 }
