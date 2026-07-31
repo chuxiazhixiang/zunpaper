@@ -121,13 +121,13 @@
   "training_summary": "",
   "demo_videos": [
     {
-      "kind": "mp4",
-      "url": "https://github.com/zhuolifeng/FA-RDP/releases/download/v1.0/demo.mp4",
       "embed_url": "https://github.com/zhuolifeng/FA-RDP/releases/download/v1.0/demo.mp4",
+      "kind": "mp4",
+      "source": "project_page",
       "title": "FA-RDP: A Frequency-Adaptive Reactive Diffusion Policy for Contact-Rich Manipulation",
-      "source": "project_page"
+      "url": "https://github.com/zhuolifeng/FA-RDP/releases/download/v1.0/demo.mp4"
     }
   ],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"FA-RDP: A Frequency-Adaptive Reactive Diffusion Policy for Contact-Rich Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.28596v1\n---\n>[!abstract] 一句话总结：提出频率自适应反应扩散策略（FA-RDP），使用共享多频视觉-力Transformer预测动作块，并通过学习的多模态指标动态选择接触前的低频多步采样与接触后的高频一步采样；同时引入流形一致性蒸馏（MCD）重参数化扩散网络，使动作预测在机器人动作流形上执行并保留DDPM残差监督。\n\n\n# 一、动机\n\n> 标准扩散策略在接触丰富的操作中固定推理频率和采样步数，难以同时兼顾接触前的动作多模态性和接触后的快速反应性，导致两者存在根本性权衡。\n\n\n# 二、方法\n\n> 提出频率自适应反应扩散策略（FA-RDP），使用共享多频视觉-力Transformer预测动作块，并通过学习的多模态指标动态选择接触前的低频多步采样与接触后的高频一步采样；同时引入流形一致性蒸馏（MCD）重参数化扩散网络，使动作预测在机器人动作流形上执行并保留DDPM残差监督。\n\n\n# 三、核心实验结果\n\n> 在三个接触丰富的操作任务上FA-RDP取得最高成功率，同时能保留多样化的接触前轨迹模式（具体数值见原文）。\n\n\n# 四、对我的启发\n\n> 该工作依赖力反馈和多模态指标学习，可能增加训练复杂度；但其频率自适应采样和流形一致性蒸馏思路对类似接触丰富操作任务具有启发意义，与课题相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"FA-RDP: A Frequency-Adaptive Reactive Diffusion Policy for Contact-Rich Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.28596v1\n---\n>[!abstract] 一句话总结：提出频率自适应反应式扩散策略(FA-RDP)，共享多频率视觉-力Transformer预测高低频动作块，学习多模态指示器动态选择采样方式（接触前多步低频，接触后一步高频），并引入流形一致性蒸馏(MCD)在机器人动作流形上预测动作。\n\n\n# 一、动机\n\n> 标准扩散策略在接触丰富操作中使用固定的推理频率和采样步数，导致接触前保留多模态与接触后快速响应力反馈之间存在根本权衡：低频多步采样保留模态但响应慢，高频采样反应快但模态坍缩。\n\n\n# 二、方法\n\n> 提出频率自适应反应式扩散策略(FA-RDP)，共享多频率视觉-力Transformer预测高低频动作块，学习多模态指示器动态选择采样方式（接触前多步低频，接触后一步高频），并引入流形一致性蒸馏(MCD)在机器人动作流形上预测动作。\n\n\n# 三、核心实验结果\n\n> 在三个接触丰富操作任务上取得最高成功率，同时保留接触前多样的轨迹模式。\n\n\n# 四、对我的启发\n\n> 动态调整推理频率与采样步数可有效平衡多模态保留和力反馈响应速度；MCD利用动作流形约束提升动作预测质量。局限是需学习多模态指示器，可能依赖力传感器，且未给出明确成功率数值，需查看具体实验。\n"
 }

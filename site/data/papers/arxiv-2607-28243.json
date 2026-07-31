@@ -76,7 +76,8 @@
     "assets/img/covers/arxiv-2607-28243-p4.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -103,7 +104,7 @@
   "related_links": [],
   "page_count": 19,
   "source_tags": [],
-  "score": 44,
+  "score": 49,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -128,6 +129,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 19 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -155,5 +162,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/VideoGen\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"EgoGenesis: Egocentric World-Action Modeling with Online Anchored Projective Memory and Action-3D RoPE\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.28243v1\n---\n>[!abstract] 一句话总结：提出EgoGenesis，一种基于预训练视频生成先验的第一人称世界-动作模拟器，通过在线锚定投影记忆（OAPM）保持初始3D场景锚点并定期刷新近期状态，以及动作-3D旋转位置编码（A3D-RoPE）将末端执行器运动编码为相机感知的3D旋转坐标并注入骨架到视频的交叉注意力中，实现可控、高质量的长时程操作视频合成。\n\n\n# 一、动机\n\n> 第一人称视频蕴含丰富的操控经验，但收集覆盖多种场景、物体、动作和具身形态的多样化真实数据成本高昂，限制了具身智能体的泛化能力。\n\n\n# 二、方法\n\n> 提出EgoGenesis，一种基于预训练视频生成先验的第一人称世界-动作模拟器，通过在线锚定投影记忆（OAPM）保持初始3D场景锚点并定期刷新近期状态，以及动作-3D旋转位置编码（A3D-RoPE）将末端执行器运动编码为相机感知的3D旋转坐标并注入骨架到视频的交叉注意力中，实现可控、高质量的长时程操作视频合成。\n\n\n# 三、核心实验结果\n\n> 在真实机器人评估中，用400条生成轨迹增强400条真实轨迹后，单臂任务外分布成功率从77%提升至84%，双臂任务从53%提升至70%，说明合成数据显著提升了下游具身世界-动作模型的泛化能力。\n\n\n# 四、对我的启发\n\n> 与课题直接相关，但生成数据的真实性和多样性仍需验证；OAPM和A3D-RoPE的几何感知机制为长时程视频生成的稳定性提供了新思路，可进一步探索其他模态条件（如语言指令）的注入。与课题不相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/VideoGen\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"EgoGenesis: Egocentric World-Action Modeling with Online Anchored Projective Memory and Action-3D RoPE\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.28243v1\n---\n>[!abstract] 一句话总结：提出EgoGenesis，一个基于预训练视频生成先验的自我中心世界-动作模拟器，通过在线锚定投影记忆（OAPM）保持首帧3D场景锚点并周期刷新近期状态，以及动作3D旋转位置编码（A3D-RoPE）将末端执行器运动编码为相机感知的3D旋转坐标注入交叉注意力，实现可控长程操作视频生成。\n\n\n# 一、动机\n\n> 第一视角视频蕴含丰富的操作经验，但跨场景、物体、运动方式和具身形态的多样化数据采集成本高昂，难以支撑具身智能训练。\n\n\n# 二、方法\n\n> 提出EgoGenesis，一个基于预训练视频生成先验的自我中心世界-动作模拟器，通过在线锚定投影记忆（OAPM）保持首帧3D场景锚点并周期刷新近期状态，以及动作3D旋转位置编码（A3D-RoPE）将末端执行器运动编码为相机感知的3D旋转坐标注入交叉注意力，实现可控长程操作视频生成。\n\n\n# 三、核心实验结果\n\n> 用400条生成视频增强400条真实轨迹后，真实机器人单臂任务OOD成功率从77%提升到84%，双臂任务从53%提升到70%，证明合成数据显著提升下游世界-动作模型泛化能力。\n\n\n# 四、对我的启发\n\n> 与课题直接相关：合成数据可有效缓解具身数据稀缺问题，但生成视频的长期稳定性和跨embodiment泛化仍待改进，且需进一步研究真实/生成数据比例与下游策略性能的关系。\n"
 }
