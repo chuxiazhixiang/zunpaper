@@ -66,7 +66,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -97,5 +97,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"QQWorld: Quantile-Quantile Matching for World Model Regularization\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.28415v1\n---\n>[!abstract] 一句话总结：提出 QQWorld，用分位数-分位数匹配目标替代 EP，直接对齐投影潜在样本与秩匹配的高斯分位数，以在尾部保持有效的纠正梯度，并进一步提出跨批次 QQ 利用前一批次的分离样本来扩大有效排序池，同时刻画其偏差-方差权衡。\n\n\n# 一、动机\n\n> LeWorldModel (LeWM) 使用 Epps-Pulley (EP) 目标将潜在变量正则化为各向同性高斯，但 EP 的纠正梯度在孤立尾部样本上迅速消失，导致重尾偏差无法被充分控制。\n\n\n# 二、方法\n\n> 提出 QQWorld，用分位数-分位数匹配目标替代 EP，直接对齐投影潜在样本与秩匹配的高斯分位数，以在尾部保持有效的纠正梯度，并进一步提出跨批次 QQ 利用前一批次的分离样本来扩大有效排序池，同时刻画其偏差-方差权衡。\n\n\n# 三、核心实验结果\n\n> 在四个控制环境中，QQWorld 有效提高了 LeWM 的平均规划成功率，并一致地获得了更好的高斯对齐和更薄的潜在尾部。\n\n\n# 四、对我的启发\n\n> 与机器人/具身智能中的世界模型规划直接相关，但摘要未给出具体改进数字，需阅读全文获取定量结论。潜在分布正则化是提升世界模型规划性能的关键方向。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"QQWorld: Quantile-Quantile Matching for World Model Regularization\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.28415v1\n---\n>[!abstract] 一句话总结：提出QQWorld，用分位数-分位数匹配目标替代EP，直接对齐投影后的潜在样本与秩匹配的高斯分位数，以维持尾部有效的纠正梯度；并开发跨批次QQ，利用历史批次的分离样本扩大有效排名池，同时刻画其偏差-方差权衡。\n\n\n# 一、动机\n\n> LeWorldModel（LeWM）使用Epps-Pulley（EP）目标将潜变量正则化为各向同性高斯分布，但EP对孤立尾部样本的纠正梯度迅速消失，导致重尾偏差控制不足。\n\n\n# 二、方法\n\n> 提出QQWorld，用分位数-分位数匹配目标替代EP，直接对齐投影后的潜在样本与秩匹配的高斯分位数，以维持尾部有效的纠正梯度；并开发跨批次QQ，利用历史批次的分离样本扩大有效排名池，同时刻画其偏差-方差权衡。\n\n\n# 三、核心实验结果\n\n> 在四个控制环境中，QQWorld有效提升LeWM的平均规划成功率，并持续获得更好的高斯对齐和更薄的潜在尾部（具体数值原文未给出）。\n\n\n# 四、对我的启发\n\n> 跨批次QQ的偏差-方差权衡值得注意；该方法对具身智能中的世界模型正则化有直接参考价值，后续可关注其在更多复杂环境中的表现。\n"
 }

@@ -106,7 +106,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -140,5 +140,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/Navigation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"X-NavDP: Generalizing Navigation Diffusion Policy to Novel Behavior and Embodiments with Group Q-score Reweighted Matching\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.28560v1\n---\n>[!abstract] 一句话总结：提出数据高效的扩散RL后训练框架GQRM，包含两个互补设计：自举探索策略（行为扰动保持预训练先验）和组Q分数归一化机制（计算每个状态上的轨迹值进行高效重加权分数匹配），并在异构具身上分布式在线RL训练得到X-NavDP。\n\n\n# 一、动机\n\n> 预训练导航扩散策略依赖大规模专家演示，这些数据通常由单一标称机器人的全知oracle生成，限制了策略对不同具身和挑战性场景（如死胡同、长障碍绕行）的泛化能力。RL后训虽提供原则性解决方案，但扩散策略似然难解导致策略梯度不稳定且探索低效，以往方法仅带来边际改进。\n\n\n# 二、方法\n\n> 提出数据高效的扩散RL后训练框架GQRM，包含两个互补设计：自举探索策略（行为扰动保持预训练先验）和组Q分数归一化机制（计算每个状态上的轨迹值进行高效重加权分数匹配），并在异构具身上分布式在线RL训练得到X-NavDP。\n\n\n# 三、核心实验结果\n\n> X-NavDP在仿真中整体成功率从61.20%提升到84.28%，真实世界硬案例成功率从10%提升到65%，达到跨具身视觉导航的SOTA性能。\n\n\n# 四、对我的启发\n\n> 该框架展示了利用Q-score重加权匹配稳定扩散策略的RL训练，显著提升跨具身泛化能力，对机器人导航具身智能有重要启发；但真实世界测试规模有限，可能依赖模拟环境，且行为扰动超参需进一步调优。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"X-NavDP: Generalizing Navigation Diffusion Policy to Novel Behavior and Embodiments with Group Q-score Reweighted Matching\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.28560v1\n---\n>[!abstract] 一句话总结：提出GQRM框架，通过自举探索策略带行为扰动保留预训练先验，并用分组Q分数归一化计算每个状态上的轨迹值，实现高效重加权分数匹配，最终通过跨异构embodiment的分布式在线RL训练得到X-NavDP策略。\n\n\n# 一、动机\n\n> 预训练导航扩散策略依赖大规模专家演示，这些数据由针对单一机器人的全知oracle生成，限制了策略对多样化embodiment和挑战性场景（如死胡同、长障碍绕行）的泛化。RL后训练可缓解，但以往方法因扩散策略似然难解导致梯度不稳定和探索低效，改进有限。\n\n\n# 二、方法\n\n> 提出GQRM框架，通过自举探索策略带行为扰动保留预训练先验，并用分组Q分数归一化计算每个状态上的轨迹值，实现高效重加权分数匹配，最终通过跨异构embodiment的分布式在线RL训练得到X-NavDP策略。\n\n\n# 三、核心实验结果\n\n> 在跨embodiment视觉导航中，仿真成功率从61.20%提升到84.28%，真实世界困难案例成功率从10%提升到65%，达到SOTA。\n\n\n# 四、对我的启发\n\n> 扩散策略与RL结合可行但需分布式在线训练，计算成本高；Q分数归一化依赖奖励设计，可进一步探索无奖励或弱奖励场景的泛化。与机器人导航课题直接相关。\n"
 }

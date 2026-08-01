@@ -66,7 +66,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -103,5 +103,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/CollectiveStatePrediction\n  - 状态/待读\nTitle: \"One Future, Every Robot: Label-Efficient Collective-State Prediction with Decentralized JEPA\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.28443v1\n---\n>[!abstract] 一句话总结：提出 Collective-State JEPA (CS-JEPA)，一种递归联合嵌入预测架构，每个机器人输出一个共同的未来 token 字段，部署时仅使用16帧局部历史和每条有向边64-float循环消息，无需全局池化、目标编码器或记录未来动作，并在无下游集体标签下预训练。\n\n\n# 一、动机\n\n> 解决多机器人群体中每个机器人仅从局部观测和有限带宽消息预测共同未来状态的问题，现有方法依赖全局信息或大量集体标签，标签效率低且难以适应拓扑与规模变化。\n\n\n# 二、方法\n\n> 提出 Collective-State JEPA (CS-JEPA)，一种递归联合嵌入预测架构，每个机器人输出一个共同的未来 token 字段，部署时仅使用16帧局部历史和每条有向边64-float循环消息，无需全局池化、目标编码器或记录未来动作，并在无下游集体标签下预训练。\n\n\n# 三、核心实验结果\n\n> 在动作条件预测中，CS-JEPA 将分支值 MSE 降低45.5%，并将上下文内候选分数 Pearson 相关提高0.1291，两个效应在8/8个种子中均稳定（含未见规模 N=32）；在标签预算评估中，所有效果在5/5个外种子中均优于基线，支持多达108个机器人的群体。\n\n\n# 四、对我的启发\n\n> 共同未来 JEPA 目标可作为拓扑和规模变化下多机器人群体预测的标签高效基元，并具有规划相关的价值估计能力；但当前实验主要在仿真环境，实际部署中通信带宽和局部观察的噪声影响仍需进一步验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/SwarmPrediction\nTitle: \"One Future, Every Robot: Label-Efficient Collective-State Prediction with Decentralized JEPA\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.28443v1\n---\n>[!abstract] 一句话总结：提出 Collective-State JEPA (CS-JEPA)，一种循环联合嵌入预测架构，每个机器人仅利用局部观测和带宽受限的 64 浮点数消息，输出一个共同未来 token 场，无需全局池化、目标编码器或未来动作记录。\n\n\n# 一、动机\n\n> 现有机器人集群状态预测依赖全局通信或中心化处理，且需要大量标注数据，难以在拓扑和规模变化下实现标签高效的去中心化预测。\n\n\n# 二、方法\n\n> 提出 Collective-State JEPA (CS-JEPA)，一种循环联合嵌入预测架构，每个机器人仅利用局部观测和带宽受限的 64 浮点数消息，输出一个共同未来 token 场，无需全局池化、目标编码器或未来动作记录。\n\n\n# 三、核心实验结果\n\n> 在冻结转征上用 6/12/24 个全局标记轨迹的岭回归探测，相比基线（多 9607 个训练参数）在最多 108 个机器人上预测误差与机器人间一致性 AUC 全面提升（5/5 外种子）；在动作条件预测中，CS-JEPA 将分支价值 MSE 降低 45.5%，候选评分 Pearson 相关提高 0.1291（8/8 种子，含 N=32）。\n\n\n# 四、对我的启发\n\n> 公共未来 JEPA 目标可作为去中心化群体预测的标签高效原语，在拓扑和规模变化下鲁棒，并具备规划相关的价值估计能力；局限是尚未在真实硬件和异构机器人上验证，且消息格式仍较简单。\n"
 }
