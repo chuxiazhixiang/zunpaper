@@ -49,28 +49,17 @@
   "channels": [
     "locomotion"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 16,
   "source_tags": [],
-  "score": 16,
+  "score": 6,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 3,
       "hint": "频道关键词命中 1 个（gait）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -106,5 +95,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Learning Social Robot Navigation By Sensing Human Legs\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.27922v1\n---\n>[!abstract] 一句话总结：提出CALF架构，结合卷积层、注意力机制和MLP，直接从2D LiDAR扫描中提取腿部运动特征并输出导航命令，在自定义轻量级2D仿真器LegNav中通过深度强化学习训练，实现零样本部署到真实机器人。\n\n\n# 一、动机\n\n> 现有社交导航方法通常将行人简化为圆形等简单形状，忽略了安装在低处的2D LiDAR主要观测到腿部运动这一关键信息，导致导航策略不够安全且不符合社交规范。\n\n\n# 二、方法\n\n> 提出CALF架构，结合卷积层、注意力机制和MLP，直接从2D LiDAR扫描中提取腿部运动特征并输出导航命令，在自定义轻量级2D仿真器LegNav中通过深度强化学习训练，实现零样本部署到真实机器人。\n\n\n# 三、核心实验结果\n\n> 在TurtleBot 4上零样本部署成功，生成平滑且社交合规的轨迹；LegNav仿真器在单个消费级GPU上训练可部署策略耗时不超过1小时。\n\n\n# 四、对我的启发\n\n> 低高度LiDAR的腿部运动建模能显著提升社交导航的自然性，但方法依赖腿部可见性，对遮挡或坐轮椅等场景可能受限，未来可结合多模态感知。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/Navigation\nTitle: \"Learning Social Robot Navigation By Sensing Human Legs\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.27922v1\n---\n>[!abstract] 一句话总结：提出CALF架构，通过卷积层提取腿部局部特征、注意力机制聚合上下文、MLP输出导航命令，并在自定义JAX模拟器LegNav中结合步行者步态模型用深度强化学习训练策略。\n\n\n# 一、动机\n\n> 现有基于2D LiDAR的社交导航方法通常将行人视为简单圆形，未充分利用传感器低高度观测到的腿部运动信息，导致导航策略缺乏对行人意图的细粒度理解。\n\n\n# 二、方法\n\n> 提出CALF架构，通过卷积层提取腿部局部特征、注意力机制聚合上下文、MLP输出导航命令，并在自定义JAX模拟器LegNav中结合步行者步态模型用深度强化学习训练策略。\n\n\n# 三、核心实验结果\n\n> CALF策略在TurtleBot 4上零样本部署成功，生成平滑且社会合规的轨迹；LegNav模拟器可在单张消费级GPU上不到1小时训练出可部署策略。\n\n\n# 四、对我的启发\n\n> 腿部动态特征比整体行人包围盒更适合社交导航，但实际部署依赖低置LiDAR视野，且对遮挡和多人密集场景的鲁棒性仍需进一步验证。\n"
 }

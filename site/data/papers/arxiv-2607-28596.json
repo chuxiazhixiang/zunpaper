@@ -61,16 +61,12 @@
     {
       "kind": "lab",
       "label": "⭐ SJTU"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 47,
+  "score": 37,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -83,12 +79,6 @@
       "label": "关键词命中密集",
       "points": 9,
       "hint": "频道关键词命中 3 个（manipulation、diffusion policy、contact-rich）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -129,5 +119,5 @@
     }
   ],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"FA-RDP: A Frequency-Adaptive Reactive Diffusion Policy for Contact-Rich Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.28596v1\n---\n>[!abstract] 一句话总结：提出频率自适应反应扩散策略（FA-RDP），使用共享的多频率视觉-力Transformer预测低/高频动作块，并通过学习到的多模态指示器动态选择动作模糊度降低前的低频多步采样和之后的单步高频采样；同时引入流形一致性蒸馏（MCD）重参数化扩散网络，使其在机器人动作流形上预测动作且保留DDPM残差监督。\n\n\n# 一、动机\n\n> 接触丰富操作中，动作多模态性和反应性在单个回合的不同阶段占据主导：接触前需要保留多样动作模式，接触后则需要快速响应力反馈。标准扩散策略使用固定推理频率和采样步数，导致低频多步采样虽能保留多模态但响应慢，高频采样虽反应快但会坍缩多模态模式，无法兼顾。\n\n\n# 二、方法\n\n> 提出频率自适应反应扩散策略（FA-RDP），使用共享的多频率视觉-力Transformer预测低/高频动作块，并通过学习到的多模态指示器动态选择动作模糊度降低前的低频多步采样和之后的单步高频采样；同时引入流形一致性蒸馏（MCD）重参数化扩散网络，使其在机器人动作流形上预测动作且保留DDPM残差监督。\n\n\n# 三、核心实验结果\n\n> 在三个接触丰富操作任务上，FA-RDP达到了最高的成功率，同时有效保留了接触前的多样化轨迹模式（具体数值详见论文）。\n\n\n# 四、对我的启发\n\n> 与课题直接相关。FA-RDP通过自适应频率切换解决多模态与反应性的矛盾，为接触丰富操作提供了新思路；但多模态指示器和MCD的额外设计可能增加训练复杂度，后续可探索更轻量的切换机制。\n"
+  "note": ""
 }

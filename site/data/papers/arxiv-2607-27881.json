@@ -54,28 +54,18 @@
     {
       "kind": "venue",
       "label": "🎓 IROS 2026"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 35,
+  "score": 25,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 4 个（vision-language-action、manipulation、robocasa、libero）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -112,5 +102,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"RoboBRIDGE: A Modular Framework for Bridging Policies to Robust Real-World Robotic Agents\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.27881v1\n---\n>[!abstract] 一句话总结：提出RoboBRIDGE，一个模块化框架，通过Monitor、Perceptor、Planner、Controller和Robot Interface五个协调模块为预训练VLA和现成组件提供编排层。Monitor实现快速失败检测与分层恢复；当环境偏离计划时Planner触发重规划，Perceptor异步更新场景理解避免执行停滞；Controller中通过原始技能微调将操作分解为域不变原语并配以专用LoRA适配器，降低VLA对域移的敏感性。\n\n\n# 一、动机\n\n> 视觉-语言-动作（VLA）模型虽能有效预测动作，但直接作为机器人智能体部署时存在关键缺陷：缺少失败恢复机制、长程执行不一致、对观测/任务/本体变化鲁棒性不足。现有方案多针对单一问题通过重训练或环境特化模块解决，缺乏一个系统性将预训练VLA转化为鲁棒智能体的通用框架。\n\n\n# 二、方法\n\n> 提出RoboBRIDGE，一个模块化框架，通过Monitor、Perceptor、Planner、Controller和Robot Interface五个协调模块为预训练VLA和现成组件提供编排层。Monitor实现快速失败检测与分层恢复；当环境偏离计划时Planner触发重规划，Perceptor异步更新场景理解避免执行停滞；Controller中通过原始技能微调将操作分解为域不变原语并配以专用LoRA适配器，降低VLA对域移的敏感性。\n\n\n# 三、核心实验结果\n\n> 在LIBERO、RoboCasa和真实世界多机器人平台、多种VLA骨干的实验中，RoboBRIDGE一致优于独立策略和此前增强型VLA部署（摘要未给出具体数值）。\n\n\n# 四、对我的启发\n\n> 可靠机器人智能体的涌现不仅依赖扩展动作预测器，更依赖围绕其的系统化编排和多模块协同。该框架启发我们关注结构化编排而非仅模型规模，未来可探索更细粒度恢复策略与跨实施例泛化。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"RoboBRIDGE: A Modular Framework for Bridging Policies to Robust Real-World Robotic Agents\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.27881v1\n---\n>[!abstract] 一句话总结：RoboBRIDGE提出一个模块化编排框架，通过Monitor、Perceptor、Planner、Controller、Robot Interface五个协调模块，将预训练VLA等现成组件组装为鲁棒机器人智能体，其中Monitor负责快速失败检测与分层恢复，Controller通过LoRA适配器分解为域不变基元技能以减少域偏移。\n\n\n# 一、动机\n\n> 预训练VLA模型虽能预测动作，但直接部署为机器人智能体时缺乏失败恢复机制、长程执行不一致，且对观测/任务/本体变化鲁棒性差；现有方案只是逐个模块修补，缺少通用系统框架。\n\n\n# 二、方法\n\n> RoboBRIDGE提出一个模块化编排框架，通过Monitor、Perceptor、Planner、Controller、Robot Interface五个协调模块，将预训练VLA等现成组件组装为鲁棒机器人智能体，其中Monitor负责快速失败检测与分层恢复，Controller通过LoRA适配器分解为域不变基元技能以减少域偏移。\n\n\n# 三、核心实验结果\n\n> 在LIBERO、RoboCasa及真实世界多平台多VLA骨架的案例中，RoboBRIDGE一致优于独立策略和先前增强VLA部署；具体数字未在摘要中给出，需查看原文。\n\n\n# 四、对我的启发\n\n> 可靠机器人智能体不仅来自扩大动作预测器，更来自围绕其进行的结构化编排；这种模块化思路为构建通用、鲁棒的具身智能系统提供了重要启发。与课题直接相关。\n"
 }

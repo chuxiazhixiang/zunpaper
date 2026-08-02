@@ -58,16 +58,12 @@
     {
       "kind": "lab",
       "label": "⭐ 清华"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 55,
+  "score": 45,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -80,12 +76,6 @@
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 6 个（manipulation、grasp、grasping、in-hand）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -123,5 +113,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"TacWAM: Anchor-Guided World Action Model with Mechanics-Aware Tactile Prediction\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.28391v1\n---\n>[!abstract] 一句话总结：TacWAM 通过空间对齐融合（SAF）触觉编码器将触觉外观、力场和变形流映射到共享潜在空间，并用力/力矩重建保留全局接触信息；利用触觉历史编码器提供时间上下文；采用锚点引导三模态（AGT）注意力分离当前视觉/触觉锚点、未来预测 token 和动作 token，使未来触觉状态只用于监督训练而不会直接泄漏到动作分支。\n\n\n# 一、动机\n\n> 现有世界动作模型（WAM）主要依赖视觉未来预测，在接触丰富的操作中缺乏对力、变形、切力和滑移等触觉信息的监督，导致动作学习难以感知接触状态。\n\n\n# 二、方法\n\n> TacWAM 通过空间对齐融合（SAF）触觉编码器将触觉外观、力场和变形流映射到共享潜在空间，并用力/力矩重建保留全局接触信息；利用触觉历史编码器提供时间上下文；采用锚点引导三模态（AGT）注意力分离当前视觉/触觉锚点、未来预测 token 和动作 token，使未来触觉状态只用于监督训练而不会直接泄漏到动作分支。\n\n\n# 三、核心实验结果\n\n> 在四项真实接触丰富操作任务（脆弱抓取、持续表面接触、动态手中操作）上，TacWAM 平均成功率达 75.0%，比最强基线高出 37.5 个百分点；逐步消融显示移除触觉历史编码器或放松未来预测目标约束时性能一致下降。\n\n\n# 四、对我的启发\n\n> 未来触觉监督能够有效提升接触感知动作学习，前提是触觉表示富含物理信息且训练/部署信息约束一致；这为具身操作中融合多模态触觉预测提供了可行范式。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"TacWAM: Anchor-Guided World Action Model with Mechanics-Aware Tactile Prediction\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.28391v1\n---\n>[!abstract] 一句话总结：提出TacWAM，包含SAF触觉编码器（融合触觉外观、力场、变形流并重建力/力矩）、触觉历史编码器（提供时间上下文）、AGT注意力（分离锚点、预测token和动作token，使未来触觉仅用于监督不直接读入动作分支）。\n\n\n# 一、动机\n\n> 现有World Action Models主要依赖视觉预测，缺少对接触丰富操作中力、变形、剪切、滑移的监督，且触觉未来应承载物理信息而不应成为动作生成的特权线索。\n\n\n# 二、方法\n\n> 提出TacWAM，包含SAF触觉编码器（融合触觉外观、力场、变形流并重建力/力矩）、触觉历史编码器（提供时间上下文）、AGT注意力（分离锚点、预测token和动作token，使未来触觉仅用于监督不直接读入动作分支）。\n\n\n# 三、核心实验结果\n\n> 在四项真实接触丰富操作任务上平均成功率75.0%，超过最强基线37.5个百分点；消融实验显示移除触觉历史和放松未来预测目标访问均导致性能下降。\n\n\n# 四、对我的启发\n\n> 未来触觉监督能改进接触感知的动作学习，关键在于信息性触觉表示与部署一致的信息约束；该工作对机器人操作中的触觉预测与动作生成耦合有启发。\n"
 }

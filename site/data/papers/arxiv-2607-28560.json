@@ -73,16 +73,12 @@
     {
       "kind": "lab",
       "label": "⭐ Jiangmiao Pang"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 20,
   "source_tags": [],
-  "score": 61,
+  "score": 51,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -101,12 +97,6 @@
       "label": "关键词命中密集",
       "points": 3,
       "hint": "频道关键词命中 1 个（diffusion policy）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -140,5 +130,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"X-NavDP: Generalizing Navigation Diffusion Policy to Novel Behavior and Embodiments with Group Q-score Reweighted Matching\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.28560v1\n---\n>[!abstract] 一句话总结：提出 GQRM 框架：通过自举探索与行为扰动保留预训练先验，并利用分组 Q-score 归一化对每条轨迹逐状态计算价值，实现高效加权分数匹配，跨异构本体分布式在线 RL 微调得到 X-NavDP。\n\n\n# 一、动机\n\n> 基于预言机专家数据预训练的导航扩散策略局限于单一标称本体，难以泛化到新行为和多本体，且 RL 后训练因扩散策略似然不可解导致梯度不稳定、探索低效。\n\n\n# 二、方法\n\n> 提出 GQRM 框架：通过自举探索与行为扰动保留预训练先验，并利用分组 Q-score 归一化对每条轨迹逐状态计算价值，实现高效加权分数匹配，跨异构本体分布式在线 RL 微调得到 X-NavDP。\n\n\n# 三、核心实验结果\n\n> 在仿真中将跨本体视觉导航成功率从 61.20% 提升至 84.28%；真实世界困难场景成功率从 10% 提升至 65%。\n\n\n# 四、对我的启发\n\n> 与课题相关；方法依赖奖励设计和分布式训练资源，未来可探索更高效的探索策略以降低 RL 后训练成本。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"X-NavDP: Generalizing Navigation Diffusion Policy to Novel Behavior and Embodiments with Group Q-score Reweighted Matching\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.28560v1\n---\n>[!abstract] 一句话总结：提出GQRM（Group Q-score Reweighted Matching）框架，包含两项互补设计：基于自我引导的行为扰动探索策略以保留预训练先验，以及分组Q-score归一化机制计算每状态轨迹价值以进行高效的重加权分数匹配，并通过异构形态的分布式在线RL训练微调策略。\n\n\n# 一、动机\n\n> 预训练的导航扩散策略依赖基于单一标称机器人的全知专家演示，难以泛化到不同形态和需要局部反应行为的挑战性场景（如死胡同或长障碍绕行）。直接使用RL后训练因扩散策略似然不可解导致梯度不稳定和探索低效，收益甚微。\n\n\n# 二、方法\n\n> 提出GQRM（Group Q-score Reweighted Matching）框架，包含两项互补设计：基于自我引导的行为扰动探索策略以保留预训练先验，以及分组Q-score归一化机制计算每状态轨迹价值以进行高效的重加权分数匹配，并通过异构形态的分布式在线RL训练微调策略。\n\n\n# 三、核心实验结果\n\n> 所得到的X-NavDP在仿真环境中将整体成功率从61.20%提升至84.28%，在真实世界困难案例中成功率从10%提升至65%，达到跨形态视觉导航的最优性能。\n\n\n# 四、对我的启发\n\n> 通过保留预训练先验的探索策略和分组Q-score归一化，有效解决了扩散策略RL后训练的不稳定性，显著提升跨形态泛化能力。方法对机器人导航中数据效率和异构适配有重要启发，可直接迁移到具身智能相关任务。\n"
 }
