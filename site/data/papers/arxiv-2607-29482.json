@@ -35,7 +35,8 @@
     "assets/img/covers/arxiv-2607-29482-p4.jpg"
   ],
   "channels": [
-    "teleop"
+    "teleop",
+    "manipulation"
   ],
   "badges": [
     {
@@ -46,7 +47,7 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 27,
+  "score": 32,
   "score_breakdown": [
     {
       "id": "keyword_density",
@@ -71,6 +72,12 @@
       "label": "机器人顶会 / 顶刊出品",
       "points": 10,
       "hint": "被「IROS 2026」收录"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -97,5 +104,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Temporal Policy: History-Initialized Action Generation for Robotic Learning from Demonstration\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.29482v1\n---\n>[!abstract] 一句话总结：提出Temporal Policy，一种基于随机插值的生成框架，将动作生成建模为时间耦合的传输问题，用机器人的近期历史状态初始化生成流，显式耦合过去状态与未来动作序列，从而降低传输成本并产生近似直线的向量场。\n\n\n# 一、动机\n\n> 标准扩散模型和流匹配模型从无信息的高斯先验出发进行独立耦合，被迫学习复杂高成本的向量场以到达物理动作空间，且推理成本高，难以用于高频闭环控制。\n\n\n# 二、方法\n\n> 提出Temporal Policy，一种基于随机插值的生成框架，将动作生成建模为时间耦合的传输问题，用机器人的近期历史状态初始化生成流，显式耦合过去状态与未来动作序列，从而降低传输成本并产生近似直线的向量场。\n\n\n# 三、核心实验结果\n\n> 在视觉运动仿真基准和Barrett WAM 2x 7DoF遥操作平台上，相比噪声初始化基线，传输成本降低近一个数量级，推理延迟达19.1 ms（单张NVIDIA RTX 4080），同时成功率与现有最优基线相当。\n\n\n# 四、对我的启发\n\n> 利用历史状态作为数据相关的先验可以简化传输几何，规避独立高斯先验的计算瓶颈，为高频闭环机器人学习提供可行方案；该方法可进一步探索与其他生成框架结合，或用于跨具身迁移中的动作生成。与课题直接相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"Temporal Policy: History-Initialized Action Generation for Robotic Learning from Demonstration\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.29482v1\n---\n>[!abstract] 一句话总结：提出Temporal Policy，一种基于随机插值的生成框架，将动作生成建模为时间耦合的输运问题，用机器人最近历史初始化生成流，显式耦合过去状态与未来动作序列，降低输运成本并产生直线向量场。\n\n\n# 一、动机\n\n> 标准扩散和流匹配模型依赖无信息高斯先验进行独立耦合，被迫学习复杂、高成本的向量场才能到达物理动作空间，导致推理成本高。\n\n\n# 二、方法\n\n> 提出Temporal Policy，一种基于随机插值的生成框架，将动作生成建模为时间耦合的输运问题，用机器人最近历史初始化生成流，显式耦合过去状态与未来动作序列，降低输运成本并产生直线向量场。\n\n\n# 三、核心实验结果\n\n> 与噪声初始化基线相比，输运成本降低近一个数量级，在单张NVIDIA RTX 4080上实现19.1 ms推理延迟，同时匹配最先进基线的成功率。\n\n\n# 四、对我的启发\n\n> 简化输运几何绕过独立高斯先验的计算瓶颈，有助于实现高频闭环控制；但其对历史数据的依赖可能限制在缺乏可靠状态历史场景下的适用性。\n"
 }

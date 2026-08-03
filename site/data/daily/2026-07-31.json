@@ -96,6 +96,85 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2607-29172",
+      "source": "arxiv",
+      "title": "CLIFT: Turning Gemini Robotics On-Device into Humanoid Specialists via Non-Invasive Closed-Loop Iterative Fine-Tuning",
+      "title_zh": "CLIFT：通过非侵入式闭环迭代微调将 Gemini Robotics 设备端模型转化为类人专家",
+      "tldr_zh": "CLIFT通过API实现闭环微调，无需访问权重，两轮迭代提升类人机器人任务成功率。",
+      "cover_zh": "不打开模型黑箱也能闭环调优？CLIFT让类人机器人两轮迭代接近完美",
+      "abstract_zh": "尽管机器人基础模型的能力日益增强，但最强的模型通常基于专有数据训练且保持闭源，这限制了下游用户将其适应于新任务、新形态和新部署场景的能力。遵循大语言模型社区的做法，闭权重机器人基础模型的一种新兴访问范式是托管式监督微调（SFT）API，用户提交训练数据并获得调整后的策略，而无需访问模型权重、梯度或训练内部信息。虽然此类API让下游用户能够利用强大的专有基础模型，但它们将策略改进限制为纯模仿，排除了强化学习和其他依赖内部训练信号的闭环方法。这一限制对于敏捷、接触丰富的类人操作尤为严重，因为在新状态、动作跟踪动态、延迟和控制器特定故障模式下，策略输出与部署行为之间的差距很大。我们研究了这种托管API模式在类人适应中的有效性，以及如何在该模式下实现闭环改进以推动策略达到任务精通。我们在真实类人机器人上进行了首批托管API适应的实证研究之一，实例化为Gemini Robotics On-Device（GROD）。我们发现，通过API直接进行SFT显著优于在相同演示上训练的领先开源VLA，但在敏捷、接触丰富的任务上仍未能达到部署级精通。为缩小这一差距，我们引入了CLIFT：闭环迭代微调，它将部署时的奖励反馈转化为API兼容的监督数据，并在不访问权重、梯度、似然或损失的情况下实现闭环策略改进——经过两个飞轮循环后，将GROD推向近乎完美的成功率，全程无需“打开模型黑箱”。",
+      "authors": [
+        "Yuxin Chen",
+        "Hari Srikanth",
+        "Nathan Jew"
+      ],
+      "authors_all": [
+        "Yuxin Chen",
+        "Hari Srikanth",
+        "Nathan Jew",
+        "Menglin Wu",
+        "Pengcheng Wang",
+        "Junli Ren",
+        "Masayoshi Tomizuka",
+        "Peng Xu",
+        "Jinyu Xie",
+        "Thomas Tian"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-31",
+      "channels": [
+        "manipulation",
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Google DeepMind"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ NVIDIA"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-29172.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-29172-p2.jpg",
+        "assets/img/covers/arxiv-2607-29172-p3.jpg",
+        "assets/img/covers/arxiv-2607-29172-p4.jpg"
+      ],
+      "arxiv_id": "2607.29172",
+      "abs_url": "http://arxiv.org/abs/2607.29172v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29172v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 45,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "针对人形机器人闭环微调方法，结合VLA与全身控制，具有科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of California, Berkeley",
+        "Google DeepMind",
+        "NVIDIA Research"
+      ],
+      "method_tags": [
+        "Supervised Fine-Tuning",
+        "Closed-Loop Iterative Fine-Tuning",
+        "Imitation Learning"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2607-29169",
       "source": "arxiv",
       "title": "ActFovea: Runtime Safeguarding for VLA Policies via Spatiotemporal Visual-Action Consistency",
@@ -313,6 +392,78 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2607-29235",
+      "source": "arxiv",
+      "title": "FBFM: A Training-Free Asynchronous Feedback Mechanism for Flow-Matching in World-Action Models Execution",
+      "title_zh": "FBFM：世界-动作模型执行中基于流匹配的无训练异步反馈机制",
+      "tldr_zh": "FBFM提出无训练异步反馈机制，在流匹配中逐时间步校正，提升长时程机器人控制成功率。",
+      "cover_zh": "无需训练！这个新机制让机器人长时程控制更稳，成功率提升超5%",
+      "abstract_zh": "尽管世界-动作模型（WAMs）通过在动作前预测视觉演化来增强长时程机器人控制，但长时程可靠性要求对真实观测进行重复重新接地——而非递归展开。现有WAMs通过在块之间用真实数据刷新历史或KV缓存来解决这一问题。然而，这种分块反馈在粗时间粒度上运行，无法在单个时间步级别纠正预测误差。为此，我们提出反馈流匹配（FBFM），一种无训练的推理机制，将重新接地推入主动生成的块内部。在流匹配过程中，FBFM对条件速度场应用掩蔽伪逆校正：它利用前一个动作块指导下一个动作块的生成，并使用执行前一个块后观测到的图像指导下一帧预测。这种跨块配对——一个块的反馈及时到达以塑造下一个块——创建了一个异步循环，无需等待块边界即可纠正错误。由于无需训练，该机制提高了对意外事件的响应能力，并抑制了长时程任务中的漂移。我们在联合生成WAM（DreamZero）和阶段式WAM（LingBot-VA）上评估了FBFM。在选定的LIBERO和RoboTwin2.0任务中，在有利设置下成功率提高了超过5%，真实世界机器人观测预测诊断显示出显著更好的跟踪。我们认为FBFM为细粒度在线校正提供了新范式，弥合了开环流生成与闭环真实世界动态之间的差距。",
+      "authors": [
+        "Peize Li",
+        "Ruimeng Zhang",
+        "Ru Zhang"
+      ],
+      "authors_all": [
+        "Peize Li",
+        "Ruimeng Zhang",
+        "Ru Zhang",
+        "Cong Huang",
+        "Kai Chen",
+        "Shanghang Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-07-31",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 北大"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2607-29235.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2607-29235-p2.jpg",
+        "assets/img/covers/arxiv-2607-29235-p3.jpg",
+        "assets/img/covers/arxiv-2607-29235-p4.jpg"
+      ],
+      "arxiv_id": "2607.29235",
+      "abs_url": "http://arxiv.org/abs/2607.29235v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29235v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 39,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出训练无关的异步反馈机制，改进世界动作模型的长时程控制，属于世界模型与机器人结合的前沿方法。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "DeepCybo",
+        "Zhongguancun Academy",
+        "Zhongguancun Institute of Artificial Intelligence",
+        "Peking University"
+      ],
+      "method_tags": [
+        "Flow Matching",
+        "training-free",
+        "asynchronous feedback"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2607-28993",
       "source": "arxiv",
       "title": "ST-WAM: Semantic-Temporal World Action Model for Robust Manipulation under Visual Distribution Shifts",
@@ -401,84 +552,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2607-29172",
-      "source": "arxiv",
-      "title": "CLIFT: Turning Gemini Robotics On-Device into Humanoid Specialists via Non-Invasive Closed-Loop Iterative Fine-Tuning",
-      "title_zh": "CLIFT：通过非侵入式闭环迭代微调将 Gemini Robotics 设备端模型转化为类人专家",
-      "tldr_zh": "CLIFT通过API实现闭环微调，无需访问权重，两轮迭代提升类人机器人任务成功率。",
-      "cover_zh": "不打开模型黑箱也能闭环调优？CLIFT让类人机器人两轮迭代接近完美",
-      "abstract_zh": "尽管机器人基础模型的能力日益增强，但最强的模型通常基于专有数据训练且保持闭源，这限制了下游用户将其适应于新任务、新形态和新部署场景的能力。遵循大语言模型社区的做法，闭权重机器人基础模型的一种新兴访问范式是托管式监督微调（SFT）API，用户提交训练数据并获得调整后的策略，而无需访问模型权重、梯度或训练内部信息。虽然此类API让下游用户能够利用强大的专有基础模型，但它们将策略改进限制为纯模仿，排除了强化学习和其他依赖内部训练信号的闭环方法。这一限制对于敏捷、接触丰富的类人操作尤为严重，因为在新状态、动作跟踪动态、延迟和控制器特定故障模式下，策略输出与部署行为之间的差距很大。我们研究了这种托管API模式在类人适应中的有效性，以及如何在该模式下实现闭环改进以推动策略达到任务精通。我们在真实类人机器人上进行了首批托管API适应的实证研究之一，实例化为Gemini Robotics On-Device（GROD）。我们发现，通过API直接进行SFT显著优于在相同演示上训练的领先开源VLA，但在敏捷、接触丰富的任务上仍未能达到部署级精通。为缩小这一差距，我们引入了CLIFT：闭环迭代微调，它将部署时的奖励反馈转化为API兼容的监督数据，并在不访问权重、梯度、似然或损失的情况下实现闭环策略改进——经过两个飞轮循环后，将GROD推向近乎完美的成功率，全程无需“打开模型黑箱”。",
-      "authors": [
-        "Yuxin Chen",
-        "Hari Srikanth",
-        "Nathan Jew"
-      ],
-      "authors_all": [
-        "Yuxin Chen",
-        "Hari Srikanth",
-        "Nathan Jew",
-        "Menglin Wu",
-        "Pengcheng Wang",
-        "Junli Ren",
-        "Masayoshi Tomizuka",
-        "Peng Xu",
-        "Jinyu Xie",
-        "Thomas Tian"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-07-31",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ Google DeepMind"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ NVIDIA"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2607-29172.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2607-29172-p2.jpg",
-        "assets/img/covers/arxiv-2607-29172-p3.jpg",
-        "assets/img/covers/arxiv-2607-29172-p4.jpg"
-      ],
-      "arxiv_id": "2607.29172",
-      "abs_url": "http://arxiv.org/abs/2607.29172v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.29172v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 37,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "针对人形机器人闭环微调方法，结合VLA与全身控制，具有科研价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "University of California, Berkeley",
-        "Google DeepMind",
-        "NVIDIA Research"
-      ],
-      "method_tags": [
-        "Supervised Fine-Tuning",
-        "Closed-Loop Iterative Fine-Tuning",
-        "Imitation Learning"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2607-29567",
       "source": "arxiv",
       "title": "TransGraspNet: Physically and Geometrically Consistent Manipulation of Transparent Labware",
@@ -553,68 +626,63 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2607-29235",
+      "id": "arxiv-2607-29482",
       "source": "arxiv",
-      "title": "FBFM: A Training-Free Asynchronous Feedback Mechanism for Flow-Matching in World-Action Models Execution",
-      "title_zh": "FBFM：世界-动作模型执行中基于流匹配的无训练异步反馈机制",
-      "tldr_zh": "FBFM提出无训练异步反馈机制，在流匹配中逐时间步校正，提升长时程机器人控制成功率。",
-      "cover_zh": "无需训练！这个新机制让机器人长时程控制更稳，成功率提升超5%",
-      "abstract_zh": "尽管世界-动作模型（WAMs）通过在动作前预测视觉演化来增强长时程机器人控制，但长时程可靠性要求对真实观测进行重复重新接地——而非递归展开。现有WAMs通过在块之间用真实数据刷新历史或KV缓存来解决这一问题。然而，这种分块反馈在粗时间粒度上运行，无法在单个时间步级别纠正预测误差。为此，我们提出反馈流匹配（FBFM），一种无训练的推理机制，将重新接地推入主动生成的块内部。在流匹配过程中，FBFM对条件速度场应用掩蔽伪逆校正：它利用前一个动作块指导下一个动作块的生成，并使用执行前一个块后观测到的图像指导下一帧预测。这种跨块配对——一个块的反馈及时到达以塑造下一个块——创建了一个异步循环，无需等待块边界即可纠正错误。由于无需训练，该机制提高了对意外事件的响应能力，并抑制了长时程任务中的漂移。我们在联合生成WAM（DreamZero）和阶段式WAM（LingBot-VA）上评估了FBFM。在选定的LIBERO和RoboTwin2.0任务中，在有利设置下成功率提高了超过5%，真实世界机器人观测预测诊断显示出显著更好的跟踪。我们认为FBFM为细粒度在线校正提供了新范式，弥合了开环流生成与闭环真实世界动态之间的差距。",
+      "title": "Temporal Policy: History-Initialized Action Generation for Robotic Learning from Demonstration",
+      "title_zh": "时间策略：用于机器人示教学习的历史初始化动作生成",
+      "tldr_zh": "时间策略用历史初始化生成流，降低传输成本，实现19.1毫秒推理延迟。",
+      "cover_zh": "告别高斯噪声｜用历史初始化让机器人动作生成快一个数量级",
+      "abstract_zh": "标准扩散模型和流匹配模型依赖于从无信息高斯先验的独立耦合，被迫学习复杂、高成本的向量场以到达物理动作空间。生成模型在捕捉机器人示教学习（LfD）中的多模态行为方面表现出色，但常常面临高推理成本的问题。本文介绍了时间策略（Temporal Policy），一种基于随机插值器的生成框架，将动作生成表述为时间耦合的传输问题。通过在机器人的近期历史处初始化生成流，我们将过去状态与未来动作序列显式耦合。这种数据相关的耦合降低了传输成本，并产生直线向量场。我们在视觉运动模拟基准测试和物理Barrett WAM 2x 7DoF遥操作平台上验证了时间策略。与噪声初始化的基线相比，我们的方法将传输成本降低了近一个数量级，在单个NVIDIA RTX 4080上实现了19.1毫秒的推理延迟。关键在于，在实现这些几何和计算效率的同时，成功率与最先进的基线相当。这种简化的传输几何绕过了独立高斯先验的计算瓶颈，有助于实现高频闭环控制。代码公开于https://github.com/dmiller12/TemporalPolicy。",
       "authors": [
-        "Peize Li",
-        "Ruimeng Zhang",
-        "Ru Zhang"
+        "Dylan Miller",
+        "Martin Jagersand"
       ],
       "authors_all": [
-        "Peize Li",
-        "Ruimeng Zhang",
-        "Ru Zhang",
-        "Cong Huang",
-        "Kai Chen",
-        "Shanghang Zhang"
+        "Dylan Miller",
+        "Martin Jagersand"
       ],
       "primary_category": "cs.RO",
       "published": "2026-07-31",
       "channels": [
+        "teleop",
         "manipulation"
       ],
       "badges": [
         {
-          "kind": "lab",
-          "label": "⭐ 北大"
+          "kind": "venue",
+          "label": "🎓 IROS 2026"
         }
       ],
-      "cover_image": "assets/img/covers/arxiv-2607-29235.jpg",
+      "cover_image": "assets/img/covers/arxiv-2607-29482.jpg",
       "preview_pages": [
-        "assets/img/covers/arxiv-2607-29235-p2.jpg",
-        "assets/img/covers/arxiv-2607-29235-p3.jpg",
-        "assets/img/covers/arxiv-2607-29235-p4.jpg"
+        "assets/img/covers/arxiv-2607-29482-p2.jpg",
+        "assets/img/covers/arxiv-2607-29482-p3.jpg",
+        "assets/img/covers/arxiv-2607-29482-p4.jpg"
       ],
-      "arxiv_id": "2607.29235",
-      "abs_url": "http://arxiv.org/abs/2607.29235v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.29235v1",
-      "venue": "",
+      "arxiv_id": "2607.29482",
+      "abs_url": "http://arxiv.org/abs/2607.29482v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29482v1",
+      "venue": "IROS 2026",
       "venue_announced": "",
-      "score": 34,
+      "score": 32,
       "judge": {
         "relevant": true,
         "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出训练无关的异步反馈机制，改进世界动作模型的长时程控制，属于世界模型与机器人结合的前沿方法。",
+        "primary_channel": "manipulation",
+        "reason": "提出基于随机插值的时序策略，降低传输成本并实现高频闭环控制，对操作学习有较高参考价值。",
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "DeepCybo",
-        "Zhongguancun Academy",
-        "Zhongguancun Institute of Artificial Intelligence",
-        "Peking University"
+        "University of Alberta"
       ],
       "method_tags": [
-        "Flow Matching",
-        "training-free",
-        "asynchronous feedback"
+        "stochastic interpolants",
+        "Learning from Demonstration",
+        "temporally coupled transport"
       ],
-      "platform": [],
+      "platform": [
+        "Barrett WAM 2x 7DoF"
+      ],
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
@@ -763,71 +831,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2607-29482",
-      "source": "arxiv",
-      "title": "Temporal Policy: History-Initialized Action Generation for Robotic Learning from Demonstration",
-      "title_zh": "时间策略：用于机器人示教学习的历史初始化动作生成",
-      "tldr_zh": "时间策略用历史初始化生成流，降低传输成本，实现19.1毫秒推理延迟。",
-      "cover_zh": "告别高斯噪声｜用历史初始化让机器人动作生成快一个数量级",
-      "abstract_zh": "标准扩散模型和流匹配模型依赖于从无信息高斯先验的独立耦合，被迫学习复杂、高成本的向量场以到达物理动作空间。生成模型在捕捉机器人示教学习（LfD）中的多模态行为方面表现出色，但常常面临高推理成本的问题。本文介绍了时间策略（Temporal Policy），一种基于随机插值器的生成框架，将动作生成表述为时间耦合的传输问题。通过在机器人的近期历史处初始化生成流，我们将过去状态与未来动作序列显式耦合。这种数据相关的耦合降低了传输成本，并产生直线向量场。我们在视觉运动模拟基准测试和物理Barrett WAM 2x 7DoF遥操作平台上验证了时间策略。与噪声初始化的基线相比，我们的方法将传输成本降低了近一个数量级，在单个NVIDIA RTX 4080上实现了19.1毫秒的推理延迟。关键在于，在实现这些几何和计算效率的同时，成功率与最先进的基线相当。这种简化的传输几何绕过了独立高斯先验的计算瓶颈，有助于实现高频闭环控制。代码公开于https://github.com/dmiller12/TemporalPolicy。",
-      "authors": [
-        "Dylan Miller",
-        "Martin Jagersand"
-      ],
-      "authors_all": [
-        "Dylan Miller",
-        "Martin Jagersand"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-07-31",
-      "channels": [
-        "teleop"
-      ],
-      "badges": [
-        {
-          "kind": "venue",
-          "label": "🎓 IROS 2026"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2607-29482.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2607-29482-p2.jpg",
-        "assets/img/covers/arxiv-2607-29482-p3.jpg",
-        "assets/img/covers/arxiv-2607-29482-p4.jpg"
-      ],
-      "arxiv_id": "2607.29482",
-      "abs_url": "http://arxiv.org/abs/2607.29482v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.29482v1",
-      "venue": "IROS 2026",
-      "venue_announced": "",
-      "score": 27,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出基于随机插值的时序策略，降低传输成本并实现高频闭环控制，对操作学习有较高参考价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "University of Alberta"
-      ],
-      "method_tags": [
-        "stochastic interpolants",
-        "Learning from Demonstration",
-        "temporally coupled transport"
-      ],
-      "platform": [
-        "Barrett WAM 2x 7DoF"
-      ],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2607-29393",
       "source": "arxiv",
       "title": "AquaJEPA: Action-Conditioned Multimodal Predictive Representations for Underwater Robot Dynamics",
@@ -920,7 +923,8 @@
       "published": "2026-07-31",
       "channels": [
         "manipulation",
-        "sim2real"
+        "sim2real",
+        "teleop"
       ],
       "badges": [],
       "cover_image": "assets/img/covers/arxiv-2607-29231.jpg",

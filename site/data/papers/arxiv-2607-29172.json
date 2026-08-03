@@ -68,7 +68,8 @@
     "assets/img/covers/arxiv-2607-29172-p4.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -83,7 +84,7 @@
   "related_links": [],
   "page_count": 21,
   "source_tags": [],
-  "score": 37,
+  "score": 45,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -94,14 +95,20 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 9,
-      "hint": "频道关键词命中 3 个（robot foundation model、manipulation、contact-rich）"
+      "points": 12,
+      "hint": "频道关键词命中 4 个（robot foundation model、manipulation、contact-rich、humanoid manipulation）"
     },
     {
       "id": "longer_paper",
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 21 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -128,5 +135,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"CLIFT: Turning Gemini Robotics On-Device into Humanoid Specialists via Non-Invasive Closed-Loop Iterative Fine-Tuning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.29172v1\n---\n>[!abstract] 一句话总结：提出CLIFT（Closed-Loop Iterative Fine-Tuning），将部署时的奖励反馈转化为API兼容的监督数据，在不对权重、梯度、似然或损失进行访问的情况下实现闭环策略改进，经过两轮迭代循环即可显著提升策略性能。\n\n\n# 一、动机\n\n> 封闭权重的机器人基础模型仅通过托管SFT API进行下游适配，只能进行纯模仿学习，无法利用强化学习等闭环方法，导致敏捷、接触丰富的人形操作任务难以达到部署级掌握。\n\n\n# 二、方法\n\n> 提出CLIFT（Closed-Loop Iterative Fine-Tuning），将部署时的奖励反馈转化为API兼容的监督数据，在不对权重、梯度、似然或损失进行访问的情况下实现闭环策略改进，经过两轮迭代循环即可显著提升策略性能。\n\n\n# 三、核心实验结果\n\n> 在真实人形机器人上，直接SFT通过API明显优于基于相同演示训练的开放权重VLA；采用CLIFT后，经两个循环迭代，任务成功率接近完美（摘要未给出具体百分比）。\n\n\n# 四、对我的启发\n\n> 托管SFT API限制了传统的强化学习，但通过将外部奖励信号转化为监督数据，能够在不打开模型盒子的情况下实现闭环优化，为封闭权重机器人基础模型的适配提供了新思路；其局限在于需要设计合适的奖励反馈机制，且尚未在更广泛任务上验证。与课题直接相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"CLIFT: Turning Gemini Robotics On-Device into Humanoid Specialists via Non-Invasive Closed-Loop Iterative Fine-Tuning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.29172v1\n---\n>[!abstract] 一句话总结：提出 CLIFT（Closed-Loop Iterative Fine-Tuning）：将部署时的奖励反馈转化为 API 兼容的监督数据，在不访问权重/梯度/似然/损失的情况下，实现基于 SFT API 的闭环迭代策略改进，经过多轮飞轮循环逐步逼近任务掌握。\n\n\n# 一、动机\n\n> 闭源权重的人形机器人基础模型仅提供受管的监督微调（SFT）API，用户无法访问权重、梯度或内部训练信号，因此无法使用强化学习等闭环方法，导致在敏捷、接触丰富的人形操作任务上（因状态新颖、跟踪动态、延迟和控制器失败模式等原因）部署性能与任务掌握存在差距。\n\n\n# 二、方法\n\n> 提出 CLIFT（Closed-Loop Iterative Fine-Tuning）：将部署时的奖励反馈转化为 API 兼容的监督数据，在不访问权重/梯度/似然/损失的情况下，实现基于 SFT API 的闭环迭代策略改进，经过多轮飞轮循环逐步逼近任务掌握。\n\n\n# 三、核心实验结果\n\n> 在真实人形机器人上，直接通过 API 进行 SFT 显著优于在相同示范上训练的领先开源 VLA；但部署级敏捷接触任务仍不足；经过两个飞轮循环的 CLIFT 后，将 GROD 策略推向接近完美的成功率（摘要未给出具体百分比，仅描述为 near-perfect success）。\n\n\n# 四、对我的启发\n\n> 该研究展示了闭源 VLA 通过托管 API 进行闭环适配的可行性，但受限于 API 的纯模仿机制，性能提升依赖外部奖励反馈转换为监督数据，且未公开跨任务泛化能力。与课题不直接相关，但可为具身智能策略微调范式提供参考。\n"
 }
