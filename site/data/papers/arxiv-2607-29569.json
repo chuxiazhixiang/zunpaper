@@ -1,0 +1,87 @@
+{
+  "id": "arxiv-2607-29569",
+  "source": "arxiv",
+  "title": "Safe Vision Language Action Models via Barrier Enhanced Flow Matching",
+  "title_zh": "安全视觉语言动作模型：基于障碍增强的流匹配",
+  "abstract": "This article presents a modular inference framework that integrates Flow Matching generative models with formal Control Barrier Function (CBF) safety guarantees. Unlike existing methods that apply external safety filters to a model's final output, our approach modifies the Flow Matching denoising process within the model to inherently generate safe trajectories. By employing a smooth Log-Sum-Exponential aggregate barrier, we enforce safety over entire action chunks. This aggregate barrier ensures a minimal increase in computational overhead and does not alter the semantic intent of the model. We show that, within the proposed framework, the 2-Wasserstein distance between the generated distribution and the target distribution remains bounded. Our method eliminates the need for safety-specific datasets or costly model retraining, providing a versatile solution for safe inference. We validate the approach on two robotic manipulation platforms and a 2D navigation benchmark, verifying that our framework achieves reliable safety without degrading the success rate of the model.",
+  "abstract_zh": "本文提出了一种模块化推理框架，将流匹配生成模型与形式化的控制障碍函数（CBF）安全保证相结合。与现有方法对模型最终输出应用外部安全过滤器不同，我们的方法修改了模型内部的流匹配去噪过程，从而固有地生成安全轨迹。通过采用平滑的Log-Sum-Exponential聚合障碍，我们在整个动作块上强制执行安全性。这种聚合障碍确保了计算开销的最小增加，并且不改变模型的语义意图。我们证明，在所提出的框架内，生成分布与目标分布之间的2-Wasserstein距离保持有界。我们的方法消除了对安全特定数据集或昂贵的模型重新训练的需求，为安全推理提供了一种通用解决方案。我们在两个机器人操作平台和一个2D导航基准上验证了该方法，证实我们的框架在不降低模型成功率的情况下实现了可靠的安全性。",
+  "tldr_zh": "提出一种流匹配与CBF结合的框架，在生成过程中内建安全保证，无需额外训练。",
+  "cover_zh": "安全不用后处理？流匹配内建CBF，成功率不降反升？",
+  "authors": [
+    {
+      "name": "Kasra Sinaei",
+      "affiliation": ""
+    },
+    {
+      "name": "Hung-Chieh Wu",
+      "affiliation": ""
+    },
+    {
+      "name": "Donald Ebeigbe",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "eess.SY"
+  ],
+  "published": "2026-07-31",
+  "updated": "2026-07-31",
+  "arxiv_id": "2607.29569",
+  "pdf_url": "https://arxiv.org/pdf/2607.29569v1",
+  "abs_url": "http://arxiv.org/abs/2607.29569v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2607-29569.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2607-29569-p2.jpg",
+    "assets/img/covers/arxiv-2607-29569-p3.jpg",
+    "assets/img/covers/arxiv-2607-29569-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 9,
+  "source_tags": [],
+  "score": 6,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（manipulation）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 9 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "将CBF安全约束融入Flow Matching生成过程，提升VLA安全性与成功率，具科研价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "The Pennsylvania State University"
+  ],
+  "method_tags": [
+    "Flow Matching",
+    "Control Barrier Function",
+    "safe inference"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Safe Vision Language Action Models via Barrier Enhanced Flow Matching\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.29569v1\n---\n>[!abstract] 一句话总结：提出模块化推理框架，将Flow Matching生成模型与形式化控制屏障函数（CBF）安全保证结合，利用光滑Log-Sum-Exp聚合屏障在动作块级别强制安全性，不改变语义意图且计算开销小。\n\n\n# 一、动机\n\n> 现有方法通常对模型最终输出应用外部安全滤波器，可能改变模型语义意图或需要额外安全数据集与重训练；本方法旨在通过修改Flow Matching去噪过程，使模型自身生成固有无害的轨迹。\n\n\n# 二、方法\n\n> 提出模块化推理框架，将Flow Matching生成模型与形式化控制屏障函数（CBF）安全保证结合，利用光滑Log-Sum-Exp聚合屏障在动作块级别强制安全性，不改变语义意图且计算开销小。\n\n\n# 三、核心实验结果\n\n> 在两个机器人操作平台和2D导航基准上验证，取得可靠安全性且不降低模型成功率（摘要未提供具体数字）。\n\n\n# 四、对我的启发\n\n> 该方法无需安全数据集或重训练，是一种通用的安全推理方案；其2-Wasserstein距离有界性保证了分布贴近目标，启发安全生成模型可在推理层面融合形式化方法。\n"
+}

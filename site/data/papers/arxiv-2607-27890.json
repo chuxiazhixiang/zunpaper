@@ -102,5 +102,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Static In, Dynamic Out: Counterfactual Action Augmentation for Moving Object Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.27890v1\n---\n>[!abstract] 一句话总结：提出SIDO（Static In, Dynamic Out）反事实动作增强方法：将静态物体演示中的物体位移到反事实的未来位置，并变换动作块以保持手-物体相对姿态，从而训练目标条件策略；部署时用物体姿态预测器提供未来位置，将移动物体操作分解为\"预测位置\"和\"到达位置\"两个子问题。\n\n\n# 一、动机\n\n> 现有视觉运动策略假设目标物体在操作期间保持静止，但实际场景中物体可能移动（如传送带上的零件、摇摆的水果），导致静态训练的模型在测试时失效。\n\n\n# 二、方法\n\n> 提出SIDO（Static In, Dynamic Out）反事实动作增强方法：将静态物体演示中的物体位移到反事实的未来位置，并变换动作块以保持手-物体相对姿态，从而训练目标条件策略；部署时用物体姿态预测器提供未来位置，将移动物体操作分解为\"预测位置\"和\"到达位置\"两个子问题。\n\n\n# 三、核心实验结果\n\n> 在三个模拟任务（Mug, Square, Stack）和两个真实任务（Gantry, Peachtree）上，SIDO在五种物体运动模式下均优于基线，同时保持静态物体性能（摘要未给出具体数值，详情见原文）。\n\n\n# 四、对我的启发\n\n> 将移动物体操作解耦为预测与到达两个子问题，使得静态演示可用于动态场景；局限是依赖姿态预测器的准确性，且反事实增强可能受动作块长度影响。与机器人操作课题直接相关。\n"
 }

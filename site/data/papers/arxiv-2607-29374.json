@@ -1,0 +1,86 @@
+{
+  "id": "arxiv-2607-29374",
+  "source": "arxiv",
+  "title": "SAGP: Semantic Affordance-Guided Grasp Planning via Coarse-Zone VLM Reasoning",
+  "title_zh": "SAGP：通过粗区域VLM推理的语义可供性引导抓取规划",
+  "abstract": "Geometry-based grasp planners ensure physically valid grasps but ignore functional semantics, often generating grasps that are antipodal and collision-free yet practically inappropriate, for example, gripping a mug by its rim, a knife by the blade, or a bottle near its cap. These inconsistencies cause the downstream task to fail even when traditional grasp metrics are met. Existing vision-language model (VLM) approaches either depend on fine-grained, category-specific part segmentation or attempt to directly infer grasp poses, with the latter prone to spatial hallucinations. As a result, no practical, training-free framework has yet been proposed that robustly links high-level semantic reasoning to geometric grasp planning. We introduce Semantic Affordance-Guided Grasp Planning (SAGP), a training-free pipeline built on a coarse-zone abstraction layer. The method first partitions the object point cloud into spatial regions (top, middle, bottom, lateral sides, and protrusions) by applying PCA-based alignment followed by distance-driven DBSCAN clustering, entirely bypassing learned segmentation. A pre-trained VLM then assesses the grasp quality of each region through a structured zero-shot query, and the resulting zone-wise scores are fused with geometric, reachability, and task-alignment signals to re-rank antipodal grasp candidates. Experiments on YCB objects in PyBullet with a Franka Panda robot show that SAGP preserves the high success rate of geometry-only planning while substantially improving the functional appropriateness of selected grasps, particularly on asymmetric, handle-bearing objects where geometry alone is uninformative. The introduced coarse-zone abstraction offers an effective, training-free bridge between VLM-based reasoning and geometric grasp planning, without the need for fine-grained part segmentation.",
+  "abstract_zh": "基于几何的抓取规划器确保物理上有效的抓取，但忽略了功能语义，常常生成对极且无碰撞但在实际中不合适的抓取，例如，抓住杯子的边缘、刀的刀刃或瓶子靠近瓶盖的部分。这些不一致导致下游任务失败，即使传统抓取指标满足。现有的视觉语言模型（VLM）方法要么依赖于细粒度的、类别特定的部件分割，要么试图直接推断抓取姿态，后者容易产生空间幻觉。因此，尚未提出一个实用的、无需训练的框架，能够稳健地将高层语义推理与几何抓取规划联系起来。我们引入了语义可供性引导抓取规划（SAGP），一种基于粗区域抽象层的无需训练流程。该方法首先通过PCA对齐和距离驱动的DBSCAN聚类将对象点云划分为空间区域（顶部、中部、底部、侧面和突出部分），完全绕过学习分割。然后，预训练的VLM通过结构化的零样本查询评估每个区域的抓取质量，并将区域得分与几何、可达性和任务对齐信号融合，以重新排序对极抓取候选。在PyBullet中使用Franka Panda机器人在YCB对象上的实验表明，SAGP保持了纯几何规划的高成功率，同时显著提高了所选抓取的功能适用性，特别是在几何信息不足的不对称、带手柄对象上。引入的粗区域抽象提供了一种有效的、无需训练的桥梁，连接基于VLM的推理和几何抓取规划，无需细粒度部件分割。",
+  "tldr_zh": "SAGP通过粗区域VLM推理，无需训练即可提升抓取的功能适用性。",
+  "cover_zh": "抓取规划总翻车？新框架用VLM粗区域推理，让机器人抓得又稳又对！",
+  "authors": [
+    {
+      "name": "Muhayy Ud Din",
+      "affiliation": ""
+    },
+    {
+      "name": "Irfan Hussain",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-07-31",
+  "updated": "2026-07-31",
+  "arxiv_id": "2607.29374",
+  "pdf_url": "https://arxiv.org/pdf/2607.29374v1",
+  "abs_url": "http://arxiv.org/abs/2607.29374v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2607-29374.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2607-29374-p2.jpg",
+    "assets/img/covers/arxiv-2607-29374-p3.jpg",
+    "assets/img/covers/arxiv-2607-29374-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 12,
+  "source_tags": [],
+  "score": 6,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（grasp）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 12 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "结合VLM语义推理与几何抓取规划，无需训练，提升抓取功能性，对操作研究有参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Khalifa University"
+  ],
+  "method_tags": [
+    "VLM reasoning",
+    "grasp planning",
+    "coarse-zone abstraction"
+  ],
+  "platform": [
+    "Franka Panda"
+  ],
+  "sim_stack": [
+    "PyBullet"
+  ],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": ""
+}
