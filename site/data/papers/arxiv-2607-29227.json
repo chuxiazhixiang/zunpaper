@@ -55,9 +55,9 @@
     "assets/img/covers/arxiv-2607-29227-p4.jpg"
   ],
   "channels": [
-    "loco-manip-wbc",
     "teleop",
-    "locomotion"
+    "locomotion",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -80,7 +80,7 @@
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 5 个（motion imitation、retargeting、teleoperation、teleop）"
+      "hint": "频道关键词命中 5 个（teleoperation、teleop、booster t1、motion imitation）"
     },
     {
       "id": "longer_paper",
@@ -121,5 +121,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"Event-Based Upper-Body Humanoid Teleoperation Under Challenging Illumination\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.29227v1\n---\n>[!abstract] 一句话总结：利用Prophesee EVK4事件相机（异步、>120dB动态范围），结合重力对齐惯性融合的低延迟感知模块和因果运动模块（TWIST），实现实时上半身人形运动重定向的遥操作框架。\n\n\n# 一、动机\n\n> 传统RGB相机在高速动态场景和高动态范围（HDR）下受固定积分时间限制，容易产生运动模糊和曝光问题，导致人形遥操作感知失效。\n\n\n# 二、方法\n\n> 利用Prophesee EVK4事件相机（异步、>120dB动态范围），结合重力对齐惯性融合的低延迟感知模块和因果运动模块（TWIST），实现实时上半身人形运动重定向的遥操作框架。\n\n\n# 三、核心实验结果\n\n> 在18自由度人形上半身和嵌入式平台（NVIDIA Booster T1）上，端到端光子到动作延迟为23-34ms；在低于5lux低光和强背光条件下，跟踪稳定性优于RGB基线。\n\n\n# 四、对我的启发\n\n> 事件相机在快速运动或低光遥操作中更具优势，而良好光照的静态场景可能更适合RGB或混合传感；对课题有参考价值，可用于提升极端光照下遥操作鲁棒性。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"Event-Based Upper-Body Humanoid Teleoperation Under Challenging Illumination\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.29227v1\n---\n>[!abstract] 一句话总结：提出基于事件相机的实时上半身人形遥操作框架，利用Prophesee EVK4事件相机（异步、高时间分辨率、动态范围>120 dB），结合低延迟感知模块（事件累积+重力对齐惯性融合）和因果运动模块（TWIST）进行在线运动重定向，在嵌入式平台和18自由度人形上半身上实现端到端系统。\n\n\n# 一、动机\n\n> 传统帧基RGB传感器在高动态范围（HDR）场景和快速运动中因固定积分时间导致感知瓶颈，例如强背光和低于5 lux的弱光环境下性能严重退化，制约了人形机器人遥操作的鲁棒性。\n\n\n# 二、方法\n\n> 提出基于事件相机的实时上半身人形遥操作框架，利用Prophesee EVK4事件相机（异步、高时间分辨率、动态范围>120 dB），结合低延迟感知模块（事件累积+重力对齐惯性融合）和因果运动模块（TWIST）进行在线运动重定向，在嵌入式平台和18自由度人形上半身上实现端到端系统。\n\n\n# 三、核心实验结果\n\n> 端到端光子到动作延迟为23-34 ms；在挑战性光照（强背光、低于5 lux）下稳定跟踪，动态范围超过120 dB；实验证明在快速或低光照遥操作中优于RGB基线，而光照良好的静态场景中RGB或混合感知可能更优。\n\n\n# 四、对我的启发\n\n> 事件相机在快速运动和弱光场景下具有明显优势，但在良好光照静态场景下RGB更合适，提示混合感知（事件+RGB）是未来发展方向；该工作与课题直接相关，为光照极端环境下的人形遥操作提供了可行方案。\n"
 }

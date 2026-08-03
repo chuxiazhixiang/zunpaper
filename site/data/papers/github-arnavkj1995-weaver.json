@@ -1,0 +1,78 @@
+{
+  "id": "github-arnavkj1995-weaver",
+  "source": "github",
+  "title": "arnavkj1995/WEAVER",
+  "title_zh": "arnavkj1995/WEAVER",
+  "abstract": "WEAVER is an efficient, consistent and high-fidelity world model enabling state-of-the-art robot policy evaluation, improvement, and faster test-time planning.\n\n# WEAVER, Better, Faster, Longer: An Effective World Model for Robotic Manipulation Arnav Kumar Jain 1,2,* , Yilin Wu 3,* , Jesse Farebrother 1,4 , Gokul Swamy 3 , Andrea Bajcsy 3 [ ](https://arxiv.org/abs/2606.13672) [ ](https://arnavkj1995.github.io/WEAVER/) [ ](https://x.com/arnavkj95/status/2066919523685380387?s=20) [ ](https://huggingface.co/arnavkj1995/WEAVER) [ ](https://huggingface.co/datasets/yilin-wu/droid_ood_data) [ ](LICENSE) --- We introduce WEAVER: a world model architecture that satisfies the three desiderata: (i) fidelity, (ii) consistency, and (iii) efficiency. WEAVER unlocks state-of-the-art performance across policy evaluation (ρ = 0.870 correlation with real-world success rate), policy improvement (real-world success rate improvement of 38% on top of the π0.5 robot foundation model), and test-time planning (real-world success rate improvement of 14% with a 5–10× speedup over prior WMs). ## 🛠️ Setup Create a Python 3.11 environment and install dependencies with `uv`. For optional logging and development dependencies: You can also run commands directly through `uv`: ## Model Checkpoints and Datasets Download all released checkpoints from [HuggingFace](https://huggingface.co/arnavkj1995/WEAVER): This downloads the `WEAVER`, `WEAVER-FT`, and `WEAVER-ReFlow` folders. Each folder contains `checkpoint.pt`, `config.yaml`, and `norm_stats_relabel.json`. The OOD evaluation dataset used in this work is available at [yilin-wu/droid_ood_data](https://huggingface.co/datasets/yilin-wu/droid_ood_data). Or with the Python library: To download only annotations and metadata (without videos/latents): ## 📁 Repository Structure This repository implements the main WEAVER components: the latent flow world model, DROID dataloaders, reward and critic heads, rollout generation, and offline evaluation utilities. ## 💾 Datasets WEAVER expects preprocessed DROID-style trajectories with actions, states, language features, rewards, normalization statistics, and either view vide",
+  "abstract_zh": "我们提出了WEAVER，一种满足保真度、一致性和效率三个要求的世界模型架构。WEAVER在策略评估（与真实世界成功率的相关系数ρ=0.870）、策略改进（在π0.5机器人基础模型之上，真实世界成功率提升38%）和测试时规划（真实世界成功率提升14%，且相比先前世界模型有5-10倍加速）方面均实现了最先进的性能。",
+  "tldr_zh": "WEAVER世界模型在机器人操作中实现高保真、一致且高效的策略评估与改进。",
+  "cover_zh": "机器人操作新突破！WEAVER世界模型让策略评估更准、改进更快",
+  "authors": [
+    {
+      "name": "arnavkj1995",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2026-06-26",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/arnavkj1995/WEAVER",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "world-model"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 31,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 31,
+      "hint": "⭐ 37"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "world-model",
+    "reason": "官方世界模型，面向机器人操作，支持策略评估/改进/规划，含代码与权重，方向吻合。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "世界模型"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "arnavkj1995",
+    "repo": "WEAVER",
+    "stars": 37,
+    "language": "Python",
+    "pushed_at": "2026-06-26",
+    "created_at": "2026-05-08",
+    "topics": [
+      "reinforcement-learning",
+      "robotics",
+      "world-models"
+    ],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"arnavkj1995/WEAVER\"\nYear: \"\"\nURL: https://github.com/arnavkj1995/WEAVER\n---\n>[!abstract] 一句话总结：提出 WEAVER，一种潜在流世界模型架构，通过设计满足保真度、一致性和效率三大要求的建模方式，支持策略评估、改进和测试时规划。\n\n\n# 一、动机\n\n> 现有世界模型在机器人操作中难以同时满足保真度（fidelity）、一致性（consistency）和效率（efficiency），限制了其在策略评估、改进和测试时规划中的应用。\n\n\n# 二、方法\n\n> 提出 WEAVER，一种潜在流世界模型架构，通过设计满足保真度、一致性和效率三大要求的建模方式，支持策略评估、改进和测试时规划。\n\n\n# 三、核心实验结果\n\n> 策略评估中与真实世界成功率的相关系数 ρ=0.870；在 π0.5 基础模型上策略改进带来 38% 的真实世界成功率提升；测试时规划实现 14% 的成功率提升，且相比先前世界模型快 5–10 倍。\n\n\n# 四、对我的启发\n\n> 与机器人操作课题直接相关，WEAVER 展示了世界模型在策略评估、改进和规划中的潜力，但其依赖大规模预训练和 DROID 数据，未来可探索更轻量化的部署和跨任务泛化。\n"
+}

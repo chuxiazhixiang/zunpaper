@@ -1,0 +1,74 @@
+{
+  "id": "github-ylyem9x-p3-open",
+  "source": "github",
+  "title": "ylyem9x/P3_Open",
+  "title_zh": "ylyem9x/P3_Open",
+  "abstract": "# P3: Probabilistic Propagation in PPO with VAE for Humanoid Locomotion **P3** is a humanoid robot reinforcement learning locomotion control project based on Isaac Lab and RSL_RL. ## Dependencies This project depends on the following environments and libraries: - **Linux 64-bit**: Ubuntu 20.04 or higher is recommended. - **Python 3.11**: Ensuring compatibility. - **Isaac Lab**: Please refer to the [Isaac Lab Installation Guide](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/index.html) for installation. This project is based on Isaac Sim 5.1.0 and Isaac Lab v2.3.0. - **RSL_RL**: Used for the implementation of reinforcement learning algorithms. ## Usage The training process of this project is divided into two phases: moment matching and Latent Space Fine-tuning. ### 1. Training The first phase uses `sample_times = 1` for training. **Configuration Check**: Ensure the parameters in `source/g1_locomotion/tasks/manager_based/g1_locomotion/agents/p3_rl_ppo_cfg.py` are set as follows: **Run Command**: This script will perform training for 15,000 iterations. ### 2. Finetuning The second phase builds upon the initial training by increasing the number of samples for finetuning to enhance the robustness of the policy. **Configuration Modification**: Please modify the `source/g1_locomotion/tasks/manager_based/g1_locomotion/agents/p3_rl_ppo_cfg.py` file: **Run Command**: This script will load the model checkpoint from the initial training and perform finetuning for approximately 1,500 iterations. > **Note**: `run_finetune.sh` is designed by default to load previous run results. Please ensure that the `--load_run` and `--checkpoint` parameters in the script match the actual path and filename output from your first training phase. ### 3. Inference/Play After training is complete, visualize the policy performance in the simulator using the following command: ## Code Structure - `run_train.sh`: Script to start the initial training phase. - `run_finetune.sh`: Scr",
+  "abstract_zh": "P3是一个基于Isaac Lab和RSL_RL的人形机器人强化学习运动控制项目。该项目依赖于Linux 64位系统（推荐Ubuntu 20.04或更高版本）、Python 3.11、Isaac Sim 5.1.0和Isaac Lab v2.3.0，以及用于实现强化学习算法的RSL_RL。训练过程分为两个阶段：第一阶段使用sample_times=1进行训练，运行15,000次迭代；第二阶段在第一阶段基础上增加样本数进行微调，以增强策略的鲁棒性，运行约1,500次迭代。微调时需加载第一阶段的模型检查点。训练完成后，可通过推理/播放命令在模拟器中可视化策略性能。",
+  "tldr_zh": "P3项目提出两阶段训练方法，提升人形机器人运动控制的鲁棒性。",
+  "cover_zh": "人形机器人控制新突破！两阶段训练让运动更稳健",
+  "authors": [
+    {
+      "name": "ylyem9x",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2026-01-28",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/ylyem9x/P3_Open",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "locomotion"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 6,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 6,
+      "hint": "⭐ 2"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "locomotion",
+    "reason": "基于Isaac Lab和RSL_RL的人形机器人强化学习运动控制项目，提出P3算法，有训练和微调流程，属于可落地的算法框架。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "运动控制"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "ylyem9x",
+    "repo": "P3_Open",
+    "stars": 2,
+    "language": "Python",
+    "pushed_at": "2026-01-28",
+    "created_at": "2026-01-28",
+    "topics": [],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"ylyem9x/P3_Open\"\nYear: \"\"\nURL: https://github.com/ylyem9x/P3_Open\n---\n>[!abstract] 一句话总结：提出 P3 方法，将 VAE 引入 PPO 进行概率传播，先以 sample_times=1 进行 moment matching 训练 15000 次迭代，再在潜在空间增加采样数微调约 1500 次迭代，增强策略鲁棒性。\n\n\n# 一、动机\n\n> 人形机器人强化学习运动控制在鲁棒性方面存在不足，P3 通过概率传播和两阶段训练提升策略稳定性与表现。\n\n\n# 二、方法\n\n> 提出 P3 方法，将 VAE 引入 PPO 进行概率传播，先以 sample_times=1 进行 moment matching 训练 15000 次迭代，再在潜在空间增加采样数微调约 1500 次迭代，增强策略鲁棒性。\n\n\n# 三、核心实验结果\n\n> 摘要未报告具体运动性能指标，但明确训练包含 15000 次迭代的初始阶段和约 1500 次迭代的微调阶段，基于 Isaac Sim 5.1.0 和 Isaac Lab v2.3.0 实现。\n\n\n# 四、对我的启发\n\n> 与课题直接相关，两阶段训练策略（先单样本后多样本）可借鉴；但项目缺少与基线方法的定量对比，需自行运行验证其效果。\n"
+}

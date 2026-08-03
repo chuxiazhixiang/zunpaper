@@ -43,9 +43,9 @@
     "assets/img/covers/arxiv-2607-29271-p4.jpg"
   ],
   "channels": [
-    "loco-manip-wbc",
     "manipulation",
-    "teleop"
+    "teleop",
+    "loco-manip-wbc"
   ],
   "badges": [],
   "related_links": [],
@@ -57,7 +57,7 @@
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 5 个（retargeting、contact-rich、pick-and-place、teleoperation）"
+      "hint": "频道关键词命中 5 个（contact-rich、pick-and-place、teleoperation、teleop）"
     },
     {
       "id": "longer_paper",
@@ -96,5 +96,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/Teleoperation\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"MDIR: A Task-Manifold Impedance Retargeting Method for Contact-Rich Teleoperation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.29271v1\n---\n>[!abstract] 一句话总结：MDIR通过任务流形分解将源阻抗响应保持到任务通道中，结合被动残差补全和笛卡尔到流形的重定目标基线，并利用流形约束参数优化选择可行代表，实现控制器到控制器的阻抗重定目标。\n\n\n# 一、动机\n\n> 固定笛卡尔阻抗在接触丰富遥操作中虽可提供稳定性和支撑，但增益同时决定冲击力和力变异性，导致演示中接触力不可控。MDIR旨在将单次固定阻抗演示重定目标为可执行的可变阻抗命令，降低接触冲击和力波动。\n\n\n# 二、方法\n\n> MDIR通过任务流形分解将源阻抗响应保持到任务通道中，结合被动残差补全和笛卡尔到流形的重定目标基线，并利用流形约束参数优化选择可行代表，实现控制器到控制器的阻抗重定目标。\n\n\n# 三、核心实验结果\n\n> 在Franka Panda上的平面擦拭、拾取放置和推挤任务中，MDIR控制器在全部15次闭环执行中通过任务检查，且相对固定阻抗演示降低了腕部力峰值、冲量、力变异性及标称控制器功率四个攻击性指标。\n\n\n# 四、对我的启发\n\n> 该方法展示了从单一演示中提取可变阻抗策略的可行性，未来可扩展至多任务泛化或在线调整；与课题相关，可用于接触丰富遥操作中的安全力控制。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"MDIR: A Task-Manifold Impedance Retargeting Method for Contact-Rich Teleoperation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2607.29271v1\n---\n>[!abstract] 一句话总结：MDIR通过流形分解的阻抗重定位，将固定阻抗命令序列重参数化为任务通道上的变阻抗命令，具体包括用控制链度量下的被动残差补全源响应、计算笛卡尔到流形的重定位基线，并通过流形约束参数优化选择低攻击性且可行的代表。\n\n\n# 一、动机\n\n> 固定笛卡尔阻抗控制使接触丰富的遥操作演示实用，但其增益在保证接触稳定性的同时会导致冲击力和力变异性过大，需要一种将单次演示的固定阻抗控制器重参数化为可执行变阻抗命令的方法。\n\n\n# 二、方法\n\n> MDIR通过流形分解的阻抗重定位，将固定阻抗命令序列重参数化为任务通道上的变阻抗命令，具体包括用控制链度量下的被动残差补全源响应、计算笛卡尔到流形的重定位基线，并通过流形约束参数优化选择低攻击性且可行的代表。\n\n\n# 三、核心实验结果\n\n> 在Franka Panda上的平面擦拭、拾取放置和推动任务中，完整MDIR控制器在所有15次闭环执行中通过Task Check，并相对固定阻抗演示降低了腕力峰值、冲量、力变异性和标称控制器功率四个激进性指标。\n\n\n# 四、对我的启发\n\n> MDIR仅针对单次演示，未来可扩展到多演示学习；该方法对接触丰富遥操作的安全性提升有启发，与机器人遥操作课题直接相关。\n"
 }
