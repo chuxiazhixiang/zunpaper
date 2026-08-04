@@ -1,0 +1,109 @@
+{
+  "id": "arxiv-2608-02197",
+  "source": "arxiv",
+  "title": "Look Where It Matters: Adaptive Visual Refinement for Vision-Language-Action Models",
+  "title_zh": "关注关键之处：视觉-语言-动作模型的自适应视觉细化",
+  "abstract": "Visual representations of VLA models remain unreliable for spatially precise robotic manipulation. We uncover that vision encoders in VLAs also exhibit attention artifacts previously documented in generic Vision Transformers, and further show that, in embodied policies, these artifacts are closely associated with spatial perception capabilities acquired during post-training. As the encoder learns task-relevant information such as object location, depth ordering, and local geometry, limited global-token capacity causes part of this information to spill into low-information patch tokens. We introduce AtVLA, a framework that inserts learnable register tokens into the visual encoder. Trained end-to-end using only embodied data and the original action objective, these registers emerge as dedicated carriers of embodied spatial information, while the remaining patch tokens recover clean and spatially faithful attention distributions crucial for precise target localization and fine-grained contact. Clean attention restores reliable localization, but cannot recover geometric details lost in low-resolution observations. AtVLA therefore couples attention rectification with uncertainty-gated local refinement. The action expert samples multiple action chunks and estimates uncertainty from their disagreement; only for uncertain predictions, action-conditioned attention rollout identifies the task-relevant region, which is cropped, re-encoded at high resolution, and appended to the cached prefix for refined action generation. Across LIBERO, SimplerEnv, and a challenging single-view real-world benchmark, AtVLA improves the average LIBERO success rate from 94.2% to 98.4% and real-world success from 46.5% to 69.0%. The cropping is triggered on approximately 30% of replanning steps, resulting in only 1.4-1.6x the total computation of the base model under the representative deployment setting.",
+  "abstract_zh": "VLA模型的视觉表征在需要空间精确的机器人操作中仍不可靠。我们发现，VLA中的视觉编码器也表现出先前在通用视觉Transformer中记录到的注意力伪影，并进一步表明，在具身策略中，这些伪影与后训练期间获得的空间感知能力密切相关。当编码器学习任务相关信息（如物体位置、深度排序和局部几何）时，有限的全局令牌容量导致部分信息溢出到低信息补丁令牌中。我们提出了AtVLA，一个将可学习的寄存器令牌插入视觉编码器的框架。仅使用具身数据和原始动作目标进行端到端训练，这些寄存器成为具身空间信息的专用载体，而剩余的补丁令牌恢复了干净且空间上忠实的注意力分布，这对于精确的目标定位和细粒度接触至关重要。干净的注意力恢复了可靠的定位，但无法恢复低分辨率观测中丢失的几何细节。因此，AtVLA将注意力矫正与不确定性门控的局部细化相结合。动作专家采样多个动作块，并根据它们的分歧估计不确定性；仅对于不确定的预测，动作条件注意力展开识别任务相关区域，该区域被裁剪、以高分辨率重新编码，并附加到缓存前缀以进行细化的动作生成。在LIBERO、SimplerEnv和一个具有挑战性的单视图真实世界基准上，AtVLA将平均LIBERO成功率从94.2%提高到98.4%，真实世界成功率从46.5%提高到69.0%。裁剪在约30%的重新规划步骤中触发，在代表性部署设置下，总计算量仅为基础模型的1.4-1.6倍。",
+  "tldr_zh": "AtVLA通过寄存器令牌和局部细化，将LIBERO成功率提升至98.4%，真实世界成功率提升至69.0%。",
+  "cover_zh": "机器人操作总失败？新方法让成功率飙升，关键在注意力！",
+  "authors": [
+    {
+      "name": "Jin Cui",
+      "affiliation": ""
+    },
+    {
+      "name": "Yanbin Hu",
+      "affiliation": ""
+    },
+    {
+      "name": "Xinyue Long",
+      "affiliation": ""
+    },
+    {
+      "name": "Linkai Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Boran Zhao",
+      "affiliation": ""
+    },
+    {
+      "name": "Pengju Ren",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-08-03",
+  "updated": "2026-08-03",
+  "arxiv_id": "2608.02197",
+  "pdf_url": "https://arxiv.org/pdf/2608.02197v1",
+  "abs_url": "http://arxiv.org/abs/2608.02197v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-02197.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-02197-p2.jpg",
+    "assets/img/covers/arxiv-2608-02197-p3.jpg",
+    "assets/img/covers/arxiv-2608-02197-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 13,
+  "source_tags": [],
+  "score": 25,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 4 个（vision-language-action、vla model、manipulation、libero）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 13 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出AtVLA框架，通过可学习寄存器token和不确定性门控局部细化提升VLA空间精度，实验显著，对操作VLA研究有高价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Xi'an Jiaotong University"
+  ],
+  "method_tags": [
+    "VLA",
+    "attention rectification",
+    "local refinement"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Look Where It Matters: Adaptive Visual Refinement for Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.02197v1\n---\n>[!abstract] 一句话总结：提出AtVLA框架，在视觉编码器中插入可学习的寄存器token以捕获具身空间信息，并通过注意力修正恢复干净的空间注意力分布；同时引入不确定性门控的局部细化机制，仅对不确定的动作预测进行注意力引导的区域裁剪、高分辨率重编码，以补充几何细节。\n\n\n# 一、动机\n\n> 现有的视觉-语言-动作（VLA）模型在空间精确的机器人操纵任务中视觉表示不可靠，视觉编码器存在注意力伪影，导致物体位置、深度顺序等空间信息泄漏到低信息patch token中，影响目标定位和精细接触。\n\n\n# 二、方法\n\n> 提出AtVLA框架，在视觉编码器中插入可学习的寄存器token以捕获具身空间信息，并通过注意力修正恢复干净的空间注意力分布；同时引入不确定性门控的局部细化机制，仅对不确定的动作预测进行注意力引导的区域裁剪、高分辨率重编码，以补充几何细节。\n\n\n# 三、核心实验结果\n\n> 在LIBERO基准上平均成功率从94.2%提升至98.4%；在单视图真实世界基准上成功率从46.5%提升至69.0%；裁剪仅在约30%的重规划步骤中触发，总计算量为基础模型的1.4-1.6倍。\n\n\n# 四、对我的启发\n\n> 注意力修正与局部细化互补，但低分辨率观察中的几何信息损失难以完全恢复，未来可探索更高效的细化策略；该工作与机器人/具身智能直接相关，为VLA模型的空间感知能力提升提供了新思路。\n"
+}
