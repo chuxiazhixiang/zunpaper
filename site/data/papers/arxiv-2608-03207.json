@@ -90,5 +90,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"DRIFT: Derailing Denoising Trajectories of Flow-Matching VLAs with Adversarial Patch Attack\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.03207v1\n---\n>[!abstract] 一句话总结：DRIFT通过在机器人夹爪上放置一个通用对抗补丁，仅扰动去噪速度场的第一步（利用输入空间优化中的梯度冲突），从而重定向整条去噪轨迹，使策略失效。\n\n\n# 一、动机\n\n> Flow-matching VLA模型（如pi0）据称能抵抗对抗攻击，但现有攻击忽略了多步去噪ODE，导致鲁棒性评估不准确。本文旨在揭示这种鲁棒性的虚假性，并提出更强的测试时攻击方法。\n\n\n# 二、方法\n\n> DRIFT通过在机器人夹爪上放置一个通用对抗补丁，仅扰动去噪速度场的第一步（利用输入空间优化中的梯度冲突），从而重定向整条去噪轨迹，使策略失效。\n\n\n# 三、核心实验结果\n\n> 在pi0和pi0.5上，DRIFT在全部4个LIBERO套件中几乎破坏了所有原本可解决的任务，成功率大幅下降，远超动作空间和嵌入空间的攻击基线。\n\n\n# 四、对我的启发\n\n> 与训练时后门攻击需要攻击多步不同，测试时仅攻击第一步去噪既更强又更便宜，说明输入扰动攻击与训练扰动机制存在本质差异；防御VLA需要关注整个去噪轨迹的输入鲁棒性，而非仅输出层。\n"
 }
