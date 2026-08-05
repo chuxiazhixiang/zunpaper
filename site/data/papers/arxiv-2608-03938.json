@@ -1,0 +1,108 @@
+{
+  "id": "arxiv-2608-03938",
+  "source": "arxiv",
+  "title": "Bimanual Manipulation Within an 8 GB Budget: Zero-Copy Sensing and Quantized ACT on an Entry-Level Jetson",
+  "title_zh": "8 GB 预算内的双臂操作：零拷贝感知与量化 ACT 在入门级 Jetson 上",
+  "abstract": "Bimanual manipulation policies trained with imitation learning are typically evaluated on workstation or datacenter-class GPUs, leaving the cost of deploying them on embedded hardware largely uncharacterized. We present a bimanual SO-101 system running entirely on an NVIDIA Jetson Orin Nano Super (8 GB), the entry-level tier of NVIDIA's embedded line, using a desktop GPU (RTX 3070) only for offline training, evaluated on pick-and-place of a deformable beanbag. First, we build a GStreamer capture pipeline backed by NVMM buffers that removes redundant host-device copies from three-camera sensing. Contrary to expectation, the conventional path fit the memory budget and dropped no frames; what zero-copy sensing recovers is CPU headroom (peak single-core utilization 98.0% to 77.0%) and worst-case latency (117.31 ms to 101.52 ms). Second, we train ACT and Diffusion Policy on identical demonstrations, each at its own reference budget (100k gradient steps for ACT, 200k for Diffusion Policy). ACT converges to a task-competent policy (19/20 trials) while Diffusion Policy does not converge to a usable one (0/10) even at twice the step count, which we attribute to differing convergence costs rather than an accuracy ceiling. Third, we convert ACT to TensorRT. FP16 reduces mean inference latency from 114.02 ms to 17.93 ms (6.4x) and INT8 to 12.65 ms (9.0x), with task success preserved at all three precisions (19/20, 18/20, 19/20). We report two findings not previously documented for ACT: TensorRT's general-purpose INT8 calibration quantizes the ResNet18 backbone but accepts zero of 145 transformer layers, explaining INT8's negligible size reduction over FP16 (0.9%) despite a further 28% latency gain; and the need for quantization is conditional on ACT's action-chunking configuration, feasible in full precision at n_action_steps = 100 but not at the per-step re-prediction temporal ensembling requires.",
+  "abstract_zh": "通过模仿学习训练的双臂操作策略通常在工作站或数据中心级 GPU 上评估，其在嵌入式硬件上的部署成本在很大程度上未被表征。我们提出了一个完全在 NVIDIA Jetson Orin Nano Super（8 GB）上运行的双臂 SO-101 系统，这是 NVIDIA 嵌入式产品线的入门级，仅使用桌面 GPU（RTX 3070）进行离线训练，并在可变形豆袋的拾取放置任务上进行了评估。首先，我们构建了一个由 NVMM 缓冲区支持的 GStreamer 采集流水线，消除了三摄像头感知中的冗余主机-设备拷贝。与预期相反，传统路径适合内存预算且未丢帧；零拷贝感知恢复的是 CPU 余量（峰值单核利用率从 98.0% 降至 77.0%）和最坏情况延迟（从 117.31 ms 降至 101.52 ms）。其次，我们在相同的演示上训练 ACT 和扩散策略，每个都在其参考预算下（ACT 100k 梯度步，扩散策略 200k 梯度步）。ACT 收敛到任务胜任策略（19/20 试验），而扩散策略即使步数加倍也未收敛到可用策略（0/10），我们将其归因于不同的收敛成本而非精度上限。第三，我们将 ACT 转换为 TensorRT。FP16 将平均推理延迟从 114.02 ms 降至 17.93 ms（6.4 倍），INT8 降至 12.65 ms（9.0 倍），且在所有三种精度下任务成功率均保持（19/20、18/20、19/20）。我们报告了 ACT 的两个先前未记录发现：TensorRT 的通用 INT8 校准量化了 ResNet18 主干，但接受了 145 个 transformer 层中的零个，这解释了 INT8 相对于 FP16 的尺寸减少微乎其微（0.9%），尽管延迟进一步降低了 28%；以及量化的需求取决于 ACT 的动作分块配置，在 n_action_steps = 100 时全精度可行，但在时间集成所需的每步重新预测时不可行。",
+  "tldr_zh": "在入门级 Jetson 上，零拷贝感知和量化 ACT 实现高效双臂操作。",
+  "cover_zh": "8GB 内存也能跑双臂机器人？零拷贝+量化让推理快 9 倍",
+  "authors": [
+    {
+      "name": "Ekansh Singh",
+      "affiliation": ""
+    },
+    {
+      "name": "Eva Samuel",
+      "affiliation": ""
+    },
+    {
+      "name": "Alessandra Reneau",
+      "affiliation": ""
+    },
+    {
+      "name": "Ryan Schmeelk",
+      "affiliation": ""
+    },
+    {
+      "name": "Yashvi Gandhi",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "eess.SY"
+  ],
+  "published": "2026-08-04",
+  "updated": "2026-08-04",
+  "arxiv_id": "2608.03938",
+  "pdf_url": "https://arxiv.org/pdf/2608.03938v1",
+  "abs_url": "http://arxiv.org/abs/2608.03938v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-03938.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-03938-p2.jpg",
+    "assets/img/covers/arxiv-2608-03938-p3.jpg",
+    "assets/img/covers/arxiv-2608-03938-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 9,
+  "source_tags": [],
+  "score": 25,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 6 个（manipulation、bimanual、bimanual manipulation、imitation learning）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 9 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "面向嵌入式部署的双臂操作策略，量化ACT与零拷贝感知，具工程价值但算法创新有限。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Georgia Tech Research Institute (GTRI), Aerospace, Transportation and Advanced Systems Laboratory (ATAS)"
+  ],
+  "method_tags": [
+    "Imitation Learning",
+    "ACT",
+    "Diffusion Policy"
+  ],
+  "platform": [
+    "SO-101"
+  ],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\nTitle: \"Bimanual Manipulation Within an 8 GB Budget: Zero-Copy Sensing and Quantized ACT on an Entry-Level Jetson\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.03938v1\n---\n>[!abstract] 一句话总结：在NVIDIA Jetson Orin Nano Super (8GB)上构建基于NVMM缓冲的零拷贝GStreamer感知流水线，并利用TensorRT将ACT模型量化为FP16和INT8精度，实现三相机感知和双机械手抓取。\n\n\n# 一、动机\n\n> 双机械手操作策略通常在工作站或数据中心级GPU上评估，在嵌入式硬件上的部署成本缺乏表征，本文旨在探索在入门级嵌入式设备上部署双机械手操作系统的可行性。\n\n\n# 二、方法\n\n> 在NVIDIA Jetson Orin Nano Super (8GB)上构建基于NVMM缓冲的零拷贝GStreamer感知流水线，并利用TensorRT将ACT模型量化为FP16和INT8精度，实现三相机感知和双机械手抓取。\n\n\n# 三、核心实验结果\n\n> 零拷贝感知将峰值单核利用率从98.0%降至77.0%，最坏延迟从117.31ms降至101.52ms；TensorRT FP16将推理延迟从114.02ms降至17.93ms（6.4倍），INT8进一步降至12.65ms（9.0倍），同时任务成功率保持（FP16 19/20，INT8 18/20）。此外，INT8量化仅量化ResNet18骨干，未量化任何transformer层，导致大小仅比FP16小0.9%。\n\n\n# 四、对我的启发\n\n> 研究发现TensorRT通用INT8校准对ACT的transformer层不生效，且量化需求取决于动作分块配置；在n_action_steps=100时全精度即可满足要求，而逐步骤重预测需要量化。这为嵌入式部署模仿学习策略提供了实用指导，但也暴露了当前量化工具对transformer结构的适配局限。\n"
+}
