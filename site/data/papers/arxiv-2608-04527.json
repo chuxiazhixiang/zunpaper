@@ -1,0 +1,138 @@
+{
+  "id": "arxiv-2608-04527",
+  "source": "arxiv",
+  "title": "Retrieve in Time, Correct in Frequency",
+  "title_zh": "按时检索，按频校正",
+  "abstract": "Frozen vision-language-action (VLA) policies generate temporally extended action chunks, but long-horizon manipulation remains vulnerable to accumulated execution error and visual aliasing across task stages. Successful rollouts provide useful corrective evidence, yet current frame retrieval can return progress-misaligned actions,while direct replay or time-domain fusion can overwrite the reactive structure of the policy proposal. We introduce Retrieve in Time, Correct in Frequency (RTCF), a training-free test-time correction framework that improves frozen VLA performance with low model-side overhead.RTCF separates which experience to retrieve from which part of its action to transfer. Progressive Memory Alignment (PMA) causally aligns the growing visual execution history with complete successful trajectories through incrementally updated monotonic frontiers, jointly identifying a relevant memory and the current aligned memory position without stage labels. From the aligned action chunk,RTCF transfers a coefficient-wise-clipped low-frequency residual on motion channels. Higher-frequency components and gripper decisions remain inherited from the frozen policy. Across four LIBERO suites and 2,000 episodes per condition, RTCF raises aggregate success from 86.4% to 88.4% and improves LIBERO-Long from 61.6% to 68.6%.These gains require no parameter updates, repeated VLA inference, or additional GPU resources: correction can be performed on the client CPU after a single policy invocation, and the median latencies sum to only 10.99 ms per action chunk",
+  "abstract_zh": "冻结的视觉-语言-动作（VLA）策略生成时间上扩展的动作块，但长时程操作仍然容易受到累积执行误差和跨任务阶段的视觉混淆的影响。成功的轨迹提供了有用的纠正性证据，然而当前的帧检索可能返回与进度不对齐的动作，而直接重放或时域融合可能覆盖策略提议的反应性结构。我们引入了按时检索，按频校正（RTCF），一个无需训练的测试时校正框架，以低模型侧开销提高冻结VLA的性能。RTCF将检索哪些经验与转移其动作的哪些部分分开。渐进记忆对齐（PMA）通过增量更新的单调前沿，因果地将增长的视觉执行历史与完整的成功轨迹对齐，共同识别相关记忆和当前对齐的记忆位置，无需阶段标签。从对齐的动作块中，RTCF在运动通道上转移系数裁剪的低频残差。高频分量和夹爪决策保留自冻结策略。在四个LIBERO套件和每个条件2000个回合中，RTCF将总体成功率从86.4%提高到88.4%，并将LIBERO-Long从61.6%提高到68.6%。这些增益不需要参数更新、重复VLA推理或额外的GPU资源：在单次策略调用后，可以在客户端CPU上执行校正，每个动作块的中位延迟总和仅为10.99毫秒。",
+  "tldr_zh": "RTCF无需训练，通过低频残差校正提升冻结VLA策略成功率。",
+  "cover_zh": "无需训练！这个新框架让机器人成功率飙升，长任务表现惊艳",
+  "authors": [
+    {
+      "name": "Yuze Fan",
+      "affiliation": ""
+    },
+    {
+      "name": "Yue Cao",
+      "affiliation": ""
+    },
+    {
+      "name": "Pengjie Gao",
+      "affiliation": ""
+    },
+    {
+      "name": "Haojia Gao",
+      "affiliation": ""
+    },
+    {
+      "name": "Guangqiu Guo",
+      "affiliation": ""
+    },
+    {
+      "name": "Ziyue Zhang",
+      "affiliation": ""
+    },
+    {
+      "name": "Junbo Tan",
+      "affiliation": ""
+    },
+    {
+      "name": "Bokui Chen",
+      "affiliation": ""
+    },
+    {
+      "name": "Zhuo Zou",
+      "affiliation": ""
+    },
+    {
+      "name": "Xueqian Wang",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-08-05",
+  "updated": "2026-08-05",
+  "arxiv_id": "2608.04527",
+  "pdf_url": "https://arxiv.org/pdf/2608.04527v1",
+  "abs_url": "http://arxiv.org/abs/2608.04527v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-04527.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-04527-p2.jpg",
+    "assets/img/covers/arxiv-2608-04527-p3.jpg",
+    "assets/img/covers/arxiv-2608-04527-p4.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ 清华"
+    },
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 10,
+  "source_tags": [],
+  "score": 47,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “清华” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（vision-language-action、manipulation、libero）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 10 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "提出免训练测试时修正框架提升冻结VLA性能，属于操作策略改进，有实验验证。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Research Institute of Tsinghua University in Shenzhen",
+    "Everwise-Tech Co., Ltd.",
+    "Tongji University",
+    "Fudan University"
+  ],
+  "method_tags": [
+    "test-time correction",
+    "retrieval-augmented",
+    "frequency-domain fusion"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": ""
+}
