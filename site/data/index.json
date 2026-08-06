@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-06T06:05:58.292575+00:00",
+  "generated_at": "2026-08-06T07:54:21.752201+00:00",
   "count": 1907,
   "papers": [
     {
@@ -16237,6 +16237,258 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2608-04425",
+      "source": "arxiv",
+      "title": "SSC: A Verifiable Structured Representation for Bimanual Manipulation Labelling",
+      "title_zh": "SSC：一种用于双手操作标注的可验证结构化表示",
+      "tldr_zh": "提出结构化子任务链，实现双手操作标注的可验证表示。",
+      "cover_zh": "标注新范式｜结构化子任务链让双手操作标注可验证",
+      "abstract_zh": "子任务标签将长时间的操作演示分解为较短的语义片段，用于策略训练和评估。自然语言描述易于阅读，但其语言变异性使得自动验证变得困难。严格的模板格式（如BEHAVIOR-1K的skill_annotation）在语言上过度分割，阻碍了可读性和标注一致性。我们提出了结构化子任务链（SSC），一种状态转换表示，弥合了这些极端。演示是结构化子任务模板（SST）条目的序列。每个SST存储核心动作组件（主语、谓语、宾语）、灵活条件（如空间或工具短语等状语修饰语）、与手臂动作分离的基础运动字段，以及后状态场景图。基于此格式，SSC支持三种视觉-语言辅助功能：将SST渲染为自然语言、根据四条状态转换规则检查组装链、以及通过查询解析级联完成未指定的字段。我们在BEHAVIOR-1K（50个任务，每个任务3个片段，2357个标注动作单元）上实例化该流程，进行逻辑验证和内容补全，评估13个选定的最先进视觉-语言模型作为候选验证器，并报告标注异常。",
+      "authors": [
+        "Yupu Lu",
+        "Shuang Wu",
+        "Sihan Chen"
+      ],
+      "authors_all": [
+        "Yupu Lu",
+        "Shuang Wu",
+        "Sihan Chen",
+        "Ruihua Han",
+        "Yichen Zhang",
+        "Marcus Kalander",
+        "Jia Pan"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-05",
+      "channels": [
+        "manipulation",
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-04425.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-04425-p2.jpg",
+        "assets/img/covers/arxiv-2608-04425-p3.jpg",
+        "assets/img/covers/arxiv-2608-04425-p4.jpg"
+      ],
+      "arxiv_id": "2608.04425",
+      "abs_url": "http://arxiv.org/abs/2608.04425v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.04425v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "提出结构化子任务链表示，用于双臂操作标注与验证，具科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "The University of Hong Kong",
+        "Artificial Intelligence Laboratory (Leibniz)"
+      ],
+      "method_tags": [
+        "Structured Subtask Chain",
+        "Vision-Language Verifier",
+        "Subtask Labelling"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-04527",
+      "source": "arxiv",
+      "title": "Retrieve in Time, Correct in Frequency",
+      "title_zh": "按时检索，按频校正",
+      "tldr_zh": "RTCF无需训练，通过低频残差校正提升冻结VLA策略成功率。",
+      "cover_zh": "无需训练！这个新框架让机器人成功率飙升，长任务表现惊艳",
+      "abstract_zh": "冻结的视觉-语言-动作（VLA）策略生成时间上扩展的动作块，但长时程操作仍然容易受到累积执行误差和跨任务阶段的视觉混淆的影响。成功的轨迹提供了有用的纠正性证据，然而当前的帧检索可能返回与进度不对齐的动作，而直接重放或时域融合可能覆盖策略提议的反应性结构。我们引入了按时检索，按频校正（RTCF），一个无需训练的测试时校正框架，以低模型侧开销提高冻结VLA的性能。RTCF将检索哪些经验与转移其动作的哪些部分分开。渐进记忆对齐（PMA）通过增量更新的单调前沿，因果地将增长的视觉执行历史与完整的成功轨迹对齐，共同识别相关记忆和当前对齐的记忆位置，无需阶段标签。从对齐的动作块中，RTCF在运动通道上转移系数裁剪的低频残差。高频分量和夹爪决策保留自冻结策略。在四个LIBERO套件和每个条件2000个回合中，RTCF将总体成功率从86.4%提高到88.4%，并将LIBERO-Long从61.6%提高到68.6%。这些增益不需要参数更新、重复VLA推理或额外的GPU资源：在单次策略调用后，可以在客户端CPU上执行校正，每个动作块的中位延迟总和仅为10.99毫秒。",
+      "authors": [
+        "Yuze Fan",
+        "Yue Cao",
+        "Pengjie Gao"
+      ],
+      "authors_all": [
+        "Yuze Fan",
+        "Yue Cao",
+        "Pengjie Gao",
+        "Haojia Gao",
+        "Guangqiu Guo",
+        "Ziyue Zhang",
+        "Junbo Tan",
+        "Bokui Chen",
+        "Zhuo Zou",
+        "Xueqian Wang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-05",
+      "channels": [
+        "manipulation",
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-04527.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-04527-p2.jpg",
+        "assets/img/covers/arxiv-2608-04527-p3.jpg",
+        "assets/img/covers/arxiv-2608-04527-p4.jpg"
+      ],
+      "arxiv_id": "2608.04527",
+      "abs_url": "http://arxiv.org/abs/2608.04527v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.04527v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "提出免训练测试时修正框架提升冻结VLA性能，属于操作策略改进，有实验验证。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Research Institute of Tsinghua University in Shenzhen",
+        "Everwise-Tech Co., Ltd.",
+        "Tongji University",
+        "Fudan University"
+      ],
+      "method_tags": [
+        "test-time correction",
+        "retrieval-augmented",
+        "frequency-domain fusion"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-04657",
+      "source": "arxiv",
+      "title": "MobileWAM: Bridging World Action Models to Mobile Manipulation with Chain-of-Foresight",
+      "title_zh": "MobileWAM：通过预见链将世界行动模型桥接到移动操作",
+      "tldr_zh": "MobileWAM将世界行动模型用于移动操作，通过预见链提升性能并超越SOTA。",
+      "cover_zh": "移动操作新突破｜世界模型+预见链，让机器人全身协调更智能",
+      "abstract_zh": "基于视频生成骨干构建的世界行动模型（WAMs）是机器人学习的一种新兴方法，但至今仍局限于桌面操作。移动操作要求在场景级动态中同时进行移动和全身操作，然而目前仍由手工协调的动态盲视觉编码器主导。我们通过MobileWAM弥合了这一差距，这是一种混合变换器架构，通过逐层联合注意力将预训练的视频扩散变换器与轻量级动作专家融合，将互联网规模的运动先验转化为全身控制。为了协调移动和操作的异质动态，动作专家的每个前馈层都变成了一个由共享、移动和操作专家组成的三专家混合体，由动作标记中的运动意图软路由。为了强化监督，我们进一步提出了预见链（CoF）：中间表示顺序预测未来潜在块链，每一步以其前驱为条件。CoF与我们解耦的视频-动作去噪方案自然配对。在部署时，WAM仅作为当前帧编码器；预见仅通过梯度起作用，因此在推理时，预见链和视频生成被丢弃，仅留下策略级成本。MobileWAM在ManiSkill-HAB上超越了最先进的移动操作策略，并微调至真实的ARX Lift2移动操作器，在多种任务中表现出强大的泛化能力。代码即将发布。",
+      "authors": [
+        "Zehua Fan",
+        "Junjie He",
+        "Wenxuan Song"
+      ],
+      "authors_all": [
+        "Zehua Fan",
+        "Junjie He",
+        "Wenxuan Song",
+        "Xi Wang",
+        "Wenqi Lyu",
+        "Linge Zhao",
+        "Fuhao Li",
+        "Zihan You",
+        "Yifei Yang",
+        "Kaiming Xu",
+        "Qi Jiang",
+        "Yue Jiang",
+        "Haoang Li",
+        "Cheng Chi",
+        "Bailin Li",
+        "Yan Wang"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-08-05",
+      "channels": [
+        "manipulation",
+        "loco-manip-wbc",
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ SJTU"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKUST"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-04657.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-04657-p2.jpg",
+        "assets/img/covers/arxiv-2608-04657-p3.jpg",
+        "assets/img/covers/arxiv-2608-04657-p4.jpg"
+      ],
+      "arxiv_id": "2608.04657",
+      "abs_url": "http://arxiv.org/abs/2608.04657v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.04657v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出MobileWAM，融合视频世界模型与动作专家，实现移动操作全身控制，具创新性与高科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Tsinghua University",
+        "Shanghai Jiao Tong University",
+        "HKUST(GZ)",
+        "Li Auto"
+      ],
+      "method_tags": [
+        "World Action Model",
+        "Mixture-of-Transformers",
+        "Chain-of-Foresight"
+      ],
+      "platform": [
+        "ARX Lift2"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "github-andrejorsula-drl-grasping",
       "source": "github",
       "title": "AndrejOrsula/drl_grasping",
@@ -26486,159 +26738,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2608-04425",
-      "source": "arxiv",
-      "title": "SSC: A Verifiable Structured Representation for Bimanual Manipulation Labelling",
-      "title_zh": "SSC：一种用于双手操作标注的可验证结构化表示",
-      "tldr_zh": "提出结构化子任务链，实现双手操作标注的可验证表示。",
-      "cover_zh": "标注新范式｜结构化子任务链让双手操作标注可验证",
-      "abstract_zh": "子任务标签将长时间的操作演示分解为较短的语义片段，用于策略训练和评估。自然语言描述易于阅读，但其语言变异性使得自动验证变得困难。严格的模板格式（如BEHAVIOR-1K的skill_annotation）在语言上过度分割，阻碍了可读性和标注一致性。我们提出了结构化子任务链（SSC），一种状态转换表示，弥合了这些极端。演示是结构化子任务模板（SST）条目的序列。每个SST存储核心动作组件（主语、谓语、宾语）、灵活条件（如空间或工具短语等状语修饰语）、与手臂动作分离的基础运动字段，以及后状态场景图。基于此格式，SSC支持三种视觉-语言辅助功能：将SST渲染为自然语言、根据四条状态转换规则检查组装链、以及通过查询解析级联完成未指定的字段。我们在BEHAVIOR-1K（50个任务，每个任务3个片段，2357个标注动作单元）上实例化该流程，进行逻辑验证和内容补全，评估13个选定的最先进视觉-语言模型作为候选验证器，并报告标注异常。",
-      "authors": [
-        "Yupu Lu",
-        "Shuang Wu",
-        "Sihan Chen"
-      ],
-      "authors_all": [
-        "Yupu Lu",
-        "Shuang Wu",
-        "Sihan Chen",
-        "Ruihua Han",
-        "Yichen Zhang",
-        "Marcus Kalander",
-        "Jia Pan"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-08-05",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ HKU"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2608-04425.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2608-04425-p2.jpg",
-        "assets/img/covers/arxiv-2608-04425-p3.jpg",
-        "assets/img/covers/arxiv-2608-04425-p4.jpg"
-      ],
-      "arxiv_id": "2608.04425",
-      "abs_url": "http://arxiv.org/abs/2608.04425v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.04425v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 47,
-      "judge": {
-        "relevant": true,
-        "research_value": "medium",
-        "primary_channel": "manipulation",
-        "reason": "提出结构化子任务链表示，用于双臂操作标注与验证，具科研价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "The University of Hong Kong",
-        "Artificial Intelligence Laboratory (Leibniz)"
-      ],
-      "method_tags": [
-        "Structured Subtask Chain",
-        "Vision-Language Verifier",
-        "Subtask Labelling"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2608-04527",
-      "source": "arxiv",
-      "title": "Retrieve in Time, Correct in Frequency",
-      "title_zh": "按时检索，按频校正",
-      "tldr_zh": "RTCF无需训练，通过低频残差校正提升冻结VLA策略成功率。",
-      "cover_zh": "无需训练！这个新框架让机器人成功率飙升，长任务表现惊艳",
-      "abstract_zh": "冻结的视觉-语言-动作（VLA）策略生成时间上扩展的动作块，但长时程操作仍然容易受到累积执行误差和跨任务阶段的视觉混淆的影响。成功的轨迹提供了有用的纠正性证据，然而当前的帧检索可能返回与进度不对齐的动作，而直接重放或时域融合可能覆盖策略提议的反应性结构。我们引入了按时检索，按频校正（RTCF），一个无需训练的测试时校正框架，以低模型侧开销提高冻结VLA的性能。RTCF将检索哪些经验与转移其动作的哪些部分分开。渐进记忆对齐（PMA）通过增量更新的单调前沿，因果地将增长的视觉执行历史与完整的成功轨迹对齐，共同识别相关记忆和当前对齐的记忆位置，无需阶段标签。从对齐的动作块中，RTCF在运动通道上转移系数裁剪的低频残差。高频分量和夹爪决策保留自冻结策略。在四个LIBERO套件和每个条件2000个回合中，RTCF将总体成功率从86.4%提高到88.4%，并将LIBERO-Long从61.6%提高到68.6%。这些增益不需要参数更新、重复VLA推理或额外的GPU资源：在单次策略调用后，可以在客户端CPU上执行校正，每个动作块的中位延迟总和仅为10.99毫秒。",
-      "authors": [
-        "Yuze Fan",
-        "Yue Cao",
-        "Pengjie Gao"
-      ],
-      "authors_all": [
-        "Yuze Fan",
-        "Yue Cao",
-        "Pengjie Gao",
-        "Haojia Gao",
-        "Guangqiu Guo",
-        "Ziyue Zhang",
-        "Junbo Tan",
-        "Bokui Chen",
-        "Zhuo Zou",
-        "Xueqian Wang"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-08-05",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ 清华"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2608-04527.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2608-04527-p2.jpg",
-        "assets/img/covers/arxiv-2608-04527-p3.jpg",
-        "assets/img/covers/arxiv-2608-04527-p4.jpg"
-      ],
-      "arxiv_id": "2608.04527",
-      "abs_url": "http://arxiv.org/abs/2608.04527v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.04527v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 47,
-      "judge": {
-        "relevant": true,
-        "research_value": "medium",
-        "primary_channel": "manipulation",
-        "reason": "提出免训练测试时修正框架提升冻结VLA性能，属于操作策略改进，有实验验证。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Research Institute of Tsinghua University in Shenzhen",
-        "Everwise-Tech Co., Ltd.",
-        "Tongji University",
-        "Fudan University"
-      ],
-      "method_tags": [
-        "test-time correction",
-        "retrieval-augmented",
-        "frequency-domain fusion"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2608-04964",
       "source": "arxiv",
       "title": "WorldCycle: Self-Verifiable Reinforcement Learning for Long-Horizon Video World Models",
@@ -26727,9 +26826,9 @@
       "source": "arxiv",
       "title": "VGGT-$Ω$",
       "title_zh": "VGGT-$\\Omega$",
-      "tldr_zh": "VGGT-Ω通过架构改进和自监督学习，以更低内存实现更高重建精度，并提升下游任务性能。",
-      "cover_zh": "重建模型还能这么省？内存砍70%，精度反超77%！",
-      "abstract_zh": "最近的馈送式重建模型，如VGGT，已被证明与传统基于优化的重建器具有竞争力，同时提供对其他任务有用的几何感知特征。在这里，我们表明这些模型的质量随模型和数据规模可预测地扩展。为此，我们引入了VGGT-$\\Omega$，它显著提高了静态和动态场景的重建精度、效率和能力。为了以前所未有的规模训练该模型，我们引入了提高训练效率的架构更改、支持动态场景的高质量数据标注流程以及自监督学习协议。我们通过使用具有多任务监督的单一密集预测头并移除昂贵的高分辨率卷积层来简化VGGT的架构。我们还使用寄存器将场景信息聚合为紧凑表示，并引入寄存器注意力，将帧间信息交换限制在这些寄存器中，部分取代全局注意力。这样，在训练期间，VGGT-$\\Omega$仅使用其前身约30%的GPU内存，使我们能够使用比先前工作多15倍的监督数据进行训练，并利用大量未标记的视频数据。VGGT-$\\Omega$在多个基准上对静态和动态场景的重建取得了强劲结果，例如，在Sintel上将先前最佳相机估计精度提高了77%。我们还表明，学习到的寄存器可以改进视觉-语言-动作模型并支持与语言的对齐，这表明重建可以成为空间理解的一个强大且可扩展的代理任务。项目页面：http://vggt-omega.github.io/",
+      "tldr_zh": "VGGT-Ω通过架构改进和自监督，用更少内存训练更大模型，显著提升重建精度。",
+      "cover_zh": "内存砍掉70%？这个重建模型精度却暴涨77%！",
+      "abstract_zh": "最近的馈送式重建模型，如VGGT，已被证明与传统基于优化的重建器具有竞争力，同时还能提供对其他任务有用的几何感知特征。在此，我们表明这些模型的质量随模型和数据规模呈可预测的扩展。为此，我们引入了VGGT-$\\Omega$，它大幅提高了静态和动态场景的重建精度、效率和能力。为了以前所未有的规模训练该模型，我们引入了提高训练效率的架构更改、支持动态场景的高质量数据标注流程，以及自监督学习协议。我们通过使用具有多任务监督的单一密集预测头并移除昂贵的高分辨率卷积层来简化VGGT的架构。我们还使用寄存器将场景信息聚合为紧凑表示，并引入寄存器注意力，将帧间信息交换限制在这些寄存器上，部分取代全局注意力。这样，在训练期间，VGGT-$\\Omega$仅使用其前身约30%的GPU内存，使我们能够使用比先前工作多15倍的监督数据进行训练，并利用大量未标记的视频数据。VGGT-$\\Omega$在多个基准上对静态和动态场景的重建取得了强劲结果，例如，在Sintel上将先前最佳相机估计精度提高了77%。我们还表明，学习到的寄存器可以改进视觉-语言-动作模型并支持与语言的对齐，这表明重建可以成为空间理解的强大且可扩展的代理任务。项目页面：http://vggt-omega.github.io/",
       "authors": [
         "Jianyuan Wang",
         "Minghao Chen",
@@ -40079,7 +40178,7 @@
       "title": "Whirlybird | Atlas | Boston Dynamics",
       "title_zh": "Whirlybird | Atlas | Boston Dynamics",
       "tldr_zh": "Atlas 机器人尝试旋转和新动作。",
-      "cover_zh": "机器人也爱转圈圈？Atlas 新动作太酷了！",
+      "cover_zh": "机器人 Atlas 玩转旋转新动作，太酷了！",
       "abstract_zh": "Atlas 尝试旋转并尝试一些新动作。",
       "authors": [],
       "authors_all": [],
@@ -44656,101 +44755,6 @@
         "state-machine-based coordination"
       ],
       "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2608-04657",
-      "source": "arxiv",
-      "title": "MobileWAM: Bridging World Action Models to Mobile Manipulation with Chain-of-Foresight",
-      "title_zh": "MobileWAM：通过预见链将世界行动模型桥接到移动操作",
-      "tldr_zh": "MobileWAM将世界行动模型用于移动操作，通过预见链提升性能并超越SOTA。",
-      "cover_zh": "移动操作新突破｜世界模型+预见链，让机器人全身协调更智能",
-      "abstract_zh": "基于视频生成骨干构建的世界行动模型（WAMs）是机器人学习的一种新兴方法，但至今仍局限于桌面操作。移动操作要求在场景级动态中同时进行移动和全身操作，然而目前仍由手工协调的动态盲视觉编码器主导。我们通过MobileWAM弥合了这一差距，这是一种混合变换器架构，通过逐层联合注意力将预训练的视频扩散变换器与轻量级动作专家融合，将互联网规模的运动先验转化为全身控制。为了协调移动和操作的异质动态，动作专家的每个前馈层都变成了一个由共享、移动和操作专家组成的三专家混合体，由动作标记中的运动意图软路由。为了强化监督，我们进一步提出了预见链（CoF）：中间表示顺序预测未来潜在块链，每一步以其前驱为条件。CoF与我们解耦的视频-动作去噪方案自然配对。在部署时，WAM仅作为当前帧编码器；预见仅通过梯度起作用，因此在推理时，预见链和视频生成被丢弃，仅留下策略级成本。MobileWAM在ManiSkill-HAB上超越了最先进的移动操作策略，并微调至真实的ARX Lift2移动操作器，在多种任务中表现出强大的泛化能力。代码即将发布。",
-      "authors": [
-        "Zehua Fan",
-        "Junjie He",
-        "Wenxuan Song"
-      ],
-      "authors_all": [
-        "Zehua Fan",
-        "Junjie He",
-        "Wenxuan Song",
-        "Xi Wang",
-        "Wenqi Lyu",
-        "Linge Zhao",
-        "Fuhao Li",
-        "Zihan You",
-        "Yifei Yang",
-        "Kaiming Xu",
-        "Qi Jiang",
-        "Yue Jiang",
-        "Haoang Li",
-        "Cheng Chi",
-        "Bailin Li",
-        "Yan Wang"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-08-05",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ 清华"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ SJTU"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ HKUST"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2608-04657.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2608-04657-p2.jpg",
-        "assets/img/covers/arxiv-2608-04657-p3.jpg",
-        "assets/img/covers/arxiv-2608-04657-p4.jpg"
-      ],
-      "arxiv_id": "2608.04657",
-      "abs_url": "http://arxiv.org/abs/2608.04657v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.04657v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 41,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "提出MobileWAM，融合视频世界模型与动作专家，实现移动操作全身控制，具创新性与高科研价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Tsinghua University",
-        "Shanghai Jiao Tong University",
-        "HKUST(GZ)",
-        "Li Auto"
-      ],
-      "method_tags": [
-        "World Action Model",
-        "Mixture-of-Transformers",
-        "Chain-of-Foresight"
-      ],
-      "platform": [
-        "ARX Lift2"
-      ],
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
@@ -52926,10 +52930,10 @@
       "id": "arxiv-2608-04996",
       "source": "arxiv",
       "title": "DreamWAM: Beyond RGB Future Prediction for World Action Models",
-      "title_zh": "DreamWAM: Beyond RGB Future Prediction for World Action Models",
-      "tldr_zh": "World Action Models (WAMs) learn action-relevant representat",
-      "cover_zh": "World Action Models (WAMs) learn action-relevant representat",
-      "abstract_zh": "World Action Models (WAMs) learn action-relevant representations by predicting how the observed world will evolve. Most existing WAMs define this future in RGB space, where task-relevant state transitions are entangled with nuisance variations in texture, illumination, background, and viewpoint. We argue that WAMs should explicitly predict action-relevant future state rather than relying on RGB prediction alone. We introduce DreamWAM, which reformulates future prediction as structured world modeling beyond RGB, representing future states through complementary views of appearance, motion, geometry, and semantics. During training, DreamWAM combines joint latent denoising of RGB and motion with lightweight gated residual branches for geometry and semantics. Shared attention between VideoDiT and ActionDiT allows the action branch to learn from these future-state predictions, while all beyond-RGB supervision branches are disabled at inference and deployment remains RGB-only. Across both no-rollout and joint video-action inference, DreamWAM consistently improves the matched RGB-only baselines on LIBERO, from 97.30\\% to 98.40\\% and from 98.00\\% to 98.90\\%, respectively. The gains become larger under unseen LIBERO-Plus perturbations, from 51.36\\% to 63.44\\% and from 69.16\\% to 75.47\\%. The same robustness extends to real-world manipulation, where DreamWAM attains an average success rate of 74.4\\% across unseen changes in lighting, background, and object layout, compared with 55.6\\% for Fast-WAM-Joint. These results show that robust world-action learning depends not only on predicting the future, but on representing it in a form that matters for action. The code and models are publicly released at https://github.com/hustvl/DreamWAM.",
+      "title_zh": "DreamWAM：超越RGB未来预测的世界动作模型",
+      "tldr_zh": "DreamWAM通过预测动作相关的未来状态超越RGB，提升世界动作模型鲁棒性。",
+      "cover_zh": "还在用RGB预测未来？DreamWAM用结构化表示让机器人操作更稳更准！",
+      "abstract_zh": "世界动作模型（WAMs）通过预测观察到的世界将如何演变来学习与动作相关的表示。大多数现有的WAMs在RGB空间中定义这种未来，其中任务相关的状态转换与纹理、光照、背景和视点中的干扰变化纠缠在一起。我们认为WAMs应明确预测与动作相关的未来状态，而不是仅依赖RGB预测。我们引入了DreamWAM，它将未来预测重新表述为超越RGB的结构化世界建模，通过外观、运动、几何和语义的互补视图来表示未来状态。在训练期间，DreamWAM将RGB和运动的联合潜在去噪与用于几何和语义的轻量级门控残差分支相结合。VideoDiT和ActionDiT之间的共享注意力使动作分支能够从这些未来状态预测中学习，而在推理时所有超越RGB的监督分支都被禁用，部署仍仅使用RGB。在无展开和联合视频-动作推理两种情况下，DreamWAM在LIBERO上一致地改进了匹配的仅RGB基线，分别从97.30%提高到98.40%，从98.00%提高到98.90%。在未见过的LIBERO-Plus扰动下，增益更大，从51.36%提高到63.44%，从69.16%提高到75.47%。同样的鲁棒性扩展到真实世界操作，DreamWAM在光照、背景和物体布局的未见变化中达到了74.4%的平均成功率，而Fast-WAM-Joint为55.6%。这些结果表明，鲁棒的世界动作学习不仅依赖于预测未来，还依赖于以对动作重要的形式来表示未来。代码和模型已在https://github.com/hustvl/DreamWAM公开发布。",
       "authors": [
         "Shanglin Yuan",
         "Weiheng Zhao",
@@ -72521,8 +72525,8 @@
       "source": "video_youtube",
       "title": "Real-Time Omni-Modal Interaction Driven Whole-Body Mobile Manipulation",
       "title_zh": "实时全模态交互驱动的全身移动操作",
-      "tldr_zh": "单一模型实现全模态交互与自主稳定执行，用于家庭护理。",
-      "cover_zh": "一个模型搞定全屋护理？还能抗干扰自主执行！",
+      "tldr_zh": "单一模型实现全模态交互与全身移动操作，自主稳定抗干扰。",
+      "cover_zh": "一个模型搞定全屋家务？还能抗干扰自主执行！",
       "abstract_zh": "Unitree UnifoLM-OminiA-0.3——一个处理多种家庭护理和健康任务的单一模型，具备全模态交互理解能力，实现完全自主、稳定且抗干扰的执行。",
       "authors": [],
       "authors_all": [],
