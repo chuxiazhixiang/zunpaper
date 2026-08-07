@@ -35,7 +35,7 @@
 6. **demo 视频**（`videos.py`，P0）— 扫摘要/项目页找 YouTube/Bilibili/mp4
 7. **translate + render**（`process_new_papers`）— 翻译标题/摘要/TL;DR + PyMuPDF 渲染封面
 8. `write_feed` / `write_rss` / markdown digest
-9. **月度综述**（`monthly_digest.py`，P6）— 只重算本月
+9. **月度综述**（`monthly_digest.py`，P6）— 只处理本月，论文 ID 集合没变化就不调 LLM
 10. `stamp_assets` — 给 HTML/JS 打 `?v=<git-sha>` cache-bust
 11. Actions commit 数据 → push → Pages 部署
 
@@ -87,6 +87,8 @@ cd site && python -m http.server 8000                       # 本地预览
 ## 关键约定 / 缓存
 
 - **多层缓存让重跑近乎免费**，同一篇只 LLM 一次：`data/judge_cache.json`（判定）、`data/enrich_cache.json`（标签）、`data/video_cache.json`（视频）、`site/data/papers/{id}.json`（翻译 + 渲染）。**这些缓存必须 commit 回仓库**（`daily.yml` 里 `git add site data/*.json`），否则每天重判一遍浪费钱。
+- **封面体积有硬上限**：每篇只保留 `{id}.jpg` + `{id}-p2.jpg`，宽度最多 800px、JPEG quality 76；`asset_cleanup.prune_cover_assets()` 每次 build 会同步截断 `preview_pages`、删孤儿/超额页。不能恢复成 4 页全量预览，否则约 1900 篇就会让 Pages artifact 超过 1 GB。
+- **昂贵增量每天只跑一次**：两个 cron 只用于容灾；`discover_state.json` 和 `llm_backfill_state.json` 防止第二班重复跑 Gemini/backfill。存量默认预算 enrich=5、translate=25、note=5；手动迁移要打开 `force_backfill`。
 - **改频道/打分/徽章规则后无需手动改数据**：下次 build 对所有存量论文重算 `retag_and_prune` + `apply()`（badges + score）+ 重新过滤。
 - **关键词宁多勿少**：`channels.yaml` 召回粗放，靠 judge 二审，漏召回比误召回更糟。
 - **频道**：`loco-manip-wbc`（含全身/人形 VLA）、`manipulation`（含纯机械臂/桌面 VLA：OpenVLA/π0/Octo/RDT）、`teleop`、`locomotion`、`world-model`、`sim2real`。VLA 按形态分流：人形全身→loco-manip-wbc，机械臂→manipulation（规则在 `judge.py` SYSTEM_PROMPT + `channels.yaml`）。
@@ -95,7 +97,7 @@ cd site && python -m http.server 8000                       # 本地预览
 
 - **judge cache 用 `prompt_version`，只记录、不自动失效**（`judge.py:PROMPT_VERSION`，当前 1）。为什么不自动失效：judge 决定论文**去留**，按版本全站自动重判会突然大批增删论文 + 烧钱/超时，风险远高于 enrich。改了 `SYSTEM_PROMPT` 判定标准就把 `PROMPT_VERSION` +1，然后**手动**跑 `JudgeCache(path).evict_stale()`（可只清近期 `newer_than_ts=`）让下次 build 重判。常规 build 不会自动调用 evict。
 - **enrich cache 用 `schema`，会自动重抽**（`enrich.py:EnrichCache.SCHEMA`，当前 2）。与 judge 不同：enrich 只改展示标签、不增删论文，所以低于当前 schema 的条目会被重抽。但**只对 `fresh`（当天抓到的）+ 滚动 backfill** 重抽，不是一次性全站（防超时）。
-  - **滚动 backfill**：每轮按发布日倒序补抽 `REDPAPER_ENRICH_BACKFILL`（默认 30）篇 schema 过期的存量论文；一次性全站迁移用 `workflow_dispatch` 的 `enrich_backfill` 输入调大（如 200）。窗口外旧论文（不在 fresh）靠这条慢慢纠正。
+  - **滚动 backfill**：每天按发布日倒序补抽 `REDPAPER_ENRICH_BACKFILL`（默认 5）篇 schema 过期的存量论文；容灾班次按状态去重。一次性全站迁移用 `workflow_dispatch` 调大并打开 `force_backfill`。窗口外旧论文（不在 fresh）靠这条慢慢纠正。
   - **抽取质量三件套**：① 读 PDF 首页文本（`render.extract_head_text`，真实机构脚注 / 平台型号几乎只在首页，摘要里没有）② writer 默认弃权（文本没明确写就留空，不准猜）③ reviewer 第二个 AI 对照原文删掉没依据的值。`enrich.py:enrich_paper(review=True)`。
   - **失败重试**：cache 记 `pdf_ok` / `review_ok` / `tries`。PDF 下载失败或 reviewer 失败的条目会被有限重试（≤ `MAX_PDF_RETRIES`=3），不会被当作 fully current 永久锁死；reviewer 失败时还会**保守清空高风险字段**（机构/平台/仿真栈）。
   - 已弃用字段：`method_family` / `training_summary`（含糊无用，固定留空、前端不展示）。
@@ -104,7 +106,7 @@ cd site && python -m http.server 8000                       # 本地预览
 
 ## 部署模型（避免双部署竞态）
 
-- **`daily.yml` 是唯一的自动部署源**：跑完 build → `git add site`（含 stamp 后的 `*.html` / `assets/js` 的 `?v=` 戳、`rss.xml`、`digest/*.md`，保证 git 与部署 artifact 一致）→ 用默认 `GITHUB_TOKEN` push（GITHUB_TOKEN 的 push **不会**触发其它 workflow）→ deploy artifact。
+- **`daily.yml` 是唯一的自动部署源**：每天 UTC 03:00 主班 + 06:00 容灾班；跑完 build → `git add site data/*.json`（含 stamp 后前端与所有 LLM/节流状态）→ 用默认 `GITHUB_TOKEN` push（GITHUB_TOKEN 的 push **不会**触发其它 workflow）→ deploy artifact。
 - **`deploy.yml` 改成 `workflow_dispatch` only**（去掉了 push 触发）。原因：真正会触发它的是「人 / gh API 用户令牌」往 main 推 `site/**`，而那种 push 带的是工作区里**旧的 `?v=` 戳**（没跑 stamp_assets），会用陈旧前端覆盖 daily 的正确产物、且并发竞态。
 - **推论**：用 gh API 手动改前端后，要让线上生效就**触发一次 `daily.yml`**（它会重新 stamp + commit + deploy），不要指望 push 自动部署。
 

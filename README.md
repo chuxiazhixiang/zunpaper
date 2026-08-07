@@ -121,7 +121,7 @@
 - `site/data/daily/YYYY-MM-DD.json` — 每日归档
 - `site/data/papers/{id}.json` — 每篇论文完整数据
 - `site/data/digest/monthly/YYYY-MM.json` + `site/digest/monthly-YYYY-MM.md` — 月度综述
-- `site/assets/img/covers/{id}.jpg` + `-p2/p3/p4.jpg` — 首页 + 内页预览
+- `site/assets/img/covers/{id}.jpg` + `-p2.jpg` — 首页 + 1 张内页预览；build 自动删孤儿/超额页并压到 800px
 - `site/rss.xml` — RSS 订阅
 
 ---
@@ -362,7 +362,7 @@ site/                    # GitHub Pages 服务的全部静态产物
 | 翻译 (translate)  | Gemini Free / DeepSeek | 免费 / ¥1 / 1M | ~600 in + ~500 out | **≈0 / ¥0.001** |
 | 月度综述 (monthly)  | V4-Flash         | 同上               | 每月一次 ~5K in + 2K out | **¥0.02 / 月** |
 
-每天 ~30 篇新论文 × 判官+标签+翻译 ≈ **¥0.06 / 天**，配上激进缓存与 Gemini 免费翻译，实测**一个月 ≈ ¥2**。
+定时任务每天 2 班（主班 + 容灾），但 Gemini discover 与存量 LLM backfill 按天去重；月度综述仅在本月论文集合变化时重算。默认存量预算为 enrich 5 篇、翻译 25 篇、笔记 5 篇，可在手动 workflow 中临时放大。
 
 > 缓存命中后**完全不掏钱** —— 判官 / 标签 / 视频 / 翻译都写盘缓存（`data/*.json` + `site/data/papers/*.json`），同一篇 paper 重跑只读盘。
 
@@ -373,7 +373,7 @@ site/                    # GitHub Pages 服务的全部静态产物
 - **静态 + 客户端**：所有交互（收藏夹、分类、深色模式、图片放大）走 `localStorage`，没有用户体系，没有后端。换设备 = 换收藏。
 - **LLM 把关 > 关键词**：关键词召回粗放（必须粗放才不漏），靠 DeepSeek 在入站前做一次「相关性 + 价值」二审。漏掉一篇 ≈ 没事，混进一篇水货 ≈ 看着烦——所以宁缺勿滥。
 - **联网发现补漏召回**：keyword 列表困死在「写过的词」上，新工作命名 / 新平台名召不回来。`discover.py` 让带 Google 搜索的 Gemini 主动补一层，候选 ID 全部走 arxiv API 验真，防 LLM 编号幻觉。
-- **数据走 git**：所有 paper json / 封面 jpg 都 commit 进仓库（每篇 ~5KB JSON + ~50KB 封面）。1000 篇 ≈ 50MB，能扛好几年。
+- **数据走 git**：所有 paper JSON / 封面 JPG 都 commit 进仓库；每篇最多保留主封面 + 第 2 页预览，build 会清理孤儿和超额页，避免 Pages artifact 再撞 1 GB 上限。
 - **Cache-busting 治本**：每次 build 用 git short-SHA 给 HTML / JS 打 `?v=...` 戳，浏览器永远不会卡在旧版数据上。
 
 ---

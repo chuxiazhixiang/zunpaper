@@ -289,27 +289,30 @@ def _validate_and_fetch(
 
 # ----- Public API ----------------------------------------------------------
 
-def discover_recent_papers(
+def discover_recent_papers_with_status(
     channels: list[cfg.Channel],
     existing_ids: set[str],
     days: int = 14,
     per_channel: int = 5,
-) -> list[Paper]:
-    """Top-level entry：用搜索能力的 LLM 找最近 N 天的高质量论文，验证后返回。
+) -> tuple[list[Paper], bool]:
+    """Discover papers and report whether the grounded-search call succeeded.
 
-    优先 Gemini grounded search（真实联网），失败回退 DeepSeek 知识推理。
-    返回的 Paper 已经验证过 arxiv ID 真实，且不在 existing_ids 集合里。
+    The status lets the build persist its daily throttle only after a real
+    Gemini response. A transient API failure can therefore retry in the
+    fallback workflow run without repeating successful calls.
     """
     candidates: list[dict] = []
+    search_ok = False
     if os.environ.get("GEMINI_API_KEY"):
         try:
             candidates = _call_gemini_grounded(days, per_channel)
+            search_ok = True
         except Exception as e:
             log.warning("gemini discover failed (%s); skipping discover step", e)
     else:
         log.info("discover: GEMINI_API_KEY not set, skipping (DeepSeek 无联网能力, 不再 fallback)")
     if not candidates:
-        return []
+        return [], search_ok
     log.info("discover: %d LLM candidates, validating against arxiv...", len(candidates))
     # 允许 LLM 找到 30 天内的论文（即使让它限定 14 天，超出一点也 OK；
     # 关键是不要"半年前的老熟人"）。
@@ -317,6 +320,19 @@ def discover_recent_papers(
         candidates, channels, existing_ids, max_age_days=max(days * 2, 30),
     )
     log.info("discover: %d validated", len(papers))
+    return papers, True
+
+
+def discover_recent_papers(
+    channels: list[cfg.Channel],
+    existing_ids: set[str],
+    days: int = 14,
+    per_channel: int = 5,
+) -> list[Paper]:
+    """Use grounded search to find recent validated papers."""
+    papers, _ = discover_recent_papers_with_status(
+        channels, existing_ids, days=days, per_channel=per_channel
+    )
     return papers
 
 

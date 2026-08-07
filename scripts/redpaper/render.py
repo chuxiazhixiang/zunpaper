@@ -1,10 +1,9 @@
 """Render the first few pages of a paper PDF to JPEGs.
 
 * Page 1 = the cover image (title + abstract + sometimes Figure 1)
-* Pages 2-4 are stored as additional preview images and surfaced as carousel
-  slides on the detail page. Architecture / pipeline figures usually appear
-  on page 2 or 3 of recent ML/robotics papers, so showing them inline lets
-  the reader judge a paper without leaving the site. ("流程图")
+* Page 2 is stored as one additional preview image and surfaced in the detail
+  page carousel. It usually carries the architecture or pipeline figure while
+  avoiding the storage cost of rendering every paper's first four pages.
 """
 from __future__ import annotations
 
@@ -23,7 +22,11 @@ log = logging.getLogger(__name__)
 
 USER_AGENT = "redpaper/0.1 (+https://github.com/Nangongyeee/redpaper)"
 TIMEOUT_SECONDS = 60
-PREVIEW_PAGES = 4  # how many pages to render in total (page 1 + 3 more)
+# One inner page preserves the useful architecture/pipeline preview while
+# keeping the Pages artifact well below its 1 GB limit.
+PREVIEW_PAGES = 2  # total pages: cover + page 2
+MAX_IMAGE_WIDTH = 800
+JPEG_QUALITY = 76
 
 
 def download_pdf(url: str, dest: Path) -> bool:
@@ -85,7 +88,13 @@ def extract_head_text(pdf_url: str, max_pages: int = 2, max_chars: int = 3500) -
     return text[:max_chars], page_count
 
 
-def _render_page(doc, page_idx: int, out_jpg: Path, max_width: int = 900, quality: int = 82) -> bool:
+def _render_page(
+    doc,
+    page_idx: int,
+    out_jpg: Path,
+    max_width: int = MAX_IMAGE_WIDTH,
+    quality: int = JPEG_QUALITY,
+) -> bool:
     try:
         page = doc.load_page(page_idx)
         pix = page.get_pixmap(matrix=fitz.Matrix(2, 2), alpha=False)

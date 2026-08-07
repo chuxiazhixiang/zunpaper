@@ -23,6 +23,13 @@ from .scoring import score_paper
 from .venues import parse_venue
 from .models import Paper, Author, load_paper, save_paper
 from .render import fetch_and_render, extract_head_text as fetch_head_text
+from .render import JPEG_QUALITY, MAX_IMAGE_WIDTH, PREVIEW_PAGES
+from .asset_cleanup import prune_cover_assets
+from .cost_control import (
+    daily_slot_available as _daily_slot_available,
+    mark_daily_slot as _mark_daily_slot,
+    monthly_digest_is_current as _monthly_digest_is_current,
+)
 from .note import generate_note
 from .sources import arxiv_source
 from .sources import hf_daily as hf_daily_source
@@ -312,6 +319,10 @@ def _github_mark_fetched() -> None:
 def _github_mark_attempt() -> None:
     # 失败：只记 last_attempt，不动 last_fetch —— 下次 build 仍可重试，不哑等一周。
     _github_write_state(last_attempt=dt.datetime.now(dt.timezone.utc).isoformat())
+
+
+_DISCOVER_STATE_PATH = cfg.REPO_ROOT / "data" / "discover_state.json"
+_BACKFILL_STATE_PATH = cfg.REPO_ROOT / "data" / "llm_backfill_state.json"
 
 
 _OPENREVIEW_STATE_PATH = cfg.REPO_ROOT / "data" / "openreview_state.json"
@@ -1654,13 +1665,13 @@ def run() -> None:
     # 走 Gemini-2.0/2.5 flash 带 google_search grounding 主动找最近 arxiv 论文，
     # 专门补 channels.yaml keyword 漏召回的（新工作命名 / 新平台名）。验证完
     # arxiv ID 真实存在再入站，防止 LLM 幻觉编 ID。
-    if getattr(sources, "discover_enabled", True):
+    if getattr(sources, "discover_enabled", True) and _daily_slot_available(_DISCOVER_STATE_PATH, "discover"):
         try:
             from . import discover as _discover
             existing_ids = set(fresh.keys())
             for jp in cfg.PAPERS_DIR.glob("*.json"):
                 existing_ids.add(jp.stem)
-            disc_papers = _discover.discover_recent_papers(
+            disc_papers, discover_ok = _discover.discover_recent_papers_with_status(
                 channels,
                 existing_ids,
                 days=getattr(sources, "discover_lookback_days", 14),
@@ -1670,8 +1681,12 @@ def run() -> None:
                 if p.id not in fresh:
                     fresh[p.id] = p
             log.info("discover: %d added (post-validation)", len(disc_papers))
+            if discover_ok:
+                _mark_daily_slot(_DISCOVER_STATE_PATH, "discover")
         except Exception as e:
             log.warning("discover step failed: %s", e)
+    elif getattr(sources, "discover_enabled", True):
+        log.info("discover: already completed today, skipping duplicate grounded search")
 
     # ----- P5: 视频频道源（YouTube + Bilibili 厂商 demo） ---------------
     # 用 sources.video_channels_enabled 总开关。每条视频包成 Paper 卡，跟
@@ -1822,16 +1837,20 @@ def run() -> None:
     # 论文，每轮补抽一批（读 PDF + reviewer，限量防 CI 超时）。按发布日期倒序优先
     # 修近期高曝光论文。窗口外的旧论文（如 OASIS 6/07）就是靠这条慢慢纠正过来。
     enrich_cache = EnrichCache(cfg.REPO_ROOT / "data" / "enrich_cache.json")
-    # 默认每轮只补 30 篇（读 PDF + writer + reviewer 较重，避免日常 build 撞 50min
-    # 超时 / 成本突增）；一次性全站迁移用 workflow_dispatch 的 enrich_backfill 调大。
-    backfill_budget = int(os.environ.get("REDPAPER_ENRICH_BACKFILL", "30") or "30")
+    # 默认每天只补 5 篇（读 PDF + writer + reviewer 较重）；容灾班次由状态文件去重。
+    # 一次性迁移用 workflow_dispatch 调大 enrich_backfill 并打开 force_backfill。
+    force_backfill = os.environ.get("REDPAPER_FORCE_BACKFILL", "").lower() in {"1", "true", "yes"}
+    backfill_slot = force_backfill or _daily_slot_available(_BACKFILL_STATE_PATH, "backfill")
+    if not backfill_slot:
+        log.info("LLM backfill: already completed today, skipping duplicate backfill")
+    backfill_budget = int(os.environ.get("REDPAPER_ENRICH_BACKFILL", "5") or "5") if backfill_slot else 0
     backfilled = 0
     # 翻译 backfill 也限量：会议源一次入库数百篇英文论文，若每轮把所有未翻的全翻一遍
     # （每篇 1 次 LLM）会撞 CI 超时。每轮最多翻 N 篇（按发布日倒序优先近期），其余下轮。
-    translate_budget = int(os.environ.get("REDPAPER_TRANSLATE_BACKFILL", "250") or "250")
+    translate_budget = int(os.environ.get("REDPAPER_TRANSLATE_BACKFILL", "25") or "25") if backfill_slot else 0
     translated = 0
     # 笔记 backfill：存量未生成笔记的论文，每轮补 N 篇。
-    note_budget = int(os.environ.get("REDPAPER_NOTE_BACKFILL", "30") or "30")
+    note_budget = int(os.environ.get("REDPAPER_NOTE_BACKFILL", "5") or "5") if backfill_slot else 0
     noted = 0
     all_papers = list(_existing_papers().values())
     all_papers.sort(key=lambda p: (p.published or "", p.id), reverse=True)
@@ -1840,7 +1859,7 @@ def run() -> None:
             continue  # already enriched in process_new_papers
 
         # 会议源（openreview/conf）和 github/external 不参与 enrich backfill —— 否则
-        # 每轮还会有 30 篇会议论文去下 PDF + 跑 writer/reviewer，把当初为超时加的 skip
+        # 否则会议论文会从存量路径去下 PDF + 跑 writer/reviewer，把当初为超时加的 skip
         # 又从存量这条路漏回来（codex 指出）。
         if (paper.source or "") not in ("github", "openreview", "conf", "external_link") \
                 and backfilled < backfill_budget \
@@ -1884,6 +1903,8 @@ def run() -> None:
     if backfilled:
         enrich_cache.save()
         log.info("enrich backfill: re-enriched %d schema-outdated existing papers", backfilled)
+    if backfill_slot:
+        _mark_daily_slot(_BACKFILL_STATE_PATH, "backfill")
 
     # 自定义分类成员关系重算 / 回填（关键词 + 独立 judge，预算限量、多 build 摊销）。
     if custom_channels:
@@ -1894,6 +1915,26 @@ def run() -> None:
             log.warning("assign_custom_channels failed: %s", e)
 
     all_papers = list(_existing_papers().values())
+    asset_stats = prune_cover_assets(
+        all_papers,
+        cfg.COVER_DIR,
+        max_preview_pages=max(0, PREVIEW_PAGES - 1),
+        max_width=MAX_IMAGE_WIDTH,
+        quality=JPEG_QUALITY,
+    )
+    trimmed_ids = set(asset_stats.trimmed_ids)
+    for paper in all_papers:
+        if paper.id in trimmed_ids:
+            save_paper(paper, cfg.PAPERS_DIR)
+    if asset_stats.removed_files or asset_stats.optimized_files or asset_stats.trimmed_papers:
+        log.info(
+            "cover cleanup: removed %d files (%.1f MiB), optimized %d (%.1f MiB saved), trimmed %d papers",
+            asset_stats.removed_files,
+            asset_stats.removed_bytes / (1024 * 1024),
+            asset_stats.optimized_files,
+            asset_stats.optimized_bytes / (1024 * 1024),
+            asset_stats.trimmed_papers,
+        )
     write_feed(all_papers)
     sorted_papers = sorted(all_papers, key=lambda p: (p.published, p.id), reverse=True)
     write_markdown_digest(sorted_papers)
@@ -1933,6 +1974,10 @@ def _refresh_current_month_digest(all_papers: list[Paper]) -> None:
     if len(month_papers) < 5:
         log.info("monthly digest skipped: only %d papers in %s",
                  len(month_papers), current_ym)
+        return
+    digest_path = cfg.REPO_ROOT / "site" / "data" / "digest" / "monthly" / f"{current_ym}.json"
+    if _monthly_digest_is_current(digest_path, month_papers):
+        log.info("monthly digest unchanged: %s (%d papers), skipping LLM call", current_ym, len(month_papers))
         return
     try:
         d = generate_monthly_digest(current_ym, all_papers)
