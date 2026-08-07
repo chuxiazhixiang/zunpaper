@@ -7,16 +7,11 @@ on:
     #   • 夏令时 EDT = UTC-4 → 美东 20:00 = UTC 00:00 = 北京时间 08:00
     #   • 冬令时 EST = UTC-5 → 美东 20:00 = UTC 01:00 = 北京时间 09:00
     #
-    # ⚠️ GitHub Actions 的 scheduled event **不保证准时、高峰期会延迟数小时甚至
-    # 直接丢弃整次触发**（官方文档明说）。2026-06-16 就发生过当天两班全被 drop、
-    # 站点一天没更新。对策：把班次加密成每 2 小时一班、覆盖北京 11:00–19:00。
-    # 任一班跑成功当天就有数据；judge / enrich / 翻译都有缓存，多跑几乎不费钱
-    # （还能顺带加速 enrich 滚动 backfill）。concurrency 串行，不会并发打架。
-    - cron: "0 3 * * *"    # 北京 11:00（主，arXiv 公告后 2-3h buffer）
-    - cron: "0 5 * * *"    # 北京 13:00
-    - cron: "0 7 * * *"    # 北京 15:00
-    - cron: "0 9 * * *"    # 北京 17:00
-    - cron: "0 11 * * *"   # 北京 19:00
+    # ⚠️ scheduled event 不保证准时，高峰期可能延迟或丢弃。保留一个主班和一个
+    # 容灾班即可；代码里的 discover / LLM backfill / 月度综述还有按天去重，避免
+    # 为了容灾重复烧 API 和上传 Pages artifact。
+    - cron: "0 3 * * *"    # 北京 11:00（主，arXiv 公告后留 buffer）
+    - cron: "0 6 * * *"    # 北京 14:00（容灾）
   workflow_dispatch:
     inputs:
       llm_backend:
@@ -28,9 +23,21 @@ on:
         required: false
         default: ""
       enrich_backfill:
-        description: "本轮重抽多少篇 schema 过期的存量论文（留空 = 默认 80；一次性全站迁移可调大）"
+        description: "本轮重抽多少篇 schema 过期的存量论文（默认 5；一次性迁移可调大）"
         required: false
-        default: ""
+        default: "5"
+      translate_backfill:
+        description: "本轮最多补翻多少篇存量论文（默认 25）"
+        required: false
+        default: "25"
+      note_backfill:
+        description: "本轮最多生成多少篇存量笔记（默认 5）"
+        required: false
+        default: "5"
+      force_backfill:
+        description: "忽略当天 backfill 去重状态（仅手动迁移时打开）"
+        required: false
+        default: "false"
 
 permissions:
   contents: write    # 允许把生成的 data 提交回仓库
@@ -62,7 +69,10 @@ jobs:
         env:
           REDPAPER_LLM_BACKEND: ${{ inputs.llm_backend || 'deepseek' }}
           REDPAPER_ARXIV_LOOKBACK_DAYS: ${{ inputs.lookback_days_override || '' }}
-          REDPAPER_ENRICH_BACKFILL: ${{ inputs.enrich_backfill || '' }}
+          REDPAPER_ENRICH_BACKFILL: ${{ inputs.enrich_backfill || '5' }}
+          REDPAPER_TRANSLATE_BACKFILL: ${{ inputs.translate_backfill || '25' }}
+          REDPAPER_NOTE_BACKFILL: ${{ inputs.note_backfill || '5' }}
+          REDPAPER_FORCE_BACKFILL: ${{ inputs.force_backfill || 'false' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -81,7 +91,7 @@ jobs:
           # 否则手动 deploy.yml（从 git 部署）会用旧 ?v= 的 HTML 覆盖正确产物。
           # data/*.json 是 LLM 判定 / 翻译 / enrich 的累积缓存 —— 不 commit 回去
           # 的话每天 Actions 都得从零再付费判一遍，跨日复用才省钱 + 稳定。
-          git add site data/judge_cache.json data/enrich_cache.json data/video_cache.json data/github_state.json data/custom_judge_cache.json data/custom_channels_state.json data/custom_keyword_cache.json data/venue_check_state.json data/openreview_state.json data/conf_papers_state.json || true
+          git add site data/*.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
