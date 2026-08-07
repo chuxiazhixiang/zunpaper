@@ -176,5 +176,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"MobileWAM: Bridging World Action Models to Mobile Manipulation with Chain-of-Foresight\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.04657v1\n---\n>[!abstract] 一句话总结：MobileWAM采用混合Transformer架构，将预训练视频扩散Transformer与轻量动作专家通过逐层联合注意力融合，动作专家中每个前馈层由共享、移动、操作三专家混合，并按动作token中的运动意图路由；同时提出Chain-of-Foresight（CoF），通过中间表示顺序预测未来潜在块，配合解耦的视频-动作去噪，推理时仅保留当前帧编码和策略。\n\n\n# 一、动机\n\n> 现有世界动作模型（WAM）局限于桌面操作，而移动操作需要同时处理运动与全身操作，目前仍依赖动态盲视觉编码器和手工协调，缺乏利用视频先验的机制。\n\n\n# 二、方法\n\n> MobileWAM采用混合Transformer架构，将预训练视频扩散Transformer与轻量动作专家通过逐层联合注意力融合，动作专家中每个前馈层由共享、移动、操作三专家混合，并按动作token中的运动意图路由；同时提出Chain-of-Foresight（CoF），通过中间表示顺序预测未来潜在块，配合解耦的视频-动作去噪，推理时仅保留当前帧编码和策略。\n\n\n# 三、核心实验结果\n\n> 在ManiSkill-HAB上超越现有移动操作策略，并在真实ARX Lift2移动操作机器人上微调后完成多样任务，泛化性强（论文摘要未提供具体定量数值）。\n\n\n# 四、对我的启发\n\n> CoF通过梯度形式在训练时注入前瞻信息，推理时无需额外开销，为利用视频生成先验的机器人策略设计提供了高效思路；但移动操作中整体系动力学与异构运动路由的鲁棒性仍需进一步验证。\n"
 }
