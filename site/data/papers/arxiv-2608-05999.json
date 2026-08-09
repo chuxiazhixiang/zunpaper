@@ -64,28 +64,17 @@
     "loco-manip-wbc",
     "manipulation"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 10,
   "source_tags": [],
-  "score": 30,
+  "score": 20,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 5 个（long-horizon manipulation、vision-language-action、vla model、embodied agent）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -123,5 +112,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Beyond Flat Policies: Hierarchical Post-Training for Embodied Agents in Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.05999v1\n---\n>[!abstract] 一句话总结：提出HiRoC层次化后训练框架，将高层任务规划与低层动作执行解耦：规划器将复杂任务分解为可执行的子目标，执行器通过强化学习持续改进子目标条件下的动作生成；在强化学习前对齐执行器与规划器生成的子目标，缓解规划与执行之间的分布不匹配。\n\n\n# 一、动机\n\n> 现有VLA模型的后训练大多采用扁平策略，难以显式建模任务进度和进行稳健的长时程操作；层次化方法虽引入任务分解，但主要依赖离线示范的监督学习，无法通过在线交互有效提升执行能力。\n\n\n# 二、方法\n\n> 提出HiRoC层次化后训练框架，将高层任务规划与低层动作执行解耦：规划器将复杂任务分解为可执行的子目标，执行器通过强化学习持续改进子目标条件下的动作生成；在强化学习前对齐执行器与规划器生成的子目标，缓解规划与执行之间的分布不匹配。\n\n\n# 三、核心实验结果\n\n> 在多个机器人操作基准上一致优于强基线，但摘要未给出具体数值。\n\n\n# 四、对我的启发\n\n> 层次化后训练为长时程操作提供了显式语义指导，但依赖离线示范和仿真环境，可进一步探索在真实世界与少量交互下的样本效率问题；与课题直接相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"Beyond Flat Policies: Hierarchical Post-Training for Embodied Agents in Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.05999v1\n---\n>[!abstract] 一句话总结：提出HiRoC，一种分层后训练框架，将高层任务规划与低层动作执行解耦：规划器将复杂任务分解为可执行的子目标，执行器通过强化学习持续改进子目标条件下的动作生成，并在RL前对齐执行器与规划器生成的子目标，缓解规划与执行之间的分布不匹配。\n\n\n# 一、动机\n\n> 现有VLA模型的后训练方法通常优化为扁平策略，难以显式建模任务进度并执行鲁棒的长程操作，而层次化方法多依赖离线示范的监督学习，无法通过在线交互有效提升执行能力。\n\n\n# 二、方法\n\n> 提出HiRoC，一种分层后训练框架，将高层任务规划与低层动作执行解耦：规划器将复杂任务分解为可执行的子目标，执行器通过强化学习持续改进子目标条件下的动作生成，并在RL前对齐执行器与规划器生成的子目标，缓解规划与执行之间的分布不匹配。\n\n\n# 三、核心实验结果\n\n> 在多个机器人操作基准上一致优于强基线；深入分析验证了分层后训练的有效性以及每个关键组件的贡献（具体数值需参考原文）。\n\n\n# 四、对我的启发\n\n> 与课题直接相关。说明分层后训练结合强化学习能有效提升VLA模型的长程操作能力，未来可探索更细粒度的子目标表示或在线对齐策略。\n"
 }

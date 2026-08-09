@@ -55,28 +55,17 @@
   "channels": [
     "manipulation"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 19,
   "source_tags": [],
-  "score": 16,
+  "score": 6,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 3,
       "hint": "频道关键词命中 1 个（tactile sensing）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -105,5 +94,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"ErgoSurf: Ergodic Control for the Coverage of Unknown Surfaces\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.06208v1\n---\n>[!abstract] 一句话总结：利用高斯过程隐式曲面（GPIS）从执行过程中的固有触觉感知学习全局表面几何；在线规划时，用观测接触点处切平面采样的点云对表面进行局部近似，并迭代拟合到高斯过程，作为目标分布与覆盖分布的采样域；再通过热扩散类比计算势场，将空间覆盖目标转化为平滑机器人轨迹。\n\n\n# 一、动机\n\n> 传统遍历控制（Ergodic Control）在表面覆盖任务中通常需要预先知道表面几何或依赖视觉提前扫描，难以应对未知或动态环境。本文提出一种在线遍历控制框架，在覆盖未知表面的同时实时重建其几何形状。\n\n\n# 二、方法\n\n> 利用高斯过程隐式曲面（GPIS）从执行过程中的固有触觉感知学习全局表面几何；在线规划时，用观测接触点处切平面采样的点云对表面进行局部近似，并迭代拟合到高斯过程，作为目标分布与覆盖分布的采样域；再通过热扩散类比计算势场，将空间覆盖目标转化为平滑机器人轨迹。\n\n\n# 三、核心实验结果\n\n> 仿真和真实机器人实验均验证了同时进行遍历覆盖与在线表面几何学习的有效性，重建误差接近真值（ground truth），说明该框架能在未知表面场景下实现稳定接触与覆盖。\n\n\n# 四、对我的启发\n\n> 与课题直接相关，尤其适用于依赖接触的打磨、抛光等表面作业。局限在于依赖触觉传感数据的质量和计算效率，未来可探索多传感融合或更高效的GPIS近似方法。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"ErgoSurf: Ergodic Control for the Coverage of Unknown Surfaces\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.06208v1\n---\n>[!abstract] 一句话总结：提出在线遍历控制框架，利用高斯过程隐式表面（GPIS）从触觉感知在线学习全局表面几何，并用接触点切平面采样的点云近似局部表面，基于热扩散计算势场引导遍历探索。\n\n\n# 一、动机\n\n> 传统遍历控制方法依赖已知表面几何或需要视觉预扫描，难以应对未知或动态环境。\n\n\n# 二、方法\n\n> 提出在线遍历控制框架，利用高斯过程隐式表面（GPIS）从触觉感知在线学习全局表面几何，并用接触点切平面采样的点云近似局部表面，基于热扩散计算势场引导遍历探索。\n\n\n# 三、核心实验结果\n\n> 在仿真和真实机器人实验中，该方法实现了同步遍历覆盖与在线表面几何学习，重建误差接近真实值。\n\n\n# 四、对我的启发\n\n> 与课题直接相关，为未知表面接触式覆盖任务提供了不依赖视觉的在线感知-规划方案，但触觉感知可能限制覆盖速度，值得进一步优化。\n"
 }
