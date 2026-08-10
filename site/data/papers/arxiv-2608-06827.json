@@ -47,7 +47,8 @@
     "assets/img/covers/arxiv-2608-06827-p2.jpg"
   ],
   "channels": [
-    "sim2real"
+    "sim2real",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -62,7 +63,7 @@
   "related_links": [],
   "page_count": 11,
   "source_tags": [],
-  "score": 31,
+  "score": 39,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -73,14 +74,20 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（real-to-sim）"
+      "points": 6,
+      "hint": "频道关键词命中 2 个（real-to-sim、unitree g1）"
     },
     {
       "id": "longer_paper",
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 11 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -108,5 +115,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"R2S-EGO: Dual-Proxy Refinement for Sparse-Capture Real-to-Sim\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.06827v1\n---\n>[!abstract] 一句话总结：R2S-EGO提出耦合仿真器导出的机器人代理（表示行为范围的可执行查询域）与采集锚定的几何代理（提供场景特定结构条件），在固定预算下选择当前支持赤字且几何可用的视角，生成伪观测用于细化视觉资产，同时真实捕获保持锚点，并每轮刷新碰撞表面。\n\n\n# 一、动机\n\n> Real-to-sim依赖沿机器人ego轨迹渲染的场景表示，但密集多视角采集效率低，稀疏人类采集会导致行为范围内的机器人视角支持不足；现有基于相机控制的合成方法缺少行为合规查询和采集锚定的结构条件。\n\n\n# 二、方法\n\n> R2S-EGO提出耦合仿真器导出的机器人代理（表示行为范围的可执行查询域）与采集锚定的几何代理（提供场景特定结构条件），在固定预算下选择当前支持赤字且几何可用的视角，生成伪观测用于细化视觉资产，同时真实捕获保持锚点，并每轮刷新碰撞表面。\n\n\n# 三、核心实验结果\n\n> 在三个Replica场景的48个冻结Unitree G1 ego视图上，六视角R2S-EGO达到19.062 dB PSNR，而最强R2S基线仅14.226 dB；在五个策略训练种子下，真实G1坐下成功率达82.5%±6.8%，对比GaussGym的10.0%±10.5%。\n\n\n# 四、对我的启发\n\n> 与课题直接相关，表明行为域+几何代理的合成数据能显著提升稀疏捕获下的真实到仿真性能，但局限在于依赖仿真器代理且仅验证单一机器人平台，后续可探索跨平台泛化和更复杂行为范围。\n"
 }

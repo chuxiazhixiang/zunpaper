@@ -53,25 +53,34 @@
     "assets/img/covers/arxiv-2608-06688-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "locomotion",
+    "sim2real",
+    "loco-manip-wbc"
   ],
   "badges": [],
   "related_links": [],
   "page_count": 14,
   "source_tags": [],
-  "score": 9,
+  "score": 20,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 6,
-      "hint": "频道关键词命中 2 个（vision-language-action、vla model）"
+      "points": 12,
+      "hint": "频道关键词命中 4 个（vision-language-action、vla model、legged robot、real-world deployment）"
     },
     {
       "id": "longer_paper",
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 14 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 4 个频道"
     }
   ],
   "judge": {
@@ -99,5 +108,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/CrossEmbodimentTransfer\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"CrossTracer: Cross-Embodiment Navigation via VLA Model Reasoning and Trace Residuals Adapting\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.06688v1\n---\n>[!abstract] 一句话总结：提出CrossTracer分层框架，将导航计划表示为归一化图像平面航点，统一语义推理与物理基础；VL-Tracer基于预训练VLA预测初始导航轨迹，CE-Adapter根据视觉可穿越性线索、机器人身份和初始轨迹预测本体条件残差修正，并用CE-RRT*将全景分割转换为机器人条件代价地图来自动生成训练数据。\n\n\n# 一、动机\n\n> VLA模型为机器人导航提供语义先验，但忽略了具体本体（embodiment）的运动约束，导致语义上可行的路径在物理上可能不可行。\n\n\n# 二、方法\n\n> 提出CrossTracer分层框架，将导航计划表示为归一化图像平面航点，统一语义推理与物理基础；VL-Tracer基于预训练VLA预测初始导航轨迹，CE-Adapter根据视觉可穿越性线索、机器人身份和初始轨迹预测本体条件残差修正，并用CE-RRT*将全景分割转换为机器人条件代价地图来自动生成训练数据。\n\n\n# 三、核心实验结果\n\n> 在NaviTrace基准上总分45.68，超过最强通用基线Gemini-2.5-Pro达10.01分（相对提升28.1%）；真实轮式和腿式机器人部署显示导航成功率和执行效率均有提升。\n\n\n# 四、对我的启发\n\n> 跨具身导航可通过像素空间航点统一表示与残差适配来解决，启发是无需昂贵人工标注即可利用自动生成轨迹训练精化模块；与课题直接相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/CrossEmbodimentTransfer\n  - Task/EmbodiedAI\nTitle: \"CrossTracer: Cross-Embodiment Navigation via VLA Model Reasoning and Trace Residuals Adapting\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.06688v1\n---\n>[!abstract] 一句话总结：提出 CrossTracer 层次化框架，将导航规划表示为归一化图像平面航迹，统一语义推理与物理落地：VL-Tracer 基于预训练 VLA 预测初始航迹，CE-Adapter 依据可通行性线索、机器人身份和初始航迹预测残差修正，并用 CE-RRT* 将全景分割转为机器人条件代价图自动生成训练数据。\n\n\n# 一、动机\n\n> 现有视觉-语言-动作（VLA）模型为机器人导航提供强语义先验，但忽视具身特定的运动约束，导致语义可行的路径对另一机器人可能物理不可行。\n\n\n# 二、方法\n\n> 提出 CrossTracer 层次化框架，将导航规划表示为归一化图像平面航迹，统一语义推理与物理落地：VL-Tracer 基于预训练 VLA 预测初始航迹，CE-Adapter 依据可通行性线索、机器人身份和初始航迹预测残差修正，并用 CE-RRT* 将全景分割转为机器人条件代价图自动生成训练数据。\n\n\n# 三、核心实验结果\n\n> 在 NaviTrace 基准上总分为 45.68，超过最强通用基线 Gemini-2.5-Pro 10.01 分（相对提升 28.1%）；真实轮式和腿式机器人部署中导航成功率和执行效率均有提升。\n\n\n# 四、对我的启发\n\n> 跨具身残差学习有效避免人工标注，像素空间统一接口可复用性强；未来可探索更鲁棒的可通行性建模以降低对分割质量的依赖。\n"
 }

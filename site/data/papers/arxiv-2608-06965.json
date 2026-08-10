@@ -103,5 +103,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Cross-View Action Consistency for Camera-Robust Vision-Language-Action Policies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.06965v1\n---\n>[!abstract] 一句话总结：提出跨视图动作一致性正则化：将原始LIBERO演示重置到相同MuJoCo状态，渲染标称和扰动相机视角组成动作等价视图对；两个视图均用flow matching监督，并额外增加损失迫使两者在相同采样flow坐标上预测的动作流速度一致；训练时屏蔽腕部流以防止未受扰动的捷径干扰归因。\n\n\n# 一、动机\n\n> 基于固定场景相机的VLA策略在相机移动时性能显著下降，而现有方法依赖相机标定、外参或点云。本文仅使用单场景RGB图像、语言和本体感觉，在不引入额外传感器信息的前提下提升场景相机视角鲁棒性。\n\n\n# 二、方法\n\n> 提出跨视图动作一致性正则化：将原始LIBERO演示重置到相同MuJoCo状态，渲染标称和扰动相机视角组成动作等价视图对；两个视图均用flow matching监督，并额外增加损失迫使两者在相同采样flow坐标上预测的动作流速度一致；训练时屏蔽腕部流以防止未受扰动的捷径干扰归因。\n\n\n# 三、核心实验结果\n\n> 在LIBERO-Plus相机扰动基准上达到87.2±0.4%（3个训练种子，每种子4797次rollout），比仅用相同配对数据的flow-matching训练（79.8±0.8%）高7.4pp，比朴素混合相机SFT高12.5pp；标称相机ID性能保持95.0±0.8%（与FM-only的95.0±4.3%持平）；打乱视图对控制实验性能崩至25.8%，证明增益依赖动作等价配对。真实机器人三个桌面任务、每任务10次rollout下，未见过的相机位置成功率从53.3%提升至74.4%。\n\n\n# 四、对我的启发\n\n> 该方法仅针对flow-based VLA策略，依赖可重置到相同状态的演示数据来构造动作等价视图对；对非flow-based策略或无法精确定位状态的场景可能需要额外适配。与课题直接相关，可借鉴跨视图一致性思想用于机器人操作中的相机鲁棒性提升。\n"
 }

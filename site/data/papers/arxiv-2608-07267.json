@@ -67,7 +67,8 @@
     "assets/img/covers/arxiv-2608-07267-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -86,7 +87,7 @@
   "related_links": [],
   "page_count": 23,
   "source_tags": [],
-  "score": 51,
+  "score": 56,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -111,6 +112,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 23 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -138,5 +145,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"WNM-3D: A World Navigation Model with 3D Scene Conditioning for Closed-Loop VLN\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.07267v1\n---\n>[!abstract] 一句话总结：提出WNM-3D，用冻结的几何编码器从单目RGB历史中提取几何感知表示，并通过可训练的3D Scene-to-Token Adapter转换为固定长度前缀，以块因果注意力条件化Diffusion Transformer的未来视频-动作块生成；训练采用监督微调、DAgger式适应和DanceGRPO闭环优化。\n\n\n# 一、动机\n\n> 现有VLA策略在连续VLN中未显式建模视觉观察在预测动作下的演化，而现有WAMs未利用几何感知表示来条件化联合未来视图和动作生成。\n\n\n# 二、方法\n\n> 提出WNM-3D，用冻结的几何编码器从单目RGB历史中提取几何感知表示，并通过可训练的3D Scene-to-Token Adapter转换为固定长度前缀，以块因果注意力条件化Diffusion Transformer的未来视频-动作块生成；训练采用监督微调、DAgger式适应和DanceGRPO闭环优化。\n\n\n# 三、核心实验结果\n\n> 在GN-Bench上优于强VLM导航策略和2D条件版本；在固定近目标评估集上取得更高的flow-action一致性和更低的视觉-运动误差（摘要未提供具体数值）。\n\n\n# 四、对我的启发\n\n> 3D场景条件化能有效提升连续VLN的闭环导航性能；未来可探索更高效的几何编码器或将该方法扩展到其他具身智能任务。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"WNM-3D: A World Navigation Model with 3D Scene Conditioning for Closed-Loop VLN\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.07267v1\n---\n>[!abstract] 一句话总结：提出WNM-3D，一种带3D场景条件的生成式世界导航模型：用冻结的前馈几何编码器从单目RGB历史提取几何感知表示，经可训练的3D Scene-to-Token适配器转换为固定长度前缀，通过块因果注意力条件化未来视频-动作块的生成，并采用A*演示监督微调、DAgger风格适应和DanceGRPO闭环策略优化训练。\n\n\n# 一、动机\n\n> 现有VLN系统将预训练VLM适配为VLA策略，但动作中心训练未显式建模视觉观测在预测动作下的演化；生成式世界动作模型（WAM）虽联合预测未来观测和动作，但在连续VLN中未基于观测历史推断的几何感知表示进行条件生成。\n\n\n# 二、方法\n\n> 提出WNM-3D，一种带3D场景条件的生成式世界导航模型：用冻结的前馈几何编码器从单目RGB历史提取几何感知表示，经可训练的3D Scene-to-Token适配器转换为固定长度前缀，通过块因果注意力条件化未来视频-动作块的生成，并采用A*演示监督微调、DAgger风格适应和DanceGRPO闭环策略优化训练。\n\n\n# 三、核心实验结果\n\n> 在GN-Bench闭环导航中优于强VLM导航策略和2D条件版本；在固定近目标评估集上，流动作一致性更高、视觉-运动误差更低（具体数字需据论文，此处概述）。\n\n\n# 四、对我的启发\n\n> 3D场景条件为联合生成未来观测与动作提供共享几何上下文，提升闭环导航一致性；与具身智能课题相关，可启发将几何感知世界模型用于其他连续控制任务。\n"
 }
