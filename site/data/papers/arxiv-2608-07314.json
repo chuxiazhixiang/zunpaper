@@ -1,0 +1,82 @@
+{
+  "id": "arxiv-2608-07314",
+  "source": "arxiv",
+  "title": "TEMPO: Semantic-Action Decoupled RL Post-Training for Vision-Language-Action Models",
+  "title_zh": "TEMPO：视觉-语言-动作模型的语义-动作解耦强化学习后训练",
+  "abstract": "Vision-language-action (VLA) models are commonly adapted to downstream manipulation tasks via supervised fine-tuning (SFT) or online reinforcement learning (RL) post-training. SFT is prone to distribution mismatch, and existing RL approaches typically apply a single, uniform update strategy to all model components, ignoring their distinct functional roles. We propose TEMPO, a semantic-action decoupled, two-timescale RL post-training framework for VLA models. TEMPO freezes the pretrained vision-language backbone to preserve general semantic representations, and restricts adaptation to two components with dedicated RL optimization loops: the semantic projection layer and the low-level action expert. We update them at different rates--the semantic projection layer infrequently, to keep the latent action stable, and the action expert frequently, to rapidly incorporate control feedback from online interaction. This decoupling RL fine-tuning strategy prevents fast policy updates from destabilizing high-level semantic representations while still allowing the action expert to learn efficiently from online feedback. Experiments on the CALVIN benchmark and real-world manipulation tasks demonstrate that TEMPO consistently outperforms both pretrained state-of-the-art VLA models and the RL post-training baseline, while reaching and maintaining higher evaluation rewards on two real-world tasks.",
+  "abstract_zh": "视觉-语言-动作（VLA）模型通常通过监督微调（SFT）或在线强化学习（RL）后训练来适应下游操作任务。SFT容易产生分布不匹配，而现有的RL方法通常对所有模型组件应用单一、统一的更新策略，忽略了它们不同的功能角色。我们提出TEMPO，一种用于VLA模型的语义-动作解耦、双时间尺度RL后训练框架。TEMPO冻结预训练的视觉-语言骨干以保留通用语义表示，并将适应限制在两个具有专用RL优化循环的组件上：语义投影层和低级动作专家。我们以不同的速率更新它们——语义投影层不频繁更新，以保持潜在动作稳定；动作专家频繁更新，以快速整合来自在线交互的控制反馈。这种解耦的RL微调策略防止了快速策略更新破坏高层语义表示，同时仍允许动作专家从在线反馈中高效学习。在CALVIN基准和真实世界操作任务上的实验表明，TEMPO始终优于预训练的最先进VLA模型和RL后训练基线，并在两个真实世界任务上达到并保持更高的评估奖励。",
+  "tldr_zh": "TEMPO通过解耦语义与动作的强化学习后训练，提升VLA模型性能。",
+  "cover_zh": "别再一刀切微调了！这个新框架让VLA模型性能飙升",
+  "authors": [
+    {
+      "name": "Ziheng Liu",
+      "affiliation": ""
+    },
+    {
+      "name": "Quantao Yang",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.CV"
+  ],
+  "published": "2026-08-07",
+  "updated": "2026-08-07",
+  "arxiv_id": "2608.07314",
+  "pdf_url": "https://arxiv.org/pdf/2608.07314v1",
+  "abs_url": "http://arxiv.org/abs/2608.07314v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-07314.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-07314-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 9,
+  "source_tags": [],
+  "score": 12,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（vision-language-action、vla model、manipulation）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 9 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出VLA模型解耦双时间尺度RL后训练方法，在CALVIN和真机任务上验证，对操作策略优化有参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Zhejiang Gongshang University",
+    "KTH Royal Institute of Technology"
+  ],
+  "method_tags": [
+    "RL",
+    "VLA",
+    "two-timescale"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"TEMPO: Semantic-Action Decoupled RL Post-Training for Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.07314v1\n---\n>[!abstract] 一句话总结：提出TEMPO，冻结预训练视觉-语言骨干以保留语义表示，仅对语义投影层和低层动作专家分别进行不同时间尺度的RL优化，低频更新语义投影层以保持潜在动作稳定，高频更新动作专家以快速利用在线交互反馈。\n\n\n# 一、动机\n\n> VLA模型后训练中，SFT存在分布不匹配问题；现有RL方法对所有组件施加单一统一更新策略，忽略了不同组件的功能差异。\n\n\n# 二、方法\n\n> 提出TEMPO，冻结预训练视觉-语言骨干以保留语义表示，仅对语义投影层和低层动作专家分别进行不同时间尺度的RL优化，低频更新语义投影层以保持潜在动作稳定，高频更新动作专家以快速利用在线交互反馈。\n\n\n# 三、核心实验结果\n\n> 在CALVIN基准和真实世界操作任务上，TEMPO一致优于预训练SOTA VLA模型和RL后训练基线，并在两个真实任务中达到并保持更高的评估奖励。\n\n\n# 四、对我的启发\n\n> 通过解耦不同组件的更新频率，可防止快速策略更新破坏高层语义表示，同时保持动作专家的高效学习；与机器人操作直接相关，可进一步探索时间尺度的自动确定等设计选择。\n"
+}

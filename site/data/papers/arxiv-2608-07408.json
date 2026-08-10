@@ -1,0 +1,123 @@
+{
+  "id": "arxiv-2608-07408",
+  "source": "arxiv",
+  "title": "Addressable Memory for Video World Models",
+  "title_zh": "视频世界模型的可寻址记忆",
+  "abstract": "We study visual persistence in interactive video world models. These models rely on a Key-Value (KV) cache as a growing visual memory to carry forward previously generated frames. However, we find that models can no longer reliably address stored content once rollouts extend beyond the training horizon, because temporal Rotary Positional Embeddings (RoPE) offsets then fall outside the range seen during training and the model struggles to retrieve the relevant visual information through attention. Moreover, naively compressing the cache in the RoPE-rotated space corrupts memory by averaging together incompatible positional phases. To address this, we propose WorldTrace, a training-free memory framework for long-horizon visual persistence. WorldTrace keeps compressed memory addressable by assigning each summary slot a distinct, in-distribution virtual position. Within this addressable cache, we study two memory compression approaches: WorldTrace-Field compresses history for temporal coherence, while WorldTrace-Landmark stores verbatim scene traces at detected transitions for episodic recall. We further introduce LoopBench, a benchmark evaluating whether a compressed cache can reconstruct a previously visited scene after a long detour. WorldTrace-Field improves temporal consistency by +15.5%, and WorldTrace-Landmark improves episodic recall by +19.5% on LoopBench, extending visually persistent generation without retraining.",
+  "abstract_zh": "我们研究了交互式视频世界模型中的视觉持久性。这些模型依赖键值（KV）缓存作为不断增长的视觉记忆，以携带先前生成的帧。然而，我们发现，当展开超过训练范围时，模型无法可靠地寻址存储的内容，因为时间旋转位置编码（RoPE）偏移超出了训练期间所见范围，模型难以通过注意力检索相关视觉信息。此外，在RoPE旋转空间中天真地压缩缓存会因平均不相容的位置相位而破坏记忆。为解决此问题，我们提出WorldTrace，一种无需训练的记忆框架，用于长时程视觉持久性。WorldTrace通过为每个摘要槽分配一个不同的、分布内的虚拟位置来保持压缩记忆的可寻址性。在此可寻址缓存中，我们研究了两种记忆压缩方法：WorldTrace-Field压缩历史以实现时间一致性，而WorldTrace-Landmark在检测到的转换处存储逐字场景轨迹以实现情景回忆。我们进一步引入LoopBench，一个评估压缩缓存能否在长绕行后重建先前访问场景的基准。WorldTrace-Field在LoopBench上将时间一致性提高了15.5%，WorldTrace-Landmark将情景回忆提高了19.5%，无需重新训练即可扩展视觉持久生成。",
+  "tldr_zh": "提出WorldTrace，无需训练即可扩展视频世界模型的视觉持久性，提升时间一致性和情景回忆。",
+  "cover_zh": "视频模型记忆崩了？新框架无需训练，长时程生成稳了！",
+  "authors": [
+    {
+      "name": "Xindi Wu",
+      "affiliation": ""
+    },
+    {
+      "name": "Sven Elflein",
+      "affiliation": ""
+    },
+    {
+      "name": "James Lucas",
+      "affiliation": ""
+    },
+    {
+      "name": "Olga Russakovsky",
+      "affiliation": ""
+    },
+    {
+      "name": "Laura Leal-Taixé",
+      "affiliation": ""
+    },
+    {
+      "name": "Despoina Paschalidou",
+      "affiliation": ""
+    },
+    {
+      "name": "Jonathan Lorraine",
+      "affiliation": ""
+    },
+    {
+      "name": "Aljoša Ošep",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.CV",
+  "categories": [
+    "cs.CV",
+    "cs.LG"
+  ],
+  "published": "2026-08-07",
+  "updated": "2026-08-07",
+  "arxiv_id": "2608.07408",
+  "pdf_url": "https://arxiv.org/pdf/2608.07408v1",
+  "abs_url": "http://arxiv.org/abs/2608.07408v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-07408.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-07408-p2.jpg"
+  ],
+  "channels": [
+    "world-model"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ NVIDIA"
+    },
+    {
+      "kind": "lab",
+      "label": "⭐ Princeton"
+    }
+  ],
+  "related_links": [],
+  "page_count": 34,
+  "source_tags": [],
+  "score": 37,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “NVIDIA” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（world model、world models、video world model）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 34 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "world-model",
+    "reason": "提出视频世界模型长时记忆压缩与寻址方法，并引入LoopBench基准，对具身规划有参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "NVIDIA",
+    "Princeton University",
+    "University of Toronto",
+    "Vector Institute"
+  ],
+  "method_tags": [
+    "World Model",
+    "Memory Compression",
+    "Long-horizon"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"Addressable Memory for Video World Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.07408v1\n---\n>[!abstract] 一句话总结：提出WorldTrace，无需训练的记忆框架，通过为每个摘要槽分配不同的分布内虚拟位置保持压缩记忆可寻址；包含WorldTrace-Field（压缩历史保持时间连贯）和WorldTrace-Landmark（在检测到的转换处存储逐字场景轨迹用于情景回忆）；并引入LoopBench基准。\n\n\n# 一、动机\n\n> 交互式视频世界模型依赖KV cache作为视觉记忆，但超出训练时长的rollout中，RoPE位置偏移越界，模型无法可靠寻址存储内容；且朴素压缩在RoPE旋转空间中会平均不兼容的位置相位，破坏记忆。\n\n\n# 二、方法\n\n> 提出WorldTrace，无需训练的记忆框架，通过为每个摘要槽分配不同的分布内虚拟位置保持压缩记忆可寻址；包含WorldTrace-Field（压缩历史保持时间连贯）和WorldTrace-Landmark（在检测到的转换处存储逐字场景轨迹用于情景回忆）；并引入LoopBench基准。\n\n\n# 三、核心实验结果\n\n> 在LoopBench上，WorldTrace-Field将时间一致性提高+15.5%，WorldTrace-Landmark将情景回忆提高+19.5%，无需重训练即可延长视觉持久生成。\n\n\n# 四、对我的启发\n\n> 与机器人/具身智能不直接相关，但长时视觉记忆和RoPE越界处理思路可迁移至机器人场景理解；局限是仅针对视频世界模型的压缩缓存，未覆盖其他模态。\n"
+}

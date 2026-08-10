@@ -1,0 +1,85 @@
+{
+  "id": "arxiv-2608-07065",
+  "source": "arxiv",
+  "title": "AutoIntervene: Calibrated Intervention for Action-Chunking Imitation Learning Policies",
+  "title_zh": "AutoIntervene：针对动作分块模仿学习策略的校准干预",
+  "abstract": "Action-chunking visuomotor policies learn from demonstrations and improve temporal consistency by predicting short action sequences rather than single-step commands. Yet perception errors and execution drift can move the robot outside the demonstration distribution, while the policy continues to produce smooth action chunks that are inconsistent with the observed state. We present AutoIntervene, an online framework that selectively transfers control between an action-chunking policy and an operator during deployment. AutoIntervene evaluates proposed chunks against a visual-action support memory built from successful task executions, combining visual similarity with consistency between proposed and reference actions. Phase-local support governs policy-to-operator transfer within the current task phase, whereas global support governs the return to policy control after operator recovery. We calibrate separate switching thresholds for the two directions from empirical quantiles of evaluation-level scores on held-out expert demonstrations, avoiding direct manual tuning of score cutoffs. Intervention segments retained from successful rollouts target learner-induced states and provide corrective supervision for subsequent policy updates. Experiments on real-world bimanual manipulation tasks show higher post-adaptation task success and lower operator-control time than manual intervention. Videos and additional results are available at https://aus.bot/research/autointervene/.",
+  "abstract_zh": "动作分块的视觉运动策略通过预测短动作序列而非单步命令，从示范中学习并提高时间一致性。然而，感知错误和执行漂移可能使机器人偏离示范分布，而策略仍会生成与观察状态不一致的平滑动作块。我们提出AutoIntervene，一个在线框架，在部署期间选择性地在动作分块策略和操作员之间转移控制。AutoIntervene根据成功任务执行构建的视觉-动作支持记忆来评估提议的动作块，结合视觉相似性与提议动作和参考动作之间的一致性。阶段局部支持控制当前任务阶段内从策略到操作员的转移，而全局支持则控制操作员恢复后返回策略控制。我们根据留出专家示范上评估分数的经验分位数，为两个方向校准单独的切换阈值，避免直接手动调整分数截止值。从成功回滚中保留的干预段针对学习者诱导的状态，并为后续策略更新提供纠正性监督。在真实世界双臂操作任务上的实验表明，与手动干预相比，适应后任务成功率更高，操作员控制时间更少。视频和额外结果可在https://aus.bot/research/autointervene/获取。",
+  "tldr_zh": "AutoIntervene通过校准干预，在部署时选择性转移控制，提升动作分块策略的适应后成功率并减少操作员时间。",
+  "cover_zh": "机器人策略跑偏？这个框架用校准干预让它重回正轨，成功率更高！",
+  "authors": [
+    {
+      "name": "Jinhe Tang",
+      "affiliation": ""
+    },
+    {
+      "name": "Weiming Zhi",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.AI",
+    "cs.CV",
+    "cs.HC",
+    "cs.LG"
+  ],
+  "published": "2026-08-07",
+  "updated": "2026-08-07",
+  "arxiv_id": "2608.07065",
+  "pdf_url": "https://arxiv.org/pdf/2608.07065v1",
+  "abs_url": "http://arxiv.org/abs/2608.07065v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-07065.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-07065-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 9,
+  "source_tags": [],
+  "score": 15,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 4 个（manipulation、bimanual、bimanual manipulation、imitation learning）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 9 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "针对动作分块模仿学习的在线干预框架，提升真实双臂操作成功率，具科研价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "The University of Sydney",
+    "Vanderbilt University"
+  ],
+  "method_tags": [
+    "Imitation Learning",
+    "Action Chunking",
+    "Intervention"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"AutoIntervene: Calibrated Intervention for Action-Chunking Imitation Learning Policies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.07065v1\n---\n>[!abstract] 一句话总结：提出AutoIntervene在线框架，通过视觉-动作支持记忆评估策略提议的动作块，结合视觉相似性和动作一致性，利用相位局部支持度触发策略到操作者的干预，全局支持度控制操作者恢复后的策略回归，并基于经验分位数校准切换阈值。\n\n\n# 一、动机\n\n> 动作分块模仿学习策略在部署时因感知误差和执行漂移可能离开示范分布，但仍持续生成平滑但不一致的动作块，导致任务失败。\n\n\n# 二、方法\n\n> 提出AutoIntervene在线框架，通过视觉-动作支持记忆评估策略提议的动作块，结合视觉相似性和动作一致性，利用相位局部支持度触发策略到操作者的干预，全局支持度控制操作者恢复后的策略回归，并基于经验分位数校准切换阈值。\n\n\n# 三、核心实验结果\n\n> 在真实双臂操作任务上，后适应任务成功率高于手动干预，且操作者控制时间更低（具体数值见论文原文）。\n\n\n# 四、对我的启发\n\n> 该方法依赖成功任务执行的支持记忆和人工干预阶段，但能高效利用干预片段进行策略更新；与课题相关，可借鉴其在线干预和阈值校准思路。\n"
+}
