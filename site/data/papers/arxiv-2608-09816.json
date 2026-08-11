@@ -1,0 +1,110 @@
+{
+  "id": "arxiv-2608-09816",
+  "source": "arxiv",
+  "title": "Hierarchical Fast--Slow ReAct Agent for Zero-Shot Object-Goal Navigation",
+  "title_zh": "分层快慢 ReAct Agent 用于零样本目标导航",
+  "abstract": "Zero-shot object-goal navigation (ZSON) requires a robot to find a named object category in a building it has never entered. The prevailing approach scores frontiers with a vision--language \\emph{value map}: every decision is another argmax over the map as it currently stands, and the evidence behind that score is discarded the moment it is taken. Systems that place a large vision--language model inside the perception--action loop typically query it on a fixed schedule from the current view alone; a room the robot walked through minutes earlier is never reconsidered, and a failed call has no defined fallback. We turn what the robot has already seen into the object of deliberation. Our hierarchical fast--slow agent leaves the value-map controller running at every step and writes a \\emph{coordinate-anchored memory} as it moves: a semantic grid of room types and confirmed object instances, together with a bounded store of pose-tagged keyframes. A VLM screens each candidate detection before it is written. A deliberative layer reads this memory in a bounded reason--retrieve--act loop. It wakes on structural events the reactive layer computes, reasons first over text, and recalls a first-person view only for candidates that text alone cannot separate. Per-invocation and per-run caps bound its calls, a call-free first tier resolves the most frequent stall, and any failure returns control to the reactive controller. Our system reaches 68.75% SR on HM3D v1 \\texttt{val} and 47.29% on MP3D \\texttt{val}, the highest success rate among the zero-shot methods compared here. Choosing among far frontiers by argmax instead of deliberating costs 3.40 SR points in a paired comparison over all 2000 HM3D episodes (95\\% CI [1.70, 5.05]); deliberating over every frontier does not recover them.",
+  "abstract_zh": "零样本目标导航（ZSON）要求机器人在从未进入过的建筑中找到指定类别的物体。现有方法通常使用视觉-语言价值图对前沿进行评分：每个决策都是对当前地图的 argmax，而该分数背后的证据在决策后即被丢弃。将大型视觉-语言模型置于感知-行动循环中的系统通常仅从当前视图按固定计划查询；机器人几分钟前经过的房间不会被重新考虑，失败的调用也没有明确的回退机制。我们将机器人已经看到的内容转化为深思熟虑的对象。我们的分层快慢智能体在每一步都保持价值图控制器运行，并在移动时写入坐标锚定记忆：一个包含房间类型和已确认物体实例的语义网格，以及一个有界的位姿标记关键帧存储。VLM 在写入前筛选每个候选检测。一个深思层在有限的推理-检索-行动循环中读取该记忆。它由反应层计算的结构事件唤醒，首先基于文本推理，仅对文本无法区分的候选者回忆第一人称视角。每次调用和每次运行的次数上限限制了其调用次数，无调用的第一层解决了最常见的停滞，任何失败都将控制权返回给反应控制器。我们的系统在 HM3D v1 val 上达到 68.75% 的成功率，在 MP3D val 上达到 47.29%，是这里比较的零样本方法中最高的成功率。在全部 2000 个 HM3D 情节中，通过 argmax 选择远前沿而非深思熟虑，配对比较损失 3.40 个成功率点（95% CI [1.70, 5.05]）；对每个前沿进行深思并不能挽回这些损失。",
+  "tldr_zh": "分层快慢智能体利用记忆与VLM，在零样本目标导航中取得最高成功率。",
+  "cover_zh": "零样本导航新突破｜分层快慢智能体让机器人记住走过的路，成功率创新高",
+  "authors": [
+    {
+      "name": "Zhaochen Lan",
+      "affiliation": ""
+    },
+    {
+      "name": "Zhi Yang",
+      "affiliation": ""
+    },
+    {
+      "name": "Yuxiang Fu",
+      "affiliation": ""
+    },
+    {
+      "name": "Mengxiang Lin",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-08-10",
+  "updated": "2026-08-10",
+  "arxiv_id": "2608.09816",
+  "pdf_url": "https://arxiv.org/pdf/2608.09816v1",
+  "abs_url": "http://arxiv.org/abs/2608.09816v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-09816.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-09816-p2.jpg"
+  ],
+  "channels": [
+    "loco-manip-wbc"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ Beihang (BUAA)"
+    },
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 11,
+  "source_tags": [],
+  "score": 41,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “Beihang (BUAA)” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（reactive control）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 11 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "零样本目标导航结合分层快慢推理与VLM记忆，方法新颖且性能领先，对具身导航研究有高参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Beihang University",
+    "Beijing Institute of Technology"
+  ],
+  "method_tags": [
+    "hierarchical fast-slow agent",
+    "zero-shot object-goal navigation",
+    "VLM"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Hierarchical Fast--Slow ReAct Agent for Zero-Shot Object-Goal Navigation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.09816v1\n---\n>[!abstract] 一句话总结：提出分层快速-慢速ReAct智能体，保持价值图控制器每步运行，构建坐标锚定记忆（语义网格+带姿态关键帧），VLM筛选候选检测，审慎层通过受限的推理-检索-行动循环在结构事件触发时先文本推理，必要时回忆第一人称视图，并有调用上限和回退机制。\n\n\n# 一、动机\n\n> 现有零样本目标导航方法基于价值图的前沿评分，每次决策都是对当前图的argmax，决策后丢弃证据；大型视觉语言模型在感知-行动循环中按固定时间表从当前视图查询，不会重新考虑已走过的房间，失败调用没有回退。\n\n\n# 二、方法\n\n> 提出分层快速-慢速ReAct智能体，保持价值图控制器每步运行，构建坐标锚定记忆（语义网格+带姿态关键帧），VLM筛选候选检测，审慎层通过受限的推理-检索-行动循环在结构事件触发时先文本推理，必要时回忆第一人称视图，并有调用上限和回退机制。\n\n\n# 三、核心实验结果\n\n> 在HM3D v1 val上达到68.75%成功率，在MP3D val上达到47.29%，均为所比较零样本方法中最高；配对比较中，用argmax替代deliberation导致成功率下降3.40个点（95% CI [1.70, 5.05]），而对所有前沿进行deliberation并不能恢复这些损失。\n\n\n# 四、对我的启发\n\n> 该方法表明将历史记忆纳入审慎推理能显著提升零样本导航成功率，且有选择地推理比对所有候选进行深度推理更有效；分层设计和调用预算机制为其他具身任务提供了可借鉴的架构思路。\n"
+}

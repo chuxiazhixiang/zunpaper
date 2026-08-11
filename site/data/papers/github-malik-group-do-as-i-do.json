@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 51,
-      "hint": "⭐ 345"
+      "hint": "⭐ 356"
     }
   ],
   "judge": {
@@ -62,12 +62,12 @@
   "github": {
     "owner": "malik-group",
     "repo": "do-as-i-do",
-    "stars": 345,
+    "stars": 356,
     "language": "Python",
     "pushed_at": "2026-08-02",
     "created_at": "2026-06-04",
     "topics": [],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/CV\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"malik-group/do-as-i-do\"\nYear: \"\"\nURL: https://github.com/malik-group/do-as-i-do\n---\n>[!abstract] 一句话总结：构建完整pipeline：首先从人类操作视频中重建物体和手部并跟踪6-DoF位姿（使用SAM3、MoGe、HaWoR等），然后将重建结果通过凸分解、MJCF场景生成和采样MPC重定向到机器人手（UR3e + Sharpa Wave），最后部署到真实机器人上执行重放。\n\n\n# 一、动机\n\n> 现有的灵巧操作数据获取依赖昂贵的人工遥操作或机器人演示，无法规模化。本文提出从日常人类视频中直接提取灵巧操作数据，并通过重建和重定向转化为机器人可执行的轨迹，以降低数据采集成本。\n\n\n# 二、方法\n\n> 构建完整pipeline：首先从人类操作视频中重建物体和手部并跟踪6-DoF位姿（使用SAM3、MoGe、HaWoR等），然后将重建结果通过凸分解、MJCF场景生成和采样MPC重定向到机器人手（UR3e + Sharpa Wave），最后部署到真实机器人上执行重放。\n\n\n# 三、核心实验结果\n\n> 该代码库提供重建、重定向、部署三个模块的完整实现，但未给出定量实验数字（如成功率或精度），具体性能需参阅论文。\n\n\n# 四、对我的启发\n\n> 与课题直接相关，提供了一种从非机器人数据源构建灵巧操作数据的范式，可启发低成本数据生成方法，但代码库依赖较多外部模型，复现门槛较高。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/CV\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"malik-group/do-as-i-do\"\nYear: \"\"\nURL: https://github.com/malik-group/do-as-i-do\n---\n>[!abstract] 一句话总结：提出从日常人类操作视频重建手和物体的6-DoF姿态，利用SAM3、MoGe、HaWoR、TAPIR等生成点图并根据引导扩散进行跟踪；随后通过凸分解、MJCF场景生成和采样MPC将人手轨迹重定向到机器人手，最终部署为双UR3e机械臂和Sharpa Wave灵巧手的真实机器人轨迹。\n\n\n# 一、动机\n\n> 现有灵巧操作数据获取依赖遥操作或仿真，成本高且难以扩展。本文旨在从海量日常人类视频中提取灵巧操作数据，以低成本驱动机器人学习。\n\n\n# 二、方法\n\n> 提出从日常人类操作视频重建手和物体的6-DoF姿态，利用SAM3、MoGe、HaWoR、TAPIR等生成点图并根据引导扩散进行跟踪；随后通过凸分解、MJCF场景生成和采样MPC将人手轨迹重定向到机器人手，最终部署为双UR3e机械臂和Sharpa Wave灵巧手的真实机器人轨迹。\n\n\n# 三、核心实验结果\n\n> 摘要未提供定量结果，主要贡献为完整开源管线（重建/重定向/部署），能实现从单目视频到真实双机械臂+灵巧手的操作复现。\n\n\n# 四、对我的启发\n\n> 该流水线高度依赖重建和跟踪精度，对遮挡、动态光照和相似物体干扰较敏感；将人类轨迹重定向到不同形态的机器人手仍存在运动学不匹配问题。与课题直接相关，可借鉴其数据生成与重定向思路。\n"
 }
