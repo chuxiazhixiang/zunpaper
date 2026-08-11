@@ -106,7 +106,8 @@
     "assets/img/covers/arxiv-2608-09298-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -121,7 +122,7 @@
   "related_links": [],
   "page_count": 20,
   "source_tags": [],
-  "score": 47,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -132,8 +133,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 9,
-      "hint": "频道关键词命中 3 个（manipulation、robotwin、libero）"
+      "points": 12,
+      "hint": "频道关键词命中 6 个（manipulation、robotwin、libero、world model）"
     },
     {
       "id": "freshness",
@@ -146,6 +147,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 20 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -176,5 +183,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"WorldSimProbe: Diagnosing Simulator Faithfulness in Action-Conditioned World Models for Embodied Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.09298v1\n---\n>[!abstract] 一句话总结：提出Observable Simulator Contract形式化物理模拟器应满足的最小契约，并据此构建WorldSimProbe评估框架，包含五个受控测试套件（局部控制敏感性、全局轨迹变化、源多样性动作、交互接地、动力学），使用专用评估器测量模拟器相对校准、密集动作-运动对应、假交互接地和原语级动力学。\n\n\n# 一、动机\n\n> 现有动作条件世界模型（ACWM）的评估主要关注视觉质量或任务结果，缺乏对模拟器保真度（即动作到运动、运动到环境响应的精确转换）的直接测试，难以判断其作为物理模拟器的可靠性。\n\n\n# 二、方法\n\n> 提出Observable Simulator Contract形式化物理模拟器应满足的最小契约，并据此构建WorldSimProbe评估框架，包含五个受控测试套件（局部控制敏感性、全局轨迹变化、源多样性动作、交互接地、动力学），使用专用评估器测量模拟器相对校准、密集动作-运动对应、假交互接地和原语级动力学。\n\n\n# 三、核心实验结果\n\n> 在6个开源ACWM上超过18,000个实例（RoboTwin、ManiSkill、LIBERO）中，发现系统性的动作-实现退化、交互接地和动力学的结构化失败，且WorldSimProbe的基准信号与人类判断和下游任务结果一致。\n\n\n# 四、对我的启发\n\n> 该工作为ACWM模拟器保真度提供了标准化诊断范式，但评估套件仅覆盖现有基准，未来可扩展至更多交互类型和物理引擎；与机器人具身智能课题直接相关，可借鉴其能力导向的评估思路用于操作世界模型验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"WorldSimProbe: Diagnosing Simulator Faithfulness in Action-Conditioned World Models for Embodied Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.09298v1\n---\n>[!abstract] 一句话总结：提出可观测模拟器契约（Observable Simulator Contract），并构建WorldSimProbe评测框架，通过五个受控测试套件（局部控制敏感性、全局轨迹变化、源多样动作、交互接地、动力学）和专用评估器（模拟器相对校准、稠密动作-运动对应、虚假交互接地、原始级动力学）系统诊断ACWM的仿真保真度。\n\n\n# 一、动机\n\n> 现有动作条件世界模型（ACWM）的评估多聚焦于视觉质量、任务成果或粗粒度的轨迹响应，未直接检验其作为物理模拟器的保真度，即动作到状态转移的精确性，导致难以判断其是否真正可用于规划和决策。\n\n\n# 二、方法\n\n> 提出可观测模拟器契约（Observable Simulator Contract），并构建WorldSimProbe评测框架，通过五个受控测试套件（局部控制敏感性、全局轨迹变化、源多样动作、交互接地、动力学）和专用评估器（模拟器相对校准、稠密动作-运动对应、虚假交互接地、原始级动力学）系统诊断ACWM的仿真保真度。\n\n\n# 三、核心实验结果\n\n> 在RoboTwin、ManiSkill、LIBERO三个基准上对6个开源ACWM进行超过18,000个实例的评测，发现控制变化下普遍存在动作-实现退化，交互接地和动力学出现结构化失效，且评测信号与人类判断和下游任务结果一致。\n\n\n# 四、对我的启发\n\n> 该能力基评测范式为ACWM仿真保真度提供了透明、标准化的诊断工具，弥补了传统任务导向评估的不足，对具身智能中世界模型的可信部署具有重要意义。\n"
 }

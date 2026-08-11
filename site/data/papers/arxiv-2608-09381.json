@@ -61,7 +61,8 @@
     "assets/img/covers/arxiv-2608-09381-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -76,7 +77,7 @@
   "related_links": [],
   "page_count": 22,
   "source_tags": [],
-  "score": 50,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -88,7 +89,7 @@
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 6 个（vision-language-action、manipulation、bimanual、bimanual manipulation）"
+      "hint": "频道关键词命中 10 个（vision-language-action、manipulation、bimanual、bimanual manipulation）"
     },
     {
       "id": "freshness",
@@ -101,6 +102,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 22 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -128,5 +135,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"JEPA-WAM: Learning Vision-Language-Action Policies with Joint-Embedding World Modeling\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.09381v1\n---\n>[!abstract] 一句话总结：JEPA-WAM在预训练V-JEPA空间中，通过共享预测器同时预测空间结构的联合当前-未来目标并生成连续动作，保持patch级对应，也可实例化到预训练VLA策略。\n\n\n# 一、动机\n\n> 解决视频生成世界动作模型部署成本高、潜在世界模型压缩表征或分离预测建模与动作生成的问题。\n\n\n# 二、方法\n\n> JEPA-WAM在预训练V-JEPA空间中，通过共享预测器同时预测空间结构的联合当前-未来目标并生成连续动作，保持patch级对应，也可实例化到预训练VLA策略。\n\n\n# 三、核心实验结果\n\n> LIBERO-Plus上达到79.2%的最佳结果（无大规模机器人策略预训练），预训练π0.5实例化版本达86.3%整体最佳；在RoboTwin 2.0和真实世界双臂操纵中展现强泛化。\n\n\n# 四、对我的启发\n\n> 隐空间世界模型通过共享预测器将转移预测与动作生成耦合，能高效建模状态转换并降低部署成本，为VLA策略提供可行的世界建模方案。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"JEPA-WAM: Learning Vision-Language-Action Policies with Joint-Embedding World Modeling\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.09381v1\n---\n>[!abstract] 一句话总结：JEPA-WAM 在预训练 V-JEPA 空间中构建潜在世界模型，通过共享预测器同时进行潜在转移预测和连续动作生成，并预测空间结构的联合当前-未来目标以保留密集补丁级对应。\n\n\n# 一、动机\n\n> 视频生成世界动作模型部署成本高，现有潜在世界模型要么压缩预测表示，要么将预测建模与动作生成表示分离，缺乏统一且高效的过渡建模。\n\n\n# 二、方法\n\n> JEPA-WAM 在预训练 V-JEPA 空间中构建潜在世界模型，通过共享预测器同时进行潜在转移预测和连续动作生成，并预测空间结构的联合当前-未来目标以保留密集补丁级对应。\n\n\n# 三、核心实验结果\n\n> LIBERO-Plus 上 JEPA-WAM 达到 79.2%，为无大规模机器人策略预训练的最佳结果；其预训练 π0.5 实例化达到 86.3% 的整体最佳准确率，且在 RoboTwin 2.0 和真实双臂操作中表现出强泛化。\n\n\n# 四、对我的启发\n\n> 共享预测器和 V-JEPA 空间能有效耦合预测与动作生成，提升视觉与空间偏移鲁棒性，但进一步受益于大规模预训练；对未来机器人世界模型设计有启发。与课题相关。\n"
 }
