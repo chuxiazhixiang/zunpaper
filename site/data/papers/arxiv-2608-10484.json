@@ -115,5 +115,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Lost in Reconstruction: Aligning Action Representations with Language in Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.10484v1\n---\n>[!abstract] 一句话总结：提出SALT（Semantically ALigned action Tokenizer），在VQ-VAE风格的动作分词器基础上增加一个辅助目标，要求冻结的视觉-语言模型能够从量化后的动作潜变量中恢复出片段指令，从而在保持重建保真的同时对齐动作表示与语言语义。\n\n\n# 一、动机\n\n> 现有视觉-语言-动作模型（VLA）中的动作表示通常以原始动作空间上的L1/L2重建损失进行优化，但数值相近并不等同于语言上有意义的区分，导致动作轨迹中包含的动词接地信息（如动作执行方式）被系统性侵蚀，影响语言条件控制的效果。\n\n\n# 二、方法\n\n> 提出SALT（Semantically ALigned action Tokenizer），在VQ-VAE风格的动作分词器基础上增加一个辅助目标，要求冻结的视觉-语言模型能够从量化后的动作潜变量中恢复出片段指令，从而在保持重建保真的同时对齐动作表示与语言语义。\n\n\n# 三、核心实验结果\n\n> 在SimplerEnv基准上，SALT训练的策略平均成功率达71.9%，显著高于仅重建的VQ-VAE分词器（42.7%）和FAST（31.2%）；同时SALT发展出动词专属的代码，且重建精度未下降。\n\n\n# 四、对我的启发\n\n> 机器人动作轨迹本身包含语言接地信息，动作分词器若只关注重建会丢失这部分结构；将语言语义对齐引入动作表示学习可有效提升语言条件操作性能。局限在于SALT依赖预训练视觉语言模型，且实验仅覆盖特定任务集。与课题直接相关，可作为动作表示学习的重要参考。\n"
 }

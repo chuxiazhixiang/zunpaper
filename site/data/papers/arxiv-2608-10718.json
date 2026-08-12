@@ -45,7 +45,8 @@
     "assets/img/covers/arxiv-2608-10718-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -56,13 +57,13 @@
   "related_links": [],
   "page_count": 10,
   "source_tags": [],
-  "score": 25,
+  "score": 30,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 4 个（manipulation、dual-arm、contact-rich、deformable manipulation）"
+      "hint": "频道关键词命中 5 个（manipulation、dual-arm、contact-rich、deformable manipulation）"
     },
     {
       "id": "freshness",
@@ -75,6 +76,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 10 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -101,5 +108,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/DeformableManipulation\n  - 状态/待读\nTitle: \"TCAM for Autonomous Deformable Manipulation: The RMC2 Champion System for WBCD 2026 Track 4\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.10718v1\n---\n>[!abstract] 一句话总结：提出TCAM（TermiBrain Causal Action Model）框架，核心思想是硬件、感知、数据和学习共同降低策略需处理的物理交互复杂度：定制3D打印夹爪实现单层织物分离，腕部四相机（上部鱼眼相机提供任务级上下文，下部RGB相机观察夹爪-布料近距离接触），融合UMI风格演示与部署平台真机演示数据，并通过轨迹分析识别影响结果的物理因素，驱动定向数据补充和策略微调；策略基于多视图VLA骨干，输出30步末端执行器delta-pose动作块。\n\n\n# 一、动机\n\n> 针对WBCD 2026 Track 4变形物体操作挑战（从堆叠中拾取单件T恤、装载到打印托盘、对齐衣领、抚平打印区域），需要解决单层分离、可变形传输、精确定位和接触丰富的表面调整等复杂序列问题，且比赛强烈鼓励全自主执行，因此需要开发一个全自主系统。\n\n\n# 二、方法\n\n> 提出TCAM（TermiBrain Causal Action Model）框架，核心思想是硬件、感知、数据和学习共同降低策略需处理的物理交互复杂度：定制3D打印夹爪实现单层织物分离，腕部四相机（上部鱼眼相机提供任务级上下文，下部RGB相机观察夹爪-布料近距离接触），融合UMI风格演示与部署平台真机演示数据，并通过轨迹分析识别影响结果的物理因素，驱动定向数据补充和策略微调；策略基于多视图VLA骨干，输出30步末端执行器delta-pose动作块。\n\n\n# 三、核心实验结果\n\n> 在最终比赛中，系统成功装载25件T恤，平均每次尝试约23秒，其中22件达到所需表面平滑度，获Track 4第一名。\n\n\n# 四、对我的启发\n\n> 硬件与感知设计（如专用夹爪和多视角相机）能显著简化策略学习难度；混合数据策略（便携演示+真机演示）兼顾通用先验与部署动态性；基于因果分析的闭环数据迭代可有效提升系统鲁棒性。该工作虽面向特定比赛任务，但其『硬件-感知-数据-学习』协同降复杂度思想对机器人操作课题有直接借鉴意义。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"TCAM for Autonomous Deformable Manipulation: The RMC2 Champion System for WBCD 2026 Track 4\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.10718v1\n---\n>[!abstract] 一句话总结：围绕TCAM框架构建全自主系统，通过定制3D打印夹爪、腕部四相机设置（上方鱼眼+下方RGB）、结合UMI风格示范与真实机器人示范，并由TCAM闭环分析轨迹物理因素驱动数据回采与策略微调，最终输出30步端到端位移动作块。\n\n\n# 一、动机\n\n> 自主变形物体操作面临单层分离、可变形运输、精确放置和接触丰富的表面调整等挑战，且竞赛强烈激励全自主执行，需要降低策略需处理的物理交互复杂度。\n\n\n# 二、方法\n\n> 围绕TCAM框架构建全自主系统，通过定制3D打印夹爪、腕部四相机设置（上方鱼眼+下方RGB）、结合UMI风格示范与真实机器人示范，并由TCAM闭环分析轨迹物理因素驱动数据回采与策略微调，最终输出30步端到端位移动作块。\n\n\n# 三、核心实验结果\n\n> 在WBCD 2026 Track 4决赛中以平均每次约23秒装载25件T恤，其中22件达到所需表面光滑度，获得该赛道第一名。\n\n\n# 四、对我的启发\n\n> 核心启发是硬件、感知、数据与学习需共同设计以降低策略的物理交互复杂度，而非仅依赖策略本身；局限在于系统定制化程度高，迁移到其他变形物体或平台需重新适配。\n"
 }

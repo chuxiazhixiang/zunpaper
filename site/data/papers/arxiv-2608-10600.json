@@ -55,7 +55,8 @@
     "assets/img/covers/arxiv-2608-10600-p2.jpg"
   ],
   "channels": [
-    "sim2real"
+    "sim2real",
+    "manipulation"
   ],
   "badges": [
     {
@@ -66,7 +67,7 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 16,
+  "score": 21,
   "score_breakdown": [
     {
       "id": "keyword_density",
@@ -85,6 +86,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -110,5 +117,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"BooST: Bridging Semantics and Motions for Efficient Skill Transfer\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.10600v1\n---\n>[!abstract] 一句话总结：提出两阶段框架BooST，先通过跨模态VQ-VAE统一建模语义意图和运动动力学，得到联合技能表示，再将其蒸馏为轻量策略，用于高效下游适配。\n\n\n# 一、动机\n\n> 现有技能迁移方法通常只捕捉高层语义意图或低层运动动力学，难以同时满足跨任务泛化、鲁棒性和部署效率，导致下游策略学习需要大量域内数据。\n\n\n# 二、方法\n\n> 提出两阶段框架BooST，先通过跨模态VQ-VAE统一建模语义意图和运动动力学，得到联合技能表示，再将其蒸馏为轻量策略，用于高效下游适配。\n\n\n# 三、核心实验结果\n\n> 摘要未给出具体数字，但宣称在仿真和真实机器人上实现了优越的少样本适配、跨域技能迁移和对动态视觉干扰物的鲁棒性，同时保持轻量可部署。\n\n\n# 四、对我的启发\n\n> 与课题相关，但摘要缺乏量化结果，需阅读全文获取具体性能指标；其跨模态技能表示思路可借鉴用于机器人技能迁移。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"BooST: Bridging Semantics and Motions for Efficient Skill Transfer\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.10600v1\n---\n>[!abstract] 一句话总结：提出BooST两阶段框架：先用跨模态VQ-VAE统一编码语义意图和运动动力学，得到统一技能表示；再蒸馏成轻量策略，实现高效下游适应。\n\n\n# 一、动机\n\n> 现有技能抽象方法只捕捉高层语义或低层运动动力学，无法同时满足泛化、鲁棒和高效的要求，导致技能迁移不完整，下游策略学习需要大量域内数据。\n\n\n# 二、方法\n\n> 提出BooST两阶段框架：先用跨模态VQ-VAE统一编码语义意图和运动动力学，得到统一技能表示；再蒸馏成轻量策略，实现高效下游适应。\n\n\n# 三、核心实验结果\n\n> 在仿真和真实机器人上，BooST在少样本适应、跨域技能迁移和动态视觉干扰鲁棒性上均优于基线，同时保持轻量设计（摘要未给出具体数字）。\n\n\n# 四、对我的启发\n\n> 与课题相关。BooST将语义与运动解耦又统一，为机器人技能迁移提供了新思路；但跨模态VQ-VAE的训练复杂度及对大规模异构数据的扩展性仍需验证。\n"
 }

@@ -45,7 +45,8 @@
     "assets/img/covers/arxiv-2608-10817-p2.jpg"
   ],
   "channels": [
-    "locomotion"
+    "locomotion",
+    "manipulation"
   ],
   "badges": [
     {
@@ -64,7 +65,7 @@
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 44,
+  "score": 49,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -89,6 +90,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 9 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -114,5 +121,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"AECNav: Active Evidence Consolidation for Efficient Zero-Shot Open-Vocabulary Object Navigation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.10817v1\n---\n>[!abstract] 一句话总结：将ZSON重构为证据驱动的感知-决策问题，提出免训练框架AECNav，由三部分组成：证据门控感知（跨阶段共享编码消除冗余）、证据整合（将检测聚合为聚类级对数几率信念，区分真目标与相似干扰物并将缺失检测视为负证据）、主动证据获取（按信息增益与遍历成本权衡选择边界点）。\n\n\n# 一、动机\n\n> 现有零样本开放词汇目标导航（ZSON）因冗余感知流程和证据不足而存在高延迟与精度受限的问题，难以高效可靠地确认目标。\n\n\n# 二、方法\n\n> 将ZSON重构为证据驱动的感知-决策问题，提出免训练框架AECNav，由三部分组成：证据门控感知（跨阶段共享编码消除冗余）、证据整合（将检测聚合为聚类级对数几率信念，区分真目标与相似干扰物并将缺失检测视为负证据）、主动证据获取（按信息增益与遍历成本权衡选择边界点）。\n\n\n# 三、核心实验结果\n\n> 在HM3D-v2、HM3D-OVON、MP3D上分别取得84.7%、57.3%、51.3%的SOTA成功率，且推理开销显著降低；物理四足机器人40次试验成功率达95%，运行频率约5Hz。\n\n\n# 四、对我的启发\n\n> 与课题相关；证据整合和主动信息获取策略对具身导航任务有借鉴意义，但当前仅验证了目标导航场景，尚未涉及复杂交互或动态环境，且依赖预训练检测模型性能。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"AECNav: Active Evidence Consolidation for Efficient Zero-Shot Open-Vocabulary Object Navigation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.10817v1\n---\n>[!abstract] 一句话总结：提出AECNav，一个免训练管道，通过证据门控感知共享编码消除冗余计算，利用证据聚合将检测转为聚类级对数几率信念以区分真实目标与相似干扰，并采用主动证据采集选择信息增益最大、路径成本最小的前沿进行探索。\n\n\n# 一、动机\n\n> 零样本开放词汇物体导航（ZSON）因冗余感知管道和证据不足导致高延迟和有限准确率，当前方法难以在未见环境中可靠定位任意物体。\n\n\n# 二、方法\n\n> 提出AECNav，一个免训练管道，通过证据门控感知共享编码消除冗余计算，利用证据聚合将检测转为聚类级对数几率信念以区分真实目标与相似干扰，并采用主动证据采集选择信息增益最大、路径成本最小的前沿进行探索。\n\n\n# 三、核心实验结果\n\n> 在HM3D-v2、HM3D-OVON和MP3D上分别达到84.7%、57.3%和51.3%的成功率，显著优于现有方法且推理开销大幅降低；在物理四足机器人上40次试验成功率95%，运行频率约5Hz。\n\n\n# 四、对我的启发\n\n> 该工作将零样本导航重新建模为证据驱动的感知-决策问题，其共享编码和证据聚合思想对具身智能中的高效探索有启发，但未涉及动态环境下的鲁棒性，后续可扩展至更复杂场景。\n"
 }
