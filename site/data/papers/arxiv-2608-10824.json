@@ -1,0 +1,106 @@
+{
+  "id": "arxiv-2608-10824",
+  "source": "arxiv",
+  "title": "Neural Introspection Gating for Adaptive KV-Cache Reuse in Vision-Language-Action Models",
+  "title_zh": "神经内省门控用于视觉-语言-动作模型的自适应KV缓存复用",
+  "abstract": "Vision-Language-Action(VLA) models map camera images and language instructions directly to motor commands through a single autoregressive transformer. In real-time control, they still spend substantial compute recomputing key-value(KV) representations for visual tokens that barely change across neighboring frames. Recent work such as VLA-Cache reduces that cost by reusing KV states for visually static patches, but its policy relies only on observation-space heuristics and does not account for the model's own uncertainty. We propose Gated VLA-Cache, a lightweight, training-free extension that augments visual-similarity caching with neural introspection. The method monitors the logit margin between the top two predicted action tokens, a zero-cost confidence signal available during decoding. When the margin drops below a threshold, the cache is invalidated and a full recompute is triggered. Evaluated on four LIBERO benchmark suites with both OpenVLA and OpenVLA-OFT, Gated VLA-Cache improves reliability when blind caching hurts. On LIBERO-Goal and LIBERO-Long, it recovers over 100% of the lost accuracy while retaining 80% of the compute savings.",
+  "abstract_zh": "视觉-语言-动作（VLA）模型通过单一的自回归Transformer将摄像头图像和语言指令直接映射为电机指令。在实时控制中，它们仍然花费大量计算来重新计算视觉令牌的键值（KV）表示，而这些视觉令牌在相邻帧中几乎不变。最近的工作如VLA-Cache通过重用视觉静态补丁的KV状态来降低该成本，但其策略仅依赖于观测空间的启发式方法，并未考虑模型自身的不确定性。我们提出了Gated VLA-Cache，一种轻量级、无需训练的扩展，通过神经内省增强视觉相似性缓存。该方法监控前两个预测动作令牌之间的logit间隔，这是解码过程中可用的零成本置信度信号。当间隔低于阈值时，缓存失效并触发完全重新计算。在四个LIBERO基准套件上，使用OpenVLA和OpenVLA-OFT进行评估，Gated VLA-Cache在盲目缓存有害时提高了可靠性。在LIBERO-Goal和LIBERO-Long上，它恢复了超过100%的丢失准确率，同时保留了80%的计算节省。",
+  "tldr_zh": "提出Gated VLA-Cache，通过神经内省门控自适应KV缓存，提升VLA模型可靠性并保留计算节省。",
+  "cover_zh": "缓存也能“内省”？这个新方法让VLA模型更可靠还省算力！",
+  "authors": [
+    {
+      "name": "Zhijie Wu",
+      "affiliation": ""
+    },
+    {
+      "name": "Kento Kawaharazuka",
+      "affiliation": ""
+    },
+    {
+      "name": "Kei Okada",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.CV"
+  ],
+  "published": "2026-08-11",
+  "updated": "2026-08-11",
+  "arxiv_id": "2608.10824",
+  "pdf_url": "https://arxiv.org/pdf/2608.10824v1",
+  "abs_url": "http://arxiv.org/abs/2608.10824v1",
+  "venue": "IROS 2026",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-10824.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-10824-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "venue",
+      "label": "🎓 IROS 2026"
+    },
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 6,
+  "source_tags": [],
+  "score": 32,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（vision-language-action、openvla、libero）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 6 页"
+    },
+    {
+      "id": "conf_venue",
+      "label": "机器人顶会 / 顶刊出品",
+      "points": 10,
+      "hint": "被「IROS 2026」收录"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "针对VLA模型提出自适应KV缓存复用方法，提升推理效率与可靠性，属于操作策略优化，有科研价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "The University of Tokyo"
+  ],
+  "method_tags": [
+    "KV-Cache Reuse",
+    "Neural Introspection",
+    "VLA"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Neural Introspection Gating for Adaptive KV-Cache Reuse in Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.10824v1\n---\n>[!abstract] 一句话总结：提出Gated VLA-Cache，通过监控解码时前两个动作token的logit margin作为零成本置信信号，当margin低于阈值时触发缓存失效并重新计算。\n\n\n# 一、动机\n\n> 现有VLA-Cache仅基于观察空间视觉相似性进行KV缓存重用，未考虑模型自身的不确定性，导致盲目缓存可能损害任务准确性。\n\n\n# 二、方法\n\n> 提出Gated VLA-Cache，通过监控解码时前两个动作token的logit margin作为零成本置信信号，当margin低于阈值时触发缓存失效并重新计算。\n\n\n# 三、核心实验结果\n\n> 在四个LIBERO基准上评估，在LIBERO-Goal和LIBERO-Long上，恢复超过100%的丢失准确率，同时保留80%的计算节省。\n\n\n# 四、对我的启发\n\n> 局限：阈值需手动设定，适应性有限；启发：利用解码过程中的内在置信度可实现轻量级自适应推理。\n"
+}

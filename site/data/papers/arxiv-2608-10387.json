@@ -1,0 +1,95 @@
+{
+  "id": "arxiv-2608-10387",
+  "source": "arxiv",
+  "title": "Hip Energized Monopedal Hopping",
+  "title_zh": "髋部赋能单足跳跃",
+  "abstract": "We present a novel stepping strategy for pitch unlocked planar monopeds where the reaction torques from stabilizing pitch with a conventional PD + feedfoward controller are recruited to counteract energetic losses from damping. By moving the location of the mass center, our controller increases the pitch stabilization torque, thereby adding energy to the gait. A new stepping policy adjusts the distribution of energy between the radial and angular degrees of freedom to counteract dissipative losses and achieve a user specified balance between steady state fore-aft speed and apex height. Hybrid averaging analysis yields closed form expressions for the fixed points and eigenvalues of the resulting gait, lending insight into the interplay between the physical and control parameters' influence on performance. Simulation studies on a generic 5 link biped and a careful model of the Penn Jerboa reveal a useful correspondence to these analytical predictions. Physical experiments on the Penn Jerboa exhibit stable locomotion with speeds ranging from 1.02 m/s to 1.77 m/s (5.10 leg lengths/s to 8.85 leg lengths/s) in a manner effectively approximated by the mathematical analysis.",
+  "abstract_zh": "我们提出了一种新颖的步态策略，用于俯仰未锁定的平面单足机器人，其中通过传统PD加前馈控制器稳定俯仰所产生的反作用力矩被用来抵消阻尼带来的能量损失。通过移动质心位置，我们的控制器增大了俯仰稳定力矩，从而为步态注入能量。一种新的步态策略调整径向和角向自由度之间的能量分配，以抵消耗散损失，并实现用户指定的稳态前后速度与顶点高度之间的平衡。混合平均分析得出了所产生步态的固定点和特征值的闭式表达式，有助于理解物理和控制参数对性能影响的相互作用。在通用五连杆双足机器人和宾夕法尼亚杰波鼠的精细模型上的仿真研究揭示了与这些解析预测的有用对应关系。在宾夕法尼亚杰波鼠上的物理实验展示了稳定的运动，速度范围从1.02米/秒到1.77米/秒（5.10腿长/秒到8.85腿长/秒），其方式有效地近似于数学分析。",
+  "tldr_zh": "利用俯仰稳定力矩为单足跳跃注入能量，实现稳定高速运动。",
+  "cover_zh": "单足机器人还能这么跳？用稳定力矩反哺能量，速度直接起飞！",
+  "authors": [
+    {
+      "name": "Shane Rozen-Levy",
+      "affiliation": ""
+    },
+    {
+      "name": "Griffon McMahon",
+      "affiliation": ""
+    },
+    {
+      "name": "Daniel Koditschek",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-08-11",
+  "updated": "2026-08-11",
+  "arxiv_id": "2608.10387",
+  "pdf_url": "https://arxiv.org/pdf/2608.10387v1",
+  "abs_url": "http://arxiv.org/abs/2608.10387v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-10387.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-10387-p2.jpg"
+  ],
+  "channels": [
+    "locomotion"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 35,
+  "source_tags": [],
+  "score": 19,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 6,
+      "hint": "频道关键词命中 2 个（locomotion、gait）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 35 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "locomotion",
+    "reason": "单足跳跃步态控制，含能量调控与稳定性分析，具科研价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "PD + feedforward control",
+    "stepping policy",
+    "hybrid averaging analysis"
+  ],
+  "platform": [
+    "Penn Jerboa"
+  ],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/LeggedLocomotion\n  - 状态/待读\nTitle: \"Hip Energized Monopedal Hopping\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.10387v1\n---\n>[!abstract] 一句话总结：提出一种Hip Energized步态策略，通过移动质心位置增大俯仰稳定力矩，将反作用力矩转化为步态能量的补充；同时设计新的步态策略，在径向和角度自由度之间分配能量，以抵消阻尼损失并实现用户指定的前向速度与顶点高度平衡，并用混合平均分析推导固定点和特征值的解析表达式。\n\n\n# 一、动机\n\n> 平面单足机器人跳跃时，俯仰稳定使用PD+前馈控制器产生的反作用力矩通常被忽略，而阻尼会导致能量损失，影响步态稳定性和速度控制。现有方法难以在抵消耗散的同时调节前进速度与跳跃高度。\n\n\n# 二、方法\n\n> 提出一种Hip Energized步态策略，通过移动质心位置增大俯仰稳定力矩，将反作用力矩转化为步态能量的补充；同时设计新的步态策略，在径向和角度自由度之间分配能量，以抵消阻尼损失并实现用户指定的前向速度与顶点高度平衡，并用混合平均分析推导固定点和特征值的解析表达式。\n\n\n# 三、核心实验结果\n\n> 在仿真（5连杆双足和Penn Jerboa模型）中验证了分析预测；在实体Penn Jerboa上实现稳定运动，速度范围为1.02 m/s至1.77 m/s（即5.10至8.85腿长/秒），实验与理论分析有效吻合。\n\n\n# 四、对我的启发\n\n> 该方法为单足跳跃的能量回收和步态控制提供了新思路，但其分析基于平面模型和特定动力学假设，扩展到三维双足或多足系统仍需进一步研究；与课题相关，可借鉴其能量注入与步态调节思想。\n"
+}
