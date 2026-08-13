@@ -33,7 +33,8 @@
     "assets/img/covers/arxiv-2608-11769-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -44,7 +45,7 @@
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 22,
+  "score": 27,
   "score_breakdown": [
     {
       "id": "keyword_density",
@@ -63,6 +64,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 9 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -87,5 +94,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Policy-Induced Hand Priors in Humanoid Dual-Arm Manipulation: Diagnosing and Mitigating Initial-Pose Dependence\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.11769v1\n---\n>[!abstract] 一句话总结：提出HandPriorScore、残差手偏置和目标响应性等指标，量化VLA人形双手机器人操作中由初始条件诱导的早期手偏好（即策略诱导手先验），并通过扩充初始姿态覆盖、针对性数据增强及调整训练数据组成来缓解该依赖。\n\n\n# 一、动机\n\n> VLA策略被视为能够在机器人初始构型变化下稳健操作，但聚合的任务成功率会掩盖特定姿态下的失败和不恰当的手选择。现有方法缺乏对初始姿态依赖性的系统性诊断，导致难以定位和解决姿态相关失败。\n\n\n# 二、方法\n\n> 提出HandPriorScore、残差手偏置和目标响应性等指标，量化VLA人形双手机器人操作中由初始条件诱导的早期手偏好（即策略诱导手先验），并通过扩充初始姿态覆盖、针对性数据增强及调整训练数据组成来缓解该依赖。\n\n\n# 三、核心实验结果\n\n> 在17种初始配置上评估多个策略，发现同一姿态在不同策略间成功率差异显著，且单一策略在不同姿态间波动大；扩大训练数据初始姿态覆盖可大幅提升鲁棒性，而对低性能配置的定向增强则显著提高其成功率。\n\n\n# 四、对我的启发\n\n> 初始手臂构型可作为手选择行为的因果控制点，数据覆盖与训练组成（真实/辅助数据比例、仿真比、观测可用性）对初始姿态鲁棒性有重要影响；后续可探索自动发现关键姿态或动态选择缓解策略。与机器人操作课题直接相关。\n"
 }

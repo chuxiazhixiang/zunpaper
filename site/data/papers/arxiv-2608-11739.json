@@ -135,7 +135,8 @@
   ],
   "channels": [
     "manipulation",
-    "sim2real"
+    "sim2real",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -162,7 +163,7 @@
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 7 个（vision-language-action、generalist policy、manipulation、robotwin）"
+      "hint": "频道关键词命中 9 个（vision-language-action、generalist policy、manipulation、robotwin）"
     },
     {
       "id": "freshness",
@@ -180,7 +181,7 @@
       "id": "cross_channel",
       "label": "跨多个方向",
       "points": 5,
-      "hint": "同时命中 2 个频道"
+      "hint": "同时命中 3 个频道"
     }
   ],
   "judge": {
@@ -207,5 +208,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"G0.5: One Autoregressive Stream for Robot Reasoning and Action\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.11739v1\n---\n>[!abstract] 一句话总结：提出 G0.5，一个预训练的自回归 VLA 模型，仅用单个 Transformer 解码器在单一目标下统一生成推理 token 和动作 token，核心组件包括可学习的跨本体动作分词器、原生思维链流（任务分解、目标接地、动作提示与动作 token 交织）以及视觉记忆模块（通过视觉编码器注入多秒历史信息）。\n\n\n# 一、动机\n\n> 现有视觉-语言-动作（VLA）模型通常将预训练 VLM 与独立的流匹配动作专家耦合，导致 VLM 退化为上下文编码器而非真正的决策者，限制了推理与动作的协同能力。\n\n\n# 二、方法\n\n> 提出 G0.5，一个预训练的自回归 VLA 模型，仅用单个 Transformer 解码器在单一目标下统一生成推理 token 和动作 token，核心组件包括可学习的跨本体动作分词器、原生思维链流（任务分解、目标接地、动作提示与动作 token 交织）以及视觉记忆模块（通过视觉编码器注入多秒历史信息）。\n\n\n# 三、核心实验结果\n\n> G0.5 在 7 个独立基准上超越 SOTA：真实世界微调 R1lite/R1pro 达 76.7%（对比 π0.5 的 53.3% 和 GR00T-N1.7 的 24.4%）；2025 BEHAVIOR Challenge 50 个长时程家庭移动操作任务达 31.4%（对比 π0.5 的 26.3% 和挑战冠军的 26.1%）；DROID 微调后零样本迁移到未知环境和物体达 82.5%；LIBERO 98.9%、RoboTwin 2.0 93.3%、SimplerEnv-Bridge 87.3%。\n\n\n# 四、对我的启发\n\n> 推理与动作共享权重使预训练 VLM 的能力直接迁移到物理行为，且无需额外训练即可通过提示控制动作粒度、任务时长与分布外场景处理；这一设计与具身智能课题直接相关，为构建统一决策型 VLA 提供了重要思路。局限可能在于依赖大规模多源训练数据，且跨本体泛化仍受动作分词器覆盖范围约束。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"G0.5: One Autoregressive Stream for Robot Reasoning and Action\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.11739v1\n---\n>[!abstract] 一句话总结：提出G0.5，一个预训练的自回归VLA模型，使用单一Transformer解码器在所有token上以统一目标生成推理和动作；通过可学习的跨具身动作分词器、原生思维链流和视觉记忆模块实现。\n\n\n# 一、动机\n\n> 现有视觉-语言-动作（VLA）模型通常将预训练VLM与单独训练的流匹配动作专家耦合，使得VLM仅作为上下文编码器而非决策者，限制了其推理能力向物理行为的迁移。\n\n\n# 二、方法\n\n> 提出G0.5，一个预训练的自回归VLA模型，使用单一Transformer解码器在所有token上以统一目标生成推理和动作；通过可学习的跨具身动作分词器、原生思维链流和视觉记忆模块实现。\n\n\n# 三、核心实验结果\n\n> G0.5在7个独立基准上超越SOTA：真实世界微调R1lite/R1pro机器人达76.7%（对比π0.5的53.3%和GR00T-N1.7的24.4%）；BEHAVIOR 2025挑战赛长时程任务31.4%（对比π0.5 26.3%和冠军26.1%）；DROID后训练零样本迁移82.5%；LIBERO 98.9%；RoboTwin 2.0 93.3%；SimplerEnv-Bridge 87.3%。\n\n\n# 四、对我的启发\n\n> 推理与动作共享权重的自回归架构能有效将VLM能力迁移至物理行为，且提示可直接控制动作粒度与任务长度，无需额外训练。局限可能在于跨具身分词器的通用性和大规模数据依赖，但总体与具身智能课题高度相关。\n"
 }
