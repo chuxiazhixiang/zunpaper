@@ -46,7 +46,8 @@
     "assets/img/covers/arxiv-2608-13028-p2.jpg"
   ],
   "channels": [
-    "sim2real"
+    "sim2real",
+    "world-model"
   ],
   "badges": [
     {
@@ -69,7 +70,7 @@
   "related_links": [],
   "page_count": 13,
   "source_tags": [],
-  "score": 50,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -94,6 +95,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 13 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -120,5 +127,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/CV\n  - Task/VideoGen\n  - Task/EmbodiedAI\nTitle: \"RGB-D Video Generation for Improving Human-to-Robot Object Handover Prediction\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.13028v1\n---\n>[!abstract] 一句话总结：提出PassGen生成流程，利用稳定视频扩散和意图感知时间面部编码器合成交接序列，并通过基于形态学的深度编辑策略模拟真实深度传感器噪声。\n\n\n# 一、动机\n\n> 人-机器人物体交接（H2R）中缺乏大规模人中心数据集，且存在显著的sim-to-real差距，限制了交接预测能力。\n\n\n# 二、方法\n\n> 提出PassGen生成流程，利用稳定视频扩散和意图感知时间面部编码器合成交接序列，并通过基于形态学的深度编辑策略模拟真实深度传感器噪声。\n\n\n# 三、核心实验结果\n\n> 实验表明，在消融研究和真实机器人部署中均达到高意图识别准确率和低误触发率，且能实现零样本迁移和更早的意图预测，优于传统手部中心基线（具体数值见原文）。\n\n\n# 四、对我的启发\n\n> 该工作验证了生成式数据增强在缓解sim-to-real差距上的有效性，并通过模拟深度噪声增强鲁棒性；局限在于摘要中未给出量化对比指标，需查阅原文获取详细数值。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/VideoGen\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"RGB-D Video Generation for Improving Human-to-Robot Object Handover Prediction\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.13028v1\n---\n>[!abstract] 一句话总结：提出Hand2Bot RGB-D视频数据集和PassGen生成管线，利用稳定视频扩散与意图感知时间人脸编码器合成交接序列，并通过基于形态的深度编辑模拟真实深度噪声。\n\n\n# 一、动机\n\n> 人机交接任务受限于大规模真实数据集的稀缺以及sim-to-real差距，导致模型泛化能力不足。\n\n\n# 二、方法\n\n> 提出Hand2Bot RGB-D视频数据集和PassGen生成管线，利用稳定视频扩散与意图感知时间人脸编码器合成交接序列，并通过基于形态的深度编辑模拟真实深度噪声。\n\n\n# 三、核心实验结果\n\n> 在消融实验和实物机器人部署中达到高意图识别准确率和低误触发率，相比手部中心基线支持更早的意图预判，并实现零样本迁移。\n\n\n# 四、对我的启发\n\n> 生成数据能有效缓解真实数据不足，但深度噪声模拟策略依赖传感器形态，可能难以泛化到不同设备；与课题相关，可借鉴其生成式数据增强思路。\n"
 }
