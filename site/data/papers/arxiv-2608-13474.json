@@ -1,0 +1,113 @@
+{
+  "id": "arxiv-2608-13474",
+  "source": "arxiv",
+  "title": "Decoding Task Progress from VLA Representations",
+  "title_zh": "从VLA表征中解码任务进度",
+  "abstract": "Vision-language-action models (VLAs) are moving rapidly towards deployment as general-purpose manipulation policies, but we currently lack basic tools for understanding what these models represent internally or for monitoring them at runtime. Leveraging ideas from mechanistic interpretability, we probe the residual stream of $π_{0.5}$ and find that task progress, the normalized time remaining in a trajectory, is linearly readable from the activations. We find that this signal is present in the pretrained PaliGemma backbone prior to training on any robot-specific data. A single linear probe generalizes to unseen tasks and varies under language counterfactuals when trained on multi-prompt data, but does not enable meaningful steering of the policy. These properties make the signal directly useful for instrumenting deployed VLAs. We use the probe as a simple label-free OOD detector, which detects stalled task progress, and find it competitive with state-of-the-art methods. Our results suggest that VLAs have rich, linearly readable internal representations of semantic quantities like task progress, and that learning to read these signals offers a lightweight, interpretable path toward monitoring deployed visuomotor policies.",
+  "abstract_zh": "视觉-语言-动作模型（VLA）正迅速向通用操作策略的部署迈进，但我们目前缺乏理解这些模型内部表征或运行时监控的基本工具。借鉴机械可解释性的思想，我们探测了π_{0.5}的残差流，发现任务进度（轨迹中归一化的剩余时间）可以从激活中线性读取。我们发现，该信号在预训练的PaliGemma骨干中就已存在，早于任何机器人特定数据的训练。一个线性探针可以泛化到未见过的任务，并在多提示数据训练时随语言反事实变化，但无法实现对策略的有意义引导。这些特性使得该信号直接可用于部署VLA的监控。我们将该探针用作简单的无标签OOD检测器，用于检测停滞的任务进度，并发现其与最先进方法相比具有竞争力。我们的结果表明，VLA具有丰富的、可线性读取的语义量（如任务进度）内部表征，学习读取这些信号为监控部署的视觉运动策略提供了一条轻量级、可解释的路径。",
+  "tldr_zh": "研究发现VLA模型内部可线性读取任务进度，可用于无标签OOD检测。",
+  "cover_zh": "VLA模型竟能直接读出任务进度？无需标签即可监控，太神奇了！",
+  "authors": [
+    {
+      "name": "Atiksh Bhardwaj",
+      "affiliation": ""
+    },
+    {
+      "name": "Edward Weiyi Duan",
+      "affiliation": ""
+    },
+    {
+      "name": "Prithwish Dan",
+      "affiliation": ""
+    },
+    {
+      "name": "Wei-Chiu Ma",
+      "affiliation": ""
+    },
+    {
+      "name": "Preston Culbertson",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-08-13",
+  "updated": "2026-08-13",
+  "arxiv_id": "2608.13474",
+  "pdf_url": "https://arxiv.org/pdf/2608.13474v1",
+  "abs_url": "http://arxiv.org/abs/2608.13474v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-13474.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-13474-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ Cornell"
+    },
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 19,
+  "source_tags": [],
+  "score": 44,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “Cornell” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 6,
+      "hint": "频道关键词命中 2 个（vision-language-action、manipulation）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 19 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "对VLA内部表征的机制可解释性研究，提出任务进度线性探针，用于OOD检测，具科研价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Cornell University"
+  ],
+  "method_tags": [
+    "mechanistic interpretability",
+    "linear probe",
+    "OOD detection"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/理论\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Decoding Task Progress from VLA Representations\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.13474v1\n---\n>[!abstract] 一句话总结：对π0.5残差流做线性探针，发现任务进度（归一化剩余时间）线性可读，并用其作为无标签OOD检测器。\n\n\n# 一、动机\n\n> VLA模型快速部署，但缺乏理解内部表示和运行时监控的工具。\n\n\n# 二、方法\n\n> 对π0.5残差流做线性探针，发现任务进度（归一化剩余时间）线性可读，并用其作为无标签OOD检测器。\n\n\n# 三、核心实验结果\n\n> 任务进度信号在预训练PaliGemma中已存在，单线性探针可泛化到未见任务，作为OOD检测器与SOTA方法竞争（论文未给出具体数值）。\n\n\n# 四、对我的启发\n\n> 与课题相关，可用于监控具身策略，但探针不能有效控制策略。局限：摘要无具体数字。\n"
+}
