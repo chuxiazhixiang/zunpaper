@@ -63,7 +63,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -98,5 +98,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"ContactGuard: Pre-Contact Execution Monitoring with Action-Conditioned Latent World Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.13438v1\n---\n>[!abstract] 一句话总结：提出ContactGuard，一种预接触执行监控器，利用动作条件潜在世界模型在潜在视觉空间预测策略动作块的短期后果，一旦预测的未来潜在表示表明可能失败就中止执行。\n\n\n# 一、动机\n\n> 接触丰富的操作失败往往在机器人已发生接触后才被检测到，尤其是在腕部相机设置中，糟糕的接近动作可能在传统检测器反应之前就导致推挤、未抓取、滑动或扰动物体。\n\n\n# 二、方法\n\n> 提出ContactGuard，一种预接触执行监控器，利用动作条件潜在世界模型在潜在视觉空间预测策略动作块的短期后果，一旦预测的未来潜在表示表明可能失败就中止执行。\n\n\n# 三、核心实验结果\n\n> 在真实世界的接触丰富操作任务中，ContactGuard的失败预测准确率优于直接和损坏动作消融等基线，并可作为预接触中止信号实时作用于机器人，且无需修改底层策略。\n\n\n# 四、对我的启发\n\n> 潜在世界模型避免了像素级视频预测，提升了效率；但需要少量标注的预接触片段来训练失败探针，且监控范围限于短视界行为。与机器人操作课题直接相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"ContactGuard: Pre-Contact Execution Monitoring with Action-Conditioned Latent World Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.13438v1\n---\n>[!abstract] 一句话总结：ContactGuard 利用动作条件下的潜在世界模型，在潜在视觉空间预测策略动作块的短时后果，并通过轻量级失败探针判断预测的潜在表示是否指示失败，若指示失败则中止执行。\n\n\n# 一、动机\n\n> 接触丰富的操作失败通常在机器人已经接触后才被检测到，尤其在腕部相机设置中，常规检测器反应太慢，机器人可能已经推动、错过、滑移或扰动物体。需要一种在接触前预测失败并中止执行的监控方法。\n\n\n# 二、方法\n\n> ContactGuard 利用动作条件下的潜在世界模型，在潜在视觉空间预测策略动作块的短时后果，并通过轻量级失败探针判断预测的潜在表示是否指示失败，若指示失败则中止执行。\n\n\n# 三、核心实验结果\n\n> 在真实世界的接触丰富操作任务中，ContactGuard比直接和损坏动作消融更准确地预测失败，并成功作为接触前中止信号转移到实时机器人，无需修改底层策略。\n\n\n# 四、对我的启发\n\n> 与机器人操作直接相关，可借鉴其利用潜在世界模型进行动作前预测的思路，避免像素级预测的效率问题；但局限在于需要标记的接触前片段用于训练失败探针，且世界模型可能依赖特定相机视角。\n"
 }
