@@ -99,5 +99,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Decoding Task Progress from VLA Representations\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.13474v1\n---\n>[!abstract] 一句话总结：利用机械可解释性思想，在π_{0.5}的残差流上训练线性探针读取任务进度，并用作无标签OOD检测器。\n\n\n# 一、动机\n\n> VLA正快速走向通用操作策略部署，但缺乏理解其内部表示或运行时监控的基本工具。\n\n\n# 二、方法\n\n> 利用机械可解释性思想，在π_{0.5}的残差流上训练线性探针读取任务进度，并用作无标签OOD检测器。\n\n\n# 三、核心实验结果\n\n> 任务进度可从VLA激活中线性读出，且该信号在预训练PaliGemma骨干中本就存在；单探针可泛化到未见任务；作为无标签OOD检测器，其性能与最先进方法竞争（摘要未给出具体数值，需查阅原文）。\n\n\n# 四、对我的启发\n\n> 探针无法实现有意义的策略引导，但表明VLA具有丰富、线性可读的语义内部表征，为部署监控提供轻量可解释路径；与课题紧密相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"Decoding Task Progress from VLA Representations\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.13474v1\n---\n>[!abstract] 一句话总结：利用机械可解释性思路，在π0.5的残差流上训练线性探针，以解码轨迹中归一化剩余时间（即任务进度），并用于无标签OOD检测。\n\n\n# 一、动机\n\n> VLA模型正快速部署为通用操作策略，但我们缺乏理解其内部表征或运行时监控的基础工具，这限制了部署的安全性和可解释性。\n\n\n# 二、方法\n\n> 利用机械可解释性思路，在π0.5的残差流上训练线性探针，以解码轨迹中归一化剩余时间（即任务进度），并用于无标签OOD检测。\n\n\n# 三、核心实验结果\n\n> 任务进度可从VLA激活中线性读取；该信号在预训练PaliGemma骨干中已存在（无需机器人数据）；单探针可泛化到未见任务；作为OOD检测器，其检测停滞任务进度的性能与SOTA方法相当。\n\n\n# 四、对我的启发\n\n> VLA内部存在丰富的、线性可读的语义量（如任务进度），为轻量级监控提供了新路径，但探针无法有效引导策略，且语言反事实下的变化需进一步研究。与课题相关，可借鉴其监控部署策略的思路。\n"
 }
