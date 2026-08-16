@@ -51,16 +51,12 @@
     {
       "kind": "lab",
       "label": "⭐ Cornell"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 19,
   "source_tags": [],
-  "score": 44,
+  "score": 34,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -73,12 +69,6 @@
       "label": "关键词命中密集",
       "points": 6,
       "hint": "频道关键词命中 2 个（vision-language-action、manipulation）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -109,5 +99,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Decoding Task Progress from VLA Representations\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.13474v1\n---\n>[!abstract] 一句话总结：在线性探针框架下，从π0.5模型的残差流中解码归一化任务进度信号，并利用该信号作为免标签的OOD检测器以检测停滞轨迹。\n\n\n# 一、动机\n\n> 解决VLA模型内部表示透明性缺失和运行时缺乏轻量级监控工具的问题。\n\n\n# 二、方法\n\n> 在线性探针框架下，从π0.5模型的残差流中解码归一化任务进度信号，并利用该信号作为免标签的OOD检测器以检测停滞轨迹。\n\n\n# 三、核心实验结果\n\n> 单探针可在未见任务上泛化，且作为OOD检测器性能与SOTA方法相当（原摘要未给出具体数字）。\n\n\n# 四、对我的启发\n\n> 局限：进度信号不能有效引导策略行为；启发：预训练VLA骨干已隐式编码任务进度，为部署中的视觉运动策略提供了可解释的轻量级监控路径。与课题直接相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Decoding Task Progress from VLA Representations\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.13474v1\n---\n>[!abstract] 一句话总结：利用机械可解释性思想，在π_{0.5}的残差流上训练线性探针读取任务进度，并用作无标签OOD检测器。\n\n\n# 一、动机\n\n> VLA正快速走向通用操作策略部署，但缺乏理解其内部表示或运行时监控的基本工具。\n\n\n# 二、方法\n\n> 利用机械可解释性思想，在π_{0.5}的残差流上训练线性探针读取任务进度，并用作无标签OOD检测器。\n\n\n# 三、核心实验结果\n\n> 任务进度可从VLA激活中线性读出，且该信号在预训练PaliGemma骨干中本就存在；单探针可泛化到未见任务；作为无标签OOD检测器，其性能与最先进方法竞争（摘要未给出具体数值，需查阅原文）。\n\n\n# 四、对我的启发\n\n> 探针无法实现有意义的策略引导，但表明VLA具有丰富、线性可读的语义内部表征，为部署监控提供轻量可解释路径；与课题紧密相关。\n"
 }

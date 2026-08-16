@@ -47,28 +47,17 @@
   "channels": [
     "manipulation"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 22,
+  "score": 12,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 9,
       "hint": "频道关键词命中 3 个（vision-language-action、robotwin、libero）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -103,5 +92,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"Temporal GRPO: Beyond Trajectory-Level Credit in Vision-Language-Action Reinforcement Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.13026v1\n---\n>[!abstract] 一句话总结：Temporal GRPO通过构建可检测的任务阶段，将每个rollout与阶段特定的动作间隔对齐，并只比较进入同一阶段的rollouts，将阶段优势应用于对应的动作间隔进行单一策略更新。\n\n\n# 一、动机\n\n> 解决了GRPO-based VLA后训练中轨迹级信用混叠问题：一个完成多个有效阶段但最终失败的rollout会错误地惩罚其早期阶段的动作，导致信用分配不准确。\n\n\n# 二、方法\n\n> Temporal GRPO通过构建可检测的任务阶段，将每个rollout与阶段特定的动作间隔对齐，并只比较进入同一阶段的rollouts，将阶段优势应用于对应的动作间隔进行单一策略更新。\n\n\n# 三、核心实验结果\n\n> 在RoboTwin 2.0上，Temporal GRPO提升了任务成功率和样本效率，跨任务时域表现一致；在LIBERO-Long上，受控更新保留共享先决阶段，并将改进集中在首个结果发散阶段。摘要未提供具体数值。\n\n\n# 四、对我的启发\n\n> 需要显式定义任务阶段，可能不适用于无明确阶段结构的任务；但启发我们利用任务结构信息实现更细粒度的信用分配，以提升VLA策略的强化学习效率。\n"
 }
