@@ -1,0 +1,91 @@
+{
+  "id": "arxiv-2608-13678",
+  "source": "arxiv",
+  "title": "hint$^2$: Hierarchical World Models for Inference-Time Temporal Logic Guidance",
+  "title_zh": "hint$^2$：用于推理时时间逻辑引导的分层世界模型",
+  "abstract": "A central goal of robot learning is to enable robots to execute rich instructions specified at runtime. Large-scale language-conditioned policies have made substantial progress toward this goal, yet still struggle with temporal structure and safety constraints. Linear Temporal Logic (LTL) provides a powerful language to express complex, non-Markovian instructions. However, guiding learned manipulation policies toward LTL satisfaction remains challenging because modern policies generate short-horizon action chunks and replan in closed loop, while almost all LTL specifications are evaluated over long-horizon trajectories. In this paper, we introduce hint$^2$, a method for guiding short-horizon policies toward satisfying complex LTL specifications at inference time using hierarchical world models. Our key idea is to derive two separate guidance objectives using each world model's abstraction level. A high-level model predicts future action-induced transitions in task-relevant atomic propositions to guide progress through the LTL automaton, while a low-level dynamics model predicts immediate state evolution for accurate local safety guidance. Our results show that hint$^2$ overcomes the limitations of current LTL-guided diffusion methods, outperforms existing inference-time steering methods in CALVIN, and successfully completes instructions with complex liveness and safety constraints more elegantly than language-conditioned alternatives. Finally, we demonstrate that hint$^2$ can handle complex instructions on a real UR5e manipulator.",
+  "abstract_zh": "机器人学习的一个核心目标是使机器人能够执行运行时指定的丰富指令。大规模语言条件策略已朝这一目标取得了实质性进展，但仍难以处理时间结构和安全约束。线性时间逻辑（LTL）提供了一种强大的语言来表达复杂的、非马尔可夫的指令。然而，引导学习到的操作策略满足LTL仍然具有挑战性，因为现代策略生成短视界的动作块并在闭环中重新规划，而几乎所有LTL规范都是在长视界轨迹上评估的。在本文中，我们介绍了hint$^2$，一种使用分层世界模型在推理时引导短视界策略满足复杂LTL规范的方法。我们的关键思想是利用每个世界模型的抽象级别推导出两个独立的引导目标。高层模型预测任务相关原子命题中未来动作引发的转换，以引导通过LTL自动机的进展，而低层动力学模型预测即时状态演化，以进行准确的局部安全引导。我们的结果表明，hint$^2$克服了当前LTL引导扩散方法的局限性，在CALVIN中优于现有的推理时引导方法，并且比语言条件替代方法更优雅地完成了具有复杂活性和安全约束的指令。最后，我们证明了hint$^2$能够在真实的UR5e机械臂上处理复杂指令。",
+  "tldr_zh": "hint$^2$用分层世界模型在推理时引导短视界策略满足复杂LTL规范，优于现有方法。",
+  "cover_zh": "机器人听不懂复杂指令？这个新方法用分层世界模型让推理时引导更优雅",
+  "authors": [
+    {
+      "name": "Moritz Zoellner",
+      "affiliation": ""
+    },
+    {
+      "name": "Anastasios Manganaris",
+      "affiliation": ""
+    },
+    {
+      "name": "Ahmed H. Qureshi",
+      "affiliation": ""
+    },
+    {
+      "name": "Rohan Paleja",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.LG"
+  ],
+  "published": "2026-08-13",
+  "updated": "2026-08-13",
+  "arxiv_id": "2608.13678",
+  "pdf_url": "https://arxiv.org/pdf/2608.13678v1",
+  "abs_url": "http://arxiv.org/abs/2608.13678v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-13678.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-13678-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 17,
+  "source_tags": [],
+  "score": 6,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（manipulation）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 17 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "world-model",
+    "reason": "提出分层世界模型用于LTL时序逻辑引导，结合推理时指导，具身操作场景，科研价值高。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Purdue University"
+  ],
+  "method_tags": [
+    "Hierarchical World Models",
+    "Inference-Time Policy Steering",
+    "LTL"
+  ],
+  "platform": [
+    "UR5e"
+  ],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"hint$^2$: Hierarchical World Models for Inference-Time Temporal Logic Guidance\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.13678v1\n---\n>[!abstract] 一句话总结：提出hint$^2$，利用分层世界模型在推理时引导短视策略：高层模型预测动作引起的原子命题转移以推进LTL自动机进度，低层动力学模型预测即时状态演化以提供局部安全引导。\n\n\n# 一、动机\n\n> 现有语言条件策略虽能执行丰富指令，但难以处理时序结构和安全约束，线性时序逻辑（LTL）可表达复杂非马尔可夫指令，但短视的动作分块策略在推理时难以保证LTL长时满足。\n\n\n# 二、方法\n\n> 提出hint$^2$，利用分层世界模型在推理时引导短视策略：高层模型预测动作引起的原子命题转移以推进LTL自动机进度，低层动力学模型预测即时状态演化以提供局部安全引导。\n\n\n# 三、核心实验结果\n\n> 在CALVIN基准上超越了现有的推理时引导方法，并成功在真实UR5e机械臂上执行包含liveness和safety约束的复杂指令，优于语言条件替代方法。\n\n\n# 四、对我的启发\n\n> 与课题相关，可用于机器人长时操作中的时序逻辑约束满足，但需预定义原子命题和LTL公式，且依赖世界模型的准确性；未来可探索自动提取原子命题或联合学习分层模型。\n"
+}

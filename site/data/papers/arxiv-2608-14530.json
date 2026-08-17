@@ -1,0 +1,95 @@
+{
+  "id": "arxiv-2608-14530",
+  "source": "arxiv",
+  "title": "Marionette: Predicting World States, Rendering Geometry, Painting Appearance",
+  "title_zh": "Marionette：预测世界状态，渲染几何，绘制外观",
+  "abstract": "Interactive game world models typically autoregress visual observations directly in pixel or latent space, forcing structured properties such as pose, geometry, and occlusion to be implicitly maintained by the same generative sequence. Over long horizons, errors in these latent world properties accumulate, making consistency and controllability fragile. We explicitly model the evolving world state, delegate exact geometric computation to a fixed, zero-parameter renderer, and leave the neural model to synthesize appearance. We instantiate this idea as Marionette, a world model for interactive games with articulated characters. First, a two-stage autoregressive dynamics model predicts an explicit and interpretable 276-dimensional 3D world state comprising multi-entity articulated skeletons, metric root trajectories, and rotations. Second, a zero-parameter graphics bridge converts the predicted state into pose-control videos, computing world-space geometry and occlusion in closed form. Third, a control-conditioned video-diffusion observation model synthesizes photorealistic RGB observations from the resulting structured controls. Our experiments establish two properties of Marionette. First, the predicted world state is directly controllable. Forcing a mismatched action stream changes root-aligned joint error by 31% across 48 held-out segments. Second, long-horizon behaviour is determined in the state, and can be repaired there. Left free, the two generated characters drift to 21.2 m apart (recorded sessions stay near 5 m) and a third of frames show ground penetration. Two rules imposed on the explicit state, a terrain collider and a separation cap, cut penetration by 66% and keep the pair engaged, with no change to the observation model. Routing appearance through the predicted state costs no fidelity we can detect, at an FVD of 831 against 799 for recorded pose.",
+  "abstract_zh": "交互式游戏世界模型通常直接在像素或潜在空间中自回归地预测视觉观察，迫使姿态、几何和遮挡等结构化属性由同一个生成序列隐式维护。在长时间跨度上，这些潜在世界属性的误差会累积，使得一致性和可控性变得脆弱。我们显式地建模不断演化的世界状态，将精确的几何计算委托给一个固定的、零参数的渲染器，而让神经模型专注于合成外观。我们将这一思想实现为Marionette，一个针对具有关节角色的交互式游戏的世界模型。首先，一个两阶段自回归动力学模型预测一个显式且可解释的276维3D世界状态，包括多实体关节骨架、度量根轨迹和旋转。其次，一个零参数的图形桥接将预测的状态转换为姿态控制视频，以闭合形式计算世界空间几何和遮挡。第三，一个控制条件的视频扩散观察模型从生成的结构化控制中合成逼真的RGB观察。我们的实验确立了Marionette的两个特性。首先，预测的世界状态是直接可控的。强制一个不匹配的动作流在48个保留片段上将根对齐的关节误差改变了31%。其次，长时间行为在状态中决定，并且可以在那里修复。如果放任自由，两个生成的角色会漂移到相距21.2米（记录的会话保持在5米左右），并且三分之一的帧显示地面穿透。在显式状态上施加两条规则，一个地形碰撞器和一个分离上限，将穿透减少了66%，并保持两者互动，而无需改变观察模型。通过预测状态路由外观不会损失我们可检测到的保真度，FVD为831，而记录的姿态为799。",
+  "tldr_zh": "Marionette显式建模世界状态，用零参数渲染器处理几何，实现可控且长时间一致的游戏世界模型。",
+  "cover_zh": "游戏世界模型还能这样？显式状态让角色不再穿模，长时间交互稳如老狗！",
+  "authors": [
+    {
+      "name": "Zian Meng",
+      "affiliation": ""
+    },
+    {
+      "name": "Zhen Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Chuanhao Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Qiang Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Kaipeng Zhang",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.CV",
+  "categories": [
+    "cs.CV",
+    "cs.AI"
+  ],
+  "published": "2026-08-14",
+  "updated": "2026-08-14",
+  "arxiv_id": "2608.14530",
+  "pdf_url": "https://arxiv.org/pdf/2608.14530v1",
+  "abs_url": "http://arxiv.org/abs/2608.14530v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-14530.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-14530-p2.jpg"
+  ],
+  "channels": [
+    "world-model"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 25,
+  "source_tags": [],
+  "score": 9,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 6,
+      "hint": "频道关键词命中 2 个（world model、world models）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 25 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "world-model",
+    "reason": "提出显式世界状态+可微渲染+扩散观测的交互游戏世界模型，方法新颖且可控制，对具身世界模型研究有高参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Alaya Lab",
+    "Shanghai Innovation Institute",
+    "Huazhong University of Science and Technology"
+  ],
+  "method_tags": [
+    "world model",
+    "autoregressive dynamics model",
+    "video diffusion"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\nTitle: \"Marionette: Predicting World States, Rendering Geometry, Painting Appearance\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.14530v1\n---\n>[!abstract] 一句话总结：提出Marionette，先由两阶段自回归动力学模型显式预测276维3D世界状态（骨架、轨迹、旋转），再通过零参数渲染器计算几何和遮挡，最后用控制条件视频扩散模型合成外观。\n\n\n# 一、动机\n\n> 直接自回归预测像素或潜在空间会使姿态、几何、遮挡等结构化属性隐式地由同一生成序列维护，长时程下误差累积，导致一致性和可控性脆弱。\n\n\n# 二、方法\n\n> 提出Marionette，先由两阶段自回归动力学模型显式预测276维3D世界状态（骨架、轨迹、旋转），再通过零参数渲染器计算几何和遮挡，最后用控制条件视频扩散模型合成外观。\n\n\n# 三、核心实验结果\n\n> 强制不匹配动作流使关节误差改变31%；自由生成时两角色漂移到21.2m（记录会话约5m），约1/3帧有地面穿透；施加地形碰撞器和分离帽规则后穿透减少66%，且FVD为831（对比记录姿态的799），外观保真度无显著损失。\n\n\n# 四、对我的启发\n\n> 与课题不直接相关，但其显式状态建模+固定渲染器分离的控制思路可迁移至具身智能世界模型，提升长时程可控性和一致性问题。\n"
+}

@@ -1,0 +1,96 @@
+{
+  "id": "arxiv-2608-14379",
+  "source": "arxiv",
+  "title": "Reflex: Enabling Fast and Predictive Vision-Language-Action Models for Reaction-Critical Manipulation",
+  "title_zh": "Reflex：为反应关键型操作实现快速且可预测的视觉-语言-动作模型",
+  "abstract": "Vision-Language-Action (VLA) models have recently achieved promising performance in robotic manipulation. However, existing benchmarks mainly evaluate generalization on static manipulation tasks and largely overlook dynamic interaction scenarios. To address this gap, we present ReflexBench, a benchmark for reaction-critical manipulation. ReflexBench contains six dynamic tasks and introduces an evaluation framework that decouples simulator stepping from robot control while supporting configurable latency under synchronous and asynchronous inference. Building upon ReflexBench, we propose ReflexVLA, an efficient VLA model designed for reaction-critical manipulation without large-scale robot-data pretraining. ReflexVLA enhances temporal reasoning through latent future prediction and multi-frame temporal fusion within the vision backbone, while reducing deployment latency through batched visual encoding and CUDA Graph replay. Experiments show that ReflexVLA consistently improves dynamic manipulation performance while maintaining competitive accuracy on standard static manipulation benchmarks, and real-world experiments further demonstrate its effectiveness under practical deployment conditions. Project website: https://reflexvla.github.io",
+  "abstract_zh": "视觉-语言-动作（VLA）模型近期在机器人操作中取得了令人瞩目的性能。然而，现有基准主要评估静态操作任务上的泛化能力，而很大程度上忽略了动态交互场景。为弥补这一空白，我们提出了ReflexBench，一个用于反应关键型操作的基准。ReflexBench包含六个动态任务，并引入了一个评估框架，该框架将模拟器步进与机器人控制解耦，同时支持同步和异步推理下的可配置延迟。基于ReflexBench，我们提出了ReflexVLA，一种为反应关键型操作设计的高效VLA模型，无需大规模机器人数据预训练。ReflexVLA通过视觉骨干中的潜在未来预测和多帧时间融合增强了时间推理，同时通过批量视觉编码和CUDA图重放降低了部署延迟。实验表明，ReflexVLA在标准静态操作基准上保持竞争性准确率的同时，持续提升了动态操作性能，真实世界实验进一步证明了其在实际部署条件下的有效性。项目网站：https://reflexvla.github.io",
+  "tldr_zh": "提出ReflexBench基准和ReflexVLA模型，提升动态操作性能并降低延迟。",
+  "cover_zh": "动态操作总翻车？这个新模型让机器人反应快人一步！",
+  "authors": [
+    {
+      "name": "Yuxuan Chen",
+      "affiliation": ""
+    },
+    {
+      "name": "Wanruo Zhang",
+      "affiliation": ""
+    },
+    {
+      "name": "Xiao Li",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.AI"
+  ],
+  "published": "2026-08-14",
+  "updated": "2026-08-14",
+  "arxiv_id": "2608.14379",
+  "pdf_url": "https://arxiv.org/pdf/2608.14379v1",
+  "abs_url": "http://arxiv.org/abs/2608.14379v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-14379.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-14379-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ SJTU"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 37,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “SJTU” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（vision-language-action、vla model、manipulation）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出动态操作基准与高效VLA模型，含未来预测与低延迟部署，对操作研究有参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Shanghai Jiao Tong University"
+  ],
+  "method_tags": [
+    "VLA",
+    "latent future prediction",
+    "multi-frame temporal fusion"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Reflex: Enabling Fast and Predictive Vision-Language-Action Models for Reaction-Critical Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.14379v1\n---\n>[!abstract] 一句话总结：提出ReflexBench基准（含6个动态任务，解耦仿真步进与机器人控制，支持可配置延迟的同步/异步推理），并基于此提出ReflexVLA模型：在视觉骨干中通过潜在未来预测和多帧时序融合增强时序推理，利用批处理视觉编码和CUDA Graph重放降低部署延迟。\n\n\n# 一、动机\n\n> 现有VLA基准主要评估静态操作任务的泛化能力，忽视了动态交互场景，缺乏对反应关键操作的评测和高效模型。\n\n\n# 二、方法\n\n> 提出ReflexBench基准（含6个动态任务，解耦仿真步进与机器人控制，支持可配置延迟的同步/异步推理），并基于此提出ReflexVLA模型：在视觉骨干中通过潜在未来预测和多帧时序融合增强时序推理，利用批处理视觉编码和CUDA Graph重放降低部署延迟。\n\n\n# 三、核心实验结果\n\n> 摘要中未给出具体数值；定性结果表明ReflexVLA在ReflexBench动态操作任务上持续提升性能，并在标准静态操作基准上保持竞争力，真实世界实验验证了实际部署条件下的有效性。\n\n\n# 四、对我的启发\n\n> 局限是摘要缺乏定量对比数字；启发是反应关键操作需要时序推理与低延迟部署的结合，与机器人操作课题直接相关。\n"
+}
