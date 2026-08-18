@@ -1,0 +1,98 @@
+{
+  "id": "arxiv-2608-16889",
+  "source": "arxiv",
+  "title": "Don't Drop the BATON: Long-Horizon Robot Manipulation via Agentic Subtask Exploration and Transition-aware Memory",
+  "title_zh": "不要丢掉接力棒：通过智能体子任务探索与转换感知记忆实现长时程机器人操作",
+  "abstract": "Long-horizon robot manipulation chains many contact-rich skills into one multi-stage task. Vision-language-action (VLA) models increasingly master the individual skills, yet the chain still fails: errors compound beyond the policy's ability to correct, and one subtask silently constrains the next. A promising recipe freezes the VLA and puts an LLM agent in charge: it plans in language, moves in free space with analytic primitives, invokes the VLA only for contact-rich segments, and writes adaptation into language memory. Applied to long horizons, it breaks twice. (1) Competence comes from whole-task exploration at test time, whose cost is multiplicative in stages: if one stage needs T episodes, a K-stage task needs about T^K, and a failure does not reveal which stage caused it. (2) It has no representation of transitions: the VLA primitive carries an exit but no entry condition, so a subtask can succeed in a form its successor cannot use. We present BATON. Against (1), BATON makes the subtask the unit of exploration: each is explored in the cheap short-horizon regime and its solution stored in memory; a long-horizon trajectory is then composed from these solutions rather than discovered whole. Cost becomes additive (T*K) and every failure is attributed to a single stage. Against (2), BATON equips exploration with a transition-aware memory. Within a subtask, a verifier agent governs the invocation transition: the VLA is called only after the wrist view confirms the scene is ready. Across subtasks, a handoff transition restores an entry state disturbed by the predecessor's residue, and a lookahead transition selects the strategy whose outcome the successor can inherit. No parameters are updated. On the long-horizon benchmark RoboMemArena, BATON improves task success by 11.6% and cumulative success by 14.9% over the SoTA.",
+  "abstract_zh": "长时程机器人操作将许多接触丰富的技能串联成一个多阶段任务。视觉-语言-动作（VLA）模型日益擅长掌握单个技能，但整个链条仍然会失败：错误累积超出策略的纠正能力，且一个子任务会悄然限制下一个子任务。一种有前景的方案是冻结VLA，让LLM智能体负责：它用语言规划，用解析原语在自由空间中移动，仅在接触丰富的片段调用VLA，并将适应写入语言记忆。应用于长时程任务时，该方案会两次失效。（1）能力来自测试时的全任务探索，其成本随阶段数呈乘法增长：如果一个阶段需要T次试验，那么K阶段任务大约需要T^K次，且失败无法揭示是哪个阶段导致的。（2）它没有转换表示：VLA原语带有退出条件但没有进入条件，因此子任务可能以后继无法使用的形式成功。我们提出BATON。针对（1），BATON将子任务作为探索单元：每个子任务在廉价的短时程场景中探索，其解决方案存储在记忆中；长时程轨迹由这些解决方案组合而成，而非整体发现。成本变为加法（T*K），且每次失败都能归因于单个阶段。针对（2），BATON为探索配备了转换感知记忆。在子任务内部，验证器智能体管理调用转换：仅在腕部视图确认场景就绪后才调用VLA。在子任务之间，交接转换恢复被前驱残留物干扰的进入状态，前瞻转换选择后继可继承结果的策略。不更新任何参数。在长时程基准RoboMemArena上，BATON将任务成功率提高了11.6%，累计成功率提高了14.9%，超过现有最优方法。",
+  "tldr_zh": "BATON通过子任务探索和转换感知记忆，将长时程操作成本从指数降为线性，成功率提升11.6%。",
+  "cover_zh": "长时程机器人操作总失败？BATON把指数级探索变成线性，成功率飙升11.6%！",
+  "authors": [
+    {
+      "name": "Bingxin Xu",
+      "affiliation": ""
+    },
+    {
+      "name": "Yuzhang Shang",
+      "affiliation": ""
+    },
+    {
+      "name": "Emilio Ferrara",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.AI",
+    "cs.CV"
+  ],
+  "published": "2026-08-17",
+  "updated": "2026-08-17",
+  "arxiv_id": "2608.16889",
+  "pdf_url": "https://arxiv.org/pdf/2608.16889v1",
+  "abs_url": "http://arxiv.org/abs/2608.16889v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-16889.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-16889-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 14,
+  "source_tags": [],
+  "score": 22,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（vision-language-action、manipulation、contact-rich）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 14 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出长时程操作任务分解与过渡感知记忆方法，显著提升成功率，对VLA长时程操作研究有高价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University of Southern California",
+    "University of Central Florida"
+  ],
+  "method_tags": [
+    "LLM agent",
+    "subtask exploration",
+    "transition-aware memory"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Don't Drop the BATON: Long-Horizon Robot Manipulation via Agentic Subtask Exploration and Transition-aware Memory\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.16889v1\n---\n>[!abstract] 一句话总结：BATON将子任务作为探索的基本单元，在廉价的短时程场景下逐一探索并存储解决方案，再组合成长时程轨迹，使成本从指数降为加法；并引入过渡感知记忆，通过验证器管理VLA调用的时机、处理子任务间的交接以及选择可被后继继承的策略。\n\n\n# 一、动机\n\n> 长时程机器人操作中，VLA模型虽然能掌握单个接触丰富技能，但多阶段链条常因误差累积和子任务间转换约束而失败；测试时全任务探索成本随阶段数指数增长，且故障无法定位到具体阶段，同时缺乏对转换状态的表征。\n\n\n# 二、方法\n\n> BATON将子任务作为探索的基本单元，在廉价的短时程场景下逐一探索并存储解决方案，再组合成长时程轨迹，使成本从指数降为加法；并引入过渡感知记忆，通过验证器管理VLA调用的时机、处理子任务间的交接以及选择可被后继继承的策略。\n\n\n# 三、核心实验结果\n\n> 在RoboMemArena基准上，BATON相比现有最优方法将任务成功率提升11.6%，累计成功率提升14.9%。\n\n\n# 四、对我的启发\n\n> 不更新任何参数，纯通过探索和记忆机制提升长时程操作能力，展示了将语言智能体与VLA冻结结合的潜力；局限可能在于依赖验证器设计和场景状态的可观测性，未来可推广到更多非接触段或动态环境。\n"
+}
