@@ -57,7 +57,8 @@
     "assets/img/covers/arxiv-2608-16234-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -80,7 +81,7 @@
   "related_links": [],
   "page_count": 18,
   "source_tags": [],
-  "score": 41,
+  "score": 52,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -91,8 +92,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（manipulation）"
+      "points": 9,
+      "hint": "频道关键词命中 3 个（manipulation、world model、world models）"
     },
     {
       "id": "freshness",
@@ -105,6 +106,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 18 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -132,5 +139,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/DrivingWorldModel\n  - 状态/待读\nTitle: \"GaussianDWM++: Language-Grounded 3D Gaussian Driving World Model for Unified Scene Understanding, Editing, and Multi-Modal Generation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.16234v1\n---\n>[!abstract] 一句话总结：提出一种基础特征高斯驾驶世界模型，通过基础特征高斯分词器将Qwen/SigLIP视觉语言特征蒸馏到3D高斯基元，构建紧凑的开放词汇高斯语义场；设计几何感知高斯适配器，结合重要性感知层次选择和文本条件Perceiver式交叉注意力将稠密高斯基元聚合为紧凑世界令牌；并提出基于KL的高斯-图像分布对齐目标，实现统一场景理解、编辑和多模态生成。\n\n\n# 一、动机\n\n> 现有驾驶世界模型主要聚焦于条件场景生成，缺乏显式的3D场景理解、语言接地推理和可控4D编辑能力；同时，常用的点云、占据体或BEV表示难以实现文本信息与底层3D场景结构的细粒度对齐。\n\n\n# 二、方法\n\n> 提出一种基础特征高斯驾驶世界模型，通过基础特征高斯分词器将Qwen/SigLIP视觉语言特征蒸馏到3D高斯基元，构建紧凑的开放词汇高斯语义场；设计几何感知高斯适配器，结合重要性感知层次选择和文本条件Perceiver式交叉注意力将稠密高斯基元聚合为紧凑世界令牌；并提出基于KL的高斯-图像分布对齐目标，实现统一场景理解、编辑和多模态生成。\n\n\n# 三、核心实验结果\n\n> 在多个驾驶基准上，该方法在场景理解、视觉定位、规划导向推理和可控4D生成任务中均达到当前最优性能（具体数值未在摘要中给出，详见论文）。\n\n\n# 四、对我的启发\n\n> 将视觉语言基础模型直接融入3D高斯表征，实现了语言与3D结构的细粒度对齐，为语言驱动的4D场景编辑提供了新思路；但高质量高斯基元的构建和聚合可能带来较大计算开销，后续可探索实时部署与动态场景扩展。与自动驾驶/具身智能相关，可用于闭环仿真和场景推理。\n"
 }

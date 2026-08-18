@@ -41,7 +41,8 @@
     "assets/img/covers/arxiv-2608-16442-p2.jpg"
   ],
   "channels": [
-    "sim2real"
+    "sim2real",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -56,7 +57,7 @@
   "related_links": [],
   "page_count": 7,
   "source_tags": [],
-  "score": 41,
+  "score": 46,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -81,6 +82,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 7 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -110,5 +117,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Observation-Constrained Joint-Space Viewpoint Optimization for Robotic Inspection of Cylindrical Cavities\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.16442v1\n---\n>[!abstract] 一句话总结：提出一种在机器人关节空间中进行的观察约束视点优化方法：将检测目标表示为有效观察几何集合，利用RGB感知估计腔体开口中心和轴方向，构造约束条件，并通过多起点无导数搜索优化关节配置，优先满足约束，再按运动经济性、关节极限裕度和视图质量排序，最后由碰撞感知运动规划器验证执行。\n\n\n# 一、动机\n\n> 现有方法通常预设单一笛卡尔相机位姿进行检测，容易导致视点不可达或关节极限裕度不足，难以适应圆柱腔体底部这类受可见性、运动学和碰撞约束的检测任务。\n\n\n# 二、方法\n\n> 提出一种在机器人关节空间中进行的观察约束视点优化方法：将检测目标表示为有效观察几何集合，利用RGB感知估计腔体开口中心和轴方向，构造约束条件，并通过多起点无导数搜索优化关节配置，优先满足约束，再按运动经济性、关节极限裕度和视图质量排序，最后由碰撞感知运动规划器验证执行。\n\n\n# 三、核心实验结果\n\n> 在Isaac Sim仿真中，方法在100个目标配置中成功完成92个，平均底部可见性91.65%，优于基线方法的76个和84.3%；在桌面和Unitree A2机器人上完成了完整的感知-规划-执行实验。\n\n\n# 四、对我的启发\n\n> 与课题直接相关。局限在于依赖RGB感知的准确性，且仿真与真实环境存在差异。启发是关节空间视点优化可替代笛卡尔空间方法，提升可达性与约束满足能力，可为机器人检测任务提供更鲁棒的视点规划思路。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/CameraControl\n  - 状态/待读\nTitle: \"Observation-Constrained Joint-Space Viewpoint Optimization for Robotic Inspection of Cylindrical Cavities\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.16442v1\n---\n>[!abstract] 一句话总结：提出一种在机器人关节空间中的观测约束视点优化方法，将检测目标表示为有效观察几何集合，利用RGB感知前端估计腔体开口中心和轴向，通过多起点无导数搜索优化关节构型，并用碰撞感知运动规划器评估候选。\n\n\n# 一、动机\n\n> 现有方法通常规定单一笛卡尔相机位姿，导致许多可达视点和关节极限裕度良好的配置被拒绝，无法有效完成圆柱腔体底部检测。\n\n\n# 二、方法\n\n> 提出一种在机器人关节空间中的观测约束视点优化方法，将检测目标表示为有效观察几何集合，利用RGB感知前端估计腔体开口中心和轴向，通过多起点无导数搜索优化关节构型，并用碰撞感知运动规划器评估候选。\n\n\n# 三、核心实验结果\n\n> 在Isaac Sim中，方法在100个目标配置中完成92个，平均底部可见性91.65%，优于基线（76个、84.3%）；表格和Unitree A2上的实验验证了完整感知-规划-执行流水线。\n\n\n# 四、对我的启发\n\n> 该方法将视点约束建模为关节空间中的有效区域而非单一目标，提高可行性和可见性；但依赖感知前端精度且未考虑动态环境，未来可扩展至更复杂检测场景。\n"
 }
