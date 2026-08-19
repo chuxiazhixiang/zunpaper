@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-18T06:56:00.019094+00:00",
-  "count": 2052,
+  "generated_at": "2026-08-19T04:00:37.943443+00:00",
+  "count": 2072,
   "papers": [
     {
       "id": "arxiv-2508-17600",
@@ -10371,6 +10371,88 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2608-18077",
+      "source": "arxiv",
+      "title": "Hydra-0: Action Flow for Generalist World Modeling and Control",
+      "title_zh": "Hydra-0：面向通用世界建模与控制的动作流",
+      "tldr_zh": "Hydra-0用像素运动表示动作，实现通用世界建模与控制，显著降低运动误差。",
+      "cover_zh": "机器人动作也能用像素表示？这个新模型让控制更通用",
+      "abstract_zh": "我们引入了 Hydra-0，一个以动作流为条件的通用世界模型，它将机器人动作表示为像素运动。这种共享的视觉接口通过跨具身、任务、环境和视频生成骨干学习动作后果，实现了通用世界建模与控制。我们最佳的配置相比以动作条件为基线的模型，机器人运动误差降低了90.4%，物体运动误差降低了60.2%，同时支持零样本组合和数据高效的适应。在RoboLab基准上，Hydra-0在重放和参考成功率之间达到了皮尔逊相关系数r=0.96。最后，我们发现了该接口的一种涌现逆模式：一个世界动作模型，它能够从人类演示中转移的期望物体流预测兼容的机器人运动。训练好的动作头将产生的潜在特征映射为可执行的动作，而无需特定任务的专业机器人演示。这些结果共同展示了动作流作为连接异构训练数据、开环策略评估和机器人控制的共享控制接口的潜力。",
+      "authors": [
+        "Hongyu Li",
+        "Bowen Wen",
+        "Xinghao Zhu"
+      ],
+      "authors_all": [
+        "Hongyu Li",
+        "Bowen Wen",
+        "Xinghao Zhu",
+        "Yixuan Wang",
+        "Yilun Du",
+        "Yunzhu Li",
+        "George Konidaris",
+        "Stan Birchfield",
+        "Soha Pouya",
+        "Chenran Li",
+        "Yan Chang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-18",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ NVIDIA"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Yunzhu Li"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-18077.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-18077-p2.jpg"
+      ],
+      "arxiv_id": "2608.18077",
+      "abs_url": "http://arxiv.org/abs/2608.18077v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.18077v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 64,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出以动作流为条件的通用世界模型，跨本体控制与评估，创新性强，归world-model频道。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "NVIDIA",
+        "Brown University",
+        "Columbia University",
+        "Harvard University"
+      ],
+      "method_tags": [
+        "World Model",
+        "Action Flow",
+        "Video Generation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "github-erwincoumans-motion-imitation",
       "source": "github",
       "title": "erwincoumans/motion_imitation",
@@ -14942,6 +15024,75 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2608-17484",
+      "source": "arxiv",
+      "title": "Reuse Before You Retrieve: Diagnosing Headroom and Complementarity for Test-Time Augmentation of Embodied Multimodal Policies",
+      "title_zh": "检索之前先复用：具身多模态策略测试时增强的余量与互补性诊断",
+      "tldr_zh": "提出先复用后检索，用可恢复余量和互补性指导VLA策略测试时增强。",
+      "cover_zh": "别再盲目检索了！先看看你的VLA策略里藏着多少潜力",
+      "abstract_zh": "冻结的视觉-语言-动作（VLA）策略在测试时通过采样额外的策略行为或引入外部演示来不断改进。然而，对于部署的策略实际需要哪种干预，目前缺乏指导。额外的采样仅在策略的随机 rollout 中已经存在更好的行为且可以被识别时才有用，而检索在相关动作先验未被策略可靠表示时最为有用。我们通过两个可测量的因素来研究这一决策：可恢复余量（recoverable headroom）和检索互补性（retrieval complementarity），它们表征了有多少有用的行为已经可供恢复，以及外部动作先验是否填补了可测量的差距。我们在可重试或并行执行下评估了一个情节级重试选择器，并结合多个冻结的 VLA 策略和环境进行检索。该选择器在 LIBERO 上所有测试的 VLA 骨干网络中一致地恢复了大量潜在能力，增益高达 21.0 个成功率点，与可恢复余量紧密相关。它还能迁移到不同的机器人和模拟器，并在观测退化的情况下保持有效，而自回归 OpenVLA 的实验则说明了可用余量与对候选 rollout 排序能力之间的区别。检索行为不同，它改善了具有最大测量动作先验差距的策略，并在与选择结合时提供进一步增益。总之，这些结果为通过区分可从冻结策略中恢复的能力与可能需要外部引入的行为先验来表征测试时增强机会提供了经验基础。",
+      "authors": [
+        "Yuhwan Jeong",
+        "Kuk-Jin Yoon"
+      ],
+      "authors_all": [
+        "Yuhwan Jeong",
+        "Kuk-Jin Yoon"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-18",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ KAIST"
+        },
+        {
+          "kind": "venue",
+          "label": "🎓 ECCV 2026"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-17484.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-17484-p2.jpg"
+      ],
+      "arxiv_id": "2608.17484",
+      "abs_url": "http://arxiv.org/abs/2608.17484v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.17484v1",
+      "venue": "ECCV 2026",
+      "venue_announced": "",
+      "score": 57,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "针对VLA策略测试时增强的决策问题，提出可恢复余量和检索互补性度量，实验扎实，对具身操作有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "KAIST, Visual Intelligence Lab"
+      ],
+      "method_tags": [
+        "Test-time augmentation",
+        "Retrieval augmentation",
+        "VLA"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "github-horizonrobotics-holomotion",
       "source": "github",
       "title": "HorizonRobotics/HoloMotion",
@@ -16747,6 +16898,250 @@
       "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-17386",
+      "source": "arxiv",
+      "title": "MANIGUARD: A Benchmark and Data Suite for Specification-Grounded Safety Evaluation and Improvement of Robotic Manipulation",
+      "title_zh": "MANIGUARD：面向机器人操作的安全评估与改进的规范约束基准与数据套件",
+      "tldr_zh": "ManiGuard基准评估机器人操作安全性，发现成功运行中6-21%违规，微调提升安全但仍有差距。",
+      "cover_zh": "机器人操作看似成功，实则暗藏危险？新基准揭示6-21%的违规率，微调后安全率飙升，但仍有盲区！",
+      "abstract_zh": "基础模型策略在机器人操作任务成功率上进展迅速，但对它们是否安全成功的严格评估仍然缺乏。我们引入了ManiGuard，一个基于规范约束的框架，用于评估和改进基础模型操作的安全性，包括ManiGuard-Bench任务套件和配套的安全标注轨迹生成流水线。ManiGuard-Bench将六个接触密集的家庭任务族组织成200个锁定基础任务，沿技能×约束分类法，安全性独立于任务成功进行规范。每个任务在一种分布内和四种单轴分布外扰动下进行评估，保持安全规范不变，共1000个锁定场景。每次运行都通过基于物理谓词的LTL_f基础自动机监视器进行运行时检查，而非学习分类器或LLM评判器，在仿真和物理Franka平台上进行。该流水线将自动运动规划生成器与人类遥操作配对，由相同的逐步监视器进行标注，并直接支持安全感知微调；我们发布了8000个安全标注演示，每个基础任务40个。在超过23,000次运行中对零样本和微调VLA进行基准测试，我们发现：(i) 安全性必须独立于任务成功进行评估，因为6-21%的成功运行违反了规范；(ii) 在我们的套件上微调将安全任务完成率从接近零提高到7.5-29.8%，并将参与且安全的行为从16-40%提高到51-72%；但(iii) 仍然存在一个差距，即扩大演示规模无法弥合，21-42%的参与运行仍然违反规范，六个任务族中有两个族的所有策略安全成功率低于2%，这些失败在分布偏移和硬件上持续存在。",
+      "authors": [
+        "Yiyan Peng",
+        "Philip Wang",
+        "Simon Sinong Zhan"
+      ],
+      "authors_all": [
+        "Yiyan Peng",
+        "Philip Wang",
+        "Simon Sinong Zhan",
+        "Yiqi Lyu",
+        "Zhenyang Ni",
+        "Jixin Yan",
+        "Fiorelli Wong",
+        "Ruochen Jiao",
+        "Hang Yin",
+        "Xinyu Cao",
+        "Huajie Shao",
+        "Manling Li",
+        "Ruohan Zhang",
+        "Qi Zhu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-18",
+      "channels": [
+        "manipulation",
+        "teleop"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Stanford"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-17386.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-17386-p2.jpg"
+      ],
+      "arxiv_id": "2608.17386",
+      "abs_url": "http://arxiv.org/abs/2608.17386v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.17386v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提供安全基准与数据套件，含LTLf监控和8k演示，对VLA安全评估与微调有高参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Northwestern University",
+        "Stanford University",
+        "William & Mary"
+      ],
+      "method_tags": [
+        "specification-grounded safety evaluation",
+        "LTL_f automaton monitors",
+        "fine-tuning"
+      ],
+      "platform": [
+        "Franka"
+      ],
+      "sim_stack": [
+        "Isaac Sim",
+        "OmniGibson"
+      ],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-17717",
+      "source": "arxiv",
+      "title": "CompCPZ: Preserving Multi-Modal Intent in Language-Guided Robot Manipulation",
+      "title_zh": "CompCPZ：在语言引导的机器人操作中保持多模态意图",
+      "tldr_zh": "CompCPZ 通过代数层保持多模态意图，在机器人操作中显著优于现有方法。",
+      "cover_zh": "机器人理解“或”指令？新方法 CompCPZ 让意图不丢失，操作更精准！",
+      "abstract_zh": "当机器人被要求“将杯子放在红色盘子或蓝色盘子附近”时，它可能会到达两者之间的质心，并在几何上看似成功，但实际上并未满足指令中的任何一个分支。这种无声的语义失败暴露了语言条件机器人策略的结构性局限：将析取指令压缩为单一连通集的表示无法保留所有可行模式，而承诺单一动作的规划器在运行时模式不确定性下会退化。我们通过CompCPZ解决了这一局限，这是一个健全的代数层，语言条件学习系统可以包裹它来恢复多模态析取表示，沿着语言解析树递归地组合每个原语的约束多项式 zonotope 包络，具有无分布共形覆盖和亚毫秒级运行时间。在闭环 ManiSkill3 桌面操作基准上，CompCPZ 优于凸集基线、多峰解码器和零样本视觉-语言-动作模型（1,900/1,918 配对胜利，p << 10^(-30)）；同一编译器无需重新调整即可迁移到 Unitree Go2 四足机器人上的平面真实机器人试验（在运动捕捉下）。这些结果表明，组合语言接地不仅应通过是否到达解码目标来评估，还应通过所表示的可行性集是否保留了用户意图的连通分量结构来评估。",
+      "authors": [
+        "Zhen Zhang",
+        "Ahmad Hafez",
+        "Peng Xie"
+      ],
+      "authors_all": [
+        "Zhen Zhang",
+        "Ahmad Hafez",
+        "Peng Xie",
+        "Yanliang Huang",
+        "Wenyuan Wu",
+        "Amr Alanwar"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-18",
+      "channels": [
+        "manipulation",
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ TUM"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-17717.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-17717-p2.jpg"
+      ],
+      "arxiv_id": "2608.17717",
+      "abs_url": "http://arxiv.org/abs/2608.17717v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.17717v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出CompCPZ代数层，保留语言指令多模态意图，提升操作策略语义鲁棒性，具科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Technical University of Munich"
+      ],
+      "method_tags": [
+        "compositional language grounding",
+        "constrained polynomial zonotope",
+        "conformal coverage"
+      ],
+      "platform": [
+        "Unitree Go2"
+      ],
+      "sim_stack": [
+        "ManiSkill3"
+      ],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-17962",
+      "source": "arxiv",
+      "title": "PRISM: Precision and contact-rich Real-world Industrial Skill dataset with Multimodal sensing",
+      "title_zh": "PRISM：具有多模态感知的高精度、接触丰富的真实工业技能数据集",
+      "tldr_zh": "PRISM是首个面向工业装配的大规模多模态数据集，含25+任务、5000+轨迹。",
+      "cover_zh": "别再只做抓取了！这个工业数据集让机器人学会精密装配",
+      "abstract_zh": "近年来，机器人学习的进步得益于在日常生活环境中收集的大规模数据集。然而，现有的大多数数据集侧重于短时程、低接触任务，如抓取和放置，因此未能捕捉工业装配所需的精确控制、力/力矩或触觉调节以及多模态反馈。为了解决这一差距，我们引入了PRISM，一个用于接触丰富的工业操作的大规模多模态数据集。该数据集涵盖超过25个操作任务（例如，电子元件插拔、基于传送带的分拣），并覆盖多样的机械约束。PRISM包含超过5000条轨迹，总计45小时的遥操作演示，使用同步的多视角RGB-D、力/力矩、触觉和机器人状态测量进行记录。与在家庭或实验室环境中收集的数据集相比，PRISM为高精度工业约束下的多模态感知和控制提供了一个现实的基准，并作为真实制造环境中接触丰富、可泛化操作的基础。该数据集已在以下网址开源：https://tengbo-yu.github.io/PRISM/",
+      "authors": [
+        "Tengbo Yu",
+        "Jiahao Wu",
+        "Hanning Wang"
+      ],
+      "authors_all": [
+        "Tengbo Yu",
+        "Jiahao Wu",
+        "Hanning Wang",
+        "Rui Chen",
+        "Chuanhou Liu",
+        "Chuang Sun",
+        "Hangxin Liu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-18",
+      "channels": [
+        "manipulation",
+        "teleop"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 北大"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-17962.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-17962-p2.jpg"
+      ],
+      "arxiv_id": "2608.17962",
+      "abs_url": "http://arxiv.org/abs/2608.17962v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.17962v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "大规模多模态工业操作数据集，含力触觉，支持接触丰富操作研究，具高科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Peking University",
+        "Delta Intelligence",
+        "PKU-Wuhan Institute for Artificial Intelligence",
+        "Hubei Humanoid Robot Innovation Center Co., Ltd."
+      ],
+      "method_tags": [
+        "Imitation Learning",
+        "contact-rich manipulation",
+        "multimodal sensing"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [
+        {
+          "kind": "youtube",
+          "url": "https://www.youtube.com/watch?v=X1uIIsTOtGc",
+          "embed_url": "https://www.youtube.com/embed/X1uIIsTOtGc",
+          "title": "PRISM Dataset",
+          "source": "project_page"
+        }
+      ],
       "github": {},
       "source_tags": []
     },
@@ -27476,9 +27871,9 @@
       "source": "arxiv",
       "title": "VGGT-$Ω$",
       "title_zh": "VGGT-$\\Omega$",
-      "tldr_zh": "VGGT-$\\Omega$通过架构改进和自监督，大幅提升重建精度，内存仅需30%。",
-      "cover_zh": "重建模型也能扩展？VGGT-$\\Omega$用30%内存提升77%精度！",
-      "abstract_zh": "最近的馈送式重建模型，如VGGT，已被证明与传统基于优化的重建器具有竞争力，同时还能提供对其他任务有用的几何感知特征。在此，我们表明这些模型的质量随模型和数据规模呈可预测的扩展。为此，我们引入了VGGT-$\\Omega$，它显著提高了静态和动态场景的重建精度、效率和能力。为了以前所未有的规模训练该模型，我们引入了提高训练效率的架构更改、支持动态场景的高质量数据标注流程，以及自监督学习协议。我们通过使用具有多任务监督的单一密集预测头并移除昂贵的高分辨率卷积层来简化VGGT的架构。我们还使用寄存器将场景信息聚合为紧凑表示，并引入寄存器注意力，将帧间信息交换限制在这些寄存器中，部分取代全局注意力。这样，在训练期间，VGGT-$\\Omega$仅使用其前身约30%的GPU内存，使我们能够使用比先前工作多15倍的监督数据进行训练，并利用大量未标记的视频数据。VGGT-$\\Omega$在多个基准上对静态和动态场景的重建取得了强劲结果，例如，在Sintel上将先前最佳相机估计精度提高了77%。我们还表明，学习到的寄存器可以改进视觉-语言-动作模型并支持与语言对齐，这表明重建可以成为空间理解的一个强大且可扩展的代理任务。项目页面：http://vggt-omega.github.io/",
+      "tldr_zh": "VGGT-$\\Omega$通过架构改进和自监督学习，大幅提升重建精度，并降低训练内存。",
+      "cover_zh": "重建模型也能扩展？VGGT-$\\Omega$用更少内存，精度飙升77%！",
+      "abstract_zh": "最近的馈送式重建模型，如VGGT，已被证明与传统基于优化的重建器具有竞争力，同时还能提供对其他任务有用的几何感知特征。在此，我们表明这些模型的质量随模型和数据规模呈可预测的扩展。为此，我们引入了VGGT-$\\Omega$，它大幅提高了静态和动态场景的重建精度、效率和能力。为了以前所未有的规模训练该模型，我们引入了提高训练效率的架构更改、支持动态场景的高质量数据标注流程，以及自监督学习协议。我们通过使用具有多任务监督的单一密集预测头并移除昂贵的高分辨率卷积层来简化VGGT的架构。我们还使用寄存器将场景信息聚合为紧凑表示，并引入寄存器注意力，将帧间信息交换限制在这些寄存器上，部分取代全局注意力。这样，在训练期间，VGGT-$\\Omega$仅使用其前身约30%的GPU内存，使我们能够使用比先前工作多15倍的监督数据进行训练，并利用大量未标记的视频数据。VGGT-$\\Omega$在多个基准上对静态和动态场景的重建取得了强劲结果，例如，在Sintel上将先前最佳相机估计精度提高了77%。我们还表明，学习到的寄存器可以改进视觉-语言-动作模型并支持与语言的对齐，这表明重建可以成为空间理解的一个强大且可扩展的代理任务。项目页面：http://vggt-omega.github.io/",
       "authors": [
         "Jianyuan Wang",
         "Minghao Chen",
@@ -41392,6 +41787,149 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2608-17209",
+      "source": "arxiv",
+      "title": "Teach and Grow: An Agent-Centered Architecture for General Robot Learning",
+      "title_zh": "教与成长：面向通用机器人学习的智能体中心架构",
+      "tldr_zh": "提出TGL架构，通过技能块复用避免再训练，实现通用机器人持续学习。",
+      "cover_zh": "告别再训练税｜这个机器人架构让新任务越学越轻松",
+      "abstract_zh": "端到端的视觉-语言-动作（VLA）和世界-动作模型为通用机器人提供了一条优雅的路径，但其可靠性受限于已验证的物理覆盖范围。当不熟悉的物体、传感器、具身或接触超出该覆盖范围且没有已验证的备选方案时，纠正失败需要新的机器人数据、策略更新和回归测试。这种反复出现的负担就是“再训练税”。与文本不同，具身数据通常必须通过操作机器来创建。我们提出了教与成长学习（TGL），一种面向通用机器人学习的智能体中心架构。在其一般形式中，多模态智能体将少量成功演示转化为可复用的技能块：针对有意义子目标闭环行为。在新场景中，智能体接地并组合这些块，选择学习或几何工具，观察物理结果，并在执行偏离意图时修正路线。技能库存储可执行行为，而结构化经验记忆携带成功、失败和修复。新任务无需特定于任务的策略再训练即可获得。我们的LIBERO评估达到了最先进的性能；对照研究揭示了技能归纳、持续复用和智能体导向的适应。最后，我们提出教与成长缩放律假设：如果X表示有效可复用经验，未来任务错误和教学需求应作为X的幂律趋近于不可约下限。因此，该架构将部署视为持续学习期，其中一项任务可以使下一项更容易。",
+      "authors": [
+        "Chang Nie",
+        "Zhe Liu",
+        "Hesheng Wang"
+      ],
+      "authors_all": [
+        "Chang Nie",
+        "Zhe Liu",
+        "Hesheng Wang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-17",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ SJTU"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-17209.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-17209-p2.jpg"
+      ],
+      "arxiv_id": "2608.17209",
+      "abs_url": "http://arxiv.org/abs/2608.17209v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.17209v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 44,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出TGL架构，通过技能库和经验记忆实现无需重训的持续学习，在LIBERO上SOTA，对通用机器人学习有高参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Shanghai Jiao Tong University",
+        "Shanghai Key Laboratory of Navigation and Location Based Services"
+      ],
+      "method_tags": [
+        "Agentic robotics",
+        "few-shot robot learning",
+        "skill composition"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-17432",
+      "source": "arxiv",
+      "title": "UniReflex: Plug-and-Play Force Control for Pretrained Generative Policies via Fast-Slow Reflex",
+      "title_zh": "UniReflex：通过快慢反射实现预训练生成策略的即插即用力控制",
+      "tldr_zh": "UniReflex为冻结的生成策略提供即插即用力控制，显著降低延迟并提升接触稳定性。",
+      "cover_zh": "无需重新训练！即插即用为生成策略装上力控制，延迟直降66倍",
+      "abstract_zh": "生成式模仿学习策略在轨迹规划方面表现出色，但缺乏闭环力调节能力，而直接引入力模态通常需要重新设计或重新训练网络。我们提出了UniReflex，一个通用的即插即用框架，为冻结的生成策略配备可变阻抗控制（VIC）以进行接触调节，该控制由演示过程中收集的力方向意图引导，无需对慢速主干网络进行微调。通过非侵入式地截取动作头的深层潜在表示，UniReflex驱动一个快速反射网络，将主动力施加与外部交互响应解耦。该方案预测归一化的各向异性刚度方向，以实现方向性顺应性分配。此外，UniReflex集成了自适应门控机制，能够在位置主导的规划和力主导的执行之间无缝切换。真实世界的双臂实验表明，UniReflex显著提高了接触稳定性和成功率，同时保持了原有的位置精度。在评估的主干网络上，我们的方法相比联合训练策略，每步反向延迟降低了25-66倍。",
+      "authors": [
+        "Yan Huang",
+        "Shoujie Li",
+        "Ziwu Song"
+      ],
+      "authors_all": [
+        "Yan Huang",
+        "Shoujie Li",
+        "Ziwu Song",
+        "Wenbo Ding"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-18",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ NTU"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-17432.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-17432-p2.jpg"
+      ],
+      "arxiv_id": "2608.17432",
+      "abs_url": "http://arxiv.org/abs/2608.17432v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.17432v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 44,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出即插即用力控框架，增强生成式策略的接触调节，具科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Tsinghua University Shenzhen International Graduate School",
+        "Nanyang Technological University",
+        "X Square Robot",
+        "Xspark AI"
+      ],
+      "method_tags": [
+        "Variable Impedance Control",
+        "Generative Imitation Learning",
+        "Force Control"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "vid-youtube-zj07hHJnrto",
       "source": "video_youtube",
       "title": "How do you make a reliable backflip? | Boston Dynamics",
@@ -41722,7 +42260,7 @@
       "title": "Whirlybird | Atlas | Boston Dynamics",
       "title_zh": "Whirlybird | Atlas | Boston Dynamics",
       "tldr_zh": "Atlas 机器人尝试旋转和新动作。",
-      "cover_zh": "机器人也能玩转旋转？Atlas 新动作太酷了！",
+      "cover_zh": "机器人 Atlas 玩转旋转新动作，太酷了！",
       "abstract_zh": "Atlas 尝试旋转并尝试一些新动作。",
       "authors": [],
       "authors_all": [],
@@ -45470,58 +46008,6 @@
       "source_tags": []
     },
     {
-      "id": "qbitai-469c4d75d6",
-      "source": "qbitai",
-      "title": "共生知行发布人形机器人赛车Demo：以卡丁车测试双足机器人的“全身智能”",
-      "title_zh": "共生知行发布人形机器人赛车Demo：以卡丁车测试双足机器人的“全身智能”",
-      "tldr_zh": "8月17日，具身智能初创公司共生知行发布双足人形机器人驾驶卡丁车Demo",
-      "cover_zh": "8月17日，具身智能初创公司共生知行发布双足人形机器人驾驶卡丁车Demo",
-      "abstract_zh": "8月17日，具身智能初创公司共生知行发布双足人形机器人驾驶卡丁车Demo",
-      "authors": [],
-      "authors_all": [],
-      "primary_category": "",
-      "published": "2026-08-17",
-      "channels": [
-        "loco-manip-wbc",
-        "locomotion"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/qbitai-469c4d75d6.jpg",
-      "preview_pages": [],
-      "arxiv_id": "",
-      "abs_url": "https://www.qbitai.com/2026/08/474537.html",
-      "pdf_url": "",
-      "venue": "",
-      "venue_announced": "",
-      "score": 42,
-      "judge": {
-        "relevant": true,
-        "research_value": "medium",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "双足人形机器人驾驶卡丁车，涉及全身运动与操控，展示全身智能，值得关注。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "共生知行"
-      ],
-      "method_tags": [],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": [
-        "qbitai"
-      ]
-    },
-    {
       "id": "arxiv-2403-01823",
       "source": "conf",
       "title": "RT-H: Action Hierarchies Using Language",
@@ -46612,6 +47098,81 @@
         "Long-tail Analysis"
       ],
       "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-17584",
+      "source": "arxiv",
+      "title": "HODAgent: Towards On-Demand, Responsive Humanoids for Physical World Human Interaction",
+      "title_zh": "HODAgent：面向物理世界人际交互的按需响应式人形机器人",
+      "tldr_zh": "HODAgent是服务场景人形机器人的System-2智能体，在仿真和物理机器人上均优于基线。",
+      "cover_zh": "人形机器人终于会随机应变了？HODAgent让服务更智能",
+      "abstract_zh": "我们提出了HODAgent，一种用于服务场景中人形机器人的System-2具身智能体，解决情境意图、响应执行、任务修订和结果验证等问题。其半双工架构集成了环境交互器、规划器、执行器和分层记忆，以在服务过程中保持连贯的交互、规划和任务状态。这允许在运动过程中处理新请求、保留进度、修订动作，并将闭环建立在执行结果上。共享接口连接仿真和物理机器人（Unitree G1），隔离平台特定控制。在包含164个案例的交互式仿真中，HODAgent在两种VLM骨干下分别达到84.8%和91.5%的联合成功率，比基线高出9.8和18.9个百分点。在物理机器人上，通过率分别为92%（原子任务）、72%（复合任务）和63.3%（完整任务）。在多个具身基准上，它比基线提高0.7-9.0个百分点。结果表明，统一的System-2智能体能够在仿真和现实中实现自适应的人形服务。",
+      "authors": [
+        "Wang Warren Chen",
+        "Jiahao Zhang",
+        "Zhenjiang Li"
+      ],
+      "authors_all": [
+        "Wang Warren Chen",
+        "Jiahao Zhang",
+        "Zhenjiang Li",
+        "Mingxu Wang",
+        "Lei Yi",
+        "Yuchen Kang",
+        "Shuo Sun",
+        "Ziping Chen",
+        "Jie Chen"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-18",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ XPENG Robotics"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-17584.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-17584-p2.jpg"
+      ],
+      "arxiv_id": "2608.17584",
+      "abs_url": "http://arxiv.org/abs/2608.17584v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.17584v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 41,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "面向人形机器人服务场景的System-2具身智能体，涉及全身控制与交互，仿真+真机验证，具有科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "XPENG ROBOTICS"
+      ],
+      "method_tags": [
+        "System-2 agent",
+        "semi-duplex architecture",
+        "interactive simulation"
+      ],
+      "platform": [
+        "Unitree G1"
+      ],
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
@@ -52618,6 +53179,77 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2608-17320",
+      "source": "arxiv",
+      "title": "Robust Brachiation on a Life-Sized Dual-Arm Robot Using Waypoint-Guided Reinforcement Learning",
+      "title_zh": "基于航点引导强化学习的等身双机械臂机器人稳健摆荡运动",
+      "tldr_zh": "提出航点引导强化学习，在等身双机械臂机器人上实现稳健摆荡运动。",
+      "cover_zh": "等身机器人也能荡秋千？航点引导强化学习让它稳健摆荡还带失败恢复！",
+      "abstract_zh": "摆荡运动是灵长类动物主要利用手臂进行移动的一种运动形式，使其能够在没有立足点的环境中穿行。然而，这种运动需要高度协调的全身运动以及对抓握和释放横杆的精确时机控制。因此，在等身大小的机器人平台上实现稳健的摆荡行为仍然具有挑战性。在本研究中，我们提出了一种基于强化学习的方法，在等身大小的双机械臂机器人上实现摆荡运动。所提方法的核心是航点引导强化学习（WGRL），这是一种用于诱导非线性和复杂运动的学习框架。对于缺乏模仿学习数据的高难度任务，WGRL通过稀疏地指定末端执行器轨迹的航点来引导行为获取，而全身运动则通过强化学习生成。此外，通过将航点跟随引导与基于任务成功和机械能的奖励相结合，并在为Sim-to-Real迁移设计的环境中训练，所提方法实现了前进推进和运动稳定性。通过在不同几何变化的猴杠环境下的Sim-to-Sim实验和硬件实验评估所获得的行为，确认了包括失败恢复行为在内的稳健摆荡运动。本研究为在等身机器人硬件上实现基于手臂的运动以及扩展机器人可穿越工作空间提供了有效的学习设计指南。",
+      "authors": [
+        "Ayumu Iwata",
+        "Kento Kawaharazuka",
+        "Keita Yoneda"
+      ],
+      "authors_all": [
+        "Ayumu Iwata",
+        "Kento Kawaharazuka",
+        "Keita Yoneda",
+        "Takahiro Hattori",
+        "Kei Okada"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-18",
+      "channels": [
+        "manipulation",
+        "locomotion",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2026"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-17320.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-17320-p2.jpg"
+      ],
+      "arxiv_id": "2608.17320",
+      "abs_url": "http://arxiv.org/abs/2608.17320v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.17320v1",
+      "venue": "IROS 2026",
+      "venue_announced": "",
+      "score": 40,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "双臂机器人臂式运动（brachiation）结合全身协调与强化学习，含sim2real，属loco-manip-wbc范畴。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "The University of Tokyo"
+      ],
+      "method_tags": [
+        "Reinforcement Learning",
+        "Waypoint-Guided Reinforcement Learning",
+        "Sim-to-Real"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "github-haoyizhu-pointcloudmatters",
       "source": "github",
       "title": "HaoyiZhu/PointCloudMatters",
@@ -55398,6 +56030,58 @@
       "demo_videos": [],
       "github": {},
       "source_tags": []
+    },
+    {
+      "id": "qbitai-469c4d75d6",
+      "source": "qbitai",
+      "title": "共生知行发布人形机器人赛车Demo：以卡丁车测试双足机器人的“全身智能”",
+      "title_zh": "共生知行发布人形机器人赛车Demo：以卡丁车测试双足机器人的“全身智能”",
+      "tldr_zh": "共生知行发布人形机器人赛车Demo：以卡丁车测试双足机器人的“全身智能”",
+      "cover_zh": "共生知行发布人形机器人赛车Demo：以卡丁车测试双足机器人的“全身智能”",
+      "abstract_zh": "8月17日，具身智能初创公司共生知行发布双足人形机器人驾驶卡丁车Demo",
+      "authors": [],
+      "authors_all": [],
+      "primary_category": "",
+      "published": "2026-08-17",
+      "channels": [
+        "loco-manip-wbc",
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/qbitai-469c4d75d6.jpg",
+      "preview_pages": [],
+      "arxiv_id": "",
+      "abs_url": "https://www.qbitai.com/2026/08/474537.html",
+      "pdf_url": "",
+      "venue": "",
+      "venue_announced": "",
+      "score": 39,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "双足人形机器人驾驶卡丁车，涉及全身运动与操控，展示全身智能，值得关注。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "共生知行"
+      ],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": [
+        "qbitai"
+      ]
     },
     {
       "id": "github-meowuu7-quasisim",
@@ -62727,6 +63411,56 @@
       "demo_videos": [],
       "github": {},
       "source_tags": []
+    },
+    {
+      "id": "qbitai-5fa1431998",
+      "source": "qbitai",
+      "title": "π0引用的中国团队，又出手了：世界仿真器新作发布",
+      "title_zh": "π0引用的中国团队，又出手了：世界仿真器新作发布",
+      "tldr_zh": "给机器人造一个更接近真实的“第二世界”",
+      "cover_zh": "给机器人造一个更接近真实的“第二世界”",
+      "abstract_zh": "给机器人造一个更接近真实的“第二世界”",
+      "authors": [],
+      "authors_all": [],
+      "primary_category": "",
+      "published": "2026-08-18",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "",
+      "abs_url": "https://www.qbitai.com/2026/08/474838.html",
+      "pdf_url": "",
+      "venue": "",
+      "venue_announced": "",
+      "score": 36,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "世界仿真器新作，属于世界模型方向，对具身机器人仿真与规划有高参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": [
+        "qbitai"
+      ]
     },
     {
       "id": "arxiv-2601-12799",
@@ -76162,6 +76896,74 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2608-17628",
+      "source": "arxiv",
+      "title": "Iterative Grasp Pose Refinement: A Deep Reinforcement Learning Approach for 2D Vision",
+      "title_zh": "迭代抓取姿态优化：一种基于深度强化学习的二维视觉方法",
+      "tldr_zh": "强化学习框架迭代优化抓取，将几何方法失败的抓取转为成功。",
+      "cover_zh": "几何方法说抓不了？强化学习迭代优化，100%成功逆袭！",
+      "abstract_zh": "开发能够理解和操作物体的机器人需要紧凑、可解释且可泛化的表示。这项工作提出了一种基于强化学习的机器人抓取优化框架，将基于关键点的物体表示与深度Q网络（DQN）相结合。利用模拟环境中捕获的二维俯视图像，一种基于几何的算法生成初始抓取候选，然后由所提出的框架进行迭代优化，将失败的抓取转化为成功的抓取。在Dex-Net数据集的300个物体上使用UR5机械臂进行的实验证明了该框架的有效性，在几何方法认为不可抓取的物体上实现了100%的成功率。该框架的仿真到现实迁移能力通过Delta并联机器人的物理实验进一步验证，其中优化后的抓取成功操纵了先前不可抓取的物体。研究结果强调了强化学习在解决机器人抓取挑战中的有效性，为接触丰富的操作任务提供了一种可扩展且适应性强的解决方案。",
+      "authors": [
+        "Amir Arsalan Nematollahi",
+        "Shayan Ahmadi",
+        "Mehdi Tale Masouleh"
+      ],
+      "authors_all": [
+        "Amir Arsalan Nematollahi",
+        "Shayan Ahmadi",
+        "Mehdi Tale Masouleh",
+        "Ahmad Kalhor"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-18",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-17628.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-17628-p2.jpg"
+      ],
+      "arxiv_id": "2608.17628",
+      "abs_url": "http://arxiv.org/abs/2608.17628v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.17628v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "基于强化学习的抓取位姿优化，结合关键点表示与DQN，在仿真和真机上验证，属于操作方向。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Tehran"
+      ],
+      "method_tags": [
+        "Reinforcement Learning",
+        "Deep Q-Network",
+        "sim-to-real"
+      ],
+      "platform": [
+        "UR5",
+        "Delta parallel robot"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2407-09829",
       "source": "conf",
       "title": "VLMPC: Vision-Language Model Predictive Control for Robotic Manipulation",
@@ -76433,7 +77235,7 @@
       "title_zh": "实时全模态交互驱动的全身移动操作",
       "tldr_zh": "单一模型实现全模态交互与全身移动操作，自主稳定抗干扰。",
       "cover_zh": "一个模型搞定全屋家务？还能抗干扰自主执行！",
-      "abstract_zh": "Unitree UnifoLM-OminiA-0.3——一个处理多种家庭护理和健康任务的单一模型，具备全模态交互理解能力，实现全自主、稳定且抗干扰的执行。",
+      "abstract_zh": "Unitree UnifoLM-OminiA-0.3——一个处理多种家庭护理和健康任务的单一模型，具备全模态交互理解能力，实现完全自主、稳定且抗干扰的执行。",
       "authors": [],
       "authors_all": [],
       "primary_category": "video",
@@ -77141,8 +77943,8 @@
       "source": "qbitai",
       "title": "终于！世界模型进入“有声时代”：24FPS画面+48kHz立体声实时生成",
       "title_zh": "终于！世界模型进入“有声时代”：24FPS画面+48kHz立体声实时生成",
-      "tldr_zh": "即将完全开源",
-      "cover_zh": "即将完全开源",
+      "tldr_zh": "终于！世界模型进入“有声时代”：24FPS画面+48kHz立体声实时生成",
+      "cover_zh": "终于！世界模型进入“有声时代”：24FPS画面+48kHz立体声实时生成",
       "abstract_zh": "即将完全开源",
       "authors": [],
       "authors_all": [],
@@ -81704,6 +82506,72 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2608-17323",
+      "source": "arxiv",
+      "title": "ORPA: Online Residual Policy Adaptation for Robot Manipulation Control with Human Feedback",
+      "title_zh": "ORPA：基于人类反馈的机器人操作控制在线残差策略自适应",
+      "tldr_zh": "提出ORPA框架，通过在线残差调整提升机器人操作策略的鲁棒性，无需重训练。",
+      "cover_zh": "机器人操作总翻车？这个新框架用在线残差调整，实时纠错不重训！",
+      "abstract_zh": "通过模仿学习训练的操作策略，如基于Transformer的动作分块（ACT），在理想条件下能表现出色，但往往对小的执行错误和分布偏移敏感。纠正这些失败通常需要数据集聚合和全策略重训练，这在计算上昂贵且不适合实时部署。在这项工作中，我们提出了在线残差策略自适应（ORPA），一个能够在不修改底层策略参数的情况下，实现即时、反馈驱动的机器人动作修正的框架。ORPA用一个轻量级的、反馈条件的模块增强预训练控制策略，该模块直接在关节空间预测残差调整，使系统能够在运行时调整其行为。我们在ALOHA平台上对一组精度敏感的操作任务评估了ORPA，与基线控制策略和基于规则的运动学逆解修正相比，展示了成功率的提高和对小扰动的恢复能力。",
+      "authors": [
+        "Muhammad A. Muttaqien",
+        "Tomohiro Motoda",
+        "Ryo Hanai"
+      ],
+      "authors_all": [
+        "Muhammad A. Muttaqien",
+        "Tomohiro Motoda",
+        "Ryo Hanai",
+        "Yukiyasu Domae"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-18",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-17323.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-17323-p2.jpg"
+      ],
+      "arxiv_id": "2608.17323",
+      "abs_url": "http://arxiv.org/abs/2608.17323v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.17323v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 25,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "提出在线残差策略适应框架，结合人类反馈提升操作鲁棒性，对IL/VLA部署有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "National Institute of AIST"
+      ],
+      "method_tags": [
+        "Imitation Learning",
+        "Residual Policy",
+        "Human Feedback"
+      ],
+      "platform": [
+        "ALOHA"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2402-02500",
       "source": "conf",
       "title": "Point Cloud Matters: Rethinking the Impact of Different Observation Spaces on Robot Learning",
@@ -85271,6 +86139,269 @@
         "LLM agent",
         "subtask exploration",
         "transition-aware memory"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-17423",
+      "source": "arxiv",
+      "title": "Prism-GRPO: Faster VLA Policy Optimization via Splitting Same-outcome Groups",
+      "title_zh": "Prism-GRPO：通过拆分同结果组实现更快的视觉-语言-动作策略优化",
+      "tldr_zh": "Prism-GRPO 通过拆分同结果组，在减少 rollout 的同时提升 VLA 策略性能。",
+      "cover_zh": "还在为机器人训练浪费 rollout？这个新方法让成功率飙升还省一半预算！",
+      "abstract_zh": "GRPO 越来越多地用于视觉-语言-动作（VLA）策略的强化学习，因为与 PPO 不同，它不需要训练评论家。但这种简化带来了采样成本：组相对优势需要从每个场景进行多次 rollout。在二元成功奖励下，所有 rollout 全部成功或全部失败的组的优势为零，并被动态采样丢弃。这些组在训练早期尤其常见，此时大多数 rollout 失败，浪费了大量昂贵的机器人 rollout 预算。我们提出了 Prism-GRPO，它用加权的轨迹级执行质量分数增强了二元结果奖励。通过将同结果组拆分为质量谱，Prism-GRPO 恢复了训练信号，同时确保每个成功仍然优于每个失败。质量分数可以来自模拟器接触、执行动作或视觉观察，避免了特定于任务的进度奖励。我们证明了 Prism-GRPO 永远不会增加采样组因零优势而被丢弃的概率，并推导了一个梯度对齐条件，在该条件下，其组合更新仍然是任务成功的局部上升方向。在跨越不同视野和协调模式的四个 RoboTwin 任务中，Prism-GRPO 在匹配的 rollout 预算下提高了成功率和质量，并以最多减少 56% 的 rollout 达到目标成功率。它还抑制了奖励黑客捷径，更干净的行为在直接部署到真实机器人时得以迁移。通过消融实验，我们展示了在接触、平滑度和 VLM 派生的质量信号上的一致收益。",
+      "authors": [
+        "Zeyun Deng",
+        "Yuzhe Lu",
+        "Yawei Wang"
+      ],
+      "authors_all": [
+        "Zeyun Deng",
+        "Yuzhe Lu",
+        "Yawei Wang",
+        "Linbo Liu",
+        "Qing Ping",
+        "Han Ding",
+        "Guande Wu",
+        "Panpan Xu",
+        "Jun Huan"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-18",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-17423.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-17423-p2.jpg"
+      ],
+      "arxiv_id": "2608.17423",
+      "abs_url": "http://arxiv.org/abs/2608.17423v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.17423v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 22,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出Prism-GRPO改进VLA策略优化，提升样本效率并抑制奖励黑客，对具身操作RL有高参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Purdue University",
+        "AWS AI"
+      ],
+      "method_tags": [
+        "GRPO",
+        "VLA",
+        "RL"
+      ],
+      "platform": [],
+      "sim_stack": [
+        "RoboTwin"
+      ],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-17600",
+      "source": "arxiv",
+      "title": "LIBERO-VIFO: Benchmarking the Capability and Safety of Visual Cue Following in Vision-Language-Action Models",
+      "title_zh": "LIBERO-VIFO：视觉语言动作模型中视觉线索跟随能力与安全的基准测试",
+      "tldr_zh": "新基准LIBERO-VIFO评估VLA模型视觉线索跟随能力与安全，发现未授权跟随风险。",
+      "cover_zh": "视觉线索也能被机器人滥用？新基准揭示VLA模型的安全隐患",
+      "abstract_zh": "视觉线索越来越多地被用于引导机器人学习，但视觉语言动作（VLA）模型能否可靠地遵循授权线索而忽略未授权线索仍不清楚。现有工作仅覆盖了狭窄的线索形式，并侧重于最终任务成功，仅提供对线索跟随能力的粗略评估。将所有视觉线索视为授权也留下了未授权跟随的安全风险未探索。为解决这些空白，我们引入了LIBERO-VIFO，一个评估VLA模型中视觉线索跟随能力和安全性的基准。LIBERO-VIFO定义了跨越多种形式的八个视觉线索家族。共定义了四个协议，分为两部分：第一部分测试线索理解和授权跟随，而第二部分在语言线索冲突和空语言条件下评估未授权视觉线索跟随。评估七个VLA模型揭示，尽管视觉线索理解不能可靠地转化为执行，但当前的VLA能够在没有语言指令的情况下执行线索指示的任务，暴露了未授权视觉线索跟随的新兴风险。在场景实例化线索、安全关键设置和真实机器人部署上的扩展实验证实了这些发现。LIBERO-VIFO将视觉线索跟随的能力和安全性带入系统评估，为VLA社区建立了以视觉为中心的安全新视角。",
+      "authors": [
+        "Zhengyan Qian",
+        "Rui Yan",
+        "Alex Jinpeng Wang"
+      ],
+      "authors_all": [
+        "Zhengyan Qian",
+        "Rui Yan",
+        "Alex Jinpeng Wang",
+        "Jinhui Tang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-18",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-17600.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-17600-p2.jpg"
+      ],
+      "arxiv_id": "2608.17600",
+      "abs_url": "http://arxiv.org/abs/2608.17600v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.17600v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 22,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "VLA基准测试，评估视觉线索跟随能力与安全，对操作策略研究有重要参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "VLA",
+        "visual cue following",
+        "benchmark"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-17691",
+      "source": "arxiv",
+      "title": "Force-Based Offset Estimation for Keyed Peg-in-Hole Assembly Using Local Gaussian Process Regression",
+      "title_zh": "基于力的键槽销孔装配偏移估计：使用局部高斯过程回归",
+      "tldr_zh": "提出基于力的键槽销孔装配偏移估计方法，将插入成功率从67%提升至87%。",
+      "cover_zh": "装配总失败？这个力觉偏移估计让成功率飙升20%！",
+      "abstract_zh": "键-键槽装配任务具有严格的几何约束，并且对不确定环境中的抓取姿态偏差高度敏感。本文提出了一种基于力的键槽销孔装配偏移估计方法，嵌入在感知-验证-插入流程中。残余错位通过使用局部KNN-高斯过程混合回归器直接从腕部力/力矩测量中估计。该框架区分两种接触状态：硬碰撞和导向倒角插入，并将推理路由到每种状态的专用模型。状态分类通过接触窗口持续时间阈值实现。KNN结合使用抓取后单目视觉验证结果的确定性搜索，有助于提高回归模型的准确性。该方法在基于关键点检测的拾取和放置应用中，实现了倒角销插入的精确径向偏移估计。使用协作机器人臂的集成力/力矩传感器进行的实验表明，应用该流程后，插入成功率从67%提高到87%。",
+      "authors": [
+        "Chandra Yuvesh Aubeeluck",
+        "Abilash Philip Madavath",
+        "Augustin Raju"
+      ],
+      "authors_all": [
+        "Chandra Yuvesh Aubeeluck",
+        "Abilash Philip Madavath",
+        "Augustin Raju",
+        "Nicolas Pyschny",
+        "Felix Hackelöer",
+        "Florian Zwanzig"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-18",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-17691.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-17691-p2.jpg"
+      ],
+      "arxiv_id": "2608.17691",
+      "abs_url": "http://arxiv.org/abs/2608.17691v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.17691v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 22,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "针对键槽装配的力控偏移估计方法，结合局部高斯过程回归，属于操作领域，有一定科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Cologne University of Applied Sciences"
+      ],
+      "method_tags": [
+        "Gaussian Process Regression",
+        "KNN",
+        "force-based offset estimation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-17959",
+      "source": "arxiv",
+      "title": "Towards Zero-Shot Task Transfer with Neurosymbolic World Models",
+      "title_zh": "迈向零样本任务迁移：神经符号世界模型",
+      "tldr_zh": "提出神经符号世界模型，实现零样本任务迁移，优于纯神经方法。",
+      "cover_zh": "零样本迁移新突破｜神经符号世界模型让AI秒懂新任务",
+      "abstract_zh": "最先进的基于模型的强化学习方法学习神经世界模型，通过在潜在空间中进行规划来实现策略改进，而无需对底层环境的结构做出假设。尽管这些模型具有表现力，但它们通常是任务相关的：它们学习与训练任务紧密相连的不可解释的潜在表示，因此难以泛化到新任务。在这项工作中，我们提出了一种新颖的世界模型公式，其中奖励预测仅依赖于整个潜在状态中结构化的符号组件子集。将观测重建与奖励预测解耦，使我们能够学习到可以零样本适应（即无需进一步环境交互）到在同一符号状态空间上定义的新奖励函数的世界模型。我们讨论了学习这些神经符号世界模型的主要优势和挑战，并展示了我们的方法相对于纯神经方法的强大泛化特性。",
+      "authors": [
+        "Isidoro Tamassia",
+        "Lennert De Smet",
+        "Giuseppe Marra"
+      ],
+      "authors_all": [
+        "Isidoro Tamassia",
+        "Lennert De Smet",
+        "Giuseppe Marra"
+      ],
+      "primary_category": "cs.AI",
+      "published": "2026-08-18",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-17959.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-17959-p2.jpg"
+      ],
+      "arxiv_id": "2608.17959",
+      "abs_url": "http://arxiv.org/abs/2608.17959v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.17959v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 22,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出神经符号世界模型，实现零样本任务迁移，对世界模型研究有重要价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "KU Leuven"
+      ],
+      "method_tags": [
+        "World Model",
+        "zero-shot",
+        "task transfer"
       ],
       "platform": [],
       "sim_stack": [],
@@ -100258,6 +101389,211 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2608-17453",
+      "source": "arxiv",
+      "title": "EATR-Stereo: Embodiment-Aware Routing of Paired Stereo Evidence for Humanoid Vision-Language-Action Control",
+      "title_zh": "EATR-Stereo：面向人形视觉-语言-动作控制的具身感知配对立体证据路由",
+      "tldr_zh": "EATR-Stereo通过具身感知路由立体证据，提升人形VLA长时程任务成功率。",
+      "cover_zh": "立体视觉新突破！EATR-Stereo让机器人抓取成功率100%？",
+      "abstract_zh": "长时程人形视觉-语言-动作（VLA）控制，使用头戴式立体相机，需要能够利用互补视图同时保持与预训练表示兼容的视觉接口。现有接口常常丢弃互补的立体证据，或在未保留原生主视图路径、未将辅助信息适配到机器人具身的情况下融合额外观测。我们提出EATR-Stereo，一种具身感知的令牌路由框架，它保留主视图令牌，并通过查询同步的辅助视图令牌序列来构建主对齐的跨视图辅助令牌（CVATs）。一个身体分割的本体感觉编码器进一步根据机器人配置历史对令牌级辅助使用进行条件化，从而在动作生成过程中选择性纳入立体证据。路由的辅助流增强了预训练VLA的语言和主视觉上下文，同时保持其视觉-语言模型冻结。在具有37维本体感觉状态的33自由度物理人形机器人上，我们在超过100秒的搜索-接近-抓取-放置-返回任务中评估了九种配置。EATR-Stereo实现了60.0%的全任务成功率、100.0%的抓取成功率和80.0%的阶段成功率。在严重不对称遮挡下，它将恢复率提高到80%，而仅使用CVAT时为30%。消融研究进一步表明保留主视图令牌以及将跨视图辅助特征与结构化本体感觉路由相结合的重要性。这些结果表明，选择性路由的配对立体证据改善了空间接地，从而实现可靠的长时程人形VLA控制。",
+      "authors": [
+        "Songwei Wu",
+        "Rui Zhao",
+        "Fan Yang"
+      ],
+      "authors_all": [
+        "Songwei Wu",
+        "Rui Zhao",
+        "Fan Yang",
+        "Zhongqiang Nie",
+        "Zhiduo Jiang",
+        "Wandong Sun",
+        "Yuwei Li",
+        "Yang Liu",
+        "Hong Liu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-18",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-17453.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-17453-p2.jpg"
+      ],
+      "arxiv_id": "2608.17453",
+      "abs_url": "http://arxiv.org/abs/2608.17453v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.17453v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 19,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "人形VLA全身控制，结合立体视觉与本体感知路由，长时程任务验证，具科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Harbin Institute of Technology",
+        "Honor"
+      ],
+      "method_tags": [
+        "VLA",
+        "token-routing",
+        "stereo vision"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-17496",
+      "source": "arxiv",
+      "title": "Calibrated Predictive Safety for Heterogeneous Robots: An Action-Conditioned JEPA Framework with Model-Based Safety Shields",
+      "title_zh": "异构机器人的校准预测安全性：基于动作条件JEPA框架与模型安全盾",
+      "tldr_zh": "提出动作条件JEPA与安全盾结合，提升异构机器人任务成功率并减少碰撞。",
+      "cover_zh": "机器人安全新突破｜JEPA预测风险，安全盾兜底，成功率飙升",
+      "abstract_zh": "视觉-语言-动作策略泛化能力强，但在执行时缺乏保证；经典的基于模型的规划器尊重运动学和几何约束，但泛化能力差。我们研究动作条件的联合嵌入预测架构（JEPA）世界模型是否能在执行前预测候选动作块的任务进展和物理风险，以及将这些预测与特定实施例的基于模型的安全盾相结合是否能产生适用于异构机器人的可部署流程。我们提出了一种滚动时域决策流程：（1）提议者生成K个候选动作块；（2）动作条件的JEPA在冻结编码器潜在空间中，以实施例嵌入为条件，对每个候选进行滚动预测；（3）校准的风险和进展头对每个滚动进行评分并报告不确定性；（4）确定性的每实施例安全盾过滤不可接受的候选；（5）回退阶梯处理空可接受集的情况。学习到的排序仅重新排序可接受的候选；执行保证来自确定性盾和回退阶梯。我们在仿真（LIBERO-Long）中使用预注册协议进行评估。在600个回合的配置中，完整框架相对于仅盾基线提高了成功率，并在匹配召回率下减少了碰撞假阴性。包括目标机器人和边缘加速器上的部署效率测量。真实机器人实验和离线重排显著性检验留待未来工作；详见论文中的披露。",
+      "authors": [
+        "Kaiming Zhong",
+        "Tianhua Liu",
+        "Yue Wang"
+      ],
+      "authors_all": [
+        "Kaiming Zhong",
+        "Tianhua Liu",
+        "Yue Wang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-18",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-17496.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-17496-p2.jpg"
+      ],
+      "arxiv_id": "2608.17496",
+      "abs_url": "http://arxiv.org/abs/2608.17496v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.17496v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 19,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出动作条件JEPA世界模型预测任务进度与风险，结合安全盾，具科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Guangdong Bifang Intelligent Control Technology Co., Ltd."
+      ],
+      "method_tags": [
+        "JEPA",
+        "model-based safety shield",
+        "calibrated risk prediction"
+      ],
+      "platform": [],
+      "sim_stack": [
+        "LIBERO-Long"
+      ],
+      "method_family": "",
+      "real_robot": "no",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-17601",
+      "source": "arxiv",
+      "title": "Physics-Informed Sliding-Window Particle Filtering for Tactile-Only In-Hand 6-DoF Object Pose Refinement",
+      "title_zh": "物理信息滑动窗口粒子滤波用于仅触觉的6自由度手中物体姿态精化",
+      "tldr_zh": "提出物理信息粒子滤波，仅用触觉实现6自由度姿态精化，优于现有基线。",
+      "cover_zh": "视觉被遮挡？仅靠触觉也能精准定位物体姿态，新方法让机器人手感更准！",
+      "abstract_zh": "本文研究了在静态和短准静态手中配置下，当视觉不可用或被严重遮挡时，仅基于触觉的6自由度姿态精化和信念维护问题。关键难点在于触觉的部分可观测性：全手触觉接触点稀疏、间歇，且在有限激励和物体对称性下具有模糊性。我们提出了一种基于物理信息的粒子滤波器，在SE(3)上从密集的全手触觉测量中更新姿态信念。似然函数结合了主动接触符号距离一致性、力法线对齐、摩擦锥可行性、零力负证据以及可选的可行性保护。滑动窗口对数似然融合最近的触觉帧以减少单帧模糊性，而势场引导的提议将粒子从手-物体穿透中引导开。对称性感知重采样保留了多个合理的模式。在Allegro Hand V5上对五个物体的实验显示，与仅触觉的几何方法、粒子滤波和基于学习的基线相比，归一化ADD-S更低，消融实验证实了时间融合、势引导和模式保留的益处。",
+      "authors": [
+        "Lingjun Shao",
+        "Ying Zhang",
+        "Xiangfei Li"
+      ],
+      "authors_all": [
+        "Lingjun Shao",
+        "Ying Zhang",
+        "Xiangfei Li",
+        "Xiangyang Li",
+        "Huan Zhao",
+        "Zhenyu Wang",
+        "Han Ding"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-18",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-17601.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-17601-p2.jpg"
+      ],
+      "arxiv_id": "2608.17601",
+      "abs_url": "http://arxiv.org/abs/2608.17601v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.17601v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 19,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "触觉仅有的6D位姿精修，涉及抓取操作与粒子滤波，对灵巧手操作有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Huazhong University of Science and Technology",
+        "Guangdong Power Grid Co Ltd."
+      ],
+      "method_tags": [
+        "particle filter",
+        "tactile-only pose refinement",
+        "physics-informed"
+      ],
+      "platform": [
+        "Allegro Hand V5"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "qbitai-7ce04b6f14",
       "source": "qbitai",
       "title": "探索智能新边界！灵光在手机端上线“体验世界模型”功能",
@@ -109321,6 +110657,71 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-17347",
+      "source": "arxiv",
+      "title": "Repetition as Reinforcement: Enhancing Sample Efficiency via Instant Episode Repetition in Reinforcement Learning",
+      "title_zh": "重复即强化：通过即时回合重复提升强化学习中的样本效率",
+      "tldr_zh": "提出即时回合重复机制，通过重复成功动作序列提升强化学习样本效率。",
+      "cover_zh": "重复成功动作就能让AI学得更快？这个新机制太简单了！",
+      "abstract_zh": "重复是人类学习中的基本机制，重访成功经验能强化记忆、巩固技能并提升未来表现。受这一生物学原理启发，我们提出了即时回合重复（IER），一种简单而新颖的机制，通过在环境交互中立即重复成功回合的动作序列来提高样本效率。与经验回放和自模仿学习（SIL）等传统方法在训练更新中被动复用过去经验不同，IER直接作用于数据收集过程。当识别到高奖励回合时，智能体在后续固定数量的回合中重复其动作序列，通过与环境的重新互动来强化有价值的行为。我们将IER集成到最先进的SAC和TD3算法中，并在连续控制基准上评估其有效性，包括MuJoCo、DeepMind控制套件以及一个带有机器人操作器的真实世界动态物体平移任务。实验结果表明，这种简单机制在标准基线和自模仿基线上提升了学习性能。",
+      "authors": [
+        "Hoda Yamani",
+        "Yuning Xing",
+        "Koen van Rijnsoever"
+      ],
+      "authors_all": [
+        "Hoda Yamani",
+        "Yuning Xing",
+        "Koen van Rijnsoever",
+        "Bruce A. MacDonald",
+        "Henry Williams"
+      ],
+      "primary_category": "cs.LG",
+      "published": "2026-08-18",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-17347.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-17347-p2.jpg"
+      ],
+      "arxiv_id": "2608.17347",
+      "abs_url": "http://arxiv.org/abs/2608.17347v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.17347v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 16,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "提出即时情节重复机制提升RL样本效率，并在真实机械臂任务验证，对操作学习有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "Reinforcement Learning",
+        "Episode Repetition",
+        "Sample Efficiency"
+      ],
+      "platform": [],
+      "sim_stack": [
+        "MuJoCo"
+      ],
+      "method_family": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},

@@ -1,0 +1,123 @@
+{
+  "id": "arxiv-2608-17423",
+  "source": "arxiv",
+  "title": "Prism-GRPO: Faster VLA Policy Optimization via Splitting Same-outcome Groups",
+  "title_zh": "Prism-GRPO：通过拆分同结果组实现更快的视觉-语言-动作策略优化",
+  "abstract": "GRPO is increasingly used for reinforcement learning of vision-language-action (VLA) policies because, unlike PPO, it does not require training a critic. This simplification comes with a sampling cost: group-relative advantages require multiple rollouts from each scene. Under binary success rewards, groups whose rollouts all succeed or all fail have zero advantage and are discarded by dynamic sampling. These groups are especially common early in training, when most rollouts fail, wasting much of the expensive robotic rollout budget. We introduce Prism-GRPO, which augments binary outcome reward with a weighted trajectory-level execution-quality score. By splitting same-outcome groups into a quality spectrum, Prism-GRPO recovers training signal while ensuring that every success still outranks every failure. Quality scores can be derived from simulator contacts, executed actions, or visual observations, avoiding task-specific progress rewards. We prove that Prism-GRPO never increases the probability that a sampled group is discarded for having zero advantages, and derive a gradient-alignment condition under which its combined update remains a local ascent direction for task success. Across four RoboTwin tasks spanning different horizons and coordination patterns, Prism-GRPO improves success and quality at matched rollout budgets and reaches target success rates with up to 56% fewer rollouts. It also suppresses a reward-hacking shortcut, with the cleaner behavior transferring under direct deployment to a real robot. Through ablations, we show consistent gains across contact-, smoothness-, and VLM-derived quality signals.",
+  "abstract_zh": "GRPO 越来越多地用于视觉-语言-动作（VLA）策略的强化学习，因为与 PPO 不同，它不需要训练评论家。但这种简化带来了采样成本：组相对优势需要从每个场景进行多次 rollout。在二元成功奖励下，所有 rollout 全部成功或全部失败的组的优势为零，并被动态采样丢弃。这些组在训练早期尤其常见，此时大多数 rollout 失败，浪费了大量昂贵的机器人 rollout 预算。我们提出了 Prism-GRPO，它用加权的轨迹级执行质量分数增强了二元结果奖励。通过将同结果组拆分为质量谱，Prism-GRPO 恢复了训练信号，同时确保每个成功仍然优于每个失败。质量分数可以来自模拟器接触、执行动作或视觉观察，避免了特定于任务的进度奖励。我们证明了 Prism-GRPO 永远不会增加采样组因零优势而被丢弃的概率，并推导了一个梯度对齐条件，在该条件下，其组合更新仍然是任务成功的局部上升方向。在跨越不同视野和协调模式的四个 RoboTwin 任务中，Prism-GRPO 在匹配的 rollout 预算下提高了成功率和质量，并以最多减少 56% 的 rollout 达到目标成功率。它还抑制了奖励黑客捷径，更干净的行为在直接部署到真实机器人时得以迁移。通过消融实验，我们展示了在接触、平滑度和 VLM 派生的质量信号上的一致收益。",
+  "tldr_zh": "Prism-GRPO 通过拆分同结果组，在减少 rollout 的同时提升 VLA 策略性能。",
+  "cover_zh": "还在为机器人训练浪费 rollout？这个新方法让成功率飙升还省一半预算！",
+  "authors": [
+    {
+      "name": "Zeyun Deng",
+      "affiliation": ""
+    },
+    {
+      "name": "Yuzhe Lu",
+      "affiliation": ""
+    },
+    {
+      "name": "Yawei Wang",
+      "affiliation": ""
+    },
+    {
+      "name": "Linbo Liu",
+      "affiliation": ""
+    },
+    {
+      "name": "Qing Ping",
+      "affiliation": ""
+    },
+    {
+      "name": "Han Ding",
+      "affiliation": ""
+    },
+    {
+      "name": "Guande Wu",
+      "affiliation": ""
+    },
+    {
+      "name": "Panpan Xu",
+      "affiliation": ""
+    },
+    {
+      "name": "Jun Huan",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.LG"
+  ],
+  "published": "2026-08-18",
+  "updated": "2026-08-18",
+  "arxiv_id": "2608.17423",
+  "pdf_url": "https://arxiv.org/pdf/2608.17423v1",
+  "abs_url": "http://arxiv.org/abs/2608.17423v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-17423.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-17423-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 24,
+  "source_tags": [],
+  "score": 22,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（vision-language-action、vla policy、robotwin）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 24 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出Prism-GRPO改进VLA策略优化，提升样本效率并抑制奖励黑客，对具身操作RL有高参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Purdue University",
+    "AWS AI"
+  ],
+  "method_tags": [
+    "GRPO",
+    "VLA",
+    "RL"
+  ],
+  "platform": [],
+  "sim_stack": [
+    "RoboTwin"
+  ],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Prism-GRPO: Faster VLA Policy Optimization via Splitting Same-outcome Groups\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.17423v1\n---\n>[!abstract] 一句话总结：Prism-GRPO通过引入与任务奖励无关的加权轨迹级执行质量分数，将同结果组按质量光谱拆分，在确保每个成功仍优于每个失败的同时恢复训练信号，质量分数可来自模拟接触、动作或视觉观察。\n\n\n# 一、动机\n\n> GRPO在二元成功奖励下，同结果组（全成功或全失败）的advantage为零被动态采样丢弃，而训练早期大多数rollout失败，导致大量昂贵的机器人采样预算被浪费。\n\n\n# 二、方法\n\n> Prism-GRPO通过引入与任务奖励无关的加权轨迹级执行质量分数，将同结果组按质量光谱拆分，在确保每个成功仍优于每个失败的同时恢复训练信号，质量分数可来自模拟接触、动作或视觉观察。\n\n\n# 三、核心实验结果\n\n> 1) 在四个RoboTwin任务上达到目标成功率最多减少56%的rollouts；2) 在匹配rollout预算下提升了成功率与执行质量；3) 抑制了reward hacking捷径，清洁行为可直接部署到真实机器人。\n\n\n# 四、对我的启发\n\n> 将同结果组按质量拆分是提高VLA样本效率的有效思路，但质量信号依赖模拟接触等特定来源，在真实场景中需探索更通用易获取的视觉/动作质量度量。\n"
+}
