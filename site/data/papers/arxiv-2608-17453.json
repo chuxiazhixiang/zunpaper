@@ -61,7 +61,8 @@
     "assets/img/covers/arxiv-2608-17453-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -72,13 +73,13 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 19,
+  "score": 30,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 6,
-      "hint": "频道关键词命中 2 个（vision-language-action、grasp）"
+      "points": 12,
+      "hint": "频道关键词命中 4 个（vision-language-action、grasp、long-horizon humanoid、humanoid vla）"
     },
     {
       "id": "freshness",
@@ -91,6 +92,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -116,5 +123,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"EATR-Stereo: Embodiment-Aware Routing of Paired Stereo Evidence for Humanoid Vision-Language-Action Control\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.17453v1\n---\n>[!abstract] 一句话总结：提出EATR-Stereo，一种本体感知的token路由框架，保留主视图token，通过查询同步的辅助视图token序列构造主对齐跨视图辅助token（CVAT），并用身体分段的proprioceptive encoder按机器人配置历史做token级路由，冻结VLM仅训练路由模块。\n\n\n# 一、动机\n\n> 现有VLA接口要么丢弃立体视觉的互补信息，要么直接融合额外观测但不保持主视图路径，且未考虑机器人本体姿态来调整辅助信息，导致长时程人形机器人控制中空间感知不足。\n\n\n# 二、方法\n\n> 提出EATR-Stereo，一种本体感知的token路由框架，保留主视图token，通过查询同步的辅助视图token序列构造主对齐跨视图辅助token（CVAT），并用身体分段的proprioceptive encoder按机器人配置历史做token级路由，冻结VLM仅训练路由模块。\n\n\n# 三、核心实验结果\n\n> 在33-DoF人形机器人、37维本体状态上完成超100秒的搜索-接近-抓取-放置-返回任务，EATR-Stereo达到60.0%完整任务成功率、100.0%抓取成功率、80.0%阶段成功率；严重不对称遮挡下恢复率从CVAT-only的30%提升至80%。\n\n\n# 四、对我的启发\n\n> 选择性路由的双目立体证据可显著改善空间接地，且保留主视图token与结构化本体路由关键；但实验规模有限，任务复杂度受限于固定场景，与课题相关（人形机器人VLA控制）。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"EATR-Stereo: Embodiment-Aware Routing of Paired Stereo Evidence for Humanoid Vision-Language-Action Control\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.17453v1\n---\n>[!abstract] 一句话总结：提出EATR-Stereo，一种具身感知的token路由框架：保留主视图token，通过查询同步辅助视图token序列构建主对齐的跨视图辅助token（CVAT），并使用身体分段的本体感受编码器按机器人配置历史对token级辅助信息进行门控路由，在冻结视觉-语言模型的前提下增强预训练VLA的上下文。\n\n\n# 一、动机\n\n> 现有头戴式立体相机的人形VLA控制中，视觉接口往往丢弃互补的立体信息，或在融合额外观测时破坏预训练主视图表示，且未根据机器人本体状态自适应调整跨视图信息的使用，导致空间接地不足。\n\n\n# 二、方法\n\n> 提出EATR-Stereo，一种具身感知的token路由框架：保留主视图token，通过查询同步辅助视图token序列构建主对齐的跨视图辅助token（CVAT），并使用身体分段的本体感受编码器按机器人配置历史对token级辅助信息进行门控路由，在冻结视觉-语言模型的前提下增强预训练VLA的上下文。\n\n\n# 三、核心实验结果\n\n> 在33-DoF物理人形机器人（37维本体状态）的超100秒搜索-接近-抓取-放置-返回任务中，EATR-Stereo实现60.0%完整任务成功率、100.0%抓取成功率和80.0%阶段成功率；在严重非对称遮挡下，恢复率从CVAT单独使用的30%提升至80%。\n\n\n# 四、对我的启发\n\n> 选择性路由配对立体证据可显著提升长时程人形VLA控制的空间接地能力，保留主视图token与结构化本体感知路由均至关重要；但当前方法在物理机器人上的计算开销和实时性尚未讨论，后续可探索轻量化路由或跨任务泛化。与课题直接相关。\n"
 }

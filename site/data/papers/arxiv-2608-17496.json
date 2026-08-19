@@ -37,7 +37,8 @@
     "assets/img/covers/arxiv-2608-17496-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -48,13 +49,13 @@
   "related_links": [],
   "page_count": 14,
   "source_tags": [],
-  "score": 19,
+  "score": 30,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 6,
-      "hint": "频道关键词命中 2 个（vision-language-action、libero）"
+      "points": 12,
+      "hint": "频道关键词命中 5 个（vision-language-action、libero、world model、jepa）"
     },
     {
       "id": "freshness",
@@ -67,6 +68,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 14 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -93,5 +100,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Calibrated Predictive Safety for Heterogeneous Robots: An Action-Conditioned JEPA Framework with Model-Based Safety Shields\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.17496v1\n---\n>[!abstract] 一句话总结：提出一种滚动时域决策管线：proposer生成K个候选动作块；动作条件JEPA在冻结编码器潜在空间中基于实施例嵌入向前推演每个候选；校准的风险和进度头对推演结果评分并输出不确定性；确定性安全盾牌过滤不可行候选；若可行集为空则启动fallback阶梯。学习模型仅对安全候选重新排序，最终保证由确定性盾牌和fallback提供。\n\n\n# 一、动机\n\n> 视觉-语言-动作（VLA）策略泛化能力强但缺乏执行时安全保证，而经典模型规划器虽能遵守运动学和几何约束却泛化性差。本文研究能否用动作条件下的JEPA世界模型在执行前同时预测任务进展和物理风险，并耦合模型安全盾牌形成异构机器人的可靠部署管线。\n\n\n# 二、方法\n\n> 提出一种滚动时域决策管线：proposer生成K个候选动作块；动作条件JEPA在冻结编码器潜在空间中基于实施例嵌入向前推演每个候选；校准的风险和进度头对推演结果评分并输出不确定性；确定性安全盾牌过滤不可行候选；若可行集为空则启动fallback阶梯。学习模型仅对安全候选重新排序，最终保证由确定性盾牌和fallback提供。\n\n\n# 三、核心实验结果\n\n> 在LIBERO-Long模拟的600-episode配置下，完整框架比仅盾牌基线获得更高的成功率，并在匹配召回率下减少碰撞假阴性；同时报告了目标机器人及边缘加速器上的部署效率测量。\n\n\n# 四、对我的启发\n\n> 局限：真实机器人实验和离线重排显著性检验尚未完成。启发：JEPA世界模型可为异构机器人提供可校准的预测性安全评分，但学习式排序不能替代确定性安全保证，实际部署需与模型盾牌结合。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Calibrated Predictive Safety for Heterogeneous Robots: An Action-Conditioned JEPA Framework with Model-Based Safety Shields\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.17496v1\n---\n>[!abstract] 一句话总结：提出滚动时域决策管线：提案器生成K个候选动作块，动作条件化JEPA在冻结编码器潜在空间中基于具身嵌入前向预测；校准的风险头与进展头对每个预测打分并输出不确定性；确定性安全盾过滤不可行候选；若可行集为空则启用回退阶梯。学习排名仅重排可行候选，安全保证由确定性安全盾与回退机制提供。\n\n\n# 一、动机\n\n> 视觉-语言-动作策略泛化能力强但缺乏执行时的安全保证，而经典模型预测控制虽能保证运动学与几何约束却泛化不足。本文研究能否用动作条件化的JEPA世界模型在执行前预测候选动作块的任务进展与物理风险，并耦合具身专属安全盾形成可部署的异构机器人管线。\n\n\n# 二、方法\n\n> 提出滚动时域决策管线：提案器生成K个候选动作块，动作条件化JEPA在冻结编码器潜在空间中基于具身嵌入前向预测；校准的风险头与进展头对每个预测打分并输出不确定性；确定性安全盾过滤不可行候选；若可行集为空则启用回退阶梯。学习排名仅重排可行候选，安全保证由确定性安全盾与回退机制提供。\n\n\n# 三、核心实验结果\n\n> 在LIBERO-Long模拟环境的600-episode配置中，完整框架相比仅用安全盾的基线提升了任务成功率，并在匹配召回率下降低了碰撞假阴性（论文未给出具体数值）；同时报告了目标机器人及边缘加速器上的部署效率测量。\n\n\n# 四、对我的启发\n\n> 局限：真实机器人实验与离线重排序显著性检验留待未来工作。启发：将学习式预测排序与确定性安全盾结合，可在异构机器人上实现可部署的预测安全，且具身嵌入支持跨本体迁移。与课题直接相关。\n"
 }

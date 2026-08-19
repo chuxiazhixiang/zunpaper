@@ -61,7 +61,8 @@
     "assets/img/covers/arxiv-2608-17584-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -76,7 +77,7 @@
   "related_links": [],
   "page_count": 46,
   "source_tags": [],
-  "score": 41,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -87,8 +88,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（embodied agent）"
+      "points": 12,
+      "hint": "频道关键词命中 4 个（embodied agent、humanoid robot、humanoids、unitree g1）"
     },
     {
       "id": "freshness",
@@ -101,6 +102,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 46 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -127,5 +134,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"HODAgent: Towards On-Demand, Responsive Humanoids for Physical World Human Interaction\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.17584v1\n---\n>[!abstract] 一句话总结：提出半双工System-2架构的HODAgent，集成Env-Interactor、Planner、Executor和分层Memory，在运动过程中处理新请求、保留任务进度并验证结果，同时通过共享接口统一仿真与物理机器人控制。\n\n\n# 一、动机\n\n> 现有具身智能代理在服务场景中难以实时理解情境意图并动态调整任务，缺乏对执行结果的验证与任务修订能力，导致交互连贯性和适应性不足。\n\n\n# 二、方法\n\n> 提出半双工System-2架构的HODAgent，集成Env-Interactor、Planner、Executor和分层Memory，在运动过程中处理新请求、保留任务进度并验证结果，同时通过共享接口统一仿真与物理机器人控制。\n\n\n# 三、核心实验结果\n\n> 在164个交互仿真案例中，两种VLM骨干下联合成功率分别达到84.8%和91.5%，超过基线9.8和18.9个百分点；物理机器人上原子任务通过率92%、复合任务72%、完整任务63.3%；在多个具身基准上相对基线提升0.7-9.0点。\n\n\n# 四、对我的启发\n\n> 统一System-2架构能够提升人形机器人在服务场景中的自适应能力，但物理世界复杂性和真实交互鲁棒性仍需进一步验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"HODAgent: Towards On-Demand, Responsive Humanoids for Physical World Human Interaction\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.17584v1\n---\n>[!abstract] 一句话总结：提出HODAgent，一种System-2具身智能体，采用半双工架构，整合Env-Interactor、Planner、Executor和分层Memory，支持机器人运动过程中接收新请求、保留进度、修订动作，并通过共享接口连接仿真与物理机器人（Unitree G1）。\n\n\n# 一、动机\n\n> 现有服务场景人形机器人系统难以处理交互过程中的动态意图、响应式执行、任务修订和结果验证，导致在真实物理环境中无法保持连贯服务。\n\n\n# 二、方法\n\n> 提出HODAgent，一种System-2具身智能体，采用半双工架构，整合Env-Interactor、Planner、Executor和分层Memory，支持机器人运动过程中接收新请求、保留进度、修订动作，并通过共享接口连接仿真与物理机器人（Unitree G1）。\n\n\n# 三、核心实验结果\n\n> 在164个交互式仿真案例中取得84.8%和91.5%的Joint Success（两种VLM主干），分别超过baseline 9.8和18.9分；物理机器人上原子任务、复合任务和完整任务通过率分别为92%、72%和63.3%；在多个具身基准上较baseline提升0.7-9.0点。\n\n\n# 四、对我的启发\n\n> 统一System-2智能体能有效跨仿真和现实完成自适应人形服务，但物理环境完整任务通过率仍偏低（63.3%），提示长程任务可靠性和闭环验证是后续关键瓶颈。与课题直接相关。\n"
 }
