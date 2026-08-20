@@ -47,7 +47,9 @@
     "assets/img/covers/arxiv-2608-18827-p2.jpg"
   ],
   "channels": [
-    "locomotion"
+    "locomotion",
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -62,7 +64,7 @@
   "related_links": [],
   "page_count": 22,
   "source_tags": [],
-  "score": 41,
+  "score": 49,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -73,8 +75,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（locomotion）"
+      "points": 6,
+      "hint": "频道关键词命中 2 个（locomotion、manipulation）"
     },
     {
       "id": "freshness",
@@ -87,6 +89,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 22 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 3 个频道"
     }
   ],
   "judge": {
@@ -111,5 +119,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"MLREF: Efficient Module Reuse for Reward Design in Reinforcement Learning via Large Language Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.18827v1\n---\n>[!abstract] 一句话总结：提出模块级奖励进化框架（MLREF），核心是模块池，将奖励函数表示为从池中抽取模块的线性组合，并通过反思式细化、混合信用分配和带回滚的合并策略驱动模块池进化。\n\n\n# 一、动机\n\n> 现有LLM自动化奖励生成方法将奖励函数视为整体程序，难以可靠地保留和复用早期迭代中发现的有效组件，导致跨迭代性能不稳定。\n\n\n# 二、方法\n\n> 提出模块级奖励进化框架（MLREF），核心是模块池，将奖励函数表示为从池中抽取模块的线性组合，并通过反思式细化、混合信用分配和带回滚的合并策略驱动模块池进化。\n\n\n# 三、核心实验结果\n\n> 在17个任务上，MLREF在运动任务上超过强基线25.2%，在操作任务上超过6.6%，且优化动态更稳定。\n\n\n# 四、对我的启发\n\n> 模块化奖励设计思想可迁移到机器人操纵等具身智能任务，但需验证其在不同环境中的泛化性和可扩展性；与课题相关，值得借鉴。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RewardDesign\n  - 状态/待读\nTitle: \"MLREF: Efficient Module Reuse for Reward Design in Reinforcement Learning via Large Language Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.18827v1\n---\n>[!abstract] 一句话总结：提出模块级奖励演化框架MLREF，维护一个可复用的奖励模块池，将奖励函数表达为池中模块的线性组合，并通过反思式细化、混合信用分配和带回滚的合并策略驱动模块池的演化。\n\n\n# 一、动机\n\n> 现有基于大语言模型的奖励生成方法将奖励函数视为整体程序进行修改，难以保留和复用前期迭代中发现的优秀组件，导致跨迭代优化性能不稳定。\n\n\n# 二、方法\n\n> 提出模块级奖励演化框架MLREF，维护一个可复用的奖励模块池，将奖励函数表达为池中模块的线性组合，并通过反思式细化、混合信用分配和带回滚的合并策略驱动模块池的演化。\n\n\n# 三、核心实验结果\n\n> 在17个任务上，MLREF在运动任务上超过强基线25.2%，在操纵任务上超过6.6%，且优化过程更加稳定。\n\n\n# 四、对我的启发\n\n> 将奖励函数模块化并显式管理模块复用能够显著提升奖励搜索的稳定性和效率；未来可探索模块自动生成与语义化表示，进一步减少人工设计成本。\n"
 }
