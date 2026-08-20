@@ -1,0 +1,96 @@
+{
+  "id": "arxiv-2608-19084",
+  "source": "arxiv",
+  "title": "Does Mapping Non-Maximal Probabilities to GMM Components Matter for S-JEPA Encoder Representations?",
+  "title_zh": "将非最大概率映射到GMM分量对S-JEPA编码器表示是否重要？",
+  "abstract": "S-JEPA uses soft Gaussian mixture model (GMM) posteriors instead of hard cluster labels to preserve uncertainty. It remains unclear whether the probability values alone are sufficient, or whether it also matters which GMM components receive the non-maximal probabilities. We test this with two matched controls. FIXED-RANDPERM keeps the top-1 component and probability together with the multiset of non-maximal probability values, but reassigns those non-maximal values using a mapping fixed for each physical frame. UNIFORM-TAIL keeps the top-1 component, its probability, and total non-maximal mass but distributes that mass uniformly. Across three independent seeds, REAL SOFT outperforms both controls on two frozen Encoder readouts. It provides better recovery of the original GMM tail and greater accessibility of spectral dynamics over short time scales after controlling for the complete spectrum of the current frame. In two exposure experiments, both readouts improved overall as more frames retained the original mapping. We also descriptively follow one Phase 2 trajectory after the switch to the online GMM. These results show that the numerical probability structure of the soft target does not fully determine the learned Encoder representation. The mapping of non-maximal probabilities to GMM components also matters.",
+  "abstract_zh": "S-JEPA使用软高斯混合模型（GMM）后验而非硬聚类标签来保留不确定性。目前尚不清楚仅概率值是否足够，或者非最大概率分配给哪些GMM分量也很重要。我们通过两个匹配的对照实验来测试这一点。FIXED-RANDPERM保留top-1分量及其概率以及非最大概率值的多重集，但使用每个物理帧固定的映射重新分配这些非最大值。UNIFORM-TAIL保留top-1分量、其概率和总非最大质量，但将该质量均匀分布。在三个独立种子上，REAL SOFT在两个冻结编码器读出上均优于两个对照。它更好地恢复了原始GMM尾部，并在控制当前帧的完整频谱后，在短时间尺度上提供了更大的光谱动态可访问性。在两个暴露实验中，随着更多帧保留原始映射，两种读出均整体改善。我们还描述性地跟踪了切换到在线GMM后的一个Phase 2轨迹。这些结果表明，软目标的数值概率结构并不能完全决定学习到的编码器表示。非最大概率到GMM分量的映射也很重要。",
+  "tldr_zh": "S-JEPA中非最大概率的映射方式影响编码器表示，软目标概率结构并非唯一决定因素。",
+  "cover_zh": "软标签不只是概率值？映射方式竟影响编码器表现｜S-JEPA新发现",
+  "authors": [
+    {
+      "name": "Wenxuan He",
+      "affiliation": ""
+    },
+    {
+      "name": "Yunpeng Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Shan Liang",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.LG",
+  "categories": [
+    "cs.LG",
+    "cs.SD"
+  ],
+  "published": "2026-08-19",
+  "updated": "2026-08-19",
+  "arxiv_id": "2608.19084",
+  "pdf_url": "https://arxiv.org/pdf/2608.19084v1",
+  "abs_url": "http://arxiv.org/abs/2608.19084v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-19084.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-19084-p2.jpg"
+  ],
+  "channels": [
+    "world-model"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 6,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（jepa）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 6 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "world-model",
+    "reason": "S-JEPA是JEPA架构的具身世界模型，研究软GMM目标中非最大概率映射对编码器表征的影响，对世界模型表征学习有参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Xi'an Jiaotong-Liverpool University"
+  ],
+  "method_tags": [
+    "S-JEPA",
+    "soft targets",
+    "counterfactual training"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Multimodal\n  - Task/RepresentationLearning\n  - 状态/待读\nTitle: \"Does Mapping Non-Maximal Probabilities to GMM Components Matter for S-JEPA Encoder Representations?\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.19084v1\n---\n>[!abstract] 一句话总结：通过两个匹配对照实验（FIXED-RANDPERM和UNIFORM-TAIL）分离概率数值结构与分量映射的影响，检验真实软目标是否优于对照。\n\n\n# 一、动机\n\n> S-JEPA使用软高斯混合模型后验代替硬聚类标签以保留不确定性，但不清楚非最大概率值本身是否足够，或者非最大概率分配给哪些GMM分量是否也重要。\n\n\n# 二、方法\n\n> 通过两个匹配对照实验（FIXED-RANDPERM和UNIFORM-TAIL）分离概率数值结构与分量映射的影响，检验真实软目标是否优于对照。\n\n\n# 三、核心实验结果\n\n> 在三个独立种子上，真实软目标（REAL SOFT）在两个冻结编码器读头任务上均优于两个对照，能更好地恢复原始GMM尾部，并在控制当前帧完整频谱后，短时间尺度上谱动态的可达性更高；两个曝光实验显示，保留原始映射的帧越多，读头表现越好。\n\n\n# 四、对我的启发\n\n> 与课题不相关。该研究揭示了软目标中非最大概率的GMM分量映射对编码器表示学习有实质影响，数值概率结构不能完全决定表示。\n"
+}

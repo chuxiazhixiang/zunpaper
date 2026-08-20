@@ -1,0 +1,1019 @@
+{
+  "date": "2026-08-19",
+  "count": 14,
+  "papers": [
+    {
+      "id": "arxiv-2608-18701",
+      "source": "arxiv",
+      "title": "SoftVTBench: A Deformation-Aware Visuo-Tactile Dataset and Benchmark for Deformable-Object Manipulation",
+      "title_zh": "SoftVTBench：面向可变形物体操作的形变感知视觉-触觉数据集与基准",
+      "tldr_zh": "SoftVTBench数据集揭示触觉并非总能提升可变形物体操作性能。",
+      "cover_zh": "触觉加持反而翻车？新基准揭示多模态融合的陷阱",
+      "abstract_zh": "物理交互质量对于可变形物体操作至关重要，然而大多数基准仅评估任务是否成功。一个策略可能在完成任务的同时发生滑动或造成过度压缩。主要瓶颈在于缺乏将策略可见的接触观测与独立物理真值配对、覆盖完整任务的视觉-触觉数据集。我们引入了SoftVTBench，一个用于物理交互感知的可变形物体操作的视觉-触觉数据集。它包含4,000个专家演示和超过50个资产，包括体积可变形物体和视觉匹配的刚性孪生体。在20 Hz下，每个情节同步多视角RGB、双指触觉RGB和标记运动、本体感觉、语言以及二值和连续夹爪动作，同时提供仅评估者可见的有限元（FEM）状态。基于该数据集，我们建立了一个闭环基准，使用固定的物体特定校准来定义形变感知成功率（DSR），只有当 rollout 完成任务且峰值归一化形变保持在容差内时才计为成功。在Diffusion Policy、π0.5和FastWAM中，所有12个分布内配置都包含违反形变容差的成功 rollout，占每个配置成功率的0.7%至24%。在分布偏移下，视觉-触觉变体在所有六项策略-套件比较中实现了更高的任务成功率，在五项中实现了更高的DSR，而它们在分布内的收益则好坏参半。这些结果表明，提供触觉本身并不能确保有效的多模态融合。因此，SoftVTBench提供了一个共同的视觉-触觉资源，不仅用于研究策略是否成功，还用于研究它如何与可变形物体进行物理交互，以及触觉何时能改善这种交互。",
+      "authors": [
+        "Bowen Jing",
+        "Mingxin Wang",
+        "Ruiyang Hao"
+      ],
+      "authors_all": [
+        "Bowen Jing",
+        "Mingxin Wang",
+        "Ruiyang Hao",
+        "Chenchen Ge",
+        "Hanwen Shen",
+        "Junjie He",
+        "Yang Cui",
+        "Yiming Hou",
+        "Weitao Zhou",
+        "Jiawei Wang",
+        "Minglei Li",
+        "Dandan Zhang",
+        "Ding Zhao",
+        "Houde Liu",
+        "Xiaofan Li",
+        "Si Liu",
+        "Ping Luo",
+        "Haibao Yu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-19",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Ping Luo"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-18701.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-18701-p2.jpg"
+      ],
+      "arxiv_id": "2608.18701",
+      "abs_url": "http://arxiv.org/abs/2608.18701v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.18701v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 64,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提供变形物体操作的视觉-触觉数据集与基准，引入变形感知成功率，对操作策略评估有科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Tuojing Intelligence",
+        "Tsinghua University",
+        "King's College London",
+        "Southeast University"
+      ],
+      "method_tags": [
+        "visuo-tactile",
+        "deformable-object manipulation",
+        "benchmark"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-19182",
+      "source": "arxiv",
+      "title": "ADEPT: Accelerating Dexterity via Pre-Training and Post-Training using Reinforcement Learning",
+      "title_zh": "ADEPT：通过预训练和后训练加速灵巧操作",
+      "tldr_zh": "ADEPT通过预训练和后训练加速灵巧操作，实现零样本迁移。",
+      "cover_zh": "灵巧操作新突破｜ADEPT让机器人从零开始学不会的技能，预训练后直接上手",
+      "abstract_zh": "我们提出了ADEPT（Accelerating Dexterity via Pre-Training），这是一个大规模强化学习（RL）框架，用于在高自由度（DoF）机器人实体上学习可模拟到现实迁移的灵巧操作，能够直接从原始视觉-触觉感知解决长时域任务。ADEPT在通用物体重定位任务上预训练灵巧策略，然后以该预训练行为作为先验进行下游策略的后训练。ADEPT使得在多指机器人上学习新行为成为可能，而这些行为从零开始发现是困难的，并且避免了为每个新下游任务重复学习相同的技能。预训练策略可以零样本完成下游任务的重定位阶段，但朴素的RL微调在迁移过程中会迅速退化这一能力。我们通过结合行为克隆蒸馏、评论家预热和保守的在线更新的稳定后训练方案来解决这个问题。为了安全地利用完整的运动学灵巧性，我们引入了一个关节空间几何织物（Geometric Fabric），在RL策略和机器人之间进行协调。我们将后训练的教师模型蒸馏为感知学生模型，这些模型在两个实体上实现了零样本模拟到现实的迁移：一个具有两个RGB摄像头的23自由度Kuka-Allegro，以及一个具有两个RGB摄像头和五个基于视觉的触觉传感器的29自由度Flexiv-Sharpa，并且能够从具有挑战性的初始状态以人类水平的速度解决长时域任务。",
+      "authors": [
+        "Jayjun Lee",
+        "Jessica Yin",
+        "Asif Rana"
+      ],
+      "authors_all": [
+        "Jayjun Lee",
+        "Jessica Yin",
+        "Asif Rana",
+        "Nicholas Blauch",
+        "Sam Mady",
+        "Mohak Bhardwaj",
+        "Nima Fazeli",
+        "Nathan Ratliff",
+        "Karl Van Wyk",
+        "Ankur Handa"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-19",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ NVIDIA"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-19182.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-19182-p2.jpg"
+      ],
+      "arxiv_id": "2608.19182",
+      "abs_url": "http://arxiv.org/abs/2608.19182v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.19182v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "大规模RL预训练+后训练实现灵巧手sim-to-real迁移，方法新颖且具高科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "NVIDIA Corporation",
+        "University of Michigan"
+      ],
+      "method_tags": [
+        "Reinforcement Learning",
+        "sim-to-real",
+        "behavior-cloning distillation"
+      ],
+      "platform": [
+        "Kuka-Allegro",
+        "Flexiv-Sharpa"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-18948",
+      "source": "arxiv",
+      "title": "RoboEdit: Turning Human Manipulation Videos into Scalable Robot Experience",
+      "title_zh": "RoboEdit：将人类操作视频转化为可扩展的机器人经验",
+      "tldr_zh": "RoboEdit将人类操作视频转化为机器人训练数据，实现跨形态可扩展学习。",
+      "cover_zh": "人类视频也能训练机器人？这个编辑套件让数据飞起！",
+      "abstract_zh": "收集机器人手物交互数据成本高昂且受限于具体形态，而丰富的人类物体交互视频却无法用于机器人训练。我们提出RoboEdit，一个从人类到机器人的视频编辑套件，可将人类操作视频转化为动作一致、物理上合理的机器人视频，并带有对齐的3D手部状态。为了实现可扩展的监督，我们引入了RoboEdit-ADC，一个自动流水线，可从RGB视频中跨形态重建和重定向3D交互。该流水线生成了RoboEdit-14M，一个大规模数据集，包含174K对齐视频对（14M帧），涵盖七种机器人形态、多样场景和交互类型。核心编辑引擎RoboEdit-Trans采用跨形态适应模块，在保持时间连贯性的同时适应外观和运动。它还集成了3D机器人状态解码器，以恢复每帧手部状态，用于结构化运动监督。实验表明，RoboEdit在编辑质量上达到最先进水平，并支持真实世界操作任务中的下游机器人控制策略。最终，RoboEdit套件释放了未标记人类视频的巨大潜力，为通用机器人学习提供可扩展、高保真的视觉和3D运动监督。",
+      "authors": [
+        "Yaowei Guo",
+        "Zeng Tao",
+        "Yuxin Jiang"
+      ],
+      "authors_all": [
+        "Yaowei Guo",
+        "Zeng Tao",
+        "Yuxin Jiang",
+        "Yunuo Chen",
+        "Zhiyang Dou",
+        "Yuxiang Ma",
+        "Yin Yang",
+        "Demetri Terzopoulos",
+        "Ying Jiang",
+        "Chenfanfu Jiang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-19",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ MIT CSAIL"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-18948.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-18948-p2.jpg"
+      ],
+      "arxiv_id": "2608.18948",
+      "abs_url": "http://arxiv.org/abs/2608.18948v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.18948v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 52,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "将人类操作视频转化为机器人经验，提出大规模数据集和编辑方法，对机器人学习有高价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of California, Los Angeles",
+        "Massachusetts Institute of Technology",
+        "University of Utah"
+      ],
+      "method_tags": [
+        "video editing",
+        "cross-embodiment adaptation",
+        "3D hand state reconstruction"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-18618",
+      "source": "arxiv",
+      "title": "LabDex: A Hierarchical Benchmark for Dexterous Manipulation in Laboratories",
+      "title_zh": "LabDex：实验室灵巧操作的分层基准",
+      "tldr_zh": "LabDex是首个统一真实与仿真、分层覆盖实验室灵巧操作的基准。",
+      "cover_zh": "机器人进实验室了？这个新基准让灵巧操作训练更系统！",
+      "abstract_zh": "自主实验室在加速科学发现方面具有巨大潜力。为实现这一愿景，机器人需要灵巧地操作各种实验器具和仪器，并执行长时程、状态依赖的实验流程。然而，现有基准未能同时涵盖灵巧手的使用、真实世界的实验室交互以及多阶段实验流程，限制了系统的训练和评估。为弥补这一空白，我们引入了LabDex，一个用于化学实验室灵巧操作的大规模真实世界数据集和基准，其围绕一个分层任务分类法组织，涵盖原子技能、组合任务和长时程实验。首先，LabDex是跨平台的，并首次在统一框架下整合了真实世界和仿真平台，提供了标准化的任务定义、演示和评估协议。其次，LabDex是大规模的，并系统地将化学实验室操作组织为三个相互关联的层级：原子技能（表征基本灵巧操作能力）、组合技能和长时程实验室工作流。这种分层设计不仅支持端到端任务性能的评估，还能分析基本灵巧技能如何组合并影响更复杂的实验室操作。我们在真实世界和仿真环境中对代表性机器人学习方法进行了跨层级评估。实验结果验证了LabDex任务设计和演示数据的有效性，并表明该基准支持在不同层级的实验室灵巧操作任务上对现有机器人策略进行训练和系统评估，为自主实验室机器人的进一步研究和发展提供了基础。",
+      "authors": [
+        "Zhipeng Tang",
+        "Sihang Chen",
+        "Sha Zhang"
+      ],
+      "authors_all": [
+        "Zhipeng Tang",
+        "Sihang Chen",
+        "Sha Zhang",
+        "Peihao Yang",
+        "Yan Liu",
+        "Wentao Zhao",
+        "Xinrui Liu",
+        "Rui Huang",
+        "Wensheng Du",
+        "Yuting Huang",
+        "Jiajun Deng",
+        "Lidian Wang",
+        "Yuan Zhang",
+        "Yanyong Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-19",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ USTC"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-18618.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-18618-p2.jpg"
+      ],
+      "arxiv_id": "2608.18618",
+      "abs_url": "http://arxiv.org/abs/2608.18618v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.18618v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 50,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "面向实验室灵巧操作的层次化基准，含真实与仿真平台，对机器人学习研究有高参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Science and Technology of China",
+        "The Chinese University of Hong Kong",
+        "iFLYTEK"
+      ],
+      "method_tags": [
+        "Dexterous Manipulation",
+        "Benchmark",
+        "Hierarchical Task Taxonomy"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-19085",
+      "source": "arxiv",
+      "title": "DA-WAM: Decision-Aligned Future Latents for Driving World Models",
+      "title_zh": "DA-WAM：面向驾驶世界模型的决策对齐未来潜变量",
+      "tldr_zh": "提出DA-WAM框架，统一预测与规划，实现决策对齐的未来建模，提升驾驶世界模型性能。",
+      "cover_zh": "未来预测不再只是预测｜这个驾驶世界模型让决策直接对齐未来",
+      "abstract_zh": "预测自我行为下场景如何演变是安全自动驾驶的基础，然而世界模型在决策中的全部潜力尚未被充分挖掘。关键挑战在于确保未来建模不仅仅是预测性的，而是对决策有信息量的：预测的未来必须直接塑造轨迹的选择。现有方法将未来表示学习与规划优化解耦，或在轨迹候选项之间共享预测状态，从而稀释了本应指导选择的动作特定后果。为弥合这一差距，我们提出了DA-WAM，一个在单一决策目标下统一预测表示学习、动作条件未来建模和轨迹评分的框架。DA-WAM通过在线编码器和稳定的动量目标在规划器优化过程中保持预测监督，使未来表示与驾驶任务共同进化。动作条件预测器为每个轨迹候选项生成不同的未来潜状态，然后由未来潜状态条件分解评分器进行评估。对于专家匹配的轨迹，预测的未来潜状态由观察到的未来表示监督，而安全关键难负样本在规划边界附近提供额外监督。在NAVSIM-v1和NAVSIM-v2上的大量实验展示了最先进的性能，而消融和诊断分析验证了关键组件。",
+      "authors": [
+        "Ruiguo Zhong",
+        "Benshan Ma",
+        "Xiaolong Chen"
+      ],
+      "authors_all": [
+        "Ruiguo Zhong",
+        "Benshan Ma",
+        "Xiaolong Chen",
+        "Lang Zhang",
+        "Mingyue Feng",
+        "Yaonong Wang",
+        "Pei Liu",
+        "Jun Ma"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-19",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ LeapMotor / 朱萧木"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKUST"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-19085.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-19085-p2.jpg"
+      ],
+      "arxiv_id": "2608.19085",
+      "abs_url": "http://arxiv.org/abs/2608.19085v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.19085v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 44,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出决策对齐的驾驶世界模型，统一预测与规划，具创新性，对具身世界模型研究有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "The Hong Kong University of Science and Technology (Guangzhou)",
+        "Leapmotor",
+        "The Hong Kong University of Science and Technology"
+      ],
+      "method_tags": [
+        "World Model",
+        "Action-Conditioned Future Modeling",
+        "Trajectory Scoring"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-18827",
+      "source": "arxiv",
+      "title": "MLREF: Efficient Module Reuse for Reward Design in Reinforcement Learning via Large Language Models",
+      "title_zh": "MLREF：通过大型语言模型实现强化学习中奖励设计的高效模块复用",
+      "tldr_zh": "MLREF通过模块池复用奖励组件，提升强化学习奖励设计的稳定性和性能。",
+      "cover_zh": "奖励设计不再从头开始？模块复用让强化学习性能飙升25.2%！",
+      "abstract_zh": "奖励函数设计仍然是强化学习中的一个瓶颈。虽然大型语言模型（LLM）已经实现了自动奖励生成，但现有方法将奖励函数作为整体程序进行生成和修订，这使得难以可靠地保留和重用早期迭代中发现的有效组件，导致跨迭代的性能不稳定。为了解决这个问题，我们提出了模块级奖励进化框架（MLREF）。MLREF的核心是一个模块池，一个可重用奖励组件的持久存储库。MLREF将模块池作为主要优化对象：池通过迭代进化，积累成功的模块，改进表现不佳的模块，并重用经过验证的组件；而奖励函数则从该池中抽取模块，构建为线性组合。为了驱动这种进化，MLREF集成了三种机制：基于反思的细化、混合信用分配和带回滚的合并策略，这些机制共同提高了奖励优化的有效性和鲁棒性。在17个任务上的实验表明，MLREF在运动任务上比强基线高出25.2%，在操作任务上高出6.6%，并且优化动态更加稳定。",
+      "authors": [
+        "Chenglin Liu",
+        "Xun Wang",
+        "Ruishuo Chen"
+      ],
+      "authors_all": [
+        "Chenglin Liu",
+        "Xun Wang",
+        "Ruishuo Chen",
+        "Zhuoran Li",
+        "Longbo Huang"
+      ],
+      "primary_category": "cs.LG",
+      "published": "2026-08-19",
+      "channels": [
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-18827.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-18827-p2.jpg"
+      ],
+      "arxiv_id": "2608.18827",
+      "abs_url": "http://arxiv.org/abs/2608.18827v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.18827v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 41,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出基于LLM的奖励设计模块复用框架，在locomotion和manipulation任务上验证，对RL奖励设计有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Tsinghua University"
+      ],
+      "method_tags": [
+        "LLM",
+        "reward design",
+        "module reuse"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-18840",
+      "source": "arxiv",
+      "title": "Beyond Placement and Articulation: Usage-Driven Code Scenes for Embodied Interaction",
+      "title_zh": "超越放置与关节：面向具身交互的用法驱动代码场景",
+      "tldr_zh": "提出RoomWright，用法驱动的代码场景生成框架，支持具身交互。",
+      "cover_zh": "不只是摆放家具｜这个AI让场景真正“用”起来",
+      "abstract_zh": "室内场景合成为具身AI、机器人操作和基于仿真的策略学习提供了必要的环境。最近的基于代码的场景生成方法产生了可编辑和可扩展的环境，但它们仍然专注于视觉构建和对象级关节，场景的功能性使用在很大程度上未被建模。为了解决这个问题，我们提出了RoomWright，一个代理式的、用法驱动的框架，用于生成完全以代码表示的3D场景，以支持具身交互。RoomWright执行用法驱动的对象推理，将每个锚点视为任务中心，并接纳任务所需的对象及其功能。代码代理通过将每个交互编译为触发、条件、效果规则来进一步实现多部分交互，该规则更新结构化对象状态，捕获对象间的因果依赖。此外，由于操作对象的朝向是模糊的且难以从像素中恢复，RoomWright通过注释引导的用法导向来缓解这一问题。大量实验证明了我们方法的有效性。生成的场景是可执行、可编辑且可仿真的，为具身AI和策略学习提供了交互环境。",
+      "authors": [
+        "Zijian Xiao",
+        "Zipeng Ye",
+        "Jinkun Hao"
+      ],
+      "authors_all": [
+        "Zijian Xiao",
+        "Zipeng Ye",
+        "Jinkun Hao",
+        "Xiong Yang",
+        "Yuchen Xie",
+        "Ran Yi"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-19",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ SJTU"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-18840.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-18840-p2.jpg"
+      ],
+      "arxiv_id": "2608.18840",
+      "abs_url": "http://arxiv.org/abs/2608.18840v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.18840v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 41,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "sim2real",
+        "reason": "提出代码化场景生成框架，支持具身交互与策略学习，仿真环境构建有科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Shanghai Jiao Tong University",
+        "Meituan"
+      ],
+      "method_tags": [
+        "usage-driven",
+        "code-based scene generation",
+        "embodied interaction"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-19066",
+      "source": "arxiv",
+      "title": "GS-VLA: Plug-and-Play Viewpoint Canonicalization for Frozen VLA Policies via Gaussian Splatting",
+      "title_zh": "GS-VLA：基于高斯泼溅的即插即用视点规范化，用于冻结的VLA策略",
+      "tldr_zh": "提出即插即用3D高斯模块，无需重训即可恢复VLA策略因视角变化丢失的性能。",
+      "cover_zh": "相机一歪，成功率从90%暴跌到10%？这个即插即用模块让VLA策略稳如泰山！",
+      "abstract_zh": "本文提出了一种轻量级、即插即用的框架，在不重新训练策略的情况下，提高了视觉-语言-动作（VLA）策略对视角变化的鲁棒性。据我们所知，这是首次直接利用基于3D高斯的新视角合成技术来对VLA策略进行观测空间自适应。当前VLA的性能依赖于训练和部署相机配置相同的隐含假设。我们的实验表明，即使相机安装位置发生微小位移，在LIBERO基准上的成功率最差也会从约90%降至约10%。以往的方法，如大规模微调或生成式数据增强，计算成本高且存在灾难性遗忘的风险。为此，我们将视角变化重新表述为局部新视角合成问题。在局部性假设下（即相机扰动相对于工作空间保持在一个小的有界区域内），视角归一化简化为一个与场景和策略无关的去遮挡任务。我们的工作通过一个4M参数的3D高斯规范化器（置于冻结的VLA策略之前）实现了这一想法。在不修改策略权重的情况下，GS-VLA在三个正交维度上提升了性能：（1）策略架构，（2）未见任务套件，以及（3）扰动尺度。这些结果表明，一个轻量级的视觉模块可以在不重新训练策略的情况下，恢复视角变化下丢失的大部分性能。",
+      "authors": [
+        "Yechan Park",
+        "HyunJin Kim"
+      ],
+      "authors_all": [
+        "Yechan Park",
+        "HyunJin Kim"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-08-19",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-19066.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-19066-p2.jpg"
+      ],
+      "arxiv_id": "2608.19066",
+      "abs_url": "http://arxiv.org/abs/2608.19066v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.19066v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "针对VLA策略视角鲁棒性提出轻量级3D高斯规范化模块，无需重训，实验验证有效，对操作策略研究有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Dankook University"
+      ],
+      "method_tags": [
+        "3D Gaussian Splatting",
+        "novel-view synthesis",
+        "viewpoint canonicalization"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-18446",
+      "source": "arxiv",
+      "title": "HarvestPoint-ACT: Explicit Target Selection and Harvest-Point Conditioning for Robotic Fruit Harvesting under Occlusion",
+      "title_zh": "HarvestPoint-ACT：遮挡条件下机器人水果采摘的显式目标选择与采摘点条件化",
+      "tldr_zh": "HarvestPoint-ACT通过显式目标选择和采摘点条件化，在遮挡下实现88%采摘成功率。",
+      "cover_zh": "遮挡也不怕｜这个采摘机器人成功率高达88%？",
+      "abstract_zh": "端到端模仿学习避免了为接近和抓取而手工设计机器人运动，但策略仍必须决定采摘哪个水果以及在何处闭合夹爪。遮挡可能导致策略在采摘过程中丢失所选水果，且仅从像素中推断正确的闭合点较为困难。本文提出HarvestPoint-ACT，在感知中显式做出这两个决策并将其提供给策略。带有关键点分支的实例分割前端为每个可见水果预测掩码和采摘点，其中采摘点指定夹爪闭合的位置。调度器根据遮挡程度和行进距离对检测到的候选水果进行排序，并选择一个目标。每次尝试后，由于树冠可能发生变化，系统会重新检测并重新排序候选水果。所选水果被编码为八维状态，包含绝对采摘点、从夹爪到该点的向量、有效性标志和置信度分数，供动作分块变换器使用。当所选水果暂时未被检测到时，系统保留机器人基座坐标系中最后的采摘点估计，并将其标记为过期，若丢失持续则中止尝试。在树冠模拟装置上，HarvestPoint-ACT的成功率达到88%，在重度遮挡下为75%。",
+      "authors": [
+        "Hanying Hu",
+        "Weipeng Li",
+        "Yikun Huang"
+      ],
+      "authors_all": [
+        "Hanying Hu",
+        "Weipeng Li",
+        "Yikun Huang",
+        "Hao Chen",
+        "Zhengtao Hu",
+        "Changcai Yang",
+        "Weiwei Wan"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-19",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-18446.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-18446-p2.jpg"
+      ],
+      "arxiv_id": "2608.18446",
+      "abs_url": "http://arxiv.org/abs/2608.18446v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.18446v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 25,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "针对遮挡下机器人采摘的模仿学习，提出显式目标选择与收获点条件化，方法新颖且实验有效。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Fujian Agriculture and Forestry University",
+        "Shanghai University",
+        "The University of Osaka"
+      ],
+      "method_tags": [
+        "Imitation Learning",
+        "Action Chunking Transformer",
+        "Instance Segmentation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-19188",
+      "source": "arxiv",
+      "title": "PartialBiGrasp: Inferring Hidden Local Geometry for Bimanual Grasping from Partial Views",
+      "title_zh": "PartialBiGrasp：从部分视图推断隐藏局部几何以实现双臂抓取",
+      "tldr_zh": "提出PartialBiGrasp，从部分点云生成稳定双臂抓取，无需完整几何信息。",
+      "cover_zh": "不用完整点云也能抓大件？这个双臂抓取框架有点东西",
+      "abstract_zh": "双臂机器人抓取对于操纵大型、重型且几何形状复杂的物体至关重要，这些物体通常无法通过单个机械臂可靠地处理。这些大型物体通常只包含由局部几何属性（如厚度、边缘结构和夹爪间隙）决定的稀疏可抓取区域。先前的双臂抓取方法假设可以获取物体的完整点云，其中固有地包含这些几何信息，但在实际场景中可能无法获得。这项工作提出了PartialBiGrasp，一个直接基于部分点云观测的双臂抓取生成框架。我们的模型通过卷积占用网络隐式学习几何特征，从而能够对可抓取性、无碰撞接触区域和物体厚度进行局部推理。我们利用这种理解来生成力闭合的抓取对，并通过基于采样的优化进一步细化，以纠正由不完整几何引起的模糊性。我们使用解析力闭合指标、大规模仿真实验以及在新型物体的噪声部分点云上的真实机器人评估来评估我们的方法，展示了鲁棒且物理稳定的双臂抓取生成。",
+      "authors": [
+        "Ayush Kaura",
+        "Vignesh Vembar",
+        "Md Faizal Karim"
+      ],
+      "authors_all": [
+        "Ayush Kaura",
+        "Vignesh Vembar",
+        "Md Faizal Karim",
+        "Keshab Patra",
+        "K Madhava Krishna"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-19",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-19188.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-19188-p2.jpg"
+      ],
+      "arxiv_id": "2608.19188",
+      "abs_url": "http://arxiv.org/abs/2608.19188v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.19188v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 25,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出基于部分点云的双臂抓取生成框架，结合占用网络与力闭合优化，具科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Robotics Research Center, IIIT Hyderabad"
+      ],
+      "method_tags": [
+        "occupancy networks",
+        "sampling-based optimization",
+        "bimanual grasping"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-18552",
+      "source": "arxiv",
+      "title": "Real-Time Control-Constrained DDP for Underactuated Balancing of Legged Robots",
+      "title_zh": "欠驱动腿足机器人实时控制约束DDP平衡控制",
+      "tldr_zh": "提出实时控制约束DDP，首次实现四足机器人静态双腿站立。",
+      "cover_zh": "四足机器人也能双腿站立？实时MPC新算法打破常规",
+      "abstract_zh": "本文提出了一种用于欠驱动腿足机器人的实时控制约束微分动态规划（DDP）框架。为解决经典DDP在处理控制约束方面的局限性，我们提出了一种基于加速投影梯度（APG）的控制约束DDP（ABC-DDP），该算法能够高效计算约束解并识别有效集，而无需重复进行Karush-Kuhn-Tucker（KKT）求逆。我们引入虚拟约束，将控制约束整合到可行性驱动的多射击框架中，即使从动态不可行的初始状态也能实现稳定优化。所提方法支持强欠驱动下短时域实时模型预测控制（MPC）。仿真结果展示了在统一MPC框架下的静态双腿站立（抵抗外部扰动）以及多种动态运动，包括慢速猫步、直立行走和高速奔跑。据我们所知，这是首次通过实时有限时域MPC实现四足机器人静态双腿站立的演示。",
+      "authors": [
+        "SeongWon Nam",
+        "Hyunyong Lee",
+        "Hansol Kang"
+      ],
+      "authors_all": [
+        "SeongWon Nam",
+        "Hyunyong Lee",
+        "Hansol Kang",
+        "Jiman Park",
+        "Yeongwoo Son",
+        "Bumsu Yi",
+        "Jaeyoung Oh",
+        "Hyouk Ryeol Choi"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-19",
+      "channels": [
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-18552.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-18552-p2.jpg"
+      ],
+      "arxiv_id": "2608.18552",
+      "abs_url": "http://arxiv.org/abs/2608.18552v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.18552v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 22,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "提出实时控制约束DDP用于欠驱动腿式机器人平衡，实现四足静态站立与多种动态运动，算法创新且具科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "DDP",
+        "MPC",
+        "control constraints"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "no",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-18433",
+      "source": "arxiv",
+      "title": "The Embodiment Gap in Robot Foundation Models",
+      "title_zh": "机器人基础模型中的具身差距",
+      "tldr_zh": "综述机器人基础模型的具身差距，提出二维映射和报告框架。",
+      "cover_zh": "机器人模型能泛化但上不了身？具身差距才是关键！",
+      "abstract_zh": "机器人基础模型（RFMs），包括视觉-语言-动作（VLA）策略，通常通过扩展视角来讨论：更多的数据、更大的模型和更广泛的基准应该能提高泛化能力。然而，在机器人学中，一个模型可以泛化，但在它能在具有特定身体的机器人上运行之前，仍有工作要做。所需的工作因方法和目标机器人而异，这些差异影响实际部署。我们将可重用模型、表示或数据与其在目标机器人上执行之间的差距称为具身差距。本综述考察了哪些内容可以在机器人具身之间重用，以及在新机器人上必须实现什么。我们将现有方法放在一个二维映射图上，该图显示了共享结构的类型以及为目标机器人执行所需适应的阶段。然后，我们通过三个重叠的研究方向审视近期工作：共享语义和感知、共享机器人数据和接口，以及跨具身学习对应关系。我们还提出了一个适应工作的报告框架，仅凭成功率无法揭示这些工作。该框架识别了在比较跨具身学习时应检查的工作，并强调了在新机器人上仍然存在的工作以及未来研究的问题。",
+      "authors": [
+        "Yukiyasu Domae",
+        "Keisuke Shirai",
+        "Hanbit Oh"
+      ],
+      "authors_all": [
+        "Yukiyasu Domae",
+        "Keisuke Shirai",
+        "Hanbit Oh",
+        "Ryoichi Nakajo",
+        "Tomohiro Motoda",
+        "Koshi Makihara",
+        "Masaki Murooka",
+        "Takuma Yagi",
+        "Yoshiaki Bando",
+        "Ryo Hanai"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-19",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-18433.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-18433-p2.jpg"
+      ],
+      "arxiv_id": "2608.18433",
+      "abs_url": "http://arxiv.org/abs/2608.18433v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.18433v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 19,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "综述聚焦机器人基础模型的跨本体泛化与部署差距，对具身智能研究有重要参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "National Institute of Advanced Industrial Science and Technology (AIST), Japan"
+      ],
+      "method_tags": [
+        "cross-embodiment learning",
+        "survey"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-18787",
+      "source": "arxiv",
+      "title": "Dream2Reward: Transition-Alignment Reward Models from Positive Demonstrations for Robotic Manipulation",
+      "title_zh": "Dream2Reward：基于正向演示的转换对齐奖励模型用于机器人操作",
+      "tldr_zh": "Dream2Reward通过预测成功转换来提供密集奖励，无需失败标注，提升机器人学习性能。",
+      "cover_zh": "无需失败数据，仅用成功演示就能训练机器人？这个新奖励模型让学习更高效！",
+      "abstract_zh": "学习机器人策略需要密集的奖励，这些奖励在行为偏离成功演示时仍能提供信息。基于进展的奖励估计观察沿着名义成功轨迹前进了多远，但在错误转换后可能仍然很高。我们引入了Dream2Reward，它从正向演示中学习一个语言条件的成功潜在转换场。给定转换开始前的视觉历史，模型预测与成功执行相关的潜在位移，并通过有符号的方向和对称幅度一致性来评分观察到的位移。这种转换级别的比较会惩罚错误方向、过冲和停滞运动，即使产生的观察结果看起来显示出进展。Dream2Reward不需要失败标注、进展标签或合成负样本，并产生密集的因果奖励。在机制诊断和共享轨迹评估中，它比基于进展的替代方法提供了更强的成功-失败分离和对低质量行为更有信息量的反馈。在在线和离线策略学习中，相同的冻结奖励模型减少了奖励黑客攻击，并支持更强的下游性能，包括在真实机器人操作中。这些结果表明，将实际运动与预测的成功变化进行比较，为将正向演示转化为机器人学习的密集奖励提供了一种有效的方法。",
+      "authors": [
+        "Haoyu Zhang",
+        "Zecui Zeng",
+        "Bin Wang"
+      ],
+      "authors_all": [
+        "Haoyu Zhang",
+        "Zecui Zeng",
+        "Bin Wang",
+        "Lusong Li",
+        "Liang Lin",
+        "Long Cheng"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-19",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-18787.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-18787-p2.jpg"
+      ],
+      "arxiv_id": "2608.18787",
+      "abs_url": "http://arxiv.org/abs/2608.18787v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.18787v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 16,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出从正样本学习过渡对齐奖励模型，提升机器人操作策略学习，方法新颖且实验充分。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Chinese Academy of Sciences",
+        "Institute of Automation, Chinese Academy of Sciences",
+        "JD Explore Academy"
+      ],
+      "method_tags": [
+        "Reward Learning",
+        "Latent Transition Models",
+        "Reinforcement Learning"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-19084",
+      "source": "arxiv",
+      "title": "Does Mapping Non-Maximal Probabilities to GMM Components Matter for S-JEPA Encoder Representations?",
+      "title_zh": "将非最大概率映射到GMM分量对S-JEPA编码器表示是否重要？",
+      "tldr_zh": "S-JEPA中非最大概率的映射方式影响编码器表示，软目标概率结构并非唯一决定因素。",
+      "cover_zh": "软标签不只是概率值？映射方式竟影响编码器表现｜S-JEPA新发现",
+      "abstract_zh": "S-JEPA使用软高斯混合模型（GMM）后验而非硬聚类标签来保留不确定性。目前尚不清楚仅概率值是否足够，或者非最大概率分配给哪些GMM分量也很重要。我们通过两个匹配的对照实验来测试这一点。FIXED-RANDPERM保留top-1分量及其概率以及非最大概率值的多重集，但使用每个物理帧固定的映射重新分配这些非最大值。UNIFORM-TAIL保留top-1分量、其概率和总非最大质量，但将该质量均匀分布。在三个独立种子上，REAL SOFT在两个冻结编码器读出上均优于两个对照。它更好地恢复了原始GMM尾部，并在控制当前帧的完整频谱后，在短时间尺度上提供了更大的光谱动态可访问性。在两个暴露实验中，随着更多帧保留原始映射，两种读出均整体改善。我们还描述性地跟踪了切换到在线GMM后的一个Phase 2轨迹。这些结果表明，软目标的数值概率结构并不能完全决定学习到的编码器表示。非最大概率到GMM分量的映射也很重要。",
+      "authors": [
+        "Wenxuan He",
+        "Yunpeng Li",
+        "Shan Liang"
+      ],
+      "authors_all": [
+        "Wenxuan He",
+        "Yunpeng Li",
+        "Shan Liang"
+      ],
+      "primary_category": "cs.LG",
+      "published": "2026-08-19",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-19084.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-19084-p2.jpg"
+      ],
+      "arxiv_id": "2608.19084",
+      "abs_url": "http://arxiv.org/abs/2608.19084v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.19084v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 16,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "world-model",
+        "reason": "S-JEPA是JEPA架构的具身世界模型，研究软GMM目标中非最大概率映射对编码器表征的影响，对世界模型表征学习有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Xi'an Jiaotong-Liverpool University"
+      ],
+      "method_tags": [
+        "S-JEPA",
+        "soft targets",
+        "counterfactual training"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    }
+  ]
+}

@@ -85,7 +85,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -119,5 +119,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Prism-GRPO: Faster VLA Policy Optimization via Splitting Same-outcome Groups\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.17423v1\n---\n>[!abstract] 一句话总结：Prism-GRPO在二值结果奖励上加权轨迹级执行质量分数，将同结果组拆分为质量谱，同时保持成功永远优于失败，从而恢复训练信号且不增加零优势组被丢弃的概率。\n\n\n# 一、动机\n\n> GRPO在VLA策略优化中因无需critic而兴起，但组相对优势需要多次rollout，且二值成功奖励下同成功或同失败组优势为零被丢弃，尤其训练早期多数失败时浪费大量机器人rollout预算。\n\n\n# 二、方法\n\n> Prism-GRPO在二值结果奖励上加权轨迹级执行质量分数，将同结果组拆分为质量谱，同时保持成功永远优于失败，从而恢复训练信号且不增加零优势组被丢弃的概率。\n\n\n# 三、核心实验结果\n\n> 在四个RoboTwin任务上，以相同rollout预算取得更高成功率和质量，达到目标成功率最多减少56%的rollouts；同时抑制奖励黑客行为，且更干净的行为可直接部署到真实机器人。\n\n\n# 四、对我的启发\n\n> 局限是额外质量分数需从接触、动作或视觉中计算，可能引入计算开销或偏差；启发是无需任务特定进度奖励即可高效优化VLA策略，与机器人操作课题直接相关。\n"
 }
