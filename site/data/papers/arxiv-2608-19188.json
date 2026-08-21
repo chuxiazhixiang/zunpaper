@@ -68,7 +68,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -99,5 +99,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"PartialBiGrasp: Inferring Hidden Local Geometry for Bimanual Grasping from Partial Views\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.19188v1\n---\n>[!abstract] 一句话总结：提出PartialBiGrasp，直接从部分点云生成双手抓取对。该方法用卷积占用网络隐式学习局部几何特征，推理可抓取区域、无碰撞接触和物体厚度，生成力闭合抓取对，并利用基于采样的优化对不完整几何造成的歧义进行修正。\n\n\n# 一、动机\n\n> 现有双手机器人抓取方法通常假设能获得物体的完整点云，但真实场景中观测往往不完整（如遮挡、噪声），导致局部几何信息（厚度、边缘、夹爪间隙）缺失，难以可靠生成双手抓取。\n\n\n# 二、方法\n\n> 提出PartialBiGrasp，直接从部分点云生成双手抓取对。该方法用卷积占用网络隐式学习局部几何特征，推理可抓取区域、无碰撞接触和物体厚度，生成力闭合抓取对，并利用基于采样的优化对不完整几何造成的歧义进行修正。\n\n\n# 三、核心实验结果\n\n> 在解析力闭合指标、大规模仿真和真实机器人噪声部分点云上验证，生成的双手抓取具有鲁棒性和物理稳定性；摘要未给出具体量化数字。\n\n\n# 四、对我的启发\n\n> 局限：隐式几何推断在不完整信息严重时仍可能产生歧义，且未讨论极端遮挡情况。启发：部分观测下的局部几何补全是机器人操作的关键环节，与课题中机器人抓取规划直接相关，可考虑在实际平台上测试其成功率。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"PartialBiGrasp: Inferring Hidden Local Geometry for Bimanual Grasping from Partial Views\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.19188v1\n---\n>[!abstract] 一句话总结：提出PartialBiGrasp框架，使用卷积占用网络从部分点云隐式学习局部几何特征（如厚度、边缘、间隙），生成力闭合抓取对，并采用基于采样的优化修正不完整几何带来的歧义。\n\n\n# 一、动机\n\n> 现有双臂抓取方法通常假设可获得物体的完整点云，但在实际场景中往往只能获取部分观测，导致无法可靠生成抓取。\n\n\n# 二、方法\n\n> 提出PartialBiGrasp框架，使用卷积占用网络从部分点云隐式学习局部几何特征（如厚度、边缘、间隙），生成力闭合抓取对，并采用基于采样的优化修正不完整几何带来的歧义。\n\n\n# 三、核心实验结果\n\n> 在解析力闭合指标、大规模仿真以及真实机器人部分点云抓取评估中均验证了鲁棒性和物理稳定性，但摘要未给出具体数值。\n\n\n# 四、对我的启发\n\n> 摘要未提供定量结果，需阅读全文获取具体性能；与机器人抓取直接相关，可关注其对部分观测的建模与优化策略。\n"
 }

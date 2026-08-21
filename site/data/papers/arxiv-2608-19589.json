@@ -1,0 +1,100 @@
+{
+  "id": "arxiv-2608-19589",
+  "source": "arxiv",
+  "title": "OrthoSkillVLA: Continual Skill Learning via Gradient-Informed Skill Subspace Adaptation",
+  "title_zh": "OrthoSkillVLA：通过梯度信息技能子空间自适应实现持续技能学习",
+  "abstract": "Pretrained Vision-Language-Action models provide a strong foundation for robot learning, but sequentially adapting them to diverse skills can perturb the representations and velocity mappings used by previous skills, leading to catastrophic forgetting. Architecture-based approaches improve retention by isolating skills but lead to increased inference footprint. Recent subspace-constrained methods restrict parameter updates in an orthogonal subspace to minimize interference but impose a unified constraint on the entire model. We analyze the distinct roles of internal VLA components and identify two VLA-specific challenges. First, the VLM maintains broad semantic representations, making it vulnerable to capacity exhaustion, whereas the ActionHead refines semantics into localized velocity patterns that are highly sensitive to perturbations. Second, the final velocity decoder serves as a readout layer. Freezing it forms an output-stage expressivity bottleneck, while updating it risks overwriting previous velocity mappings. To this end, we propose OrthoSkillVLA, a parameter-efficient framework for continual skill learning in pretrained VLA models without demonstration replay. Given the representation heterogeneity, we impose separate subspace constraints on the VLM and ActionHead, preserving reusable semantic capacity while protecting localized velocity patterns. For the output layer, we introduce a lightweight feature-aware MoE decoder, where each skill is allocated a compact expert and a training-free router selects the expert according to feature-space affinity. Extensive simulated and real-world evaluations, together with ablations, demonstrate that OrthoSkillVLA better preserves prior skills while acquiring new ones.",
+  "abstract_zh": "预训练的视觉-语言-动作模型为机器人学习提供了强大的基础，但顺序适应多种技能可能会扰动先前技能使用的表示和速度映射，导致灾难性遗忘。基于架构的方法通过隔离技能来改善保留，但增加了推理开销。最近的子空间约束方法在正交子空间中限制参数更新以最小化干扰，但对整个模型施加统一约束。我们分析了VLA内部组件的不同作用，并识别出两个VLA特有的挑战。首先，VLM维护广泛的语义表示，使其容易遭受容量耗尽，而ActionHead将语义细化为局部速度模式，这些模式对扰动高度敏感。其次，最终的速度解码器作为读出层。冻结它形成输出阶段的表达瓶颈，而更新它则可能覆盖先前的速度映射。为此，我们提出OrthoSkillVLA，一个参数高效的框架，用于预训练VLA模型中的持续技能学习，无需演示重放。鉴于表示异质性，我们对VLM和ActionHead施加单独的子空间约束，保留可复用的语义容量，同时保护局部速度模式。对于输出层，我们引入一个轻量级的特征感知MoE解码器，每个技能分配一个紧凑的专家，一个无需训练的路由器根据特征空间亲和力选择专家。广泛的模拟和真实世界评估以及消融实验表明，OrthoSkillVLA在获取新技能的同时更好地保留先前技能。",
+  "tldr_zh": "提出OrthoSkillVLA，通过分离子空间约束和MoE解码器，实现VLA模型持续技能学习，避免灾难性遗忘。",
+  "cover_zh": "机器人学新技能不遗忘？这个框架用子空间隔离和MoE解码器做到了！",
+  "authors": [
+    {
+      "name": "Jiaqi Wang",
+      "affiliation": ""
+    },
+    {
+      "name": "Zhou Fang",
+      "affiliation": ""
+    },
+    {
+      "name": "Qiongfeng Shi",
+      "affiliation": ""
+    },
+    {
+      "name": "Yi Zhou",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.CV"
+  ],
+  "published": "2026-08-20",
+  "updated": "2026-08-20",
+  "arxiv_id": "2608.19589",
+  "pdf_url": "https://arxiv.org/pdf/2608.19589v1",
+  "abs_url": "http://arxiv.org/abs/2608.19589v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-19589.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-19589-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 22,
+  "source_tags": [],
+  "score": 19,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 6,
+      "hint": "频道关键词命中 2 个（vision-language-action、vla model）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 22 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出VLA持续学习新方法，解决灾难性遗忘，有仿真与真机验证，科研价值高。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Southeast University"
+  ],
+  "method_tags": [
+    "Continual Learning",
+    "VLA",
+    "MoE"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"OrthoSkillVLA: Continual Skill Learning via Gradient-Informed Skill Subspace Adaptation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.19589v1\n---\n>[!abstract] 一句话总结：提出OrthoSkillVLA框架，针对VLM和ActionHead分别施加梯度信息引导的正交子空间约束，以保留可复用语义容量并保护局部速度模式；同时引入轻量特征感知的MoE解码器，为每个技能分配紧凑专家，并用免训练的基于特征亲和度的路由器选择专家。\n\n\n# 一、动机\n\n> 预训练VLA模型在顺序适应多种技能时，容易扰动先前技能的表征和速度映射，导致灾难性遗忘。现有子空间约束方法对整个模型施加统一约束，未考虑VLM与ActionHead的角色差异，且冻结输出层会造成表达瓶颈，更新又会覆盖旧技能。\n\n\n# 二、方法\n\n> 提出OrthoSkillVLA框架，针对VLM和ActionHead分别施加梯度信息引导的正交子空间约束，以保留可复用语义容量并保护局部速度模式；同时引入轻量特征感知的MoE解码器，为每个技能分配紧凑专家，并用免训练的基于特征亲和度的路由器选择专家。\n\n\n# 三、核心实验结果\n\n> 在模拟和真实机器人评估中，相比基线方法，OrthoSkillVLA在更好地保留先前技能的同时获得新技能；摘要未报告具体数值，量化结果需查阅正文。\n\n\n# 四、对我的启发\n\n> 与课题相关。核心启发：对VLA中异质性组件（VLM与ActionHead）分别进行约束，并在输出层采用动态扩展的MoE解码器，是缓解持续学习灾难性遗忘的有效设计，且无需演示重放。\n"
+}
