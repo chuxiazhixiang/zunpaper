@@ -65,7 +65,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -96,5 +96,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"OrthoSkillVLA: Continual Skill Learning via Gradient-Informed Skill Subspace Adaptation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.19589v1\n---\n>[!abstract] 一句话总结：提出OrthoSkillVLA，对VLM和ActionHead分别施加正交子空间约束，保留语义容量并保护速度模式；为输出层设计轻量级特征感知MoE解码器，每个技能分配紧凑专家，用免训练路由器按特征亲和度选择专家。\n\n\n# 一、动机\n\n> 预训练VLA模型在顺序适应多样技能时，更新会扰动旧技能的表示和速度映射，导致灾难性遗忘；现有架构方法增加推理开销，子空间方法对所有参数施加统一约束，忽略了VLM与ActionHead的不同角色。\n\n\n# 二、方法\n\n> 提出OrthoSkillVLA，对VLM和ActionHead分别施加正交子空间约束，保留语义容量并保护速度模式；为输出层设计轻量级特征感知MoE解码器，每个技能分配紧凑专家，用免训练路由器按特征亲和度选择专家。\n\n\n# 三、核心实验结果\n\n> 在模拟和真实世界实验中，相比现有方法，OrthoSkillVLA在获取新技能的同时更好地保留旧技能；具体量化指标请参考原文表格。\n\n\n# 四、对我的启发\n\n> 揭示了VLA组件角色差异带来的持续学习挑战，输出层采用特征感知MoE替代冻结或全更新，是避免表达能力瓶颈与速度映射覆盖的有效折中；可启发后续任务中更细粒度的子空间分配策略。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"OrthoSkillVLA: Continual Skill Learning via Gradient-Informed Skill Subspace Adaptation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.19589v1\n---\n>[!abstract] 一句话总结：提出OrthoSkillVLA，对VLM和ActionHead分别施加梯度信息技能子空间约束，并为输出层设计轻量级特征感知MoE解码器，通过训练无关的路由器按特征亲和度选择专家，实现无演示回放的参数高效持续技能学习。\n\n\n# 一、动机\n\n> 预训练VLA模型在顺序学习多种技能时容易灾难性遗忘，且内部VLM与ActionHead的角色差异导致统一子空间约束无法兼顾语义容量与局部速度模式的敏感性，输出层更新还会覆盖旧技能映射。\n\n\n# 二、方法\n\n> 提出OrthoSkillVLA，对VLM和ActionHead分别施加梯度信息技能子空间约束，并为输出层设计轻量级特征感知MoE解码器，通过训练无关的路由器按特征亲和度选择专家，实现无演示回放的参数高效持续技能学习。\n\n\n# 三、核心实验结果\n\n> 在仿真与真实机器人评估及消融实验中，相比现有基线方法，OrthoSkillVLA在保留旧技能和获取新技能上均表现更优（摘要未提供具体数值，详见原文）。\n\n\n# 四、对我的启发\n\n> 分离子空间约束与MoE输出解码器为VLA持续学习提供了新思路，但未深入探讨跨技能共享表征的利用，且MoE路由在特征分布偏移下的鲁棒性有待验证。\n"
 }

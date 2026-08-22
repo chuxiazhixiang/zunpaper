@@ -47,28 +47,17 @@
   "channels": [
     "manipulation"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 22,
   "source_tags": [],
-  "score": 25,
+  "score": 15,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 4 个（grasp、grasping、bimanual、dual-arm）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -99,5 +88,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"PartialBiGrasp: Inferring Hidden Local Geometry for Bimanual Grasping from Partial Views\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.19188v1\n---\n>[!abstract] 一句话总结：提出PartialBiGrasp，直接在部分点云上通过卷积占用网络隐式学习局部几何特征（厚度、边缘、间隙），生成力闭合的双手抓取对，并用采样优化修正不完整几何带来的歧义。\n\n\n# 一、动机\n\n> 现有双手抓取方法假设可获得物体的完整点云，但实际场景中往往只能获取部分观测，导致抓取规划受限。\n\n\n# 二、方法\n\n> 提出PartialBiGrasp，直接在部分点云上通过卷积占用网络隐式学习局部几何特征（厚度、边缘、间隙），生成力闭合的双手抓取对，并用采样优化修正不完整几何带来的歧义。\n\n\n# 三、核心实验结果\n\n> 摘要未给出具体数字；在解析力闭合指标、大规模仿真和真实机器人实验中验证了方法对噪声部分点云和新物体的鲁棒性与物理稳定性。\n\n\n# 四、对我的启发\n\n> 依赖部分点云输入，优化步骤增加了计算开销；隐式几何建模思路可扩展到其他部分观测下的机器人操作任务。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"PartialBiGrasp: Inferring Hidden Local Geometry for Bimanual Grasping from Partial Views\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.19188v1\n---\n>[!abstract] 一句话总结：提出PartialBiGrasp框架，直接从部分点云生成双手机器人抓取对；通过卷积占用网络隐式学习局部几何特征（可抓性、无碰撞接触区域、厚度），并利用基于采样的优化修正因几何不完整导致的抓取模糊性。\n\n\n# 一、动机\n\n> 现有双手机器人抓取方法通常依赖物体完整点云来获取厚度、边缘等局部几何信息，但真实场景中只能获得部分观测，限制了实用性。\n\n\n# 二、方法\n\n> 提出PartialBiGrasp框架，直接从部分点云生成双手机器人抓取对；通过卷积占用网络隐式学习局部几何特征（可抓性、无碰撞接触区域、厚度），并利用基于采样的优化修正因几何不完整导致的抓取模糊性。\n\n\n# 三、核心实验结果\n\n> 在力闭合分析指标、大规模仿真以及真实机器人对新颖物体部分噪声点云实验中验证了抓取生成的有效性，表明抓取对鲁棒且物理稳定；摘要未提供具体数值，需参考原文数据。\n\n\n# 四、对我的启发\n\n> 与课题相关。局限：部分观测下几何推断仍有歧义，优化步骤增加计算开销；启发：用占用网络隐式建模局部几何可作为处理遮挡场景的通用思路，适合扩展到其他机器人操作任务。\n"
 }
