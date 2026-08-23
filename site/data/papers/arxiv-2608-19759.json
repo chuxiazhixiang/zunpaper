@@ -44,28 +44,17 @@
   "channels": [
     "manipulation"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 25,
+  "score": 15,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 4 个（manipulation、dexterous、grasp、grasping）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -105,5 +94,5 @@
     }
   ],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"GOAG: Generative and Object-Agnostic Grasp Planner for Dexterous Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.19759v1\n---\n>[!abstract] 一句话总结：利用夹持器与物体在接触点表面几何相同的先验，学习夹持器接触表面分布的潜表征，推理时仅需引入物体特征即可采样有效抓取配置，实现物体无关的抓取规划。\n\n\n# 一、动机\n\n> 现有深度抓取规划器在特定物体数据集上训练，难以泛化到新物体，泛化能力受限。\n\n\n# 二、方法\n\n> 利用夹持器与物体在接触点表面几何相同的先验，学习夹持器接触表面分布的潜表征，推理时仅需引入物体特征即可采样有效抓取配置，实现物体无关的抓取规划。\n\n\n# 三、核心实验结果\n\n> 在MultiDex数据集上平均成功率达86.93%，生成大量抓取时速度显著更快，且匹配专门训练方法的效果，同时无需依赖物体特定训练数据。\n\n\n# 四、对我的启发\n\n> 物体无关学习是提升抓取泛化的有效路径，但依赖接触点几何一致性假设，对非刚性或复杂接触场景可能受限；与课题直接相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"GOAG: Generative and Object-Agnostic Grasp Planner for Dexterous Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.19759v1\n---\n>[!abstract] 一句话总结：GOAG是一种深度生成模型，学习特定多指抓取器接触表面分布的紧凑潜在表示，训练时不使用物体数据，推理时仅引入物体特征作为条件，从而高效采样与抓取器能力兼容的抓取配置。\n\n\n# 一、动机\n\n> 现有深度抓取规划器依赖特定物体的训练数据，难以泛化到新物体。本文利用抓取器与物体在接触点共享表面几何的特性，提出无需物体特定数据的物体无关抓取规划方法。\n\n\n# 二、方法\n\n> GOAG是一种深度生成模型，学习特定多指抓取器接触表面分布的紧凑潜在表示，训练时不使用物体数据，推理时仅引入物体特征作为条件，从而高效采样与抓取器能力兼容的抓取配置。\n\n\n# 三、核心实验结果\n\n> 在MultiDex数据集上平均成功率86.93%，达到SOTA；在生成大量抓取时速度显著更快，性能与专门在该数据集上训练的方法相当。\n\n\n# 四、对我的启发\n\n> 物体无关学习能有效解决传统数据驱动抓取规划器的泛化难题，为机器人多指操作的通用性提供了新思路，与课题直接相关。\n"
 }

@@ -48,28 +48,17 @@
     "manipulation",
     "teleop"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 12,
   "source_tags": [],
-  "score": 30,
+  "score": 20,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 4 个（manipulation、teleoperation、teleop、haptic teleoperation）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -108,5 +97,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"Keeping the Franka Emika Panda alive: a ROS 2 stack with a reliable position interface\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.19740v1\n---\n>[!abstract] 一句话总结：提出一个开源的ROS 2软件栈，通过异步硬件接口解耦实时通信与ROS 2控制循环，引入速率匹配机制和位置域参考生成策略，实现稳定平滑的位置控制。\n\n\n# 一、动机\n\n> Franka Emika Panda机器人缺乏可靠的ROS 2外部位置控制支持，官方实现存在振动和保护性停机问题，阻碍了安全、可复现的人机协作应用开发。\n\n\n# 二、方法\n\n> 提出一个开源的ROS 2软件栈，通过异步硬件接口解耦实时通信与ROS 2控制循环，引入速率匹配机制和位置域参考生成策略，实现稳定平滑的位置控制。\n\n\n# 三、核心实验结果\n\n> 实验表明该架构能够可靠跟踪速度参考，减少官方实现引入的运动伪影，并在两个独立Panda平台上通过运动规划、柔顺控制、位置控制操作和触觉遥操作验证。\n\n\n# 四、对我的启发\n\n> 与课题相关，为Panda机器人提供现代可靠的ROS 2生态，降低了集成规划、感知、交互和共享自主性的门槛。局限在于主要针对Panda平台，迁移到其他机器人需要适配。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"Keeping the Franka Emika Panda alive: a ROS 2 stack with a reliable position interface\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.19740v1\n---\n>[!abstract] 一句话总结：提出一个包含异步硬件接口、速率匹配机制和位置域参考生成策略的ROS 2软件栈，将实时通信与ROS 2控制环解耦，实现了可靠平滑的位置控制。\n\n\n# 一、动机\n\n> Franka Emika Panda机器人的外部位置控制接口在ROS 2中长期不可靠，导致振动和保护性停止，阻碍了现代ROS 2生态系统的应用。本文分析了根本原因并提出了解决方法。\n\n\n# 二、方法\n\n> 提出一个包含异步硬件接口、速率匹配机制和位置域参考生成策略的ROS 2软件栈，将实时通信与ROS 2控制环解耦，实现了可靠平滑的位置控制。\n\n\n# 三、核心实验结果\n\n> 该架构在运动规划、柔顺控制、位置控制操作和触觉遥操作中均验证有效，并在2个独立的Panda平台上实现了稳定运行；相比官方实现，显著减少了运动伪影，可靠地跟踪速度参考。\n\n\n# 四、对我的启发\n\n> 局限在于软件栈针对Panda机器人定制，迁移到其他平台需要适配；启发是外部控制的不稳定性可能源于控制时序和采样抖动而非硬件本身，为机器人软件接口设计提供了参考。\n"
 }

@@ -66,16 +66,12 @@
     {
       "kind": "lab",
       "label": "⭐ 上海 AI Lab"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 55,
+  "score": 45,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -88,12 +84,6 @@
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 5 个（whole-body、whole-body control、mobile manipulation、manipulation）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -133,5 +123,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"DECOWAM: Decoupled Whole-Body World-Action Model for Legged Mobile Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.20114v1\n---\n>[!abstract] 一句话总结：提出DECOWAM，通过冻结FastWAM骨干并训练残差适配器、动作等价未来瓶颈（从特权观测蒸馏）、对抗分离基座/手臂潜变量以及基座速度条件视频预测，实现全身解耦的世界动作模型；同时引入ARMDOG真实机器人数据集。\n\n\n# 一、动机\n\n> 现有世界动作模型主要面向固定基座平台，未能显式区分相机自身运动与基座、手臂动作，难以适应腿式移动操作中移动视角下的预测和控制需求。\n\n\n# 二、方法\n\n> 提出DECOWAM，通过冻结FastWAM骨干并训练残差适配器、动作等价未来瓶颈（从特权观测蒸馏）、对抗分离基座/手臂潜变量以及基座速度条件视频预测，实现全身解耦的世界动作模型；同时引入ARMDOG真实机器人数据集。\n\n\n# 三、核心实验结果\n\n> 在固定重放协议下，相比FastWAM将动作MSE降低21.7%，适配参数仅25.95M；在每种方法79次闭环试验中，全身协调和基座位移鲁棒性最高，任务完成率与最强基线相当。\n\n\n# 四、对我的启发\n\n> 验证了具身感知解耦（分离基座与手臂）可参数高效地同时改善未来视频预测和全身控制；局限是仅基于单数据集，未来可探索跨平台泛化。与课题相关，对腿式移动操作有参考价值。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"DECOWAM: Decoupled Whole-Body World-Action Model for Legged Mobile Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.20114v1\n---\n>[!abstract] 一句话总结：提出DECOWAM，冻结FastWAM骨干，通过残差适配器、从特权观察蒸馏的动作等价未来瓶颈、对抗性分离的基座与手臂潜在变量以及基座速度条件化实现解耦；同时引入同步视频、全身状态、动作和语言的真实机器人数据集ARMDOG。\n\n\n# 一、动机\n\n> 现有世界动作模型主要针对固定基座平台，未显式区分相机自我运动与基座/手臂动作，导致腿式移动操作中全身动态难以联合预测和控制。\n\n\n# 二、方法\n\n> 提出DECOWAM，冻结FastWAM骨干，通过残差适配器、从特权观察蒸馏的动作等价未来瓶颈、对抗性分离的基座与手臂潜在变量以及基座速度条件化实现解耦；同时引入同步视频、全身状态、动作和语言的真实机器人数据集ARMDOG。\n\n\n# 三、核心实验结果\n\n> 在固定回放协议下，DECOWAM相比FastWAM将动作MSE降低21.7%，仅需25.95M可训练参数；在79次闭环试验中取得最高全身协调性和基座位移鲁棒性，任务完成率与最强基线相当。\n\n\n# 四、对我的启发\n\n> 体现感知的分解机制可支持参数高效的视频预测和全身控制，但任务完成率未显著超越基线，且对抗训练和数据集构建成本较高，未来可探索更高效的解耦方式及在更多运动模式下的泛化。\n"
 }

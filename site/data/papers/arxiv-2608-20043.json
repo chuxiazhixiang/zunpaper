@@ -46,28 +46,18 @@
     {
       "kind": "venue",
       "label": "🎓 CDC 2026"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 29,
+  "score": 19,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 6,
       "hint": "频道关键词命中 2 个（teleoperation、teleop）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -106,5 +96,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/理论\n  - Domain/Robotics\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"Wave-Based Bilateral Teleoperation between Nonlinear Manipulators with Direct Contact Force Feedback\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.20043v1\n---\n>[!abstract] 一句话总结：针对常时延下非线性多自由度机械臂双边遥操作，先利用LMI建立Euler-Lagrange远端系统的无源性不足（passivity-shortage）表征，再设计一个严格无源的通信律来补偿该不足，从而在保证时延稳定性的同时实现位置与力的同步。\n\n\n# 一、动机\n\n> 经典波动变换通过传递协调力来保证稳定性，但直接接触力反馈虽能提升遥操作透明度，却可能破坏闭环系统的稳定性；现有方法缺乏对非线性多自由度机械臂在这种场景下稳定性的系统性刻画。\n\n\n# 二、方法\n\n> 针对常时延下非线性多自由度机械臂双边遥操作，先利用LMI建立Euler-Lagrange远端系统的无源性不足（passivity-shortage）表征，再设计一个严格无源的通信律来补偿该不足，从而在保证时延稳定性的同时实现位置与力的同步。\n\n\n# 三、核心实验结果\n\n> 在非线性2-DOF机械臂的不同仿真设置中验证了所提方法，实现了稳定性和位置/力同步（摘要未给出具体量化数值）。\n\n\n# 四、对我的启发\n\n> 直接力反馈的稳定性补偿可通过LMI离线求解并配合无源通信实现，但LMI条件可能较为保守，且未在实验平台验证；该方法对于遥操作系统的稳定化设计有理论参考价值。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"Wave-Based Bilateral Teleoperation between Nonlinear Manipulators with Direct Contact Force Feedback\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.20043v1\n---\n>[!abstract] 一句话总结：提出一种基于线性矩阵不等式(LMI)的无源性短缺表征方法，计算Euler-Lagrange远端系统的无源性余量，并设计严格无源通信律补偿该短缺，从而在恒定时延下同时保证闭环稳定性与位置/力同步。\n\n\n# 一、动机\n\n> 经典波变换架构通常传递协调力，但直接反射环境力到主端可增强透明度，却可能破坏稳定性；现有方法对非线性多自由度机械臂在恒定时延下的直接力反馈稳定性问题缺乏有效补偿方案。\n\n\n# 二、方法\n\n> 提出一种基于线性矩阵不等式(LMI)的无源性短缺表征方法，计算Euler-Lagrange远端系统的无源性余量，并设计严格无源通信律补偿该短缺，从而在恒定时延下同时保证闭环稳定性与位置/力同步。\n\n\n# 三、核心实验结果\n\n> 在2-DOF非线性机械臂的多种仿真设定中验证了该方法，结果表明在恒定通信时延下系统保持稳定，并实现了位置和接触力同步；直接力反馈透明度优于经典波变换方法。\n\n\n# 四、对我的启发\n\n> 该方法为非线性多自由度遥操作系统的直接力反馈稳定性提供了通用框架，但未给出物理实验验证；可进一步扩展到变时延和不确定动态场景。\n"
 }
