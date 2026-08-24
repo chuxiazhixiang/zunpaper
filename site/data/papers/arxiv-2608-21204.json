@@ -1,0 +1,104 @@
+{
+  "id": "arxiv-2608-21204",
+  "source": "arxiv",
+  "title": "Beyond Imitation: Self-Improving Robot Policies via Off-Policy Q-Planning",
+  "title_zh": "超越模仿：通过离策略Q规划实现机器人策略的自我改进",
+  "abstract": "Behaviour Cloning (BC) has driven remarkable progress in robot manipulation, yet it is fundamentally limited by its inability to self-improve: a policy that fails cannot learn from that failure without additional human demonstrations. Reinforcement Learning fine-tuning offers a path to self-improvement but has proven difficult to scale to the multi-billion-parameter models underpinning modern robot policies. We propose Q-Planning, which equips a large visuomotor BC policy with a small off-policy Q-function. Because a Q-function estimates value rather than imitates actions, it can be trained on the same successful demonstrations as the BC policy and later absorb both successful and failed deployment rollouts, an asymmetry BC does not have. We exploit this asymmetry to enable value-guided action selection at inference (a single-step Q-weighted average over BC draws) and online self-improvement that fine-tunes only the Q-function, leaving the BC weights untouched. On LIBERO and bimanual RoboTwin, ten iterations of self-improvement lift every benchmark score we tested (LIBERO-10 93% to 99%, RoboTwin 83.8% to 91.4%) and shorten successful episodes on the near-ceiling suites (LIBERO-Object, LIBERO-Goal). On two contact-rich bimanual real-robot tasks, the same loop (BC frozen, no human intervention) improves purely from its own deployment rollouts: stack-cups 40% to 90% and insert-wallet 25% to 80% in five iterations, whereas SFT on successful rollouts alone stalls at 55% and 30%. Under an identical online budget Q-Planning is the only method, among Best-of-N, filtered SFT, IBRL, DSRL, and DAWR, that improves stably from failures without training an auxiliary actor.",
+  "abstract_zh": "行为克隆（BC）在机器人操作领域取得了显著进展，但其根本局限性在于无法自我改进：策略失败时，若无额外的人类示范，无法从失败中学习。强化学习微调提供了一条自我改进的途径，但已被证明难以扩展到支撑现代机器人策略的数十亿参数模型。我们提出Q规划，为大型视觉运动BC策略配备一个小型离策略Q函数。由于Q函数估计价值而非模仿动作，它可以在与BC策略相同的成功示范上训练，并随后吸收成功和失败的部署轨迹，这是BC所不具备的不对称性。我们利用这种不对称性，在推理时实现价值引导的动作选择（对BC抽取进行单步Q加权平均），以及在线自我改进，仅微调Q函数，保持BC权重不变。在LIBERO和双臂RoboTwin上，十次自我改进迭代提升了我们测试的所有基准分数（LIBERO-10从93%到99%，RoboTwin从83.8%到91.4%），并在接近上限的套件（LIBERO-Object、LIBERO-Goal）上缩短了成功回合。在两个接触丰富的双臂真实机器人任务中，相同的循环（BC冻结，无人工干预）仅从自身部署轨迹中改进：堆杯从40%到90%，插钱包从25%到80%，在五次迭代中，而仅对成功轨迹进行SFT则停滞在55%和30%。在相同的在线预算下，Q规划是唯一能在不训练辅助actor的情况下，从失败中稳定改进的方法，优于Best-of-N、过滤SFT、IBRL、DSRL和DAWR。",
+  "tldr_zh": "提出Q规划，用小型Q函数增强BC策略，实现从失败中自我改进，提升机器人操作性能。",
+  "cover_zh": "机器人学不会失败？这个新方法让策略自己从错误中进步，成功率飙升！",
+  "authors": [
+    {
+      "name": "Varun Giridhar",
+      "affiliation": ""
+    },
+    {
+      "name": "Anant Khandelwal",
+      "affiliation": ""
+    },
+    {
+      "name": "Jeremy A. Collins",
+      "affiliation": ""
+    },
+    {
+      "name": "Ignat Georgiev",
+      "affiliation": ""
+    },
+    {
+      "name": "Animesh Garg",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.LG"
+  ],
+  "published": "2026-08-21",
+  "updated": "2026-08-21",
+  "arxiv_id": "2608.21204",
+  "pdf_url": "https://arxiv.org/pdf/2608.21204v1",
+  "abs_url": "http://arxiv.org/abs/2608.21204v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-21204.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-21204-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ Animesh Garg"
+    }
+  ],
+  "related_links": [],
+  "page_count": 16,
+  "source_tags": [],
+  "score": 35,
+  "score_breakdown": [
+    {
+      "id": "key_author",
+      "label": "关键作者上榜",
+      "points": 20,
+      "hint": "作者列表里有 Animesh Garg"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 5 个（manipulation、bimanual、robotwin、libero）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 16 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出Q-Planning，结合BC与off-policy Q函数实现自改进，显著提升操作性能，方法新颖且实验充分。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Georgia Institute of Technology"
+  ],
+  "method_tags": [
+    "Behaviour Cloning",
+    "Q-Learning",
+    "Self-Improvement"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": ""
+}

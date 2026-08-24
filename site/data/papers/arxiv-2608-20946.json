@@ -1,0 +1,93 @@
+{
+  "id": "arxiv-2608-20946",
+  "source": "arxiv",
+  "title": "Fast Coordinated Bimanual Motion Planning With Hard Constraints",
+  "title_zh": "带硬约束的快速协调双臂运动规划",
+  "abstract": "Bimanual manipulation enables complex tasks but introduces added complexity from the high number of degrees of freedom involved. When handling rigid objects, the relative transformation between the two end effectors must remain fixed throughout the motion, manifesting as a nonlinear equality constraint that confines the feasible configuration space to a measure-zero manifold and challenges conventional motion planners. We propose a fast bimanual motion planning pipeline that enforces this hard transformation constraint continuously along the entire path, using a leader-follower parameterization: the leader's configuration is treated as a free variable, while the follower's is determined via inverse kinematics to satisfy the constraint. We extensively evaluate the method in simulation across diverse environments, constraints and bimanual platforms, achieving 19.4x faster planning than prior work while guaranteeing continuous constraint satisfaction. Real-world experiments on a bimanual Kinova Gen3 setup, involving tray transport and elongated-object manipulation, validate direct transfer of planned trajectories to physical hardware.",
+  "abstract_zh": "双臂操作能够完成复杂任务，但高自由度带来了额外的复杂性。在操作刚性物体时，两个末端执行器之间的相对变换在整个运动过程中必须保持固定，这表现为一个非线性等式约束，将可行配置空间限制在一个零测度流形上，给传统运动规划器带来了挑战。我们提出了一种快速双臂运动规划流程，通过领导者-跟随者参数化，在整个路径上连续强制执行这一硬变换约束：领导者的配置被视为自由变量，而跟随者的配置通过逆运动学确定以满足约束。我们在多种环境、约束和双臂平台上进行了广泛的仿真评估，实现了比先前工作快19.4倍的规划速度，同时保证连续的约束满足。在双臂Kinova Gen3平台上进行的真实世界实验，包括托盘运输和长条形物体操作，验证了规划轨迹可直接迁移到物理硬件上。",
+  "tldr_zh": "提出快速双臂运动规划方法，通过领导者-跟随者参数化满足硬约束，比先前快19.4倍。",
+  "cover_zh": "双臂规划慢到哭？新方法19.4倍提速，硬约束全程不放松！",
+  "authors": [
+    {
+      "name": "Borna Paro",
+      "affiliation": ""
+    },
+    {
+      "name": "Luka Petrović",
+      "affiliation": ""
+    },
+    {
+      "name": "Ivan Marković",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-08-21",
+  "updated": "2026-08-21",
+  "arxiv_id": "2608.20946",
+  "pdf_url": "https://arxiv.org/pdf/2608.20946v1",
+  "abs_url": "http://arxiv.org/abs/2608.20946v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-20946.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-20946-p2.jpg"
+  ],
+  "channels": [
+    "manipulation",
+    "teleop"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 9,
+  "source_tags": [],
+  "score": 20,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 4 个（manipulation、bimanual、bimanual manipulation、leader-follower）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 9 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "双臂操作运动规划，硬约束处理，仿真与真机验证，对操作规划有参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University of Zagreb Faculty of Electrical Engineering and Computing, Laboratory for Autonomous Systems and Mobile Robotics (LAMOR)"
+  ],
+  "method_tags": [
+    "motion planning",
+    "leader-follower parameterization",
+    "inverse kinematics"
+  ],
+  "platform": [
+    "Kinova Gen3"
+  ],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/BimanualManipulation\n  - 状态/待读\nTitle: \"Fast Coordinated Bimanual Motion Planning With Hard Constraints\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.20946v1\n---\n>[!abstract] 一句话总结：提出一种快速双臂运动规划流水线，采用领导者-跟随者参数化：领导者配置作为自由变量，跟随者通过逆运动学求解以满足硬约束，从而沿整条路径连续保证约束满足。\n\n\n# 一、动机\n\n> 双臂操作中处理刚性物体时，两个末端执行器之间的相对变换必须保持固定，形成非线性等式约束，将可行配置空间限制在零测度流形上，传统运动规划器难以处理，且规划速度慢。\n\n\n# 二、方法\n\n> 提出一种快速双臂运动规划流水线，采用领导者-跟随者参数化：领导者配置作为自由变量，跟随者通过逆运动学求解以满足硬约束，从而沿整条路径连续保证约束满足。\n\n\n# 三、核心实验结果\n\n> 在多种仿真环境和约束下，相比先前工作规划速度提升19.4倍，且保证约束连续满足；在双Kinova Gen3平台上进行托盘搬运和长物体操作的真实实验，验证了轨迹可直接迁移到物理硬件。\n\n\n# 四、对我的启发\n\n> 该方法有效解决了双臂刚性物体操作中的硬约束规划问题，与课题相关，其领导者-跟随者参数化思路可借鉴到双臂操作或具身智能任务中，但未考虑动力学和避障的耦合优化，可能作为后续扩展方向。\n"
+}
