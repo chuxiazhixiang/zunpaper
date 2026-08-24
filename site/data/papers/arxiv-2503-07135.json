@@ -21,7 +21,7 @@
       "affiliation": ""
     },
     {
-      "name": "M. Pollefeys",
+      "name": "Marc Pollefeys",
       "affiliation": ""
     },
     {
@@ -77,5 +77,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/CV\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"VidBot: Learning Generalizable 3D Actions from In-the-Wild 2D Human Videos for Zero-Shot Robotic Manipulation\"\nYear: \"2025\"\nURL: https://arxiv.org/abs/2503.07135\n---\n>[!abstract] 一句话总结：从单目RGB人类视频中提取显式3D手部轨迹（结合深度基础模型与SfM重建度量尺度），学习粗到细的3D可供性：先由像素空间预测粗动作类别，再以扩散模型生成细粒度交互轨迹，并利用测试时约束指导上下文场景交互规划。\n\n\n# 一、动机\n\n> 机器人学习受限于物理数据收集成本，难以扩展。利用互联网上海量的人类操作视频，通过跨具身迁移实现零样本机器人操作，是解决数据瓶颈的可行方向。\n\n\n# 二、方法\n\n> 从单目RGB人类视频中提取显式3D手部轨迹（结合深度基础模型与SfM重建度量尺度），学习粗到细的3D可供性：先由像素空间预测粗动作类别，再以扩散模型生成细粒度交互轨迹，并利用测试时约束指导上下文场景交互规划。\n\n\n# 三、核心实验结果\n\n> 在13个操作任务的零样本设置下，VidBot显著优于对比方法；并能无缝部署到多套真实机器人系统，验证了跨场景、跨具身的泛化性。\n\n\n# 四、对我的启发\n\n> 利用互联网人类视频实现可扩展机器人学习是可行方向，但3D重建质量高度依赖单目视频和深度先验，且目前仅验证了部分操作类别。与课题直接相关，可借鉴其从2D视频获取3D动作的pipeline。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"VidBot: Learning Generalizable 3D Actions from In-the-Wild 2D Human Videos for Zero-Shot Robotic Manipulation\"\nYear: \"2025\"\nURL: https://arxiv.org/abs/2503.07135\n---\n>[!abstract] 一句话总结：从人类视频中提取3D手部轨迹（结合深度基础模型和SfM重建度量尺度轨迹），通过粗到细的affordance学习模型：先识别粗动作，再用扩散模型生成细粒度交互轨迹，并以测试时约束指导上下文感知规划。\n\n\n# 一、动机\n\n> 物理机器人学习不可扩展，需要桥接具身差距。VidBot利用野外单目RGB人类视频学习3D affordance，实现零样本机器人操作。\n\n\n# 二、方法\n\n> 从人类视频中提取3D手部轨迹（结合深度基础模型和SfM重建度量尺度轨迹），通过粗到细的affordance学习模型：先识别粗动作，再用扩散模型生成细粒度交互轨迹，并以测试时约束指导上下文感知规划。\n\n\n# 三、核心实验结果\n\n> 在13个操作任务的零样本设置中显著优于对比方法，且可无缝部署到真实机器人系统。\n\n\n# 四、对我的启发\n\n> 局限：依赖单目深度估计和SfM重建质量，动态场景可能不稳定。启发：互联网视频蕴含丰富操作知识，结合显式3D表示和生成模型可提升跨机器人泛化能力。\n"
 }

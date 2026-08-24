@@ -100,5 +100,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Beyond Imitation: Self-Improving Robot Policies via Off-Policy Q-Planning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.21204v1\n---\n>[!abstract] 一句话总结：提出Q-Planning，为大型视觉运动BC策略配备一个小型离策略Q函数，利用Q函数的价值估计不对称性，推理时通过Q加权平均选择动作，在线自我改进只微调Q函数，不改变BC权重。\n\n\n# 一、动机\n\n> 行为克隆（BC）策略无法自我改进：失败后需要额外人类演示，而强化学习微调难以扩展到数十亿参数的大模型。\n\n\n# 二、方法\n\n> 提出Q-Planning，为大型视觉运动BC策略配备一个小型离策略Q函数，利用Q函数的价值估计不对称性，推理时通过Q加权平均选择动作，在线自我改进只微调Q函数，不改变BC权重。\n\n\n# 三、核心实验结果\n\n> 在LIBERO和RoboTwin上，十轮自我改进后全指标提升（LIBERO-10从93%到99%，RoboTwin从83.8%到91.4%）；真实双机械臂堆杯从40%到90%、插钱包从25%到80%，而仅对成功轨迹SFT停滞在55%和30%。\n\n\n# 四、对我的启发\n\n> 与课题相关。该方法展示了一种冻结大模型、仅训练小型Q函数的自我改进范式，但仅验证了固定任务内的提升，未讨论跨任务泛化或Q函数容量上限；可借鉴其离线Q学习设计来平衡采样效率与策略稳定性。\n"
 }
