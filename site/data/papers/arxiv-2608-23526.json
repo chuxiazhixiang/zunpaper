@@ -1,0 +1,87 @@
+{
+  "id": "arxiv-2608-23526",
+  "source": "arxiv",
+  "title": "Correcting a learned physical invariant improves world-model rollouts",
+  "title_zh": "纠正学习到的物理不变量可改善世界模型推演",
+  "abstract": "World models can predict video without learning dynamics that they reliably preserve. We test whether a frozen DreamerV3 trained only on pendulum video learns a scalar that its own latent transition treats as approximately conserved. A label-free search recovers the same energy-like invariant across independently trained conservative models, while the same procedure finds no comparable invariant in matched damped models. During autonomous rollouts, this quantity drifts. Projecting the latent state back toward its initial level set reduces rollout error in all three conservative models, whereas matched random constraints usually increase it. These results distinguish a dynamically meaningful invariant from a merely decodable correlate and reveal a concrete failure mode: a world model can learn a physical constraint from pixels yet violate that constraint when it imagines forward.",
+  "abstract_zh": "世界模型可以在不学习可靠保持的动力学的情况下预测视频。我们测试了一个仅在摆锤视频上训练的冻结DreamerV3是否学习到一个标量，该标量被其自身的潜在转换视为近似守恒。无标签搜索在独立训练的保守模型中恢复了相同的能量类不变量，而相同过程在匹配的阻尼模型中未发现类似不变量。在自主推演过程中，该量发生漂移。将潜在状态投影回其初始水平集可减少所有三个保守模型中的推演误差，而匹配的随机约束通常会增加误差。这些结果区分了动态上有意义的不变量与仅可解码的相关量，并揭示了一个具体的失败模式：世界模型可以从像素中学习物理约束，但在想象未来时却违反该约束。",
+  "tldr_zh": "世界模型学习物理不变量但推演时违反，纠正可减少误差",
+  "cover_zh": "世界模型竟会违反物理定律？纠正后推演误差大降",
+  "authors": [
+    {
+      "name": "Richard Bao",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.AI",
+  "categories": [
+    "cs.AI"
+  ],
+  "published": "2026-08-24",
+  "updated": "2026-08-24",
+  "arxiv_id": "2608.23526",
+  "pdf_url": "https://arxiv.org/pdf/2608.23526v1",
+  "abs_url": "http://arxiv.org/abs/2608.23526v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-23526.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-23526-p2.jpg"
+  ],
+  "channels": [
+    "world-model"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 10,
+  "source_tags": [],
+  "score": 25,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 4 个（world model、world models、dreamer、dreamerv3）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 10 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "world-model",
+    "reason": "针对世界模型物理不变量漂移问题，提出修正方法提升rollout精度，具科研价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Independent Researcher"
+  ],
+  "method_tags": [
+    "World Model",
+    "DreamerV3",
+    "latent invariant"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"Correcting a learned physical invariant improves world-model rollouts\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.23526v1\n---\n>[!abstract] 一句话总结：通过无标签搜索从冻结的 DreamerV3 的潜在状态中恢复出能量类不变量，并将潜在状态投影回初始水平集以修正漂移，从而改进 rollout。\n\n\n# 一、动机\n\n> 世界模型可能从像素中学习到物理约束，但在想象（rollout）中却违反该约束，即学到的物理不变量在潜在动态中发生漂移，这导致预测不可靠。\n\n\n# 二、方法\n\n> 通过无标签搜索从冻结的 DreamerV3 的潜在状态中恢复出能量类不变量，并将潜在状态投影回初始水平集以修正漂移，从而改进 rollout。\n\n\n# 三、核心实验结果\n\n> 在所有三个独立的保守模型中，将潜在状态投影回初始能量水平集均降低了 rollout 误差，而匹配的随机约束通常会增加误差。摘要未提供具体数值，但方向一致且显著。\n\n\n# 四、对我的启发\n\n> 该工作揭示了世界模型的一个具体失效模式：物理不变量可被解码但不一定在动态中被保持，提示需要显式物理一致性或约束机制。与具身智能相关但非直接应用。\n"
+}
