@@ -42,7 +42,8 @@
   ],
   "channels": [
     "manipulation",
-    "teleop"
+    "teleop",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -53,13 +54,13 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 24,
+  "score": 30,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 6,
-      "hint": "频道关键词命中 2 个（manipulation、teleop）"
+      "points": 12,
+      "hint": "频道关键词命中 7 个（manipulation、teleop、whole-body、whole-body control）"
     },
     {
       "id": "freshness",
@@ -77,7 +78,7 @@
       "id": "cross_channel",
       "label": "跨多个方向",
       "points": 5,
-      "hint": "同时命中 2 个频道"
+      "hint": "同时命中 3 个频道"
     }
   ],
   "judge": {
@@ -102,5 +103,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/WholeBodyControl\n  - 状态/待读\nTitle: \"LAC: Linear and Angular Compliance for Humanoid Whole-body Control\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.25405v1\n---\n>[!abstract] 一句话总结：提出LAC全身控制器，先利用人体交互数据生成大规模增强数据集，在接触点施加力和力矩，通过虚拟导纳模型合成全身柔顺响应，再用教师-学生强化学习训练单一策略跟踪外部力矩下的柔顺运动。\n\n\n# 一、动机\n\n> 现有人形控制器要么将外力视为扰动加以拒绝，要么仅在有限身体链上限制柔顺且忽略角度效应，缺乏同时实现线性与角度柔顺的全身控制方案。\n\n\n# 二、方法\n\n> 提出LAC全身控制器，先利用人体交互数据生成大规模增强数据集，在接触点施加力和力矩，通过虚拟导纳模型合成全身柔顺响应，再用教师-学生强化学习训练单一策略跟踪外部力矩下的柔顺运动。\n\n\n# 三、核心实验结果\n\n> 仿真和真实实验中，LAC能在整个上半身对外部力矩产生全身柔顺响应，刚度命令在全部范围内呈单调调制，并适用于遥操作移动操作任务（摘要未提供具体数值）。\n\n\n# 四、对我的启发\n\n> 该方法的全身柔顺建模与数据生成思路对机器人物理交互控制有启发，但依赖训练数据质量与仿真到真实的迁移效果，或可进一步扩展到下半身及更复杂交互场景。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/WholeBodyControl\n  - Task/Teleoperation\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"LAC: Linear and Angular Compliance for Humanoid Whole-body Control\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.25405v1\n---\n>[!abstract] 一句话总结：LAC 通过合成大规模增强数据集，从人类交互数据中提取接触帧并施加采样力和力矩，利用虚拟导纳在指令刚度下生成全身柔顺响应，再通过教师-学生强化学习训练单一策略来跟踪外部力/力矩下的柔顺运动。\n\n\n# 一、动机\n\n> 现有的人形机器人控制器要么将外力视为扰动而拒绝，要么仅在有限身体环节上限制柔顺且忽略角向效应，无法同时实现全身的线性与角向柔顺响应。\n\n\n# 二、方法\n\n> LAC 通过合成大规模增强数据集，从人类交互数据中提取接触帧并施加采样力和力矩，利用虚拟导纳在指令刚度下生成全身柔顺响应，再通过教师-学生强化学习训练单一策略来跟踪外部力/力矩下的柔顺运动。\n\n\n# 三、核心实验结果\n\n> 在仿真和真实实验中，LAC 实现了上半身任意位置力/力矩的全身柔顺响应，刚度命令在全范围内单调调节，并成功应用于遥操作移动操作任务；摘要未给出具体数值，但实验验证了方法的有效性和泛化性。\n\n\n# 四、对我的启发\n\n> 与课题相关，LAC 为全身柔顺控制提供了可扩展的框架，但依赖人类交互数据合成，未来可探索更泛化的数据生成方式；该方法可直接用于人形机器人的物理交互和遥操作场景。\n"
 }

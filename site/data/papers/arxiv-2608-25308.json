@@ -77,7 +77,8 @@
     "assets/img/covers/arxiv-2608-25308-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -108,7 +109,7 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 50,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -120,7 +121,7 @@
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 5 个（vision-language-action、generalist robot、manipulation、robotwin）"
+      "hint": "频道关键词命中 6 个（vision-language-action、generalist robot、manipulation、robotwin）"
     },
     {
       "id": "freshness",
@@ -133,6 +134,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -162,5 +169,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"V-Link: Recovering Lost Visual Representations in Action DiT for Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.25308v1\n---\n>[!abstract] 一句话总结：提出V-Link，在视觉-语言到动作的特征传递中显式恢复视觉表征：学习互补的空间与语义查询表示，并通过不对称路径注入Action DiT，增强动作生成的几何与语义条件。\n\n\n# 一、动机\n\n> 现有VLA模型中动作专家对VLM特征中的3D几何与2D语义信息访问有限，导致感知基础薄弱，难以支撑精细机器人操作。\n\n\n# 二、方法\n\n> 提出V-Link，在视觉-语言到动作的特征传递中显式恢复视觉表征：学习互补的空间与语义查询表示，并通过不对称路径注入Action DiT，增强动作生成的几何与语义条件。\n\n\n# 三、核心实验结果\n\n> 在LIBERO、LIBERO-Plus和RoboTwin 2.0上，平均成功率较基线GR00T N1.6分别提升+1.9%、+31.2%和+18.8%；在AGIBOT A3 Ultra真实人形任务上分别取得+20%和+24%的提升。\n\n\n# 四、对我的启发\n\n> 该方法表明，通过不对称路径注入空间和语义查询可有效弥补VLA动作专家对视觉信息的访问缺口，但引入额外查询可能增加计算开销，后续可探索更轻量的融合策略。与机器人操作课题直接相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"V-Link: Recovering Lost Visual Representations in Action DiT for Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.25308v1\n---\n>[!abstract] 一句话总结：提出V-Link，在VL到A特征转移中显式恢复视觉表示，通过非对称路径将VLM中学习到的互补空间查询与语义查询注入Action DiT。\n\n\n# 一、动机\n\n> VLA模型的action expert对VLM特征中的3D几何和2D语义信息访问有限，造成感知接地不足，限制了精细操作任务的性能。\n\n\n# 二、方法\n\n> 提出V-Link，在VL到A特征转移中显式恢复视觉表示，通过非对称路径将VLM中学习到的互补空间查询与语义查询注入Action DiT。\n\n\n# 三、核心实验结果\n\n> 在LIBERO、LIBERO-Plus和RoboTwin 2.0上，平均成功率较GR00T N1.6分别提升+1.9%、+31.2%和+18.8%；在AGIBOT A3 Ultra真实人形任务上提升+20%和+24%。\n\n\n# 四、对我的启发\n\n> 与课题相关，V-Link通过显式恢复几何与语义特征，为VLA模型在精细操作中的感知接地提供了有效思路，可借鉴其查询设计与非对称注入机制。\n"
 }

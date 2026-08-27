@@ -54,7 +54,8 @@
     "assets/img/covers/arxiv-2608-25479-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -69,7 +70,7 @@
   "related_links": [],
   "page_count": 23,
   "source_tags": [],
-  "score": 41,
+  "score": 52,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -80,8 +81,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（embodied agent）"
+      "points": 9,
+      "hint": "频道关键词命中 3 个（embodied agent、world model、world models）"
     },
     {
       "id": "freshness",
@@ -94,6 +95,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 23 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -119,5 +126,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - 论文/训练\n  - Domain/CV\n  - Task/VideoGen\n  - Task/CameraControl\n  - 状态/待读\nTitle: \"4DStreamCtrl: Interactive Video Generation with Online 4D Control\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.25479v1\n---\n>[!abstract] 一句话总结：将相机运动、物体轨迹和深度统一为3D点轨迹表示，通过轻量级几何运动头插入预训练视频扩散模型，利用从开放视频挖掘的3D运动监督数据集OpenVidHD-Motion3D训练，再蒸馏为因果流式学生模型，实现单次前向传播中联合控制相机与物体，并支持超长视频流式生成。\n\n\n# 一、动机\n\n> 现有视频生成控制方法各自只覆盖部分能力：相机参数法仅控制视角而无法移动物体，2D轨迹法忽略深度和遮挡，离线3D方法无法流式生成长视频，缺乏统一且支持实时交互的3D一致控制方案。\n\n\n# 二、方法\n\n> 将相机运动、物体轨迹和深度统一为3D点轨迹表示，通过轻量级几何运动头插入预训练视频扩散模型，利用从开放视频挖掘的3D运动监督数据集OpenVidHD-Motion3D训练，再蒸馏为因果流式学生模型，实现单次前向传播中联合控制相机与物体，并支持超长视频流式生成。\n\n\n# 三、核心实验结果\n\n> 在480p分辨率下，4DStreamCtrl在单个高端GPU上以20 FPS运行，仅用4步去噪即可生成任意长度视频，内存与长度无关；在数百帧上保持时间一致性，运动控制精度超过仅相机、2D轨迹和离线3D方法。\n\n\n# 四、对我的启发\n\n> 该方法首次实现交互式4D可控流式生成，但依赖视频挖掘的伪3D监督可能存在尺度模糊，且当前为生成式控制而非真实物理模拟。其显式几何约束与高效因果推理为具身智能体的实时视觉想象和可控世界模型提供了可行方向，与课题相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\n  - Task/CameraControl\nTitle: \"4DStreamCtrl: Interactive Video Generation with Online 4D Control\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.25479v1\n---\n>[!abstract] 一句话总结：将相机运动、物体轨迹和深度统一为3D点轨迹表示，通过轻量级几何运动头（Geometric Motion Head）接入预训练视频扩散模型，并蒸馏为因果流式学生模型实现任意长度视频的在线四步去噪生成。\n\n\n# 一、动机\n\n> 现有视频生成控制方法各有局限：相机参数方法只能控制视角，2D轨迹方法忽略深度和遮挡，离线3D方法无法实时流式生成。缺乏一种统一、支持实时流式生成的3D一致性相机与物体控制方法。\n\n\n# 二、方法\n\n> 将相机运动、物体轨迹和深度统一为3D点轨迹表示，通过轻量级几何运动头（Geometric Motion Head）接入预训练视频扩散模型，并蒸馏为因果流式学生模型实现任意长度视频的在线四步去噪生成。\n\n\n# 三、核心实验结果\n\n> 与相机专用、2D轨迹和离线3D方法相比，运动控制精度更高；在单张高端GPU上以20 FPS生成480p视频，支持数百帧时间一致性的流式生成。\n\n\n# 四、对我的启发\n\n> 首次实现交互式4D可控流式生成，将显式3D几何与高效因果推理结合，为具身智能体的实时视觉想象和闭环时空控制提供了基础，与具身智能课题相关。\n"
 }

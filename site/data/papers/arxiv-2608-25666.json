@@ -42,7 +42,8 @@
   ],
   "channels": [
     "manipulation",
-    "sim2real"
+    "sim2real",
+    "world-model"
   ],
   "badges": [
     {
@@ -59,7 +60,7 @@
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 6 个（manipulation、bimanual、bimanual manipulation、dual-arm）"
+      "hint": "频道关键词命中 7 个（manipulation、bimanual、bimanual manipulation、dual-arm）"
     },
     {
       "id": "freshness",
@@ -77,7 +78,7 @@
       "id": "cross_channel",
       "label": "跨多个方向",
       "points": 5,
-      "hint": "同时命中 2 个频道"
+      "hint": "同时命中 3 个频道"
     }
   ],
   "judge": {
@@ -104,5 +105,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"PRISM: Projection-Integrated Sampling-Based MPC with Bayesian Cost Tuning for Bimanual Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.25666v1\n---\n>[!abstract] 一句话总结：提出PRISM框架，用GPU物理模拟器作为在线世界模型，通过QP引导采样并对轨迹投影到关节位置/速度/加速度/加加速度及初速度边界，再用定制ADMM/Bregman分裂求解器加速，并使用贝叶斯优化离线调节任务代价权重。\n\n\n# 一、动机\n\n> 双机械臂在杂乱、接触丰富的环境中需要同时满足运动学约束、交互感知和实时执行，现有采样式MPC难以兼顾探索广度与可行性。\n\n\n# 二、方法\n\n> 提出PRISM框架，用GPU物理模拟器作为在线世界模型，通过QP引导采样并对轨迹投影到关节位置/速度/加速度/加加速度及初速度边界，再用定制ADMM/Bregman分裂求解器加速，并使用贝叶斯优化离线调节任务代价权重。\n\n\n# 三、核心实验结果\n\n> 在遮挡球运输、托盘运输、方块交接和箱体提升四个PerAct2变体任务上均优于代表性采样基线，保持实时/近实时执行；并在双UR5e机械臂上成功实现sim-to-real迁移（原摘要未给出具体成功率数值）。\n\n\n# 四、对我的启发\n\n> 依赖GPU物理模拟器精度，且贝叶斯调参离线进行；其QP投影采样思想与可复用矩阵分解可用于其他机器人控制场景。\n"
+  "note": ""
 }

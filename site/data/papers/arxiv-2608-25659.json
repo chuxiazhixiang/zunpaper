@@ -69,7 +69,8 @@
     "assets/img/covers/arxiv-2608-25659-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -88,7 +89,7 @@
   "related_links": [],
   "page_count": 17,
   "source_tags": [],
-  "score": 67,
+  "score": 75,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -105,8 +106,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 9,
-      "hint": "频道关键词命中 3 个（vision-language-action、manipulation、libero）"
+      "points": 12,
+      "hint": "频道关键词命中 6 个（vision-language-action、manipulation、libero、world model）"
     },
     {
       "id": "freshness",
@@ -119,6 +120,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 17 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -146,5 +153,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"GaussianDream++: Efficient 3D Gaussian World Modeling for Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.25659v1\n---\n>[!abstract] 一句话总结：GaussianDream++提出一种紧凑的策略原生扩展，在VLA骨干中直接插入World State Tokens和World Prediction Tokens，训练时通过World Representation Head解码为共享高斯原语上的当前世界与未来预测，静态-动态分解保持持久结构；推理时移除额外头/渲染器，仅保留20个世界令牌，无在线高斯解码或 rollout。\n\n\n# 一、动机\n\n> VLA策略的动作模仿目标对度量3D结构和短时物理演化监督不足；现有几何增强策略只提升当前场景理解，预测策略多在RGB或潜在空间建模未来动态且部署代价高。\n\n\n# 二、方法\n\n> GaussianDream++提出一种紧凑的策略原生扩展，在VLA骨干中直接插入World State Tokens和World Prediction Tokens，训练时通过World Representation Head解码为共享高斯原语上的当前世界与未来预测，静态-动态分解保持持久结构；推理时移除额外头/渲染器，仅保留20个世界令牌，无在线高斯解码或 rollout。\n\n\n# 三、核心实验结果\n\n> 在LIBERO上达到98.6%，LIBERO-Plus上达到87.8%，在相机和布局变化下显著增益；真机实验将复现π0.5的平均成功率从29.2%提升至52.5%，同时保持高效闭环控制。\n\n\n# 四、对我的启发\n\n> 该方法将3D世界建模以极低推理开销集成到VLA策略中，证明了紧凑显式世界令牌对机器人操作的泛化性和效率价值；与课题直接相关，可借鉴其静态-动态分解和训练-推理解耦设计。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"GaussianDream++: Efficient 3D Gaussian World Modeling for Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.25659v1\n---\n>[!abstract] 一句话总结：提出策略原生的紧凑扩展，在VLA主干中插入世界状态令牌和预测令牌，训练时通过世界表示头解码为共享高斯基元上的当前世界与未来预测，推理时仅保留20个令牌，去除解码器。\n\n\n# 一、动机\n\n> 现有VLA策略依赖动作模仿，对度量的3D结构和短时物理演化监督不足；几何增强方法只改进当前场景，预测方法在RGB或潜在空间建模动态且部署代价高。\n\n\n# 二、方法\n\n> 提出策略原生的紧凑扩展，在VLA主干中插入世界状态令牌和预测令牌，训练时通过世界表示头解码为共享高斯基元上的当前世界与未来预测，推理时仅保留20个令牌，去除解码器。\n\n\n# 三、核心实验结果\n\n> LIBERO上98.6%，LIBERO-Plus上87.8%，在相机和布局偏移下有明显增益；真机实验将平均成功率从29.2%提升至52.5%，同时保持高效闭环控制。\n\n\n# 四、对我的启发\n\n> 静态-动态分解和训练时3D监督是提升泛化的关键，推理时轻量化设计保证效率；该方向与机器人操作直接相关，可进一步探索更紧凑的世界模型令牌设计。\n"
 }
