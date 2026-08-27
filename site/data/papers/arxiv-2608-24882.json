@@ -2,11 +2,11 @@
   "id": "arxiv-2608-24882",
   "source": "arxiv",
   "title": "Latent Action as Intention Enables Efficient Future Imagination for World Action Models",
-  "title_zh": "Latent Action as Intention Enables Efficient Future Imagination for World Action Models",
+  "title_zh": "潜在动作作为意图实现世界动作模型的高效未来想象",
   "abstract": "World action models (WAMs) improve robot control by modeling how observations evolve, but generating future observations at test time incurs substantial latency. Fast-WAM removes this process for efficiency; however, our matched implementations show lower generalization for Fast-WAM than for future-aware alternatives, especially with scarce robot demonstrations and in out-of-distribution scenarios. To bridge this gap, we introduce **LAWA**, a WAM architecture that uses compact latent actions as an operational representation of future intentions, enabling efficient test-time future imagination without generating future observations. Specifically, a discrete tokenizer enhanced by action-free pre-training produces manipulation-centric codebook targets. LAWA jointly denoises a continuous latent state anchored to these targets with executable action chunks while omitting the future-video branch at inference. On RoboCasa, LAWA achieves state-of-the-art average success rates of 65.6% and 80.8% in the few-shot and full data settings, improving over the matched Fast-WAM baseline by 9.6 and 4.5 points, respectively. It also preserves the performance level of the matched Joint-WAM variant while requiring 42.9% lower inference latency. LAWA also demonstrates competitive zero-shot robustness on LIBERO-Plus and superior performance on real-world tasks. These results show that future imagination need not be discarded: retaining it with compact latent actions yields an effective trade-off among performance, generalization, and latency. Code and models will be released.",
-  "abstract_zh": "World action models (WAMs) improve robot control by modeling how observations evolve, but generating future observations at test time incurs substantial latency. Fast-WAM removes this process for efficiency; however, our matched implementations show lower generalization for Fast-WAM than for future-aware alternatives, especially with scarce robot demonstrations and in out-of-distribution scenarios. To bridge this gap, we introduce **LAWA**, a WAM architecture that uses compact latent actions as an operational representation of future intentions, enabling efficient test-time future imagination without generating future observations. Specifically, a discrete tokenizer enhanced by action-free pre-training produces manipulation-centric codebook targets. LAWA jointly denoises a continuous latent state anchored to these targets with executable action chunks while omitting the future-video branch at inference. On RoboCasa, LAWA achieves state-of-the-art average success rates of 65.6% and 80.8% in the few-shot and full data settings, improving over the matched Fast-WAM baseline by 9.6 and 4.5 points, respectively. It also preserves the performance level of the matched Joint-WAM variant while requiring 42.9% lower inference latency. LAWA also demonstrates competitive zero-shot robustness on LIBERO-Plus and superior performance on real-world tasks. These results show that future imagination need not be discarded: retaining it with compact latent actions yields an effective trade-off among performance, generalization, and latency. Code and models will be released.",
-  "tldr_zh": "World action models (WAMs) improve robot control by modeling",
-  "cover_zh": "World action models (WAMs) improve robot control by modeling",
+  "abstract_zh": "世界动作模型（WAMs）通过建模观测如何演变来改进机器人控制，但在测试时生成未来观测会产生大量延迟。Fast-WAM 移除了这一过程以提高效率；然而，我们的匹配实现显示，Fast-WAM 的泛化能力低于考虑未来的替代方案，尤其是在机器人演示稀缺和分布外场景中。为了弥合这一差距，我们提出了 **LAWA**，一种 WAM 架构，使用紧凑的潜在动作作为未来意图的操作性表示，从而在不生成未来观测的情况下实现高效的测试时未来想象。具体来说，一个由无动作预训练增强的离散分词器产生以操作为中心的码本目标。LAWA 联合去噪一个锚定到这些目标的连续潜在状态与可执行的动作块，同时在推理时省略未来视频分支。在 RoboCasa 上，LAWA 在少样本和全数据设置中分别实现了 65.6% 和 80.8% 的最先进平均成功率，比匹配的 Fast-WAM 基线分别提高了 9.6 和 4.5 个百分点。它还保持了匹配的 Joint-WAM 变体的性能水平，同时推理延迟降低了 42.9%。LAWA 还在 LIBERO-Plus 上展示了具有竞争力的零样本鲁棒性，并在真实世界任务中表现出优越性能。这些结果表明，未来想象不必被丢弃：用紧凑的潜在动作保留它，可以在性能、泛化和延迟之间取得有效的权衡。代码和模型将发布。",
+  "tldr_zh": "LAWA 用潜在动作表示意图，实现高效未来想象，兼顾性能与低延迟。",
+  "cover_zh": "未来想象不用丢？这个新架构让机器人又快又准，还更聪明！",
   "authors": [
     {
       "name": "Xiang Li",
@@ -100,7 +100,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -110,14 +110,23 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "CollegeAI, THU",
+    "AIR, THU",
+    "CASIA",
+    "TARS Robotics"
+  ],
+  "method_tags": [
+    "World Action Model",
+    "latent action",
+    "future imagination"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Latent Action as Intention Enables Efficient Future Imagination for World Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.24882v1\n---\n>[!abstract] 一句话总结：提出LAWA架构，利用无动作预训练的离散tokenizer产生操作中心码本，将未来意图压缩为紧凑潜在动作，联合去噪潜在状态与可执行动作，推理时省略未来视频分支。\n\n\n# 一、动机\n\n> 世界动作模型生成未来观测延迟高，而移除未来生成虽提升效率但泛化性差，尤其在少样本和分布外场景下表现不足。\n\n\n# 二、方法\n\n> 提出LAWA架构，利用无动作预训练的离散tokenizer产生操作中心码本，将未来意图压缩为紧凑潜在动作，联合去噪潜在状态与可执行动作，推理时省略未来视频分支。\n\n\n# 三、核心实验结果\n\n> 在RoboCasa上，LAWA少样本平均成功率65.6%（比Fast-WAM高9.6），全数据平均成功率80.8%（高4.5），推理延迟比Joint-WAM降低42.9%，同时保持相当性能。\n\n\n# 四、对我的启发\n\n> 表明未来想象可通过紧凑潜在动作高效保留，无需生成未来观测即可兼顾性能、泛化与延迟；为世界模型在机器人控制中的实时应用提供新思路。\n"
 }

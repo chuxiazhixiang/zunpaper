@@ -3,13 +3,158 @@
   "count": 29,
   "papers": [
     {
+      "id": "arxiv-2608-24714",
+      "source": "arxiv",
+      "title": "GaussianWAM: Distilling Geometry and Semantics from 3D Gaussian Fields into World-Action Models",
+      "title_zh": "GaussianWAM：从3D高斯场中蒸馏几何与语义到世界-动作模型",
+      "tldr_zh": "GaussianWAM通过3D高斯场蒸馏几何与语义，提升世界-动作模型性能，且不增加推理负担。",
+      "cover_zh": "训练时蒸馏3D高斯场，让机器人模型性能飙升，推理零负担！",
+      "abstract_zh": "世界-动作模型（WAMs）联合学习未来视觉预测和动作生成，利用视频动态作为机器人操作的表征学习信号。然而，它们的视频潜在表示主要针对视觉预测进行优化，并未明确鼓励保留跨视角的几何结构或空间局部化的、与对象相关的语义。我们提出GaussianWAM，一种训练时的表征增强框架，通过3D高斯场组织几何和语义监督。给定同步的多视角观测，冻结的几何和视觉基础模型提供深度、相机参数和密集语义特征。GaussianWAM将这些异构信号绑定到共享的高斯原语上，并渲染空间对齐的语义、深度和覆盖目标，这些目标被蒸馏到WAM的当前观测表示中。所有教师模型、高斯组件和辅助预测头在训练后被移除，留下原始WAM推理路径，无需额外模块或前向计算。在LIBERO-Plus上，GaussianWAM将FastWAM从52.05%提升到71.29%，将Cosmos Policy从71.52%提升到77.30%。直接的CLIP和VGGT蒸馏已经建立了69.37%的强FastWAM基线，而高斯场统一进一步将其提升到71.29%，支持了空间组织异构教师信号的好处。GaussianWAM还在标准LIBERO上提升了性能，并在RoboTwin和真实世界操作上显示出正向迁移趋势。这些结果表明，训练时的高斯蒸馏为WAM表示注入几何和语义相关监督提供了一种实用方法，而无需改变其部署架构。",
+      "authors": [
+        "Zijian Zhang",
+        "Yuqing Jiang",
+        "Weitao Zhou"
+      ],
+      "authors_all": [
+        "Zijian Zhang",
+        "Yuqing Jiang",
+        "Weitao Zhou",
+        "Minglei Li",
+        "Jinhao Zhang",
+        "Yao Mu",
+        "Xiaofan Li",
+        "Hao Zhao",
+        "Haibao Yu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-25",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-24714.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-24714-p2.jpg"
+      ],
+      "arxiv_id": "2608.24714",
+      "abs_url": "http://arxiv.org/abs/2608.24714v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.24714v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {},
+      "institutions": [
+        "Tuojing Intelligence",
+        "University of Chinese Academy of Sciences",
+        "Institute of Automation, Chinese Academy of Sciences",
+        "Tsinghua University"
+      ],
+      "method_tags": [
+        "Distillation",
+        "World-Action Models",
+        "3D Gaussian"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-24885",
+      "source": "arxiv",
+      "title": "Do Robotic World Models Really Follow Actions? Diagnosing and Aligning Action-Conditioned Generation for Policy Learning",
+      "title_zh": "机器人世界模型真的遵循动作吗？诊断和对齐动作条件生成以促进策略学习",
+      "tldr_zh": "提出WorldEcho诊断和WorldSync对齐，提升世界模型对非专家动作的遵循能力。",
+      "cover_zh": "世界模型不听话？新方法让模拟器真正执行你的指令",
+      "abstract_zh": "动作条件世界模型越来越多地被用作策略评估和改进的学习模拟器，但其有效性依赖于一个未经证实的假设：生成的未来状态能忠实地反映任意有效动作。现有基准通常局限于专家演示，导致对非专家动作遵循的评估不足。为弥补这一空白，我们引入了WorldEcho，它通过视觉完整性和SE(3)轨迹对齐，在更广泛的动作分布上探测动作遵循能力。我们的诊断表明，当前世界模型能合理执行专家动作，但在处理多样化的非专家轨迹时表现不佳，要么忽略命令动作，要么产生视觉上无效的展开。我们进一步提出WorldSync，它沿着三个互补的轴加强动作遵循：分布覆盖、表征基础和干预效果对齐。它拓宽了动作后果的训练分布，通过动作强制专家将中间视频表征扎根于动作诱导的机器人动力学中，并将动作干预下的预测变化与真实未来中的相应变化对齐。在RoboTwin基准和真实机器人任务上的实验表明，WorldSync改善了WorldEcho指标，并作为迭代策略改进的更可靠模拟器，使策略获得更高的成功率。",
+      "authors": [
+        "Sixiang Chen",
+        "Jiaming Liu",
+        "Jixian Wu"
+      ],
+      "authors_all": [
+        "Sixiang Chen",
+        "Jiaming Liu",
+        "Jixian Wu",
+        "Yichen Guo",
+        "Tinghao Wang",
+        "Siyuan Qian",
+        "Hao Chen",
+        "Jiajun Cao",
+        "Jian Tang",
+        "Shanghang Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-25",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 北大"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-24885.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-24885-p2.jpg"
+      ],
+      "arxiv_id": "2608.24885",
+      "abs_url": "http://arxiv.org/abs/2608.24885v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.24885v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {},
+      "institutions": [
+        "Peking University",
+        "Beijing Innovation Center of Humanoid Robotics",
+        "New York University",
+        "University of Electronic Science and Technology of China"
+      ],
+      "method_tags": [
+        "World Model",
+        "Action-Conditioned Generation",
+        "Policy Learning"
+      ],
+      "platform": [],
+      "sim_stack": [
+        "RoboTwin"
+      ],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2608-24101",
       "source": "arxiv",
       "title": "TrAct: Bridging Robot Control and Visual Prediction with Visual Tracks",
-      "title_zh": "TrAct: Bridging Robot Control and Visual Prediction with Visual Tracks",
-      "tldr_zh": "Robot actions are inherently embodiment-specific and only we",
-      "cover_zh": "Robot actions are inherently embodiment-specific and only we",
-      "abstract_zh": "Robot actions are inherently embodiment-specific and only weakly aligned with image-space visual changes, limiting their effectiveness as conditioning signals for robot world models. In contrast, visual tracks provide an embodiment-agnostic representation of how task-relevant points move through a scene, offering dense image-space guidance for accurate and spatially precise future video prediction. Building on this observation, we propose TrAct, a world-model-based robot decision-making framework that uses visual tracks as an intermediate interface between control and prediction. TrAct consists of three components: a Vision-Language-Action-and-Track model (VLAT) that jointly predicts candidate actions and corresponding visual tracks from the current observation and language instruction; a track-conditioned world model (TWM) that predicts future visual outcomes conditioned on the proposed tracks; and a vision-language reward model (VLAC) that scores the predicted outcomes. At inference time, VLAT generates candidate action-track pairs, TWM rolls out their visual consequences, and VLAC selects the track whose predicted outcome best satisfies the instruction; the action paired with the selected track is then executed by the robot. Experiments on the proposed LIBERO-INTEGRAL benchmark and real-world Franka manipulation show that TrAct improves success rates from 27% to 55% in simulation and from 49% to 76% on real-world tasks compared with the strong VLA baseline $π_{0.5}$. Furthermore, TWM consistently improves video prediction quality over the action-conditioned world model (AWM). These results demonstrate that visual tracks provide an effective shared interface between robot control and visual prediction, enabling more accurate world modeling and stronger robot generalization.",
+      "title_zh": "TrAct：通过视觉轨迹连接机器人控制与视觉预测",
+      "tldr_zh": "TrAct用视觉轨迹连接控制与预测，显著提升机器人成功率",
+      "cover_zh": "机器人控制新突破｜用视觉轨迹做桥梁，成功率翻倍？",
+      "abstract_zh": "机器人动作本质上是具身特有的，与图像空间的视觉变化仅弱对齐，这限制了它们作为机器人世界模型条件信号的有效性。相比之下，视觉轨迹提供了与具身无关的表示，描述了任务相关点在场景中的移动方式，为准确且空间精确的未来视频预测提供了密集的图像空间指导。基于这一观察，我们提出了TrAct，一个基于世界模型的机器人决策框架，使用视觉轨迹作为控制与预测之间的中间接口。TrAct由三个组件组成：一个视觉-语言-动作-轨迹模型（VLAT），从当前观察和语言指令中联合预测候选动作和相应的视觉轨迹；一个轨迹条件世界模型（TWM），根据提议的轨迹预测未来的视觉结果；以及一个视觉-语言奖励模型（VLAC），对预测结果进行评分。在推理时，VLAT生成候选动作-轨迹对，TWM展开其视觉后果，VLAC选择预测结果最符合指令的轨迹；然后机器人执行与所选轨迹配对的动作。在提出的LIBERO-INTEGRAL基准和真实世界Franka操作上的实验表明，与强VLA基线π0.5相比，TrAct在模拟中将成功率从27%提高到55%，在真实世界任务中从49%提高到76%。此外，TWM持续提高了视频预测质量，优于动作条件世界模型（AWM）。这些结果表明，视觉轨迹为机器人控制和视觉预测提供了有效的共享接口，实现了更准确的世界建模和更强的机器人泛化能力。",
       "authors": [
         "Zhi Cao",
         "Howard Ji",
@@ -66,10 +211,10 @@
       "id": "arxiv-2608-24162",
       "source": "arxiv",
       "title": "Robust Slip Detection and Material Classification via Spatiotemporal Transformers on a Uniformly-Illuminated Visuo-Tactile Sensor",
-      "title_zh": "Robust Slip Detection and Material Classification via Spatiotemporal Transformers on a Uniformly-Illuminated Visuo-Tactile Sensor",
-      "tldr_zh": "Tactile sensing is central to robotic manipulation, among wh",
-      "cover_zh": "Tactile sensing is central to robotic manipulation, among wh",
-      "abstract_zh": "Tactile sensing is central to robotic manipulation, among which slip detection stands out as a quintessential and critical task. However, existing slip datasets are predominantly limited to binary classification, lacking fine-grained directional perception. To address this limitation, we propose a visuo-tactile sensor featuring customized uniform RGB illumination, alongside a unified perception framework. At the hardware level, the sensor achieves high-precision, sub-millimeter depth reconstruction. Based on this capability, we collect a multi-task visuo-tactile dataset encompassing 15 objects, synchronously generating depth information for each data sample. Algorithmically, we design a dual-head TimeSformer network to process dynamic spatiotemporal slip. On unseen objects, this network achieves robust accuracies of 95.5% and 91.5% for 3-class contact state prediction and fine-grained 8-class slip direction classification, respectively. Furthermore, static tactile-based object class recognition utilizing a ResNet-50 backbone yields an outstanding accuracy of 98.8% across 15 categories. The proposed hardware-software framework provides high-fidelity feedback and a powerful multi-modal perception baseline for complex robotic manipulation.",
+      "title_zh": "基于均匀照明视触觉传感器的时空Transformer鲁棒滑动检测与物体材质分类",
+      "tldr_zh": "提出均匀照明视触觉传感器与双头TimeSformer，实现高精度滑动方向识别与物体分类。",
+      "cover_zh": "滑动检测只能分有无？这个新传感器连方向都能精准识别！",
+      "abstract_zh": "触觉感知是机器人操作的核心，其中滑动检测是一项典型且关键的任务。然而，现有的滑动数据集主要局限于二分类，缺乏细粒度的方向感知。为解决这一局限，我们提出了一种具有定制均匀RGB照明的视触觉传感器，以及一个统一的感知框架。在硬件层面，该传感器实现了高精度、亚毫米级的深度重建。基于此能力，我们收集了一个包含15个物体的多任务视触觉数据集，并为每个数据样本同步生成深度信息。在算法上，我们设计了一个双头TimeSformer网络来处理动态时空滑动。在未见过的物体上，该网络在3类接触状态预测和细粒度8类滑动方向分类上分别达到了95.5%和91.5%的鲁棒准确率。此外，利用ResNet-50骨干的静态触觉物体类别识别在15个类别上取得了98.8%的出色准确率。所提出的软硬件框架为复杂机器人操作提供了高保真反馈和强大的多模态感知基线。",
       "authors": [
         "Ziyang Ma",
         "Yuhao Sun",
@@ -127,10 +272,10 @@
       "id": "arxiv-2608-24603",
       "source": "arxiv",
       "title": "Gripper-aware Vision Language Action Models",
-      "title_zh": "Gripper-aware Vision Language Action Models",
-      "tldr_zh": "Vision language action models (VLAs) have advanced general p",
-      "cover_zh": "Vision language action models (VLAs) have advanced general p",
-      "abstract_zh": "Vision language action models (VLAs) have advanced general purpose robotic grasping and manipulation by enabling robots to interpret visual observations and natural language instructions to generate executable action sequences. However, existing VLAs often implicitly assume gripper invariance, despite grasping strategies being inherently embodiment-dependent. Different gripper types, such as parallel-jaw and suction, usually require distinct interaction strategies to achieve the same grasping objective. Moreover, current datasets for VLAs predominantly rely on parallel-jaw grippers, limiting gripper-aware learning. To address this gap, we introduce MiGA, a multi-gripper-aware dataset spanning five distinct gripper types across multiple robots with 103,000 demonstrations, explicitly capturing strategy divergence under shared task objectives. We further propose GVLA, which combines a new multi-gripper tokenizer with adapter-based policy routing. Our new gripper encoding induces structured embedding information that balances parameter sharing and strategy differentiation, while layer-wise probing confirms meaningful gripper-conditioned representations for VLAs. Intensive experiments in both simulation and real-world robots show that our GVLA outperforms the current baselines across evaluated settings. Our method also improves zero-shot generalization or few-shot adaptation to new objects or unseen tasks, and enable more efficient gripper adaptation.",
+      "title_zh": "夹爪感知的视觉语言动作模型",
+      "tldr_zh": "提出多夹爪数据集MiGA和模型GVLA，提升VLA的夹爪感知能力。",
+      "cover_zh": "夹爪不同，策略不同？新模型让机器人抓取更聪明！",
+      "abstract_zh": "视觉语言动作模型（VLAs）通过使机器人能够解释视觉观察和自然语言指令来生成可执行的动作序列，从而推进了通用机器人抓取和操作的发展。然而，现有的VLAs通常隐式地假设夹爪不变性，尽管抓取策略本质上依赖于具体本体。不同的夹爪类型，如平行爪和吸盘，通常需要不同的交互策略来实现相同的抓取目标。此外，当前用于VLAs的数据集主要依赖于平行爪夹爪，限制了夹爪感知学习。为解决这一差距，我们引入了MiGA，一个多夹爪感知数据集，涵盖五种不同的夹爪类型，跨多个机器人，包含103,000个演示，明确捕捉共享任务目标下的策略差异。我们进一步提出了GVLA，它结合了一种新的多夹爪分词器与基于适配器的策略路由。我们新的夹爪编码引入了结构化嵌入信息，平衡了参数共享和策略差异化，而逐层探测证实了VLAs中有意义的夹爪条件表示。在仿真和真实机器人上的大量实验表明，我们的GVLA在评估设置中优于当前基线。我们的方法还提高了对新物体或未见任务的零样本泛化或少样本适应能力，并实现了更高效的夹爪适应。",
       "authors": [
         "Hanyi Zhang",
         "Zihong Luo",
@@ -257,10 +402,10 @@
       "id": "arxiv-2608-24042",
       "source": "arxiv",
       "title": "Hierarchical Skill Retrieval for Data-Efficient Adaptation of Vision-Language-Action Models",
-      "title_zh": "Hierarchical Skill Retrieval for Data-Efficient Adaptation of Vision-Language-Action Models",
-      "tldr_zh": "While Vision-Language-Action (VLA) models pretrained on larg",
-      "cover_zh": "While Vision-Language-Action (VLA) models pretrained on larg",
-      "abstract_zh": "While Vision-Language-Action (VLA) models pretrained on large-scale robot datasets provide a strong foundation for robot manipulation, their performance can degrade when adapted to new tasks with limited task-specific demonstrations. Retrieval offers a practical way to reuse existing demonstrations for data-efficient adaptation, but existing methods often rely on visual similarity, state-action representations, or task-level language matching. These approaches may overlook the hierarchical structure of long-horizon manipulation tasks, where complete task matches are rare but reusable skills are often abundant. To address this challenge, we propose Hierarchical Skill Retrieval (HSR), a retrieval framework for data-efficient VLA adaptation. Specifically, HSR first decomposes a target task into candidate skill sequences. It evaluates each plan based on both semantic plausibility and skill reliability estimated from the prior dataset. The selected decomposition is then used for hybrid retrieval. This combines subtask-level language retrieval with behavior-feature reranking to identify demonstrations that are both semantically relevant and compatible with the target task. Finally, we adapt the policy through a two-stage pretraining and finetuning pipeline, which separates general skill acquisition from task-specific adaptation. Experiments on the LIBERO benchmark and several real-world robot manipulation tasks show that HSR improves the average success rate by 10.3% and 21.3% over the strongest baseline, respectively. These results demonstrate the effectiveness of structured skill-level retrieval for data-efficient VLA adaptation. Videos and code are available at https://hoar012.github.io/HSR-Project.",
+      "title_zh": "面向视觉-语言-动作模型数据高效适配的分层技能检索",
+      "tldr_zh": "提出分层技能检索，提升VLA模型数据高效适配，成功率显著提高。",
+      "cover_zh": "别再只靠视觉匹配了｜分层技能检索让机器人适配新任务又快又准",
+      "abstract_zh": "虽然在大规模机器人数据集上预训练的视觉-语言-动作（VLA）模型为机器人操作提供了强大的基础，但在任务特定演示有限的情况下，将其适配到新任务时性能可能会下降。检索提供了一种重用现有演示以实现数据高效适配的实用方法，但现有方法通常依赖于视觉相似性、状态-动作表示或任务级语言匹配。这些方法可能忽略长时程操作任务的分层结构，其中完整的任务匹配很少见，但可重用的技能往往很丰富。为了解决这一挑战，我们提出了分层技能检索（HSR），一种用于数据高效VLA适配的检索框架。具体来说，HSR首先将目标任务分解为候选技能序列。它基于语义合理性和从先前数据集估计的技能可靠性来评估每个计划。然后，选定的分解用于混合检索，结合子任务级语言检索和行为特征重排序，以识别既语义相关又与目标任务兼容的演示。最后，我们通过两阶段预训练和微调流程来适配策略，该流程将通用技能获取与任务特定适配分开。在LIBERO基准和几个真实世界机器人操作任务上的实验表明，HSR相对于最强基线分别将平均成功率提高了10.3%和21.3%。这些结果证明了结构化技能级检索对数据高效VLA适配的有效性。视频和代码可在 https://hoar012.github.io/HSR-Project 获取。",
       "authors": [
         "Haoran Hao",
         "Shahram Najam Syed",
@@ -310,10 +455,10 @@
       "id": "arxiv-2608-24572",
       "source": "arxiv",
       "title": "Fiber Optic Sensing Glove for High Performance Dexterous Manipulation Capture",
-      "title_zh": "Fiber Optic Sensing Glove for High Performance Dexterous Manipulation Capture",
-      "tldr_zh": "Capturing hand pose during dexterous manipulation remains di",
-      "cover_zh": "Capturing hand pose during dexterous manipulation remains di",
-      "abstract_zh": "Capturing hand pose during dexterous manipulation remains difficult: vision-based methods degrade under occlusion and challenging lighting, while sensorized gloves, though occlusion-free, are prone to drift and magnetic interference and rarely match motion-capture accuracy. We introduce a fiber optic sensing glove for full hand pose tracking that targets these failure modes, using multi-core shape-sensing fibers that capture each fiber's full 3D shape rather than curvature alone. A novel pipeline registers each reconstructed fiber shape to a common hand reference frame, and a new inverse-kinematics solver reconstructs full hand pose at 60 Hz using curve constraints. Benchmarked on a 2-hour dataset of dexterous object manipulation tasks across 5 subjects, the glove achieves 7.2 mm mean fingertip position error against motion capture ground truth, reduced to 4.9 mm by a one-time factory calibration of the fiber routing hub that transfers across users and sessions. These capabilities enable high-fidelity data capture and bimanual virtual teleoperation - both essential to advancing the robotics field.",
+      "title_zh": "光纤传感手套用于高性能灵巧操作捕捉",
+      "tldr_zh": "光纤传感手套实现高精度手部姿态追踪，误差低至4.9毫米。",
+      "cover_zh": "视觉追踪总翻车？这款光纤手套让手部捕捉误差直降4.9毫米！",
+      "abstract_zh": "在灵巧操作过程中捕捉手部姿态仍然困难：基于视觉的方法在遮挡和恶劣光照下会退化，而传感器手套虽然不受遮挡影响，但容易发生漂移和磁干扰，且很少能达到动作捕捉的精度。我们介绍了一种用于全手姿态追踪的光纤传感手套，针对这些失效模式，采用多芯形状传感光纤，捕捉每根光纤的完整3D形状而不仅仅是曲率。一种新颖的流程将每根重建的光纤形状配准到共同的手部参考框架，并且一种新的逆运动学求解器利用曲线约束以60 Hz重建完整手部姿态。在包含5名受试者、2小时灵巧物体操作任务的数据集上进行基准测试，该手套相对于动作捕捉真值的平均指尖位置误差为7.2毫米，通过一次性工厂校准光纤路由集线器（可跨用户和会话转移）可降至4.9毫米。这些能力实现了高保真数据采集和双手虚拟遥操作——这两者对于推进机器人领域至关重要。",
       "authors": [
         "J. D. Peiffer",
         "Taylor Niehues",
@@ -364,10 +509,10 @@
       "id": "arxiv-2608-24680",
       "source": "arxiv",
       "title": "Game2World Engine: Unlocking In-the-Wild Gameplay Videos for World Model Training",
-      "title_zh": "Game2World Engine: Unlocking In-the-Wild Gameplay Videos for World Model Training",
-      "tldr_zh": "Video games provide a scalable source of training data for v",
-      "cover_zh": "Video games provide a scalable source of training data for v",
-      "abstract_zh": "Video games provide a scalable source of training data for video world models, offering diverse environments, complex interactions, and abundant in-the-wild gameplay videos. However, raw gameplay footage entangles the game world with screen-space interfaces, introducing game-specific biases and irrelevant dynamics that hinder world-model training. To address this problem, we introduce GameUI-Taxonomy and G2WEngine, a full-stack framework that formalizes gameplay UI grounding and removal. G2WEngine automatically extracts reusable UI assets from real gameplay videos and synthesizes temporally coherent UI overlays on clean footage. Using this engine, we construct Game2World, comprising 96K synthetic paired videos with precise reconstruction targets and 1,079 in-the-wild clips from 303 games for realistic evaluation. Its asset library contains 5,132 verified UI elements across 21 taxonomy categories, collected from 1,010 representative gameplay frames. Based on Game2World, we propose GameCleaner, a mask-free gameplay UI removal model that combines multimodal semantic understanding with video editing capabilities. Unlike mask-based methods, GameCleaner directly identifies and removes diverse HUD elements while preserving the underlying scene content and temporal dynamics. In a controlled pilot, world models trained on UI-free gameplay improve overall VideoReward by 6.83% over those trained on UI-overlaid data. On UI-removal evaluation, GameCleaner achieves an average AAR of 95.36 on synthetic videos, outperforming the strongest temporal mask baseline by 57.3%, and obtains the best in-the-wild AAR of 80.05 with 99.8 background preservation. These results demonstrate the scalable potential of transforming Internet gameplay videos into high-quality world-model training data. Code, dataset, and model will be available at https://github.com/Dongping-Chen/Game2World.",
+      "title_zh": "Game2World 引擎：解锁野外游戏视频用于世界模型训练",
+      "tldr_zh": "提出G2WEngine和GameCleaner，自动去除游戏UI，提升世界模型训练效果。",
+      "cover_zh": "游戏视频也能训练世界模型？这个引擎一键去除UI，效果飙升！",
+      "abstract_zh": "视频游戏为视频世界模型提供了可扩展的训练数据来源，具有多样化的环境、复杂的交互以及丰富的野外游戏视频。然而，原始游戏画面将游戏世界与屏幕空间界面纠缠在一起，引入了特定于游戏的偏差和无关动态，阻碍了世界模型的训练。为解决这一问题，我们引入了GameUI-Taxonomy和G2WEngine，一个全栈框架，形式化了游戏UI的定位和去除。G2WEngine自动从真实游戏视频中提取可复用的UI资产，并在干净画面上合成时间上连贯的UI叠加。利用该引擎，我们构建了Game2World，包含96K个合成配对视频（具有精确重建目标）和来自303个游戏的1,079个野外片段，用于真实评估。其资产库包含来自21个分类类别的5,132个经过验证的UI元素，这些元素从1,010个代表性游戏帧中收集。基于Game2World，我们提出了GameCleaner，一种无掩码的游戏UI去除模型，结合了多模态语义理解与视频编辑能力。与基于掩码的方法不同，GameCleaner直接识别并去除各种HUD元素，同时保留底层场景内容和时间动态。在受控试点中，在无UI游戏画面上训练的世界模型在VideoReward上比在UI叠加数据上训练的模型提高了6.83%。在UI去除评估中，GameCleaner在合成视频上实现了平均AAR 95.36，比最强的时间掩码基线高出57.3%，并在野外获得了最佳AAR 80.05，背景保留率为99.8%。这些结果证明了将互联网游戏视频转化为高质量世界模型训练数据的可扩展潜力。代码、数据集和模型将在https://github.com/Dongping-Chen/Game2World提供。",
       "authors": [
         "Wenxuan Shen",
         "Dongna Jin",
@@ -412,71 +557,13 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2608-24714",
-      "source": "arxiv",
-      "title": "GaussianWAM: Distilling Geometry and Semantics from 3D Gaussian Fields into World-Action Models",
-      "title_zh": "GaussianWAM: Distilling Geometry and Semantics from 3D Gaussian Fields into World-Action Models",
-      "tldr_zh": "World-Action Models (WAMs) jointly learn future visual predi",
-      "cover_zh": "World-Action Models (WAMs) jointly learn future visual predi",
-      "abstract_zh": "World-Action Models (WAMs) jointly learn future visual prediction and action generation, using video dynamics as a representation-learning signal for robotic manipulation. However, their video latents are primarily optimized for visual prediction and are not explicitly encouraged to preserve cross-view geometric structure or spatially localized, object-relevant semantics. We propose textbf{GaussianWAM}, a training-time representation-enhancement framework that organizes geometric and semantic supervision through a 3D Gaussian field. Given synchronized multi-view observations, frozen geometry and vision foundation models provide depth, camera parameters, and dense semantic features. GaussianWAM binds these heterogeneous signals to shared Gaussian primitives and renders spatially aligned semantic, depth, and coverage targets, which are distilled into the current-observation representations of the WAM. All teacher models, Gaussian components, and auxiliary prediction heads are removed after training, leaving the original WAM inference path without additional modules or forward computation. On LIBERO-Plus, GaussianWAM improves FastWAM from 52.05\\% to 71.29\\% and Cosmos Policy from 71.52\\% to 77.30\\%. Direct CLIP and VGGT distillation already establishes a strong FastWAM baseline of 69.37\\%, while Gaussian-field unification further improves it to 71.29\\%, supporting the benefit of spatially organizing heterogeneous teacher signals. GaussianWAM also improves performance on standard LIBERO and shows positive transfer trends on RoboTwin and real-world manipulation. These results suggest that training-time Gaussian distillation provides a practical way to inject geometry- and semantics-related supervision into WAM representations without changing their deployment architecture.",
-      "authors": [
-        "Zijian Zhang",
-        "Yuqing Jiang",
-        "Weitao Zhou"
-      ],
-      "authors_all": [
-        "Zijian Zhang",
-        "Yuqing Jiang",
-        "Weitao Zhou",
-        "Minglei Li",
-        "Jinhao Zhang",
-        "Yao Mu",
-        "Xiaofan Li",
-        "Hao Zhao",
-        "Haibao Yu"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-08-25",
-      "channels": [
-        "manipulation",
-        "world-model"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2608-24714.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2608-24714-p2.jpg"
-      ],
-      "arxiv_id": "2608.24714",
-      "abs_url": "http://arxiv.org/abs/2608.24714v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.24714v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 30,
-      "judge": {},
-      "institutions": [],
-      "method_tags": [],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2608-24855",
       "source": "arxiv",
       "title": "LeFlow: Generative Latent Flow Planning for World Models",
-      "title_zh": "LeFlow: Generative Latent Flow Planning for World Models",
-      "tldr_zh": "Latent world models are inherently strong encoders that tran",
-      "cover_zh": "Latent world models are inherently strong encoders that tran",
-      "abstract_zh": "Latent world models are inherently strong encoders that transform image pixel to latent embedding, yet existing world models still rely on online trajectory optimization for action planning: for every state-goal pair, an iterative optimizer is run from scratch to search for optimal action sequences, treating the world model as a black-box simulator. This approach pays the full iterative optimization cost anew at every replanning step and reuses no planning experience across queries. In this work, we ask whether planning itself can be amortized once a latent world model has been learned. We present LeFlow, which learns a reusable latent trajectory prior operating directly in the latent dynamics space from the world model. LeFlow recasts planning as conditional latent trajectory generation: a rectified-flow model imagines a future latent path between the current and goal embeddings, an inverse dynamics decoder turns latent transitions into action chunks, and the frozen world model verifies each candidate by autoregressive rollout. Across four major goal-conditioned pixel-control benchmarks, LeFlow replaces iterative action-space optimization with amortized latent planning and fixed-budget rollout selection, achieving consistent success-rate gains with an order-of-magnitude reduction in planning time. Our results argue that latent world models should support not only prediction but reusable planning priors. Our code is available at https://github.com/hsiangwei0903/LeFlow.",
+      "title_zh": "LeFlow：用于世界模型的生成式潜在流规划",
+      "tldr_zh": "LeFlow将规划转化为潜在轨迹生成，实现摊销规划，成功率提升且规划时间大幅减少。",
+      "cover_zh": "告别反复优化｜LeFlow让世界模型规划一步到位，速度提升一个量级",
+      "abstract_zh": "潜在世界模型本质上是强大的编码器，能将图像像素转换为潜在嵌入，然而现有的世界模型在动作规划时仍依赖在线轨迹优化：对于每个状态-目标对，迭代优化器从零开始搜索最优动作序列，将世界模型视为黑盒模拟器。这种方法在每次重新规划时都需重新支付完整的迭代优化成本，且不跨查询复用规划经验。在这项工作中，我们探讨一旦潜在世界模型被学习，规划本身是否可以被摊销。我们提出LeFlow，它学习一个可复用的潜在轨迹先验，直接在世界模型的潜在动态空间中操作。LeFlow将规划重新定义为条件潜在轨迹生成：一个整流流模型在当前与目标嵌入之间想象未来潜在路径，逆动力学解码器将潜在转换转化为动作块，冻结的世界模型通过自回归展开验证每个候选。在四个主要的目标条件像素控制基准上，LeFlow用摊销潜在规划和固定预算展开选择替代迭代动作空间优化，实现了持续的成功率提升，并将规划时间减少一个数量级。我们的结果表明，潜在世界模型不仅应支持预测，还应支持可复用的规划先验。我们的代码可在https://github.com/hsiangwei0903/LeFlow获取。",
       "authors": [
         "Hsiang-Wei Huang",
         "Jianxu Shangguan",
@@ -510,67 +597,14 @@
       "venue_announced": "",
       "score": 30,
       "judge": {},
-      "institutions": [],
-      "method_tags": [],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2608-24885",
-      "source": "arxiv",
-      "title": "Do Robotic World Models Really Follow Actions? Diagnosing and Aligning Action-Conditioned Generation for Policy Learning",
-      "title_zh": "Do Robotic World Models Really Follow Actions? Diagnosing and Aligning Action-Conditioned Generation for Policy Learning",
-      "tldr_zh": "Action-conditioned world models are increasingly used as lea",
-      "cover_zh": "Action-conditioned world models are increasingly used as lea",
-      "abstract_zh": "Action-conditioned world models are increasingly used as learned simulators for policy evaluation and improvement, yet their effectiveness rests on an unverified assumption: generated futures faithfully reflect arbitrary valid actions. Existing benchmarks are typically confined to expert demonstrations, leaving off-expert action following inadequately evaluated. To address this gap, we introduce WorldEcho, which probes action following over a broader action distribution using visual integrity and SE(3) trajectory alignment. Our diagnosis shows that current world models reasonably execute expert actions but struggle with diverse off-expert trajectories, either ignoring the commanded actions or producing visually invalid rollouts. We further propose WorldSync, which strengthens action following along three complementary axes: distributional coverage, representational grounding, and intervention-effect alignment. It broadens the training distribution over action consequences, grounds intermediate video representations in action-induced robot dynamics through an Action-Forcing Expert, and aligns predicted changes under action interventions with the corresponding changes in ground-truth futures. Experiments on RoboTwin benchmarks and real-robot tasks show that WorldSync improves WorldEcho metrics and serves as a more reliable simulator for iterative policy improvement, enabling policies to achieve higher success rates.",
-      "authors": [
-        "Sixiang Chen",
-        "Jiaming Liu",
-        "Jixian Wu"
+      "institutions": [
+        "University of Washington"
       ],
-      "authors_all": [
-        "Sixiang Chen",
-        "Jiaming Liu",
-        "Jixian Wu",
-        "Yichen Guo",
-        "Tinghao Wang",
-        "Siyuan Qian",
-        "Hao Chen",
-        "Jiajun Cao",
-        "Jian Tang",
-        "Shanghang Zhang"
+      "method_tags": [
+        "World Model",
+        "Latent Planning",
+        "Rectified Flow"
       ],
-      "primary_category": "cs.RO",
-      "published": "2026-08-25",
-      "channels": [
-        "manipulation",
-        "world-model"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2608-24885.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2608-24885-p2.jpg"
-      ],
-      "arxiv_id": "2608.24885",
-      "abs_url": "http://arxiv.org/abs/2608.24885v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.24885v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 30,
-      "judge": {},
-      "institutions": [],
-      "method_tags": [],
       "platform": [],
       "sim_stack": [],
       "method_family": "",
@@ -633,10 +667,10 @@
       "id": "arxiv-2608-24111",
       "source": "arxiv",
       "title": "Trajectory-Level Continuous Action Representation for Robotic Manipulation",
-      "title_zh": "Trajectory-Level Continuous Action Representation for Robotic Manipulation",
-      "tldr_zh": "We propose CAT, a trajectory-level continuous action represe",
-      "cover_zh": "We propose CAT, a trajectory-level continuous action represe",
-      "abstract_zh": "We propose CAT, a trajectory-level continuous action representation framework for robotic manipulation. Existing visuomotor systems often entangle action representation with control frequency or rely on fixed temporal parameterizations. This leads to representational redundancy at high sampling rates and limits the modeling of critical motion. CAT instead encodes action trajectories within a fixed real-time interval into a set of continuous latent tokens. To ensure temporal consistency across varying control frequencies, we further incorporate a frequency-aware positional encoding that establishs a shared temporal coordinate system. Trajectory-level regularization further stabilizes the latent representation. This approach prevents representation growth with timestep density and avoids reliance on predefined temporal parameterizations. Extensive system-level evaluations on LIBERO, MimicGen, and real-world long-horizon manipulation tasks demonstrate that CAT-based policies consistently outperform both competitive VQ-based and continuous visuomotor baselines under matched training settings. Across various model backbones and control frequencies, CAT consistently improves success rates. These results highlight the advantages of trajectory-level continuous action modeling for scalable robotic manipulation across varying control rates.",
+      "title_zh": "机器人操作中的轨迹级连续动作表示",
+      "tldr_zh": "提出轨迹级连续动作表示CAT，提升机器人操作在不同控制频率下的成功率。",
+      "cover_zh": "告别固定频率束缚｜轨迹级动作表示让机器人操作更灵活高效",
+      "abstract_zh": "我们提出了CAT，一种用于机器人操作的轨迹级连续动作表示框架。现有的视觉运动系统常常将动作表示与控制频率纠缠在一起，或依赖于固定的时间参数化。这导致在高采样率下表示冗余，并限制了关键运动的建模。CAT将固定实时时间间隔内的动作轨迹编码为一组连续的潜在令牌。为确保不同控制频率下的时间一致性，我们进一步引入了频率感知的位置编码，建立共享的时间坐标系。轨迹级正则化进一步稳定了潜在表示。该方法防止了表示随时间步密度增长，并避免了对预定义时间参数化的依赖。在LIBERO、MimicGen和真实世界长时程操作任务上的广泛系统级评估表明，基于CAT的策略在匹配的训练设置下，始终优于竞争性的基于VQ和连续视觉运动基线。在各种模型主干和控制频率下，CAT持续提高了成功率。这些结果凸显了轨迹级连续动作建模在不同控制速率下可扩展机器人操作的优势。",
       "authors": [
         "Tong Yang",
         "Jingkai Jia",
@@ -688,10 +722,10 @@
       "id": "arxiv-2608-24217",
       "source": "arxiv",
       "title": "CARO: Contact-Agnostic Residual Observation for Zero-Shot Robust Quadruped Locomotion",
-      "title_zh": "CARO: Contact-Agnostic Residual Observation for Zero-Shot Robust Quadruped Locomotion",
-      "tldr_zh": "We propose CARO, a contact-agnostic residual observation fra",
-      "cover_zh": "We propose CARO, a contact-agnostic residual observation fra",
-      "abstract_zh": "We propose CARO, a contact-agnostic residual observation framework for policy adaptation. CARO embeds a fixed-base Euler--Lagrange model into the reinforcement learning control loop and constructs a torque-level residual observation without requiring torque sensors, explicit contact estimation, or vision-based measurements of the floating-base position and linear velocity. A disturbance observer extracts a structured signal representing dynamics mismatch, while the policy learns to exploit this feedback for online adaptation. CARO is trained under the same terrain, command, and domain-randomization conditions as the nominal policy, without specialized disturbance curricula or additional adaptation supervision. Nevertheless, it achieves substantially improved zero-shot robustness in simulation and sim-to-real transfer tasks involving out-of-distribution payloads, center-of-mass shifts, terrain geometries, abrupt dynamics changes, and elevated-platform landings.",
+      "title_zh": "CARO：接触无关的残差观测用于四足机器人的零样本鲁棒运动",
+      "tldr_zh": "提出接触无关残差观测框架，无需额外传感器，显著提升四足机器人零样本鲁棒性。",
+      "cover_zh": "不靠传感器也能稳如老狗？这个新框架让四足机器人零样本适应各种意外",
+      "abstract_zh": "我们提出了CARO，一种用于策略自适应的接触无关残差观测框架。CARO将固定基座的欧拉-拉格朗日模型嵌入强化学习控制回路中，并构建扭矩级别的残差观测，无需扭矩传感器、显式接触估计或基于视觉的浮动基座位置和线速度测量。扰动观测器提取表示动力学失配的结构化信号，而策略学习利用该反馈进行在线自适应。CARO在与名义策略相同的地形、命令和域随机化条件下训练，无需专门的扰动课程或额外的自适应监督。尽管如此，它在仿真和仿真到现实迁移任务中实现了显著提高的零样本鲁棒性，这些任务涉及分布外负载、质心偏移、地形几何、突变动力学变化和高台着陆。",
       "authors": [
         "Zihan Yang",
         "Shixuan Han",
@@ -741,10 +775,10 @@
       "id": "arxiv-2608-24479",
       "source": "arxiv",
       "title": "WarpSAC: Towards the Pinnacle of Scalable Off-policy RL by Rethinking Exploration and Exploitation",
-      "title_zh": "WarpSAC: Towards the Pinnacle of Scalable Off-policy RL by Rethinking Exploration and Exploitation",
-      "tldr_zh": "Massively parallel simulation changes the data regime in whi",
-      "cover_zh": "Massively parallel simulation changes the data regime in whi",
-      "abstract_zh": "Massively parallel simulation changes the data regime in which off-policy reinforcement learning (RL) is trained, challenging stabilizers designed for data-limited replay. Through controlled experiments across eight benchmark families, we show that these stabilizers are data-regime-dependent: parameter normalization helps with narrow replay coverage but restricts value fitting when data are abundant, while clipped double-Q can be relaxed in high-throughput manipulation. Age-biased replay weighting improves learning efficiency across regimes, especially with limited network capacity. Based on these findings, we propose WarpSAC, a regime-aware family of off-policy RL algorithms. WarpSAC uses Sample Weight Decay for efficient exploitation and provides two variants: WarpSAC-L (Norm ON, clipped double-Q) for data-limited CPU-scale training, and WarpSAC-A (Norm OFF, single-Q) for data-abundant GPU-parallel training. WarpSAC improves normalized score--step AUC over FlashSAC by 4.5% across nine CPU-scale environments and 23.1% across fourteen GPU-parallel environments. It increases UnitreeG1TransportBox-v1 success rate from 19.8% to 96.4%, improves mean normalized wall-time AUC on MuJoCo Playground by 19.1%, and achieves 36.4% faster sim-to-real deployment on Unitree G1 than FlashSAC. These results show that scalable off-policy RL should adapt its stabilizers to the available data regime.",
+      "title_zh": "WarpSAC：通过重新思考探索与利用，迈向可扩展离策略强化学习的巅峰",
+      "tldr_zh": "WarpSAC根据数据分布调整稳定器，显著提升离策略RL性能。",
+      "cover_zh": "离策略RL新突破｜WarpSAC让机器人成功率从19.8%飙到96.4%",
+      "abstract_zh": "大规模并行模拟改变了离策略强化学习（RL）的训练数据分布，对为数据受限回放设计的稳定器提出了挑战。通过在八个基准家族中的受控实验，我们表明这些稳定器依赖于数据分布：参数归一化有助于窄回放覆盖，但在数据丰富时限制值拟合，而裁剪双Q可以在高吞吐操作中放宽。年龄偏置回放加权提高了跨分布的学习效率，尤其是在网络容量有限时。基于这些发现，我们提出了WarpSAC，一个分布感知的离策略RL算法家族。WarpSAC使用样本权重衰减以实现高效利用，并提供两个变体：WarpSAC-L（归一化开启，裁剪双Q）用于数据受限的CPU规模训练，以及WarpSAC-A（归一化关闭，单Q）用于数据丰富的GPU并行训练。WarpSAC在九个CPU规模环境中将归一化分数-步数AUC比FlashSAC提高了4.5%，在十四个GPU并行环境中提高了23.1%。它将UnitreeG1TransportBox-v1成功率从19.8%提高到96.4%，在MuJoCo Playground上将平均归一化墙钟时间AUC提高了19.1%，并在Unitree G1上实现了比FlashSAC快36.4%的仿真到现实部署。这些结果表明，可扩展的离策略RL应根据可用数据分布调整其稳定器。",
       "authors": [
         "Zihao Wu",
         "Hongyao Tang",
@@ -803,10 +837,10 @@
       "id": "arxiv-2608-24534",
       "source": "arxiv",
       "title": "Neurosymbolic Alignment for Physiologically-Safe Clinical Language Models",
-      "title_zh": "Neurosymbolic Alignment for Physiologically-Safe Clinical Language Models",
-      "tldr_zh": "Clinical LLMs can generate recommendations that are factuall",
-      "cover_zh": "Clinical LLMs can generate recommendations that are factuall",
-      "abstract_zh": "Clinical LLMs can generate recommendations that are factually plausible yet physiologically unsafe. We investigate whether safety alignment can be improved by grounding preference optimization in structured physiological knowledge rather than text-only supervision. Methods: We propose Neurosymbolic Alignment, a training-time framework that couples a 7B clinical LLM with an HGNN-based Physiological World Model over an 847K-node biomedical knowledge graph. Candidate responses are scored using homeostatic constraints, multi-hop path plausibility, and drug-interaction penalties, and the resulting rankings drive iterative on-policy ORPO updates. Evaluation is performed on the Clinical Safety Benchmark (CSB), a 2,500-scenario benchmark for physiological constraint violations in generative clinical reasoning. Results: Relative to ORPO, the proposed method improves CSS from 69.5% to 90.8% (+21.3 pp), reduces physician-evaluated HR from 14.1% to 5.1% on the blinded subset, and improves DID from 72.8% to 91.6%. These gains are corroborated by an HGNN-independent Rule-Engine Safety Score (RSS: 86.4%, +21.2 pp over ORPO; r=0.97 concordance with CSS). The method also exceeds GPT-4 (5-shot) on all safety metrics despite a 10x parameter disadvantage, and outperforms an inference-time self-correction pipeline (SFT+SelfCorrect) by 11.4 pp CSS. Under synthetic EHR-style noise, 84.2% CSS is retained. Ablation analysis shows that HGNN scoring (-16.2 pp) and iterative training (-11.5 pp) are the dominant contributors. PhysioScore calibration against 200 clinician labels yielded ECE = 0.038 and kappa = 0.91. Conclusion: Training-time physiological grounding produces measurable and independently verifiable safety improvements in open-weight clinical LLMs under controlled evaluation. External validation on real clinical data is required to determine whether these gains transfer to deployment settings",
+      "title_zh": "神经符号对齐：面向生理安全的临床语言模型",
+      "tldr_zh": "神经符号对齐将生理知识融入训练，显著提升临床LLM安全指标。",
+      "cover_zh": "临床AI也能更安全？新方法用生理知识对齐，安全评分飙升21个百分点！",
+      "abstract_zh": "临床大语言模型（LLM）可能生成在事实上看似合理但生理上不安全的建议。我们研究是否可以通过将偏好优化建立在结构化生理知识而非纯文本监督之上，来改进安全对齐。方法：我们提出神经符号对齐（Neurosymbolic Alignment），一种训练时框架，将7B临床LLM与基于HGNN的生理世界模型耦合，该模型基于847K节点的生物医学知识图谱。候选响应通过稳态约束、多跳路径合理性和药物相互作用惩罚进行评分，所得排名驱动迭代的on-policy ORPO更新。评估在临床安全基准（CSB）上进行，该基准包含2,500个场景，用于生成性临床推理中的生理约束违反。结果：相对于ORPO，所提方法将CSS从69.5%提升至90.8%（+21.3个百分点），在盲法子集上减少了医生评估的HR（从14.1%降至5.1%），并将DID从72.8%提升至91.6%。这些增益得到了独立于HGNN的规则引擎安全评分（RSS：86.4%，较ORPO提高21.2个百分点；与CSS的一致性r=0.97）的证实。该方法在所有安全指标上超过了GPT-4（5-shot），尽管参数少10倍，并且优于推理时自我校正流水线（SFT+SelfCorrect）11.4个百分点CSS。在合成EHR风格噪声下，保留了84.2%的CSS。消融分析显示，HGNN评分（-16.2个百分点）和迭代训练（-11.5个百分点）是主要贡献因素。PhysioScore校准针对200个临床医生标签，得到ECE=0.038和kappa=0.91。结论：训练时生理接地在受控评估下为开放权重临床LLM带来了可测量且独立可验证的安全改进。需要在真实临床数据上进行外部验证，以确定这些增益是否转移到部署环境。",
       "authors": [
         "Abdulhady Abas Abdullah",
         "Erik Cambria",
@@ -854,10 +888,10 @@
       "id": "arxiv-2608-24026",
       "source": "arxiv",
       "title": "NeurRAFT: Robot Motion Planning via Anchor-Level Flow Matching with Clearance-Aware Preference Tuning",
-      "title_zh": "NeurRAFT: Robot Motion Planning via Anchor-Level Flow Matching with Clearance-Aware Preference Tuning",
-      "tldr_zh": "Recent end-to-end neural motion planners generate trajectori",
-      "cover_zh": "Recent end-to-end neural motion planners generate trajectori",
-      "abstract_zh": "Recent end-to-end neural motion planners generate trajectories from raw sensor observations, avoiding the privileged geometric models required by classical planners. However, collision-free planning in cluttered environments remains challenging. We present NeurRAFT, a generative planning framework based on anchor-level flow matching and clearance-aware preference tuning. Unlike prior neural planners that model dense waypoint sequences and spend capacity on redundant local details and smoothness, NeurRAFT operates on compact anchor waypoints. We train the planner using a Jacobian-weighted loss that accounts for the task-space impact of each anchor. At inference, the anchors are generated in two integration steps, followed by cubic-spline interpolation to recover a smooth, full-resolution trajectory. Since imitation learning from positive demonstrations cannot distinguish collision-free from near-collision trajectories, collision-prone behaviors persist at test time. Rather than relying on post-hoc corrections, we directly reshape the pretrained planner's distribution toward safer solutions without augmenting inference. Specifically, Direct Preference Optimization shifts probability mass toward trajectories with larger obstacle clearance, with the resulting improvement directly absorbed into the planner parameters. Experiments show substantial improvements over state-of-the-art planners, while real-world experiments demonstrate zero-shot transfer to a Franka robot under noisy and partially occluded depth observations. Video results available at https://neurraft.github.io/.",
+      "title_zh": "NeurRAFT：基于锚点级流匹配与间隙感知偏好调整的机器人运动规划",
+      "tldr_zh": "NeurRAFT用锚点级流匹配和偏好调整提升神经运动规划的安全性与效率。",
+      "cover_zh": "别再让机器人撞墙了！新框架用锚点流匹配，安全规划直接起飞",
+      "abstract_zh": "最近端到端神经运动规划器直接从原始传感器观测生成轨迹，避免了经典规划器所需的特权几何模型。然而，在杂乱环境中进行无碰撞规划仍然具有挑战性。我们提出了NeurRAFT，一种基于锚点级流匹配和间隙感知偏好调整的生成式规划框架。与先前对密集航点序列建模并将容量浪费在冗余局部细节和平滑度上的神经规划器不同，NeurRAFT在紧凑的锚点航点上操作。我们使用雅可比加权损失训练规划器，该损失考虑了每个锚点在任务空间中的影响。在推理时，锚点通过两步积分生成，随后进行三次样条插值以恢复平滑的全分辨率轨迹。由于来自正样本的模仿学习无法区分无碰撞轨迹和近碰撞轨迹，碰撞倾向行为在测试时仍然存在。我们不依赖事后修正，而是直接重塑预训练规划器的分布，使其朝向更安全的解，且不增加推理负担。具体来说，直接偏好优化将概率质量转移到具有更大障碍间隙的轨迹上，改进直接吸收到规划器参数中。实验表明，与最先进的规划器相比有显著改进，而真实世界实验展示了在噪声和部分遮挡深度观测下对Franka机器人的零样本迁移。视频结果见https://neurraft.github.io/。",
       "authors": [
         "Sibo Tian",
         "Chang Liu",
@@ -907,10 +941,10 @@
       "id": "arxiv-2608-24882",
       "source": "arxiv",
       "title": "Latent Action as Intention Enables Efficient Future Imagination for World Action Models",
-      "title_zh": "Latent Action as Intention Enables Efficient Future Imagination for World Action Models",
-      "tldr_zh": "World action models (WAMs) improve robot control by modeling",
-      "cover_zh": "World action models (WAMs) improve robot control by modeling",
-      "abstract_zh": "World action models (WAMs) improve robot control by modeling how observations evolve, but generating future observations at test time incurs substantial latency. Fast-WAM removes this process for efficiency; however, our matched implementations show lower generalization for Fast-WAM than for future-aware alternatives, especially with scarce robot demonstrations and in out-of-distribution scenarios. To bridge this gap, we introduce **LAWA**, a WAM architecture that uses compact latent actions as an operational representation of future intentions, enabling efficient test-time future imagination without generating future observations. Specifically, a discrete tokenizer enhanced by action-free pre-training produces manipulation-centric codebook targets. LAWA jointly denoises a continuous latent state anchored to these targets with executable action chunks while omitting the future-video branch at inference. On RoboCasa, LAWA achieves state-of-the-art average success rates of 65.6% and 80.8% in the few-shot and full data settings, improving over the matched Fast-WAM baseline by 9.6 and 4.5 points, respectively. It also preserves the performance level of the matched Joint-WAM variant while requiring 42.9% lower inference latency. LAWA also demonstrates competitive zero-shot robustness on LIBERO-Plus and superior performance on real-world tasks. These results show that future imagination need not be discarded: retaining it with compact latent actions yields an effective trade-off among performance, generalization, and latency. Code and models will be released.",
+      "title_zh": "潜在动作作为意图实现世界动作模型的高效未来想象",
+      "tldr_zh": "LAWA 用潜在动作表示意图，实现高效未来想象，兼顾性能与低延迟。",
+      "cover_zh": "未来想象不用丢？这个新架构让机器人又快又准，还更聪明！",
+      "abstract_zh": "世界动作模型（WAMs）通过建模观测如何演变来改进机器人控制，但在测试时生成未来观测会产生大量延迟。Fast-WAM 移除了这一过程以提高效率；然而，我们的匹配实现显示，Fast-WAM 的泛化能力低于考虑未来的替代方案，尤其是在机器人演示稀缺和分布外场景中。为了弥合这一差距，我们提出了 **LAWA**，一种 WAM 架构，使用紧凑的潜在动作作为未来意图的操作性表示，从而在不生成未来观测的情况下实现高效的测试时未来想象。具体来说，一个由无动作预训练增强的离散分词器产生以操作为中心的码本目标。LAWA 联合去噪一个锚定到这些目标的连续潜在状态与可执行的动作块，同时在推理时省略未来视频分支。在 RoboCasa 上，LAWA 在少样本和全数据设置中分别实现了 65.6% 和 80.8% 的最先进平均成功率，比匹配的 Fast-WAM 基线分别提高了 9.6 和 4.5 个百分点。它还保持了匹配的 Joint-WAM 变体的性能水平，同时推理延迟降低了 42.9%。LAWA 还在 LIBERO-Plus 上展示了具有竞争力的零样本鲁棒性，并在真实世界任务中表现出优越性能。这些结果表明，未来想象不必被丢弃：用紧凑的潜在动作保留它，可以在性能、泛化和延迟之间取得有效的权衡。代码和模型将发布。",
       "authors": [
         "Xiang Li",
         "Yupeng Zheng",
@@ -953,12 +987,21 @@
       "venue_announced": "",
       "score": 22,
       "judge": {},
-      "institutions": [],
-      "method_tags": [],
+      "institutions": [
+        "CollegeAI, THU",
+        "AIR, THU",
+        "CASIA",
+        "TARS Robotics"
+      ],
+      "method_tags": [
+        "World Action Model",
+        "latent action",
+        "future imagination"
+      ],
       "platform": [],
       "sim_stack": [],
       "method_family": "",
-      "real_robot": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -968,10 +1011,10 @@
       "id": "arxiv-2608-23983",
       "source": "arxiv",
       "title": "Sensorless damage-safe grasping",
-      "title_zh": "Sensorless damage-safe grasping",
-      "tldr_zh": "Robotic fruit harvesting must hold produce securely without",
-      "cover_zh": "Robotic fruit harvesting must hold produce securely without",
-      "abstract_zh": "Robotic fruit harvesting must hold produce securely without bruising it, yet compression stiffness varies several-fold with ripeness within a single species, so no fixed grip force spans the range. Rather than tune force, we bound deformation: a controller closes the gripper until the object's estimated compression strain reaches a user-specified limit $varepsilon$, using only the encoder position and motor-effort signal on every servo gripper---no tactile or force-torque sensor. Dividing an effort-based contact force by a lower bound on object stiffness makes the stop provably conservative---true compression stays at or below $varepsilon$---for any $varepsilon$ above a contact-detection strain floor we identify and quantify: robust detection itself spends compression, linearly in closing speed, making speed an explicit throughput--gentleness knob. Unlike a hand-tuned force threshold, $varepsilon$ is a certified, size-scaling, operator-interpretable damage limit, and a ready safe-action parameter for learned grasping policies. In MuJoCo simulation over a realistic fruit-stiffness range, under a sensor-noise model calibrated to the real servo, the controller holds $ge 98\\,\\%$ grasp at $0\\,\\%$ damage across all medium-to-firm stiffnesses for the entire certified $varepsilon$ range, which neither fixed-force baseline attains; on stiffness-graded 3D-printed TPU cubes it matches baseline grasp success at roughly half the grip force and cuts soft-object damage from $100\\,\\%$ to $40\\,\\%$.",
+      "title_zh": "无传感器损伤安全抓取",
+      "tldr_zh": "提出仅用编码器和电机信号的变形限制控制，实现无传感器损伤安全抓取。",
+      "cover_zh": "不靠力传感器也能无损抓取？这个控制器让机器人学会“温柔”",
+      "abstract_zh": "机器人水果采摘必须在不损伤果实的前提下牢固抓取，然而同一物种内，压缩刚度随成熟度变化数倍，因此没有固定的抓取力能覆盖整个范围。我们不调节力，而是限制变形：控制器闭合夹爪，直到物体的估计压缩应变达到用户指定的极限 $\\varepsilon$，仅使用每个伺服夹爪上的编码器位置和电机力矩信号——无需触觉或力/力矩传感器。将基于力矩的接触力除以物体刚度的下界，使得停止条件可证明是保守的——真实压缩保持在或低于 $\\varepsilon$——对于任何高于我们识别并量化的接触检测应变下限的 $\\varepsilon$ 值：鲁棒检测本身会消耗压缩，且与闭合速度线性相关，使速度成为显式的吞吐量-温和度旋钮。与手动调节的力阈值不同，$\\varepsilon$ 是一个经过认证的、随尺寸缩放、操作者可解释的损伤限制，也是学习抓取策略的现成安全动作参数。在 MuJoCo 仿真中，针对真实的果实刚度范围，在标定到真实伺服系统的传感器噪声模型下，控制器在整个认证的 $\\varepsilon$ 范围内，对所有中等到坚硬刚度保持 $\\ge 98\\%$ 的抓取成功率且 $0\\%$ 损伤，而两个固定力基线均无法达到；在刚度分级的 3D 打印 TPU 立方体上，它以大约一半的抓取力匹配基线抓取成功率，并将软物体损伤从 $100\\%$ 降至 $40\\%$。",
       "authors": [
         "Yusei Shuto",
         "Danilo Vasconcellos Vargas"
@@ -1017,10 +1060,10 @@
       "id": "arxiv-2608-24115",
       "source": "arxiv",
       "title": "PonderPounce: A Pretrained MLLM as an Episode Context Engine for Robot Control",
-      "title_zh": "PonderPounce: A Pretrained MLLM as an Episode Context Engine for Robot Control",
-      "tldr_zh": "Multimodal large language models (MLLMs) can integrate long",
-      "cover_zh": "Multimodal large language models (MLLMs) can integrate long",
-      "abstract_zh": "Multimodal large language models (MLLMs) can integrate long visual histories, reason under partial observability, and infer behavior from a few examples. Yet vision-language-action (VLA) models generally inherit pretrained representations without using this contextual capacity as episode memory. Memory-dependent policies address this gap through purpose-built history mechanisms. PonderPounce instead reuses an MLLM's native causal context as robot memory. Ponder, a System2 MLLM, accumulates episode observations, demonstrations, and prior cognition in its native causal context and can generate subgoal text and demonstration reasoning for internal use. Pounce, a System1 VLA, receives the current observation, instruction, and proprioception directly; through the Ponder--Pounce interface, it asynchronously receives only the newest continuous cognition token and its age. Both are jointly trained end to end without a purpose-built memory module or separate bridge pretraining. Optimized serving achieves p50 latencies of 78ms for cognition refresh and 25ms for action-model invocation, supporting 20Hz action playback. On RoboMME with base-scale training data, PonderPounce reaches 60.83% with 9B and 50.04% with 0.8B under the same Pounce architecture and interface, versus 44.51% for FrameSamp+Modul and 17.93% for the current-observation π_{0.5}. With 9x data, it reaches 75.54% versus 57.88% for FrameSamp+Modul. On RoboCasa-DC, the same interface learns from action supervision alone and reaches 12.5% versus 11.6% for the strongest published demonstration-conditioned baseline, falling to 8.6% when cognition is replaced by a learned null state.",
+      "title_zh": "PonderPounce：预训练多模态大模型作为机器人控制的场景上下文引擎",
+      "tldr_zh": "PonderPounce 复用 MLLM 上下文作为机器人记忆，无需专门模块，性能超越基线。",
+      "cover_zh": "不用额外记忆模块？这个机器人框架靠大模型上下文直接起飞",
+      "abstract_zh": "多模态大语言模型（MLLMs）能够整合长视觉历史，在部分可观测性下进行推理，并从少量示例中推断行为。然而，视觉-语言-动作（VLA）模型通常继承预训练表示，而不利用这种上下文能力作为情节记忆。依赖记忆的策略通过专门的历史机制解决这一差距。PonderPounce 则重用 MLLM 的原生因果上下文作为机器人记忆。Ponder，一个 System2 MLLM，在其原生因果上下文中积累情节观察、演示和先前的认知，并能生成子目标文本和演示推理供内部使用。Pounce，一个 System1 VLA，直接接收当前观察、指令和本体感觉；通过 Ponder-Pounce 接口，它异步接收最新的连续认知令牌及其年龄。两者联合端到端训练，无需专门的记忆模块或单独的桥接预训练。优化服务实现了认知刷新 78ms 和动作模型调用 25ms 的 p50 延迟，支持 20Hz 动作回放。在 RoboMME 上，使用基础规模训练数据，PonderPounce 在相同 Pounce 架构和接口下，9B 模型达到 60.83%，0.8B 模型达到 50.04%，而 FrameSamp+Modul 为 44.51%，当前观察 π_{0.5} 为 17.93%。使用 9 倍数据，达到 75.54%，而 FrameSamp+Modul 为 57.88%。在 RoboCasa-DC 上，相同接口仅从动作监督学习，达到 12.5%，而最强已发表演示条件基线为 11.6%，当认知被学习的空状态替换时降至 8.6%。",
       "authors": [
         "Suhwan Choi",
         "Jaeyoon Jung",
@@ -1070,10 +1113,10 @@
       "id": "arxiv-2608-24212",
       "source": "arxiv",
       "title": "NeoWorld-Pro: Programming Interactive Scenes from Monocular Images for Embodied Simulation",
-      "title_zh": "NeoWorld-Pro: Programming Interactive Scenes from Monocular Images for Embodied Simulation",
-      "tldr_zh": "The advancement of Embodied AI necessitates high-quality sim",
-      "cover_zh": "The advancement of Embodied AI necessitates high-quality sim",
-      "abstract_zh": "The advancement of Embodied AI necessitates high-quality simulation assets that faithfully mirror the real world. However, transforming raw visual observations into simulation-ready scenes remains challenging due to the lack of physical grounding and scene-level interactivity in current image-to-URDF methods. We propose NeoWorld-Pro, a framework that reformulates monocular scene reconstruction as procedural programming for interactive 3D environments. Leveraging the zero-shot reasoning and code synthesis capabilities of MLLMs, NeoWorld-Pro converts a single RGB image into executable programs specifying object geometry, articulation, and physical properties. A physics-in-the-loop mechanism then iteratively refines the generated programs by validating their execution in a physics engine, enforcing physically plausible articulations, valid object compositions and interactions, and accurate spatial relationships. Experiments show that NeoWorld-Pro outperforms open-loop and prior monocular reconstruction methods, while enabling complex downstream tasks such as stable stacking and fine-grained manipulation.",
+      "title_zh": "NeoWorld-Pro：从单目图像编程交互式场景用于具身模拟",
+      "tldr_zh": "NeoWorld-Pro将单目图像转为可交互3D场景程序，通过物理在环优化提升模拟真实度。",
+      "cover_zh": "单张照片秒变可交互3D世界？这个框架让模拟器更真实",
+      "abstract_zh": "具身AI的进步需要高质量、忠实反映真实世界的模拟资产。然而，由于当前的图像到URDF方法缺乏物理基础和场景级交互性，将原始视觉观察转换为可模拟场景仍然具有挑战性。我们提出NeoWorld-Pro，一个将单目场景重建重新表述为交互式3D环境的程序化编程的框架。利用多模态大语言模型（MLLMs）的零样本推理和代码合成能力，NeoWorld-Pro将单个RGB图像转换为指定对象几何、关节和物理属性的可执行程序。然后，物理在环机制通过在物理引擎中验证程序执行来迭代优化生成的程序，强制实现物理上合理的关节、有效的对象组合和交互，以及准确的空间关系。实验表明，NeoWorld-Pro优于开环和先前的单目重建方法，同时支持复杂的下游任务，如稳定堆叠和精细操作。",
       "authors": [
         "Yumeng He",
         "Yichen Song",
@@ -1126,10 +1169,10 @@
       "id": "arxiv-2608-24242",
       "source": "arxiv",
       "title": "A Durable Vision-Based Tactile Fingertip for Robotic Manipulation",
-      "title_zh": "A Durable Vision-Based Tactile Fingertip for Robotic Manipulation",
-      "tldr_zh": "Currently available commercial vision-based tactile sensors",
-      "cover_zh": "Currently available commercial vision-based tactile sensors",
-      "abstract_zh": "Currently available commercial vision-based tactile sensors provide rich contact information but remain vulnerable to abrasion and repeated concentrated loading, limiting their use in demanding robotic applications. This work presents a durable tactile fingertip comprising a soft silicone gel with a nonpigmented, textured, thin thermoplastic-polyurethane protective film and a replaceable sensing cartridge. Durability was evaluated using two accelerated laboratory procedures: a rotating-drum sanding test and a repetitive probe test applying 39.2 N (4.0 kgf) at 45 cycles per minute. Under the defined sanding conditions, the developed sensor reached the protective-film rupture endpoint after approximately 2-3 hours. During repetitive probe testing, all nine developed sensors remained functionally usable when testing was discontinued: seven after 5 days, one after 6 days, and one after 8 days. Commercial GelSight Mini and DIGIT specimens exhibited initial surface-film rupture after approximately 24-30 seconds of sanding and 25-35 minutes of repetitive loading. Damage to the developed sensor progressed gradually and produced little interference with tactile imaging at the test endpoints. These observations establish durability improvements of more than two orders of magnitude under the defined accelerated conditions. Combining increased durability, gradual degradation, and rapid cartridge replacement offers a practical approach to maintainable vision-based tactile sensing for demanding robotic applications.",
+      "title_zh": "一种用于机器人操作的耐用视觉触觉指尖",
+      "tldr_zh": "新型视觉触觉指尖耐久性提升两个数量级，且损伤渐进可更换。",
+      "cover_zh": "触觉传感器总坏？这款指尖耐用百倍，还能换芯！",
+      "abstract_zh": "目前可用的商用视觉触觉传感器提供丰富的接触信息，但容易受到磨损和重复集中载荷的影响，限制了它们在要求苛刻的机器人应用中的使用。本研究提出了一种耐用的触觉指尖，由软硅胶、带有无色素、有纹理的薄热塑性聚氨酯保护膜和可更换的传感盒组成。通过两种加速实验室程序评估了耐久性：旋转滚筒砂磨测试和重复探针测试（以每分钟45次循环施加39.2 N（4.0 kgf）的力）。在规定的砂磨条件下，所开发的传感器在约2-3小时后达到保护膜破裂终点。在重复探针测试中，所有九个开发的传感器在测试停止时仍保持功能可用：七个在5天后，一个在6天后，一个在8天后。商业GelSight Mini和DIGIT样本在约24-30秒的砂磨和25-35分钟的重复加载后出现初始表面膜破裂。所开发传感器的损伤逐渐发展，在测试终点对触觉成像的干扰很小。这些观察结果表明，在规定的加速条件下，耐久性提高了两个数量级以上。结合提高的耐久性、逐渐退化和快速更换盒，为要求苛刻的机器人应用提供了一种实用的可维护视觉触觉传感方法。",
       "authors": [
         "F. Richard Cottrell",
         "Megha H. Tippur",
@@ -1177,10 +1220,10 @@
       "id": "arxiv-2608-24741",
       "source": "arxiv",
       "title": "One-Shot Learning from Demonstration of Contact-Rich Robotic Manipulation by Identifying Physical Interactions",
-      "title_zh": "One-Shot Learning from Demonstration of Contact-Rich Robotic Manipulation by Identifying Physical Interactions",
-      "tldr_zh": "Learning from Demonstration (LfD) allows robots to learn man",
-      "cover_zh": "Learning from Demonstration (LfD) allows robots to learn man",
-      "abstract_zh": "Learning from Demonstration (LfD) allows robots to learn manipulation tasks directly from humans, thereby supporting the versatile application of robots. Most LfD methods do not explicitly model the physical interactions between a robot and its environment, such as the making and breaking of contact, while these are crucial during manipulation tasks. Because the same basic physical interactions recur often, they can be a basis for robust, generalizable, and adaptive task reproduction. We propose an LfD method that explicitly uses what physical interactions take place where and when. Using that information, a hybrid position-force controller tracks demonstrated trajectories until contact-based transition conditions from the demonstrations are met. We evaluate our method in real robot experiments consisting of opening doors and locks, bolt picking and screwing, dislodging, and surface contouring. We show that explicitly modeling physical interactions benefits LfD in four ways. First, by allowing reproduction of complex, sequential, and contact-rich manipulation tasks using only a single demonstration and no prior knowledge of the task. Second, by facilitating robustness to unknown geometric variations in the environment. Third, by facilitating generalization when geometric variations are known. Fourth, by facilitating online adaptation using geometric information explored during task reproduction. We discuss how robustness, generalization, and adaptivity can be explicitly implemented, which is generally lacking in the LfD literature. Thereby, our work aims to close a gap in interpretable few-shot LfD of robotic manipulation.",
+      "title_zh": "通过识别物理交互实现接触丰富机器人操作的单次示教学习",
+      "tldr_zh": "提出显式建模物理交互的LfD方法，单次示教即可复现接触丰富任务。",
+      "cover_zh": "单次示教就能学会复杂操作？关键在物理交互建模！",
+      "abstract_zh": "示教学习（LfD）允许机器人直接从人类学习操作任务，从而支持机器人的多功能应用。大多数LfD方法没有显式建模机器人与其环境之间的物理交互，例如接触的建立和断开，而这些在操作任务中至关重要。由于相同的基本物理交互经常重复出现，它们可以成为鲁棒、可泛化和自适应任务复现的基础。我们提出了一种LfD方法，显式地利用物理交互发生的位置和时间。利用这些信息，混合位置-力控制器跟踪示教轨迹，直到满足来自示教的基于接触的转换条件。我们在真实机器人实验中评估了我们的方法，包括开门和开锁、螺栓拾取和拧紧、拆卸以及表面轮廓跟踪。我们表明，显式建模物理交互在四个方面有益于LfD。第一，允许仅使用单个示教且无需任务先验知识即可复现复杂、顺序和接触丰富的操作任务。第二，有助于对环境中未知几何变化的鲁棒性。第三，在几何变化已知时促进泛化。第四，利用任务复现过程中探索的几何信息促进在线自适应。我们讨论了如何显式实现鲁棒性、泛化和自适应性，而这在LfD文献中通常缺乏。因此，我们的工作旨在弥合可解释的少样本机器人操作LfD中的空白。",
       "authors": [
         "A. H. G. Overbeek",
         "H. van der Kooij",
@@ -1214,11 +1257,15 @@
       "score": 19,
       "judge": {},
       "institutions": [],
-      "method_tags": [],
+      "method_tags": [
+        "Learning from Demonstration",
+        "hybrid position-force control",
+        "contact modeling"
+      ],
       "platform": [],
       "sim_stack": [],
       "method_family": "",
-      "real_robot": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -1333,10 +1380,10 @@
       "id": "arxiv-2608-24043",
       "source": "arxiv",
       "title": "ConsensusTAS: Self-Supervised Temporal Action Segmentation for Long-Horizon Construction Videos",
-      "title_zh": "ConsensusTAS: Self-Supervised Temporal Action Segmentation for Long-Horizon Construction Videos",
-      "tldr_zh": "Recognizing sequential construction activities is important",
-      "cover_zh": "Recognizing sequential construction activities is important",
-      "abstract_zh": "Recognizing sequential construction activities is important for collaborative human-robot work; for example, robots are able to understand workers' current and upcoming actions and provide timely tool delivery or physical support. However, despite extensive research on construction worker activity recognition, existing studies have been limited to classifying activity categories, such as climbing, lifting, and walking, instead of recognizing fine-grained activity transitions from long-horizon sequences. Addressing this problem is challenging because annotating action temporal boundaries in long construction videos is time-consuming. In this study, we propose ConsensusTAS, a label-free, self-supervised learning approach to segment continuous video streams into distinct activity phases by exploiting the internal consensus of candidate segmentations. We evaluated our algorithm on three public datasets, where it outperformed state-of-the-art methods, achieving an F1@10 of 73.08 on GTEA, an F1@10 of 64.33 on Breakfast, and an F1@50 of 33.50 on static-camera videos from Assembly101. We also tested it on real-world construction videos, where post-hoc evaluation showed that the model successfully recognized and segmented actions within the composite activity of bricklaying, such as spreading mortar on a brick, placing the brick, pressing, and aligning. Compared with other temporal action segmentation models that require computationally intensive large vision-language models, our method can run on a CPU, which provides practical value for video surveillance and human-robot collaboration on mobile robotic platforms.",
+      "title_zh": "ConsensusTAS：面向长时程施工视频的自监督时间动作分割",
+      "tldr_zh": "提出无标签自监督方法，在长施工视频中分割动作，性能优于现有方法。",
+      "cover_zh": "无需标注也能精准分割施工动作？这个自监督方法让机器人秒懂工人意图",
+      "abstract_zh": "识别连续的施工活动对于人机协作至关重要；例如，机器人能够理解工人当前和即将进行的动作，并及时提供工具递送或物理支持。然而，尽管对施工工人活动识别已有广泛研究，现有研究仅限于对活动类别进行分类，如攀爬、举升和行走，而非从长时程序列中识别细粒度的活动转换。解决这一问题具有挑战性，因为在长施工视频中标注动作时间边界非常耗时。在本研究中，我们提出了ConsensusTAS，一种无标签的自监督学习方法，通过利用候选分割的内部一致性，将连续视频流分割为不同的活动阶段。我们在三个公共数据集上评估了我们的算法，其性能优于最先进的方法，在GTEA上F1@10达到73.08，在Breakfast上F1@10达到64.33，在Assembly101的静态相机视频上F1@50达到33.50。我们还在真实施工视频上进行了测试，事后评估表明，模型成功识别并分割了砌砖复合活动中的动作，如将砂浆涂抹在砖上、放置砖块、按压和对齐。与其他需要计算密集型大型视觉语言模型的时间动作分割模型相比，我们的方法可以在CPU上运行，这为视频监控和移动机器人平台上的人机协作提供了实用价值。",
       "authors": [
         "Xiaoshan Zhou",
         "Yafei Sun"
@@ -1382,10 +1429,10 @@
       "id": "arxiv-2608-24429",
       "source": "arxiv",
       "title": "Joint Distribution Alignment for Universal Domain Adaptation",
-      "title_zh": "Joint Distribution Alignment for Universal Domain Adaptation",
-      "tldr_zh": "Unsupervised domain adaptation (UDA) has been widely concern",
-      "cover_zh": "Unsupervised domain adaptation (UDA) has been widely concern",
-      "abstract_zh": "Unsupervised domain adaptation (UDA) has been widely concerned in the fields of machine learning, pattern recognition, and computer vision. Traditional UDA learning usually assumes that the label spaces of the source and target domains are exactly the same and only needs to solve the problem of sample distribution drift existing between two domains. However, in real world applications, the label spaces between two domains may be different. In this case, there are both sample distribution drift and class spatial difference between domains, namely Universal Domain Adaptation (UniDA) learning scenario. At present, existing works rarely offer theoretical analysis for universal domain adaptation. In this paper, we provide an upper bound of the generalization error for universal domain adaptation. According to the proposed generalization error bound, we propose a novel UniDA algorithm called Joint Distribution Alignment for Universal Domain Adaptation (JAUA), which aligns the joint distributions by minimizing the distribution discrepancy calculated by Chi-Square divergence. Furthermore, we propose a progressive pseudo-labeling method to assign the pseudo labels to unlabeled target samples. The experiment results on six public image datasets demonstrate the superiority of JAUA in handling the UniDA problem.",
+      "title_zh": "联合分布对齐用于通用域适应",
+      "tldr_zh": "提出JAUA算法，通过理论界和联合分布对齐解决通用域适应问题。",
+      "cover_zh": "域适应新突破｜理论指导的联合对齐，让模型跨域更智能",
+      "abstract_zh": "无监督域适应（UDA）在机器学习、模式识别和计算机视觉领域受到广泛关注。传统的UDA学习通常假设源域和目标域的标签空间完全相同，只需解决两个域之间存在的样本分布漂移问题。然而，在现实世界应用中，两个域之间的标签空间可能不同。在这种情况下，域之间既存在样本分布漂移，也存在类别空间差异，即通用域适应（UniDA）学习场景。目前，现有工作很少对通用域适应提供理论分析。在本文中，我们为通用域适应提供了泛化误差的上界。根据所提出的泛化误差界，我们提出了一种新的UniDA算法，称为联合分布对齐用于通用域适应（JAUA），该算法通过最小化由卡方散度计算的分布差异来对齐联合分布。此外，我们提出了一种渐进式伪标签方法，为未标记的目标样本分配伪标签。在六个公共图像数据集上的实验结果表明，JAUA在处理UniDA问题方面具有优越性。",
       "authors": [
         "Shizhe Li",
         "Hongshan Pu",
@@ -1435,10 +1482,10 @@
       "id": "arxiv-2608-24525",
       "source": "arxiv",
       "title": "RoG-DAgger: Rollout-Guided Post-Training for End-to-End Driving",
-      "title_zh": "RoG-DAgger: Rollout-Guided Post-Training for End-to-End Driving",
-      "tldr_zh": "Recent end-to-end driving systems demonstrate strong perform",
-      "cover_zh": "Recent end-to-end driving systems demonstrate strong perform",
-      "abstract_zh": "Recent end-to-end driving systems demonstrate strong performance on closed-loop benchmarks, yet are still predominantly trained on fixed expert-collected data using open-loop imitation learning. This training-inference mismatch leaves the policy vulnerable in policy-induced states, where accumulated errors can lead to safety-critical failures. A promising post-training approach to overcome this issue is Dataset Aggregation (DAgger), which gathers expert demonstrations in policy-induced states and subsequently fine-tunes the policy on the resulting aggregated dataset. Existing driving DAgger pipelines, however, face three challenges: i) the expert is restricted to a limited trajectory-and-speed solution space, ii) takeover may occur too early or too late relative to impending failures, and iii) privileged expert decisions may rely on information unavailable to the student. To address this, we introduce RoG-DAgger, a post-training framework that uses short-horizon kinematic rollouts to construct high-quality expert demonstrations in safety-critical states. Specifically, RoG-DAgger expands the expert's trajectory-and-speed solution space and evaluates candidate plans through rollout to construct preventive supervision. Moreover, it uses rollout solvability to time the takeover near the estimated point of no return. Lastly, it aligns the expert's field of view with that of the student to provide student-compatible supervision. Across in-distribution (including long-horizon) and out-of-distribution evaluations, RoG-DAgger improves the end-to-end model SimLingo by 5.3 driving-score points and 6.2 percentage points in success rate on Bench2Drive, doubles its driving score from 22 to 44 on Longest6 v2, and improves out-of-distribution success rate from 55\\% to 66\\% on Fail2Drive.",
+      "title_zh": "RoG-DAgger：基于轨迹引导的端到端驾驶后训练方法",
+      "tldr_zh": "RoG-DAgger通过短时域展开生成专家演示，提升端到端驾驶的安全性和性能。",
+      "cover_zh": "端到端驾驶新突破｜用短时域展开让模型在危险时刻也能安全接管",
+      "abstract_zh": "最近的端到端驾驶系统在闭环基准测试中表现出色，但仍主要使用开环模仿学习在固定的专家收集数据上进行训练。这种训练与推理的不匹配使得策略在策略诱导状态下变得脆弱，累积误差可能导致安全关键性失败。克服此问题的一种有前景的后训练方法是数据集聚合（DAgger），它在策略诱导状态下收集专家演示，并在聚合数据集上对策略进行微调。然而，现有的驾驶DAgger流程面临三个挑战：i) 专家被限制在有限的轨迹和速度解空间中，ii) 接管可能相对于即将发生的失败过早或过晚，iii) 特权专家的决策可能依赖于学生无法获得的信息。为解决这些问题，我们引入了RoG-DAgger，一种后训练框架，利用短时域运动学展开在安全关键状态下构建高质量的专家演示。具体来说，RoG-DAgger扩展了专家的轨迹和速度解空间，并通过展开评估候选计划以构建预防性监督。此外，它利用展开的可解性在估计的不可返回点附近进行接管。最后，它将专家的视野与学生的视野对齐，以提供与学生兼容的监督。在分布内（包括长时域）和分布外评估中，RoG-DAgger在Bench2Drive上将端到端模型SimLingo的驾驶分数提高了5.3分，成功率提高了6.2个百分点，在Longest6 v2上将其驾驶分数从22翻倍至44，并在Fail2Drive上将分布外成功率从55%提高到66%。",
       "authors": [
         "Liangyu Zhong",
         "Joachim Sicking",
@@ -1487,10 +1534,10 @@
       "id": "arxiv-2608-24535",
       "source": "arxiv",
       "title": "VizAnchor: Decoding Manipulation Intent from Tampering Visualizations via Dual-Anchor Reasoning",
-      "title_zh": "VizAnchor: Decoding Manipulation Intent from Tampering Visualizations via Dual-Anchor Reasoning",
-      "tldr_zh": "Data visualizations are widely used for communicating inform",
-      "cover_zh": "Data visualizations are widely used for communicating inform",
-      "abstract_zh": "Data visualizations are widely used for communicating information, but they are also vulnerable to intentional manipulations that induce misleading interpretations. Existing methods focus on locating tampered regions or recovering hidden information, without explaining how the visualization has been manipulated or why the resulting changes may mislead viewers. We propose textbf{VizAnchor}, a framework for visualization manipulation understanding through dual-anchor evidence construction and VLM-based reasoning. In the first stage, VizAnchor constructs a semantic anchor to recover authentic chart information and a spatial anchor to localize tampered regions. In the second stage, three specialized agents decode the manipulation. The misleader grounding agent analyzes a four-panel visual prompt to predict the misleader information. The chart narrative reconstruction agent takes the original and tampered charts as inputs and reconstructs their respective visual narratives. Finally, the intent inferring agent integrates the visual evidence and misleader information to infer the misleading intent. We further construct a dataset for tampering localization and a dataset for misleading intent inferring. Evaluation shows that VizAnchor accurately localizes manipulations and produces faithful explanations of their manipulation, misleaders, and misleading intents.",
+      "title_zh": "VizAnchor：通过双锚推理解码篡改可视化中的操纵意图",
+      "tldr_zh": "VizAnchor通过双锚推理和VLM智能体，解码可视化操纵的意图。",
+      "cover_zh": "可视化也会撒谎？VizAnchor用双锚推理看穿操纵意图",
+      "abstract_zh": "数据可视化被广泛用于信息交流，但也容易受到故意操纵，从而引发误导性解读。现有方法侧重于定位被篡改的区域或恢复隐藏信息，而没有解释可视化是如何被操纵的，或者为什么由此产生的变化可能误导观众。我们提出了VizAnchor，一个通过双锚证据构建和基于VLM的推理来实现可视化操纵理解的框架。在第一阶段，VizAnchor构建一个语义锚来恢复真实的图表信息，以及一个空间锚来定位被篡改的区域。在第二阶段，三个专门的智能体解码操纵。误导者定位智能体分析一个四面板视觉提示来预测误导信息。图表叙事重建智能体将原始和篡改的图表作为输入，并重建它们各自的视觉叙事。最后，意图推断智能体整合视觉证据和误导信息来推断误导意图。我们进一步构建了一个用于篡改定位的数据集和一个用于误导意图推断的数据集。评估表明，VizAnchor能准确定位操纵，并对其操纵、误导者和误导意图产生忠实的解释。",
       "authors": [
         "Xiaotian Zhang",
         "Huayuan Ye",
@@ -1541,10 +1588,10 @@
       "id": "arxiv-2608-24665",
       "source": "arxiv",
       "title": "Data Leakage Inflates Generalizability of Power Outage Prediction Models",
-      "title_zh": "Data Leakage Inflates Generalizability of Power Outage Prediction Models",
-      "tldr_zh": "Power outage prediction models are increasingly used in asse",
-      "cover_zh": "Power outage prediction models are increasingly used in asse",
-      "abstract_zh": "Power outage prediction models are increasingly used in assessments of climate-driven infrastructure risk, yet current evaluation practices obscure whether these models generalize to the novel conditions such applications require. We identify three common methodological choices in power outage prediction models that influence their ability to generalize across spatial, temporal, and event-based settings. We compare the predictive performance impacts of different methodological decisions using publicly available data for the U.S. East Coast from 2018 to 2023 and feature sets derived from weather reanalysis and land-cover data, and embeddings from a GeoAI foundation model (Prithvi WxC). Specifically, we assess model performance under multiple test selection strategies, including unfiltered random splits, leave-one-state-out, and leave-one-event-out designs, which increasingly approximate real-world deployment conditions. While random train-test splits yield strong performance, we show that these results are inflated by spatial and temporal autocorrelation. Under spatial and temporal holdout experiments, predictive accuracy degrades substantially, with models often failing to outperform a simple null baseline. Incorporating GeoAI foundation model embeddings yields limited and inconsistent improvements, primarily for spatial generalization, and does not resolve poor event-level transferability. These findings suggest that, given current data availability and evaluation practices, publicly trained outage prediction models offer limited and uncertain operational value. Progress will likely require improved data coverage, more realistic evaluation protocols, and a shift in focus from marginal modeling advances toward addressing structural data constraints.",
+      "title_zh": "数据泄漏夸大停电预测模型的泛化能力",
+      "tldr_zh": "随机分割高估停电预测模型性能，空间时间留出下模型失效。",
+      "cover_zh": "你以为模型很准？换种测试方式，它连基线都打不过！",
+      "abstract_zh": "停电预测模型越来越多地用于评估气候驱动的基础设施风险，然而当前的评估实践掩盖了这些模型是否能泛化到此类应用所需的新条件。我们识别了停电预测模型中三种常见的方法选择，它们影响模型在空间、时间和事件层面上的泛化能力。我们使用2018年至2023年美国东海岸的公开数据，以及来自天气再分析和土地覆盖数据的特征集，和来自GeoAI基础模型（Prithvi WxC）的嵌入，比较了不同方法决策对预测性能的影响。具体来说，我们在多种测试选择策略下评估模型性能，包括未过滤的随机分割、留一州和留一事件设计，这些设计越来越接近实际部署条件。虽然随机训练-测试分割产生了强劲的性能，但我们表明这些结果被空间和时间自相关所夸大。在空间和时间留出实验中，预测精度大幅下降，模型往往无法超越简单的零基线。纳入GeoAI基础模型嵌入仅带来有限且不一致的改进，主要针对空间泛化，并不能解决事件级可迁移性差的问题。这些发现表明，鉴于当前的数据可用性和评估实践，公开训练的停电预测模型提供的操作价值有限且不确定。进展可能需要改进数据覆盖、更现实的评估协议，并将重点从边际建模改进转向解决结构性数据约束。",
       "authors": [
         "Yamil Essus",
         "Ranga Raju Vatsavai",

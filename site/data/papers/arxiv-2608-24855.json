@@ -2,11 +2,11 @@
   "id": "arxiv-2608-24855",
   "source": "arxiv",
   "title": "LeFlow: Generative Latent Flow Planning for World Models",
-  "title_zh": "LeFlow: Generative Latent Flow Planning for World Models",
+  "title_zh": "LeFlow：用于世界模型的生成式潜在流规划",
   "abstract": "Latent world models are inherently strong encoders that transform image pixel to latent embedding, yet existing world models still rely on online trajectory optimization for action planning: for every state-goal pair, an iterative optimizer is run from scratch to search for optimal action sequences, treating the world model as a black-box simulator. This approach pays the full iterative optimization cost anew at every replanning step and reuses no planning experience across queries. In this work, we ask whether planning itself can be amortized once a latent world model has been learned. We present LeFlow, which learns a reusable latent trajectory prior operating directly in the latent dynamics space from the world model. LeFlow recasts planning as conditional latent trajectory generation: a rectified-flow model imagines a future latent path between the current and goal embeddings, an inverse dynamics decoder turns latent transitions into action chunks, and the frozen world model verifies each candidate by autoregressive rollout. Across four major goal-conditioned pixel-control benchmarks, LeFlow replaces iterative action-space optimization with amortized latent planning and fixed-budget rollout selection, achieving consistent success-rate gains with an order-of-magnitude reduction in planning time. Our results argue that latent world models should support not only prediction but reusable planning priors. Our code is available at https://github.com/hsiangwei0903/LeFlow.",
-  "abstract_zh": "Latent world models are inherently strong encoders that transform image pixel to latent embedding, yet existing world models still rely on online trajectory optimization for action planning: for every state-goal pair, an iterative optimizer is run from scratch to search for optimal action sequences, treating the world model as a black-box simulator. This approach pays the full iterative optimization cost anew at every replanning step and reuses no planning experience across queries. In this work, we ask whether planning itself can be amortized once a latent world model has been learned. We present LeFlow, which learns a reusable latent trajectory prior operating directly in the latent dynamics space from the world model. LeFlow recasts planning as conditional latent trajectory generation: a rectified-flow model imagines a future latent path between the current and goal embeddings, an inverse dynamics decoder turns latent transitions into action chunks, and the frozen world model verifies each candidate by autoregressive rollout. Across four major goal-conditioned pixel-control benchmarks, LeFlow replaces iterative action-space optimization with amortized latent planning and fixed-budget rollout selection, achieving consistent success-rate gains with an order-of-magnitude reduction in planning time. Our results argue that latent world models should support not only prediction but reusable planning priors. Our code is available at https://github.com/hsiangwei0903/LeFlow.",
-  "tldr_zh": "Latent world models are inherently strong encoders that tran",
-  "cover_zh": "Latent world models are inherently strong encoders that tran",
+  "abstract_zh": "潜在世界模型本质上是强大的编码器，能将图像像素转换为潜在嵌入，然而现有的世界模型在动作规划时仍依赖在线轨迹优化：对于每个状态-目标对，迭代优化器从零开始搜索最优动作序列，将世界模型视为黑盒模拟器。这种方法在每次重新规划时都需重新支付完整的迭代优化成本，且不跨查询复用规划经验。在这项工作中，我们探讨一旦潜在世界模型被学习，规划本身是否可以被摊销。我们提出LeFlow，它学习一个可复用的潜在轨迹先验，直接在世界模型的潜在动态空间中操作。LeFlow将规划重新定义为条件潜在轨迹生成：一个整流流模型在当前与目标嵌入之间想象未来潜在路径，逆动力学解码器将潜在转换转化为动作块，冻结的世界模型通过自回归展开验证每个候选。在四个主要的目标条件像素控制基准上，LeFlow用摊销潜在规划和固定预算展开选择替代迭代动作空间优化，实现了持续的成功率提升，并将规划时间减少一个数量级。我们的结果表明，潜在世界模型不仅应支持预测，还应支持可复用的规划先验。我们的代码可在https://github.com/hsiangwei0903/LeFlow获取。",
+  "tldr_zh": "LeFlow将规划转化为潜在轨迹生成，实现摊销规划，成功率提升且规划时间大幅减少。",
+  "cover_zh": "告别反复优化｜LeFlow让世界模型规划一步到位，速度提升一个量级",
   "authors": [
     {
       "name": "Hsiang-Wei Huang",
@@ -64,7 +64,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "github_repo",
@@ -80,8 +80,14 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "University of Washington"
+  ],
+  "method_tags": [
+    "World Model",
+    "Latent Planning",
+    "Rectified Flow"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
@@ -89,5 +95,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/EmbodiedAI\nTitle: \"LeFlow: Generative Latent Flow Planning for World Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.24855v1\n---\n>[!abstract] 一句话总结：LeFlow将规划重新定义为条件潜在轨迹生成：使用rectified-flow模型在潜在动力学空间中生成从当前嵌入到目标嵌入的未来路径，再由逆动力学解码器将潜在转换映射为动作块，最后用冻结的世界模型通过自回归rollout进行固定预算的候选验证。\n\n\n# 一、动机\n\n> 现有潜在世界模型在动作规划时仍依赖在线轨迹优化，每次从零迭代搜索最优动作序列，计算成本高且无法跨查询复用规划经验。\n\n\n# 二、方法\n\n> LeFlow将规划重新定义为条件潜在轨迹生成：使用rectified-flow模型在潜在动力学空间中生成从当前嵌入到目标嵌入的未来路径，再由逆动力学解码器将潜在转换映射为动作块，最后用冻结的世界模型通过自回归rollout进行固定预算的候选验证。\n\n\n# 三、核心实验结果\n\n> 在四个目标条件像素控制基准上，LeFlow相比迭代动作空间优化取得一致的成功率提升，并将规划时间减少一个数量级（约10倍）。\n\n\n# 四、对我的启发\n\n> 潜在世界模型不仅应支持预测，还能学习可复用的规划先验；但LeFlow依赖冻结世界模型的rollout验证，可能受限于世界模型精度和固定预算选择机制。与课题相关。\n"
 }

@@ -2,11 +2,11 @@
   "id": "arxiv-2608-24741",
   "source": "arxiv",
   "title": "One-Shot Learning from Demonstration of Contact-Rich Robotic Manipulation by Identifying Physical Interactions",
-  "title_zh": "One-Shot Learning from Demonstration of Contact-Rich Robotic Manipulation by Identifying Physical Interactions",
+  "title_zh": "通过识别物理交互实现接触丰富机器人操作的单次示教学习",
   "abstract": "Learning from Demonstration (LfD) allows robots to learn manipulation tasks directly from humans, thereby supporting the versatile application of robots. Most LfD methods do not explicitly model the physical interactions between a robot and its environment, such as the making and breaking of contact, while these are crucial during manipulation tasks. Because the same basic physical interactions recur often, they can be a basis for robust, generalizable, and adaptive task reproduction. We propose an LfD method that explicitly uses what physical interactions take place where and when. Using that information, a hybrid position-force controller tracks demonstrated trajectories until contact-based transition conditions from the demonstrations are met. We evaluate our method in real robot experiments consisting of opening doors and locks, bolt picking and screwing, dislodging, and surface contouring. We show that explicitly modeling physical interactions benefits LfD in four ways. First, by allowing reproduction of complex, sequential, and contact-rich manipulation tasks using only a single demonstration and no prior knowledge of the task. Second, by facilitating robustness to unknown geometric variations in the environment. Third, by facilitating generalization when geometric variations are known. Fourth, by facilitating online adaptation using geometric information explored during task reproduction. We discuss how robustness, generalization, and adaptivity can be explicitly implemented, which is generally lacking in the LfD literature. Thereby, our work aims to close a gap in interpretable few-shot LfD of robotic manipulation.",
-  "abstract_zh": "Learning from Demonstration (LfD) allows robots to learn manipulation tasks directly from humans, thereby supporting the versatile application of robots. Most LfD methods do not explicitly model the physical interactions between a robot and its environment, such as the making and breaking of contact, while these are crucial during manipulation tasks. Because the same basic physical interactions recur often, they can be a basis for robust, generalizable, and adaptive task reproduction. We propose an LfD method that explicitly uses what physical interactions take place where and when. Using that information, a hybrid position-force controller tracks demonstrated trajectories until contact-based transition conditions from the demonstrations are met. We evaluate our method in real robot experiments consisting of opening doors and locks, bolt picking and screwing, dislodging, and surface contouring. We show that explicitly modeling physical interactions benefits LfD in four ways. First, by allowing reproduction of complex, sequential, and contact-rich manipulation tasks using only a single demonstration and no prior knowledge of the task. Second, by facilitating robustness to unknown geometric variations in the environment. Third, by facilitating generalization when geometric variations are known. Fourth, by facilitating online adaptation using geometric information explored during task reproduction. We discuss how robustness, generalization, and adaptivity can be explicitly implemented, which is generally lacking in the LfD literature. Thereby, our work aims to close a gap in interpretable few-shot LfD of robotic manipulation.",
-  "tldr_zh": "Learning from Demonstration (LfD) allows robots to learn man",
-  "cover_zh": "Learning from Demonstration (LfD) allows robots to learn man",
+  "abstract_zh": "示教学习（LfD）允许机器人直接从人类学习操作任务，从而支持机器人的多功能应用。大多数LfD方法没有显式建模机器人与其环境之间的物理交互，例如接触的建立和断开，而这些在操作任务中至关重要。由于相同的基本物理交互经常重复出现，它们可以成为鲁棒、可泛化和自适应任务复现的基础。我们提出了一种LfD方法，显式地利用物理交互发生的位置和时间。利用这些信息，混合位置-力控制器跟踪示教轨迹，直到满足来自示教的基于接触的转换条件。我们在真实机器人实验中评估了我们的方法，包括开门和开锁、螺栓拾取和拧紧、拆卸以及表面轮廓跟踪。我们表明，显式建模物理交互在四个方面有益于LfD。第一，允许仅使用单个示教且无需任务先验知识即可复现复杂、顺序和接触丰富的操作任务。第二，有助于对环境中未知几何变化的鲁棒性。第三，在几何变化已知时促进泛化。第四，利用任务复现过程中探索的几何信息促进在线自适应。我们讨论了如何显式实现鲁棒性、泛化和自适应性，而这在LfD文献中通常缺乏。因此，我们的工作旨在弥合可解释的少样本机器人操作LfD中的空白。",
+  "tldr_zh": "提出显式建模物理交互的LfD方法，单次示教即可复现接触丰富任务。",
+  "cover_zh": "单次示教就能学会复杂操作？关键在物理交互建模！",
   "authors": [
     {
       "name": "A. H. G. Overbeek",
@@ -60,7 +60,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -71,13 +71,17 @@
   ],
   "judge": {},
   "institutions": [],
-  "method_tags": [],
+  "method_tags": [
+    "Learning from Demonstration",
+    "hybrid position-force control",
+    "contact modeling"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"One-Shot Learning from Demonstration of Contact-Rich Robotic Manipulation by Identifying Physical Interactions\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.24741v1\n---\n>[!abstract] 一句话总结：提出一种基于物理交互识别的单次演示LfD方法，显式利用交互发生的位置和时机，通过混合位置-力控制器跟踪演示轨迹，直到满足从演示中提取的接触转换条件。\n\n\n# 一、动机\n\n> 大多数学习从演示（LfD）方法未显式建模机器人与环境之间的物理交互（如接触的建立和断开），而这些交互在操作任务中至关重要；同一基本物理交互会反复出现，可作为鲁棒、可泛化和自适应任务复现的基础。\n\n\n# 二、方法\n\n> 提出一种基于物理交互识别的单次演示LfD方法，显式利用交互发生的位置和时机，通过混合位置-力控制器跟踪演示轨迹，直到满足从演示中提取的接触转换条件。\n\n\n# 三、核心实验结果\n\n> 在真实机器人实验中验证了开门、开锁、螺栓拾取与拧紧、拆卸和表面轮廓等任务，仅用单次演示且无需任务先验知识即可复现复杂顺序接触丰富任务；在未知几何变化下保持鲁棒，已知变化下可泛化，并支持在线自适应。\n\n\n# 四、对我的启发\n\n> 强调显式物理交互建模弥补了可解释少样本LfD的空白，为接触丰富操作任务提供系统性实现方式；其局限可能在于对复杂动态交互的建模能力，但对机器人操作学习有重要启发。\n"
 }
