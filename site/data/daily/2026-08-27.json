@@ -172,7 +172,8 @@
       "published": "2026-08-27",
       "channels": [
         "manipulation",
-        "sim2real"
+        "sim2real",
+        "loco-manip-wbc"
       ],
       "badges": [
         {
@@ -626,6 +627,163 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2608-26788",
+      "source": "arxiv",
+      "title": "Decoupling Planning and Control for Instructable Agents",
+      "title_zh": "解耦规划与控制以实现可指令智能体",
+      "tldr_zh": "解耦VLM规划与世界模型控制，提升指令智能体性能。",
+      "cover_zh": "VLM只会规划不会执行？这个新系统让指令智能体又快又准！",
+      "abstract_zh": "近期研究表明，预训练的、经过指令微调的视觉语言模型（VLM）在将指令和观察映射为高层规划方面表现良好，但在陌生环境中将这些规划实现为可靠的低延迟动作序列方面存在困难。同时，世界模型控制器擅长快速的观察到动作的控制，但缺乏开放式的任务指导。在这项工作中，我们将这些优势结合到一个单一系统中，称为Instruct-to-Act，其中我们训练一个世界模型控制器，在由VLM规划器生成的稀疏、高延迟、高层文本指令条件下，以高频自主行动。为了训练控制器使其可接受语言指令，我们用合成指令重新标记控制器策略回放的片段，并联合优化行为克隆目标以及现有的奖励最大化和世界建模目标。我们在七个具身环境中评估了我们提出的方法，包括三个多智能体环境，其中VLM规划器通过语言进行协调，而训练好的控制器作为其执行器。在匹配的观察和动作空间下，我们的解耦方法始终优于仅控制器和直接VLM动作生成变体，保持了快速控制，并允许我们无需微调即可更换不同的预训练VLM规划器，同时在七个任务中的六个上，与强大的视觉-语言-动作和多智能体RL基线保持竞争力。",
+      "authors": [
+        "Zineng Tang",
+        "Kelsey R. Allen",
+        "Sjoerd van Steenkiste"
+      ],
+      "authors_all": [
+        "Zineng Tang",
+        "Kelsey R. Allen",
+        "Sjoerd van Steenkiste",
+        "Ishita Dasgupta",
+        "Alane Suhr"
+      ],
+      "primary_category": "cs.AI",
+      "published": "2026-08-27",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Google DeepMind"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Berkeley (BAIR)"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-26788.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-26788-p2.jpg"
+      ],
+      "arxiv_id": "2608.26788",
+      "abs_url": "http://arxiv.org/abs/2608.26788v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.26788v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 46,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "结合VLM规划与world-model控制器，提出Instruct-to-Act，在多个具身环境验证，对world-model与VLA研究有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "UC Berkeley",
+        "UBC",
+        "Google DeepMind"
+      ],
+      "method_tags": [
+        "world-model controller",
+        "behavior cloning",
+        "VLM planner"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-26947",
+      "source": "arxiv",
+      "title": "4DSynth: Controllable Procedural World Synthesis for Dynamic Embodied Simulation",
+      "title_zh": "4DSynth：面向动态具身仿真的可控程序化世界合成",
+      "tldr_zh": "4DSynth将文本或图像转化为可控4D环境，并生成导航基准，模型表现不佳。",
+      "cover_zh": "还在手动搭场景？这个系统让文本秒变4D世界，还能自动生成任务！",
+      "abstract_zh": "具身智能体需要视觉多样、物理交互且随时间变化的环境。程序化模拟器可以生成大规模交互场景集合，而最近的4D生成器能产生引人注目的视觉动态。然而，将这些特性结合在一个环境中，仍然需要大量的人工努力，且结果往往难以编辑或控制，无法大规模复用。我们提出了4DSynth，一个可控的程序化系统，能将自然语言描述、蓝图掩码或单张照片转化为可编辑的4D环境，具有显式几何、动画角色、无碰撞轨迹和物理就绪的仿真状态。多条场景路线共享一个基于几何的表示，因此同一管线可处理动画、相机规划、渲染和任务生成。为验证整个管线，我们构建了4DSynth-Nav，一个完全由4DSynth程序化场景生成的交互式导航基准。两个视觉语言模型在三个难度级别上的评估显示，它们大多数任务失败，并在早期子任务后停滞。产生这些环境的程序化可控性也使得每个失败可复现，每个难度轴可独立调节。本文既提出了一个可控的生成管线，也提出了它所支持的可扩展基准，为开发和评估具身智能体提供了实用基础。",
+      "authors": [
+        "Zehao Qi",
+        "Haochen Luo",
+        "Jia-Wang Bian"
+      ],
+      "authors_all": [
+        "Zehao Qi",
+        "Haochen Luo",
+        "Jia-Wang Bian",
+        "Zeyu Ma",
+        "Shuyang Sun"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-27",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Google DeepMind"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Princeton"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ NTU"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-26947.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-26947-p2.jpg"
+      ],
+      "arxiv_id": "2608.26947",
+      "abs_url": "http://arxiv.org/abs/2608.26947v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.26947v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 46,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出可控程序化4D世界合成系统，生成动态可交互仿真环境，并构建导航基准，对具身智能体训练与评估有高价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Nanyang Technological University",
+        "University of Oxford",
+        "Princeton University",
+        "Google DeepMind"
+      ],
+      "method_tags": [
+        "procedural scene generation",
+        "4D world synthesis",
+        "real-to-sim"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2608-27073",
       "source": "arxiv",
       "title": "SpatialCrafter: Single Image World Modeling with Generative 3D Proxies",
@@ -779,161 +937,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2608-26788",
-      "source": "arxiv",
-      "title": "Decoupling Planning and Control for Instructable Agents",
-      "title_zh": "解耦规划与控制以实现可指令智能体",
-      "tldr_zh": "解耦VLM规划与世界模型控制，提升指令智能体性能。",
-      "cover_zh": "VLM只会规划不会执行？这个新系统让指令智能体又快又准！",
-      "abstract_zh": "近期研究表明，预训练的、经过指令微调的视觉语言模型（VLM）在将指令和观察映射为高层规划方面表现良好，但在陌生环境中将这些规划实现为可靠的低延迟动作序列方面存在困难。同时，世界模型控制器擅长快速的观察到动作的控制，但缺乏开放式的任务指导。在这项工作中，我们将这些优势结合到一个单一系统中，称为Instruct-to-Act，其中我们训练一个世界模型控制器，在由VLM规划器生成的稀疏、高延迟、高层文本指令条件下，以高频自主行动。为了训练控制器使其可接受语言指令，我们用合成指令重新标记控制器策略回放的片段，并联合优化行为克隆目标以及现有的奖励最大化和世界建模目标。我们在七个具身环境中评估了我们提出的方法，包括三个多智能体环境，其中VLM规划器通过语言进行协调，而训练好的控制器作为其执行器。在匹配的观察和动作空间下，我们的解耦方法始终优于仅控制器和直接VLM动作生成变体，保持了快速控制，并允许我们无需微调即可更换不同的预训练VLM规划器，同时在七个任务中的六个上，与强大的视觉-语言-动作和多智能体RL基线保持竞争力。",
-      "authors": [
-        "Zineng Tang",
-        "Kelsey R. Allen",
-        "Sjoerd van Steenkiste"
-      ],
-      "authors_all": [
-        "Zineng Tang",
-        "Kelsey R. Allen",
-        "Sjoerd van Steenkiste",
-        "Ishita Dasgupta",
-        "Alane Suhr"
-      ],
-      "primary_category": "cs.AI",
-      "published": "2026-08-27",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ Google DeepMind"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ Berkeley (BAIR)"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2608-26788.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2608-26788-p2.jpg"
-      ],
-      "arxiv_id": "2608.26788",
-      "abs_url": "http://arxiv.org/abs/2608.26788v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.26788v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 41,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "结合VLM规划与world-model控制器，提出Instruct-to-Act，在多个具身环境验证，对world-model与VLA研究有参考价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "UC Berkeley",
-        "UBC",
-        "Google DeepMind"
-      ],
-      "method_tags": [
-        "world-model controller",
-        "behavior cloning",
-        "VLM planner"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2608-26947",
-      "source": "arxiv",
-      "title": "4DSynth: Controllable Procedural World Synthesis for Dynamic Embodied Simulation",
-      "title_zh": "4DSynth：面向动态具身仿真的可控程序化世界合成",
-      "tldr_zh": "4DSynth将文本或图像转化为可控4D环境，并生成导航基准，模型表现不佳。",
-      "cover_zh": "还在手动搭场景？这个系统让文本秒变4D世界，还能自动生成任务！",
-      "abstract_zh": "具身智能体需要视觉多样、物理交互且随时间变化的环境。程序化模拟器可以生成大规模交互场景集合，而最近的4D生成器能产生引人注目的视觉动态。然而，将这些特性结合在一个环境中，仍然需要大量的人工努力，且结果往往难以编辑或控制，无法大规模复用。我们提出了4DSynth，一个可控的程序化系统，能将自然语言描述、蓝图掩码或单张照片转化为可编辑的4D环境，具有显式几何、动画角色、无碰撞轨迹和物理就绪的仿真状态。多条场景路线共享一个基于几何的表示，因此同一管线可处理动画、相机规划、渲染和任务生成。为验证整个管线，我们构建了4DSynth-Nav，一个完全由4DSynth程序化场景生成的交互式导航基准。两个视觉语言模型在三个难度级别上的评估显示，它们大多数任务失败，并在早期子任务后停滞。产生这些环境的程序化可控性也使得每个失败可复现，每个难度轴可独立调节。本文既提出了一个可控的生成管线，也提出了它所支持的可扩展基准，为开发和评估具身智能体提供了实用基础。",
-      "authors": [
-        "Zehao Qi",
-        "Haochen Luo",
-        "Jia-Wang Bian"
-      ],
-      "authors_all": [
-        "Zehao Qi",
-        "Haochen Luo",
-        "Jia-Wang Bian",
-        "Zeyu Ma",
-        "Shuyang Sun"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-08-27",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ Google DeepMind"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ Princeton"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ NTU"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2608-26947.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2608-26947-p2.jpg"
-      ],
-      "arxiv_id": "2608.26947",
-      "abs_url": "http://arxiv.org/abs/2608.26947v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.26947v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 41,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出可控程序化4D世界合成系统，生成动态可交互仿真环境，并构建导航基准，对具身智能体训练与评估有高价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Nanyang Technological University",
-        "University of Oxford",
-        "Princeton University",
-        "Google DeepMind"
-      ],
-      "method_tags": [
-        "procedural scene generation",
-        "4D world synthesis",
-        "real-to-sim"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2608-27371",
       "source": "arxiv",
       "title": "Embodied Scene Rearrangement Planning",
@@ -1001,6 +1004,83 @@
       ],
       "method_family": "",
       "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-27033",
+      "source": "arxiv",
+      "title": "Riemann-1.0: An Embodied World Action Model for Physical AI",
+      "title_zh": "Riemann-1.0：面向物理AI的具身世界动作模型",
+      "tldr_zh": "Riemann-1.0统一世界动作建模，在模拟和真实任务中刷新SOTA。",
+      "cover_zh": "一个模型搞定机器人策略与模拟？Riemann-1.0让真实操作成功率飙升",
+      "abstract_zh": "我们介绍了Riemann-1.0，一个用于具身智能的全因果自回归世界动作模型。Riemann-1.0在统一的自回归序列中联合建模多视角视觉观察、机器人状态和特定具身的动作，将机器人动作和世界演化表示为因果状态转移。与基于联合生成、视频优先预测或解耦建模范式的现有WAM不同，Riemann-1.0在单一模型中统一了在线机器人策略执行和动作条件的世界模拟，使其既能作为可执行的机器人策略，又能作为多具身视觉世界模拟器。为了跨异构数据源扩展具身经验，我们进一步开发了一个渐进式具身预训练框架，在共享的世界动作建模目标下，统一从以自我为中心的人类视频、手持夹爪演示和异构机器人轨迹中学习。基于20万小时以上的交互数据，Riemann-1.0逐步将大规模具身经验转化为可执行的机器人操作能力。Riemann-1.0在模拟基准和真实世界操作任务中均达到了最先进的性能。在RoboTwin2.0上成功率为94.3%，在LIBERO上为99.0%，在长视野组合基准RoboCasa-365上为62.6%，比之前最佳方法高出8.4%。在长视野真实世界操作任务中，Riemann-1.0实现了85.0%的成功率（SR）和94.4%的进度成功率（PSR），在SR上超过最强开源基线15%。这些结果表明，统一的世界动作建模与渐进式具身预训练有效地将大规模具身经验转化为可泛化的机器人操作能力。",
+      "authors": [
+        "Haofeng Sun",
+        "Jiangbo Pei",
+        "Fei Kang"
+      ],
+      "authors_all": [
+        "Haofeng Sun",
+        "Jiangbo Pei",
+        "Fei Kang",
+        "Zexiang Liu",
+        "Yaokun Li",
+        "Boyi Jiang",
+        "Hua Xue",
+        "Cindy Zhou",
+        "Wei Li",
+        "Yichen Wei",
+        "Mengyin An",
+        "Fanliang Zhao",
+        "Biao Jiang",
+        "Zile Wang",
+        "Yang Liu",
+        "Yangguang Li"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-27",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-27033.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-27033-p2.jpg"
+      ],
+      "arxiv_id": "2608.27033",
+      "abs_url": "http://arxiv.org/abs/2608.27033v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.27033v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出世界动作模型，统一策略执行与仿真，具身预训练，性能领先，符合world-model频道。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Riemann Dynamics"
+      ],
+      "method_tags": [
+        "World Action Model",
+        "causal autoregressive",
+        "progressive embodied pretraining"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -1129,82 +1209,6 @@
         "streaming action decoding",
         "flow-matching",
         "asynchronous inference"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2608-27033",
-      "source": "arxiv",
-      "title": "Riemann-1.0: An Embodied World Action Model for Physical AI",
-      "title_zh": "Riemann-1.0：面向物理AI的具身世界动作模型",
-      "tldr_zh": "Riemann-1.0统一世界动作建模，在模拟和真实任务中刷新SOTA。",
-      "cover_zh": "一个模型搞定机器人策略与模拟？Riemann-1.0让真实操作成功率飙升",
-      "abstract_zh": "我们介绍了Riemann-1.0，一个用于具身智能的全因果自回归世界动作模型。Riemann-1.0在统一的自回归序列中联合建模多视角视觉观察、机器人状态和特定具身的动作，将机器人动作和世界演化表示为因果状态转移。与基于联合生成、视频优先预测或解耦建模范式的现有WAM不同，Riemann-1.0在单一模型中统一了在线机器人策略执行和动作条件的世界模拟，使其既能作为可执行的机器人策略，又能作为多具身视觉世界模拟器。为了跨异构数据源扩展具身经验，我们进一步开发了一个渐进式具身预训练框架，在共享的世界动作建模目标下，统一从以自我为中心的人类视频、手持夹爪演示和异构机器人轨迹中学习。基于20万小时以上的交互数据，Riemann-1.0逐步将大规模具身经验转化为可执行的机器人操作能力。Riemann-1.0在模拟基准和真实世界操作任务中均达到了最先进的性能。在RoboTwin2.0上成功率为94.3%，在LIBERO上为99.0%，在长视野组合基准RoboCasa-365上为62.6%，比之前最佳方法高出8.4%。在长视野真实世界操作任务中，Riemann-1.0实现了85.0%的成功率（SR）和94.4%的进度成功率（PSR），在SR上超过最强开源基线15%。这些结果表明，统一的世界动作建模与渐进式具身预训练有效地将大规模具身经验转化为可泛化的机器人操作能力。",
-      "authors": [
-        "Haofeng Sun",
-        "Jiangbo Pei",
-        "Fei Kang"
-      ],
-      "authors_all": [
-        "Haofeng Sun",
-        "Jiangbo Pei",
-        "Fei Kang",
-        "Zexiang Liu",
-        "Yaokun Li",
-        "Boyi Jiang",
-        "Hua Xue",
-        "Cindy Zhou",
-        "Wei Li",
-        "Yichen Wei",
-        "Mengyin An",
-        "Fanliang Zhao",
-        "Biao Jiang",
-        "Zile Wang",
-        "Yang Liu",
-        "Yangguang Li"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-08-27",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2608-27033.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2608-27033-p2.jpg"
-      ],
-      "arxiv_id": "2608.27033",
-      "abs_url": "http://arxiv.org/abs/2608.27033v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.27033v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 25,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出世界动作模型，统一策略执行与仿真，具身预训练，性能领先，符合world-model频道。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Riemann Dynamics"
-      ],
-      "method_tags": [
-        "World Action Model",
-        "causal autoregressive",
-        "progressive embodied pretraining"
       ],
       "platform": [],
       "sim_stack": [],

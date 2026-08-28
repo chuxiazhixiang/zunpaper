@@ -48,7 +48,8 @@
     "assets/img/covers/arxiv-2608-26788-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -67,7 +68,7 @@
   "related_links": [],
   "page_count": 24,
   "source_tags": [],
-  "score": 41,
+  "score": 46,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -92,6 +93,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 24 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -118,5 +125,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\nTitle: \"Decoupling Planning and Control for Instructable Agents\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.26788v1\n---\n>[!abstract] 一句话总结：提出Instruct-to-Act系统，将VLM规划器生成的稀疏、高延迟文本指令作为条件，训练世界模型控制器以高频执行动作；通过重标注策略轨迹为合成指令，并结合行为克隆、奖励最大化和世界建模目标联合优化，实现语言可控的控制器。\n\n\n# 一、动机\n\n> 预训练的视觉语言模型（VLM）虽然能从指令和观测生成高层规划，但在陌生环境中难以产生可靠的低延迟动作序列；而世界模型控制器擅长快速感知到动作的映射，却缺乏开放式任务引导能力。\n\n\n# 二、方法\n\n> 提出Instruct-to-Act系统，将VLM规划器生成的稀疏、高延迟文本指令作为条件，训练世界模型控制器以高频执行动作；通过重标注策略轨迹为合成指令，并结合行为克隆、奖励最大化和世界建模目标联合优化，实现语言可控的控制器。\n\n\n# 三、核心实验结果\n\n> 在七个具身环境中（含三个多智能体环境）评估，该解耦方法一致优于仅控制器和直接VLM生成动作的变体，同时保持快速控制；在六个/七个任务上达到或超过强视觉语言动作和多智能体RL基线。\n\n\n# 四、对我的启发\n\n> 该方法展示了VLM规划与低频控制解耦的优势，允许在不微调的情况下更换不同的VLM规划器，但控制器依赖合成指令训练，可能面临指令分布与实际语言不一致的域偏移问题，值得进一步探索。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/LanguageModeling\nTitle: \"Decoupling Planning and Control for Instructable Agents\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.26788v1\n---\n>[!abstract] 一句话总结：提出Instruct-to-Act系统，训练世界模型控制器以VLM规划器生成的稀疏文本指令为条件高频行动，通过合成指令重标注策略片段并联合优化行为克隆、奖励最大化和世界建模目标。\n\n\n# 一、动机\n\n> 预训练VLM擅长生成高层计划，但难以在陌生环境中输出可靠的低延迟动作序列；而世界模型控制器响应快但缺乏开放式任务指导。\n\n\n# 二、方法\n\n> 提出Instruct-to-Act系统，训练世界模型控制器以VLM规划器生成的稀疏文本指令为条件高频行动，通过合成指令重标注策略片段并联合优化行为克隆、奖励最大化和世界建模目标。\n\n\n# 三、核心实验结果\n\n> 在7个具身环境中，该方法一致优于仅控制器和直接VLM动作生成变体，保持快速控制，并可在7个任务中的6个上与强VLM-A和多智能体RL基线竞争。\n\n\n# 四、对我的启发\n\n> 规划与控制的解耦有效提升指令跟随能力且支持即插即用不同规划器，但高层规划的低延迟可能限制实时交互，未来需探索更细粒度指令；与课题直接相关。\n"
 }
