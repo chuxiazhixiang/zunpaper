@@ -1,0 +1,123 @@
+{
+  "id": "arxiv-2608-26766",
+  "source": "arxiv",
+  "title": "MeshPriorDiT: Hierarchical Modeling for Action-Conditioned Cloth Dynamics",
+  "title_zh": "MeshPriorDiT：用于动作条件布料动力学的层次建模",
+  "abstract": "Action-conditioned cloth dynamics prediction requires both locally plausible deformation and long-range coordination. Existing approaches largely follow two paradigms. Mesh-based GNNs capture local physical responses through material connectivity. However, their finite message-passing range limits coordination between topologically distant regions, while autoregressive rollouts tend to accumulate prediction errors. Transformer-based dynamics models capture long-range interactions through global attention, but often operate without explicit material connectivity and must learn local topological responses directly from data. We propose MeshPriorDiT, a hierarchical dynamics model that decomposes future cloth motion into a structured mesh prior and a generative residual. An action-conditioned mesh GNN first predicts multi-step vertex displacements, yielding a reference trajectory that respects material topology and grasp constraints. Conditioned on historical states, planned actions, and the mesh prior, a Residual DiT then uses conditional flow matching to jointly generate the residual motion not captured by the prior. The generated residual is further rescaled and decoded using material adjacency to coordinate corrections across neighboring vertices. We evaluate MeshPriorDiT on 15-step autoregressive rollouts across three cloth manipulation tasks. Averaged over the three tasks, MeshPriorDiT reduces average Global MSE by 43.42% relative to the GNN-Only baseline and by 75.03% relative to the DiT-DDPM baseline, while maintaining a favorable Edge-strain MSE comparable to that of GNN-Only.",
+  "abstract_zh": "动作条件下的布料动力学预测需要同时具备局部合理的变形和长程协调。现有方法主要遵循两种范式。基于网格的GNN通过材料连接性捕捉局部物理响应，但其有限的消息传递范围限制了拓扑上远距离区域之间的协调，而自回归滚动预测往往累积预测误差。基于Transformer的动力学模型通过全局注意力捕捉长程交互，但通常缺乏显式的材料连接性，必须直接从数据中学习局部拓扑响应。我们提出MeshPriorDiT，一种层次动力学模型，将未来的布料运动分解为结构化的网格先验和生成残差。动作条件下的网格GNN首先预测多步顶点位移，生成尊重材料拓扑和抓取约束的参考轨迹。在历史状态、规划动作和网格先验的条件下，残差DiT使用条件流匹配联合生成先验未捕捉的残差运动。生成的残差进一步通过材料邻接进行重新缩放和解码，以协调相邻顶点的修正。我们在三个布料操作任务上评估了MeshPriorDiT的15步自回归滚动预测。在三个任务上平均，MeshPriorDiT相对于仅GNN基线将平均全局MSE降低了43.42%，相对于DiT-DDPM基线降低了75.03%，同时保持了与仅GNN相当的有利的边应变MSE。",
+  "tldr_zh": "MeshPriorDiT结合网格先验与残差DiT，显著提升动作条件布料动力学预测精度。",
+  "cover_zh": "布料模拟新突破｜网格先验+扩散模型，误差直降75%？",
+  "authors": [
+    {
+      "name": "Zihang Wang",
+      "affiliation": ""
+    },
+    {
+      "name": "Jianming Hu",
+      "affiliation": ""
+    },
+    {
+      "name": "Shang Su",
+      "affiliation": ""
+    },
+    {
+      "name": "Hao Huang",
+      "affiliation": ""
+    },
+    {
+      "name": "Mengkai Shi",
+      "affiliation": ""
+    },
+    {
+      "name": "Jun Gao",
+      "affiliation": ""
+    },
+    {
+      "name": "Shuo Feng",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-08-27",
+  "updated": "2026-08-27",
+  "arxiv_id": "2608.26766",
+  "pdf_url": "https://arxiv.org/pdf/2608.26766v1",
+  "abs_url": "http://arxiv.org/abs/2608.26766v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-26766.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-26766-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ 清华"
+    },
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 9,
+  "source_tags": [],
+  "score": 47,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “清华” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（manipulation、grasp、cloth manipulation）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 9 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "面向布料操作的动作条件动力学预测，结合GNN与DiT，显著提升长程协调与精度，对具身操作研究有高价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Tsinghua University",
+    "Dense-AI",
+    "University of Michigan"
+  ],
+  "method_tags": [
+    "GNN",
+    "Diffusion Transformer",
+    "flow matching"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"MeshPriorDiT: Hierarchical Modeling for Action-Conditioned Cloth Dynamics\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.26766v1\n---\n>[!abstract] 一句话总结：提出分层动力学模型MeshPriorDiT，先由动作条件网格GNN预测多步顶点位移得到结构化网格先验，再以残差DiT通过条件流匹配生成未被先验捕获的残差运动，并利用材料邻接关系对残差进行缩放和解码。\n\n\n# 一、动机\n\n> 现有布料动力学预测方法中，基于网格的GNN能捕获局部物理响应但长程协调不足且自回归误差累积；基于Transformer的模型虽有全局注意力但缺乏显式材料连接，需从数据中学习局部拓扑响应。\n\n\n# 二、方法\n\n> 提出分层动力学模型MeshPriorDiT，先由动作条件网格GNN预测多步顶点位移得到结构化网格先验，再以残差DiT通过条件流匹配生成未被先验捕获的残差运动，并利用材料邻接关系对残差进行缩放和解码。\n\n\n# 三、核心实验结果\n\n> 在三个布料操作任务的15步自回归推演上，MeshPriorDiT平均Global MSE相比GNN-Only基线降低43.42%，相比DiT-DDPM基线降低75.03%，同时Edge-strain MSE与GNN-Only相当。\n\n\n# 四、对我的启发\n\n> 分层建模将拓扑先验与生成模型结合，兼顾局部物理与长程协调，但依赖多步自回归，未来可探索更长的时序预测或更高效的先验注入方式。\n"
+}

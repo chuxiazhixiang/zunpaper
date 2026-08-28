@@ -1,0 +1,103 @@
+{
+  "id": "arxiv-2608-27384",
+  "source": "arxiv",
+  "title": "FlashVLA: Streaming Action Decoding for Fast and Asynchronous VLA Inference",
+  "title_zh": "FlashVLA：用于快速异步VLA推理的流式动作解码",
+  "abstract": "Vision-Language-Action (VLA) models are increasingly promising for robotic manipulation, yet their real-world deployment remains bottlenecked by high inference latency and unstable asynchronous execution. This challenge is particularly pronounced in flow-matching-based VLA models, where action decoding requires multiple iterative steps conditioned on the VLM context. While efficient inference methods improve control frequency and asynchronous methods reduce execution idle time, existing approaches often fail to jointly achieve low-latency inference and accurate, temporally consistent asynchronous execution. We introduce \\textbf{FlashVLA}, a streaming action decoding framework that addresses both challenges in a unified formulation. FlashVLA maintains a streaming action buffer with multiple chunks at different noise levels and decodes them using chunk-wise causal attention. This design allows FlashVLA to produce one executable action chunk per inference step. Moreover, its chunk-wise autoregressive formulation implicitly preserves action continuity, enabling smooth asynchronous execution without extra future-state conditioning. Across extensive simulated and real-world experiments, FlashVLA substantially improves inference speed while maintaining strong task performance. It can achieve $\\geq$30\\,Hz control frequency on a single GPU with smooth asynchronous inference in real-world deployment.",
+  "abstract_zh": "视觉-语言-动作（VLA）模型在机器人操作领域日益展现出巨大潜力，然而其实际部署仍受限于高推理延迟和不稳定的异步执行。这一问题在基于流匹配的VLA模型中尤为突出，因为动作解码需要多次迭代步骤，且依赖于VLM上下文。虽然高效的推理方法能提高控制频率，异步方法能减少执行空闲时间，但现有方法往往无法同时实现低延迟推理和准确、时间上一致的异步执行。我们提出了FlashVLA，一种流式动作解码框架，以统一的形式解决这两个挑战。FlashVLA维护一个包含多个不同噪声级别块的流式动作缓冲区，并使用块级因果注意力对其进行解码。这种设计使得FlashVLA能够在每次推理步骤中生成一个可执行的动作块。此外，其块级自回归公式隐式地保持了动作连续性，使得无需额外的未来状态条件即可实现平滑的异步执行。在广泛的模拟和真实世界实验中，FlashVLA显著提高了推理速度，同时保持了强大的任务性能。在单GPU上可实现≥30Hz的控制频率，并在实际部署中实现平滑的异步推理。",
+  "tldr_zh": "FlashVLA通过流式动作解码，实现VLA模型低延迟与平滑异步执行。",
+  "cover_zh": "VLA推理太慢？FlashVLA流式解码，单GPU 30Hz还稳如老狗！",
+  "authors": [
+    {
+      "name": "Zekai Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Jiaming Tang",
+      "affiliation": ""
+    },
+    {
+      "name": "Zhijian Liu",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-08-27",
+  "updated": "2026-08-27",
+  "arxiv_id": "2608.27384",
+  "pdf_url": "https://arxiv.org/pdf/2608.27384v1",
+  "abs_url": "http://arxiv.org/abs/2608.27384v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-27384.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-27384-p2.jpg"
+  ],
+  "channels": [
+    "manipulation",
+    "sim2real"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 17,
+  "source_tags": [],
+  "score": 30,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 4 个（vision-language-action、vla model、manipulation、real-world deployment）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 17 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "针对VLA推理延迟和异步执行问题提出流式动作解码框架，提升控制频率，对操作领域有高参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "UC San Diego",
+    "MIT"
+  ],
+  "method_tags": [
+    "streaming action decoding",
+    "flow-matching",
+    "asynchronous inference"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"FlashVLA: Streaming Action Decoding for Fast and Asynchronous VLA Inference\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.27384v1\n---\n>[!abstract] 一句话总结：提出FlashVLA，通过维护包含多个噪声水平动作块的流式缓冲区，并使用分块因果注意力解码，使每步推理产生一个可执行动作块，以自回归方式隐式保持动作连续性。\n\n\n# 一、动机\n\n> 现有VLA模型（尤其基于flow-matching的模型）在真实机器人部署中推理延迟高、异步执行不稳定，难以同时实现低延迟和精确的时序一致性。\n\n\n# 二、方法\n\n> 提出FlashVLA，通过维护包含多个噪声水平动作块的流式缓冲区，并使用分块因果注意力解码，使每步推理产生一个可执行动作块，以自回归方式隐式保持动作连续性。\n\n\n# 三、核心实验结果\n\n> 在仿真和真实实验中，FlashVLA显著提升推理速度，在单GPU上达到≥30 Hz控制频率，同时保持强任务性能，并实现平滑异步推理。\n\n\n# 四、对我的启发\n\n> 该流式解码思路可启发实时VLA控制系统的设计，但未来需关注如何进一步压缩上下文长度或处理更长动作序列。与课题直接相关。\n"
+}
