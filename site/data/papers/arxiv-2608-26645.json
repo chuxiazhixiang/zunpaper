@@ -86,7 +86,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -126,5 +126,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"FLARE: A Failure-Aware Framework for Autonomous Correction and Recovery in Visual-Language Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.26645v1\n---\n>[!abstract] 一句话总结：提出FLARE框架，通过'Retry'和'Reset'双机制赋予VLA错误恢复能力：Retry通过注入扰动和桥接片段解耦机器人位姿与环境状态，使策略能处理执行偏差；Reset利用MLLM离线分析失败视频识别OOD状态，针对性收集少量以物体为中心的复位技能，在线MLLM监视器仲裁任务执行与复位技能的调用。\n\n\n# 一、动机\n\n> 视觉-语言-动作模型（VLA）在长程操作任务中虽具泛化性，但通常依赖无错误演示训练，面对抓取失败、物体掉落、意外碰撞等执行错误时无法自主恢复，性能脆弱。\n\n\n# 二、方法\n\n> 提出FLARE框架，通过'Retry'和'Reset'双机制赋予VLA错误恢复能力：Retry通过注入扰动和桥接片段解耦机器人位姿与环境状态，使策略能处理执行偏差；Reset利用MLLM离线分析失败视频识别OOD状态，针对性收集少量以物体为中心的复位技能，在线MLLM监视器仲裁任务执行与复位技能的调用。\n\n\n# 三、核心实验结果\n\n> 在接触丰富的操作任务上，该方法显著提升了任务成功率和鲁棒性（摘要未提供具体数值）。\n\n\n# 四、对我的启发\n\n> 与课题直接相关，但摘要缺少量化结果，需查阅原文获取具体提升幅度。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"FLARE: A Failure-Aware Framework for Autonomous Correction and Recovery in Visual-Language Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.26645v1\n---\n>[!abstract] 一句话总结：提出FLARE框架，通过“Retry”机制（注入扰动和桥接片段解耦机器人位姿与环境状态）和“Reset”流程（利用MLLM离线分析失败视频，自动识别OOD状态并收集训练对象中心重置技能）赋予VLA自主错误恢复能力，在线MLLM监控器动态协调任务执行与重置技能。\n\n\n# 一、动机\n\n> 现有视觉-语言-动作模型（VLA）依赖无错误的完美演示数据，无法应对执行中的常见错误（如抓取失败、物体掉落、意外碰撞），导致在长时程操作任务中表现脆弱。\n\n\n# 二、方法\n\n> 提出FLARE框架，通过“Retry”机制（注入扰动和桥接片段解耦机器人位姿与环境状态）和“Reset”流程（利用MLLM离线分析失败视频，自动识别OOD状态并收集训练对象中心重置技能）赋予VLA自主错误恢复能力，在线MLLM监控器动态协调任务执行与重置技能。\n\n\n# 三、核心实验结果\n\n> 在接触密集的机器人操作任务上，FLARE显著提升了任务成功率和鲁棒性；摘要未给出具体数值，但强调了对常见执行错误的恢复能力大幅增强。\n\n\n# 四、对我的启发\n\n> 该方法将错误恢复显式建模为可学习的技能，突破了VLA对完美轨迹的依赖，但依赖MLLM的离线分析和在线监控，可能存在延迟与误判风险。与课题直接相关，可为具身操作中的鲁棒性研究提供参考。\n"
 }

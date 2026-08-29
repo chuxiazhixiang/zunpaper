@@ -80,7 +80,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -118,5 +118,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/DynamicManipulation\n  - 状态/待读\nTitle: \"Rapid On-Robot Learning for Dynamic Manipulation Skills: Robot Juggling\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.26800v1\n---\n>[!abstract] 一句话总结：提出正则化记忆的在线学习框架：从累积经验中学习局部模型，同时保留全局先验模型用于稀疏经验外推，并利用互可达集保证投掷/接球动作间的安全转换，从而在物理机器人上持续学习。\n\n\n# 一、动机\n\n> 现有动态操作技能学习依赖精确仿真或大量真实数据，难以在真实硬件上快速适应且存在显著sim2real差距，需要一种能在几分钟内安全在线学习多种杂耍技能的框架。\n\n\n# 二、方法\n\n> 提出正则化记忆的在线学习框架：从累积经验中学习局部模型，同时保留全局先验模型用于稀疏经验外推，并利用互可达集保证投掷/接球动作间的安全转换，从而在物理机器人上持续学习。\n\n\n# 三、核心实验结果\n\n> 双臂多指机器人配合机载视觉，在不到5分钟的真实世界交互内学会了5种三球杂耍模式（cascade、tennis、half-shower、shower、box），验证了即使先验模型不完美也能加速真实技能习得。\n\n\n# 四、对我的启发\n\n> 关键启发：不完美模型可作为强先验，学习应建立在当前知识基础上而非完全替换；安全约束（互可达集）是实现真实机器人持续在线学习的重要保障，未来可扩展到更复杂动态操作技能。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Rapid On-Robot Learning for Dynamic Manipulation Skills: Robot Juggling\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.26800v1\n---\n>[!abstract] 一句话总结：提出正则化记忆学习：从累积经验中学习局部模型，同时保留全局先验模型用于外推稀疏经验区域，从而高效稳定地从每次新经验在线学习；并构建互可达集合，确保连续抛接之间安全转换。\n\n\n# 一、动机\n\n> 现有动态操作技能学习在存在显著sim2real差距时，难以直接在真实硬件上快速、安全地学习。无指导探索效率低，且容易违反机器人安全限制。\n\n\n# 二、方法\n\n> 提出正则化记忆学习：从累积经验中学习局部模型，同时保留全局先验模型用于外推稀疏经验区域，从而高效稳定地从每次新经验在线学习；并构建互可达集合，确保连续抛接之间安全转换。\n\n\n# 三、核心实验结果\n\n> 双臂多指手机器人配合机载视觉，在不到5分钟真实交互内安全学会并组合五种三球抛接模式（cascade、tennis、half-shower、shower、box），显著缩小sim2real差距。\n\n\n# 四、对我的启发\n\n> 即使先验模型与真实差距很大，也能作为有效学习基础；学习应基于机器人当前知识增量更新而非替代。该方法为真实世界持续学习提供了安全与效率保障，与课题直接相关。\n"
 }

@@ -53,7 +53,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -84,5 +84,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/WorldModel\n  - 状态/待读\nTitle: \"Successive Capacity Growth: Task-Complexity-Driven Width and Depth Expansion for Vision Transformer Encoders in JEPA World Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.27367v1\n---\n>[!abstract] 一句话总结：提出Successive Capacity Growth (SCG)方法，从最小编码器（1头、2层、28.3万参数）出发，由任务无关的测试-验证机制驱动，利用函数保持扩展安全增加宽度（注意力头）或深度（Transformer块），若预测损失未改善则回滚；同时用Sketched Isotropic Gaussian Regularizer (SIGReg)保证语义维度独立，防止塌缩。\n\n\n# 一、动机\n\n> 现有JEPA世界模型使用固定大小的Vision Transformer编码器，对简单任务过度配置、对复杂任务能力不足，且注意力头存在显著冗余。\n\n\n# 二、方法\n\n> 提出Successive Capacity Growth (SCG)方法，从最小编码器（1头、2层、28.3万参数）出发，由任务无关的测试-验证机制驱动，利用函数保持扩展安全增加宽度（注意力头）或深度（Transformer块），若预测损失未改善则回滚；同时用Sketched Isotropic Gaussian Regularizer (SIGReg)保证语义维度独立，防止塌缩。\n\n\n# 三、核心实验结果\n\n> 在60维多物体动力学任务上，SCG自然触发深度扩展，预测损失比固定小基线降低20.3%，参数效率比固定大模型高56倍；在2D导航任务上，单次宽度扩展比固定大模型提升23%；在所有三个环境中零误报扩展，位精确函数保持（比例1.0，绝对差0.0）。\n\n\n# 四、对我的启发\n\n> JEPA世界模型编码器无需预先分配最大容量，可按任务需求逐步增长，显著提升计算和数据效率，同时保持表示质量。与机器人具身智能领域间接相关，但方法本身是通用的。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/CV\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"Successive Capacity Growth: Task-Complexity-Driven Width and Depth Expansion for Vision Transformer Encoders in JEPA World Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.27367v1\n---\n>[!abstract] 一句话总结：提出Successive Capacity Growth (SCG)，从最小编码器（1头、2层、283K参数）出发，通过函数保持扩展逐步增加宽度（注意力头）或深度（Transformer块），并利用任务无关的测试-验证机制安全尝试架构变化、必要时回滚；同时使用Sketched Isotropic Gaussian Regularizer (SIGReg) 防止语义维度崩溃。\n\n\n# 一、动机\n\n> 固定大小的Vision Transformer编码器在JEPA世界模型中对简单任务过度配置、对复杂任务配置不足，且注意力头存在显著冗余。\n\n\n# 二、方法\n\n> 提出Successive Capacity Growth (SCG)，从最小编码器（1头、2层、283K参数）出发，通过函数保持扩展逐步增加宽度（注意力头）或深度（Transformer块），并利用任务无关的测试-验证机制安全尝试架构变化、必要时回滚；同时使用Sketched Isotropic Gaussian Regularizer (SIGReg) 防止语义维度崩溃。\n\n\n# 三、核心实验结果\n\n> 在60维多目标动力学任务上，深度扩展使预测损失较固定小基线降低20.3%，参数效率比固定大模型高56倍；在2D导航任务上，单次宽度扩展较固定大模型提升23%；在三个环境上零误报扩展，位精确函数保持（比率=1.0，绝对差=0.0）。\n\n\n# 四、对我的启发\n\n> JEPA世界模型编码器无需预分配最大容量，可按任务复杂度逐步增长，兼顾计算、数据效率与表示质量；但测试-验证机制的开销和扩展策略的通用性尚待进一步验证，与具身智能世界模型课题直接相关。\n"
 }
