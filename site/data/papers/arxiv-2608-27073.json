@@ -80,16 +80,12 @@
     {
       "kind": "lab",
       "label": "⭐ 阿里"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 12,
   "source_tags": [],
-  "score": 44,
+  "score": 34,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -102,12 +98,6 @@
       "label": "关键词命中密集",
       "points": 6,
       "hint": "频道关键词命中 2 个（world model、world modeling）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -141,5 +131,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/ImageGen\n  - Task/CameraControl\n  - 状态/待读\nTitle: \"SpatialCrafter: Single Image World Modeling with Generative 3D Proxies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.27073v1\n---\n>[!abstract] 一句话总结：提出两阶段框架SpatialCrafter，第一阶段通过Point-anchored Sparse Structure (PaSS) Flow模块预测全局3D代理，第二阶段将视频扩散模型重定义为Generative Deferred Refiner，利用代理几何合成高频真实感细节，并引入并行几何注入和代理感知损坏训练策略。\n\n\n# 一、动机\n\n> 现有基于视频扩散模型的图像到场景生成方法依赖稀疏点云或2D全景等不完整条件信号，导致随机幻觉、长期漂移和次优的3D一致性。\n\n\n# 二、方法\n\n> 提出两阶段框架SpatialCrafter，第一阶段通过Point-anchored Sparse Structure (PaSS) Flow模块预测全局3D代理，第二阶段将视频扩散模型重定义为Generative Deferred Refiner，利用代理几何合成高频真实感细节，并引入并行几何注入和代理感知损坏训练策略。\n\n\n# 三、核心实验结果\n\n> 构建了首个大规模混合数据集，包含115K场景；在合成和真实数据集上优于现有最先进方法，缓解了长期漂移，并在快速相机运动和极端视角变化下保持鲁棒性和一致性。\n\n\n# 四、对我的启发\n\n> 两阶段分解（代理生成+外观细化）和代理感知训练策略可借鉴到其他生成任务；但3D代理的预测质量可能成为瓶颈，且需注意代理误差对生成结果的影响。与课题不直接相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/CV\n  - Task/ImageGen\n  - Task/SceneGeneration\n  - 状态/待读\nTitle: \"SpatialCrafter: Single Image World Modeling with Generative 3D Proxies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.27073v1\n---\n>[!abstract] 一句话总结：提出SpatialCrafter两阶段框架：先通过Point-anchored Sparse Structure (PaSS) Flow模块生成全局几何一致的3D代理，再通过Generative Deferred Refiner在代理定义的几何上合成高频逼真外观；并引入Parallel Geometry Injection和Proxy-Aware Corruption训练策略来与预训练VDM更好融合。\n\n\n# 一、动机\n\n> 现有基于视频扩散模型的图像到场景生成方法常依赖于不完整的条件信号（如稀疏点云或2D全景图），导致随机幻觉、长期漂移以及次优的3D一致性。\n\n\n# 二、方法\n\n> 提出SpatialCrafter两阶段框架：先通过Point-anchored Sparse Structure (PaSS) Flow模块生成全局几何一致的3D代理，再通过Generative Deferred Refiner在代理定义的几何上合成高频逼真外观；并引入Parallel Geometry Injection和Proxy-Aware Corruption训练策略来与预训练VDM更好融合。\n\n\n# 三、核心实验结果\n\n> 构建了首个大规模混合图像到场景生成数据集，包含115K个场景；在合成和真实数据集上均优于现有最先进方法，有效缓解长期漂移，并在快速相机运动和极端视角变化下保持鲁棒性和一致性。\n\n\n# 四、对我的启发\n\n> 该方法可作为机器人仿真、游戏等应用中的可探索场景生成基础；局限性在于3D代理的质量直接影响最终生成效果，极复杂场景下可能出现代理伪影。与课题相关，但尚未在具体机器人任务中验证。\n"
 }

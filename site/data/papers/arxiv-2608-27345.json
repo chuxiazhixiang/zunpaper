@@ -96,16 +96,12 @@
     {
       "kind": "lab",
       "label": "⭐ SJTU"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 32,
   "source_tags": [],
-  "score": 47,
+  "score": 37,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -118,12 +114,6 @@
       "label": "关键词命中密集",
       "points": 9,
       "hint": "频道关键词命中 3 个（world model、world models、world modeling）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -157,5 +147,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"PAWBench: How Far Are We from Probabilistically Aligned World Modeling?\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.27345v1\n---\n>[!abstract] 一句话总结：形式化概率对齐为分布级标准，提出PAWBench基准和PAWEval评估协议，将多次视频生成转换为物理行为的经验分布，并与参考概率比较。\n\n\n# 一、动机\n\n> 现有视频生成模型常被当作世界模型，但物理过程可能有多样化结果，评估只检查单个视频的合理性，未验证多次生成是否恢复正确的行为分布。\n\n\n# 二、方法\n\n> 形式化概率对齐为分布级标准，提出PAWBench基准和PAWEval评估协议，将多次视频生成转换为物理行为的经验分布，并与参考概率比较。\n\n\n# 三、核心实验结果\n\n> 在50个场景下评估11个当前系统，没有任何模型能同时匹配参考概率并覆盖有效行为范围，显示概率对齐仍未实现。\n\n\n# 四、对我的启发\n\n> 语言提示、初始噪声采样和模型训练可以部分改变预测分布，但不足以完全对齐；该工作为未来概率对齐世界模型提供基础，与机器人直接相关性有限，但其评估框架可迁移至具身仿真。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"PAWBench: How Far Are We from Probabilistically Aligned World Modeling?\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.27345v1\n---\n>[!abstract] 一句话总结：提出PAWBench基准和PAWEval评估协议，将视频生成器视为随机采样器，通过多次rollout得到经验分布，并与参考概率对比以衡量概率对齐程度。\n\n\n# 一、动机\n\n> 现有视频生成模型评估大多只检查单个视频的合理性，未能验证重复生成是否恢复正确的行为分布，即缺乏分布层面的概率对齐测试。\n\n\n# 二、方法\n\n> 提出PAWBench基准和PAWEval评估协议，将视频生成器视为随机采样器，通过多次rollout得到经验分布，并与参考概率对比以衡量概率对齐程度。\n\n\n# 三、核心实验结果\n\n> 在50个场景和11个当前系统中，没有任何模型能同时匹配参考概率并覆盖全部有效行为范围，表明现有模型普遍缺乏概率对齐能力。\n\n\n# 四、对我的启发\n\n> 该工作聚焦视频生成器的分布级评估，与机器人/具身智能无直接关联，但分布对齐的评估思想可迁移到世界模型评测，且语言提示、噪声采样或训练可影响预测分布，为后续改进提供方向。\n"
 }

@@ -122,5 +122,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/ReinforcementLearning\n  - 状态/待读\nTitle: \"WarpSAC: Towards the Pinnacle of Scalable Off-policy RL by Rethinking Exploration and Exploitation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.24479v1\n---\n>[!abstract] 一句话总结：提出WarpSAC，一种数据regime感知的off-policy RL算法族，核心是Sample Weight Decay实现高效利用，并为数据受限（CPU）和数据丰富（GPU并行）场景分别提供WarpSAC-L（保留Norm和clipped double-Q）和WarpSAC-A（去除Norm，使用单Q）两种变体。\n\n\n# 一、动机\n\n> 现有off-policy RL稳定器（如参数归一化、裁剪双Q）是为数据有限的重放设计的，但在大规模并行仿真带来的数据丰富场景下失效。作者通过实验证明稳定器效果依赖数据 regime，需要针对不同数据规模自适应调整。\n\n\n# 二、方法\n\n> 提出WarpSAC，一种数据regime感知的off-policy RL算法族，核心是Sample Weight Decay实现高效利用，并为数据受限（CPU）和数据丰富（GPU并行）场景分别提供WarpSAC-L（保留Norm和clipped double-Q）和WarpSAC-A（去除Norm，使用单Q）两种变体。\n\n\n# 三、核心实验结果\n\n> WarpSAC相比FlashSAC在9个CPU环境上归一化score-step AUC提升4.5%，14个GPU并行环境提升23.1%；UnitreeG1TransportBox-v1成功率从19.8%提升至96.4%；MuJoCo Playground平均归一化wall-time AUC提升19.1%；Unitree G1 sim-to-real部署速度比FlashSAC快36.4%。\n\n\n# 四、对我的启发\n\n> 本工作表明可扩展off-policy RL应根据可用数据规模动态调整稳定器，为大规模并行仿真下的机器人操作训练提供了有效范式。对课题的启发是：在机器人数据丰富的训练场景中，简化传统稳定器并引入采样权重衰减可显著提升效率与最终性能。\n"
 }
