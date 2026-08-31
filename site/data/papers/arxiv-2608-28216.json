@@ -1,0 +1,93 @@
+{
+  "id": "arxiv-2608-28216",
+  "source": "arxiv",
+  "title": "WALDO: One-Shot Exemplar-Conditioned Object Detection in Cluttered Scenes",
+  "title_zh": "WALDO：杂乱场景中的一次性示例条件目标检测",
+  "abstract": "Locating a specific object instance in a cluttered scene using a single reference image and a short description, and reporting when that instance is absent, large vision-language models usually address this task. We ask whether the same capability is available far more cheaply, from representations already learned by a world-model pretraining objective. We present WALDO, a one-shot exemplar- and language-conditioned detection head with 3.4M trainable parameters that reads frozen V-JEPA 2.1 features to jointly predict object localization and target presence, with no gradient on the backbone. Because exemplar-conditioned supervision is scarce, we synthesize training episodes from instance annotations, mining exemplars from ground-truth boxes and constructing absence cases that exclude the referenced instance while leaving same-category distractors in view. This is easy to get wrong: in the obvious implementation, crop size alone predicts the label, and a head trained on it reaches 0.9998 absence AUROC without ever consulting the exemplar, and we report the negative controls that close the shortcut. On 35 held-out cluttered scenes, WALDO achieves a 0.461 catalogue AP@50, compared to 0.306 for a prompted Grounding DINO baseline under an identical scorer. Substituting DINOv3 for V-JEPA under a matched 576-token grid drops within-category absence AUROC from 0.880 to 0.726 and instance AP@50 from 0.201 to 0.141, isolating the pretraining objective rather than input resolution as the source of the gain. Instance-level Success@1, however, reaches only 0.190 against a 0.190 category-chance floor: world-model features transfer to localization precision and absence detection but not to instance identity.",
+  "abstract_zh": "在杂乱场景中，使用单张参考图像和简短描述定位特定目标实例，并在该实例不存在时报告，大型视觉语言模型通常处理此任务。我们探究是否可以用更廉价的方式，从世界模型预训练目标已学习的表征中获得相同能力。我们提出WALDO，一个一次性示例和语言条件检测头，具有340万可训练参数，读取冻结的V-JEPA 2.1特征，联合预测目标定位和存在性，且不对骨干网络进行梯度更新。由于示例条件监督稀缺，我们从实例标注中合成训练片段，从真实边界框中挖掘示例，并构建排除参考实例但保留同类别干扰物的缺失案例。这很容易出错：在明显的实现中，裁剪大小单独即可预测标签，训练在该标签上的检测头达到0.9998的缺失AUROC，而从未参考示例，我们报告了关闭该捷径的阴性对照。在35个保留的杂乱场景中，WALDO实现了0.461的目录AP@50，而在相同评分器下，提示式Grounding DINO基线为0.306。在匹配的576-token网格下，将V-JEPA替换为DINOv3，类别内缺失AUROC从0.880降至0.726，实例AP@50从0.201降至0.141，从而隔离了预训练目标而非输入分辨率作为增益来源。然而，实例级Success@1仅达到0.190，而类别机会基线为0.190：世界模型特征可迁移至定位精度和缺失检测，但不能迁移至实例身份。",
+  "tldr_zh": "WALDO用世界模型特征实现一次性目标检测，定位和缺失检测有效，但实例识别仍困难。",
+  "cover_zh": "不用大模型也能精准找目标？这个轻量检测头让定位和缺失检测更准，但认人还差点意思",
+  "authors": [
+    {
+      "name": "Kishor Datta Gupta",
+      "affiliation": ""
+    },
+    {
+      "name": "Ahmed Rafi Hasan",
+      "affiliation": ""
+    },
+    {
+      "name": "Md. Mahfuzur Rahman",
+      "affiliation": ""
+    },
+    {
+      "name": "Md. Sadman Haque",
+      "affiliation": ""
+    },
+    {
+      "name": "Mohd Ariful Haque",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.CV",
+  "categories": [
+    "cs.CV"
+  ],
+  "published": "2026-08-28",
+  "updated": "2026-08-28",
+  "arxiv_id": "2608.28216",
+  "pdf_url": "https://arxiv.org/pdf/2608.28216v1",
+  "abs_url": "http://arxiv.org/abs/2608.28216v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-28216.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-28216-p2.jpg"
+  ],
+  "channels": [
+    "world-model"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 11,
+  "source_tags": [],
+  "score": 12,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（jepa、v-jepa、4m）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 11 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "world-model",
+    "reason": "利用V-JEPA世界模型特征做少样本检测，验证世界模型表征迁移能力，具科研价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Clark Atlanta University",
+    "United International University"
+  ],
+  "method_tags": [
+    "one-shot detection",
+    "exemplar-conditioned",
+    "world-model features"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": ""
+}

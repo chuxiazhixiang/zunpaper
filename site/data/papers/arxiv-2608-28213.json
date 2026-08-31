@@ -1,0 +1,90 @@
+{
+  "id": "arxiv-2608-28213",
+  "source": "arxiv",
+  "title": "PAMoR: Parameterized Affective Motion Generation in Real Time for Humanoid Robots",
+  "title_zh": "PAMoR：人形机器人实时参数化情感运动生成",
+  "abstract": "People read a humanoid robot's motion in social settings not only for the action performed but for the affect conveyed. Motion carrying that affect has so far been generated for human avatars, where style is taken from a reference clip or an emotion word, neither of which can be quantitatively parameterized. We present PAMoR, which turns affect into a measured control parameter: a valence-arousal (V-A) coordinate computed natively on robot kinematics. It is obtained in closed form from postural expansion and movement energy, and these measurements serve directly as generation conditions, with no human annotation. An action prior and two affect priors, trained in a shared latent space, are composed at each denoising step: the action prior fixes what is performed, the affect priors modulate how. Whole-body motion rolls out autoregressively on a 29-DoF Unitree G1 in real time, with action and affect both editable. Generated motion tracks the commanded V-A over its full range while text-to-motion fidelity still matches text-only baselines. In a perceptual study, raters identify the commanded emotion on 0.38 of trials, above both baselines and approaching the 0.44 reported for acted human bodies.",
+  "abstract_zh": "在社交环境中，人们不仅通过人形机器人的动作来理解其行为，还通过其传达的情感。迄今为止，带有情感的运动是为人类化身生成的，其风格取自参考片段或情感词，这两者都无法进行定量参数化。我们提出了PAMoR，将情感转化为一个可测量的控制参数：一个在机器人运动学上原生计算的效价-唤醒（V-A）坐标。它通过姿态扩展和运动能量的闭式解获得，这些测量直接作为生成条件，无需人工标注。一个动作先验和两个情感先验在共享潜在空间中训练，并在每个去噪步骤中组合：动作先验确定执行什么，情感先验调节如何执行。全身运动在29自由度Unitree G1上实时自回归生成，动作和情感均可编辑。生成的运动在整个范围内跟踪命令的V-A，而文本到运动的保真度仍与仅文本基线相当。在一项感知研究中，评分者在0.38的试验中识别出命令情感，高于两个基线，接近人类表演身体报告的0.44。",
+  "tldr_zh": "PAMoR将情感转化为可量化参数，实时生成人形机器人情感运动。",
+  "cover_zh": "情感也能参数化？这个框架让机器人实时表达喜怒哀乐",
+  "authors": [
+    {
+      "name": "Yan Pan",
+      "affiliation": ""
+    },
+    {
+      "name": "Lingfan Bao",
+      "affiliation": ""
+    },
+    {
+      "name": "Tianhu Peng",
+      "affiliation": ""
+    },
+    {
+      "name": "Chengxu Zhou",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-08-28",
+  "updated": "2026-08-28",
+  "arxiv_id": "2608.28213",
+  "pdf_url": "https://arxiv.org/pdf/2608.28213v1",
+  "abs_url": "http://arxiv.org/abs/2608.28213v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2608-28213.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2608-28213-p2.jpg"
+  ],
+  "channels": [
+    "loco-manip-wbc"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 12,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（whole-body、humanoid robot、unitree g1）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "loco-manip-wbc",
+    "reason": "面向人形机器人G1的全身情感运动生成，涉及全身控制与动作生成，具科研价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University College London"
+  ],
+  "method_tags": [
+    "diffusion",
+    "affective motion generation",
+    "valence-arousal"
+  ],
+  "platform": [
+    "Unitree G1"
+  ],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"PAMoR: Parameterized Affective Motion Generation in Real Time for Humanoid Robots\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.28213v1\n---\n>[!abstract] 一句话总结：PAMoR将情感转化为可测量的控制参数（效价-唤醒度V-A坐标），由机器人运动学闭环计算得出，作为生成条件；在共享潜空间中训练动作先验和两种情感先验，在每个去噪步骤组合，实现29-DoF Unitree G1全身运动的实时自回归生成。\n\n\n# 一、动机\n\n> 现有情感运动生成主要面向人类化身，风格来自参考片段或情感词，无法定量参数化，且不适用于机器人实时控制。\n\n\n# 二、方法\n\n> PAMoR将情感转化为可测量的控制参数（效价-唤醒度V-A坐标），由机器人运动学闭环计算得出，作为生成条件；在共享潜空间中训练动作先验和两种情感先验，在每个去噪步骤组合，实现29-DoF Unitree G1全身运动的实时自回归生成。\n\n\n# 三、核心实验结果\n\n> 生成的运动在全范围内跟踪命令的V-A坐标，文本到运动保真度与仅文本基线相当；感知实验中，被试在0.38的试验中识别出命令情感，高于两个基线，接近真人表演的0.44。\n\n\n# 四、对我的启发\n\n> 将情感定量化为运动学指标并直接用于机器人控制，避免人工标注，支持实时可编辑；但情感识别准确率仍低于真人表现，且V-A参数化对复杂情感的覆盖可能有限。与课题直接相关，可借鉴其量化情感与运动先验组合的框架。\n"
+}

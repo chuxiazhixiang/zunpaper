@@ -3,6 +3,134 @@
   "count": 29,
   "papers": [
     {
+      "id": "arxiv-2608-24101",
+      "source": "arxiv",
+      "title": "TrAct: Bridging Robot Control and Visual Prediction with Visual Tracks",
+      "title_zh": "TrAct：通过视觉轨迹连接机器人控制与视觉预测",
+      "tldr_zh": "TrAct用视觉轨迹连接控制与预测，显著提升机器人成功率",
+      "cover_zh": "机器人控制新突破｜用视觉轨迹做桥梁，成功率翻倍？",
+      "abstract_zh": "机器人动作本质上是具身特有的，与图像空间的视觉变化仅弱对齐，这限制了它们作为机器人世界模型条件信号的有效性。相比之下，视觉轨迹提供了与具身无关的表示，描述了任务相关点在场景中的移动方式，为准确且空间精确的未来视频预测提供了密集的图像空间指导。基于这一观察，我们提出了TrAct，一个基于世界模型的机器人决策框架，使用视觉轨迹作为控制与预测之间的中间接口。TrAct由三个组件组成：一个视觉-语言-动作-轨迹模型（VLAT），从当前观察和语言指令中联合预测候选动作和相应的视觉轨迹；一个轨迹条件世界模型（TWM），根据提议的轨迹预测未来的视觉结果；以及一个视觉-语言奖励模型（VLAC），对预测结果进行评分。在推理时，VLAT生成候选动作-轨迹对，TWM展开其视觉后果，VLAC选择预测结果最符合指令的轨迹；然后机器人执行与所选轨迹配对的动作。在提出的LIBERO-INTEGRAL基准和真实世界Franka操作上的实验表明，与强VLA基线π0.5相比，TrAct在模拟中将成功率从27%提高到55%，在真实世界任务中从49%提高到76%。此外，TWM持续提高了视频预测质量，优于动作条件世界模型（AWM）。这些结果表明，视觉轨迹为机器人控制和视觉预测提供了有效的共享接口，实现了更准确的世界建模和更强的机器人泛化能力。",
+      "authors": [
+        "Zhi Cao",
+        "Howard Ji",
+        "Kevin Zhang"
+      ],
+      "authors_all": [
+        "Zhi Cao",
+        "Howard Ji",
+        "Kevin Zhang",
+        "Kuangzhi Ge",
+        "Li Fei-Fei",
+        "Jiajun Wu",
+        "Huang Huang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-25",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Stanford"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Jiajun Wu"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-24101.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-24101-p2.jpg"
+      ],
+      "arxiv_id": "2608.24101",
+      "abs_url": "http://arxiv.org/abs/2608.24101v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.24101v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 65,
+      "judge": {},
+      "institutions": [
+        "University of Michigan",
+        "Stanford University"
+      ],
+      "method_tags": [
+        "World Model",
+        "Visual Tracks",
+        "VLA"
+      ],
+      "platform": [
+        "Franka"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2608-24042",
+      "source": "arxiv",
+      "title": "Hierarchical Skill Retrieval for Data-Efficient Adaptation of Vision-Language-Action Models",
+      "title_zh": "面向视觉-语言-动作模型数据高效适配的分层技能检索",
+      "tldr_zh": "提出分层技能检索，提升VLA模型数据高效适配，成功率显著提高。",
+      "cover_zh": "别再只靠视觉匹配了｜分层技能检索让机器人适配新任务又快又准",
+      "abstract_zh": "虽然在大规模机器人数据集上预训练的视觉-语言-动作（VLA）模型为机器人操作提供了强大的基础，但在任务特定演示有限的情况下，将其适配到新任务时性能可能会下降。检索提供了一种重用现有演示以实现数据高效适配的实用方法，但现有方法通常依赖于视觉相似性、状态-动作表示或任务级语言匹配。这些方法可能忽略长时程操作任务的分层结构，其中完整的任务匹配很少见，但可重用的技能往往很丰富。为了解决这一挑战，我们提出了分层技能检索（HSR），一种用于数据高效VLA适配的检索框架。具体来说，HSR首先将目标任务分解为候选技能序列。它基于语义合理性和从先前数据集估计的技能可靠性来评估每个计划。然后，选定的分解用于混合检索，结合子任务级语言检索和行为特征重排序，以识别既语义相关又与目标任务兼容的演示。最后，我们通过两阶段预训练和微调流程来适配策略，该流程将通用技能获取与任务特定适配分开。在LIBERO基准和几个真实世界机器人操作任务上的实验表明，HSR相对于最强基线分别将平均成功率提高了10.3%和21.3%。这些结果证明了结构化技能级检索对数据高效VLA适配的有效性。视频和代码可在 https://hoar012.github.io/HSR-Project 获取。",
+      "authors": [
+        "Haoran Hao",
+        "Shahram Najam Syed",
+        "Jeff Schneider"
+      ],
+      "authors_all": [
+        "Haoran Hao",
+        "Shahram Najam Syed",
+        "Jeff Schneider",
+        "Jeffrey Ichnowski"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-08-25",
+      "channels": [
+        "manipulation",
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ CMU RI"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-24042.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-24042-p2.jpg"
+      ],
+      "arxiv_id": "2608.24042",
+      "abs_url": "http://arxiv.org/abs/2608.24042v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.24042v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 45,
+      "judge": {},
+      "institutions": [
+        "Carnegie Mellon University"
+      ],
+      "method_tags": [
+        "Retrieval",
+        "VLA",
+        "Hierarchical Skill Retrieval"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2608-24714",
       "source": "arxiv",
       "title": "GaussianWAM: Distilling Geometry and Semantics from 3D Gaussian Fields into World-Action Models",
@@ -310,62 +438,6 @@
         "ORPO",
         "HGNN"
       ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2608-24101",
-      "source": "arxiv",
-      "title": "TrAct: Bridging Robot Control and Visual Prediction with Visual Tracks",
-      "title_zh": "TrAct：通过视觉轨迹连接机器人控制与视觉预测",
-      "tldr_zh": "TrAct用视觉轨迹连接控制与预测，显著提升机器人成功率",
-      "cover_zh": "机器人控制新突破｜用视觉轨迹做桥梁，成功率翻倍？",
-      "abstract_zh": "机器人动作本质上是具身特有的，与图像空间的视觉变化仅弱对齐，这限制了它们作为机器人世界模型条件信号的有效性。相比之下，视觉轨迹提供了与具身无关的表示，描述了任务相关点在场景中的移动方式，为准确且空间精确的未来视频预测提供了密集的图像空间指导。基于这一观察，我们提出了TrAct，一个基于世界模型的机器人决策框架，使用视觉轨迹作为控制与预测之间的中间接口。TrAct由三个组件组成：一个视觉-语言-动作-轨迹模型（VLAT），从当前观察和语言指令中联合预测候选动作和相应的视觉轨迹；一个轨迹条件世界模型（TWM），根据提议的轨迹预测未来的视觉结果；以及一个视觉-语言奖励模型（VLAC），对预测结果进行评分。在推理时，VLAT生成候选动作-轨迹对，TWM展开其视觉后果，VLAC选择预测结果最符合指令的轨迹；然后机器人执行与所选轨迹配对的动作。在提出的LIBERO-INTEGRAL基准和真实世界Franka操作上的实验表明，与强VLA基线π0.5相比，TrAct在模拟中将成功率从27%提高到55%，在真实世界任务中从49%提高到76%。此外，TWM持续提高了视频预测质量，优于动作条件世界模型（AWM）。这些结果表明，视觉轨迹为机器人控制和视觉预测提供了有效的共享接口，实现了更准确的世界建模和更强的机器人泛化能力。",
-      "authors": [
-        "Zhi Cao",
-        "Howard Ji",
-        "Kevin Zhang"
-      ],
-      "authors_all": [
-        "Zhi Cao",
-        "Howard Ji",
-        "Kevin Zhang",
-        "Kuangzhi Ge",
-        "Li Fei-Fei",
-        "Jiajun Wu",
-        "Huang Huang"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-08-25",
-      "channels": [
-        "manipulation",
-        "world-model"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ Jiajun Wu"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2608-24101.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2608-24101-p2.jpg"
-      ],
-      "arxiv_id": "2608.24101",
-      "abs_url": "http://arxiv.org/abs/2608.24101v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.24101v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 40,
-      "judge": {},
-      "institutions": [],
-      "method_tags": [],
       "platform": [],
       "sim_stack": [],
       "method_family": "",
@@ -752,54 +824,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2608-24042",
-      "source": "arxiv",
-      "title": "Hierarchical Skill Retrieval for Data-Efficient Adaptation of Vision-Language-Action Models",
-      "title_zh": "面向视觉-语言-动作模型数据高效适配的分层技能检索",
-      "tldr_zh": "提出分层技能检索，提升VLA模型数据高效适配，成功率显著提高。",
-      "cover_zh": "别再只靠视觉匹配了｜分层技能检索让机器人适配新任务又快又准",
-      "abstract_zh": "虽然在大规模机器人数据集上预训练的视觉-语言-动作（VLA）模型为机器人操作提供了强大的基础，但在任务特定演示有限的情况下，将其适配到新任务时性能可能会下降。检索提供了一种重用现有演示以实现数据高效适配的实用方法，但现有方法通常依赖于视觉相似性、状态-动作表示或任务级语言匹配。这些方法可能忽略长时程操作任务的分层结构，其中完整的任务匹配很少见，但可重用的技能往往很丰富。为了解决这一挑战，我们提出了分层技能检索（HSR），一种用于数据高效VLA适配的检索框架。具体来说，HSR首先将目标任务分解为候选技能序列。它基于语义合理性和从先前数据集估计的技能可靠性来评估每个计划。然后，选定的分解用于混合检索，结合子任务级语言检索和行为特征重排序，以识别既语义相关又与目标任务兼容的演示。最后，我们通过两阶段预训练和微调流程来适配策略，该流程将通用技能获取与任务特定适配分开。在LIBERO基准和几个真实世界机器人操作任务上的实验表明，HSR相对于最强基线分别将平均成功率提高了10.3%和21.3%。这些结果证明了结构化技能级检索对数据高效VLA适配的有效性。视频和代码可在 https://hoar012.github.io/HSR-Project 获取。",
-      "authors": [
-        "Haoran Hao",
-        "Shahram Najam Syed",
-        "Jeff Schneider"
-      ],
-      "authors_all": [
-        "Haoran Hao",
-        "Shahram Najam Syed",
-        "Jeff Schneider",
-        "Jeffrey Ichnowski"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-08-25",
-      "channels": [
-        "manipulation",
-        "loco-manip-wbc"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2608-24042.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2608-24042-p2.jpg"
-      ],
-      "arxiv_id": "2608.24042",
-      "abs_url": "http://arxiv.org/abs/2608.24042v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.24042v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 20,
-      "judge": {},
-      "institutions": [],
-      "method_tags": [],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2608-24572",
       "source": "arxiv",
       "title": "Fiber Optic Sensing Glove for High Performance Dexterous Manipulation Capture",
@@ -1106,12 +1130,20 @@
       "venue_announced": "",
       "score": 14,
       "judge": {},
-      "institutions": [],
-      "method_tags": [],
-      "platform": [],
+      "institutions": [
+        "Texas A&M University"
+      ],
+      "method_tags": [
+        "Flow Matching",
+        "Direct Preference Optimization",
+        "Neural Motion Planning"
+      ],
+      "platform": [
+        "Franka"
+      ],
       "sim_stack": [],
       "method_family": "",
-      "real_robot": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -1215,12 +1247,20 @@
       "venue_announced": "",
       "score": 9,
       "judge": {},
-      "institutions": [],
-      "method_tags": [],
+      "institutions": [
+        "Kyushu University"
+      ],
+      "method_tags": [
+        "compression-strain control",
+        "sensorless force estimation",
+        "damage-safe grasping"
+      ],
       "platform": [],
-      "sim_stack": [],
+      "sim_stack": [
+        "MuJoCo"
+      ],
       "method_family": "",
-      "real_robot": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -1459,8 +1499,14 @@
       "venue_announced": "",
       "score": 6,
       "judge": {},
-      "institutions": [],
-      "method_tags": [],
+      "institutions": [
+        "University of Sydney",
+        "University of New South Wales"
+      ],
+      "method_tags": [
+        "self-supervised learning",
+        "temporal action segmentation"
+      ],
       "platform": [],
       "sim_stack": [],
       "method_family": "",
