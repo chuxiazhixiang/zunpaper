@@ -90,25 +90,32 @@
     "assets/img/covers/arxiv-2608-27550-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [],
   "related_links": [],
   "page_count": 37,
   "source_tags": [],
-  "score": 15,
+  "score": 20,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 4 个（vision-language-action、robocasa、robotwin、libero）"
+      "hint": "频道关键词命中 5 个（vision-language-action、robocasa、robotwin、libero）"
     },
     {
       "id": "longer_paper",
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 37 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -131,5 +138,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Beyond Data Scaling: Representation-Centric Continued Pre-training for Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.27550v1\n---\n>[!abstract] 一句话总结：提出VLAct，一种面向VLA的VLM骨干模型，在广泛、异构、多本体的机器人数据上进行持续预训练，通过VLM先验保持、多头连续动作协同监督和部分统一的跨本体动作布局学习共享动作语义，再针对任务进行微调。\n\n\n# 一、动机\n\n> 机器人数据难以像互联网图文数据那样规模化扩展，在固定机器人数据预算下，表示质量成为核心瓶颈，需要将有限轨迹转化为可迁移的视觉-动作知识，而非仅拟合动作。\n\n\n# 二、方法\n\n> 提出VLAct，一种面向VLA的VLM骨干模型，在广泛、异构、多本体的机器人数据上进行持续预训练，通过VLM先验保持、多头连续动作协同监督和部分统一的跨本体动作布局学习共享动作语义，再针对任务进行微调。\n\n\n# 三、核心实验结果\n\n> 在LIBERO-Plus和RoboTwin 2.0上超越ABot-M0和LingBot-VLA，成功率分别达到82.6%和92.5%；在RoboDojo上成功率排名第六，且优于所有显式世界动作模型（WAM）条目；在未见过的机器人本体RoboCasa-GR1上，仅用20%的下游轨迹就超过了全量数据的GR00T-N1.6基线。以上结果仅使用全开源数据和16块GPU训练获得。\n\n\n# 四、对我的启发\n\n> 表示为中心的持续预训练是超越数据扩展的独立重要进展轴，在有限计算预算下也能取得高竞争性能，但当前方法仍需在更大规模本体和更复杂任务上验证，且与后续任务微调的协同机制值得进一步探索。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Beyond Data Scaling: Representation-Centric Continued Pre-training for Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.27550v1\n---\n>[!abstract] 一句话总结：提出VLAct，在任务微调前用多本体异构机器人数据对VLM骨干进行表示中心的持续预训练，通过VLM先验保留、多头连续动作协同监督和部分统一的跨本体动作布局鼓励共享动作语义，同时保留任务微调时的独立动作头。\n\n\n# 一、动机\n\n> 机器人轨迹数据难以像互联网图文数据那样规模化，固定数据预算下表示质量成为瓶颈，需要将有限轨迹转化为可迁移的视觉-动作知识，而非简单拟合动作。\n\n\n# 二、方法\n\n> 提出VLAct，在任务微调前用多本体异构机器人数据对VLM骨干进行表示中心的持续预训练，通过VLM先验保留、多头连续动作协同监督和部分统一的跨本体动作布局鼓励共享动作语义，同时保留任务微调时的独立动作头。\n\n\n# 三、核心实验结果\n\n> 在LIBERO-Plus和RoboTwin 2.0上分别达到82.6%和92.5%成功率，超越ABot-M0和LingBot-VLA；在RoboDojo成功率和排名均优于所有显式世界动作模型（WAM）；在RoboCasa-GR1 unseen人形本体上仅用20%下游轨迹即超过用全量数据的GR00T-N1.6基线，且全部基于开源数据和16-GPU训练。\n\n\n# 四、对我的启发\n\n> 与课题相关。表示中心的持续预训练是独立于数据规模的关键进展，但仅用16-GPU验证，其大规模扩展性未知；启发是在数据不足时优先提升表示质量可显著节省资源，跨本体共享动作语义是有效方向。\n"
 }
