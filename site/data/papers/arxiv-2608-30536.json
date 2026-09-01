@@ -65,7 +65,8 @@
     "assets/img/covers/arxiv-2608-30536-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -80,7 +81,7 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 55,
+  "score": 63,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -91,8 +92,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 9,
-      "hint": "频道关键词命中 3 个（vision-language-action、manipulation、contact-rich）"
+      "points": 12,
+      "hint": "频道关键词命中 5 个（vision-language-action、manipulation、contact-rich、mobile manipulation）"
     },
     {
       "id": "freshness",
@@ -111,6 +112,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -138,5 +145,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Behavior-Skill: A Fine-Grained Benchmark for Evaluating Vision-Language-Action Policies in Long-Horizon Tasks\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.30536v1\n---\n>[!abstract] 一句话总结：提出Behavior-Skill基准，将长程任务分解为可独立评估的语义技能，提供技能指令与观察-动作片段对齐，并定义可恢复中间状态和技能成功条件，引入轨迹级和技能级指标。\n\n\n# 一、动机\n\n> 现有长程移动操作基准依赖完整任务回放和任务级指标，无法观察中间技能失败，难以分析策略的细粒度能力。\n\n\n# 二、方法\n\n> 提出Behavior-Skill基准，将长程任务分解为可独立评估的语义技能，提供技能指令与观察-动作片段对齐，并定义可恢复中间状态和技能成功条件，引入轨迹级和技能级指标。\n\n\n# 三、核心实验结果\n\n> 构建了来自10,000个演示的235,492个技能实例，覆盖50个家庭任务和34个语义技能类别；在pi0.5和GR00T上的评估表明技能失败高度不均匀，接触丰富的操作技能是主要瓶颈。\n\n\n# 四、对我的启发\n\n> 该基准为长程VLA策略提供了细粒度的能力分析手段，与课题直接相关，可用于定位策略薄弱环节；但基准任务范围限于家庭场景，可能需扩展至更通用机器人操作。\n"
+  "note": "---\ntags:\n  - 论文/数据\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Behavior-Skill: A Fine-Grained Benchmark for Evaluating Vision-Language-Action Policies in Long-Horizon Tasks\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.30536v1\n---\n>[!abstract] 一句话总结：提出Behavior-Skill基准，将长期任务分解为可独立评估的技能片段，包含235,492个技能实例（来自50个家务任务、10,000个演示、34个语义技能类别），每个实例配有技能指令、观察-动作段、可恢复中间状态和成功条件，并引入轨迹级和技能级评估指标。\n\n\n# 一、动机\n\n> 现有长期任务基准主要依赖完整任务回放和聚合级任务成功率，难以观察和分析中间技能失败，限制了细粒度能力诊断。\n\n\n# 二、方法\n\n> 提出Behavior-Skill基准，将长期任务分解为可独立评估的技能片段，包含235,492个技能实例（来自50个家务任务、10,000个演示、34个语义技能类别），每个实例配有技能指令、观察-动作段、可恢复中间状态和成功条件，并引入轨迹级和技能级评估指标。\n\n\n# 三、核心实验结果\n\n> 在pi0.5和GR00T等VLA策略上的完整基准实验显示，失败在不同技能间高度不均匀，接触丰富的操作技能（如抓取、插拔）成为持续瓶颈，暴露了聚合任务成功率掩盖的中间能力缺陷。\n\n\n# 四、对我的启发\n\n> Behavior-Skill能补充全任务评估，通过细粒度技能能力剖面帮助定位和改善长时程VLA策略的薄弱环节，对机器人操作研究具有直接参考价值；未来可扩展更丰富的技能类目和跨本体泛化分析。\n"
 }

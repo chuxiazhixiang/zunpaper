@@ -104,7 +104,9 @@
     "assets/img/covers/arxiv-2608-30237-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model",
+    "sim2real"
   ],
   "badges": [
     {
@@ -123,7 +125,7 @@
   "related_links": [],
   "page_count": 30,
   "source_tags": [],
-  "score": 50,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -135,7 +137,7 @@
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 7 个（embodied agent、manipulation、dexterous、dexterous manipulation）"
+      "hint": "频道关键词命中 12 个（embodied agent、manipulation、dexterous、dexterous manipulation）"
     },
     {
       "id": "freshness",
@@ -148,6 +150,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 30 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 3 个频道"
     }
   ],
   "judge": {
@@ -175,5 +183,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Motus2: A Self-Evolving General World Model for Dexterous Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.30237v1\n---\n>[!abstract] 一句话总结：Motus2通过共享权重的单一模型统一策略（世界-动作模型）、模拟器（动作条件世界模型）和评估器（价值模型）三个接口，形成闭环决策-学习循环，并采用全局自回归/混合记忆扩展，结合单目到立体数据扩展及触觉反馈，实现自进化灵巧操作。\n\n\n# 一、动机\n\n> 现有世界模型通常在模拟器后简单附加动作输出头，未将策略、模拟与评估耦合为闭环决策-学习循环，难以实现策略的自我进化。\n\n\n# 二、方法\n\n> Motus2通过共享权重的单一模型统一策略（世界-动作模型）、模拟器（动作条件世界模型）和评估器（价值模型）三个接口，形成闭环决策-学习循环，并采用全局自回归/混合记忆扩展，结合单目到立体数据扩展及触觉反馈，实现自进化灵巧操作。\n\n\n# 三、核心实验结果\n\n> 论文未报告定量性能指标，但核心贡献是：以1个共享权重模型同时实现策略、模拟器、评估器3个角色，数据扩展包含单目、立体、域适应3个阶段，验证了利用失败和次优交互进行动力学与价值学习的可行性。\n\n\n# 四、对我的启发\n\n> 局限：缺少与现有方法的量化对比，自进化依赖失败数据质量。启发：闭环世界模型为灵巧操作提供了通用自进化范式，可推广至其他具身智能任务。\n"
+  "note": ""
 }

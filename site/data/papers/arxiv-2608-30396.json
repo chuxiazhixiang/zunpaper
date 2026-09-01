@@ -66,7 +66,8 @@
     "assets/img/covers/arxiv-2608-30396-p2.jpg"
   ],
   "channels": [
-    "locomotion"
+    "locomotion",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -85,7 +86,7 @@
   "related_links": [],
   "page_count": 22,
   "source_tags": [],
-  "score": 41,
+  "score": 46,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -110,6 +111,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 22 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -139,5 +146,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Scaffolding Foundation Models into Physical-World Agents Pushes the Frontier of Long-Horizon Navigation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.30396v1\n---\n>[!abstract] 一句话总结：提出NavMCP框架，通过VLM推理代理与NFM执行器耦合，以意图、观察、记忆三个通道将孤立的导航rollout转化为持久具身交互，无需重训练任一模型。\n\n\n# 一、动机\n\n> 长程物理世界代理需在远距离目标下推理，但现有VLM在重复导航接地中脆弱低效，导航基础模型（NFM）只能执行有界片段，缺乏持久任务级推理。\n\n\n# 二、方法\n\n> 提出NavMCP框架，通过VLM推理代理与NFM执行器耦合，以意图、观察、记忆三个通道将孤立的导航rollout转化为持久具身交互，无需重训练任一模型。\n\n\n# 三、核心实验结果\n\n> 在HM-EQA、MT-HM3D和EXPRESS-Bench上取得SOTA；匹配骨干下比episodic接口高14.9个百分点；Unitree Go2真机成功率78.3%，随任务范围增大，相对最强基线的优势从10增至45个百分点。\n\n\n# 四、对我的启发\n\n> 该框架展示了无需重训练即可组合互补基础模型的潜力，但VLM与NFM间的错误传播及推理开销可能制约实际部署；对长程导航机器人任务具有直接启发意义。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Scaffolding Foundation Models into Physical-World Agents Pushes the Frontier of Long-Horizon Navigation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.30396v1\n---\n>[!abstract] 一句话总结：提出NavMCP，通过意图、观察、记忆三个通道将VLM推理代理与NFM导航执行器耦合，使每个语义子目标转化为闭环导航调用，并将轨迹转化为证据累积记忆，无需重训练任一模型。\n\n\n# 一、动机\n\n> 长期导航任务中，VLM具备高层推理但无法可靠地反复接地导航，NFM执行稳健但缺乏任务级持续推理，两者难以单独完成长时程物理世界任务。\n\n\n# 二、方法\n\n> 提出NavMCP，通过意图、观察、记忆三个通道将VLM推理代理与NFM导航执行器耦合，使每个语义子目标转化为闭环导航调用，并将轨迹转化为证据累积记忆，无需重训练任一模型。\n\n\n# 三、核心实验结果\n\n> NavMCP在HM-EQA、MT-HM3D和EXPRESS-Bench上取得SOTA；在匹配主干下比分段式接口高14.9个百分点；在Unitree Go2上成功率78.3%，任务周期增长时优势从10提升至45个百分点。\n\n\n# 四、对我的启发\n\n> 模块化脚手架耦合互补基础模型可有效提升长期导航任务，但VLM的高层决策开销和证据累积的错误传播可能是进一步改进的关键。\n"
 }
