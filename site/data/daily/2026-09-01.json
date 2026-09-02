@@ -657,13 +657,75 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2609-01215",
+      "source": "arxiv",
+      "title": "REFACTOR-VLA: Unsupervised Library Learning of Typed Motor Programs",
+      "title_zh": "REFACTOR-VLA：类型化运动程序的无监督库学习",
+      "tldr_zh": "REFACTOR-VLA通过无监督学习类型化运动程序库，提升VLA模型的长时程任务性能与可解释性。",
+      "cover_zh": "VLA模型不再“黑箱”｜REFACTOR-VLA让机器人学会可复用技能库",
+      "abstract_zh": "大多数视觉-语言-动作（VLA）模型——如OpenVLA、π0、RT-2、RDT-1B——都是整体式的：它们直接输出原始运动命令或短动作片段，而不将行为组织成可重用的抽象，因此在长时程任务上性能下降且难以解释。现有的技能发现方法回避了“两个动作序列何时在行为上等价”这一核心问题，要么对对比嵌入进行聚类，要么将判断委托给未针对机器人动力学校准的语言模型。我们提出了REFACTOR-VLA，一个用于学习可重用技能的唤醒/睡眠系统。其睡眠阶段在从学习到的潜在世界模型Mφ的rollout中计算的行为等价核（BEK）下对运动程序片段进行聚类；其唤醒阶段在受Hindley-Milner启发的词汇表上发出类型化的lambda项，并由库条件化的整流流动作解码器消费。抽象只有通过最小描述长度和返回保持门控才会被接纳。在LIBERO上，我们报告了两个发现。首先，将世界模型从188M参数扩展到430M参数在4个套件上均使性能恶化，因此仅靠容量并无帮助。其次，训练目标重要得多：在世界模型预热期间添加辅助监督对比（InfoNCE）损失显著改善了睡眠阶段的聚类，在n=3个种子上给出归一化互信息（NMI）为0.462±0.021（物体）、0.867±0.025（空间）、0.915±0.013（目标）和0.754±0.010（LIBERO-10），并在所有4个套件上平均Δ=+0.184超过最强已发表基线。在n=12个提供者中，平均成对NMI的95%自助置信区间为[0.683, 0.729]（均值0.705）。睡眠阶段还产生了首个真实LIBERO任务语言库：解码器使用了3个被接纳抽象中的2个，并重写了所有256个采样演示。",
+      "authors": [
+        "Riyaaz Shaik",
+        "Chandru Venkataraman"
+      ],
+      "authors_all": [
+        "Riyaaz Shaik",
+        "Chandru Venkataraman"
+      ],
+      "primary_category": "cs.LG",
+      "published": "2026-09-01",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2609-01215.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2609-01215-p2.jpg"
+      ],
+      "arxiv_id": "2609.01215",
+      "abs_url": "http://arxiv.org/abs/2609.01215v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.01215v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出VLA技能库学习方法，结合世界模型与行为等价核，在LIBERO上显著提升，科研价值高。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Apple"
+      ],
+      "method_tags": [
+        "wake/sleep",
+        "Behavioral-Equivalence Kernel",
+        "world model"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2609-01518",
       "source": "arxiv",
       "title": "A System for Fast, Resilient, and Adaptable Loco-Manipulation Behaviors on Humanoid Robots",
       "title_zh": "人形机器人快速、鲁棒且可适应的移动操作行为系统",
       "tldr_zh": "提出一种运行时可编辑的行为系统，实现人形机器人快速、鲁棒且可适应的移动操作。",
-      "cover_zh": "人形机器人也能灵活干活？新系统让它在干扰下快速分类和开门！",
-      "abstract_zh": "人形机器人在为人类设计的空间中承担体力要求高、危险且重复的工作具有巨大价值。然而，用于这些空间的有用机器人必须协调运动、全身运动、感知、接触和操作员监督。我们提出了一个机器人本地、运行时可编辑的行为编写和运行时系统，以解决这些挑战。我们认为行为架构可以成为能力、速度和可靠性的主要推动因素，而运行时可编辑性则能够实现快速的行为创建、适应、扩展和组合。我们的行为架构结合了以对象为中心的Affordance模板、提供组织和逻辑的树结构，以及通过行为场景和原始场景动作实现的运行时可编辑感知。我们的操作员界面与机器人保持持续同步，以进行运行时编写、监控和修复。动作原语通过支持并发身体运动和行走的全身控制器执行。我们在Unitree H1-2和Alex上演示了覆盖六种任务变体的系统。我们在人类干扰下，34秒内完成推门穿越，45秒内按颜色分类六个球。计时编写会话显示，在数小时内即可从零开始创建新的移动操作行为并适应现有行为。与文献的比较发现，我们的方法与最近的学习系统具有竞争力。",
+      "cover_zh": "人形机器人也能快速干活？这个系统让推门和分球只需几十秒！",
+      "abstract_zh": "人形机器人在为人类设计的空间中承担体力要求高、危险且重复的工作具有巨大价值。然而，适用于这些空间的机器人必须协调运动、全身运动、感知、接触和操作员监督。我们提出了一种机器人本地、运行时可编辑的行为编写和运行系统，以应对这些挑战。我们认为行为架构可以成为能力、速度和可靠性的主要推动因素，而运行时可编辑性则能实现快速的行为创建、适应、扩展和组合。我们的行为架构结合了以对象为中心的Affordance模板（提供组织和逻辑的树结构）以及通过行为场景和原始场景动作实现的运行时可编辑感知。我们的操作员界面与机器人保持持续同步，以进行运行时编写、监控和修复。动作原语通过支持并发身体运动和行走的全身控制器执行。我们在Unitree H1-2和Alex上演示了六种任务变体。我们在34秒内完成推门穿越，并在人类干扰下45秒内按颜色分类六个球。计时编写会话显示，新移动操作行为的从头创建和现有行为的适应可在数小时内完成。与文献的比较发现，我们的方法与最近的学习系统具有竞争力。",
       "authors": [
         "Duncan Calvert",
         "Luigi Penco",
@@ -700,7 +762,7 @@
       "pdf_url": "https://arxiv.org/pdf/2609.01518v1",
       "venue": "",
       "venue_announced": "",
-      "score": 30,
+      "score": 27,
       "judge": {
         "relevant": true,
         "research_value": "high",
@@ -724,67 +786,6 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2609-01215",
-      "source": "arxiv",
-      "title": "REFACTOR-VLA: Unsupervised Library Learning of Typed Motor Programs",
-      "title_zh": "REFACTOR-VLA：类型化运动程序的无监督库学习",
-      "tldr_zh": "REFACTOR-VLA通过无监督学习类型化运动程序库，提升VLA模型的长时程任务性能与可解释性。",
-      "cover_zh": "VLA模型不再“黑箱”｜REFACTOR-VLA让机器人学会可复用技能库",
-      "abstract_zh": "大多数视觉-语言-动作（VLA）模型——如OpenVLA、π0、RT-2、RDT-1B——都是整体式的：它们直接输出原始运动命令或短动作片段，而不将行为组织成可重用的抽象，因此在长时程任务上性能下降且难以解释。现有的技能发现方法回避了“两个动作序列何时在行为上等价”这一核心问题，要么对对比嵌入进行聚类，要么将判断委托给未针对机器人动力学校准的语言模型。我们提出了REFACTOR-VLA，一个用于学习可重用技能的唤醒/睡眠系统。其睡眠阶段在从学习到的潜在世界模型Mφ的rollout中计算的行为等价核（BEK）下对运动程序片段进行聚类；其唤醒阶段在受Hindley-Milner启发的词汇表上发出类型化的lambda项，并由库条件化的整流流动作解码器消费。抽象只有通过最小描述长度和返回保持门控才会被接纳。在LIBERO上，我们报告了两个发现。首先，将世界模型从188M参数扩展到430M参数在4个套件上均使性能恶化，因此仅靠容量并无帮助。其次，训练目标重要得多：在世界模型预热期间添加辅助监督对比（InfoNCE）损失显著改善了睡眠阶段的聚类，在n=3个种子上给出归一化互信息（NMI）为0.462±0.021（物体）、0.867±0.025（空间）、0.915±0.013（目标）和0.754±0.010（LIBERO-10），并在所有4个套件上平均Δ=+0.184超过最强已发表基线。在n=12个提供者中，平均成对NMI的95%自助置信区间为[0.683, 0.729]（均值0.705）。睡眠阶段还产生了首个真实LIBERO任务语言库：解码器使用了3个被接纳抽象中的2个，并重写了所有256个采样演示。",
-      "authors": [
-        "Riyaaz Shaik",
-        "Chandru Venkataraman"
-      ],
-      "authors_all": [
-        "Riyaaz Shaik",
-        "Chandru Venkataraman"
-      ],
-      "primary_category": "cs.LG",
-      "published": "2026-09-01",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2609-01215.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2609-01215-p2.jpg"
-      ],
-      "arxiv_id": "2609.01215",
-      "abs_url": "http://arxiv.org/abs/2609.01215v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.01215v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 25,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出VLA技能库学习方法，结合世界模型与行为等价核，在LIBERO上显著提升，科研价值高。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Apple"
-      ],
-      "method_tags": [
-        "wake/sleep",
-        "Behavioral-Equivalence Kernel",
-        "world model"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
