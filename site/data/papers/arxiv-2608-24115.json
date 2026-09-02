@@ -84,5 +84,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"PonderPounce: A Pretrained MLLM as an Episode Context Engine for Robot Control\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.24115v1\n---\n>[!abstract] 一句话总结：将机器人控制拆分为Ponder（System2 MLLM）与Pounce（System1 VLA），通过端到端联合训练使Ponder在原生上下文中积累演示和推理并输出连续认知token，Pounce仅接收当前观测与最新认知token异步驱动动作，无需专用记忆模块或桥接预训练。\n\n\n# 一、动机\n\n> 现有VLA模型虽继承预训练表示，但未利用MLLM的上下文记忆能力作为情境记忆，而专用记忆机制复杂度高。PonderPounce旨在复用MLLM原生因果上下文实现高效机器人记忆。\n\n\n# 二、方法\n\n> 将机器人控制拆分为Ponder（System2 MLLM）与Pounce（System1 VLA），通过端到端联合训练使Ponder在原生上下文中积累演示和推理并输出连续认知token，Pounce仅接收当前观测与最新认知token异步驱动动作，无需专用记忆模块或桥接预训练。\n\n\n# 三、核心实验结果\n\n> 在RoboMME上，9B模型达60.83%，0.8B模型达50.04%，优于FrameSamp+Modul的44.51%和当前观测策略π0.5的17.93%；9倍数据下达75.54% vs 57.88%。RoboCasa-DC上达12.5%，优于最强演示条件基线11.6%，当认知替换为null态时降至8.6%。系统p50延迟：认知刷新78ms，动作调用25ms，支持20Hz执行。\n\n\n# 四、对我的启发\n\n> 复用MLLM原生上下文作为机器人记忆可避免专用记忆模块，且认知token对性能有显著贡献；但性能受模型规模和数据量影响大，跨任务泛化性尚需进一步验证。\n"
 }

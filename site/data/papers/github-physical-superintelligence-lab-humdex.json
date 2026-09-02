@@ -1,0 +1,74 @@
+{
+  "id": "github-physical-superintelligence-lab-humdex",
+  "source": "github",
+  "title": "physical-superintelligence-lab/humdex",
+  "title_zh": "physical-superintelligence-lab/humdex",
+  "abstract": "# HumDex: Humanoid Dexterous Manipulation Made Easy By [Liang Heng](https://liangheng121.github.io/), [Yihe Tang](https://tangyihe.com/), [Jiajun Xu](https://georginhsu.github.io/), [Henghui Bao](https://scholar.google.com/citations?user=88XEeKAAAAAJ&hl=en), Di Huang, [Yue Wang](https://yuewang.xyz/) ## News - **2026-05-31**. ***Sonic*** channel: fixed teleop turning and latency (apply the one-time [controller patch](#3-clone-gr00t-wholebodycontrol-for-sonic)), and added token-level data collection, training, and inference. - **2026-03-27**. ***Xsens*** body teleoperation is available in HumDex (`body_source: xsens`). - **2026-03-16**. ***Manus*** hand tracking has been integrated into the teleop pipeline (`hand_source: manus`). - **2026-03-10**. Added ***Sonic*** teleoperation support (`policy: sonic`). ## Content Table - [Installation](#installation) - [Teleop](#teleop) - [G1 Controller](#g1-controller) - [Wuji Hand Controller](#wuji-hand-controller) - [Wuji Policy](#wuji-policy) - [Data Collection](#data-collection) - [Policy Learning](#policy-learning) - [Citation](#citation) --- ## Installation We will have two conda environments for Humdex. One is called `humdex`, which can be used for controller training, controller deployment, and teleop data collection. The other is called `gmr`, which can be used for online motion retargeting. ### 1) Create `gmr` Environment ### 2) Create `humdex` Environment For the rest of `humdex` environment setup, follow TWIST2 README: - [Step 2: Install Isaac Gym](https://github.com/LiangHeng121/TWIST2?tab=readme-ov-file#step-2-install-isaac-gym) - [Step 3: Install Packages](https://github.com/LiangHeng121/TWIST2?tab=readme-ov-file#step-3-install-packages) - [Step 4: Install Unitree SDK2 for Laptop Sim2Real](https://github.com/LiangHeng121/TWIST2?tab=readme-ov-file#step-4-install-unitree-sdk2-for-laptop-sim2real) ### 3) Clone `GR00T-WholeBodyControl` (for sonic) Then follow the official [doc](https://nvlabs.github.io/GR00T-WholeBodyC",
+  "abstract_zh": "HumDex 是一个用于人形机器人灵巧操作的开源框架，旨在简化从遥操作到策略学习的整个流程。它支持多种硬件平台，包括 G1 和 Wuji 手部控制器，并集成了 Xsens 身体遥操作和 Manus 手部追踪。HumDex 提供了完整的安装指南、数据收集和策略学习工具，并兼容 Sonic 和 GR00T-WholeBodyControl 等系统。通过模块化设计和详细的文档，HumDex 降低了人形机器人灵巧操作的门槛，使研究人员和开发者能够更轻松地部署和实验。",
+  "tldr_zh": "HumDex 开源框架简化人形机器人灵巧操作，支持多种硬件与遥操作。",
+  "cover_zh": "人形机器人灵巧操作太难？HumDex 让一切变简单！",
+  "authors": [
+    {
+      "name": "physical-superintelligence-lab",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2026-06-02",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/physical-superintelligence-lab/humdex",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "loco-manip-wbc"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 36,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 36,
+      "hint": "⭐ 63"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "loco-manip-wbc",
+    "reason": "人形灵巧操作全栈框架，含遥操作、数据采集、策略学习与Sim2Real，实用性强。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "全身控制"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "physical-superintelligence-lab",
+    "repo": "humdex",
+    "stars": 63,
+    "language": "Python",
+    "pushed_at": "2026-06-02",
+    "created_at": "2026-03-04",
+    "topics": [],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"physical-superintelligence-lab/humdex\"\nYear: \"\"\nURL: https://github.com/physical-superintelligence-lab/humdex\n---\n>[!abstract] 一句话总结：开源一个基于Unitree G1与Wuji灵巧手的人形操作框架，集成Sonic全身遥操作、Xsens体感与Manus手势等多种输入源，并结合TWIST2与GR00T-WholeBodyControl实现从动作重定向到策略训练的全流程。\n\n\n# 一、动机\n\n> 现有的人形灵巧操作流程割裂、遥操作延迟大且配置复杂，HumDex旨在提供一套集遥操作、数据采集、策略学习于一体的简化开源方案。\n\n\n# 二、方法\n\n> 开源一个基于Unitree G1与Wuji灵巧手的人形操作框架，集成Sonic全身遥操作、Xsens体感与Manus手势等多种输入源，并结合TWIST2与GR00T-WholeBodyControl实现从动作重定向到策略训练的全流程。\n\n\n# 三、核心实验结果\n\n> 1) 支持Sonic/Xsens/Manus三种遥操作方式，以及G1和Wuji两种执行器/手部方案；2) 为Sonic提供token级数据采集与推理，并修复遥控转向延迟（需应用一次性控制补丁）；3) 摘要未提供成功率等量化性能指标。\n\n\n# 四、对我的启发\n\n> 该项目与机器人灵巧操作直接相关，完整开源了遥操作到学习的工程架构，可作为参考；但依赖特定硬件（G1/Wuji/Sonic）且缺少基准数据，应用前需自行标定与评估。\n"
+}

@@ -1,0 +1,74 @@
+{
+  "id": "github-yueyang130-deer-vla",
+  "source": "github",
+  "title": "yueyang130/DeeR-VLA",
+  "title_zh": "yueyang130/DeeR-VLA",
+  "abstract": "Official code of paper \"DeeR-VLA: Dynamic Inference of Multimodal Large Language Models for Efficient Robot Execution\"\n\nDeeR-VLA: Dynamic Inference of Multimodal Large Language Models for Efficient Robot Execution ( NeurIPS 24 ) Yang Yue 1 &emsp; Yulin Wang 1 &emsp; Bingyi Kang 2 &emsp; Yizeng Han 1 &emsp; Shenzhi Wang 1 &emsp; Shiji Song 1 &emsp; Jiashi Feng 2 &emsp; Gao Huang 1 1 Tsinghua University &emsp; 2 ByteDance Research [ ](https://arxiv.org/pdf/2411.02359) [ ](https://huggingface.co/Yang130/DeeR-VLA/tree/main) ## Overview This is also the official code repository for the paper [DeeR-VLA](https://arxiv.org/pdf/2411.02359). DeeR-VLA is a framework for dynamic inference of multimodal large language models (MLLMs) designed specifically for efficient robot execution. Developing MLLMs for real-world robots is challenging due to the typically limited computation and memory capacities available on robotic platforms. DeeR-VLA addresses this challenge by implementing a Dynamic Early-Exit strategy that automatically adjusts the size of the activated MLLM based on the complexity of each situation. This approach leverages a multi-exit architecture, allowing the model to terminate processing once an appropriate size has been activated, thus avoiding redundant computation. DeeR-VLA also incorporates novel algorithms to establish early-termination criteria based on predefined demands such as average computational cost, peak computational consumption, and GPU memory usage. On the CALVIN robot manipulation benchmark, DeeR demonstrates significant reductions in computational costs of LLM by 5.2-6.5x and GPU memory of LLM by 2-6x without compromising performance. ### Performance on CALVIN Benchmark ## Installation 1. Install [CALVIN](https://github.com/mees/calvin) simulator in your python environment following the instructions. Then download dataset `D`, `ABC`, and `ABCD`. 2. Clone DeeR-VLA: 3. Install dependencies in virtual environment: 4. Download the following models from Hugging Face. The OpenFlamingo framework is built on the MPT language model: - OpenFlamingo-3B-vitl-mpt1b-langinstruct",
+  "abstract_zh": "本文是论文“DeeR-VLA：面向高效机器人执行的多模态大语言模型动态推理”（NeurIPS 24）的官方代码库。DeeR-VLA是一个专为高效机器人执行而设计的多模态大语言模型（MLLMs）动态推理框架。由于机器人平台通常计算和内存能力有限，开发用于真实世界机器人的MLLMs颇具挑战。DeeR-VLA通过实施动态早退策略解决了这一挑战，该策略根据每个情境的复杂度自动调整激活的MLLM大小。该方法利用多出口架构，一旦激活了适当大小的模型即可终止处理，从而避免冗余计算。DeeR-VLA还引入了新颖的算法，基于预定义的需求（如平均计算成本、峰值计算消耗和GPU内存使用）建立早停标准。在CALVIN机器人操作基准上，DeeR在不牺牲性能的情况下，显著降低了LLM的计算成本5.2-6.5倍，GPU内存2-6倍。",
+  "tldr_zh": "DeeR-VLA通过动态早退策略，在机器人任务中大幅降低计算和内存开销，且不损性能。",
+  "cover_zh": "机器人执行不再卡顿？这个动态推理框架让大模型轻装上阵，计算成本直降5倍！",
+  "authors": [
+    {
+      "name": "yueyang130",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2025-02-14",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/yueyang130/DeeR-VLA",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 42,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 42,
+      "hint": "⭐ 129"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "官方代码，动态推理MLLM提升机器人执行效率，NeurIPS 24，CALVIN上显著降低计算开销",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "操作"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "yueyang130",
+    "repo": "DeeR-VLA",
+    "stars": 129,
+    "language": "Python",
+    "pushed_at": "2025-02-14",
+    "created_at": "2024-10-09",
+    "topics": [],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"yueyang130/DeeR-VLA\"\nYear: \"\"\nURL: https://github.com/yueyang130/DeeR-VLA\n---\n>[!abstract] 一句话总结：提出DeeR-VLA框架，采用动态早退（Dynamic Early-Exit）与多出口架构，依据输入复杂度自适应调整激活的模型规模，并为平均计算量、峰值计算和GPU内存设定预算来学习早退准则。\n\n\n# 一、动机\n\n> 真实机器人平台的计算和内存资源有限，而多模态大模型（MLLM）推理开销大，难以直接部署，导致执行效率低。\n\n\n# 二、方法\n\n> 提出DeeR-VLA框架，采用动态早退（Dynamic Early-Exit）与多出口架构，依据输入复杂度自适应调整激活的模型规模，并为平均计算量、峰值计算和GPU内存设定预算来学习早退准则。\n\n\n# 三、核心实验结果\n\n> 在CALVIN机器人操作基准上，LLM计算量减少5.2-6.5倍，GPU内存减少2-6倍，且不影响任务表现。\n\n\n# 四、对我的启发\n\n> 该工作直接面向机器人执行中的MLLM高效推理问题，展示了动态推理在具身智能中的可行性；但需要定制多出口架构并联合训练，可能限制其直接迁移到已有MLLM模型。\n"
+}

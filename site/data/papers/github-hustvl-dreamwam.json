@@ -1,0 +1,74 @@
+{
+  "id": "github-hustvl-dreamwam",
+  "source": "github",
+  "title": "hustvl/DreamWAM",
+  "title_zh": "hustvl/DreamWAM",
+  "abstract": "DreamWAM: Beyond RGB Future Prediction for World Action Models Shanglin Yuan 1,2,* &middot; Weiheng Zhao 1,2,* &middot; Xin Shi 2 &middot; Haoyi Jiang 1,2 &middot; Xianda Guo 3 &middot; Liu Liu 4 &middot; Wenyu Liu 1 &middot; Wei Sui 2,&dagger; &middot; Xinggang Wang 1,&Dagger; 1 Huazhong University of Science and Technology &middot; 2 D-Robotics &middot; 3 Wuhan University &middot; 4 Horizon Robotics * Equal contribution &middot; &dagger; Project Lead &middot; &Dagger; Corresponding Author This repository provides the official implementation of DreamWAM, which moves world action modeling beyond RGB by learning future appearance, motion, geometry, and semantics as complementary views of action-relevant state. It combines joint RGB-flow latent denoising with gated depth and DINO residual supervision, transferring structured future cues to action prediction through shared VideoDiT-ActionDiT attention. These beyond-RGB signals are used only during training, preserving RGB-only inference while improving robustness to visual perturbations. ## Contents - [Installation](#installation) - [Model Preparation](#model-preparation) - [Data Preparation](#data-preparation) - [Training](#training) - [Evaluation](#evaluation) - [Acknowledgments](#acknowledgments) - [Citation](#citation) ## Installation Run all commands from the repository root. Python 3.10 and CUDA 12.8 are recommended. ## Model Preparation Place the following upstream repositories and pretrained components at the repository-local targets shown below. | Component | Upstream source or weights | Local target | | --- | --- | --- | | DreamWAM checkpoints | [Hugging Face](https://huggingface.co/hustvl/DreamWAM) | `checkpoints/` | | Wan2.2 TI2V-5B | [Wan-AI/Wan2.2-TI2V-5B](https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B) | `pretrained/Wan2.2-TI2V-5B/` | | RAFT | [source](https://github.com/princeton-vl/RAFT) and [weights](https://github.com/princeton-vl/RAFT/blob/master/download_models.sh) | `third_party/RAFT/`, `pretrained/",
+  "abstract_zh": "DreamWAM将世界动作建模从RGB扩展到更丰富的维度，通过学习未来的外观、运动、几何和语义作为动作相关状态的互补视图。它结合了联合RGB-光流潜在去噪与门控深度和DINO残差监督，通过共享的VideoDiT-ActionDiT注意力将结构化未来线索传递给动作预测。这些超越RGB的信号仅在训练期间使用，推理时仅需RGB输入，同时提高了对视觉扰动的鲁棒性。",
+  "tldr_zh": "DreamWAM在训练时引入深度、光流等未来线索，推理仅用RGB，提升动作预测鲁棒性。",
+  "cover_zh": "训练时偷偷加料，推理时只靠RGB？这个动作模型稳了！",
+  "authors": [
+    {
+      "name": "hustvl",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2026-08-28",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/hustvl/DreamWAM",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "world-model"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 31,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 31,
+      "hint": "⭐ 36"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "world-model",
+    "reason": "官方实现的世界动作模型，结合视频预测与操作，代码和模型齐全，科研价值高。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "世界模型"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "hustvl",
+    "repo": "DreamWAM",
+    "stars": 36,
+    "language": "Python",
+    "pushed_at": "2026-08-28",
+    "created_at": "2026-08-05",
+    "topics": [],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"hustvl/DreamWAM\"\nYear: \"\"\nURL: https://github.com/hustvl/DreamWAM\n---\n>[!abstract] 一句话总结：DreamWAM通过联合RGB-光流潜在去噪，并在训练中引入门控深度和DINO残差监督，利用共享的VideoDiT-ActionDiT注意力将结构化未来线索融合到动作预测，推理时仅使用RGB。\n\n\n# 一、动机\n\n> 现有世界动作模型大多仅基于RGB未来预测，忽略了动作相关的运动、几何、语义等结构化线索，在视觉扰动下预测鲁棒性不足。\n\n\n# 二、方法\n\n> DreamWAM通过联合RGB-光流潜在去噪，并在训练中引入门控深度和DINO残差监督，利用共享的VideoDiT-ActionDiT注意力将结构化未来线索融合到动作预测，推理时仅使用RGB。\n\n\n# 三、核心实验结果\n\n> 仓库未提供具体的定量数字；主要结论是超越纯RGB未来预测，通过多模态训练信号提升对视觉扰动的鲁棒性，且推理成本不增加。\n\n\n# 四、对我的启发\n\n> 局限：额外模态监督仅在训练阶段使用，推理时仍依赖RGB，未展示扰动消除后的可视化或消融；启发：在动作预测中显式建模光流、深度、语义等互补线索，可能比单纯堆叠更大模型更有效地增强世界模型的稳定性和泛化能力。\n"
+}

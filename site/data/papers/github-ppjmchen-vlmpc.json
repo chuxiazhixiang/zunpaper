@@ -1,0 +1,74 @@
+{
+  "id": "github-ppjmchen-vlmpc",
+  "source": "github",
+  "title": "PPjmchen/vlmpc",
+  "title_zh": "PPjmchen/vlmpc",
+  "abstract": "# VLMPC & Traj-VLMPC This is the official repo for our papers: 1. [VLMPC: Vision-Language Model Predictive Control for Robotic Manipulation](https://www.roboticsproceedings.org/rss20/p106.pdf), ***RSS2024*** &ensp;&ensp;&ensp;&ensp;[Wentao Zhao*](https://taoshuaiz.github.io/), [Jiaming Chen*](https://ppjmchen.github.io/), Ziyu Meng, Donghui Mao, [Ran Song†](https://faculty.sdu.edu.cn/songran/en/index/1023305/list/index.htm), [Wei Zhang](https://vsislab.github.io/Weizhang/) 2. [Vision-Language Model Predictive Control for Manipulation Planning and Trajectory Generation](https://arxiv.org/abs/2504.05225) &ensp;&ensp;&ensp;&ensp;[Jiaming Chen*](https://ppjmchen.github.io/), [Wentao Zhao*](https://taoshuaiz.github.io/), ,Ziyu Meng, Donghui Mao, [Ran Song†](https://faculty.sdu.edu.cn/songran/en/index/1023305/list/index.htm), [Wei Pan](https://panweihit.github.io/) , [Wei Zhang](https://vsislab.github.io/Weizhang/) We provide the implementation of VLMPC in [Language-Table](https://github.com/google-research/language-table) environment. ## Installation **Note**: Add your [Openai API](https://openai.com/index/openai-api/) key to the vlmpc.py. ## Quickstart We provide the trained checkpoints of [video prediction model](https://drive.google.com/file/d/1nztdUl4wanRXscNblmhX2_FF0Y2--TqF/view?usp=drive_link) and [detector](https://drive.google.com/file/d/1bjaxhmEIIav30HLdTKYvM-IWLqcIyCS7/view?usp=drive_link), download them for quick start: ## Citation ## Acknowledgements - Environment is based on [Language-Table](https://interactive-language.github.io/). - The implementation of DMVFN-Act video prediction model is based on [DMVFN](https://github.com/hzwer/CVPR2023-DMVFN). - [PySOT](https://github.com/STVIR/pysot) for lightweight visual tracking.",
+  "abstract_zh": "本文介绍了VLMPC（视觉语言模型预测控制）及其扩展Traj-VLMPC，用于机器人操作中的操作规划和轨迹生成。我们提供了在Language-Table环境中的实现，包括安装指南、快速开始所需的预训练视频预测模型和检测器检查点。该方法利用视觉语言模型进行预测控制，旨在提高机器人操作的效率和准确性。相关工作基于Language-Table环境，并借鉴了DMVFN-Act视频预测模型和PySOT轻量级视觉跟踪的实现。",
+  "tldr_zh": "VLMPC将视觉语言模型用于机器人操作预测控制，提供官方实现与预训练模型。",
+  "cover_zh": "机器人操作新突破｜视觉语言模型直接预测控制，效果惊艳！",
+  "authors": [
+    {
+      "name": "PPjmchen",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2025-04-08",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/PPjmchen/vlmpc",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 38,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 38,
+      "hint": "⭐ 82"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "官方RSS2024论文代码，将VLM与MPC结合用于机器人操作，提供训练模型，具参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "操作"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "PPjmchen",
+    "repo": "vlmpc",
+    "stars": 82,
+    "language": "Jupyter Notebook",
+    "pushed_at": "2025-04-08",
+    "created_at": "2024-04-20",
+    "topics": [],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"PPjmchen/vlmpc\"\nYear: \"\"\nURL: https://github.com/PPjmchen/vlmpc\n---\n>[!abstract] 一句话总结：提出基于视觉语言模型的预测控制框架（VLMPC），并在Language-Table环境中实现：使用视频预测模型（DMVFN-Act）预测未来帧，结合视觉目标检测/追踪评估轨迹，从而优化生成操作动作；后续Traj-VLMPC进一步扩展为操作规划与完整轨迹生成。\n\n\n# 一、动机\n\n> 传统模型预测控制（MPC）依赖精确动力学模型和手工设计成本函数，在复杂机器人操作任务中泛化困难；VLMPC利用视觉语言模型的常识与视觉预测能力，免去显式动力学建模，提升规划的泛化性和鲁棒性。\n\n\n# 二、方法\n\n> 提出基于视觉语言模型的预测控制框架（VLMPC），并在Language-Table环境中实现：使用视频预测模型（DMVFN-Act）预测未来帧，结合视觉目标检测/追踪评估轨迹，从而优化生成操作动作；后续Traj-VLMPC进一步扩展为操作规划与完整轨迹生成。\n\n\n# 三、核心实验结果\n\n> 论文发表于RSS 2024；开源了训练好的视频预测模型和检测器权重，并提供官方Language-Table实现。由于仓库摘要未列出具体量化指标（如成功率/轨迹误差），需查阅论文原文获取精确数值。\n\n\n# 四、对我的启发\n\n> 该工作为具身智能中的闭环操作规划提供了新思路：用VLM作为感知与预测先验来替代复杂动力学建模，适合复杂操作场景。但与课题（若为真实机器人部署）相关程度中等——当前仅验证于仿真环境Language-Table，且视频预测与VLM推理的实时性和成本仍是实用化瓶颈。\n"
+}
