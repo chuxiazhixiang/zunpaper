@@ -78,7 +78,8 @@
     "assets/img/covers/arxiv-2609-02134-p2.jpg"
   ],
   "channels": [
-    "locomotion"
+    "locomotion",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -93,7 +94,7 @@
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 41,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -104,8 +105,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（locomotion）"
+      "points": 12,
+      "hint": "频道关键词命中 5 个（locomotion、motion retargeting、retargeting、humanoid robot）"
     },
     {
       "id": "freshness",
@@ -118,6 +119,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 9 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -147,5 +154,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Unified Motion Retargeting for Humanoids with Learned Point Cloud Correspondence\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.02134v1\n---\n>[!abstract] 一句话总结：提出UMR，将外部点云作为人与机器人之间的统一接口，学习稠密点云对应关系，无需人工设计映射，并通过受约束的点云匹配优化实现表面级姿态对齐与交互接触直接迁移。\n\n\n# 一、动机\n\n> 现有人形运动重定向依赖手工设计的稀疏关键点或身体部位对的对应关系，导致重定向质量高度依赖人工语义设计，难以扩展到多样运动源与机器人形态，且只能为复杂姿态与交互提供稀疏指导。\n\n\n# 二、方法\n\n> 提出UMR，将外部点云作为人与机器人之间的统一接口，学习稠密点云对应关系，无需人工设计映射，并通过受约束的点云匹配优化实现表面级姿态对齐与交互接触直接迁移。\n\n\n# 三、核心实验结果\n\n> 在异构运动源、机器人形态及从移动到交互的下游场景中，UMR均实现了统一的重定向，运动保真度与合理性和优于现有最先进方法（摘要中未给出具体数值，建议查阅原文表格）。\n\n\n# 四、对我的启发\n\n> 该方法以数据驱动学习密集对应，避免手工语义设计，为大尺度人类运动数据转化为机器人训练数据提供了可扩展基础；与课题相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Unified Motion Retargeting for Humanoids with Learned Point Cloud Correspondence\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.02134v1\n---\n>[!abstract] 一句话总结：提出统一运动重定向框架（UMR），学习人体与人形机器人之间的稠密点云对应，以外部点云作为统一接口，无需手动设计映射，通过稠密对应提供几何锚点以约束点云匹配优化，实现表面级姿态对齐与交互接触的迁移。\n\n\n# 一、动机\n\n> 现有人体到人形机器人的运动重定向方法依赖手工设计的稀疏关键点或身体部位对应，导致重定向质量受限于人工语义设计，难以扩展到异构动作源和机器人形态，且稀疏引导不足以复现细节姿态和交互。\n\n\n# 二、方法\n\n> 提出统一运动重定向框架（UMR），学习人体与人形机器人之间的稠密点云对应，以外部点云作为统一接口，无需手动设计映射，通过稠密对应提供几何锚点以约束点云匹配优化，实现表面级姿态对齐与交互接触的迁移。\n\n\n# 三、核心实验结果\n\n> UMR在异质动作源、多种机器人实体以及从运动到交互的下游任务中实现了统一重定向，运动保真度和合理性优于现有最先进方法（论文未给出具体数值）。\n\n\n# 四、对我的启发\n\n> 点云作为跨形态的统一表征可避免依赖骨骼语义，为大规模人体动作数据转化为机器人可训练数据提供可扩展基础；但当前未见量化指标和物理可行性验证，后续可能需要考虑动力学约束与真实部署中的碰撞问题。\n"
 }

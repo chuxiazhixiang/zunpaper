@@ -38,7 +38,8 @@
     "assets/img/covers/arxiv-2609-02046-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -49,13 +50,13 @@
   "related_links": [],
   "page_count": 7,
   "source_tags": [],
-  "score": 16,
+  "score": 27,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（manipulation）"
+      "points": 9,
+      "hint": "频道关键词命中 3 个（manipulation、world model、world models）"
     },
     {
       "id": "freshness",
@@ -68,6 +69,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 7 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -96,5 +103,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Modeling What Changes: Sparse, Residual World Models for Object-Centric Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.02046v1\n---\n>[!abstract] 一句话总结：将世界模型分解为稀疏门控的变化检测与残余增量预测：门控仅标记发生变化的物体，残差头只扰动这些物体的状态，从而避免重预测静态多数场景。\n\n\n# 一、动机\n\n> 单体世界模型每一步预测整个下一状态，在静态场景上浪费容量并注入误差。本文提出显式建模变化（逐对象变化门 + 残余增量头），以更高效且可解释的方式支持物理预测与控制。\n\n\n# 二、方法\n\n> 将世界模型分解为稀疏门控的变化检测与残余增量预测：门控仅标记发生变化的物体，残差头只扰动这些物体的状态，从而避免重预测静态多数场景。\n\n\n# 三、核心实验结果\n\n> 在MuJoCo桌面推挤基准上（3到8个物体），稀疏/残差模型预测下一状态位姿的准确性比稠密MLP高2.5-4.6倍，参数少8.6-11.1倍；变化检测F1为0.80-0.87（稠密基线退化）；跨物体数零重训练迁移，F1保持99.4%；用四分之一数据达到约90%全数据精度；自回归 rollout 误差累积远小于稠密模型。在采样规划器中，仅预测模型失败（真实模拟器已解决任务），但特征化并针对规划器访问状态训练后，稀疏模型达到0.23±0.06成功率，稠密模型在所有种子下为0。\n\n\n# 四、对我的启发\n\n> 显式建模变化而不是预测整个世界是一种简单有效的先验，特别适合目标中心操作；但预测类模型需结合规划器实际访问状态特征化训练才能用于规划，且论文尚未展示闭环控制仿真或真实实验，局限仍需探索。与具身智能中的机器人操作课题直接相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Modeling What Changes: Sparse, Residual World Models for Object-Centric Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.02046v1\n---\n>[!abstract] 一句话总结：提出一种显式建模变化的稀疏残差世界模型：为每个物体设置变化门控，仅对被标记为变化的物体使用残差delta头进行姿态扰动，从而避免重新预测整个场景。\n\n\n# 一、动机\n\n> 现有整体式世界模型在每一步预测完整下一状态，将大量容量浪费在重复预测场景中静态主体上，并会向静态部分注入预测误差，导致物理预测和控制效率低、可解释性差。\n\n\n# 二、方法\n\n> 提出一种显式建模变化的稀疏残差世界模型：为每个物体设置变化门控，仅对被标记为变化的物体使用残差delta头进行姿态扰动，从而避免重新预测整个场景。\n\n\n# 三、核心实验结果\n\n> 在MuJoCo桌面推挤基准（3至8个物体）上，稀疏残差模型比密集MLP的下一状态姿态预测精度高2.5至4.6倍，参数少8.6至11.1倍；变化检测F1为0.80至0.87，而密集基线退化；跨物体数量零重训练迁移的F1保留率达99.4%；仅用四分之一数据即可达到约90%的全数据精度。在基于采样的规划器中，稀疏模型达到0.23±0.06的成功率（三个种子），而密集模型在所有种子上成功率为0。\n\n\n# 四、对我的启发\n\n> 该工作表明“建模什么在变化”而非整体重建世界是一种简单、有效的归纳偏置，但仅靠预测模型无法直接用于规划，需要结合规划器访问的状态进行特征化训练；其稀疏残差门控机制在物体中心场景下有效，对机器人操作中的动态感知与规划有启发。\n"
 }

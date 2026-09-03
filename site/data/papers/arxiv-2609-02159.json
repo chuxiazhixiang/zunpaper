@@ -45,7 +45,8 @@
     "assets/img/covers/arxiv-2609-02159-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -56,7 +57,7 @@
   "related_links": [],
   "page_count": 13,
   "source_tags": [],
-  "score": 16,
+  "score": 21,
   "score_breakdown": [
     {
       "id": "keyword_density",
@@ -75,6 +76,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 13 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -105,5 +112,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"World-Coherent Decoding: Self-Verifying Test-Time Planning for World Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.02159v1\n---\n>[!abstract] 一句话总结：提出World-Coherent Decoding，将WAM rollout视为可证伪的未来-动作假设，采样多个候选，利用流式视频惊奇度和动作路径努力进行排序，并用执行后的想象-现实不匹配训练轻量在线预测器，无需更新骨干模型即可实现预执行可靠性估计。\n\n\n# 一、动机\n\n> World Action Models在随机生成视觉未来并解码动作时，结果高度依赖于选择哪个未来，缺乏选择可靠未来的机制。\n\n\n# 二、方法\n\n> 提出World-Coherent Decoding，将WAM rollout视为可证伪的未来-动作假设，采样多个候选，利用流式视频惊奇度和动作路径努力进行排序，并用执行后的想象-现实不匹配训练轻量在线预测器，无需更新骨干模型即可实现预执行可靠性估计。\n\n\n# 三、核心实验结果\n\n> 在RoboTwin 2.0上，Hard成功率从55.80%提升到60.90%，Horizon-3任务增益+16.43；在真实Franka视觉偏移测试中展现定性鲁棒性。\n\n\n# 四、对我的启发\n\n> 表明WAM测试时扩展的关键在于选择可靠未来而非仅增加采样量，想象-现实反馈可有效转化为预执行信号；与具身智能课题直接相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"World-Coherent Decoding: Self-Verifying Test-Time Planning for World Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.02159v1\n---\n>[!abstract] 一句话总结：提出 World-Coherent Decoding (WCD)，一种自验证的测试时规划框架：从冻结的 WAM 中采样多个未来-动作候选，利用内部生成信号（flow-based 视频意外度和动作路径代价）排序，执行后用真实观测与想象结果的差异训练轻量在线预测器，将延迟的自验证转化为执行前的可靠性估计，不更新骨干模型。\n\n\n# 一、动机\n\n> World Action Models (WAMs) 通过随机生成视觉未来再解码动作来控制机器人，但经验表明结果高度依赖所选的未来，缺乏对生成未来的可靠性验证，导致控制不稳定。\n\n\n# 二、方法\n\n> 提出 World-Coherent Decoding (WCD)，一种自验证的测试时规划框架：从冻结的 WAM 中采样多个未来-动作候选，利用内部生成信号（flow-based 视频意外度和动作路径代价）排序，执行后用真实观测与想象结果的差异训练轻量在线预测器，将延迟的自验证转化为执行前的可靠性估计，不更新骨干模型。\n\n\n# 三、核心实验结果\n\n> 在 RoboTwin 2.0 上，WCD 将随机场景监督下的 Hard 成功率从 55.80% 提升到 60.90%（+5.10%），Horizon-3 任务上取得 +16.43 的提升；在真实 Franka 视觉偏移测试中表现出定性鲁棒性。\n\n\n# 四、对我的启发\n\n> 测试时扩展的关键不是采样更多未来，而是选择更可靠的未来；利用生成模型内部信号和在线自验证可有效提升 WAM 在分布偏移场景中的表现。该方法与机器人具身智能直接相关，可作为提高世界模型闭环控制可靠性的参考。\n"
 }
