@@ -1,0 +1,94 @@
+{
+  "id": "arxiv-2609-02341",
+  "source": "arxiv",
+  "title": "Towards Zero-Shot Transfer Across Embodiments For Driving VLAs",
+  "title_zh": "面向驾驶VLA的跨本体零样本迁移",
+  "abstract": "Vision-Language-Action models (VLAs) have shown strong potential in autonomous driving by leveraging multimodal pretraining for instruction following, visual reasoning, and scene-level generalization. In robotic manipulation, scaling VLA fine-tuning across multiple robot setups--especially when unifying representations across embodiments--has been shown to improve in-dataset performance and cross-embodiment generalization; in autonomous driving, however, VLAs remain largely trained on individual datasets and are rarely evaluated for zero-shot transfer to unseen datasets and camera rigs; furthermore naively adding more datasets to the training data does not necessarily lead to better performance within seen embodiments. To address these problems, we study multi-dataset training for the driving task and BEV-Forcing, an auxiliary objective that transfers ground-plane object-layout information from a specialized Bird's-Eye-View model into the VLA backbone. By encouraging the model to represent object position through a shared BEV spatial interface, we show that an auxiliary task such as BEV-Forcing can improve both in-distribution and out-of-distribution performance when training on a small number of camera rigs. As the number of training embodiments increases, however, the benefits of the auxiliary task are reduced; we present this as evidence that new techniques in the literature may see their benefits diminish when simply scaling up training diversity, which motivates presenting results taking into account data scaling.",
+  "abstract_zh": "视觉-语言-动作模型（VLA）在自动驾驶中展现出巨大潜力，通过利用多模态预训练实现指令跟随、视觉推理和场景级泛化。在机器人操作中，跨多个机器人设置扩展VLA微调——尤其是在统一不同本体的表示时——已被证明能提升数据集内性能和跨本体泛化能力；然而，在自动驾驶中，VLA大多仍在单个数据集上训练，很少评估其对未见数据集和相机布局的零样本迁移能力；此外，简单地在训练数据中添加更多数据集并不一定能提高已见本体内的性能。为解决这些问题，我们研究了驾驶任务的多数据集训练，并提出了BEV-Forcing，一种辅助目标，将来自专用鸟瞰图（BEV）模型的地面平面物体布局信息迁移到VLA骨干网络中。通过鼓励模型通过共享的BEV空间接口表示物体位置，我们展示了在少量相机布局上训练时，像BEV-Forcing这样的辅助任务可以提高分布内和分布外的性能。然而，随着训练本体数量的增加，辅助任务的收益会减少；我们将此作为证据，表明文献中的新技术在简单扩大训练多样性时，其收益可能会减少，这促使我们在考虑数据扩展的情况下呈现结果。",
+  "tldr_zh": "BEV-Forcing辅助任务提升驾驶VLA零样本迁移，但随训练多样性增加收益减少。",
+  "cover_zh": "跨本体零样本迁移新突破？BEV-Forcing让驾驶VLA更通用，但数据多了反而失效？",
+  "authors": [
+    {
+      "name": "Caio Azevedo",
+      "affiliation": ""
+    },
+    {
+      "name": "Stefano Sabatini",
+      "affiliation": ""
+    },
+    {
+      "name": "Sascha Hornauer",
+      "affiliation": ""
+    },
+    {
+      "name": "Fabien Moutarde",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.CV",
+  "categories": [
+    "cs.CV"
+  ],
+  "published": "2026-09-02",
+  "updated": "2026-09-02",
+  "arxiv_id": "2609.02341",
+  "pdf_url": "https://arxiv.org/pdf/2609.02341v1",
+  "abs_url": "http://arxiv.org/abs/2609.02341v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-02341.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-02341-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 11,
+  "source_tags": [],
+  "score": 22,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（vision-language-action、vla fine-tuning、manipulation）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 11 页"
+    }
+  ],
+  "judge": {},
+  "institutions": [
+    "École des Mines de Paris",
+    "Stellantis"
+  ],
+  "method_tags": [
+    "VLA",
+    "BEV-Forcing",
+    "multi-dataset training"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/AutonomousDriving\n  - 状态/待读\nTitle: \"Towards Zero-Shot Transfer Across Embodiments For Driving VLAs\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.02341v1\n---\n>[!abstract] 一句话总结：提出BEV-Forcing辅助目标，通过共享俯视图空间接口将BEV模型的地面物体布局信息注入VLA主干，并在多数据集上联合训练以增强跨车体零样本迁移能力。\n\n\n# 一、动机\n\n> 自动驾驶中的VLA模型通常仅在单一数据集上训练，很少评估到未见数据集和相机配置的零样本迁移，且简单增加训练数据不一定提升已见车体配置上的性能。\n\n\n# 二、方法\n\n> 提出BEV-Forcing辅助目标，通过共享俯视图空间接口将BEV模型的地面物体布局信息注入VLA主干，并在多数据集上联合训练以增强跨车体零样本迁移能力。\n\n\n# 三、核心实验结果\n\n> 实验表明，在小规模相机rig数量下，BEV-Forcing能同时提升分布内和分布外性能；但随训练车体数量增加，该辅助收益显著下降。摘要未给出具体数值。\n\n\n# 四、对我的启发\n\n> 该方法与机器人具身智能有一定关联（跨embodiment迁移），但主要针对驾驶场景，且提示新方法收益可能被数据多样性扩展所稀释，需结合数据规模讨论。与本课题不直接相关但可借鉴其跨embodiment训练分析思路。\n"
+}
