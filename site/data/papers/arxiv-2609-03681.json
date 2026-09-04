@@ -45,7 +45,8 @@
     "assets/img/covers/arxiv-2609-03681-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -60,7 +61,7 @@
   "related_links": [],
   "page_count": 26,
   "source_tags": [],
-  "score": 47,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -71,8 +72,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 9,
-      "hint": "频道关键词命中 3 个（vision-language-action、π_0、manipulation）"
+      "points": 12,
+      "hint": "频道关键词命中 5 个（vision-language-action、π_0、manipulation、world model）"
     },
     {
       "id": "freshness",
@@ -85,6 +86,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 26 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -110,5 +117,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"WISE: World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.03681v1\n---\n>[!abstract] 一句话总结：提出WISE，一个统一框架，在交互相关的状态选择性调用世界模型想象，执行有界多视角回滚，并利用进度和完成信号评估候选动作，通过相对结果优化真实交互动作。\n\n\n# 一、动机\n\n> VLA策略的后训练通常依赖昂贵的专家演示或真实世界探索，而世界模型虽然能通过想象评估行为，但现有方法未考虑想象在策略细化中的调度问题：长序列想象会产生累积误差，且不同执行阶段的价值不同。\n\n\n# 二、方法\n\n> 提出WISE，一个统一框架，在交互相关的状态选择性调用世界模型想象，执行有界多视角回滚，并利用进度和完成信号评估候选动作，通过相对结果优化真实交互动作。\n\n\n# 三、核心实验结果\n\n> 在π0和π0.5上跨多种操作任务一致提升，GPU计算时间减少约80%；真实世界测试显示在分布偏移下鲁棒性和泛化性显著提升。\n\n\n# 四、对我的启发\n\n> 想象的有效性取决于使用时机和边界，将想象作为相对比较而非绝对监督可减少误差影响。与课题相关，为VLA策略高效后训练提供了新思路。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"WISE: World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.03681v1\n---\n>[!abstract] 一句话总结：提出WISE框架，通过在交互相关状态选择性调用世界模型想象，执行有界多视角rollout，利用进度和完成信号评估候选未来，并根据相对结果细化真实交互上下文中生成的动作。\n\n\n# 一、动机\n\n> VLA策略后训练通常依赖昂贵专家示范或真实世界探索，世界模型虽有潜力，但需要解决何时使用想象、如何在可靠范围内使用以及如何转化为可靠的策略监督的问题。\n\n\n# 二、方法\n\n> 提出WISE框架，通过在交互相关状态选择性调用世界模型想象，执行有界多视角rollout，利用进度和完成信号评估候选未来，并根据相对结果细化真实交互上下文中生成的动作。\n\n\n# 三、核心实验结果\n\n> 在π0和π0.5上，WISE在多种操作任务上一致改进性能，同时相比全想象方法减少约80% GPU计算时间；真实世界评估显示在多种分布偏移下鲁棒性和泛化性显著提升。\n\n\n# 四、对我的启发\n\n> 想象调度有效性取决于交互阶段，过长rollout会累积误差，WISE通过选择性调度和有界rollout提供高效策略后训练思路；与课题相关。\n"
 }

@@ -37,7 +37,8 @@
     "assets/img/covers/arxiv-2609-03715-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -48,13 +49,13 @@
   "related_links": [],
   "page_count": 7,
   "source_tags": [],
-  "score": 22,
+  "score": 30,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 9,
-      "hint": "频道关键词命中 3 个（vision-language-action、manipulation、libero）"
+      "points": 12,
+      "hint": "频道关键词命中 4 个（vision-language-action、manipulation、libero、4m）"
     },
     {
       "id": "freshness",
@@ -67,6 +68,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 7 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -91,5 +98,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"MINERVA: How Small Can a Manipulation Policy Be and Still Solve LIBERO?\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.03715v1\n---\n>[!abstract] 一句话总结：提出MINERVA，一组刻意紧凑的视觉-动作策略家族，通过系统扫描架构、训练和推理配置（如action-chunk长度、视觉容量、流匹配与L1回归对比等），在LIBERO上评估最小可行容量，并使用任务ID置换探针分析指令条件化的作用。\n\n\n# 一、动机\n\n> 现有VLA模型以数十亿参数在LIBERO基准上表现优异，但基准本身所需的真正模型容量仍不清楚。该论文旨在通过设计极小参数量的策略，实证测量LIBERO任务特定的容量下限，揭示当前大模型在该基准上可能的过度参数化问题。\n\n\n# 二、方法\n\n> 提出MINERVA，一组刻意紧凑的视觉-动作策略家族，通过系统扫描架构、训练和推理配置（如action-chunk长度、视觉容量、流匹配与L1回归对比等），在LIBERO上评估最小可行容量，并使用任务ID置换探针分析指令条件化的作用。\n\n\n# 三、核心实验结果\n\n> 0.54M参数策略在LIBERO四个标准套件的2000次rollout上平均成功率达95.1%，仅比LeRobot π0.5报告结果低2.4分，但参数量少7700倍；性能在约1M参数时饱和，低于0.25M时崩溃；回归比流匹配快最多3.8倍且性能无显著差异；任务ID映射改变后成功率降至接近随机水平；同样配方在LIBERO-90的89个任务上达94.6%，但在LIBERO-Plus扰动下仅46–56%，对光度变化鲁棒性几乎为零；0.54M策略在笔记本电脑CPU上每个chunk规划仅5–9ms，比SmolVLA快113倍、比π0.5快1400倍。\n\n\n# 四、对我的启发\n\n> LIBERO基准可能主要依靠记忆任务ID而非真正的指令泛化，过度参数化并不必要；极小策略可在桌面CPU上接近实时运行，提示容量感知设计与蒸馏对部署高效机器人策略的重要性。与直接课题相关，启发我们在具身操作中探索最小可行策略与轻量化部署。\n"
+  "note": ""
 }

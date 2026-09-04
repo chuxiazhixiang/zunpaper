@@ -35,7 +35,8 @@
       "primary_category": "cs.CV",
       "published": "2026-09-03",
       "channels": [
-        "sim2real"
+        "sim2real",
+        "world-model"
       ],
       "badges": [
         {
@@ -60,7 +61,7 @@
       "pdf_url": "https://arxiv.org/pdf/2609.03602v1",
       "venue": "",
       "venue_announced": "",
-      "score": 61,
+      "score": 72,
       "judge": {
         "relevant": true,
         "research_value": "high",
@@ -163,6 +164,153 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2609-03497",
+      "source": "arxiv",
+      "title": "BRIDGE: An Open-Source Humanoid Platform via Morphology-Control Co-Design for Physical AI",
+      "title_zh": "BRIDGE：通过形态-控制协同设计实现物理AI的开源人形机器人平台",
+      "tldr_zh": "提出形态-控制协同设计框架，并开源人形平台Bridge，实现高保真类人运动。",
+      "cover_zh": "人形机器人还能这样造？协同设计让动作像人一样流畅｜开源平台Bridge来了",
+      "abstract_zh": "开发能够利用人类行为数据的人形机器人对于通用具身智能至关重要，然而传统开发仍受限于将硬件设计与全身控制相分离的解耦范式。这种方法导致系统次优，牺牲了类人流畅性和敏捷性。为弥合这一差距，我们提出了一种数据驱动的形态-控制协同设计框架，以优化人形形态实现类人运动。为量化形态保真度，我们还引入了一种新指标，该指标联合考虑了运动学重定向到人类运动的保真度和动态跟踪性能。与基线人形机器人（Bumi、K1 和 Toddlerbot）相比，我们的框架在所有指标上均达到了最先进的性能。最后，我们将这一设计实现于 Bridge——一个 88 厘米高的开源人形平台，并随附其控制策略。我们证明 Bridge 能以更高的保真度捕捉人类运动数据，在基础运动、稳健平衡和高度动态操作方面表现出卓越性能。视频和开源材料：https://sites.google.com/view/bridgerobot。",
+      "authors": [
+        "Jianren Wang",
+        "Letian Qian",
+        "Zikai Wang"
+      ],
+      "authors_all": [
+        "Jianren Wang",
+        "Letian Qian",
+        "Zikai Wang",
+        "Weiwei Wu",
+        "Junjie Zong",
+        "Abhinav Gupta",
+        "Deepak Pathak"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-09-03",
+      "channels": [
+        "locomotion",
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ CMU RI"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2609-03497.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2609-03497-p2.jpg"
+      ],
+      "arxiv_id": "2609.03497",
+      "abs_url": "http://arxiv.org/abs/2609.03497v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.03497v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "开源人形平台，形态-控制协同设计，涉及全身控制与动作模仿，具科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Carnegie Mellon University",
+        "Huazhong University of Science and Technology",
+        "JoyIn AI"
+      ],
+      "method_tags": [
+        "co-design",
+        "morphology-control co-design",
+        "kinematic retargeting"
+      ],
+      "platform": [
+        "Bridge"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2609-03681",
+      "source": "arxiv",
+      "title": "WISE: World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models",
+      "title_zh": "WISE：世界模型引导的想象调度用于视觉-语言-动作模型的高效后训练",
+      "tldr_zh": "WISE通过调度世界模型想象，减少80%计算时间并提升VLA后训练性能。",
+      "cover_zh": "后训练VLA太烧钱？WISE让想象只用在刀刃上，GPU时间狂降80%！",
+      "abstract_zh": "后训练VLA策略通常依赖于使用昂贵的专家演示进行监督微调，或使用昂贵且可能不稳定的真实世界探索进行强化学习。世界模型通过想象未来评估候选行为提供了一种有前景的替代方案，但有效的后训练需要的不仅仅是准确的预测：想象必须在有用的地方进行调度，限制在可靠的范围内，并转化为可信的策略监督。在机器人操作中，想象的价值在执行阶段差异很大，而扩展的展开可能累积预测误差并引入不可靠的学习信号。我们提出了WISE（世界模型引导的想象调度用于视觉-语言-动作模型的高效后训练），一个统一框架，协调策略细化过程中世界模型想象的使用时间和方式。WISE在交互相关状态选择性调用想象，执行有界多视角展开，使用进度和完成信号评估候选未来，并利用其相对结果来细化从真实交互上下文生成的动作。使用π₀和π₀.₅的大量实验表明，在多样化的操作任务中实现了一致的改进，同时与完全想象相比，GPU计算时间减少了约80%。真实世界评估进一步显示了在多样化真实世界分布偏移下的鲁棒性和泛化性的显著提升。",
+      "authors": [
+        "Chenhao Zhang",
+        "Hanyu Zhao",
+        "Hang Cheng"
+      ],
+      "authors_all": [
+        "Chenhao Zhang",
+        "Hanyu Zhao",
+        "Hang Cheng",
+        "Tengfei Pan",
+        "Long Zeng"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-09-03",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2609-03681.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2609-03681-p2.jpg"
+      ],
+      "arxiv_id": "2609.03681",
+      "abs_url": "http://arxiv.org/abs/2609.03681v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.03681v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出世界模型引导的想象调度框架，用于VLA策略后训练，提升效率与泛化，具身世界模型应用创新。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Tsinghua University",
+        "Beijing Academy of Artificial Intelligence (BAAI)"
+      ],
+      "method_tags": [
+        "World Model",
+        "Post-training",
+        "Vision-Language-Action"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -566,70 +714,72 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2609-03681",
+      "id": "arxiv-2609-03657",
       "source": "arxiv",
-      "title": "WISE: World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models",
-      "title_zh": "WISE：世界模型引导的想象调度用于视觉-语言-动作模型的高效后训练",
-      "tldr_zh": "WISE通过调度世界模型想象，减少80%计算时间并提升VLA后训练性能。",
-      "cover_zh": "后训练VLA太烧钱？WISE让想象只用在刀刃上，GPU时间狂降80%！",
-      "abstract_zh": "后训练VLA策略通常依赖于使用昂贵的专家演示进行监督微调，或使用昂贵且可能不稳定的真实世界探索进行强化学习。世界模型通过想象未来评估候选行为提供了一种有前景的替代方案，但有效的后训练需要的不仅仅是准确的预测：想象必须在有用的地方进行调度，限制在可靠的范围内，并转化为可信的策略监督。在机器人操作中，想象的价值在执行阶段差异很大，而扩展的展开可能累积预测误差并引入不可靠的学习信号。我们提出了WISE（世界模型引导的想象调度用于视觉-语言-动作模型的高效后训练），一个统一框架，协调策略细化过程中世界模型想象的使用时间和方式。WISE在交互相关状态选择性调用想象，执行有界多视角展开，使用进度和完成信号评估候选未来，并利用其相对结果来细化从真实交互上下文生成的动作。使用π₀和π₀.₅的大量实验表明，在多样化的操作任务中实现了一致的改进，同时与完全想象相比，GPU计算时间减少了约80%。真实世界评估进一步显示了在多样化真实世界分布偏移下的鲁棒性和泛化性的显著提升。",
+      "title": "Rethinking 3D Noise: Learning 3D-Aware Video Priors via Optimization-Free Morphological Perturbations",
+      "title_zh": "重新思考3D噪声：通过免优化的形态扰动学习3D感知视频先验",
+      "tldr_zh": "提出3D形态扰动作为免优化正则化器，提升稀疏视图下的3D感知视频先验学习。",
+      "cover_zh": "免优化3D扰动｜让视频模型几何更准，机器人操作成功率飙升",
+      "abstract_zh": "像NeRF和3D高斯泼溅（3DGS）这样的3D场景表示在稀疏视图设置中会出现严重的伪影。最近的生成式3D伪影修复器试图解决这个问题，但依赖于成对的损坏和干净渲染，这需要在不同视图配置下进行昂贵的逐场景重建。虽然2D图像增强可以作为即时正则化器，但对于3D表示，没有明确的等价物来保持跨视图的空间一致性，而这是3D感知训练的基本属性。我们提出3D形态扰动作为一种免优化的正则化器，以保持空间一致性。利用显式3DGS，我们将每个高斯视为基本构建块——类似于2D像素——并通过缩放、旋转和剪枝在其形态参数空间上应用扰动。我们的方法消除了数据集构建中的逐场景3DGS优化循环，同时使模型能够在轻量级视频扩散沙盒中进行的诊断消融实验中学习到比稀疏视图基线更强的几何先验。通过ControlNet扩展到140亿参数的视频模型，我们的方法在保持视觉保真度的同时，将平均深度误差比最先进的图像到图像3D伪影精化器降低了12.5%，最终在4个操作任务中的3个任务上将下游机器人策略成功率提高了高达8.0%。",
       "authors": [
-        "Chenhao Zhang",
-        "Hanyu Zhao",
-        "Hang Cheng"
+        "Onat Şahin",
+        "Mohammad Altillawi",
+        "George Eskandar"
       ],
       "authors_all": [
-        "Chenhao Zhang",
-        "Hanyu Zhao",
-        "Hang Cheng",
-        "Tengfei Pan",
-        "Long Zeng"
+        "Onat Şahin",
+        "Mohammad Altillawi",
+        "George Eskandar",
+        "Carlos Carbone",
+        "Ziyuan Liu"
       ],
-      "primary_category": "cs.RO",
+      "primary_category": "cs.CV",
       "published": "2026-09-03",
       "channels": [
-        "manipulation"
+        "manipulation",
+        "world-model"
       ],
       "badges": [
         {
           "kind": "lab",
-          "label": "⭐ 清华"
+          "label": "⭐ TUM"
         },
         {
           "kind": "fresh",
           "label": "⚡ 新鲜出炉"
         }
       ],
-      "cover_image": "assets/img/covers/arxiv-2609-03681.jpg",
+      "cover_image": "assets/img/covers/arxiv-2609-03657.jpg",
       "preview_pages": [
-        "assets/img/covers/arxiv-2609-03681-p2.jpg"
+        "assets/img/covers/arxiv-2609-03657-p2.jpg"
       ],
-      "arxiv_id": "2609.03681",
-      "abs_url": "http://arxiv.org/abs/2609.03681v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.03681v1",
+      "arxiv_id": "2609.03657",
+      "abs_url": "http://arxiv.org/abs/2609.03657v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.03657v1",
       "venue": "",
       "venue_announced": "",
-      "score": 47,
+      "score": 46,
       "judge": {
         "relevant": true,
-        "research_value": "high",
+        "research_value": "medium",
         "primary_channel": "world-model",
-        "reason": "提出世界模型引导的想象调度框架，用于VLA策略后训练，提升效率与泛化，具身世界模型应用创新。",
+        "reason": "提出3D感知视频先验的优化无关扰动方法，提升机器人操作策略成功率，与视频世界模型相关。",
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Tsinghua University",
-        "Beijing Academy of Artificial Intelligence (BAAI)"
+        "Technical University of Munich",
+        "Huawei Heisenberg Research Center",
+        "Tavus"
       ],
       "method_tags": [
-        "World Model",
-        "Post-training",
-        "Vision-Language-Action"
+        "3D Morphological Perturbations",
+        "optimization-free regularizer",
+        "3D-aware video priors"
       ],
       "platform": [],
       "sim_stack": [],
       "method_family": "",
-      "real_robot": "yes",
+      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -708,152 +858,6 @@
         "VLM-based reward model",
         "pairwise preference",
         "RL post-training"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2609-03497",
-      "source": "arxiv",
-      "title": "BRIDGE: An Open-Source Humanoid Platform via Morphology-Control Co-Design for Physical AI",
-      "title_zh": "BRIDGE：通过形态-控制协同设计实现物理AI的开源人形机器人平台",
-      "tldr_zh": "提出形态-控制协同设计框架，并开源人形平台Bridge，实现高保真类人运动。",
-      "cover_zh": "人形机器人还能这样造？协同设计让动作像人一样流畅｜开源平台Bridge来了",
-      "abstract_zh": "开发能够利用人类行为数据的人形机器人对于通用具身智能至关重要，然而传统开发仍受限于将硬件设计与全身控制相分离的解耦范式。这种方法导致系统次优，牺牲了类人流畅性和敏捷性。为弥合这一差距，我们提出了一种数据驱动的形态-控制协同设计框架，以优化人形形态实现类人运动。为量化形态保真度，我们还引入了一种新指标，该指标联合考虑了运动学重定向到人类运动的保真度和动态跟踪性能。与基线人形机器人（Bumi、K1 和 Toddlerbot）相比，我们的框架在所有指标上均达到了最先进的性能。最后，我们将这一设计实现于 Bridge——一个 88 厘米高的开源人形平台，并随附其控制策略。我们证明 Bridge 能以更高的保真度捕捉人类运动数据，在基础运动、稳健平衡和高度动态操作方面表现出卓越性能。视频和开源材料：https://sites.google.com/view/bridgerobot。",
-      "authors": [
-        "Jianren Wang",
-        "Letian Qian",
-        "Zikai Wang"
-      ],
-      "authors_all": [
-        "Jianren Wang",
-        "Letian Qian",
-        "Zikai Wang",
-        "Weiwei Wu",
-        "Junjie Zong",
-        "Abhinav Gupta",
-        "Deepak Pathak"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-09-03",
-      "channels": [
-        "locomotion"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ CMU RI"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2609-03497.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2609-03497-p2.jpg"
-      ],
-      "arxiv_id": "2609.03497",
-      "abs_url": "http://arxiv.org/abs/2609.03497v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.03497v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 41,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "开源人形平台，形态-控制协同设计，涉及全身控制与动作模仿，具科研价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Carnegie Mellon University",
-        "Huazhong University of Science and Technology",
-        "JoyIn AI"
-      ],
-      "method_tags": [
-        "co-design",
-        "morphology-control co-design",
-        "kinematic retargeting"
-      ],
-      "platform": [
-        "Bridge"
-      ],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2609-03657",
-      "source": "arxiv",
-      "title": "Rethinking 3D Noise: Learning 3D-Aware Video Priors via Optimization-Free Morphological Perturbations",
-      "title_zh": "重新思考3D噪声：通过免优化的形态扰动学习3D感知视频先验",
-      "tldr_zh": "提出3D形态扰动作为免优化正则化器，提升稀疏视图下的3D感知视频先验学习。",
-      "cover_zh": "免优化3D扰动｜让视频模型几何更准，机器人操作成功率飙升",
-      "abstract_zh": "像NeRF和3D高斯泼溅（3DGS）这样的3D场景表示在稀疏视图设置中会出现严重的伪影。最近的生成式3D伪影修复器试图解决这个问题，但依赖于成对的损坏和干净渲染，这需要在不同视图配置下进行昂贵的逐场景重建。虽然2D图像增强可以作为即时正则化器，但对于3D表示，没有明确的等价物来保持跨视图的空间一致性，而这是3D感知训练的基本属性。我们提出3D形态扰动作为一种免优化的正则化器，以保持空间一致性。利用显式3DGS，我们将每个高斯视为基本构建块——类似于2D像素——并通过缩放、旋转和剪枝在其形态参数空间上应用扰动。我们的方法消除了数据集构建中的逐场景3DGS优化循环，同时使模型能够在轻量级视频扩散沙盒中进行的诊断消融实验中学习到比稀疏视图基线更强的几何先验。通过ControlNet扩展到140亿参数的视频模型，我们的方法在保持视觉保真度的同时，将平均深度误差比最先进的图像到图像3D伪影精化器降低了12.5%，最终在4个操作任务中的3个任务上将下游机器人策略成功率提高了高达8.0%。",
-      "authors": [
-        "Onat Şahin",
-        "Mohammad Altillawi",
-        "George Eskandar"
-      ],
-      "authors_all": [
-        "Onat Şahin",
-        "Mohammad Altillawi",
-        "George Eskandar",
-        "Carlos Carbone",
-        "Ziyuan Liu"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-09-03",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ TUM"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2609-03657.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2609-03657-p2.jpg"
-      ],
-      "arxiv_id": "2609.03657",
-      "abs_url": "http://arxiv.org/abs/2609.03657v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.03657v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 41,
-      "judge": {
-        "relevant": true,
-        "research_value": "medium",
-        "primary_channel": "world-model",
-        "reason": "提出3D感知视频先验的优化无关扰动方法，提升机器人操作策略成功率，与视频世界模型相关。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Technical University of Munich",
-        "Huawei Heisenberg Research Center",
-        "Tavus"
-      ],
-      "method_tags": [
-        "3D Morphological Perturbations",
-        "optimization-free regularizer",
-        "3D-aware video priors"
       ],
       "platform": [],
       "sim_stack": [],
@@ -1023,7 +1027,8 @@
       "primary_category": "cs.RO",
       "published": "2026-09-03",
       "channels": [
-        "manipulation"
+        "manipulation",
+        "world-model"
       ],
       "badges": [
         {
@@ -1040,7 +1045,7 @@
       "pdf_url": "https://arxiv.org/pdf/2609.03715v1",
       "venue": "",
       "venue_announced": "",
-      "score": 22,
+      "score": 30,
       "judge": {
         "relevant": true,
         "research_value": "high",
@@ -1203,11 +1208,11 @@
       "training_summary": "",
       "demo_videos": [
         {
-          "kind": "youtube",
-          "url": "https://www.youtube.com/watch?v=U5pP5MMkoxg",
           "embed_url": "https://www.youtube.com/embed/U5pP5MMkoxg",
+          "kind": "youtube",
+          "source": "project_page",
           "title": "AdaRoboVLG Project Hub",
-          "source": "project_page"
+          "url": "https://www.youtube.com/watch?v=U5pP5MMkoxg"
         }
       ],
       "github": {},

@@ -86,7 +86,8 @@
     "assets/img/covers/arxiv-2609-03602-p2.jpg"
   ],
   "channels": [
-    "sim2real"
+    "sim2real",
+    "world-model"
   ],
   "badges": [
     {
@@ -105,7 +106,7 @@
   "related_links": [],
   "page_count": 23,
   "source_tags": [],
-  "score": 61,
+  "score": 72,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -122,8 +123,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（zero-shot transfer）"
+      "points": 9,
+      "hint": "频道关键词命中 3 个（zero-shot transfer、world model、world models）"
     },
     {
       "id": "freshness",
@@ -136,6 +137,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 23 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -163,5 +170,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/AutonomousDriving\n  - Task/EndToEndDriving\nTitle: \"SV-WAM: An Efficient Surround-View World-Action Model for End-to-End Autonomous Driving\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.03602v1\n---\n>[!abstract] 一句话总结：提出SV-WAM，一个保持六相机环绕视图的高效世界-动作模型，将未来视频预测作为共享生成模型中动作学习的密集训练监督而非推理输出，核心是动作中心因果掩码阻止动作token关注未来视频token，部署时可丢弃视频分支仅做动作规划；并引入可微的可行驶区域合规正则化，惩罚车辆足迹角点接近或越过可行驶边界。\n\n\n# 一、动机\n\n> 现有驾驶世界模型在推理时生成未来视频计算开销大，为追求效率常采用单前视相机，导致空间覆盖受限，不利于变道、并线、转弯等安全关键操作。\n\n\n# 二、方法\n\n> 提出SV-WAM，一个保持六相机环绕视图的高效世界-动作模型，将未来视频预测作为共享生成模型中动作学习的密集训练监督而非推理输出，核心是动作中心因果掩码阻止动作token关注未来视频token，部署时可丢弃视频分支仅做动作规划；并引入可微的可行驶区域合规正则化，惩罚车辆足迹角点接近或越过可行驶边界。\n\n\n# 三、核心实验结果\n\n> 在NAVSIMv2闭环基准和nuScenes开环基准上取得最先进规划性能，推理延迟低，且具有竞争力零样本迁移能力（具体数值见原论文）。\n\n\n# 四、对我的启发\n\n> 该方法展示了训练阶段利用视频预测监督可以训练出高效的纯动作规划模型，部署时摆脱生成视频的算力负担；与自动驾驶课题直接相关，可启发后续研究在训练-推理解耦框架下设计更轻量的世界模型。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/CameraControl\nTitle: \"SV-WAM: An Efficient Surround-View World-Action Model for End-to-End Autonomous Driving\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.03602v1\n---\n>[!abstract] 一句话总结：提出SV-WAM，通过动作-因果掩码在联合去噪中阻止动作token查看未来视频token，使视频分支在部署时可直接丢弃，仅保留高效动作规划，并加入可微的可行驶区域合规正则化提升边界感知。\n\n\n# 一、动机\n\n> 现有驾驶世界模型在推理时生成未来视频开销大，常退化为单前视输入，无法覆盖变道、汇入、转弯等安全关键场景的多视角观测。\n\n\n# 二、方法\n\n> 提出SV-WAM，通过动作-因果掩码在联合去噪中阻止动作token查看未来视频token，使视频分支在部署时可直接丢弃，仅保留高效动作规划，并加入可微的可行驶区域合规正则化提升边界感知。\n\n\n# 三、核心实验结果\n\n> 在NAVSIMv2闭环和nuScenes开环基准上取得SOTA规划性能，推理延迟低，并具备具竞争力的零样本迁移能力。\n\n\n# 四、对我的启发\n\n> 与课题相关，可为具身智能中的多视角世界模型与动作规划高效耦合提供参考，但视频预测仅用于训练监督而非部署输出的思路值得借鉴。\n"
 }
