@@ -1,0 +1,96 @@
+{
+  "id": "arxiv-2609-03611",
+  "source": "arxiv",
+  "title": "FailBench: How Reliable are VLMs at Judging Robot Task Success?",
+  "title_zh": "FailBench：VLM 在判断机器人任务成功方面有多可靠？",
+  "abstract": "Vision-Language Models (VLMs) are increasingly used to evaluate robot manipulation outcomes, but existing benchmarks offer limited evidence of cross-domain generalization. We introduce FailBench, a benchmark for robot failure detection comprising 2,197 manipulation attempts across 14 public sources (12 real-world, 2 simulated). In FailBench, 75% of failures occur naturally, and six real-world sources come from non-failure-detection datasets. Evaluating 13 VLM-based detectors, we find the best model achieves only 0.77 mean balanced accuracy. Notably, models fine-tuned for failure detection consistently underperform general-purpose VLMs and their own pretrained baselines. Performance depends heavily on required visual evidence: models approach saturation when outcomes depend on observable object motion, but degrade to near-chance (<0.60 balanced accuracy) on contact-intensive assembly tasks. Error analysis reveals a systematic bias toward predicting success under ambiguous evidence, which persists even with increased reasoning effort. Finally, we show that input-level intervention--spatially localizing and cropping outcome-relevant regions--improves the top detector by 2.4 percentage points without extra training.",
+  "abstract_zh": "视觉语言模型（VLM）越来越多地被用于评估机器人操作的结果，但现有的基准测试提供的跨领域泛化证据有限。我们引入了 FailBench，一个用于机器人故障检测的基准测试，包含来自 14 个公共来源（12 个真实世界，2 个模拟）的 2197 次操作尝试。在 FailBench 中，75% 的故障是自然发生的，六个真实世界来源来自非故障检测数据集。评估了 13 个基于 VLM 的检测器，我们发现最佳模型仅达到 0.77 的平均平衡准确率。值得注意的是，专门为故障检测微调的模型始终不如通用 VLM 及其自身的预训练基线。性能在很大程度上取决于所需的视觉证据：当结果依赖于可观察的物体运动时，模型接近饱和，但在接触密集的装配任务中，性能下降到接近随机（平衡准确率 <0.60）。错误分析揭示了在模糊证据下倾向于预测成功的系统性偏差，这种偏差即使在增加推理努力的情况下仍然存在。最后，我们表明输入级干预——空间定位和裁剪与结果相关的区域——在无需额外训练的情况下，将顶级检测器的性能提高了 2.4 个百分点。",
+  "tldr_zh": "FailBench 基准测试显示，VLM 在机器人故障检测上表现不佳，微调反而降低性能。",
+  "cover_zh": "VLM 判断机器人任务成功？新基准揭示：微调反而更差！",
+  "authors": [
+    {
+      "name": "Zaruhi Navasardyan",
+      "affiliation": ""
+    },
+    {
+      "name": "Tatul Danielyan",
+      "affiliation": ""
+    },
+    {
+      "name": "Hrant Davtyan",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.AI"
+  ],
+  "published": "2026-09-03",
+  "updated": "2026-09-03",
+  "arxiv_id": "2609.03611",
+  "pdf_url": "https://arxiv.org/pdf/2609.03611v1",
+  "abs_url": "http://arxiv.org/abs/2609.03611v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-03611.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-03611-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 19,
+  "source_tags": [],
+  "score": 19,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 6,
+      "hint": "频道关键词命中 2 个（manipulation、assembly）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 19 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提供机器人操作失败检测基准，评估VLM可靠性，对具身智能评估有重要参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Metric AI Lab"
+  ],
+  "method_tags": [
+    "failure detection",
+    "VLM-based detection",
+    "benchmark"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\nTitle: \"FailBench: How Reliable are VLMs at Judging Robot Task Success?\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.03611v1\n---\n>[!abstract] 一句话总结：构建 FailBench 基准，包含 2,197 个操作尝试（14 个来源，12 个真实+2 个仿真），其中 75% 失败为自然发生，并评估 13 种 VLM 检测器；进一步通过空间裁剪干预提升检测性能。\n\n\n# 一、动机\n\n> 现有 VLM 用于机器人操作结果评估的基准缺乏跨域泛化证据，尤其是失败检测的可靠性未被系统验证。\n\n\n# 二、方法\n\n> 构建 FailBench 基准，包含 2,197 个操作尝试（14 个来源，12 个真实+2 个仿真），其中 75% 失败为自然发生，并评估 13 种 VLM 检测器；进一步通过空间裁剪干预提升检测性能。\n\n\n# 三、核心实验结果\n\n> 最佳模型平均平衡准确率仅 0.77；专用微调模型普遍不如通用 VLM 和其预训练基线；接触密集型装配任务上性能接近随机（<0.60）；对结果相关区域进行空间裁剪可将最佳检测器提升 2.4 个百分点。\n\n\n# 四、对我的启发\n\n> VLM 在模糊证据下系统性偏向预测成功，且增加推理努力无法纠正；与机器人具身智能任务直接相关，提示任务评估需关注视觉证据类型与空间干预。\n"
+}

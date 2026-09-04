@@ -89,5 +89,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/OneShotDetection\n  - 状态/待读\nTitle: \"WALDO: One-Shot Exemplar-Conditioned Object Detection in Cluttered Scenes\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.28216v1\n---\n>[!abstract] 一句话总结：提出 WALDO，一个仅含 3.4M 可训练参数的 one-shot 示例与语言条件检测头，读取冻结的 V-JEPA 2.1 特征，联合预测目标定位与存在性，不对骨干网络反向传播；通过从实例标注合成训练片段，并设计负对照实验消除裁剪尺寸等捷径。\n\n\n# 一、动机\n\n> 大型视觉语言模型虽能根据单张参考图和简短描述在杂乱场景中定位指定物体实例并报告缺失，但成本高昂。本文探索是否能用更便宜的世界模型预训练表征实现相同能力，从而降低对大规模生成式模型的依赖。\n\n\n# 二、方法\n\n> 提出 WALDO，一个仅含 3.4M 可训练参数的 one-shot 示例与语言条件检测头，读取冻结的 V-JEPA 2.1 特征，联合预测目标定位与存在性，不对骨干网络反向传播；通过从实例标注合成训练片段，并设计负对照实验消除裁剪尺寸等捷径。\n\n\n# 三、核心实验结果\n\n> 在 35 个杂乱场景上，WALDO 的 catalogue AP@50 为 0.461，优于使用相同评测器的 Grounding DINO 基线（0.306）；在匹配 576-token 网格下，将 V-JEPA 换成 DINOv3 会使 category-absence AUROC 从 0.880 降至 0.726，instance AP@50 从 0.201 降至 0.141，证明增益来自预训练目标而非输入分辨率；但实例级 Success@1 仅为 0.190，与 0.190 的类别随机基线持平。\n\n\n# 四、对我的启发\n\n> 与课题不相关。该项工作表明世界模型表征能有效迁移到定位精度与存在性检测，但无法区分同一类别中的不同实例，说明当前预训练特征缺乏实例级身份区分能力，未来需结合实例对比学习或更强视觉表征。\n"
 }

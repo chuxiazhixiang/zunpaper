@@ -38,28 +38,17 @@
     "manipulation",
     "world-model"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 30,
   "source_tags": [],
-  "score": 30,
+  "score": 20,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 7 个（vision-language-action、π_0、openvla、rdt-1b）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -96,5 +85,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"REFACTOR-VLA: Unsupervised Library Learning of Typed Motor Programs\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.01215v1\n---\n>[!abstract] 一句话总结：REFACTOR-VLA是一个wake/sleep系统：睡眠阶段利用学习到的潜在世界模型M_φ的rollouts，通过行为等价核（BEK）对动作片段聚类，形成技能库；清醒阶段输出受限的带类型lambda表达式，由库条件整流流动作解码器执行，并且只接受通过最小描述长度和返回保留门限的抽象。\n\n\n# 一、动机\n\n> 现有视觉-语言-动作（VLA）模型大多生成原始动作，缺少可复用的行为抽象，导致长时任务性能差且难以解释。已有技能发现方法要么直接聚类对比嵌入，要么依赖未与机器人动力学校准的语言模型，没有真正回答动作序列何时行为等价。\n\n\n# 二、方法\n\n> REFACTOR-VLA是一个wake/sleep系统：睡眠阶段利用学习到的潜在世界模型M_φ的rollouts，通过行为等价核（BEK）对动作片段聚类，形成技能库；清醒阶段输出受限的带类型lambda表达式，由库条件整流流动作解码器执行，并且只接受通过最小描述长度和返回保留门限的抽象。\n\n\n# 三、核心实验结果\n\n> 在LIBERO上，将世界模型从188M扩到430M反而使4个套件性能均下降，说明模型容量并非关键；世界模型预训练加上辅助的InfoNCE监督对比损失大幅提升睡眠阶段聚类质量，NMI在object/spatial/goal/LIBERO-10上分别达到0.462±0.021、0.867±0.025、0.915±0.013和0.754±0.010，比最强基线平均高0.184；下游解码器最终采用3个候选抽象中的2个，并成功重写了全部256条采样演示。\n\n\n# 四、对我的启发\n\n> 此研究表明训练目标比模型容量更重要，基于世界模型rollout的行为等价性判断是一种更具校准能力的技能发现方向。与授课中的机器人操作任务直接相关，其自动化技能抽象思路可进一步用于长期操作任务的分解与解释。\n"
 }
