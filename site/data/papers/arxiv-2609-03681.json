@@ -79,7 +79,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -117,5 +117,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"WISE: World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.03681v1\n---\n>[!abstract] 一句话总结：提出WISE框架，通过在交互相关状态选择性调用世界模型想象，执行有界多视角rollout，利用进度和完成信号评估候选未来，并根据相对结果细化真实交互上下文中生成的动作。\n\n\n# 一、动机\n\n> VLA策略后训练通常依赖昂贵专家示范或真实世界探索，世界模型虽有潜力，但需要解决何时使用想象、如何在可靠范围内使用以及如何转化为可靠的策略监督的问题。\n\n\n# 二、方法\n\n> 提出WISE框架，通过在交互相关状态选择性调用世界模型想象，执行有界多视角rollout，利用进度和完成信号评估候选未来，并根据相对结果细化真实交互上下文中生成的动作。\n\n\n# 三、核心实验结果\n\n> 在π0和π0.5上，WISE在多种操作任务上一致改进性能，同时相比全想象方法减少约80% GPU计算时间；真实世界评估显示在多种分布偏移下鲁棒性和泛化性显著提升。\n\n\n# 四、对我的启发\n\n> 想象调度有效性取决于交互阶段，过长rollout会累积误差，WISE通过选择性调度和有界rollout提供高效策略后训练思路；与课题相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"WISE: World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.03681v1\n---\n>[!abstract] 一句话总结：提出WISE框架，通过调度想象的使用时机与范围：在交互相关状态启动有界的多视角想象，用进度和完成信号评估候选未来，并以相对优劣监督真实交互中生成的动作，实现高效策略精炼。\n\n\n# 一、动机\n\n> VLA策略的后训练依赖昂贵的人类示教或真实环境探索，而现有世界模型辅助方法未考虑想象在任务不同阶段的有用性差异，长程想象会产生累积误差，导致训练信号不可靠。\n\n\n# 二、方法\n\n> 提出WISE框架，通过调度想象的使用时机与范围：在交互相关状态启动有界的多视角想象，用进度和完成信号评估候选未来，并以相对优劣监督真实交互中生成的动作，实现高效策略精炼。\n\n\n# 三、核心实验结果\n\n> 在π0和π0.5上多种操作任务均取得一致性提升，GPU计算时间较全想象方案减少约80%；真实世界测试在多种分布偏移下鲁棒性和泛化性显著增强。\n\n\n# 四、对我的启发\n\n> 想象调度比全面想象更高效，有界短程rollout能规避误差累积；该设计对机器人操作有价值，但想象信号在不同任务阶段的可靠性机制有待深入分析，与课题相关。\n"
 }

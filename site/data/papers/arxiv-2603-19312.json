@@ -105,5 +105,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2603.19312v3\n---\n>[!abstract] 一句话总结：提出 LeWorldModel (LeWM)，仅使用下一嵌入预测损失 + 高斯正则化损失两个损失项，从原始像素端到端联合训练预测式世界模型，无需 EMA、预训练编码器或多目标辅助监督，从而获得稳定且紧凑的潜在表征。\n\n\n# 一、动机\n\n> 现有 JEPA（联合嵌入预测架构）在从像素学习世界模型时训练不稳定，通常依赖复杂多损失项、指数移动平均、预训练编码器或辅助监督来防止表征坍塌。LeWorldModel 旨在实现仅靠两项损失即可端到端稳定训练，大幅减少超参数调优负担。\n\n\n# 二、方法\n\n> 提出 LeWorldModel (LeWM)，仅使用下一嵌入预测损失 + 高斯正则化损失两个损失项，从原始像素端到端联合训练预测式世界模型，无需 EMA、预训练编码器或多目标辅助监督，从而获得稳定且紧凑的潜在表征。\n\n\n# 三、核心实验结果\n\n> 在约 15M 参数、单 GPU 数小时训练条件下，LeWM 的规划速度比基于基础模型的世界模型快 48 倍，同时在多个 2D/3D 控制任务上保持竞争力；将可调损失超参从六个压缩到一个，并能通过探测揭示潜在空间中的物理结构，可靠检测物理上不合理的事件。\n\n\n# 四、对我的启发\n\n> LeWM 证明了简化 JEPA 目标并不牺牲性能，为端到端可训练的世界模型提供了更轻量稳定的范式；其单损失超参特性可能迁移到机器人具身智能中的视觉预测与规划任务，但多任务扩展与真实物理环境中的泛化仍是后续挑战。\n"
 }

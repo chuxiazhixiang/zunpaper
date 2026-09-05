@@ -61,7 +61,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -98,5 +98,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"MINERVA: How Small Can a Manipulation Policy Be and Still Solve LIBERO?\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.03715v1\n---\n>[!abstract] 一句话总结：提出MINERVA，一组刻意紧凑的视觉-动作策略，通过系统缩减参数并扫描架构、训练和推理配置，测量LIBERO任务所需的容量下限。\n\n\n# 一、动机\n\n> 现有VLA模型以数十亿参数统治LIBERO基准，但该基准实际所需的最小模型容量未知，缺乏对任务特定容量下限的实证估计。\n\n\n# 二、方法\n\n> 提出MINERVA，一组刻意紧凑的视觉-动作策略，通过系统缩减参数并扫描架构、训练和推理配置，测量LIBERO任务所需的容量下限。\n\n\n# 三、核心实验结果\n\n> 0.54M参数策略在LIBERO四套件的2000次rollout上平均成功率达95.1%，比LeRobot π0.5低2.4分但参数少7700倍；性能在约1M参数时饱和，低于0.25M时崩溃；流匹配相比直接L1回归无优势且慢3.8倍；任务ID置换导致成功率接近随机，说明指令条件作用主要在选择记忆任务；在LIBERO-90上达94.6%，但在LIBERO-Plus扰动下仅46-56%，对光度变化鲁棒性接近零；CPU上每块5-9ms重规划，比SmolVLA快113倍，比π0.5快1400倍。\n\n\n# 四、对我的启发\n\n> 与课题相关，启发是机器人操作策略应关注容量感知设计与蒸馏，部署高效策略不必追求超大参数；但LIBERO基准可能鼓励记忆而非泛化，对真实鲁棒性需谨慎看待。\n"
 }

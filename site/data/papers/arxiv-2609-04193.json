@@ -116,7 +116,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -156,5 +156,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"GIFT: Guided Intermediate Feature Training via Action-Oriented Structural Supervision for Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.04193v1\n---\n>[!abstract] 一句话总结：提出GIFT框架，通过几何对齐、affordance预测和目标区域重建三种辅助监督，将几何、可操作性、目标指定等控制相关结构显式嵌入中间特征，并兼容VLA和世界模型等多种动作输出结构。\n\n\n# 一、动机\n\n> 视觉语言预训练和世界模型提供的中间特征虽然语义/动态丰富，但其原生训练目标与机器人控制效用之间存在“动作充分性差距”，导致特征保留控制无关冗余且遗漏关键的物理和任务结构。\n\n\n# 二、方法\n\n> 提出GIFT框架，通过几何对齐、affordance预测和目标区域重建三种辅助监督，将几何、可操作性、目标指定等控制相关结构显式嵌入中间特征，并兼容VLA和世界模型等多种动作输出结构。\n\n\n# 三、核心实验结果\n\n> 在LIBERO-Plus零样本迁移中，GIFT-VLA、GIFT-WAM-Fast、GIFT-WAM-IDM分别达79.6%、72.6%、87.8%，比基线StarVLA-OFT、Fast-WAM、Fast-WAM-IDM高4.6、12.6、5.2分；在RoboCasa上分别达61.4%、83.6%、82.3%，比对应基线的分数差距为12.6、9.0、8.4分。\n\n\n# 四、对我的启发\n\n> 该方法在铰接物体任务和真实世界高精度操作扰动下增益最大，说明学习功能结构化的中间特征可跨不同动作公式复用，是提升机器人操作泛化性的有效原则；局限是摘要未讨论当辅助监督标签不完整或与指令不一致时的影响，且效果依赖额外结构监督信号的可用性。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"GIFT: Guided Intermediate Feature Training via Action-Oriented Structural Supervision for Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.04193v1\n---\n>[!abstract] 一句话总结：提出GIFT框架，通过几何对齐、可供性预测和目标区域重建三类结构监督引导中间特征，可灵活适配不同动作范式（如VLA、WAM）。\n\n\n# 一、动机\n\n> 预训练的视觉-语言模型和世界模型提供丰富特征，但其原生目标不关注动作所需的关键物理与任务结构，同时保留控制无关的视觉冗余，造成动作充分性缺口。\n\n\n# 二、方法\n\n> 提出GIFT框架，通过几何对齐、可供性预测和目标区域重建三类结构监督引导中间特征，可灵活适配不同动作范式（如VLA、WAM）。\n\n\n# 三、核心实验结果\n\n> LIBERO-Plus上零样本迁移：GIFT-VLA达79.6%（+4.6）、GIFT-WAM-Fast达72.6%（+12.6）、GIFT-WAM-IDM达87.8%（+5.2）；RoboCasa上分别达61.4%（+12.6）、83.6%（+9.0）、82.3%（+8.4），大幅超越基线。\n\n\n# 四、对我的启发\n\n> 功能性结构化的中间特征学习是可跨动作范式复用的原则，对铰接物体任务和高精度真实操控增益明显；未来可探索其他结构约束或动态场景下的推广。\n"
 }
