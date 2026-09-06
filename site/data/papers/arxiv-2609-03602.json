@@ -97,16 +97,12 @@
     {
       "kind": "lab",
       "label": "⭐ Hang Zhao"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 23,
   "source_tags": [],
-  "score": 72,
+  "score": 62,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -125,12 +121,6 @@
       "label": "关键词命中密集",
       "points": 9,
       "hint": "频道关键词命中 3 个（zero-shot transfer、world model、world models）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -170,5 +160,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/AutonomousDriving\nTitle: \"SV-WAM: An Efficient Surround-View World-Action Model for End-to-End Autonomous Driving\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.03602v1\n---\n>[!abstract] 一句话总结：提出环绕视图世界-动作模型（SV-WAM），保留六摄像头全景观测，以未来视频预测作为动作学习的密集训练监督（而非推理时输出），通过动作中心因果掩码隔离动作与视频 token 交互，部署时可丢弃视频分支，并引入可微可行驶区域合规正则化以增强规划安全性与边界感知。\n\n\n# 一、动机\n\n> 现有驾驶世界模型在推理时生成未来视频带来大量计算开销，为高效部署常仅用单前视相机，导致换道、并线、转弯等安全关键场景的空间覆盖受限。\n\n\n# 二、方法\n\n> 提出环绕视图世界-动作模型（SV-WAM），保留六摄像头全景观测，以未来视频预测作为动作学习的密集训练监督（而非推理时输出），通过动作中心因果掩码隔离动作与视频 token 交互，部署时可丢弃视频分支，并引入可微可行驶区域合规正则化以增强规划安全性与边界感知。\n\n\n# 三、核心实验结果\n\n> 在 NAVSIMv2 闭环基准和 nuScenes 开环基准上实现了最先进的规划性能，推理延迟低，且具备具竞争力的零样本迁移能力（摘要未给出具体数值，但明确表明 SOTA）。\n\n\n# 四、对我的启发\n\n> 与自动驾驶规划直接相关，展示了大模型视频监督预训练可迁移到轻量动作策略的技巧，但其有效性可能依赖多相机输入；未来可探索更紧的视频与动作共享表示或更轻量的世界模型预训练目标。\n"
 }

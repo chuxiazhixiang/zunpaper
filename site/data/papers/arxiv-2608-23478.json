@@ -92,5 +92,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Act with Intent: Distilling Behavior Intent for Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2608.23478v1\n---\n>[!abstract] 一句话总结：提出意图蒸馏（Intention Distillation, INDI）：训练时用冻结的教师VLM从当前观测、指令、动作摘要和执行视频中提取行为级多模态意图表征，部署时VLA在中间解码层恢复该表征，并据此联合行为展开与达成结果来组织动作预测。\n\n\n# 一、动机\n\n> 现有视觉-语言-动作（VLA）模型的动作解码器主要靠行为克隆监督，只复现示范动作本身，而忽略了行为在指令下所服务的局部目标；未来信息（帧、轨迹等）也仅捕捉特定实现，而非未来行为的共享语义目标，导致动作生成缺乏意图引导。\n\n\n# 二、方法\n\n> 提出意图蒸馏（Intention Distillation, INDI）：训练时用冻结的教师VLM从当前观测、指令、动作摘要和执行视频中提取行为级多模态意图表征，部署时VLA在中间解码层恢复该表征，并据此联合行为展开与达成结果来组织动作预测。\n\n\n# 三、核心实验结果\n\n> 在SimplerEnv-Bridge上，INDI将GR00T-N1.7成功率从64.3%提高到84.7%；在RoboCasa Kitchen上从64.1%提高到70.3%，且在两个基准上对π0.5均有一致提升；真实世界任务平均成功率从62.0%提升到68.7%，其中长时程任务最高提升12.0个百分点。\n\n\n# 四、对我的启发\n\n> 实验证明恢复的意图潜变量确实被解码器使用，能编码行为目标与执行进度，并以目标相关方式组织后续预测。说明显式建模行为语义目标可显著提升动作解码器，但当前蒸馏依赖额外视频和教师模型，未来可探索更轻量的意图监督方式。与课题具身智能/机器人操作直接相关。\n"
 }

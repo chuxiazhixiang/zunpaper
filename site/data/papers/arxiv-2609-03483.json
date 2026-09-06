@@ -60,16 +60,12 @@
     {
       "kind": "lab",
       "label": "⭐ HKU"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 49,
+  "score": 39,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -82,12 +78,6 @@
       "label": "关键词命中密集",
       "points": 3,
       "hint": "频道关键词命中 1 个（vla model）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "github_repo",
@@ -127,5 +117,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Air-Ground Collaborative Vision-and-Language Navigation via Shared Bird's-Eye Maps\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.03483v1\n---\n>[!abstract] 一句话总结：提出AGC-VLN，首个训练免费的空地协作VLN基线，将导航分解为VLM语义推理与确定性几何执行，通过UAV全局鸟瞰图渲染UGV位姿和VLM锚定目标生成共享鸟瞰图，UGV据此规划道路跟随路径，UAV用3D-SPF空间搜索定位目标。\n\n\n# 一、动机\n\n> 现有训练免费的视觉语言导航方法仅针对单智能体，缺乏空中地面协作机制，且VLA模型在协作任务中不稳定，语义通信或双向耦合反而降低性能。\n\n\n# 二、方法\n\n> 提出AGC-VLN，首个训练免费的空地协作VLN基线，将导航分解为VLM语义推理与确定性几何执行，通过UAV全局鸟瞰图渲染UGV位姿和VLM锚定目标生成共享鸟瞰图，UGV据此规划道路跟随路径，UAV用3D-SPF空间搜索定位目标。\n\n\n# 三、核心实验结果\n\n> 在CARLA-Air Town10HD场景100个闭环episode中，AGC-VLN联合成功率达77.0%，相比较弱的单智能体UAV（50.0%）增益+27.0%，并比最强单智能体基线Travel UAV（53.0%）高出24.0个百分点。\n\n\n# 四、对我的启发\n\n> 启发在于利用全局与局部视角的互补性可显著提升协作导航成功率；局限是仍需仿真环境验证，未涉及真实场景鲁棒性，后续可探索动态环境下的共享地图更新策略。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Air-Ground Collaborative Vision-and-Language Navigation via Shared Bird's-Eye Maps\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.03483v1\n---\n>[!abstract] 一句话总结：提出AGC-VLN，首个免训练空地协同VLN基线。核心洞察是将导航分解为VLM语义推理与确定性几何执行，并在两者的接口处建立协作：UAV利用全局鸟瞰视图，渲染UGV上报位姿和VLM锚定目标为CAR/GOAL标记及距离标签，形成共享鸟瞰图；UGV据此获得第一人称视图缺少的全局路线上下文，用冻结的VLM规划沿路路径并闭环执行；UAV则并行运行3D-SPF（SPF的空间搜索升级版），在下视图中定位目标并飞向它。\n\n\n# 一、动机\n\n> 空地协同视觉语言导航（UAV提供全局俯瞰视角、UGV提供局部第一视角）尚未被有效解决：现有免训练方法只考虑单智能体任务，缺乏协作机制；CARLA-Air评测发现5种VLA模型都未形成稳定协作行为，且朴素语义通信或双向耦合反而降低性能。\n\n\n# 二、方法\n\n> 提出AGC-VLN，首个免训练空地协同VLN基线。核心洞察是将导航分解为VLM语义推理与确定性几何执行，并在两者的接口处建立协作：UAV利用全局鸟瞰视图，渲染UGV上报位姿和VLM锚定目标为CAR/GOAL标记及距离标签，形成共享鸟瞰图；UGV据此获得第一人称视图缺少的全局路线上下文，用冻结的VLM规划沿路路径并闭环执行；UAV则并行运行3D-SPF（SPF的空间搜索升级版），在下视图中定位目标并飞向它。\n\n\n# 三、核心实验结果\n\n> 在CARLA-Air的Town10HD场景100个闭环回合中，AGC-VLN联合成功率达77.0%，相对较弱单智能体UAV（50.0%）的协作增益为+27.0%，比最强已发表单智能体基线Travel UAV（53.0%）高出24.0个百分点。\n\n\n# 四、对我的启发\n\n> 结果表明空地协同的关键不是盲目通信或双向耦合，而是UAV全局视野与UGV沿路执行能力的互补：显式的几何锚定共享地图比朴素语义信息传递更有效。局限在于该免训练框架依赖冻结VLM推理和确定性执行，复杂场景下的鲁棒性仍受限。与具身智能/机器人课题直接相关，可作为多智能体VLN协作机制的重要参考。\n"
 }

@@ -40,28 +40,17 @@
     "manipulation",
     "world-model"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 7,
   "source_tags": [],
-  "score": 30,
+  "score": 20,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 4 个（vision-language-action、manipulation、libero、4m）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -98,5 +87,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"MINERVA: How Small Can a Manipulation Policy Be and Still Solve LIBERO?\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.03715v1\n---\n>[!abstract] 一句话总结：提出 MINERVA 系列极小规模视觉运动策略，通过参数扫描与架构/训练/推理分析定位 LIBERO 任务特异性容量下限，并用 0.54M 参数验证其性能。\n\n\n# 一、动机\n\n> 现有 LIBERO 操作基准被数十亿参数的 VLA 模型主导，但基准本身实际所需的最小模型容量仍不清楚，且大规模模型部署成本高。\n\n\n# 二、方法\n\n> 提出 MINERVA 系列极小规模视觉运动策略，通过参数扫描与架构/训练/推理分析定位 LIBERO 任务特异性容量下限，并用 0.54M 参数验证其性能。\n\n\n# 三、核心实验结果\n\n> 0.54M 参数策略在 LIBERO 四套件 2000 次 rollout 中达到 95.1% 平均成功率，仅比 LeRobot π0.5 低 2.4 点但参数少 7700 倍；性能在约 1M 参数饱和、低于 0.25M 崩溃；该策略在 CPU 上每 chunk 推理仅 5–9 ms，比 SmolVLA 快 113 倍、比 π0.5 快 1400 倍，且无需 GPU。\n\n\n# 四、对我的启发\n\n> LIBERO 标准指令条件存在任务 ID 记忆捷径，改变映射即跌至随机水平；基准所需容量远低于主流 VLA，为部署高效的极小型策略和蒸馏提供了依据，但在 LIBERO-Plus 扰动下成功率仅 46–56%，尤其对光度变化鲁棒性近乎为零，表明离真实泛化仍有很大差距。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"MINERVA: How Small Can a Manipulation Policy Be and Still Solve LIBERO?\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.03715v1\n---\n>[!abstract] 一句话总结：提出 MINERVA 系列极简视觉运动策略，最小模型仅 0.54M 参数，直接使用 L1 回归预测动作块，不做流匹配；通过系统扫描发现动作块长度和视觉容量最关键。\n\n\n# 一、动机\n\n> 现有数十亿参数的 VLA 模型主导 LIBERO 操作基准，但该基准真正所需的模型容量尚不清楚。本文通过设计刻意紧凑的策略来估计任务特定的容量下限。\n\n\n# 二、方法\n\n> 提出 MINERVA 系列极简视觉运动策略，最小模型仅 0.54M 参数，直接使用 L1 回归预测动作块，不做流匹配；通过系统扫描发现动作块长度和视觉容量最关键。\n\n\n# 三、核心实验结果\n\n> 0.54M 参数策略在 LIBERO 四套件上 2000 次 rollout 平均成功率 95.1%，比 LeRobot π0.5 仅低 2.4 点，参数少 7700 倍；成功率在约 1M 参数饱和，低于 0.25M 崩溃；在 89 个 LIBERO-90 任务上达 94.6%，LIBERO-Plus 扰动降至 46–56%（光度扰动鲁棒性近零）；CPU 上每 chunk 重规划仅 5–9ms，比 SmolVLA 快 113 倍、比 π0.5 快 1400 倍。\n\n\n# 四、对我的启发\n\n> 任务 ID 置换实验说明标准 LIBERO 指令条件化主要是在记忆任务，任务本身容量需求低；流匹配相对 L1 回归无优势。这提示 LIBERO 作为操纵基准可能过于简单且依赖记忆，容量感知设计与蒸馏对部署高效真实机器人策略有价值，但论文本身与真实具身泛化仍有距离。\n"
 }

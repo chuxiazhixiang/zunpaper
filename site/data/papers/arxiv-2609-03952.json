@@ -95,16 +95,12 @@
     {
       "kind": "lab",
       "label": "⭐ SJTU"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 20,
   "source_tags": [],
-  "score": 44,
+  "score": 34,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -117,12 +113,6 @@
       "label": "关键词命中密集",
       "points": 6,
       "hint": "频道关键词命中 2 个（world model、world models）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -156,5 +146,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\n  - Task/CameraControl\n  - 状态/待读\nTitle: \"WorldReward: Reward Modeling for Camera-Conditioned World Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.03952v1\n---\n>[!abstract] 一句话总结：提出WorldReward，一种基于VLM的成对偏好奖励模型：将成对视频按动作对齐分解为块，组织结构化视觉证据，通过投票聚合为视频级动作一致性和视觉质量偏好，并用大模型生成+工具审计+人工审核构建训练数据。\n\n\n# 一、动机\n\n> 现有奖励模型分别评估轨迹执行和图像质量，无法统一衡量动作一致性与视觉质量，且完整长视频逐帧判断会稀释局部动作证据。\n\n\n# 二、方法\n\n> 提出WorldReward，一种基于VLM的成对偏好奖励模型：将成对视频按动作对齐分解为块，组织结构化视觉证据，通过投票聚合为视频级动作一致性和视觉质量偏好，并用大模型生成+工具审计+人工审核构建训练数据。\n\n\n# 三、核心实验结果\n\n> 在WorldReward-Bench上，WorldReward在动作一致性、外观质量和运动质量上均超过GPT-5.5，分别高出3.42、1.45、3.56个百分点；用于HY-WorldPlay 1.5的RL后训练时，在短中长期范围内一致提升动作执行与视觉质量。\n\n\n# 四、对我的启发\n\n> 与课题不相关\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\n  - Task/CameraControl\n  - 状态/待读\nTitle: \"WorldReward: Reward Modeling for Camera-Conditioned World Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.03952v1\n---\n>[!abstract] 一句话总结：WorldReward 将成对视频分解为动作对齐块并组织成结构化视觉证据，通过投票聚合块级偏好，训练一个 VLM 成对偏好奖励模型，统一动作一致性和视觉质量评估。\n\n\n# 一、动机\n\n> 现有对相机条件世界模型的奖励评估将几何基与图像基奖励分离，无法统一判断动作执行与视觉质量；直接让VLM评估完整长视频会稀释局部动作证据。\n\n\n# 二、方法\n\n> WorldReward 将成对视频分解为动作对齐块并组织成结构化视觉证据，通过投票聚合块级偏好，训练一个 VLM 成对偏好奖励模型，统一动作一致性和视觉质量评估。\n\n\n# 三、核心实验结果\n\n> 在 WorldReward-Bench 上，WorldReward 在动作一致性、外观质量和运动质量上与人类偏好的一致性最高，超过 GPT-5.5 分别 3.42、1.45 和 3.56 个百分点；用于 HY-WorldPlay 1.5 的 RL 后训练可同时提升短至长期的动作执行与视觉质量。\n\n\n# 四、对我的启发\n\n> 与课题不相关。\n"
 }

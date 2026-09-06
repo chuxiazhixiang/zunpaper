@@ -52,16 +52,12 @@
     {
       "kind": "lab",
       "label": "⭐ TUM"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 25,
   "source_tags": [],
-  "score": 46,
+  "score": 36,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -74,12 +70,6 @@
       "label": "关键词命中密集",
       "points": 3,
       "hint": "频道关键词命中 1 个（manipulation）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -118,5 +108,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/CV\n  - Domain/Robotics\n  - Task/VideoGen\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Rethinking 3D Noise: Learning 3D-Aware Video Priors via Optimization-Free Morphological Perturbations\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.03657v1\n---\n>[!abstract] 一句话总结：提出3D形态扰动作为优化无关正则化器，基于3DGS将每个高斯视为基本构建单元，通过在尺度、旋转和剪枝等形态参数空间施加扰动，在无需逐场景优化循环的情况下保持空间一致性并增强3D感知视频先验学习。\n\n\n# 一、动机\n\n> NeRF和3DGS等3D场景表示在稀疏视角设置下存在严重伪影；现有生成式3D伪影修复器依赖配对的损坏/干净渲染且需昂贵的逐场景重建，而2D增强没有显式的3D等价物来保持跨视角空间一致性，缺乏简单高效的优化无关正则化器。\n\n\n# 二、方法\n\n> 提出3D形态扰动作为优化无关正则化器，基于3DGS将每个高斯视为基本构建单元，通过在尺度、旋转和剪枝等形态参数空间施加扰动，在无需逐场景优化循环的情况下保持空间一致性并增强3D感知视频先验学习。\n\n\n# 三、核心实验结果\n\n> 在轻量视频扩散沙盒中比稀疏视角基线学到更强的几何先验；扩展到14B参数视频模型（经ControlNet）后，与SOTA图像到图像3D伪影修复器相比，平均深度误差降低12.5%，且在下游4个机器人操作任务中的3个将策略成功率提升高达8.0%。\n\n\n# 四、对我的启发\n\n> 该方法为3D表示提供了一种训练时生成形态扰动的轻量正则化思路，与机器人操作任务直接相关；其局限在于依赖显式3DGS的粒子化表示，对其他3D表示（如隐式NeRF）需重新设计，且深度误差降低和策略提升的组合效果需在更多场景验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Rethinking 3D Noise: Learning 3D-Aware Video Priors via Optimization-Free Morphological Perturbations\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.03657v1\n---\n>[!abstract] 一句话总结：提出3D Morphological Perturbations（3D形态扰动），一种免优化的正则化方法，利用显式3DGS将每个高斯视为类似2D像素的基本单元，在其形态参数空间（尺度、旋转、剪枝）上施加扰动，从而避免逐场景3DGS优化循环，同时提供保持空间一致性的跨视图增强。\n\n\n# 一、动机\n\n> NeRF和3DGS等3D场景表示在稀疏视角下存在严重伪影，现有生成式修复器依赖成对损坏-干净渲染数据，需要针对不同视角配置进行代价高昂的逐场景重建；同时缺乏能保持跨视图空间一致性的3D显式正则化方法，而空间一致性对3D感知训练至关重要。\n\n\n# 二、方法\n\n> 提出3D Morphological Perturbations（3D形态扰动），一种免优化的正则化方法，利用显式3DGS将每个高斯视为类似2D像素的基本单元，在其形态参数空间（尺度、旋转、剪枝）上施加扰动，从而避免逐场景3DGS优化循环，同时提供保持空间一致性的跨视图增强。\n\n\n# 三、核心实验结果\n\n> 在轻量级视频扩散沙盒的诊断消融中，该方法使模型学习到比稀疏视角基线更强的几何先验；扩展至14B参数视频模型（通过ControlNet）后，平均深度误差较SOTA图像到图像3D修复器降低12.5%，并在4个机器人操作任务中的3个上提升下游策略成功率高达8.0%。\n\n\n# 四、对我的启发\n\n> 局限在于依赖显式3DGS表示，对隐式表示不可直接适用；启发是3D形态扰动可作为通用正则化思想推广到其他显式3D表示或生成任务，且与具身智能下游任务结合显示出实际价值。\n"
 }

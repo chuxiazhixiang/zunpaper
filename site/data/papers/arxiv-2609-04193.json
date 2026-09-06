@@ -89,16 +89,12 @@
     {
       "kind": "lab",
       "label": "⭐ 清华"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 18,
   "source_tags": [],
-  "score": 55,
+  "score": 45,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -111,12 +107,6 @@
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 7 个（vision-language-action、manipulation、robocasa、libero）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -156,5 +146,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"GIFT: Guided Intermediate Feature Training via Action-Oriented Structural Supervision for Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.04193v1\n---\n>[!abstract] 一句话总结：提出架构灵活的GIFT框架，将几何对齐、可供性预测和目标区域重建转化为训练时约束，引导中间特征学习控制相关结构，并在VLA策略和世界行动模型上实例化且不改变各自动作形式。\n\n\n# 一、动机\n\n> 视觉-语言预训练和世界模型虽然提供丰富特征，但其动作或预测目标可能忽略关键物理与任务结构，并保留控制无关的视觉冗余，导致视觉丰富性与控制效用的不匹配（action-sufficiency gap）。为此，本文研究通过引导中间特征保留几何、可供性和目标三种结构来弥合该差距。\n\n\n# 二、方法\n\n> 提出架构灵活的GIFT框架，将几何对齐、可供性预测和目标区域重建转化为训练时约束，引导中间特征学习控制相关结构，并在VLA策略和世界行动模型上实例化且不改变各自动作形式。\n\n\n# 三、核心实验结果\n\n> 在LIBERO-Plus零样本迁移上，GIFT-VLA、GIFT-WAM-Fast、GIFT-WAM-IDM比基线分别高4.6、12.6、5.2点，达79.6%、72.6%、87.8%；在RoboCasa上分别高12.6、9.0、8.4点，达61.4%、83.6%、82.3%。结构化中间特征对铰接物体任务和高精度真实操作用益最大。\n\n\n# 四、对我的启发\n\n> 与机器人操作课题直接相关。GIFT表明结构化中间特征是一种可跨动作形式复用的模型无关原则，但需要针对任务显式定义几何/可供性/目标结构，且额外监督可能增加标注成本；可进一步探索无需手动定义结构的自监督方式。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\nTitle: \"GIFT: Guided Intermediate Feature Training via Action-Oriented Structural Supervision for Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.04193v1\n---\n>[!abstract] 一句话总结：提出GIFT框架，通过在中间特征上施加几何对齐、可供性预测和目标区域重建三个训练时约束，使中间特征保留与动作相关的几何、可供性和目标结构，并适配VLA、快动态世界模型和逆动力学世界模型等多种架构。\n\n\n# 一、动机\n\n> 视觉语言预训练和预测世界模型为机器人策略提供了丰富的语义和动态视觉特征，但其原生目标可能忽略关键物理和任务结构，并保留与控制无关的视觉冗余，导致视觉丰富性与控制效用之间存在“动作充分性差距”。\n\n\n# 二、方法\n\n> 提出GIFT框架，通过在中间特征上施加几何对齐、可供性预测和目标区域重建三个训练时约束，使中间特征保留与动作相关的几何、可供性和目标结构，并适配VLA、快动态世界模型和逆动力学世界模型等多种架构。\n\n\n# 三、核心实验结果\n\n> 零样本迁移LIBERO-Plus上GIFT-VLA/WAM-Fast/WAM-IDM分别达79.6%、72.6%、87.8%，比对应基线高4.6、12.6、5.2点；RoboCasa上分别达61.4%、83.6%、82.3%，比基线高12.6、9.0、8.4点，在铰接物体任务和高精度真实操作上提升显著。\n\n\n# 四、对我的启发\n\n> 学习功能结构化的中间特征可作为跨模型动作公式的通用原则，但其有效性依赖额外的监督信号设计；与课题直接相关，为机器人操作策略的中间表征学习提供了可迁移方案。\n"
 }
