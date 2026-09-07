@@ -13,7 +13,7 @@
       "affiliation": ""
     },
     {
-      "name": "Andrea M. Salcedo-V'azquez",
+      "name": "Andrea M. Salcedo-Vázquez",
       "affiliation": ""
     },
     {
@@ -73,5 +73,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Robust Instant Policy: Leveraging Student’s t-Regression Model for Robust In-context Imitation Learning of Robot Manipulation\"\nYear: \"2025\"\nURL: https://arxiv.org/abs/2506.15157\n---\n>[!abstract] 一句话总结：提出鲁棒即时策略（RIP），从LLM生成多条候选轨迹，利用Student's t回归模型对候选轨迹进行鲁棒聚合，从而忽略异常值（幻觉）并生成可靠轨迹。\n\n\n# 一、动机\n\n> 在上下文中模仿学习中，基于LLM的即时策略容易产生幻觉，生成偏离给定演示的劣质轨迹，影响机器人操作可靠性。\n\n\n# 二、方法\n\n> 提出鲁棒即时策略（RIP），从LLM生成多条候选轨迹，利用Student's t回归模型对候选轨迹进行鲁棒聚合，从而忽略异常值（幻觉）并生成可靠轨迹。\n\n\n# 三、核心实验结果\n\n> 在仿真和真实环境实验中，RIP相比最先进的模仿学习方法在任务成功率上至少提升26%，尤其在低数据日常任务场景下表现突出。\n\n\n# 四、对我的启发\n\n> 利用Student's t分布对异常值的鲁棒性来处理LLM幻觉问题是一种有效思路，可迁移到其他具身智能任务中；但对多模态轨迹分布的建模能力可能有限。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Robust Instant Policy: Leveraging Student’s t-Regression Model for Robust In-context Imitation Learning of Robot Manipulation\"\nYear: \"2025\"\nURL: https://arxiv.org/abs/2506.15157\n---\n>[!abstract] 一句话总结：提出鲁棒即时策略(RIP)，利用Student's t-回归模型聚合LLM生成的多个候选轨迹，以抑制幻觉离群值，最终生成鲁棒的机器人执行轨迹。\n\n\n# 一、动机\n\n> 基于LLM的即时策略(In-Context IL)容易产生幻觉，偶尔生成偏离示范的低质量轨迹，导致机器人在实际操作中不可靠。\n\n\n# 二、方法\n\n> 提出鲁棒即时策略(RIP)，利用Student's t-回归模型聚合LLM生成的多个候选轨迹，以抑制幻觉离群值，最终生成鲁棒的机器人执行轨迹。\n\n\n# 三、核心实验结果\n\n> 在仿真和真实机器人环境下，RIP相比最先进的模仿学习方法在任务成功率上至少提升26%，尤其适用于日常任务的低数据场景。\n\n\n# 四、对我的启发\n\n> Student's t-分布为离群轨迹提供自适应权重，这种鲁棒聚合思想可推广到其他生成策略校准场景；与课题相关，可考虑用于机器人操作中多候选轨迹融合或幻觉抑制。不过其实际效果仍受LLM基础生成质量影响，需注意结合场景约束验证。\n"
 }

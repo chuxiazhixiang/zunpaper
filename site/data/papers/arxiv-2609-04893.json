@@ -1,0 +1,94 @@
+{
+  "id": "arxiv-2609-04893",
+  "source": "arxiv",
+  "title": "Reasoning Without Inference Cost: Latent Semantic Scaffolding for Robot VLA Policies",
+  "title_zh": "无推理成本的推理：面向机器人VLA策略的潜在语义脚手架",
+  "abstract": "Vision-language-action (VLA) models are trained by imitation and capture what action to take but not why; adding causal reasoning improves manipulation, but current methods pay for it at inference time - generating reasoning tokens or rolling out predicted future states at every step, a cost that compounds over long horizons. We ask whether this benefit can instead be captured during training and discarded before deployment. We introduce Latent Semantic Scaffolding (LSS), an auxiliary loss applied during human-demonstration pretraining that aligns a VLA's action-token representations to text embeddings of physical-reasoning rationales through a small projection head. The head is dropped at inference, leaving the unmodified base policy with zero added cost. Our central finding concerns alignment granularity: aligning each action token to the rationale of its own manipulation phase (Dense LSS) rather than to a single pooled episode-level embedding (Pooled LSS) yields representations that transfer markedly better to held-out tasks. Dense LSS attains both the best in-distribution success and the best transfer to tasks unseen during alignment, whereas pooled alignment over-specializes to the training task. A representational probe shows Dense LSS induces roughly twice the per-phase separability in the backbone, supporting that phase-local alignment is the operative mechanism.",
+  "abstract_zh": "视觉-语言-动作（VLA）模型通过模仿进行训练，捕获了要采取的动作，但未捕获原因；添加因果推理可改善操作，但当前方法在推理时付出代价——每一步生成推理令牌或展开预测的未来状态，这一成本在长时程任务中会累积。我们探究这种益处是否能在训练期间捕获并在部署前丢弃。我们引入了潜在语义脚手架（LSS），一种在人类示范预训练期间应用的辅助损失，通过一个小型投影头将VLA的动作令牌表示与物理推理理由的文本嵌入对齐。推理时丢弃该投影头，留下未修改的基础策略，零额外成本。我们的核心发现涉及对齐粒度：将每个动作令牌与其自身操作阶段的理由对齐（密集LSS），而非与单一的池化情节级嵌入对齐（池化LSS），产生的表示能显著更好地迁移到未见任务。密集LSS在分布内成功率和向对齐时未见任务的迁移上均达到最佳，而池化对齐则过度特化于训练任务。表示探针显示，密集LSS在骨干网络中诱导了约两倍的逐阶段可分离性，支持阶段局部对齐是有效机制。",
+  "tldr_zh": "提出LSS辅助损失，在训练时对齐动作与推理文本，推理零成本且提升迁移。",
+  "cover_zh": "推理零成本？这个新方法让机器人VLA策略白嫖因果推理",
+  "authors": [
+    {
+      "name": "Andrew Ting Yan Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Zhuo Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Zhelin Yang",
+      "affiliation": ""
+    },
+    {
+      "name": "Zhipeng Dong",
+      "affiliation": ""
+    },
+    {
+      "name": "Quentin Rouxel",
+      "affiliation": ""
+    },
+    {
+      "name": "Fei Chen",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-09-04",
+  "updated": "2026-09-04",
+  "arxiv_id": "2609.04893",
+  "pdf_url": "https://arxiv.org/pdf/2609.04893v1",
+  "abs_url": "http://arxiv.org/abs/2609.04893v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-04893.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-04893-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 6,
+  "source_tags": [],
+  "score": 9,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 6,
+      "hint": "频道关键词命中 2 个（vision-language-action、manipulation）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 6 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "提出LSS辅助损失，在训练时注入推理语义，推理零成本，提升VLA操作泛化，具科研价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "VLA",
+    "auxiliary loss",
+    "reasoning"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Reasoning Without Inference Cost: Latent Semantic Scaffolding for Robot VLA Policies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.04893v1\n---\n>[!abstract] 一句话总结：提出 Latent Semantic Scaffolding (LSS) 辅助损失，在人类示教预训练中用一个小投影头将 VLA 动作 token 的表示对齐到物理推理理由的文本嵌入。推理时丢弃投影头，基础策略不增加任何成本。核心是对齐粒度：Dense LSS 按每个动作所属操作阶段逐 token 对齐，而 Pooled LSS 只对齐整个 episode 的池化嵌入。\n\n\n# 一、动机\n\n> 现有的 VLA 模型加入因果推理虽能提升操作表现，但在推理时需生成推理 token 或滚动预测未来状态，产生额外计算成本，且在长时序任务中成本累积。作者希望把这种推理能力在训练阶段编码进表示，部署时零额外代价。\n\n\n# 二、方法\n\n> 提出 Latent Semantic Scaffolding (LSS) 辅助损失，在人类示教预训练中用一个小投影头将 VLA 动作 token 的表示对齐到物理推理理由的文本嵌入。推理时丢弃投影头，基础策略不增加任何成本。核心是对齐粒度：Dense LSS 按每个动作所属操作阶段逐 token 对齐，而 Pooled LSS 只对齐整个 episode 的池化嵌入。\n\n\n# 三、核心实验结果\n\n> Dense LSS 在分布内任务上成功率最高，且对对齐时未见过任务的迁移表现明显优于 Pooled LSS，后者会过拟合到训练任务；表示探针显示 Dense LSS 使骨干网络产生约两倍的操作阶段可分性，验证了阶段级对齐是关键机制。\n\n\n# 四、对我的启发\n\n> 这一方法说明高质量推理能力可通过训练期辅助损失注入表征，无需在部署时显式推理。局限在于当前只在示教预训练阶段验证，且对阶段划分的准确性有依赖。与课题中机器人操作策略学习直接相关，可参考其稠密对齐思想改进任务迁移。\n"
+}

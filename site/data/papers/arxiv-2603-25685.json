@@ -31,11 +31,11 @@
     "cs.CV"
   ],
   "published": "2026-03-26",
-  "updated": "2026-03-26",
+  "updated": "2026-09-04",
   "arxiv_id": "2603.25685",
-  "pdf_url": "https://arxiv.org/pdf/2603.25685v1",
-  "abs_url": "http://arxiv.org/abs/2603.25685v1",
-  "venue": "",
+  "pdf_url": "https://arxiv.org/pdf/2603.25685v2",
+  "abs_url": "http://arxiv.org/abs/2603.25685v2",
+  "venue": "ECCV 2026",
   "venue_announced": "",
   "cover_image": "assets/img/covers/arxiv-2603-25685.jpg",
   "preview_pages": [
@@ -49,6 +49,10 @@
     {
       "kind": "pin",
       "label": "📌 站长精选"
+    },
+    {
+      "kind": "venue",
+      "label": "🎓 ECCV 2026"
     }
   ],
   "related_links": [
@@ -56,14 +60,14 @@
       "source": "note",
       "source_name": "站长注解",
       "title": "Persistent Robot World Models｜用 RL 修复多步 rollout 漂移，DROID 新 SOTA",
-      "url": "http://arxiv.org/abs/2603.25685v1"
+      "url": "http://arxiv.org/abs/2603.25685v2"
     }
   ],
   "page_count": 34,
   "source_tags": [
     "manual_pin"
   ],
-  "score": 50,
+  "score": 60,
   "score_breakdown": [
     {
       "id": "manual_pin",
@@ -82,6 +86,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 34 页"
+    },
+    {
+      "id": "conf_venue",
+      "label": "机器人顶会 / 顶刊出品",
+      "points": 10,
+      "hint": "被「ECCV 2026」收录"
     },
     {
       "id": "cross_channel",
@@ -106,5 +116,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Persistent Robot World Models: Stabilizing Multi-Step Rollouts via Reinforcement Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2603.25685v1\n---\n>[!abstract] 一句话总结：提出一种强化学习后训练方案，让世界模型在自身的自回归rollout上进行训练而非真实历史，通过适应扩散模型的对比RL目标，并设计多候选可变长度未来序列的对比训练协议，以及多视图视觉保真度奖励来强化高保真预测。\n\n\n# 一、动机\n\n> 动作条件下的机器人世界模型虽然能生成未来视频帧，但直接自回归部署时误差累积导致视频质量迅速退化，难以用于长时程模拟。\n\n\n# 二、方法\n\n> 提出一种强化学习后训练方案，让世界模型在自身的自回归rollout上进行训练而非真实历史，通过适应扩散模型的对比RL目标，并设计多候选可变长度未来序列的对比训练协议，以及多视图视觉保真度奖励来强化高保真预测。\n\n\n# 三、核心实验结果\n\n> 在DROID数据集上达到SOTA：外部相机LPIPS降低14%，腕部相机SSIM提高9.1%，配对比较中胜率98%，盲人研究中偏好率80%。\n\n\n# 四、对我的启发\n\n> 该方法通过与机器人操作任务直接相关，但未涉及真实机器人部署；后续可探索将稳定rollout用于策略学习或规划，且奖励设计依赖多视角图像，对相机配置有要求。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/CV\n  - Domain/Robotics\n  - Task/VideoGen\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Persistent Robot World Models: Stabilizing Multi-Step Rollouts via Reinforcement Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2603.25685v2\n---\n>[!abstract] 一句话总结：提出一种强化学习后训练方案，让世界模型在自己的自回归rollout上训练而非真实历史，通过对比RL目标适配扩散模型，并从同一rollout状态生成多个候选变长未来，用融合多视角感知指标的视频级奖励对高保真预测进行强化。\n\n\n# 一、动机\n\n> 现有动作条件机器人世界模型仅针对短期预测优化，自回归部署时错误累积，预测的视觉质量迅速下降，难以长期模拟。\n\n\n# 二、方法\n\n> 提出一种强化学习后训练方案，让世界模型在自己的自回归rollout上训练而非真实历史，通过对比RL目标适配扩散模型，并从同一rollout状态生成多个候选变长未来，用融合多视角感知指标的视频级奖励对高保真预测进行强化。\n\n\n# 三、核心实验结果\n\n> 在DROID数据集上达到新SOTA：外部相机LPIPS降低14%，腕部相机SSIM提升9.1%，98%的成对比较胜率，盲人人类研究中获得80%偏好率。\n\n\n# 四、对我的启发\n\n> 该方法证明了用自身生成轨迹进行RL后训练可显著缓解扩散世界模型的复合误差，奖励聚合的粒度与多视角设计对训练质量很重要；后续可应用于更广泛的机器人操作场景。\n"
 }

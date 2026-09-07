@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-06T10:01:03.337942+00:00",
-  "count": 2299,
+  "generated_at": "2026-09-07T08:38:41.844114+00:00",
+  "count": 2334,
   "papers": [
     {
       "id": "arxiv-2508-17600",
@@ -12291,6 +12291,71 @@
       ]
     },
     {
+      "id": "arxiv-2603-25685",
+      "source": "manual_arxiv",
+      "title": "Persistent Robot World Models: Stabilizing Multi-Step Rollouts via Reinforcement Learning",
+      "title_zh": "持久化机器人世界模型：通过强化学习稳定多步展开",
+      "tldr_zh": "用强化学习后训练稳定机器人世界模型的自回归展开，显著提升预测保真度。",
+      "cover_zh": "机器人世界模型自回归预测总崩坏？强化学习后训练让它稳如磐石，人类偏好率80%！",
+      "abstract_zh": "基于动作条件的机器人世界模型能够根据机器人动作序列生成操作场景的未来视频帧，为模拟传统物理引擎难以建模的任务提供了有前景的替代方案。然而，这些模型针对短期预测进行优化，在自回归部署时会崩溃：每个预测片段作为下一个片段的上下文反馈，导致误差累积，视觉质量迅速下降。我们通过以下贡献解决这一问题。首先，我们引入了一种强化学习后训练方案，该方案在世界模型自身的自回归展开上训练，而非基于真实历史。我们通过将近期用于扩散模型的对比强化学习目标适应到我们的场景中来实现这一点，并证明其收敛保证完全适用。其次，我们设计了一种训练协议，从同一展开状态生成并比较多个候选可变长度未来，强化高保真预测而非低保真预测。第三，我们开发了高效的多视角视觉保真度奖励，结合了跨相机视图的互补感知指标，并在片段级别聚合，以提供密集、低方差的训练信号。第四，我们展示了我们的方法在DROID数据集上建立了展开保真度的新最先进水平，在所有指标上超越了最强基线（例如，外部相机LPIPS降低14%，腕部相机SSIM提升9.1%），在配对比较中获胜98%，并在盲人人类研究中达到80%的偏好率。",
+      "authors": [
+        "Jai Bardhan",
+        "Patrik Drozdik",
+        "Josef Sivic"
+      ],
+      "authors_all": [
+        "Jai Bardhan",
+        "Patrik Drozdik",
+        "Josef Sivic",
+        "Vladimir Petrik"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-03-26",
+      "channels": [
+        "world-model",
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "pin",
+          "label": "📌 站长精选"
+        },
+        {
+          "kind": "venue",
+          "label": "🎓 ECCV 2026"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2603-25685.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2603-25685-p2.jpg"
+      ],
+      "arxiv_id": "2603.25685",
+      "abs_url": "http://arxiv.org/abs/2603.25685v2",
+      "pdf_url": "https://arxiv.org/pdf/2603.25685v2",
+      "venue": "ECCV 2026",
+      "venue_announced": "",
+      "score": 60,
+      "judge": {},
+      "institutions": [
+        "Czech Institute of Informatics, Robotics and Cybernetics, Czech Technical University in Prague"
+      ],
+      "method_tags": [
+        "Reinforcement Learning",
+        "World Models",
+        "Diffusion Models"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": [
+        "manual_pin"
+      ]
+    },
+    {
       "id": "arxiv-2605-13548",
       "source": "arxiv",
       "title": "AttenA+: Rectifying Action Inequality in Robotic Foundation Models",
@@ -22469,6 +22534,79 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2609-04911",
+      "source": "arxiv",
+      "title": "TourPhysics: Bringing Physics to World Models for Exploration and Manipulation from a Single Image",
+      "title_zh": "TourPhysics：将物理引入世界模型，实现单张图像的探索与操作",
+      "tldr_zh": "TourPhysics从单图初始化，结合物理模拟与视频生成，实现长时程探索与操作，减少外观漂移。",
+      "cover_zh": "单张图就能探索操作？物理模拟+视频生成，长时程不漂移！",
+      "abstract_zh": "交互式视觉世界模型必须区分观察与物理干预。相机运动揭示新表面，而干预改变物体运动、接触和变形。当前的视频世界模型主要由外观先验驱动，在长时间跨度上往往失去物理或空间一致性。我们提出TourPhysics，一个从单张图像和声明式物理配置初始化的在线框架。TourPhysics扩展了我们在ACM多媒体2026上的工作PhysOmni，从有限的物理基础视频合成扩展到持续探索和操作。TourPhysics将确定性模拟与视频生成相结合，同时为模拟器状态、几何证据、生成器控制和外观记忆分配不同角色。对于每个动作，模拟器在生成相应观察之前计算有限的物理和相机轨迹。接受的观察发布终端状态并更新外观记忆和后续生成器控制，而提交的状态和模拟器几何在合成和重试过程中保持固定。我们进一步将用于投影和可见性的模拟器几何与用于条件生成器的相对深度分离。参考锚定记忆通过几何跨视图对应检索接受的静态外观，并通过有界残差将其纳入，当不存在有效对应时，该残差恢复到原生路径。在模拟器定义的相机巡视和物体操作中，TourPhysics比评估的基线更紧密地遵循规定的相机和物体轨迹，保留输入场景，并减少长时间重访期间的外观漂移。",
+      "authors": [
+        "Xin Zhang",
+        "Yabo Chen",
+        "Zixuan Duan"
+      ],
+      "authors_all": [
+        "Xin Zhang",
+        "Yabo Chen",
+        "Zixuan Duan",
+        "Haibin Huang",
+        "Chi Zhang",
+        "Feng Xu",
+        "Xuelong Li"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-09-04",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ TeleAI"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Xuelong Li"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2609-04911.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2609-04911-p2.jpg"
+      ],
+      "arxiv_id": "2609.04911",
+      "abs_url": "http://arxiv.org/abs/2609.04911v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.04911v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 51,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出将物理仿真与视频生成结合的交互式世界模型，用于探索与操作，属于世界模型方向，具有科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Fudan University",
+        "Institute of Artificial Intelligence (TeleAI), China Telecom",
+        "Nanjing University"
+      ],
+      "method_tags": [
+        "World Model",
+        "Physical Simulation",
+        "Video Generation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "github-aravindr93-hand-dapg",
       "source": "github",
       "title": "aravindr93/hand_dapg",
@@ -23242,67 +23380,6 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": [
-        "manual_pin"
-      ]
-    },
-    {
-      "id": "arxiv-2603-25685",
-      "source": "manual_arxiv",
-      "title": "Persistent Robot World Models: Stabilizing Multi-Step Rollouts via Reinforcement Learning",
-      "title_zh": "持久化机器人世界模型：通过强化学习稳定多步展开",
-      "tldr_zh": "用强化学习后训练稳定机器人世界模型的自回归展开，显著提升预测保真度。",
-      "cover_zh": "机器人世界模型自回归预测总崩坏？强化学习后训练让它稳如磐石，人类偏好率80%！",
-      "abstract_zh": "基于动作条件的机器人世界模型能够根据机器人动作序列生成操作场景的未来视频帧，为模拟传统物理引擎难以建模的任务提供了有前景的替代方案。然而，这些模型针对短期预测进行优化，在自回归部署时会崩溃：每个预测片段作为下一个片段的上下文反馈，导致误差累积，视觉质量迅速下降。我们通过以下贡献解决这一问题。首先，我们引入了一种强化学习后训练方案，该方案在世界模型自身的自回归展开上训练，而非基于真实历史。我们通过将近期用于扩散模型的对比强化学习目标适应到我们的场景中来实现这一点，并证明其收敛保证完全适用。其次，我们设计了一种训练协议，从同一展开状态生成并比较多个候选可变长度未来，强化高保真预测而非低保真预测。第三，我们开发了高效的多视角视觉保真度奖励，结合了跨相机视图的互补感知指标，并在片段级别聚合，以提供密集、低方差的训练信号。第四，我们展示了我们的方法在DROID数据集上建立了展开保真度的新最先进水平，在所有指标上超越了最强基线（例如，外部相机LPIPS降低14%，腕部相机SSIM提升9.1%），在配对比较中获胜98%，并在盲人人类研究中达到80%的偏好率。",
-      "authors": [
-        "Jai Bardhan",
-        "Patrik Drozdik",
-        "Josef Sivic"
-      ],
-      "authors_all": [
-        "Jai Bardhan",
-        "Patrik Drozdik",
-        "Josef Sivic",
-        "Vladimir Petrik"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-03-26",
-      "channels": [
-        "world-model",
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "pin",
-          "label": "📌 站长精选"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2603-25685.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2603-25685-p2.jpg"
-      ],
-      "arxiv_id": "2603.25685",
-      "abs_url": "http://arxiv.org/abs/2603.25685v1",
-      "pdf_url": "https://arxiv.org/pdf/2603.25685v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 50,
-      "judge": {},
-      "institutions": [
-        "Czech Institute of Informatics, Robotics and Cybernetics, Czech Technical University in Prague"
-      ],
-      "method_tags": [
-        "Reinforcement Learning",
-        "World Models",
-        "Diffusion Models"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -24906,6 +24983,80 @@
         "World Model",
         "Agent Player",
         "Long-Horizon Objectives"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2609-05324",
+      "source": "arxiv",
+      "title": "RoboSPA: Can VLA Models Go Beyond Simple Scenes and Short-Horizon Tasks?",
+      "title_zh": "RoboSPA：VLA 模型能否超越简单场景和短时程任务？",
+      "tldr_zh": "RoboSPA 基准揭示 VLA 模型在复杂空间和长时程任务上仍存在明显不足。",
+      "cover_zh": "VLA 模型只会简单任务？新基准揭示其复杂场景短板",
+      "abstract_zh": "视觉-语言-动作（VLA）模型在语言条件机器人操作方面取得了显著进展。然而，现有数据集和基准主要在预定义设置下评估任务完成情况，对模型在空间和程序复杂性增加时的推理能力提供的洞察有限。我们引入了 RoboSPA（机器人空间-程序评估），一个用于诊断 VLA 模型具身推理能力的大规模机器人操作数据集和基准。RoboSPA 聚焦于两个核心维度：细粒度空间推理和长时程程序规划，涵盖 10 个任务类别和 56 个基础任务。每个任务在五个难度级别上实例化，产生 280 个变体，空间模糊性和程序复杂性逐渐增加。我们收集了跨多种具身和多样场景的 527K 条轨迹。除了二元成功率，RoboSPA 还引入了诊断指标以进行更详细的评估。对代表性 VLA 模型的实验表明，当前系统在处理复杂空间关系、精确低级执行和记忆密集型规划方面仍存在困难。这些结果使 RoboSPA 成为开发更强大、可靠和可泛化的具身智能体的挑战性诊断基准。我们的数据和代码可在 https://github.com/fanzhenxuan/RoboSPA 获取。",
+      "authors": [
+        "Zhenxuan Fan",
+        "Bo Zhang",
+        "Yutong Lin"
+      ],
+      "authors_all": [
+        "Zhenxuan Fan",
+        "Bo Zhang",
+        "Yutong Lin",
+        "Yuqian Yuan",
+        "Juekai Lin",
+        "Liang Liang",
+        "Zhuoyi Huang",
+        "Wenqiao Zhang",
+        "Juncheng Li",
+        "Siliang Tang",
+        "Jun Xiao",
+        "Yueting Zhuang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-09-04",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ ZJU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2609-05324.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2609-05324-p2.jpg"
+      ],
+      "arxiv_id": "2609.05324",
+      "abs_url": "http://arxiv.org/abs/2609.05324v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.05324v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 48,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "大规模VLA操作基准，聚焦空间与长程推理，诊断性强，对具身智能研究有高参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Zhejiang University",
+        "University of Electronic Science and Technology of China",
+        "South China Normal University"
+      ],
+      "method_tags": [
+        "VLA",
+        "Spatial Reasoning",
+        "Long-Horizon Planning"
       ],
       "platform": [],
       "sim_stack": [],
@@ -28122,9 +28273,9 @@
       "source": "arxiv",
       "title": "VGGT-$Ω$",
       "title_zh": "VGGT-$\\Omega$",
-      "tldr_zh": "VGGT-Ω通过架构改进和自监督，大幅提升重建精度，内存仅需30%。",
-      "cover_zh": "内存砍70%？重建精度还飙升77%｜这个新模型让3D重建直接起飞",
-      "abstract_zh": "最近的馈送式重建模型，如VGGT，已被证明与传统基于优化的重建器具有竞争力，同时提供对其他任务有用的几何感知特征。在这里，我们表明这些模型的质量随模型和数据规模可预测地扩展。为此，我们引入了VGGT-$\\Omega$，它显著提高了静态和动态场景的重建精度、效率和能力。为了以前所未有的规模训练该模型，我们引入了提高训练效率的架构更改、支持动态场景的高质量数据标注流程，以及自监督学习协议。我们通过使用具有多任务监督的单一密集预测头并移除昂贵的高分辨率卷积层来简化VGGT的架构。我们还使用寄存器将场景信息聚合为紧凑表示，并引入寄存器注意力，该注意力将帧间信息交换限制在这些寄存器上，部分取代了全局注意力。这样，在训练期间，VGGT-$\\Omega$仅使用其前身约30%的GPU内存，使我们能够使用比先前工作多15倍的监督数据进行训练，并利用大量未标记的视频数据。VGGT-$\\Omega$在多个基准上对静态和动态场景的重建取得了强劲结果，例如，在Sintel上将先前最佳的相机估计精度提高了77%。我们还表明，学习到的寄存器可以改进视觉-语言-动作模型并支持与语言的对齐，这表明重建可以成为空间理解的一个强大且可扩展的代理任务。项目页面：http://vggt-omega.github.io/",
+      "tldr_zh": "VGGT-$\\Omega$通过架构改进和自监督，大幅提升重建精度，内存仅用30%，数据量增15倍。",
+      "cover_zh": "内存砍70%？这个重建模型精度还暴涨，动态场景也稳了！",
+      "abstract_zh": "最近的馈送式重建模型，如VGGT，已被证明与传统基于优化的重建器相比具有竞争力，同时提供对其他任务有用的几何感知特征。在这里，我们表明这些模型的质量随模型和数据规模可预测地扩展。为此，我们引入了VGGT-$\\Omega$，它显著提高了静态和动态场景的重建精度、效率和能力。为了以前所未有的规模训练该模型，我们引入了提高训练效率的架构更改、支持动态场景的高质量数据标注流程以及自监督学习协议。我们通过使用具有多任务监督的单一密集预测头并移除昂贵的高分辨率卷积层来简化VGGT的架构。我们还使用寄存器将场景信息聚合为紧凑表示，并引入寄存器注意力，该注意力将帧间信息交换限制在这些寄存器上，部分取代了全局注意力。这样，在训练期间，VGGT-$\\Omega$仅使用其前身约30%的GPU内存，使我们能够使用比先前工作多15倍的监督数据进行训练，并利用大量未标记的视频数据。VGGT-$\\Omega$在多个基准上对静态和动态场景的重建取得了强劲结果，例如，在Sintel上将先前最佳相机估计精度提高了77%。我们还表明，学习到的寄存器可以改进视觉-语言-动作模型并支持与语言的对齐，这表明重建可以成为空间理解的有力且可扩展的代理任务。项目页面：http://vggt-omega.github.io/",
       "authors": [
         "Jianyuan Wang",
         "Minghao Chen",
@@ -44368,9 +44519,9 @@
       "source": "video_youtube",
       "title": "Whirlybird | Atlas | Boston Dynamics",
       "title_zh": "Whirlybird | Atlas | Boston Dynamics",
-      "tldr_zh": "Atlas 机器人尝试旋转和新动作。",
-      "cover_zh": "波士顿动力 Atlas 玩转旋转新技能？",
-      "abstract_zh": "Atlas 尝试旋转并尝试一些新动作。",
+      "tldr_zh": "Atlas 机器人尝试旋转并展示新动作。",
+      "cover_zh": "机器人也能玩转旋转？Atlas 新动作太酷了！",
+      "abstract_zh": "Atlas 尝试旋转并展示了一些新动作。",
       "authors": [],
       "authors_all": [],
       "primary_category": "video",
@@ -44728,7 +44879,7 @@
         "Tobias Kreiman",
         "Charles Xu",
         "Jianlan Luo",
-        "You Liang Tan",
+        "Y. Tan",
         "Pannag R. Sanketi",
         "Quan Vuong",
         "Ted Xiao",
@@ -45127,6 +45278,64 @@
         "differentiable optimization",
         "Quadratic Program"
       ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2508-17230",
+      "source": "conf",
+      "title": "4D Visual Pre-Training for Robot Learning",
+      "title_zh": "4D Visual Pre-Training for Robot Learning",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Chengkai Hou",
+        "Yanjie Ze",
+        "Yankai Fu"
+      ],
+      "authors_all": [
+        "Chengkai Hou",
+        "Yanjie Ze",
+        "Yankai Fu",
+        "Zeyu Gao",
+        "Songbo Hu",
+        "Yue Yu",
+        "Shanghang Zhang",
+        "Huazhe Xu"
+      ],
+      "primary_category": "",
+      "published": "2025-08-24",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Huazhe Xu"
+        },
+        {
+          "kind": "venue",
+          "label": "🎓 ICCV 2025"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2508.17230",
+      "abs_url": "https://arxiv.org/abs/2508.17230",
+      "pdf_url": "https://arxiv.org/pdf/2508.17230",
+      "venue": "ICCV 2025",
+      "venue_announced": "",
+      "score": 42,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
       "platform": [],
       "sim_stack": [],
       "method_family": "",
@@ -56423,6 +56632,141 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2609-05178",
+      "source": "arxiv",
+      "title": "LIBERO-RECOVER: Beyond Task Success Towards Failure Recovery in Robotic Manipulation Models",
+      "title_zh": "LIBERO-RECOVER：超越任务成功，迈向机器人操作模型的失败恢复",
+      "tldr_zh": "首个大规模机器人操作失败恢复基准，评估模型从失败中恢复的能力。",
+      "cover_zh": "成功率100%就够了吗？新基准专测机器人失败后能否自救",
+      "abstract_zh": "视觉-语言-动作（VLA）或世界动作（WAM）模型近期在机器人操作中展现了卓越的性能。在LIBERO基准上，最先进的方法已实现接近100%的成功率，这似乎表明模型已准备好部署到现实世界。然而，在现有基准上的近乎完美表现可能具有误导性：理想条件下的成功并不意味着现实世界的鲁棒性。现有基准主要评估从预定义初始状态开始的任务完成情况，而现实世界的交互不可避免地涉及失败，如抓取失败、碰撞和意外物体移动。因此，机器人不仅需要成功执行任务，还需要识别失败并从中恢复以继续任务。然而，这一能力在很大程度上未被衡量，揭示了基准性能与现实世界可靠性之间的关键差距。为填补这一空白，我们引入了LIBERO-Recover基准，一个用于机器人操作失败恢复的大规模基准。基于LIBERO，我们从最先进的具身模型中收集真实执行失败，并构建了涵盖四个恢复级别的1000多个场景：（1）动作重试，（2）动作适应，（3）物体状态恢复，以及（4）环境恢复。我们评估了四个核心能力：空间理解、物体结构推理、交互理解和拓扑推理。作为首个用于具身失败恢复的大规模基准，LIBERO-Recover将评估从“机器人能成功吗？”转变为“机器人在失败后能恢复吗？”，从而促进鲁棒且可泛化的具身智能体。项目将在https://liulin815.github.io/LIBERO-Recovery/上提供。",
+      "authors": [
+        "Lin Liu",
+        "Zhicheng Bao",
+        "Lu Zhang"
+      ],
+      "authors_all": [
+        "Lin Liu",
+        "Zhicheng Bao",
+        "Lu Zhang",
+        "Ziying Song",
+        "Wu Yang",
+        "Shuai Tao",
+        "Wulong Liu",
+        "Huchuan Lu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-09-04",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ NTU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2609-05178.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2609-05178-p2.jpg"
+      ],
+      "arxiv_id": "2609.05178",
+      "abs_url": "http://arxiv.org/abs/2609.05178v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.05178v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 40,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "首个面向操作失败恢复的大规模benchmark，填补评测空白，对VLA鲁棒性研究有高价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Dalian University of Technology",
+        "Beta Infinity",
+        "Nanyang Technological University",
+        "Beijing Jiaotong University"
+      ],
+      "method_tags": [
+        "failure recovery",
+        "benchmark"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2609-05282",
+      "source": "arxiv",
+      "title": "Temporal Tactile Encoding and Compliance for Intent-Aware Robot-to-Human Bimanual Handover",
+      "title_zh": "时间触觉编码与柔顺控制在意图感知的人-机器人双手交接中的应用",
+      "tldr_zh": "结合柔顺控制与时间触觉编码，显著提升人机交接的可靠性与舒适度。",
+      "cover_zh": "机器人交接总翻车？新方法融合触觉与柔顺，让交接又稳又舒服！",
+      "abstract_zh": "可靠的机器人向人类交接物体要求机器人推断人何时准备好接收物体，并在安全、舒适且恰当的时机释放物体。这具有挑战性，因为仅靠视觉观察可能无法区分明确的拿取意图与意外接触、弱抓取、错误方向的力或短暂交互。在这项工作中，我们将人-机器人交接视为一个本质上的多模态问题。我们的方法将VLA模型与一个柔顺控制器相结合，以减少物体传递过程中的交互力。我们使用人类演示对VLA模型进行微调，利用RGB观测、时间编码的触觉反馈和本体感觉。我们在人类受试者研究中评估了完整系统，并与两个基线进行比较：一个没有触觉反馈，另一个使用触觉反馈但没有柔顺控制。我们假设结合柔顺控制和时间触觉编码能产生最可靠、最舒适的交接，因为柔顺控制促进了物理交互，而触觉历史捕获了持续的拿取意图。性能通过客观指标和临时问卷来衡量。结果表明，这两个组件提供了互补的益处，并显著优于基线。代码和数据将在接受后发布。",
+      "authors": [
+        "Pasquale Marra",
+        "Stefano Berti",
+        "Gabriele Mario Caddeo"
+      ],
+      "authors_all": [
+        "Pasquale Marra",
+        "Stefano Berti",
+        "Gabriele Mario Caddeo",
+        "Lorenzo Natale"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-09-04",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ IIT (Italy)"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2609-05282.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2609-05282-p2.jpg"
+      ],
+      "arxiv_id": "2609.05282",
+      "abs_url": "http://arxiv.org/abs/2609.05282v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.05282v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 40,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "结合VLA与触觉编码及柔顺控制实现人机交接，具交互与算法创新，但偏应用，价值中等。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Istituto Italiano di Tecnologia",
+        "Università di Genova"
+      ],
+      "method_tags": [
+        "VLA",
+        "compliance control",
+        "temporal tactile encoding"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "github-haoyizhu-pointcloudmatters",
       "source": "github",
       "title": "HaoyiZhu/PointCloudMatters",
@@ -56851,7 +57195,7 @@
         "Quan Vuong",
         "James Tanner",
         "Anna Walling",
-        "Haohuan Wang",
+        "Hao-Huan Wang",
         "Niccolo Fusai",
         "Adrian Li-Bell",
         "Danny Driess",
@@ -56996,10 +57340,10 @@
         "Song Han",
         "Chelsea Finn",
         "Ankur Handa",
-        "Ming-Yu Liu",
-        "Donglai Xiang",
+        "Tsung-Yi Lin",
         "Gordon Wetzstein",
-        "Tsung-Yi Lin"
+        "Ming-Yu Liu",
+        "Donglai Xiang"
       ],
       "primary_category": "",
       "published": "2025-03-27",
@@ -57260,6 +57604,61 @@
       "abs_url": "https://openreview.net/forum?id=Tl7girqoLi",
       "pdf_url": "https://openreview.net/pdf?id=Tl7girqoLi",
       "venue": "CoRL 2025",
+      "venue_announced": "",
+      "score": 39,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2508-13446",
+      "source": "conf",
+      "title": "CAST: Counterfactual Labels Improve Instruction Following in Vision-Language-Action Models",
+      "title_zh": "CAST: Counterfactual Labels Improve Instruction Following in Vision-Language-Action Models",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Catherine Glossop",
+        "William Chen",
+        "Arjun Bhorkar"
+      ],
+      "authors_all": [
+        "Catherine Glossop",
+        "William Chen",
+        "Arjun Bhorkar",
+        "Dhruv Shah",
+        "Sergey Levine"
+      ],
+      "primary_category": "",
+      "published": "2025-08-19",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Sergey Levine"
+        },
+        {
+          "kind": "venue",
+          "label": "🎓 RA-L 2025"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2508.13446",
+      "abs_url": "https://arxiv.org/abs/2508.13446",
+      "pdf_url": "https://arxiv.org/pdf/2508.13446",
+      "venue": "RA-L 2025",
       "venue_announced": "",
       "score": 39,
       "judge": {},
@@ -66316,6 +66715,122 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2404-17521",
+      "source": "conf",
+      "title": "Ag2Manip: Learning Novel Manipulation Skills with Agent-Agnostic Visual and Action Representations",
+      "title_zh": "Ag2Manip: Learning Novel Manipulation Skills with Agent-Agnostic Visual and Action Representations",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Puhao Li",
+        "Tengyu Liu",
+        "Yuyang Li"
+      ],
+      "authors_all": [
+        "Puhao Li",
+        "Tengyu Liu",
+        "Yuyang Li",
+        "Muzhi Han",
+        "Haoran Geng",
+        "Shu Wang",
+        "Yixin Zhu",
+        "Song-Chun Zhu",
+        "Siyuan Huang"
+      ],
+      "primary_category": "",
+      "published": "2024-04-26",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Siyuan Huang"
+        },
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2024"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2404.17521",
+      "abs_url": "https://arxiv.org/abs/2404.17521",
+      "pdf_url": "https://arxiv.org/pdf/2404.17521",
+      "venue": "IROS 2024",
+      "venue_announced": "",
+      "score": 36,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2408-05107",
+      "source": "conf",
+      "title": "Depth Helps: Improving Pre-trained RGB-based Policy with Depth Information Injection",
+      "title_zh": "Depth Helps: Improving Pre-trained RGB-based Policy with Depth Information Injection",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Xincheng Pang",
+        "Wenke Xia",
+        "Zhigang Wang"
+      ],
+      "authors_all": [
+        "Xincheng Pang",
+        "Wenke Xia",
+        "Zhigang Wang",
+        "Bin Zhao",
+        "Di Hu",
+        "Dong Wang",
+        "Xuelong Li"
+      ],
+      "primary_category": "",
+      "published": "2024-08-09",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Xuelong Li"
+        },
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2024"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2408.05107",
+      "abs_url": "https://arxiv.org/abs/2408.05107",
+      "pdf_url": "https://arxiv.org/pdf/2408.05107",
+      "venue": "IROS 2024",
+      "venue_announced": "",
+      "score": 36,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "openreview-1TEZ1hiY5m",
       "source": "openreview",
       "title": "Learning Robotic Locomotion Affordances and Photorealistic Simulators from Human-Captured Data",
@@ -68547,6 +69062,56 @@
       "demo_videos": [],
       "github": {},
       "source_tags": []
+    },
+    {
+      "id": "qbitai-3a125960b8",
+      "source": "qbitai",
+      "title": "原生全模态技术战略闭环，智象（HiDream.ai）发布具身世界模型HiDream-O1-Embodied",
+      "title_zh": "原生全模态技术战略闭环，智象（HiDream.ai）发布具身世界模型HiDream-O1-Embodied",
+      "tldr_zh": "智象发布具身世界模型HiDream-O1-Embodied，实现全模态闭环",
+      "cover_zh": "全模态闭环！具身世界模型HiDream-O1-Embodied发布，AI更懂物理世界",
+      "abstract_zh": "原生全模态技术战略闭环，智象（HiDream.ai）发布具身世界模型HiDream-O1-Embodied",
+      "authors": [],
+      "authors_all": [],
+      "primary_category": "",
+      "published": "2026-09-07",
+      "channels": [
+        "loco-manip-wbc",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "",
+      "abs_url": "https://www.qbitai.com/2026/09/485056.html",
+      "pdf_url": "",
+      "venue": "",
+      "venue_announced": "",
+      "score": 36,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "world-model",
+        "reason": "明确发布具身世界模型，归world-model频道，但缺乏技术细节，价值中等。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": [
+        "qbitai"
+      ]
     },
     {
       "id": "arxiv-2601-12799",
@@ -76318,6 +76883,64 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2503-20663",
+      "source": "conf",
+      "title": "ARMO: Autoregressive Rigging for Multi-Category Objects",
+      "title_zh": "ARMO: Autoregressive Rigging for Multi-Category Objects",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Mingze Sun",
+        "Shiwei Mao",
+        "Keyi Chen"
+      ],
+      "authors_all": [
+        "Mingze Sun",
+        "Shiwei Mao",
+        "Keyi Chen",
+        "Yurun Chen",
+        "Shunlin Lu",
+        "Jingbo Wang",
+        "Junting Dong",
+        "Ruqi Huang"
+      ],
+      "primary_category": "",
+      "published": "2025-03-26",
+      "channels": [
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Jingbo Wang"
+        },
+        {
+          "kind": "venue",
+          "label": "🎓 ICCV 2025"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2503.20663",
+      "abs_url": "https://arxiv.org/abs/2503.20663",
+      "pdf_url": "https://arxiv.org/pdf/2503.20663",
+      "venue": "ICCV 2025",
+      "venue_announced": "",
+      "score": 33,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2504-00420",
       "source": "conf",
       "title": "Think Small, Act Big: Primitive Prompt Learning for Lifelong Robot Manipulation",
@@ -76326,12 +76949,12 @@
       "cover_zh": "机器人终身学习新突破｜用“小提示”撬动大技能，告别遗忘",
       "abstract_zh": "构建一个能够有效利用先验知识进行持续技能获取的终身机器人仍然极具挑战性。尽管经验回放和参数高效方法在缓解灾难性遗忘问题上取得了成功，但简单应用这些方法会导致无法利用技能之间的共享原始模块。为了解决这些问题，我们提出了原始提示学习（PPL），通过可重用和可扩展的原始模块实现终身机器人操作。在我们的两阶段学习方案中，首先通过多技能预训练阶段学习一组原始提示来表示共享原始模块，其中学习运动感知提示以捕获不同技能间共享的语义和运动原始模块。其次，在终身学习过程中获取新技能时，新提示与冻结的预训练提示拼接并优化，通过从旧技能到新技能的知识迁移促进学习。为了评估，我们构建了一个大规模技能数据集，并在仿真和真实世界任务中进行了广泛实验，证明了PPL相对于最先进方法的优越性能。",
       "authors": [
-        "Yuanqi Yao",
+        "Yuan-Qi Yao",
         "Siao Liu",
         "Haoming Song"
       ],
       "authors_all": [
-        "Yuanqi Yao",
+        "Yuan-Qi Yao",
         "Siao Liu",
         "Haoming Song",
         "Delin Qu",
@@ -76363,6 +76986,70 @@
       "abs_url": "https://arxiv.org/abs/2504.00420",
       "pdf_url": "https://arxiv.org/pdf/2504.00420",
       "venue": "CVPR 2025",
+      "venue_announced": "",
+      "score": 33,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2508-04681",
+      "source": "conf",
+      "title": "Perceiving and Acting in First-Person: A Dataset and Benchmark for Egocentric Human-Object-Human Interactions",
+      "title_zh": "Perceiving and Acting in First-Person: A Dataset and Benchmark for Egocentric Human-Object-Human Interactions",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Liang Xu",
+        "Chengqun Yang",
+        "Zili Lin"
+      ],
+      "authors_all": [
+        "Liang Xu",
+        "Chengqun Yang",
+        "Zili Lin",
+        "Fei Xu",
+        "Yifan Liu",
+        "Congsheng Xu",
+        "Yiyi Zhang",
+        "Jie Qin",
+        "Xingdong Sheng",
+        "Yunhui Liu",
+        "Xin Jin",
+        "Yichao Yan",
+        "Wenjun Zeng",
+        "Xiaokang Yang"
+      ],
+      "primary_category": "",
+      "published": "2025-08-06",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Wenjun Zeng"
+        },
+        {
+          "kind": "venue",
+          "label": "🎓 ICCV 2025"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2508.04681",
+      "abs_url": "https://arxiv.org/abs/2508.04681",
+      "pdf_url": "https://arxiv.org/pdf/2508.04681",
+      "venue": "ICCV 2025",
       "venue_announced": "",
       "score": 33,
       "judge": {},
@@ -85687,6 +86374,57 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2404-08825",
+      "source": "conf",
+      "title": "Inverse Kinematics for Neuro-Robotic Grasping with Humanoid Embodied Agents",
+      "title_zh": "Inverse Kinematics for Neuro-Robotic Grasping with Humanoid Embodied Agents",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Jan-Gerrit Habekost",
+        "Connor Gäde",
+        "Philipp Allgeuer"
+      ],
+      "authors_all": [
+        "Jan-Gerrit Habekost",
+        "Connor Gäde",
+        "Philipp Allgeuer",
+        "Stefan Wermter"
+      ],
+      "primary_category": "",
+      "published": "2024-04-12",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2024"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2404.08825",
+      "abs_url": "https://arxiv.org/abs/2404.08825",
+      "pdf_url": "https://arxiv.org/pdf/2404.08825",
+      "venue": "IROS 2024",
+      "venue_announced": "",
+      "score": 27,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2405-15223",
       "source": "conf",
       "title": "iVideoGPT: Interactive VideoGPTs are Scalable World Models",
@@ -85832,6 +86570,59 @@
       "preview_pages": [],
       "arxiv_id": "",
       "abs_url": "https://www.semanticscholar.org/paper/2c8afe8e6acff0a2f6cb57681e69de694b003b2d",
+      "pdf_url": "",
+      "venue": "RSS 2024",
+      "venue_announced": "",
+      "score": 27,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "s2-420a21ad4f6a2a2da082fca96d81b5d3ee677919",
+      "source": "conf",
+      "title": "RL2AC: Reinforcement Learning-based Rapid Online Adaptive Control for Legged Robot Robust Locomotion",
+      "title_zh": "RL2AC: Reinforcement Learning-based Rapid Online Adaptive Control for Legged Robot Robust Locomotion",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Shangke Lyu",
+        "Xin Lang",
+        "Han Zhao"
+      ],
+      "authors_all": [
+        "Shangke Lyu",
+        "Xin Lang",
+        "Han Zhao",
+        "Hongyin Zhang",
+        "Pengxiang Ding",
+        "Donglin Wang"
+      ],
+      "primary_category": "",
+      "published": "2024-07-15",
+      "channels": [
+        "locomotion",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 RSS 2024"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "",
+      "abs_url": "https://www.semanticscholar.org/paper/420a21ad4f6a2a2da082fca96d81b5d3ee677919",
       "pdf_url": "",
       "venue": "RSS 2024",
       "venue_announced": "",
@@ -86208,6 +86999,57 @@
       "abs_url": "https://openreview.net/forum?id=evCXwlCMIi",
       "pdf_url": "https://openreview.net/pdf?id=evCXwlCMIi",
       "venue": "CoRL 2024",
+      "venue_announced": "",
+      "score": 27,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2412-13752",
+      "source": "conf",
+      "title": "Immersive Human-in-the-Loop Control: Real-Time 3D Surface Meshing and Physics Simulation",
+      "title_zh": "Immersive Human-in-the-Loop Control: Real-Time 3D Surface Meshing and Physics Simulation",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Sait Aktürk",
+        "Justin Valentine",
+        "Junaid Ahmad"
+      ],
+      "authors_all": [
+        "Sait Aktürk",
+        "Justin Valentine",
+        "Junaid Ahmad",
+        "Martin Jägersand"
+      ],
+      "primary_category": "",
+      "published": "2024-10-14",
+      "channels": [
+        "manipulation",
+        "teleop"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2024"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2412.13752",
+      "abs_url": "https://arxiv.org/abs/2412.13752",
+      "pdf_url": "https://arxiv.org/pdf/2412.13752",
+      "venue": "IROS 2024",
       "venue_announced": "",
       "score": 27,
       "judge": {},
@@ -86806,6 +87648,63 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2506-23152",
+      "source": "conf",
+      "title": "DexH2R: A Benchmark for Dynamic Dexterous Grasping in Human-To-Robot Handover",
+      "title_zh": "DexH2R: A Benchmark for Dynamic Dexterous Grasping in Human-To-Robot Handover",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Youzhuo Wang",
+        "Jiayi Ye",
+        "Chuyang Xiao"
+      ],
+      "authors_all": [
+        "Youzhuo Wang",
+        "Jiayi Ye",
+        "Chuyang Xiao",
+        "Yiming Zhong",
+        "Heng Tao",
+        "Hang Yu",
+        "Yumeng Liu",
+        "Jingyi Yu",
+        "Yuexin Ma"
+      ],
+      "primary_category": "",
+      "published": "2025-06-29",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation",
+        "teleop"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 ICCV 2025"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2506.23152",
+      "abs_url": "https://arxiv.org/abs/2506.23152",
+      "pdf_url": "https://arxiv.org/pdf/2506.23152",
+      "venue": "ICCV 2025",
+      "venue_announced": "",
+      "score": 27,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2507-04452",
       "source": "conf",
       "title": "SimLauncher: Launching Sample-Efficient Real-World Robotic Reinforcement Learning via Simulation Pre-Training",
@@ -87329,12 +88228,12 @@
       "authors": [
         "Christyan Cruz Ulloa",
         "Jorge Tolón",
-        "J. Cerro"
+        "J. del-Cerro"
       ],
       "authors_all": [
         "Christyan Cruz Ulloa",
         "Jorge Tolón",
-        "J. Cerro",
+        "J. del-Cerro",
         "Antonio Barrientos"
       ],
       "primary_category": "",
@@ -90147,6 +91046,69 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2609-05266",
+      "source": "arxiv",
+      "title": "TacPAC: Tactile Prediction and Real-Time Action Correction in World-Action Models for Contact-Rich Manipulation",
+      "title_zh": "TacPAC：面向接触丰富操作的世界动作模型中的触觉预测与实时动作修正",
+      "tldr_zh": "TacPAC通过缓存预测接触实现实时触觉修正，将成功率从22%提升至64%。",
+      "cover_zh": "触觉预测还能这么用？实时修正让机器人成功率翻三倍",
+      "abstract_zh": "世界动作模型利用预测的未来观测来指导动作生成，但以视觉为中心的预测忽略了决定接触丰富操作的关键局部接触线索。然而，在我们的实验中，简单地将未来触觉观测作为额外视图进行预测，仅能恢复可实现增益的三分之一。这一差距反映了时序不匹配：预测先于执行，而触觉反馈在执行过程中到达。我们提出了TacPAC，将触觉预测转化为实时动作修正。一旦基础模型规划了一个动作块，TacPAC会缓存该规划所依赖的预测接触及其自身表示，触觉专家将每个新观测到的触觉图像与该缓存进行比对，以修正尚未执行的动作。因此，反馈是根据规划的预期而非孤立地解释，一次修正仅需对该缓存进行单次遍历，比重生成整个块便宜20.7倍。在五个真实机器人任务中，涵盖精密插入、易碎物体处理、物体重定向和长时程操作，TacPAC在每个任务上都领先，并将平均成功率从仅视觉基础模型的22%提升至64%。代码可在https://github.com/LogosRoboticsGroup/TacPAC获取。",
+      "authors": [
+        "Zipei Ma",
+        "Xiaofei Wei",
+        "Junzhe Jiang"
+      ],
+      "authors_all": [
+        "Zipei Ma",
+        "Xiaofei Wei",
+        "Junzhe Jiang",
+        "Shunlin Lu",
+        "Li Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-09-04",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2609-05266.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2609-05266-p2.jpg"
+      ],
+      "arxiv_id": "2609.05266",
+      "abs_url": "http://arxiv.org/abs/2609.05266v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.05266v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 25,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出触觉预测与实时动作修正的世界动作模型，显著提升接触丰富操作成功率，具科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Fudan University",
+        "Shanghai Innovation Institute",
+        "NeoteAI"
+      ],
+      "method_tags": [
+        "World-Action Models",
+        "Tactile Prediction",
+        "Action Correction"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2402-02500",
       "source": "conf",
       "title": "Point Cloud Matters: Rethinking the Impact of Different Observation Spaces on Robot Learning",
@@ -90919,7 +91881,7 @@
         "Jianping Li",
         "Zhongyuan Liu",
         "Xinhang Xu",
-        "Jinxing Liu",
+        "Jinxin Liu",
         "Shenghai Yuan",
         "Fang Xu",
         "Lihua Xie"
@@ -92917,6 +93879,60 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2505-15304",
+      "source": "conf",
+      "title": "Saliency-Aware Quantized Imitation Learning for Efficient Robotic Control",
+      "title_zh": "Saliency-Aware Quantized Imitation Learning for Efficient Robotic Control",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Seongmin Park",
+        "Hyungmin Kim",
+        "Sangwoo Kim"
+      ],
+      "authors_all": [
+        "Seongmin Park",
+        "Hyungmin Kim",
+        "Sangwoo Kim",
+        "Wonseok Jeon",
+        "Juyoung Yang",
+        "Byeongwook Jeon",
+        "Yoonseon Oh",
+        "Jungwook Choi"
+      ],
+      "primary_category": "",
+      "published": "2025-05-21",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 ICCV 2025"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2505.15304",
+      "abs_url": "https://arxiv.org/abs/2505.15304",
+      "pdf_url": "https://arxiv.org/pdf/2505.15304",
+      "venue": "ICCV 2025",
+      "venue_announced": "",
+      "score": 22,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2507-11296",
       "source": "conf",
       "title": "Diffusion-Based Imaginative Coordination for Bimanual Manipulation",
@@ -93912,6 +94928,75 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2609-05376",
+      "source": "arxiv",
+      "title": "What Matters, When? Diagnosing and Improving Conditional Visual Grounding in Visuomotor Imitation Policies",
+      "title_zh": "什么重要，何时重要？诊断并改进视觉运动模仿策略中的条件视觉定位",
+      "tldr_zh": "视觉运动模仿策略在视觉干扰下失败，诊断并改进目标选择可显著提升鲁棒性。",
+      "cover_zh": "视觉干扰让机器人抓瞎？新方法精准定位目标，鲁棒性飙升！",
+      "abstract_zh": "视觉运动模仿策略在分布内的视觉条件下能实现高性能，但在引入视觉上相似的物体或容器时却会失败。我们将此行为作为条件视觉定位问题进行研究：成功控制所需的视觉目标会随操作阶段而变化，在更复杂的任务中，还会随观察到的任务状态而变化。使用基于Transformer的动作分块（ACT），我们系统地引入具有受控颜色和形状相似性的干扰物体和容器，并将失败定位到抓取和放置阶段。我们发现，干扰敏感性既特定于视觉相似性的类型，也特定于操作阶段。在此诊断的指导下，我们评估了干扰增强、相位依赖的注意力正则化和基于外观的视觉提示作为互补干预措施，以改善目标选择，同时保留控制所需的空间信息。这些干预措施在仿真和物理UR3e上显著提高了鲁棒性。我们进一步在预训练的视觉-语言-动作策略上，针对状态条件的器械操作任务检查了相同的失败模式，其中观察到的医疗器械状态决定了正确的目的地。总之，结果表明，即使底层操作技能保持完整，视觉干扰也可能导致错误的物体或目的地选择，而明确改善目标选择可以显著恢复不同视觉运动策略学习机制下的性能。",
+      "authors": [
+        "Vivek Chavan",
+        "Pengtao Xie",
+        "Yahuan Shi"
+      ],
+      "authors_all": [
+        "Vivek Chavan",
+        "Pengtao Xie",
+        "Yahuan Shi",
+        "Oliver Heimann",
+        "Kevin Haninger",
+        "Jörg Krüger"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-09-04",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 ECCV 2026"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2609-05376.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2609-05376-p2.jpg"
+      ],
+      "arxiv_id": "2609.05376",
+      "abs_url": "http://arxiv.org/abs/2609.05376v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.05376v1",
+      "venue": "ECCV 2026",
+      "venue_announced": "",
+      "score": 22,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "系统诊断并改进模仿策略的视觉接地问题，提出多种干预方法，对操作策略鲁棒性研究有高价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Fraunhofer Institute for Production Systems and Design Technology IPK",
+        "Technische Universität Berlin"
+      ],
+      "method_tags": [
+        "Imitation Learning",
+        "Visual Grounding",
+        "ACT"
+      ],
+      "platform": [
+        "UR3e"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "github-yuhuajiang2002-ckt-wam",
       "source": "github",
       "title": "YuhuaJiang2002/CKT-WAM",
@@ -94149,7 +95234,7 @@
         "Matthew Anderson",
         "Nikhil Raganathan",
         "Xingxing Zuo",
-        "K. Do",
+        "Kevin Do",
         "Georgia Gkioxari",
         "Soon-Jo Chung"
       ],
@@ -95018,6 +96103,58 @@
       "source_tags": []
     },
     {
+      "id": "s2-182fbfc13b6c6e19b7fdefeda07453bb18bc7def",
+      "source": "conf",
+      "title": "A Perceptive Pneumatic Artificial Muscle Empowered by Double Helix Fiber Reinforcement",
+      "title_zh": "A Perceptive Pneumatic Artificial Muscle Empowered by Double Helix Fiber Reinforcement",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Yufeng Wang",
+        "Houping Wu",
+        "Chenchen Li"
+      ],
+      "authors_all": [
+        "Yufeng Wang",
+        "Houping Wu",
+        "Chenchen Li",
+        "Yulian Peng",
+        "Hongbo Wang"
+      ],
+      "primary_category": "",
+      "published": "2024-10-14",
+      "channels": [
+        "manipulation",
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2024"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "",
+      "abs_url": "https://www.semanticscholar.org/paper/182fbfc13b6c6e19b7fdefeda07453bb18bc7def",
+      "pdf_url": "",
+      "venue": "IROS 2024",
+      "venue_announced": "",
+      "score": 21,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2410-13032",
       "source": "conf",
       "title": "Hypothesis Testing the Circuit Hypothesis in LLMs",
@@ -95134,12 +96271,12 @@
       "authors": [
         "A. Diwan",
         "Julen Urain",
-        "J. Kober"
+        "Jens Kober"
       ],
       "authors_all": [
         "A. Diwan",
         "Julen Urain",
-        "J. Kober",
+        "Jens Kober",
         "Jan Peters"
       ],
       "primary_category": "",
@@ -95498,12 +96635,12 @@
       "authors": [
         "Amin Berjaoui Tahmaz",
         "Ravi Prakash",
-        "J. Kober"
+        "Jens Kober"
       ],
       "authors_all": [
         "Amin Berjaoui Tahmaz",
         "Ravi Prakash",
-        "J. Kober"
+        "Jens Kober"
       ],
       "primary_category": "",
       "published": "2025-05-19",
@@ -95780,6 +96917,55 @@
       "abs_url": "https://www.semanticscholar.org/paper/554878e46dcbfe8a5736f28d7c54c7fedeb36a05",
       "pdf_url": "",
       "venue": "CVPR 2025",
+      "venue_announced": "",
+      "score": 21,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2506-23468",
+      "source": "conf",
+      "title": "NavMorph: A Self-Evolving World Model for Vision-and-Language Navigation in Continuous Environments",
+      "title_zh": "NavMorph: A Self-Evolving World Model for Vision-and-Language Navigation in Continuous Environments",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Xuan Yao",
+        "Junyu Gao",
+        "Changsheng Xu"
+      ],
+      "authors_all": [
+        "Xuan Yao",
+        "Junyu Gao",
+        "Changsheng Xu"
+      ],
+      "primary_category": "",
+      "published": "2025-06-30",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 ICCV 2025"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2506.23468",
+      "abs_url": "https://arxiv.org/abs/2506.23468",
+      "pdf_url": "https://arxiv.org/pdf/2506.23468",
+      "venue": "ICCV 2025",
       "venue_announced": "",
       "score": 21,
       "judge": {},
@@ -116968,7 +118154,7 @@
         "Jiazhao Zhang",
         "Kunyu Wang",
         "Rongtao Xu",
-        "G. Zhou",
+        "Gengze Zhou",
         "Yicong Hong",
         "Xiaomeng Fang",
         "Qi Wu",
@@ -117622,6 +118808,107 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2411-03315",
+      "source": "conf",
+      "title": "Learning Force Distribution Estimation for the GelSight Mini Optical Tactile Sensor Based on Finite Element Analysis",
+      "title_zh": "Learning Force Distribution Estimation for the GelSight Mini Optical Tactile Sensor Based on Finite Element Analysis",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "E. Helmut",
+        "Luca Dziarski",
+        "Niklas Funk"
+      ],
+      "authors_all": [
+        "E. Helmut",
+        "Luca Dziarski",
+        "Niklas Funk",
+        "B. Belousov",
+        "Jan Peters"
+      ],
+      "primary_category": "",
+      "published": "2024-10-08",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2024"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2411.03315",
+      "abs_url": "https://arxiv.org/abs/2411.03315",
+      "pdf_url": "https://arxiv.org/pdf/2411.03315",
+      "venue": "IROS 2024",
+      "venue_announced": "",
+      "score": 16,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2410-10729",
+      "source": "conf",
+      "title": "Harnessing with Twisting: Single-Arm Deformable Linear Object Manipulation for Industrial Harnessing Task",
+      "title_zh": "Harnessing with Twisting: Single-Arm Deformable Linear Object Manipulation for Industrial Harnessing Task",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Xiang Zhang",
+        "Hsien-Chung Lin",
+        "Yu Zhao"
+      ],
+      "authors_all": [
+        "Xiang Zhang",
+        "Hsien-Chung Lin",
+        "Yu Zhao",
+        "Masayoshi Tomizuka"
+      ],
+      "primary_category": "",
+      "published": "2024-10-14",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2024"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2410.10729",
+      "abs_url": "https://arxiv.org/abs/2410.10729",
+      "pdf_url": "https://arxiv.org/pdf/2410.10729",
+      "venue": "IROS 2024",
+      "venue_announced": "",
+      "score": 16,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "s2-0c4ed96823d8689a773a71f90d3dba49aa07edda",
       "source": "conf",
       "title": "Learning the Inverse Kinematics of Magnetic Continuum Robot for Teleoperated Navigation",
@@ -117937,19 +119224,19 @@
       "cover_zh": "保险箱门打不开？机器人靠试错学会自适应操作｜新环境+扩散模型",
       "abstract_zh": "铰接物体操作是机器人在现实场景中执行各种任务的关键能力。铰接物体由多个通过关节连接的部件组成，通过复杂的相对运动实现多样化的功能机制。例如，保险箱由门、把手和锁组成，只有当锁闩解锁时门才能打开。内部结构（如锁的状态或关节角度约束）无法从视觉观察中直接获取。因此，成功操作这些物体需要基于试错进行自适应调整，而非一次性视觉推理。然而，先前的铰接物体数据集和仿真环境主要关注简单的操作机制，即完整操作过程可从物体外观推断。为了增强自适应操作机制的多样性和复杂性，我们构建了一个新颖的铰接物体操作环境，并配备了9类物体。基于该环境和物体，我们进一步提出了一种自适应演示收集和基于3D视觉扩散的模仿学习流程，用于学习自适应操作策略。通过仿真和真实世界实验验证了我们的设计和提出方法的有效性。项目页面：https://adamanip.github.io",
       "authors": [
-        "Yuanfei Wang",
+        "Yuan-Fei Wang",
         "Xiaojie Zhang",
         "Ruihai Wu"
       ],
       "authors_all": [
-        "Yuanfei Wang",
+        "Yuan-Fei Wang",
         "Xiaojie Zhang",
         "Ruihai Wu",
         "Yu Li",
         "Yan Shen",
         "Mingdong Wu",
         "Zhaofeng He",
-        "Yizhou Wang",
+        "Yi-Zhou Wang",
         "Hao Dong"
       ],
       "primary_category": "",
@@ -118380,6 +119667,121 @@
       "arxiv_id": "2503.09320",
       "abs_url": "https://arxiv.org/abs/2503.09320",
       "pdf_url": "https://arxiv.org/pdf/2503.09320",
+      "venue": "ICCV 2025",
+      "venue_announced": "",
+      "score": 16,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2503-09527",
+      "source": "conf",
+      "title": "CombatVLA: An Efficient Vision-Language-Action Model for Combat Tasks in 3D Action Role-Playing Games",
+      "title_zh": "CombatVLA: An Efficient Vision-Language-Action Model for Combat Tasks in 3D Action Role-Playing Games",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Peng Chen",
+        "Pi Bu",
+        "Yingyao Wang"
+      ],
+      "authors_all": [
+        "Peng Chen",
+        "Pi Bu",
+        "Yingyao Wang",
+        "Xinyi Wang",
+        "Ziming Wang",
+        "Jie Guo",
+        "Yingxiu Zhao",
+        "Qi Zhu",
+        "Jun Song",
+        "Siran Yang",
+        "Jiamang Wang",
+        "Bo Zheng"
+      ],
+      "primary_category": "",
+      "published": "2025-03-12",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 ICCV 2025"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2503.09527",
+      "abs_url": "https://arxiv.org/abs/2503.09527",
+      "pdf_url": "https://arxiv.org/pdf/2503.09527",
+      "venue": "ICCV 2025",
+      "venue_announced": "",
+      "score": 16,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2503-19757",
+      "source": "conf",
+      "title": "Dita: Scaling Diffusion Transformer for Generalist Vision-Language-Action Policy",
+      "title_zh": "Dita: Scaling Diffusion Transformer for Generalist Vision-Language-Action Policy",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Zhi Hou",
+        "Tianyi Zhang",
+        "Yuwen Xiong"
+      ],
+      "authors_all": [
+        "Zhi Hou",
+        "Tianyi Zhang",
+        "Yuwen Xiong",
+        "Haonan Duan",
+        "Hengjun Pu",
+        "Ronglei Tong",
+        "Chengyang Zhao",
+        "Xizhou Zhu",
+        "Yu Qiao",
+        "Jifeng Dai",
+        "Yuntao Chen"
+      ],
+      "primary_category": "",
+      "published": "2025-03-25",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 ICCV 2025"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2503.19757",
+      "abs_url": "https://arxiv.org/abs/2503.19757",
+      "pdf_url": "https://arxiv.org/pdf/2503.19757",
       "venue": "ICCV 2025",
       "venue_announced": "",
       "score": 16,
@@ -118828,12 +120230,12 @@
       "abstract_zh": "模仿学习旨在让机器人通过观察少量人类示范来自主执行任务。最近，一种称为上下文模仿学习的变体利用现成的大语言模型作为即时策略，从给定的几个示范中理解上下文以执行新任务，而不是用大规模示范显式更新网络模型。然而，其在机器人领域的可靠性受到幻觉问题的削弱，例如基于大语言模型的即时策略偶尔会生成偏离给定示范的劣质轨迹。为缓解此问题，我们提出一种新的鲁棒上下文模仿学习算法——鲁棒即时策略（RIP），该算法利用学生 t 回归模型来抵抗即时策略的幻觉轨迹，从而实现可靠的轨迹生成。具体而言，RIP 从大语言模型生成若干候选机器人轨迹以完成给定任务，并使用学生 t 分布聚合它们，这有利于忽略异常值（即幻觉）；从而生成对幻觉鲁棒的轨迹。我们在模拟和真实环境中的实验表明，RIP 显著优于最先进的模仿学习方法，任务成功率至少提升 26%，尤其是在日常任务的低数据场景下。视频结果见 https://sites.google.com/view/robustinstantpolicy",
       "authors": [
         "Hanbit Oh",
-        "Andrea M. Salcedo-V'azquez",
+        "Andrea M. Salcedo-Vázquez",
         "I. Ramirez-Alpizar"
       ],
       "authors_all": [
         "Hanbit Oh",
-        "Andrea M. Salcedo-V'azquez",
+        "Andrea M. Salcedo-Vázquez",
         "I. Ramirez-Alpizar",
         "Y. Domae"
       ],
@@ -119678,12 +121080,12 @@
       "cover_zh": "微型机器人也能自主导航？这个脑启发模型性能翻倍还省电26倍！",
       "abstract_zh": "微型机器人正成为搜索救援、精准农业和协同操作中的强大工具，其小尺寸和低成本相比大型机器人具有优势。然而，由于内存、能量和计算能力等硬件限制严重，实现这些机器人的自主导航仍然具有挑战性。我们探索了一种名为超维计算（HDC）的脑启发学习范式，为微型机器人配备了一个廉价、轻量的导航模型，该模型可在机器人上运行。我们提出了NavHD，其特点是一个自适应HD编码器，学习空间表示，并采用基于损失的训练，用于模仿学习和离策略强化学习。我们的NavHD硬件实现使用八个超声波传感器，并针对ARM Cortex-M4内核进行了优化，每次推理仅使用10.2 kB内存、900个时钟周期和1.1 mJ能量。通过在仿真和真实世界中的实验，我们证明NavHD在避障方面比基于DNN和先前基于HDC的强化学习方法性能提升超过2倍，同时资源效率提高2-26倍。",
       "authors": [
-        "Chae Young Lee",
+        "C. Lee",
         "Sara Achour",
         "Zerina Kapetanovic"
       ],
       "authors_all": [
-        "Chae Young Lee",
+        "C. Lee",
         "Sara Achour",
         "Zerina Kapetanovic"
       ],
@@ -119838,7 +121240,7 @@
         "Jangha Lee",
         "Theo Taeyeong Kim",
         "Kyuhwan Shim",
-        "Jun Ki Lee",
+        "Jun-Ki Lee",
         "Byoung-Tak Zhang"
       ],
       "primary_category": "",
@@ -128969,7 +130371,7 @@
         "Saurabh Gupta",
         "Kun He",
         "Yoichi Sato",
-        "Otmar Hilliges",
+        "O. Hilliges",
         "Hyung Jin Chang",
         "A. Yao"
       ],
@@ -129318,12 +130720,12 @@
       "authors": [
         "Luke Strgar",
         "David Matthews",
-        "Tyler Hummer"
+        "Tyler M Hummer"
       ],
       "authors_all": [
         "Luke Strgar",
         "David Matthews",
-        "Tyler Hummer",
+        "Tyler M Hummer",
         "S. Kriegman"
       ],
       "primary_category": "",
@@ -129392,6 +130794,58 @@
       "abs_url": "https://www.semanticscholar.org/paper/5ac182afe3be0f807ce3771d3e5d520f3d019309",
       "pdf_url": "",
       "venue": "NeurIPS 2024",
+      "venue_announced": "",
+      "score": 13,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2405-18948",
+      "source": "conf",
+      "title": "Learning to Recover from Plan Execution Errors during Robot Manipulation: A Neuro-symbolic Approach",
+      "title_zh": "Learning to Recover from Plan Execution Errors during Robot Manipulation: A Neuro-symbolic Approach",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Namasivayam Kalithasan",
+        "Arnav Tuli",
+        "Vishal Bindal"
+      ],
+      "authors_all": [
+        "Namasivayam Kalithasan",
+        "Arnav Tuli",
+        "Vishal Bindal",
+        "H. Singh",
+        "Parag Singla",
+        "Rohan Paul"
+      ],
+      "primary_category": "",
+      "published": "2024-05-29",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2024"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2405.18948",
+      "abs_url": "https://arxiv.org/abs/2405.18948",
+      "pdf_url": "https://arxiv.org/pdf/2405.18948",
+      "venue": "IROS 2024",
       "venue_announced": "",
       "score": 13,
       "judge": {},
@@ -129611,6 +131065,56 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2407-00985",
+      "source": "conf",
+      "title": "Object Segmentation from Open-Vocabulary Manipulation Instructions Based on Optimal Transport Polygon Matching with Multimodal Foundation Models",
+      "title_zh": "Object Segmentation from Open-Vocabulary Manipulation Instructions Based on Optimal Transport Polygon Matching with Multimodal Foundation Models",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "T. Nishimura",
+        "Katsuyuki Kuyo",
+        "Motonari Kambara"
+      ],
+      "authors_all": [
+        "T. Nishimura",
+        "Katsuyuki Kuyo",
+        "Motonari Kambara",
+        "Komei Sugiura"
+      ],
+      "primary_category": "",
+      "published": "2024-07-01",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2024"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2407.00985",
+      "abs_url": "https://arxiv.org/abs/2407.00985",
+      "pdf_url": "https://arxiv.org/pdf/2407.00985",
+      "venue": "IROS 2024",
+      "venue_announced": "",
+      "score": 13,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2407-06984",
       "source": "conf",
       "title": "Category-level Object Detection, Pose Estimation and Reconstruction from Stereo Images",
@@ -129782,7 +131286,7 @@
         "Bruce Wingo",
         "A. Sathya",
         "St´ephane Caron",
-        "Seth Hutchinson",
+        "S. Hutchinson",
         "J. Carpentier"
       ],
       "primary_category": "",
@@ -130515,6 +132019,56 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2410-09301",
+      "source": "conf",
+      "title": "Motion Planning for Object Manipulation by Edge-Rolling",
+      "title_zh": "Motion Planning for Object Manipulation by Edge-Rolling",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Maede Boroji",
+        "Vahid Danesh",
+        "Imin Kao"
+      ],
+      "authors_all": [
+        "Maede Boroji",
+        "Vahid Danesh",
+        "Imin Kao",
+        "A. Fakhari"
+      ],
+      "primary_category": "",
+      "published": "2024-10-11",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2024"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2410.09301",
+      "abs_url": "https://arxiv.org/abs/2410.09301",
+      "pdf_url": "https://arxiv.org/pdf/2410.09301",
+      "venue": "IROS 2024",
+      "venue_announced": "",
+      "score": 13,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2410-10133",
       "source": "conf",
       "title": "TextCtrl: Diffusion-based Scene Text Editing with Prior Guidance Control",
@@ -130766,6 +132320,102 @@
       "source_tags": []
     },
     {
+      "id": "s2-14ab8bec94be4f435feccbc6ab872fa87b286163",
+      "source": "conf",
+      "title": "Task Planning for Long-Horizon Cooking Tasks Based on Large Language Models",
+      "title_zh": "Task Planning for Long-Horizon Cooking Tasks Based on Large Language Models",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Jungkyoo Shin",
+        "Jieun Han",
+        "Seungjun Kim"
+      ],
+      "authors_all": [
+        "Jungkyoo Shin",
+        "Jieun Han",
+        "Seungjun Kim",
+        "Yoonseon Oh",
+        "Eunwoo Kim"
+      ],
+      "primary_category": "",
+      "published": "2024-10-14",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2024"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "",
+      "abs_url": "https://www.semanticscholar.org/paper/14ab8bec94be4f435feccbc6ab872fa87b286163",
+      "pdf_url": "",
+      "venue": "IROS 2024",
+      "venue_announced": "",
+      "score": 13,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "s2-224ea2a6eafae63e969f31956b2c1b0cf6a7af49",
+      "source": "conf",
+      "title": "The subtle line between personalization and user manipulation in a European regulatory perspective. A proposal for a technology-assessment methodology for Artificial Intelligence Systems *",
+      "title_zh": "The subtle line between personalization and user manipulation in a European regulatory perspective. A proposal for a technology-assessment methodology for Artificial Intelligence Systems *",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Andrea Bertolini"
+      ],
+      "authors_all": [
+        "Andrea Bertolini"
+      ],
+      "primary_category": "",
+      "published": "2024-10-14",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2024"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "",
+      "abs_url": "https://www.semanticscholar.org/paper/224ea2a6eafae63e969f31956b2c1b0cf6a7af49",
+      "pdf_url": "",
+      "venue": "IROS 2024",
+      "venue_announced": "",
+      "score": 13,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2410-23978",
       "source": "conf",
       "title": "GAMap: Zero-Shot Object Goal Navigation with Multi-Scale Geometric-Affordance Guidance",
@@ -130905,6 +132555,59 @@
       "arxiv_id": "2411.14381",
       "abs_url": "https://arxiv.org/abs/2411.14381",
       "pdf_url": "https://arxiv.org/pdf/2411.14381",
+      "venue": "IROS 2024",
+      "venue_announced": "",
+      "score": 13,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2412-10050",
+      "source": "conf",
+      "title": "ManipGPT: Is Affordance Segmentation by Large Vision Models Enough for Articulated Object Manipulation?",
+      "title_zh": "ManipGPT: Is Affordance Segmentation by Large Vision Models Enough for Articulated Object Manipulation?",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Taewhan Kim",
+        "Hojin Bae",
+        "Zeming Li"
+      ],
+      "authors_all": [
+        "Taewhan Kim",
+        "Hojin Bae",
+        "Zeming Li",
+        "Xiaoqi Li",
+        "Iaroslav Ponomarenko",
+        "Ruihai Wu",
+        "Hao Dong"
+      ],
+      "primary_category": "",
+      "published": "2024-12-13",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2024"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2412.10050",
+      "abs_url": "https://arxiv.org/abs/2412.10050",
+      "pdf_url": "https://arxiv.org/pdf/2412.10050",
       "venue": "IROS 2024",
       "venue_announced": "",
       "score": 13,
@@ -131778,7 +133481,7 @@
         "Jiawei Li",
         "Zhaojin Liu",
         "Yuxiao Li",
-        "Yuanyue Li",
+        "Yuan-Yue Li",
         "Yiming Huang",
         "Gang Wang"
       ],
@@ -132848,6 +134551,58 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2507-01016",
+      "source": "conf",
+      "title": "VQ-VLA: Improving Vision-Language-Action Models via Scaling Vector-Quantized Action Tokenizers",
+      "title_zh": "VQ-VLA: Improving Vision-Language-Action Models via Scaling Vector-Quantized Action Tokenizers",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Yating Wang",
+        "Haoyi Zhu",
+        "Mingyu Liu"
+      ],
+      "authors_all": [
+        "Yating Wang",
+        "Haoyi Zhu",
+        "Mingyu Liu",
+        "Jiange Yang",
+        "Haoyang Fang",
+        "Tong He"
+      ],
+      "primary_category": "",
+      "published": "2025-07-01",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 ICCV 2025"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2507.01016",
+      "abs_url": "https://arxiv.org/abs/2507.01016",
+      "pdf_url": "https://arxiv.org/pdf/2507.01016",
+      "venue": "ICCV 2025",
+      "venue_announced": "",
+      "score": 13,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "s2-0b8a088ca28e81d96220d10f45b03d25a09efc8e",
       "source": "conf",
       "title": "Optimized Design and Calibration of a Human-Eye-Sized Active Binocular Vision System Based on Spherical Parallel Mechanism",
@@ -133688,6 +135443,57 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2508-14466",
+      "source": "conf",
+      "title": "LookOut: Real-World Humanoid Egocentric Navigation",
+      "title_zh": "LookOut: Real-World Humanoid Egocentric Navigation",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Boxiao Pan",
+        "Adam W. Harley",
+        "Francis Engelmann"
+      ],
+      "authors_all": [
+        "Boxiao Pan",
+        "Adam W. Harley",
+        "Francis Engelmann",
+        "C. K. Liu",
+        "Leonidas J. Guibas"
+      ],
+      "primary_category": "",
+      "published": "2025-08-20",
+      "channels": [
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 ICCV 2025"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "2508.14466",
+      "abs_url": "https://arxiv.org/abs/2508.14466",
+      "pdf_url": "https://arxiv.org/pdf/2508.14466",
+      "venue": "ICCV 2025",
+      "venue_announced": "",
+      "score": 13,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2510-01519",
       "source": "conf",
       "title": "Online Hierarchical Policy Learning using Physics Priors for Robot Navigation in Unknown Environments",
@@ -134075,6 +135881,61 @@
       "abs_url": "https://www.semanticscholar.org/paper/04afe30d15696226c98d887dfa07f0608af650e7",
       "pdf_url": "",
       "venue": "IROS 2025",
+      "venue_announced": "",
+      "score": 13,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "s2-993b5ad471a0997dcd9e996248df8e5f845f397f",
+      "source": "conf",
+      "title": "Towards Long-Horizon Vision-Language-Action System: Reasoning, Acting and Memory",
+      "title_zh": "Towards Long-Horizon Vision-Language-Action System: Reasoning, Acting and Memory",
+      "tldr_zh": "",
+      "cover_zh": "",
+      "abstract_zh": "",
+      "authors": [
+        "Daixun Li",
+        "Yusi Zhang",
+        "Mingxiang Cao"
+      ],
+      "authors_all": [
+        "Daixun Li",
+        "Yusi Zhang",
+        "Mingxiang Cao",
+        "Donglai Liu",
+        "Weiying Xie",
+        "Tianlin Hui",
+        "Lunkai Lin",
+        "Zhiqiang Xie",
+        "Yunsong Li"
+      ],
+      "primary_category": "",
+      "published": "2025-10-19",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 ICCV 2025"
+        }
+      ],
+      "cover_image": "",
+      "preview_pages": [],
+      "arxiv_id": "",
+      "abs_url": "https://www.semanticscholar.org/paper/993b5ad471a0997dcd9e996248df8e5f845f397f",
+      "pdf_url": "",
+      "venue": "ICCV 2025",
       "venue_announced": "",
       "score": 13,
       "judge": {},
@@ -138893,6 +140754,68 @@
         "Autoregressive Initialization"
       ],
       "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2609-05206",
+      "source": "arxiv",
+      "title": "Morphology and actuation as inductive biases in robotic hand manipulation",
+      "title_zh": "形态与驱动作为机器人手部操作的归纳偏置",
+      "tldr_zh": "机器人手形态影响控制，解剖保真度并非总是优势。",
+      "cover_zh": "解剖学越像人手，控制反而越难？新研究颠覆直觉",
+      "abstract_zh": "机器人手在解剖保真度和机械复杂性上差异很大，这些结构选择影响关节运动的协调性和系统控制的难度。本文提出了一个统一框架，通过任务雅可比矩阵、驱动矩阵及其乘积的条件化，分别并组合地分析运动学和驱动阶段。该框架应用于代表两种对立设计理念的两只手——Shadow Dexterous Hand 和 Anatomically Correct, Biomechatronic Hand，并沿四个形态方面进行分析：关节轴几何、执行器与自由度之比、耦合架构和权限分布。所有参数均来自手的规范数字表示。解剖保真度并不带来统一优势：斜轴改善了拇指的条件数，但使长手指的条件数比正交轴设计更差；而分支肌腱网络改善了每个长手指的有效控制映射，但在拇指处显著恶化，因为执行器权限集中在拇指对掌上。基于这些指标的预测与使用 PPO、DDPG+HER 和 TQC+HER 的强化学习实验进行了评估，跨越三个不同任务。",
+      "authors": [
+        "Zalán Tari",
+        "Eszter Birtalan",
+        "Péter Polcz"
+      ],
+      "authors_all": [
+        "Zalán Tari",
+        "Eszter Birtalan",
+        "Péter Polcz",
+        "Miklós Koller"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-09-04",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2609-05206.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2609-05206-p2.jpg"
+      ],
+      "arxiv_id": "2609.05206",
+      "abs_url": "http://arxiv.org/abs/2609.05206v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.05206v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 12,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "研究机器人手形态与驱动对控制的影响，结合RL实验，对灵巧手设计有指导价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Pázmány Péter Catholic University, Faculty of Information Technology and Bionics, Budapest, Hungary"
+      ],
+      "method_tags": [
+        "Reinforcement Learning",
+        "Kinematic conditioning",
+        "Tendon-driven actuation"
+      ],
+      "platform": [
+        "Shadow Dexterous Hand",
+        "Anatomically Correct, Biomechatronic Hand"
+      ],
       "sim_stack": [],
       "method_family": "",
       "real_robot": "",
@@ -147671,6 +149594,65 @@
           "url": "https://www.youtube.com/watch?v=U5pP5MMkoxg"
         }
       ],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2609-04893",
+      "source": "arxiv",
+      "title": "Reasoning Without Inference Cost: Latent Semantic Scaffolding for Robot VLA Policies",
+      "title_zh": "无推理成本的推理：面向机器人VLA策略的潜在语义脚手架",
+      "tldr_zh": "提出LSS辅助损失，在训练时对齐动作与推理文本，推理零成本且提升迁移。",
+      "cover_zh": "推理零成本？这个新方法让机器人VLA策略白嫖因果推理",
+      "abstract_zh": "视觉-语言-动作（VLA）模型通过模仿进行训练，捕获了要采取的动作，但未捕获原因；添加因果推理可改善操作，但当前方法在推理时付出代价——每一步生成推理令牌或展开预测的未来状态，这一成本在长时程任务中会累积。我们探究这种益处是否能在训练期间捕获并在部署前丢弃。我们引入了潜在语义脚手架（LSS），一种在人类示范预训练期间应用的辅助损失，通过一个小型投影头将VLA的动作令牌表示与物理推理理由的文本嵌入对齐。推理时丢弃该投影头，留下未修改的基础策略，零额外成本。我们的核心发现涉及对齐粒度：将每个动作令牌与其自身操作阶段的理由对齐（密集LSS），而非与单一的池化情节级嵌入对齐（池化LSS），产生的表示能显著更好地迁移到未见任务。密集LSS在分布内成功率和向对齐时未见任务的迁移上均达到最佳，而池化对齐则过度特化于训练任务。表示探针显示，密集LSS在骨干网络中诱导了约两倍的逐阶段可分离性，支持阶段局部对齐是有效机制。",
+      "authors": [
+        "Andrew Ting Yan Li",
+        "Zhuo Li",
+        "Zhelin Yang"
+      ],
+      "authors_all": [
+        "Andrew Ting Yan Li",
+        "Zhuo Li",
+        "Zhelin Yang",
+        "Zhipeng Dong",
+        "Quentin Rouxel",
+        "Fei Chen"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-09-04",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2609-04893.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2609-04893-p2.jpg"
+      ],
+      "arxiv_id": "2609.04893",
+      "abs_url": "http://arxiv.org/abs/2609.04893v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.04893v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 9,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出LSS辅助损失，在训练时注入推理语义，推理零成本，提升VLA操作泛化，具科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "VLA",
+        "auxiliary loss",
+        "reasoning"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
       "github": {},
       "source_tags": []
     },
