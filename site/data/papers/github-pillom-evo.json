@@ -1,0 +1,74 @@
+{
+  "id": "github-pillom-evo",
+  "source": "github",
+  "title": "pillom/EVO",
+  "title_zh": "pillom/EVO",
+  "abstract": "Project materials for a submitted paper.\n\n# Evolving Cache Schedules for Fast Diffusion Policy Inference ### Training-Free Global Cache Scheduling via Evolutionary Search --- ## Overview Evolving Cache Schedules (EVO) accelerates transformer-based Diffusion Policy by offline-optimizing a global cache schedule over the block–timestep lattice with an evolutionary algorithm and reusing residual caches during iterative denoising. With redundancy-aware initialization and target-conditioned early stopping, EVO targets the closed-loop action generation bottleneck where uniform computation allocation fails to exploit heterogeneous redundancy across transformer blocks and denoising steps. --- ## Overview Evolving Cache Schedules (EVO) accelerates transformer-based Diffusion Policy by offline-optimizing a global cache schedule over the block–timestep lattice with an evolutionary algorithm and reusing residual caches during iterative denoising. EVO targets the closed-loop action generation bottleneck in visuomotor control, where uniform computation allocation fails to exploit heterogeneous redundancy across transformer blocks and denoising steps. --- ## Key Features - **Global Cache Scheduling:** Offline-optimized cache schedule that allocates refresh positions over the full block–timestep lattice under a fixed computation budget. - **Rollout-driven Evolutionary Search:** Evolutionary search framework that optimizes complete cache schedules using closed-loop rollout performance as the fitness. - **Practical Search Mechanisms:** Redundancy-aware initialization and target-conditioned early stopping that reduce the cost of rollout-based schedule search. - **Plug-and-Play Acceleration:** Wraps pretrained Diffusion Policy checkpoints without updating policy parameters, modifying the diffusion sampler, or changing the action interface. --- ## Installation If the repository has already been cloned without submodules, initialize Diffusion Policy with: This implementation targets transformer-based Diffusion Policy checkpoints.",
+  "abstract_zh": "本材料为已投稿论文的项目文件。# 演化缓存调度实现快速扩散策略推理 ### 通过演化搜索进行免训练的全局缓存调度 --- ## 概述 Evolving Cache Schedules (EVO) 通过演化算法在块-时间步格上离线优化全局缓存调度，并在迭代去噪过程中重用残差缓存，从而加速基于Transformer的扩散策略。EVO 针对闭环动作生成瓶颈，其中均匀计算分配无法利用跨Transformer块和去噪步骤的异构冗余。通过冗余感知初始化和目标条件早停，EVO 旨在解决视觉运动控制中的闭环动作生成瓶颈。",
+  "tldr_zh": "EVO用演化搜索离线优化全局缓存调度，加速扩散策略推理。",
+  "cover_zh": "免训练加速扩散策略？演化搜索全局缓存调度，推理直接起飞！",
+  "authors": [
+    {
+      "name": "pillom",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2026-07-15",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/pillom/EVO",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 0,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 0,
+      "hint": "⭐ 0"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "加速扩散策略推理的缓存调度方法，有算法创新和实验验证，属于操作VLA方向",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "操作"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "pillom",
+    "repo": "EVO",
+    "stars": 0,
+    "language": "Python",
+    "pushed_at": "2026-07-15",
+    "created_at": "2026-05-31",
+    "topics": [],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"pillom/EVO\"\nYear: \"\"\nURL: https://github.com/pillom/EVO\n---\n>[!abstract] 一句话总结：提出EVO方法，通过进化算法在块-时间步格点上离线优化全局缓存调度，在去噪迭代中复用残差缓存，并结合冗余感知初始化与目标条件早停来降低搜索成本，无需训练、即插即用地加速预训练扩散策略。\n\n\n# 一、动机\n\n> 在基于Transformer的扩散策略闭环节点动作生成中，统一计算分配无法利用不同Transformer块和去噪步骤之间的高度异构冗余，导致推理速度受限。\n\n\n# 二、方法\n\n> 提出EVO方法，通过进化算法在块-时间步格点上离线优化全局缓存调度，在去噪迭代中复用残差缓存，并结合冗余感知初始化与目标条件早停来降低搜索成本，无需训练、即插即用地加速预训练扩散策略。\n\n\n# 三、核心实验结果\n\n> 摘要中未提供具体定量数字，但指出EVO在固定计算预算下通过全局调度优于均匀分配，具体加速比和性能权衡需参考原文实验部分。\n\n\n# 四、对我的启发\n\n> 与课题相关，可直接用于机器人操作等闭环动作生成任务的实时推理加速，其进化搜索以实际rollout表现作为适应度，但搜索开销仍需后续权衡。局限是适用于Transformer类扩散策略，且未给出系统性的精度-速度量化分析。\n"
+}

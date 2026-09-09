@@ -1,0 +1,96 @@
+{
+  "id": "arxiv-2609-08800",
+  "source": "arxiv",
+  "title": "Ostrich: Taking Large Strides Through Stiff Contact in Differentiable Dynamics",
+  "title_zh": "Ostrich：在可微动力学中通过刚性接触大步前进",
+  "abstract": "Three properties determine whether a differentiable simulator can drive gradient-based optimization through contact: simulation accuracy, gradient reliability, and per-iteration cost. Tape-based engines such as MJX and Newton Semi-Implicit require timesteps small enough to keep contacts numerically tractable, and their backpropagation memory grows linearly with the number of timesteps T. Surrogate models bound memory by approximating contact away, but the resulting gradients lose the geometry the optimization depends on. We present Ostrich, a GPU-accelerated rigid-body simulator that resolves hard contacts and friction with non-smooth Newton iteration at large timesteps (h ~ 0.1 s), and differentiates the converged residual via the implicit function theorem, reusing the forward Schur complement to compute the adjoint at O(1) memory per timestep. On real-robot trajectories over a pallet obstacle, Ostrich holds MuJoCo's sim-to-real accuracy up to a 50x larger timestep. Its gradients converge from random initializations where MJX descends slowly and Newton Semi-Implicit stalls; a warm iteration runs 211x faster than MJX's and 4.7x faster than Semi-Implicit's. On the same scene Ostrich differentiates 8,192 parallel worlds on a single 24 GB GPU, sustaining 29x checkpointed MJX's optimization throughput; without checkpointing both baselines exhaust memory at far fewer worlds. We close with a gradient-based trajectory optimization demonstration over triangle-mesh terrain across a 10 s horizon, a setting where prior engines either restrict to primitive geometry or face the convergence and memory limits shown above.",
+  "abstract_zh": "可微模拟器能否通过接触驱动基于梯度的优化，取决于三个性质：仿真精度、梯度可靠性以及每次迭代的成本。基于磁带（tape-based）的引擎（如 MJX 和 Newton Semi-Implicit）需要足够小的时间步长以保证接触在数值上可处理，且其反向传播内存随时间步数 T 线性增长。代理模型通过近似接触来限制内存，但由此产生的梯度失去了优化所依赖的几何信息。我们提出了 Ostrich，一个 GPU 加速的刚体模拟器，它在大时间步长（h ~ 0.1 s）下通过非光滑牛顿迭代求解硬接触和摩擦，并利用隐函数定理对收敛残差进行微分，复用前向 Schur 补来计算伴随，每个时间步的内存为 O(1)。在跨越托盘障碍物的真实机器人轨迹上，Ostrich 在比 MuJoCo 大 50 倍的时间步长下仍保持其 sim-to-real 精度。其梯度从随机初始化收敛，而 MJX 下降缓慢，Newton Semi-Implicit 停滞；一次热启动迭代比 MJX 快 211 倍，比 Semi-Implicit 快 4.7 倍。在同一场景中，Ostrich 在单个 24 GB GPU 上对 8,192 个并行世界进行微分，维持的优化吞吐量是 checkpointed MJX 的 29 倍；没有 checkpointing 时，两个基线在远少于该数量的世界时内存耗尽。最后，我们展示了在三角形网格地形上跨越 10 秒时域的基于梯度的轨迹优化演示，这是先前引擎要么局限于原始几何，要么面临上述收敛和内存限制的场景。",
+  "tldr_zh": "Ostrich 模拟器以大步长和低内存实现高精度可微接触，显著提升优化速度与吞吐。",
+  "cover_zh": "大步长也能精准接触？这个模拟器让梯度优化快 211 倍！",
+  "authors": [
+    {
+      "name": "Aleš Kučera",
+      "affiliation": ""
+    },
+    {
+      "name": "Karel Zimmermann",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.GR",
+    "cs.LG"
+  ],
+  "published": "2026-09-08",
+  "updated": "2026-09-08",
+  "arxiv_id": "2609.08800",
+  "pdf_url": "https://arxiv.org/pdf/2609.08800v1",
+  "abs_url": "http://arxiv.org/abs/2609.08800v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-08800.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-08800-p2.jpg"
+  ],
+  "channels": [
+    "sim2real"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（sim-to-real）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "sim2real",
+    "reason": "提出GPU加速可微刚体仿真器，解决大时间步接触梯度问题，对sim2real和轨迹优化有高价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Czech Technical University in Prague"
+  ],
+  "method_tags": [
+    "Differentiable Simulation",
+    "Implicit Function Theorem",
+    "Trajectory Optimization"
+  ],
+  "platform": [],
+  "sim_stack": [
+    "MuJoCo",
+    "MJX"
+  ],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": ""
+}

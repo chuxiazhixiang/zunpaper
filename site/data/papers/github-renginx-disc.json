@@ -1,0 +1,74 @@
+{
+  "id": "github-renginx-disc",
+  "source": "github",
+  "title": "ReNginx/DISC",
+  "title_zh": "ReNginx/DISC",
+  "abstract": "Official Repo for RSS 2026 \"DISC: Decoupling Instruction from State-Conditioned Control via Policy Generation\"\n\n# DISC: Decoupling Instruction from State-Conditioned Control via Policy Generation Official implementation of the RSS 2026 paper: **DISC: Decoupling Instruction from State-Conditioned Control via Policy Generation** > Hanxiang Ren, Pei Zhou, Xunzhe Zhou, and Yanchao Yang > Robotics: Science and Systems (RSS), 2026 ## 🔍 Overview DISC is a policy-generation framework that decouples high-level language instructions from state-conditioned low-level control. This repository provides training, evaluation, and test-time training code for reproducing the results reported in the paper. ## 🧩 Supported Task Suites - **LIBERO** - `libero_90` - `libero_spatial` - `libero_goal` - `libero_object` - `libero_10` - **Meta-World**: work in progress ## ⚙️ Installation Clone and install the modified LIBERO dependency: ## 📦 Data Preparation We use the OpenVLA version of LIBERO in our experiments. This version uses `256 x 256` image observations and filters out no-op actions. Please download the official LIBERO dataset from the [LIBERO repository](https://github.com/Lifelong-Robot-Learning/LIBERO), then convert it to the OpenVLA format using [`regenerate_libero_dataset.py`][openvla-regenerate-libero] from the OpenVLA repository. After downloading and converting the datasets, organize them as follows: ## 🚀 Training Train DISC on LIBERO-90: Train on other LIBERO suites: ## 📊 Evaluation Our checkpoints can be downloaded from [DISC Huggingface Repo](https://huggingface.co/ReNginx/DISC). Evaluate a trained checkpoint on LIBERO-90: ## 🔁 Test-Time Training Run test-time training (TTT) on LIBERO-90: ## 📝 Citation If you find this repository useful for your research, please consider citing our paper: ## 🙏 Acknowledgements This codebase builds on resources from the LIBERO, OpenVLA, and [HyPoGen](https://github.com/ReNginx/HyPoGen) projects. We thank the authors for releasing their datasets, environments, code, and tools. [openvla-libero-rlds]: https://huggingface.co/datasets/openvla/modified_liber",
+  "abstract_zh": "这是RSS 2026论文“DISC：通过策略生成将指令与状态条件控制解耦”的官方代码库。DISC是一个策略生成框架，它将高层语言指令与状态条件的低层控制解耦。本仓库提供了复现论文中报告结果的训练、评估和测试时训练代码。支持的任务套件包括LIBERO（libero_90、libero_spatial、libero_goal、libero_object、libero_10）和Meta-World（正在进行中）。安装时需克隆并安装修改后的LIBERO依赖。数据准备方面，我们使用OpenVLA版本的LIBERO数据集，该版本使用256x256图像观测并过滤掉无操作动作。请从LIBERO仓库下载官方数据集，然后使用OpenVLA仓库中的regenerate_libero_dataset.py将其转换为OpenVLA格式。训练和评估的详细步骤请参见仓库。我们的检查点可从DISC Huggingface仓库下载。本代码库基于LIBERO、OpenVLA和HyPoGen项目的资源构建。",
+  "tldr_zh": "DISC框架通过策略生成解耦语言指令与状态条件控制，在LIBERO上验证。",
+  "cover_zh": "机器人操控新突破｜指令与控制解耦，策略生成让任务执行更灵活",
+  "authors": [
+    {
+      "name": "ReNginx",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2026-05-20",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/ReNginx/DISC",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 20,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 20,
+      "hint": "⭐ 10"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "RSS 2026官方实现，解耦指令与状态条件控制的策略生成框架，支持LIBERO任务套件。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "操作"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "ReNginx",
+    "repo": "DISC",
+    "stars": 10,
+    "language": "Python",
+    "pushed_at": "2026-05-20",
+    "created_at": "2026-04-27",
+    "topics": [],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"ReNginx/DISC\"\nYear: \"\"\nURL: https://github.com/ReNginx/DISC\n---\n>[!abstract] 一句话总结：提出DISC策略生成框架，将语言指令作为条件来生成状态条件控制策略，从而实现高层指令理解与底层运动控制的分离。\n\n\n# 一、动机\n\n> 现有机器人操作策略往往将高层语言指令与状态条件控制耦合在一起，导致指令变化时策略难以泛化和复用，DISC旨在解耦二者。\n\n\n# 二、方法\n\n> 提出DISC策略生成框架，将语言指令作为条件来生成状态条件控制策略，从而实现高层指令理解与底层运动控制的分离。\n\n\n# 三、核心实验结果\n\n> 仓库与摘要中未报告具体定量结果，但提供了在LIBERO-90等任务套件上的训练、评估与测试时训练代码，模型检查点已在Huggingface发布。\n\n\n# 四、对我的启发\n\n> 该工作与机器人操作直接相关，其解耦思路有望提升跨任务策略迁移能力；但需要阅读论文获取算法细节和有效数字。\n"
+}

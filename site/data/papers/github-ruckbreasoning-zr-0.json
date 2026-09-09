@@ -1,0 +1,74 @@
+{
+  "id": "github-ruckbreasoning-zr-0",
+  "source": "github",
+  "title": "RUCKBReasoning/ZR-0",
+  "title_zh": "RUCKBReasoning/ZR-0",
+  "abstract": "# ZR-0: Training Vision-Language-Action Models with Dense Embodied Chain-of-Thought Supervision **ZR-0** is a pre-trained Vision-Language-Action (VLA) foundation model designed for general-purpose robotic manipulation. ZR-0 System Overview: Joint Vision–Language Reasoning and Continuous Action Control --- ## Table of Contents - [What is ZR-0?](#what-is-zr-0) - [Key Features](#key-features) - [Target Audience](#target-audience) - [Quick Start](#quick-start) - [Environment Setup](#environment-setup) - [Model Checkpoints](#model-checkpoints) - [Model Inference](#model-inference) - [Evaluation](#evaluation) - [Fine-Tuning ZR-0 on Custom Datasets](#fine-tuning-zr-0-on-custom-datasets) - [Current & Future Work](#current--future-work) - [Contributors](#contributors) - [Acknowledgements](#acknowledgements) --- ## What is ZR-0? ZR-0 is a 2.6B parameter end-to-end Vision-Language-Action (VLA) model that leverages dense Embodied Chain-of-Thought (ECoT) supervision to learn cross-embodiment representations for robotic manipulation. **Architecture.** ZR-0 adopts a dual-stream architecture: a pre-trained VLM (Qwen3-VL-2B) serves as System 2 for structured reasoning, while a Diffusion Transformer (DiT)-based action expert serves as System 1 for continuous action generation via flow matching. The two are coupled through cross-attention, with an attention mask that allows ECoT to be entirely skipped at inference, achieving ~90ms per action chunk on a single A6000 GPU. **Training Data.** ZR-0 is pre-trained on [ProcCorpus-60M](https://procvlm.github.io/), comprising 60M+ frames (~1,000 hours) from 400K+ trajectories across diverse embodiments (Franka, xArm, GR-1, ALOHA, ARX5, UR5, etc.), with 96.8% of frames annotated with dense ECoT reasoning traces. Example of Embodied Chain-of-Thought Reasoning **Training Objectives.** ZR-0 is jointly optimized with two objectives: next-token prediction for ECoT reasoning, and flow-matching for continuous action chunk generation. Dense ECoT superv",
+  "abstract_zh": "ZR-0是一个预训练的视觉-语言-动作（VLA）基础模型，专为通用机器人操作而设计。ZR-0是一个26亿参数端到端的VLA模型，利用密集的具身思维链（ECoT）监督来学习跨具身表示。架构上，ZR-0采用双流架构：预训练的VLM（Qwen3-VL-2B）作为系统2进行结构化推理，而基于扩散Transformer（DiT）的动作专家作为系统1通过流匹配生成连续动作。两者通过交叉注意力耦合，并带有注意力掩码，使得在推理时可以完全跳过ECoT，在单个A6000 GPU上每个动作块约90毫秒。训练数据方面，ZR-0在ProcCorpus-60M上预训练，包含超过6000万帧（约1000小时）来自40万条轨迹，涵盖多种具身（Franka、xArm、GR-1、ALOHA、ARX5、UR5等），其中96.8%的帧带有密集ECoT推理轨迹注释。训练目标方面，ZR-0联合优化两个目标：ECoT推理的下一词预测和连续动作块生成的流匹配。密集ECoT监督...",
+  "tldr_zh": "ZR-0通过密集具身思维链监督训练VLA模型，实现高效通用机器人操作。",
+  "cover_zh": "机器人操作新突破！ZR-0用思维链监督，推理快人一步",
+  "authors": [
+    {
+      "name": "RUCKBReasoning",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2026-07-01",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/RUCKBReasoning/ZR-0",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 28,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 28,
+      "hint": "⭐ 25"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "官方VLA模型，2.6B参数，密集ECoT监督，跨本体操作，可落地",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "操作"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "RUCKBReasoning",
+    "repo": "ZR-0",
+    "stars": 25,
+    "language": "Python",
+    "pushed_at": "2026-07-01",
+    "created_at": "2026-07-01",
+    "topics": [],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"RUCKBReasoning/ZR-0\"\nYear: \"\"\nURL: https://github.com/RUCKBReasoning/ZR-0\n---\n>[!abstract] 一句话总结：提出2.6B参数的端到端VLA模型ZR-0，采用双流架构：预训练VLM（Qwen3-VL-2B）作为System 2进行结构化ECoT推理，DiT动作专家作为System 1通过flow matching生成连续动作；两者经交叉注意力耦合，并设计注意力掩码使推理时可完全跳过ECoT以加速。模型在60M+帧的ProcCorpus-60M数据上联合优化ECoT下一token预测与flow matching动作生成两个目标。\n\n\n# 一、动机\n\n> 现有具身智能VLA模型缺乏结构化推理能力和跨本体泛化性，难以应对多样机器人平台的任务。ZR-0通过引入密集Embodied Chain-of-Thought（ECoT）监督，旨在学习通用的跨本体操控表示，同时提升可解释性和动作精度。\n\n\n# 二、方法\n\n> 提出2.6B参数的端到端VLA模型ZR-0，采用双流架构：预训练VLM（Qwen3-VL-2B）作为System 2进行结构化ECoT推理，DiT动作专家作为System 1通过flow matching生成连续动作；两者经交叉注意力耦合，并设计注意力掩码使推理时可完全跳过ECoT以加速。模型在60M+帧的ProcCorpus-60M数据上联合优化ECoT下一token预测与flow matching动作生成两个目标。\n\n\n# 三、核心实验结果\n\n> 预训练数据ProcCorpus-60M包含60M+帧（约1000小时）、400K+条轨迹，跨多种本体（Franka、xArm、GR-1、ALOHA、ARX5、UR5等），其中96.8%帧带有密集ECoT标注。推理时跳过ECoT后，在单张A6000 GPU上每个动作块延迟约90ms。\n\n\n# 四、对我的启发\n\n> 与课题直接相关。启发：密集ECoT监督将推理过程显式注入VLA训练，有助于学习跨本体可迁移表示，且推理阶段可灵活裁剪实现实时控制；但文中未报告下游任务定量对比，实际泛化优势有待原文进一步评估。\n"
+}

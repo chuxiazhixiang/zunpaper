@@ -1159,6 +1159,72 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2608-16829",
+      "source": "arxiv",
+      "title": "CaliBench: Are the Stochastic Dynamics of Video World Models Physically Calibrated?",
+      "title_zh": "CaliBench：视频世界模型的随机动力学是否经过物理校准？",
+      "tldr_zh": "CaliBench用物理可解释空间测试视频世界模型，发现多数模型校准不良。",
+      "cover_zh": "视频世界模型真的懂物理吗？CaliBench测试发现多数模型校准失败！",
+      "abstract_zh": "视频世界模型通过生成式采样来近似物理结果的随机分布，但现有基准要么对单个生成结果进行评分，要么在整个数据集上粗略比较分布，未能测试特定现象的细粒度偶然不确定性。我们引入了CaliBench，它在物理可解释的离散空间（如箱索引、骰子面、花色、颜色）中对结果进行评分，而不是像FID那样在学习的特征空间中进行，从而直接测量与已知参考分布的距离。我们整理了参考分布已知闭合形式的结果空间（二项式高尔顿板、伯努利分叉、均匀骰子/扑克牌/彩票、偏斜的欧式轮盘颜色），从而能够进行精确的校准测试。我们将性能分解为两个正交轴，而单一准确率指标会混淆它们：可评分性（生成结果中可评分结果的比例）和校准性（样本与参考分布的总变差距离）。卡方检验用于评估显著性；由于校准是零假设，它只能证明校准不良，并且在每格N=32时只能检测到大的偏差。我们将其应用于九个场景和六个图像到视频模型（WAN-2.7、SeeDance-2.0、HappyHorse-1.0、Veo 3.1、Runway Gen-4.5、Cosmos3-Super），每个模型生成32次。模型一致地将概率质量集中在少数结果上，而不是重现参考分布。大多数场景-模型组合显著校准不良，极端情况下坍缩到一个结果，如Veo 3.1在骰子上的表现。在轮盘上，生成结果常常使球位置模糊，导致几个模型的可评分性较低。性能因场景而异：没有模型在所有九个场景中占优。我们发布了协议和一个指标（平均归一化总变差，mnTV），用于将新模型与我们的结果进行比较。",
+      "authors": [
+        "Jonathan Sadeghi",
+        "Jenny Seidenschwarz",
+        "Jesse Allardice"
+      ],
+      "authors_all": [
+        "Jonathan Sadeghi",
+        "Jenny Seidenschwarz",
+        "Jesse Allardice",
+        "Sirish Srinivasan",
+        "Benjamin Graham",
+        "Jeffrey Hawke"
+      ],
+      "primary_category": "cs.LG",
+      "published": "2026-08-17",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎉 最新收录 · ECCV 2026"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2608-16829.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2608-16829-p2.jpg"
+      ],
+      "arxiv_id": "2608.16829",
+      "abs_url": "http://arxiv.org/abs/2608.16829v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.16829v1",
+      "venue": "ECCV 2026",
+      "venue_announced": "2026-09-09",
+      "score": 25,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出视频世界模型随机动力学校准基准，具物理可解释性，对世界模型评估有重要科研价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Odyssey"
+      ],
+      "method_tags": [
+        "calibration",
+        "benchmark",
+        "video world model"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2608-16503",
       "source": "arxiv",
       "title": "NebulaVLA: A Dual-Frequency Vision-Language-Action Model With Guide Action for Robotic Manipulation",
@@ -1326,67 +1392,6 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2608-16829",
-      "source": "arxiv",
-      "title": "CaliBench: Are the Stochastic Dynamics of Video World Models Physically Calibrated?",
-      "title_zh": "CaliBench：视频世界模型的随机动力学是否经过物理校准？",
-      "tldr_zh": "CaliBench用物理可解释空间测试视频世界模型，发现多数模型校准不良。",
-      "cover_zh": "视频世界模型真的懂物理吗？CaliBench测试发现多数模型校准失败！",
-      "abstract_zh": "视频世界模型通过生成式采样来近似物理结果的随机分布，但现有基准要么对单个生成结果进行评分，要么在整个数据集上粗略比较分布，未能测试特定现象的细粒度偶然不确定性。我们引入了CaliBench，它在物理可解释的离散空间（如箱索引、骰子面、花色、颜色）中对结果进行评分，而不是像FID那样在学习的特征空间中进行，从而直接测量与已知参考分布的距离。我们整理了参考分布已知闭合形式的结果空间（二项式高尔顿板、伯努利分叉、均匀骰子/扑克牌/彩票、偏斜的欧式轮盘颜色），从而能够进行精确的校准测试。我们将性能分解为两个正交轴，而单一准确率指标会混淆它们：可评分性（生成结果中可评分结果的比例）和校准性（样本与参考分布的总变差距离）。卡方检验用于评估显著性；由于校准是零假设，它只能证明校准不良，并且在每格N=32时只能检测到大的偏差。我们将其应用于九个场景和六个图像到视频模型（WAN-2.7、SeeDance-2.0、HappyHorse-1.0、Veo 3.1、Runway Gen-4.5、Cosmos3-Super），每个模型生成32次。模型一致地将概率质量集中在少数结果上，而不是重现参考分布。大多数场景-模型组合显著校准不良，极端情况下坍缩到一个结果，如Veo 3.1在骰子上的表现。在轮盘上，生成结果常常使球位置模糊，导致几个模型的可评分性较低。性能因场景而异：没有模型在所有九个场景中占优。我们发布了协议和一个指标（平均归一化总变差，mnTV），用于将新模型与我们的结果进行比较。",
-      "authors": [
-        "Jonathan Sadeghi",
-        "Jenny Seidenschwarz",
-        "Jesse Allardice"
-      ],
-      "authors_all": [
-        "Jonathan Sadeghi",
-        "Jenny Seidenschwarz",
-        "Jesse Allardice",
-        "Sirish Srinivasan",
-        "Benjamin Graham",
-        "Jeffrey Hawke"
-      ],
-      "primary_category": "cs.LG",
-      "published": "2026-08-17",
-      "channels": [
-        "world-model"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2608-16829.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2608-16829-p2.jpg"
-      ],
-      "arxiv_id": "2608.16829",
-      "abs_url": "http://arxiv.org/abs/2608.16829v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.16829v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 15,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出视频世界模型随机动力学校准基准，具物理可解释性，对世界模型评估有重要科研价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Odyssey"
-      ],
-      "method_tags": [
-        "calibration",
-        "benchmark",
-        "video world model"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {},

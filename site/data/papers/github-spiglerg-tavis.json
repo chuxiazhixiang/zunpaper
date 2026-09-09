@@ -1,0 +1,74 @@
+{
+  "id": "github-spiglerg-tavis",
+  "source": "github",
+  "title": "spiglerg/tavis",
+  "title_zh": "spiglerg/tavis",
+  "abstract": "TAVIS: a benchmark for egocentric active-vision imitation learning on humanoid torsos (GR1T2, Reachy2). Paired headcam/fixedcam, ID/OOD splits, GALT metric.\n\n# TAVIS **T**orso **A**ctive **V**ision **I**mitation-learning **S**uite — a benchmark for egocentric active-vision imitation learning and anticipatory gaze on humanoid torsos. TAVIS provides eight simulated manipulation tasks across two robots (Fourier GR1T2 and Pollen Reachy 2), 2200 VR-teleoperated demonstrations in total, pretrained π₀ baselines, and a proprioceptive metric — **GALT (Gaze–Action Lead Time)** — for quantifying anticipatory gaze in the resulting policies. > *Paper: under review*. ## What TAVIS evaluates TAVIS is designed to support evaluative claims about: * **Active vision in IL** — whether and how head-mounted egocentric cameras improve task performance over fixed-camera baselines, on tasks that can benefit from gaze behavior. * **Anticipatory gaze** — whether a policy reproduces the *temporal* structure of head-before-hand seen in human demonstrations (measured by GALT, in seconds), not just the spatial endpoints. * **Shared task/action design across embodiments** — the same tasks run on both humanoid torsos with a canonical 19-D action layout. The released results treat the robots as separate benchmark axes rather than claiming zero-shot policy transfer between them. Each (robot × task × eval-mode) cell is evaluated over 96 stochastic episodes; success rates are reported with Wilson 95 % confidence intervals. See `docs/ood_modes.md` for the eval-mode taxonomy. ## Resources | Resource | Location | |-----------------------------|------------------------------------------------| | Datasets (LeRobot v3.0) | https://huggingface.co/tavis-benchmark | | Pretrained π₀ checkpoints | https://huggingface.co/tavis-benchmark | | Robot / task USD assets | https://huggingface.co/datasets/tavis-benchmark/tavis-assets | | Quest teleoperation APK | published under Releases | ## Hardware requirements * **Simulation / data collection / evaluation:** an NVIDIA GPU with ray-tracing support (RTX 4090, A6000, L40, …). RTX is required at rendering time. * **Training:**",
+  "abstract_zh": "TAVIS 是一个用于类人躯干（GR1T2、Reachy2）上以自我为中心主动视觉模仿学习和预期凝视的基准。它提供两个机器人（Fourier GR1T2 和 Pollen Reachy 2）上的八个模拟操作任务，共 2200 个 VR 遥操作演示，预训练的 π₀ 基线，以及一个本体感觉指标——GALT（凝视-动作提前时间），用于量化策略中的预期凝视。TAVIS 旨在评估主动视觉在模仿学习中的作用（头戴式自我中心相机是否优于固定相机基线）、预期凝视（策略是否再现人类演示中头先于手的时间结构，由 GALT 以秒为单位测量），以及跨具身的共享任务/动作设计（两个类人躯干上运行相同任务，采用规范的 19 维动作布局）。每个（机器人×任务×评估模式）单元在 96 个随机情节上评估，成功率报告采用 Wilson 95% 置信区间。",
+  "tldr_zh": "TAVIS 基准：评估类人躯干上主动视觉模仿学习与预期凝视。",
+  "cover_zh": "头戴相机竟比固定相机强？TAVIS 基准揭示主动视觉在机器人模仿学习中的关键作用",
+  "authors": [
+    {
+      "name": "spiglerg",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2026-05-11",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/spiglerg/tavis",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 18,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 18,
+      "hint": "⭐ 8"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "官方benchmark，含数据集、预训练π0基线和GALT指标，聚焦人形躯干主动视觉模仿学习，方向吻合且资源完整。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "操作"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "spiglerg",
+    "repo": "tavis",
+    "stars": 8,
+    "language": "Python",
+    "pushed_at": "2026-05-11",
+    "created_at": "2026-05-04",
+    "topics": [],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/数据\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"spiglerg/tavis\"\nYear: \"\"\nURL: https://github.com/spiglerg/tavis\n---\n>[!abstract] 一句话总结：提出 TAVIS 基准，构建 Fourier GR1T2 与 Pollen Reachy 2 两种人形躯干上的 8 个模拟操作任务，采集 2200 条 VR 遥操作演示，提供预训练 π₀ 基线，并提出 GALT（Gaze–Action Lead Time）指标量化策略的预期性注视。\n\n\n# 一、动机\n\n> 现有模仿学习基准多聚焦固定相机或夹爪级操作，缺乏对人形躯干上基于头部相机的主动视觉（egocentric active vision）以及模仿人类“头在手前”预期性注视行为的系统评估。\n\n\n# 二、方法\n\n> 提出 TAVIS 基准，构建 Fourier GR1T2 与 Pollen Reachy 2 两种人形躯干上的 8 个模拟操作任务，采集 2200 条 VR 遥操作演示，提供预训练 π₀ 基线，并提出 GALT（Gaze–Action Lead Time）指标量化策略的预期性注视。\n\n\n# 三、核心实验结果\n\n> TAVIS 共包含 2 种机器人、8 个操作任务、2200 条 VR 遥操作演示；每个（机器人×任务×评测模式）在 96 个随机 episodes 上评测，成功率以 Wilson 95% 置信区间报告，数据集和预训练检查点已公开。\n\n\n# 四、对我的启发\n\n> 该基准为仿人躯干上的主动视觉模仿学习提供了可复现评测协议，并强调除任务成功率外还应关注注视行为的时序结构；局限是依赖支持光线追踪的 NVIDIA GPU，且未声称跨机器人零样本迁移。与课题直接相关，可用于具身操作策略的主动视觉与预期性注视研究。\n"
+}
