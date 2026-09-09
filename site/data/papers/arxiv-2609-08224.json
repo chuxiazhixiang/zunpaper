@@ -148,13 +148,13 @@
   "training_summary": "",
   "demo_videos": [
     {
-      "kind": "youtube",
-      "url": "https://www.youtube.com/watch?v=UXh61yWgI44",
       "embed_url": "https://www.youtube.com/embed/UXh61yWgI44",
+      "kind": "youtube",
+      "source": "project_page",
       "title": "GitHub - ziqin-h/3DWay: Official implementation of 3DWay: Generalizing Robot Manipulation via 3D Consistent Waypoints, a",
-      "source": "project_page"
+      "url": "https://www.youtube.com/watch?v=UXh61yWgI44"
     }
   ],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"3DWay: Generalizing Robot Manipulation via 3D Consistent Waypoints\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.08224v1\n---\n>[!abstract] 一句话总结：提出3DWay，从多视角图像中预测3D一致的waypoints，通过将3D waypoints预测重构为生成多视角一致的2D waypoints并做几何三角化，在显式给出3D运动指定同时保留预训练VLM的强先验，生成的点可引导VLA模型或直接执行任务。\n\n\n# 一、动机\n\n> 现有的基于轨迹的中间表示多在2D图像空间预测，存在固有的3D歧义；即使结合深度，自由空间waypoint依然模糊，限制了可靠的3D推理与泛化操作。\n\n\n# 二、方法\n\n> 提出3DWay，从多视角图像中预测3D一致的waypoints，通过将3D waypoints预测重构为生成多视角一致的2D waypoints并做几何三角化，在显式给出3D运动指定同时保留预训练VLM的强先验，生成的点可引导VLA模型或直接执行任务。\n\n\n# 三、核心实验结果\n\n> 论文未在摘要中报告具体定量数字，但实验表明3DWay显著提升了3D空间定位和视觉语言推理能力，展现了用于泛化机器人操作的强潜力。\n\n\n# 四、对我的启发\n\n> 与课题相关。启发：利用多视图几何将2D预训练VLM的先验提升到3D空间是一可行且有效的方向；局限是多视角输入设定了硬件条件，且生成的稀疏waypoint可能不足以表达复杂接触操作，后续可考虑结合稠密3D表示或在线交互式校验。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"3DWay: Generalizing Robot Manipulation via 3D Consistent Waypoints\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.08224v1\n---\n>[!abstract] 一句话总结：提出3DWay方法：从多视图图像生成多视图一致的2D waypoints，再通过几何三角化获得3D一致的waypoints，用于引导现有VLA模型或直接执行简单任务。\n\n\n# 一、动机\n\n> 现有基于轨迹的机器人操作表示多在2D图像空间预测，带深度也仍存在自由空间路点歧义，导致3D推理不准确。需要一种能显式指定3D运动且保留视觉语言模型先验的中间表示。\n\n\n# 二、方法\n\n> 提出3DWay方法：从多视图图像生成多视图一致的2D waypoints，再通过几何三角化获得3D一致的waypoints，用于引导现有VLA模型或直接执行简单任务。\n\n\n# 三、核心实验结果\n\n> 实验表明3DWay显著提升3D空间接地与视觉语言推理能力，并展示了对可泛化机器人操作的强潜力（摘要未提供具体数值，需查阅原文）。\n\n\n# 四、对我的启发\n\n> 将预训练VLM的先验与几何多视图三角化结合，用3D一致路点作为中间表示，有望在不重训大模型的情况下改进空间推理。局限在于需要多视图输入，与课题直接相关，可借鉴此思路设计操作表征。\n"
 }

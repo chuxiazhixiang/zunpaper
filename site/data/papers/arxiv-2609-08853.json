@@ -41,7 +41,8 @@
     "assets/img/covers/arxiv-2609-08853-p2.jpg"
   ],
   "channels": [
-    "locomotion"
+    "locomotion",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -52,7 +53,7 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 19,
+  "score": 24,
   "score_breakdown": [
     {
       "id": "keyword_density",
@@ -71,6 +72,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -102,5 +109,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"CAST: Alternating State-Value Targets and Expanded Policy Gradients for Model-Based Reinforcement Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.08853v1\n---\n>[!abstract] 一句话总结：提出CAST方法，用状态值批评家替换动作值批评家，训练目标交替使用真实规划器引导的转移和当前策略下的想象转移，从而在受益于更强规划行为的同时用当前策略正则化价值估计。\n\n\n# 一、动机\n\n> 现有结合在线规划的模型强化学习方法通常学习的是当前策略的价值，而非更强的规划器引导行为，导致价值学习次优、无法充分利用在线规划的优势。\n\n\n# 二、方法\n\n> 提出CAST方法，用状态值批评家替换动作值批评家，训练目标交替使用真实规划器引导的转移和当前策略下的想象转移，从而在受益于更强规划行为的同时用当前策略正则化价值估计。\n\n\n# 三、核心实验结果\n\n> 在DeepMind Control和HumanoidBench基准上优于多种SOTA方法，并成功迁移到真实Unitree Go2四足机器人上完成动态手倒立；摘要未提供具体数值。\n\n\n# 四、对我的启发\n\n> 状态值函数可有效融合规划器引导与当前策略，提升真实机器人的价值学习质量；但该方法依赖模型精度和在线规划成本，需进一步评估鲁棒性与计算开销。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"CAST: Alternating State-Value Targets and Expanded Policy Gradients for Model-Based Reinforcement Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.08853v1\n---\n>[!abstract] 一句话总结：提出CAST方法，用规划器引导的行为改进价值学习，同时用当前策略正则化价值估计；用状态值函数替代动作值函数，目标由真实规划器引导转移和当前策略的想象转移交替组成，对应规划器行为与当前策略之间的交替过程。\n\n\n# 一、动机\n\n> 基于模型的强化学习（MBRL）结合在线规划可以比单独学习策略找到更好的动作，但现有方法通常学习纯策略的价值，未能充分利用规划器引导的更强行为来改进价值学习。\n\n\n# 二、方法\n\n> 提出CAST方法，用规划器引导的行为改进价值学习，同时用当前策略正则化价值估计；用状态值函数替代动作值函数，目标由真实规划器引导转移和当前策略的想象转移交替组成，对应规划器行为与当前策略之间的交替过程。\n\n\n# 三、核心实验结果\n\n> 在DeepMind Control和HumanoidBench套件上对比多个SOTA方法表现优越，并成功迁移到真实Unitree Go2四足机器人上完成动态手倒立动作（摘要未报告具体数值）。\n\n\n# 四、对我的启发\n\n> 与机器人具身智能直接相关，CAST展示了如何利用规划器行为提升价值函数学习，同时通过策略正则化保持稳定性，对真实机器人迁移具有实用价值；局限是摘要中未明确计算开销或收敛性分析，需要进一步实验验证。\n"
 }

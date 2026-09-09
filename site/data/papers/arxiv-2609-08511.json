@@ -74,7 +74,8 @@
   ],
   "channels": [
     "teleop",
-    "locomotion"
+    "locomotion",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -93,7 +94,7 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 52,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -104,8 +105,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 9,
-      "hint": "频道关键词命中 3 个（teleoperation、teleop、locomotion）"
+      "points": 12,
+      "hint": "频道关键词命中 7 个（teleoperation、teleop、locomotion、whole-body）"
     },
     {
       "id": "freshness",
@@ -123,7 +124,7 @@
       "id": "cross_channel",
       "label": "跨多个方向",
       "points": 5,
-      "hint": "同时命中 2 个频道"
+      "hint": "同时命中 3 个频道"
     }
   ],
   "judge": {
@@ -152,5 +153,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"PGMT: Perceptive General Motion Tracking for Humanoid Robots\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.08511v1\n---\n>[!abstract] 一句话总结：提出PGMT管线：先学习通用的全身跟踪与恢复先验，再通过运动条件地形瞥见（motion-conditioned terrain glimpses）感知与当前动作相关的地形区域，并用地形感知的跟踪松弛机制允许偏离参考但保留运动意图，最终形成统一策略支持跟踪、地形适应和恢复。\n\n\n# 一、动机\n\n> 现有的人形运动跟踪器在平坦地面上效果良好，但在复杂地形上因参考轨迹未考虑地形可行性而性能显著下降，缺乏统一的地形自适应运动跟踪策略。\n\n\n# 二、方法\n\n> 提出PGMT管线：先学习通用的全身跟踪与恢复先验，再通过运动条件地形瞥见（motion-conditioned terrain glimpses）感知与当前动作相关的地形区域，并用地形感知的跟踪松弛机制允许偏离参考但保留运动意图，最终形成统一策略支持跟踪、地形适应和恢复。\n\n\n# 三、核心实验结果\n\n> 在Unitree G1上零样本部署成功，可在真实复杂地形上跨越高达37 cm的障碍，同时支持遥操作、动态动作跟踪和跌倒恢复，实现了地形自适应运动与多种全身行为的统一执行。\n\n\n# 四、对我的启发\n\n> 将地形感知与运动意图解耦，用选择性地形编码和松弛跟踪实现跨地形通用性，为人形机器人在非结构化环境中的全身运动控制提供了可扩展的范式。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"PGMT: Perceptive General Motion Tracking for Humanoid Robots\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.08511v1\n---\n>[!abstract] 一句话总结：提出PGMT管线，先学习通用的跟踪与恢复先验，再通过运动条件地形瞥视编码与当前动作相关的地形区域，并以地形感知的跟踪松弛允许偏离参考但保持运动意图。\n\n\n# 一、动机\n\n> 现有人形机器人运动跟踪器在复杂地形上性能退化，因为地形无关的参考动作在物理上不可行，缺乏地形感知能力。\n\n\n# 二、方法\n\n> 提出PGMT管线，先学习通用的跟踪与恢复先验，再通过运动条件地形瞥视编码与当前动作相关的地形区域，并以地形感知的跟踪松弛允许偏离参考但保持运动意图。\n\n\n# 三、核心实验结果\n\n> 在Unitree G1上零样本部署，能穿越高达37 cm的真实障碍物，支持遥操作、动态运动跟踪和跌倒恢复，验证了复杂地形下的鲁棒地形自适应运动。\n\n\n# 四、对我的启发\n\n> 该工作将地形感知融入全身运动跟踪，突破了平地限制，但依赖高质量的参考运动数据，且对未见地形和不同机器人的泛化性仍需验证；与具身智能课题相关。\n"
 }
