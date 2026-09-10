@@ -134,5 +134,5 @@
     }
   ],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/CV\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\"\nYear: \"2025\"\nURL: http://arxiv.org/abs/2504.02792v3\n---\n>[!abstract] 一句话总结：UWM 在统一的 transformer 架构中同时集成动作扩散过程与视频扩散过程，用彼此独立的扩散时间步分别控制两种模态，通过调节各模态的时间步，同一个模型可灵活地表示策略、前向动力学、逆向动力学和视频生成器。\n\n\n# 一、动机\n\n> 模仿学习构建通用机器人受限于对高质量专家演示的依赖，而大量无动作标注的视频数据虽蕴含丰富的真实世界动力学与交互信息，却难以直接用于策略学习。\n\n\n# 二、方法\n\n> UWM 在统一的 transformer 架构中同时集成动作扩散过程与视频扩散过程，用彼此独立的扩散时间步分别控制两种模态，通过调节各模态的时间步，同一个模型可灵活地表示策略、前向动力学、逆向动力学和视频生成器。\n\n\n# 三、核心实验结果\n\n> （1）在大规模多任务机器人数据集上以动力学预测加动作预测联合预训练，得到的策略比纯模仿学习更泛化、更鲁棒；（2）借助模态特定扩散时间步的独立控制，UWM 能自然地从无动作视频数据中学习，进一步提升微调后策略的性能。注：摘要未给出具体数值指标，量化结果需查阅原文与项目页 https://weirdlabuw.github.io/uwm/。\n\n\n# 四、对我的启发\n\n> 把常被割裂的模仿学习与世界模型统一到一个扩散框架中，用独立扩散时间步作为「模态开关」，是本文最核心的设计启发；潜在局限在于视频扩散与动作扩散联合训练/推理的计算开销、无动作视频与下游动作空间的分布对齐，以及大规模异构数据下的稳定性，这些在摘要中未展开。\n"
 }

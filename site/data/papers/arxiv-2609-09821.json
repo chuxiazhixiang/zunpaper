@@ -1,0 +1,96 @@
+{
+  "id": "arxiv-2609-09821",
+  "source": "arxiv",
+  "title": "InstantMimic: A High Performance System for Learning Physics-based Skills in Seconds",
+  "title_zh": "InstantMimic：秒级学习基于物理技能的高性能系统",
+  "abstract": "Physics-based character control is a long-standing challenge in computer graphics and robotics, requiring policies that satisfy complex dynamics while producing realistic motion. Recent Deep RL approaches, particularly imitation learning methods such as DeepMimic, have had broad impact beyond animation, influencing robotics by enabling agile and expressive behaviors. While these approaches achieve impressive results, they remain computationally inefficient to train in practice. Despite GPU-accelerated simulation, we find that end-to-end pipelines often underutilize hardware due to overheads outside the physics solver, caused by fragmented GPU kernels and CPU memory access in the critical path. We present InstantMimic, a system that addresses these inefficiencies by making the entire training loop GPU-native. Built on a GPU-native physics backend, our unified pipeline integrates simulation, environment computation, policy inference, and policy updates within a single execution flow. As a result, InstantMimic reduces training time for diverse physics-based skills to a few seconds and makes LLM-agent-driven hyperparameter search practical.",
+  "abstract_zh": "基于物理的角色控制是计算机图形学和机器人学中长期存在的挑战，需要策略满足复杂动力学并产生逼真运动。近期深度强化学习方法，尤其是DeepMimic等模仿学习方法，已在动画之外产生广泛影响，通过实现敏捷且富有表现力的行为影响了机器人学。尽管这些方法取得了令人瞩目的成果，但在实践中训练计算效率仍然低下。尽管有GPU加速模拟，我们发现端到端流水线往往因物理求解器之外的开销而未能充分利用硬件，这些开销源于关键路径上碎片化的GPU内核和CPU内存访问。我们提出InstantMimic，一个通过使整个训练循环GPU原生来解决这些低效问题的系统。基于GPU原生物理后端，我们的统一流水线将模拟、环境计算、策略推理和策略更新集成在单一执行流中。因此，InstantMimic将多种基于物理技能的训练时间缩短至几秒钟，并使LLM智能体驱动的超参数搜索变得实用。",
+  "tldr_zh": "InstantMimic实现全GPU训练循环，将物理技能学习缩短至秒级。",
+  "cover_zh": "秒级学会物理技能！这个系统让训练快到飞起",
+  "authors": [
+    {
+      "name": "Ikjun Choi",
+      "affiliation": ""
+    },
+    {
+      "name": "Geonho Leem",
+      "affiliation": ""
+    },
+    {
+      "name": "Jungdam Won",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.GR",
+  "categories": [
+    "cs.GR",
+    "cs.RO"
+  ],
+  "published": "2026-09-09",
+  "updated": "2026-09-09",
+  "arxiv_id": "2609.09821",
+  "pdf_url": "https://arxiv.org/pdf/2609.09821v1",
+  "abs_url": "http://arxiv.org/abs/2609.09821v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-09821.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-09821-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 11,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（imitation learning）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 11 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "loco-manip-wbc",
+    "reason": "物理角色模仿学习系统，GPU原生训练加速，与机器人全身动作模仿/重定向高度相关",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Seoul National University"
+  ],
+  "method_tags": [
+    "Reinforcement Learning",
+    "Imitation Learning",
+    "GPU-native Training"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/系统\n  - 论文/训练\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"InstantMimic: A High Performance System for Learning Physics-based Skills in Seconds\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.09821v1\n---\n>[!abstract] 一句话总结：InstantMimic 将整个训练回路做成 GPU-native：在 GPU 原生物理后端之上，把仿真、环境计算、策略推理与策略更新统一进单一执行流，消除 CPU-GPU 往返与 kernel 碎片化。\n\n\n# 一、动机\n\n> 基于物理的角色控制虽因 DeepMimic 等模仿学习取得显著效果，但端到端训练在实践中计算效率低下：即使使用 GPU 加速仿真，物理求解器之外的碎片化 GPU kernel 与关键路径上的 CPU 内存访问仍导致硬件利用率不足。\n\n\n# 二、方法\n\n> InstantMimic 将整个训练回路做成 GPU-native：在 GPU 原生物理后端之上，把仿真、环境计算、策略推理与策略更新统一进单一执行流，消除 CPU-GPU 往返与 kernel 碎片化。\n\n\n# 三、核心实验结果\n\n> 1）将多种基于物理的技能训练时间压缩至数秒级；2）使 LLM agent 驱动的超参数搜索在实践中变得可行；3）作者发现效率瓶颈主要来自物理求解器之外的管线开销，而非物理仿真本身，统一 GPU 执行流可显著缓解该问题。\n\n\n# 四、对我的启发\n\n> 论文与具身智能 / 机器人技能学习高度相关：秒级训练为大规模超参搜索和 LLM agent 自动化调参打开了空间，也可能加速 sim-to-real 的技能迭代。局限在于目前仅基于摘要判断，尚不清楚具体加速倍数、基准对比、扩展性与真实机器人迁移效果。\n"
+}
