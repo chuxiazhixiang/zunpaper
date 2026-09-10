@@ -111,5 +111,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Time-Frequency Geometric Cross-Attention for Chunked Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.09925v1\n---\n>[!abstract] 一句话总结：提出 Time-Frequency Geometric Cross-Attention（TFGCA）即插即用模块，用逐维可学习平稳小波变换将动作 chunk 分解为时频 token，并通过融合点积相似度与楔积幅值（对近正交敏感）的可学习跨注意力让时间 token 检索时频信息，零初始化残差保证初始行为不变。\n\n\n# 一、动机\n\n> 现有 VLA 策略将动作 chunk 当作逐时间步的通用隐 token 序列，忽略了动作轨迹的频率结构和跨相位几何关系，导致模型难以显式建模平滑趋势、精细修正以及近正交运动阶段之间的关系。\n\n\n# 二、方法\n\n> 提出 Time-Frequency Geometric Cross-Attention（TFGCA）即插即用模块，用逐维可学习平稳小波变换将动作 chunk 分解为时频 token，并通过融合点积相似度与楔积幅值（对近正交敏感）的可学习跨注意力让时间 token 检索时频信息，零初始化残差保证初始行为不变。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO 分布内平均提升 +1.5，在 OOD LIBERO-Plus 提升 +6.3，在 RoboTwin 域随机化下平均提升 +28.5，在三个真实 AgiBot A2 任务上总体成功率提升 +11.67 个点，且分布外增益更大。\n\n\n# 四、对我的启发\n\n> 零初始化残差设计使模块可直接接入预训练 VLA 并联合微调，启发是将小波时频先验与几何注意力结合以补足点积注意力对近正交关系的盲区；局限是主要在机器人操作任务上验证，跨具身、长时程及其他模态的泛化性仍需进一步检验。\n"
+  "note": ""
 }

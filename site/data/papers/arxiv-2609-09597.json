@@ -34,7 +34,8 @@
     "assets/img/covers/arxiv-2609-09597-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -49,7 +50,7 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 41,
+  "score": 52,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -60,8 +61,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（manipulation）"
+      "points": 9,
+      "hint": "频道关键词命中 3 个（manipulation、world model、world models）"
     },
     {
       "id": "freshness",
@@ -74,6 +75,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -102,5 +109,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Compact Visuotactile World Models for Lifting: Prediction, Reward Alignment, and Force Constraints\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.09597v1\n---\n>[!abstract] 一句话总结：使用紧凑的随机初始化视触觉世界模型、轨迹级不确定性校准以及行为初始化的 actor-critic 在想象中学习，在 MuJoCo Lift 和公开 GelSight 数据上评估预测、奖励对齐与力约束控制。\n\n\n# 一、动机\n\n> 现有视触觉研究多关注接触预测精度，但尚不清楚这种预测能否真正改善机器人操作决策，尤其是奖励对齐与力约束下的控制。论文试图厘清触觉预测、任务奖励与力约束控制之间的关系。\n\n\n# 二、方法\n\n> 使用紧凑的随机初始化视触觉世界模型、轨迹级不确定性校准以及行为初始化的 actor-critic 在想象中学习，在 MuJoCo Lift 和公开 GelSight 数据上评估预测、奖励对齐与力约束控制。\n\n\n# 三、核心实验结果\n\n> 在 160 个 MuJoCo Lift 回合、三个训练种子下，加入触觉将末端力预测误差从 1.058 N 降至 0.228 N，区间峰值误差从 2.724 N 降至 0.523 N；但触觉持久性取得更低误差，分别为 0.095 N 和 0.498 N。两轮探索性控制共 680 次执行、40 个独立测试初始条件；匹配奖励修正后，分布内 10 cm 举升成功率从 20.0% 提升至 93.3%，而每指 8 N 预算内成功率仅 33.3%，力反馈基线为 70.0%。校准裕度可减少力违规，但会降低任务完成率。在公开 GelSight 记录中，力回归器误差为 0.04234 N，但帧级校准仅覆盖 15.80% 完整轨迹，轨迹级校准在名义 90% 覆盖率下提升至 87.36%。\n\n\n# 四、对我的启发\n\n> 论文强调传感改进与任务奖励改进并不等同于力约束控制改进；证据受限于公开传感记录和仿真执行，尚未证明二者之间的迁移。对具身操作中的触觉世界模型与安全力控制有启发，但真实机器人闭环验证仍待补充。\n"
+  "note": ""
 }

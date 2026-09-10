@@ -116,5 +116,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/CV\n  - Task/VideoGen\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Persistent Robot World Models: Stabilizing Multi-Step Rollouts via Reinforcement Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2603.25685v2\n---\n>[!abstract] 一句话总结：提出一种面向扩散世界模型的强化学习后训练方案：在模型自身的自回归 rollout 上训练，适配对比式 RL 目标；同时从同一 rollout 状态生成并比较多个可变长度候选未来，并用多视角、clip 级聚合的视觉保真度奖励进行密集低方差优化。\n\n\n# 一、动机\n\n> 现有动作条件机器人世界模型多针对短时预测优化，自回归多步展开时会将预测片段作为下一段上下文，导致误差累积、视觉质量快速退化。\n\n\n# 二、方法\n\n> 提出一种面向扩散世界模型的强化学习后训练方案：在模型自身的自回归 rollout 上训练，适配对比式 RL 目标；同时从同一 rollout 状态生成并比较多个可变长度候选未来，并用多视角、clip 级聚合的视觉保真度奖励进行密集低方差优化。\n\n\n# 三、核心实验结果\n\n> 在 DROID 数据集上取得 rollout 保真度新 SOTA：外部相机 LPIPS 降低 14%，腕部相机 SSIM 提升 9.1%，配对比较中胜率 98%，盲测人类偏好率 80%。\n\n\n# 四、对我的启发\n\n> 该方法显著提升长时程视频 rollout 稳定性，但主要验证视觉保真度，尚未直接证明下游机器人策略学习或任务成功率提升；RL 后训练算力成本较高，且依赖多视角感知奖励设计。启发是将世界模型视作可优化策略，用自生成 rollout 与偏好式奖励缓解自回归误差累积，有望服务长时程规划与数据生成。\n"
+  "note": ""
 }
