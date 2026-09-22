@@ -1,0 +1,107 @@
+{
+  "id": "arxiv-2609-24626",
+  "source": "arxiv",
+  "title": "Relationally Grounded Latent World Models for Autonomous Driving",
+  "title_zh": "关系接地的自动驾驶潜在世界模型",
+  "abstract": "Latent world models learn predictive representations for autonomous driving, but the relational semantics these states preserve often remain implicit. We investigate whether traffic scene graphs can serve as privileged semantic supervision for latent world representations. Building on LAW, we construct actor-centric scene graphs from nuScenes 3D annotations, encode their serialized relational structure using a frozen text embedding model, and align the visual latent representations with this semantic target during training. We remove the supervision branch at inference, so it requires neither scene graphs nor 3D annotations and adds no test-time computation. On nuScenes, our method reduces average trajectory L2 error from 0.661 to 0.622 (5.9%) and collision rate from 0.456 to 0.217 (52.4%) relative to our retrained LAW baseline. It also outperforms an unstructured caption-style semantic target, supporting the benefit of explicit relational structure for latent world-model representation learning.",
+  "abstract_zh": "潜在世界模型为自动驾驶学习预测性表示，但这些状态所保留的关系语义往往仍是隐含的。我们研究交通场景图能否作为潜在世界表示的 privileged 语义监督。基于 LAW，我们从 nuScenes 3D 标注中构建以 actor 为中心的场景图，使用冻结的文本嵌入模型编码其序列化关系结构，并在训练期间将视觉潜在表示与该语义目标对齐。我们在推理时移除监督分支，因此它既不需要场景图也不需要 3D 标注，且不增加测试时计算。在 nuScenes 上，相对于我们重新训练的 LAW 基线，我们的方法将平均轨迹 L2 误差从 0.661 降至 0.622（5.9%），碰撞率从 0.456 降至 0.217（52.4%）。它还优于非结构化的 caption 风格语义目标，支持显式关系结构对潜在世界模型表示学习的益处。",
+  "tldr_zh": "用场景图监督潜在世界模型，推理时无需额外输入，提升轨迹预测并降低碰撞率。",
+  "cover_zh": "自动驾驶世界模型新思路｜用场景图当老师，推理时却不用它",
+  "authors": [
+    {
+      "name": "Fabian Schmidt",
+      "affiliation": ""
+    },
+    {
+      "name": "Markus Enzweiler",
+      "affiliation": ""
+    },
+    {
+      "name": "Abhinav Valada",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.CV",
+  "categories": [
+    "cs.CV",
+    "cs.RO"
+  ],
+  "published": "2026-09-21",
+  "updated": "2026-09-21",
+  "arxiv_id": "2609.24626",
+  "pdf_url": "https://arxiv.org/pdf/2609.24626v1",
+  "abs_url": "http://arxiv.org/abs/2609.24626v1",
+  "venue": "IROS 2026",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-24626.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-24626-p2.jpg"
+  ],
+  "channels": [
+    "world-model"
+  ],
+  "badges": [
+    {
+      "kind": "venue",
+      "label": "🎓 IROS 2026"
+    },
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 5,
+  "source_tags": [],
+  "score": 32,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（world model、world models、latent world model）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 5 页"
+    },
+    {
+      "id": "conf_venue",
+      "label": "机器人顶会 / 顶刊出品",
+      "points": 10,
+      "hint": "被「IROS 2026」收录"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "world-model",
+    "reason": "潜世界模型+场景图语义监督，属world-model方法，自驾场景仍接受",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Institute for Intelligent Systems, Esslingen University of Applied Sciences",
+    "Department of Computer Science, University of Freiburg"
+  ],
+  "method_tags": [
+    "Latent World Model",
+    "Scene Graph",
+    "Representation Alignment"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/CV\n  - Domain/Robotics\n  - Task/AutonomousDriving\n  - 状态/待读\nTitle: \"Relationally Grounded Latent World Models for Autonomous Driving\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.24626v1\n---\n>[!abstract] 一句话总结：在 LAW 基础上，用 nuScenes 3D 标注构建以行为体为中心的场景图，以冻结的文本嵌入模型编码其序列化关系结构，并在训练时将视觉潜表示与该语义目标对齐；推理时移除监督分支，因此既不需要场景图也不需要 3D 标注，且不增加测试时计算。\n\n\n# 一、动机\n\n> 潜世界模型虽能学到预测性表示，但其状态所保留的关系语义往往是隐式的、缺乏显式约束；作者探究交通场景图能否作为特权语义监督来塑造潜世界表示。\n\n\n# 二、方法\n\n> 在 LAW 基础上，用 nuScenes 3D 标注构建以行为体为中心的场景图，以冻结的文本嵌入模型编码其序列化关系结构，并在训练时将视觉潜表示与该语义目标对齐；推理时移除监督分支，因此既不需要场景图也不需要 3D 标注，且不增加测试时计算。\n\n\n# 三、核心实验结果\n\n> 在 nuScenes 上，相对重新训练的 LAW 基线，平均轨迹 L2 误差从 0.661 降至 0.622（降低 5.9%），碰撞率从 0.456 降至 0.217（降低 52.4%）；同时优于无结构的 caption 式语义目标，说明显式关系结构对潜世界模型表示学习有增益。\n\n\n# 四、对我的启发\n\n> 方法依赖训练期高质量 3D 标注来构建场景图，关系结构与文本编码器的选择可能影响效果，且仅在 nuScenes 上验证。启发是「训练期特权语义监督 + 推理期零开销」的范式可迁移到其他具身/机器人世界模型，用显式关系结构提升预测与安全性。\n"
+}

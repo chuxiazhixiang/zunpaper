@@ -1,0 +1,104 @@
+{
+  "id": "arxiv-2609-24864",
+  "source": "arxiv",
+  "title": "SE(3) Neural Potential Fields for 6-DoF Trajectory Planning Directly from Images Without Explicit 3D Reconstruction",
+  "title_zh": "SE(3) 神经势场：无需显式三维重建，直接从图像进行六自由度轨迹规划",
+  "abstract": "Reaching a 6-DoF grasp pose in clutter requires a collision-free trajectory, conventionally obtained by reconstructing the scene in 3D and planning inside that reconstruction, at the cost of its accuracy and compute. Potential fields learned directly from images remove that dependency but inherit the classical weakness of artificial potential fields: where attractive and repulsive gradients cancel, the descent grazes the obstacle instead of going around it, and can stall short of the goal. We present an SE(3) neural potential field learned from posed RGB images and supervised with a navigation function, the geodesic distance to the grasp through free space recovered from those same images during training, which removes both failures. On two tabletop scenes, from obstacle-blocked starts executed on a UR10, the field converges within 3 cm of the grasp from every start and every path it executes is collision-free against the ground-truth geometry, against 25% and 0% under image supervision alone; mean clearance rises from under a centimeter to 8.6-8.8 cm and arm-link contacts fall from 20.6-50.4% to 2.7-5.5% of executed configurations. Executed grasp success is 90.0% and 40.0% on the two scenes, the residual failures being refusals of the Cartesian executor rather than of the field. Planning takes about 2 s against 67-133 s for RRT* on a reconstruction of the same images, though under a common offline harness the two are comparable: the deployed margin is the cost of collision-checking a dense reconstruction, not planner complexity.",
+  "abstract_zh": "在杂乱环境中到达六自由度抓取位姿需要无碰撞轨迹，传统方法通过三维重建场景并在重建中规划，但代价是精度和计算量。直接从图像学习的势场消除了这一依赖，但继承了人工势场的经典弱点：当吸引和排斥梯度相互抵消时，下降路径会擦过障碍物而非绕过它，并可能在到达目标前停滞。我们提出一种从带位姿的RGB图像中学习的SE(3)神经势场，并用导航函数进行监督——该函数是训练期间从同一图像中恢复的自由空间中到抓取位姿的测地距离，从而消除了上述两种失败。在两个桌面场景中，从被障碍物阻挡的起始点出发，在UR10上执行，该势场从每个起始点都能收敛到抓取位姿3厘米以内，且其执行的每条路径相对于真实几何都是无碰撞的，而仅用图像监督时分别为25%和0%；平均间隙从不足1厘米提升到8.6-8.8厘米，机械臂连杆接触从执行配置的20.6-50.4%降至2.7-5.5%。两个场景中执行的抓取成功率分别为90.0%和40.0%，剩余失败是笛卡尔执行器的拒绝而非势场本身。规划耗时约2秒，而基于相同图像重建的RRT*需要67-133秒，不过在共同的离线测试框架下两者相当：部署时的差距在于对密集重建进行碰撞检测的成本，而非规划器复杂度。",
+  "tldr_zh": "从图像学习SE(3)神经势场，无需三维重建即可实现无碰撞六自由度轨迹规划。",
+  "cover_zh": "不用3D重建！这个神经势场让机械臂在杂乱中无碰撞抓取",
+  "authors": [
+    {
+      "name": "Jeffrey Eiyike",
+      "affiliation": ""
+    },
+    {
+      "name": "Masoud Ataei",
+      "affiliation": ""
+    },
+    {
+      "name": "Elvis Gyaase",
+      "affiliation": ""
+    },
+    {
+      "name": "Vikas Dhiman",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.AI"
+  ],
+  "published": "2026-09-21",
+  "updated": "2026-09-21",
+  "arxiv_id": "2609.24864",
+  "pdf_url": "https://arxiv.org/pdf/2609.24864v1",
+  "abs_url": "http://arxiv.org/abs/2609.24864v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-24864.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-24864-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 9,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（grasp）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 9 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "从图像学习SE(3)神经势场用于6-DoF抓取轨迹规划，属操作方向，算法新颖且实验充分。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University of Maine",
+    "Advanced Structures and Composites Center (ASCC)",
+    "Oak Ridge National Laboratory"
+  ],
+  "method_tags": [
+    "Neural Potential Fields",
+    "6-DoF Trajectory Planning",
+    "Image-based Planning"
+  ],
+  "platform": [
+    "UR10"
+  ],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"SE(3) Neural Potential Fields for 6-DoF Trajectory Planning Directly from Images Without Explicit 3D Reconstruction\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.24864v1\n---\n>[!abstract] 一句话总结：用带位姿的 RGB 图像学习 SE(3) 神经势场，并以导航函数（训练时从同一批图像恢复的自由空间中到抓取位姿的测地距离）作为监督信号，从而消除障碍擦碰与停滞两种失败模式。\n\n\n# 一、动机\n\n> 从图像直接学习势场可避免显式 3D 重建的开销与精度损失，但经典人工势场的吸引/排斥梯度相消会让下降路径贴着障碍物擦过甚至中途停滞，无法保证绕行与到达。\n\n\n# 二、方法\n\n> 用带位姿的 RGB 图像学习 SE(3) 神经势场，并以导航函数（训练时从同一批图像恢复的自由空间中到抓取位姿的测地距离）作为监督信号，从而消除障碍擦碰与停滞两种失败模式。\n\n\n# 三、核心实验结果\n\n> 在两个桌面场景、由障碍阻挡的起始位姿、UR10 上执行：场从每个起点均收敛到抓取位姿 3 cm 以内，所有执行路径对真值几何均无碰撞（仅图像监督时为 25% 与 0%）；平均间隙由不足 1 cm 提升到 8.6-8.8 cm，机械臂连杆接触率由 20.6-50.4% 的执行构型降至 2.7-5.5%；实际抓取成功率分别为 90.0% 与 40.0%，剩余失败来自笛卡尔执行器的拒绝而非势场本身；规划约耗时 2 s，而基于同一图像重建的 RRT* 需 67-133 s，不过在统一离线测试框架下两者相当，部署时的差距主要来自稠密重建的碰撞检测成本而非规划器复杂度。\n\n\n# 四、对我的启发\n\n> 方法依赖训练阶段可利用真值几何计算测地距离导航函数，且仅在两个桌面场景验证，泛化到更复杂/非桌面环境（如户外、动态场景）未知；残余失败提示神经势场需与下游执行器（笛卡尔规划/控制器）协同设计；若无需显式重建即可在部署期获得厘米级无碰撞轨迹，对具身抓取与操作有直接启发，但训练期监督的来源仍是主要瓶颈。\n"
+}

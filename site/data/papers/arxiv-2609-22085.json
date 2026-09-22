@@ -2,11 +2,11 @@
   "id": "arxiv-2609-22085",
   "source": "arxiv",
   "title": "SeeQ: Training Generalist Value Functions for Long-Horizon Robotic Manipulation",
-  "title_zh": "SeeQ: Training Generalist Value Functions for Long-Horizon Robotic Manipulation",
+  "title_zh": "SeeQ：训练通用价值函数用于长时程机器人操作",
   "abstract": "Despite rapid progress, generalist robot policies remain brittle on complex, long-horizon tasks that comprise multiple stages or require repeated attempts and deliberation on the same underlying stage before success. Q-value functions can improve these policies by ranking candidate actions or guiding policy improvement, but learning from sparse task-level rewards entails long credit-assignment horizons, difficult Bellman backups, and broad data-coverage requirements. We introduce SeeQ (Subtask-elicited Q-functions), which instead learns Q-values for the currently active subtask. This shortens the value-prediction horizon and enables effective learning with temporal-difference (TD) objectives. During training, subtask-level annotations present in offline robot data provide the decomposition and enable learning from broad, potentially suboptimal robot datasets. To eliminate the need for human annotations or modular subtask prediction systems at test time, our Q-function architecture is trained to autoregressively predict the active subtask in natural language before estimating its value. We instantiate SeeQ using a base vision-language backbone, pretrain it on diverse open-source robot manipulation data, and finetune it on downstream tasks. Across four real-world manipulation tasks on two bimanual robot platforms, the SeeQ value function substantially improves best-of-N policy steering.",
-  "abstract_zh": "Despite rapid progress, generalist robot policies remain brittle on complex, long-horizon tasks that comprise multiple stages or require repeated attempts and deliberation on the same underlying stage before success. Q-value functions can improve these policies by ranking candidate actions or guiding policy improvement, but learning from sparse task-level rewards entails long credit-assignment horizons, difficult Bellman backups, and broad data-coverage requirements. We introduce SeeQ (Subtask-elicited Q-functions), which instead learns Q-values for the currently active subtask. This shortens the value-prediction horizon and enables effective learning with temporal-difference (TD) objectives. During training, subtask-level annotations present in offline robot data provide the decomposition and enable learning from broad, potentially suboptimal robot datasets. To eliminate the need for human annotations or modular subtask prediction systems at test time, our Q-function architecture is trained to autoregressively predict the active subtask in natural language before estimating its value. We instantiate SeeQ using a base vision-language backbone, pretrain it on diverse open-source robot manipulation data, and finetune it on downstream tasks. Across four real-world manipulation tasks on two bimanual robot platforms, the SeeQ value function substantially improves best-of-N policy steering.",
-  "tldr_zh": "Despite rapid progress, generalist robot policies remain bri",
-  "cover_zh": "Despite rapid progress, generalist robot policies remain bri",
+  "abstract_zh": "尽管通用机器人策略取得了快速进展，但在复杂的长时程任务中仍然表现脆弱，这些任务包含多个阶段，或者需要在同一底层阶段反复尝试和思考才能成功。Q值函数可以通过对候选动作排序或指导策略改进来提升这些策略，但从稀疏的任务级奖励中学习会带来长信用分配范围、困难的贝尔曼备份以及广泛的数据覆盖需求。我们提出了SeeQ（子任务诱导Q函数），它转而学习当前活跃子任务的Q值。这缩短了价值预测范围，并使得使用时序差分（TD）目标进行有效学习成为可能。在训练过程中，离线机器人数据中存在的子任务级标注提供了分解，并使得能够从广泛且可能次优的机器人数据集中学习。为了在测试时消除对人类标注或模块化子任务预测系统的需求，我们的Q函数架构被训练为在估计其价值之前，自回归地以自然语言预测活跃子任务。我们使用基础视觉-语言骨干网络实例化SeeQ，在多样化的开源机器人操作数据上进行预训练，并在下游任务上微调。在两个双臂机器人平台上的四个真实世界操作任务中，SeeQ价值函数显著改善了最佳N策略引导。",
+  "tldr_zh": "SeeQ通过子任务级Q函数缩短信用分配范围，提升长时程机器人操作策略。",
+  "cover_zh": "机器人长任务总翻车？SeeQ让价值函数学会拆解子任务",
   "authors": [
     {
       "name": "Saksham Singh",
@@ -51,12 +51,23 @@
   "channels": [
     "manipulation"
   ],
-  "badges": [],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ CMU RI"
+    }
+  ],
   "related_links": [],
   "page_count": 28,
   "source_tags": [],
-  "score": 12,
+  "score": 37,
   "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “CMU RI” 关键词"
+    },
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
@@ -71,14 +82,20 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "Carnegie Mellon University"
+  ],
+  "method_tags": [
+    "Q-value function",
+    "Temporal-Difference Learning",
+    "long-horizon"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"SeeQ: Training Generalist Value Functions for Long-Horizon Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.22085v1\n---\n>[!abstract] 一句话总结：SeeQ（Subtask-elicited Q-functions）改为对当前活跃子任务学习 Q 值，用离线机器人数据中的子任务级标注提供分解、以 TD 目标训练，并让 Q 函数架构以自然语言自回归预测当前活跃子任务后再估计其价值，从而在测试时无需人工标注或模块化子任务预测系统。\n\n\n# 一、动机\n\n> 通用机器人策略在多阶段、需反复尝试的长程操作任务上仍然脆弱；而基于稀疏任务级奖励的 Q 函数学习面临信用分配跨度长、Bellman 备份困难、数据覆盖要求高等问题。\n\n\n# 二、方法\n\n> SeeQ（Subtask-elicited Q-functions）改为对当前活跃子任务学习 Q 值，用离线机器人数据中的子任务级标注提供分解、以 TD 目标训练，并让 Q 函数架构以自然语言自回归预测当前活跃子任务后再估计其价值，从而在测试时无需人工标注或模块化子任务预测系统。\n\n\n# 三、核心实验结果\n\n> 以视觉-语言骨干网络实例化 SeeQ，在多样开源机器人操作数据上预训练并在下游任务微调；在两个双臂机器人平台的四个真实操作任务上，SeeQ 价值函数显著提升了 best-of-N 策略引导（policy steering）的效果，验证了子任务级价值学习可有效缩短预测跨度并缓解长程信用分配难题。\n\n\n# 四、对我的启发\n\n> 将长程价值估计分解到子任务层级、并让价值模型自身以语言显式输出子任务，是一个通用且可迁移的范式；局限在于仍依赖离线数据中的子任务级标注进行训练，且评测规模较小（四个任务、两个平台），子任务边界的自动发现与跨具身泛化仍有待验证。\n"
 }

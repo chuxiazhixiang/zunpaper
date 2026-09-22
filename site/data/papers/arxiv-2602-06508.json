@@ -119,5 +119,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"World-VLA-Loop: Closed-Loop Learning of Video World Model and VLA Policy\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2602.06508v2\n---\n>[!abstract] 一句话总结：提出 World-VLA-Loop：先构建混合成功与近成功轨迹的 SANS 数据以改善动作-结果对齐，再训练状态感知视频世界模型，从扩散隐空间联合预测未来帧与二值奖励；随后用精炼后的世界模型迭代后训练 VLA，并将新策略 rollout 回灌微调世界模型，形成 VLA 与世界模型闭环共进化。\n\n\n# 一、动机\n\n> 真实世界强化学习微调 VLA 策略代价高、重置与监督需求大且存在安全风险；动作条件视频世界模型虽可提供虚拟训练环境，但动作跟随不精确，尤其难以处理接近成功的失败样本，同时缺乏原生奖励信号，基于不准确视觉预测计算奖励不可靠。\n\n\n# 二、方法\n\n> 提出 World-VLA-Loop：先构建混合成功与近成功轨迹的 SANS 数据以改善动作-结果对齐，再训练状态感知视频世界模型，从扩散隐空间联合预测未来帧与二值奖励；随后用精炼后的世界模型迭代后训练 VLA，并将新策略 rollout 回灌微调世界模型，形成 VLA 与世界模型闭环共进化。\n\n\n# 三、核心实验结果\n\n> 在仿真和真机实验中，World-VLA-Loop 显著提升 VLA 性能，同时减少对昂贵物理交互的依赖；但摘要未给出具体数值指标。\n\n\n# 四、对我的启发\n\n> 将奖励估计耦合进生成器、让世界模型与策略共同进化，是缓解真实世界 RL 成本与奖励稀疏问题的有益思路；局限在于摘要缺少定量结果，世界模型预测误差、奖励可靠性及闭环训练稳定性仍需验证。与机器人/具身智能课题直接相关。\n"
 }

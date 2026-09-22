@@ -1,0 +1,113 @@
+{
+  "id": "arxiv-2609-24682",
+  "source": "arxiv",
+  "title": "Think Like a World Model, Act Like a VLA: Distilling World-Model Representations into Compact Robot Policies",
+  "title_zh": "像世界模型一样思考，像VLA一样行动：将世界模型表征蒸馏为紧凑机器人策略",
+  "abstract": "Vision-Language-Action (VLA) models map observations to actions with no objective that accounts for how the world responds, so their robustness is bounded primarily by data coverage. World models carry precisely that missing objective and are better grounded for it, yet rolling the future forward costs seconds per decision and rules them out of the control loop. We show the two can be separated. What a world model knows about physical scenes lives in its \\emph{internal features}; generating the future is merely the objective that produced them, so the grounding can be inherited while the generative machinery is left behind. We add one feature-alignment term to ordinary VLA training: a frozen world model is run over the training frames once and cached, and the student learns to agree with that cache. No teacher is loaded during training, the projector is discarded after it, and the deployed policy is identical to the undistilled baseline, running in $32$~ms and $1.86$~GB on a consumer RTX~5090, so every gain is attributable to the representation rather than to added capacity or test-time compute. A $0.8$B student reaches $97.9\\%$ on LIBERO, improves from $48.2\\%$ to $50.5\\%$ on RoboCasa-GR1 humanoid manipulation, and the same objective carries over to real hardware, on both a single-arm and a bimanual platform. The gain survives changes of student scale, backbone, alignment layer, and teacher, indicating a broad representational prior rather than a fragile alignment between two particular networks. Project page: https://thaw-vla.trung-dt.com/.",
+  "abstract_zh": "视觉-语言-动作（VLA）模型将观测映射到动作，但缺乏考虑世界如何响应的目标，因此其鲁棒性主要受数据覆盖范围限制。世界模型恰好携带了这种缺失的目标，并因此具有更好的基础，但将未来向前推演每个决策需要数秒，无法用于控制回路。我们表明两者可以分离。世界模型对物理场景的了解存在于其内部特征中；生成未来仅仅是产生这些特征的目标，因此可以继承基础，而将生成机制抛在后面。我们在普通VLA训练中添加一个特征对齐项：冻结的世界模型在训练帧上运行一次并缓存，学生模型学习与该缓存一致。训练期间不加载教师模型，投影器之后被丢弃，部署的策略与未蒸馏基线相同，在消费级RTX 5090上运行时间为32毫秒，内存1.86GB，因此所有增益都归因于表征，而非增加的容量或测试时计算。一个0.8B的学生模型在LIBERO上达到97.9%，在RoboCasa-GR1人形操作上从48.2%提升到50.5%，且同一目标可迁移到真实硬件，包括单臂和双臂平台。该增益在学生规模、骨干网络、对齐层和教师模型变化下依然存在，表明这是一种广泛的表征先验，而非两个特定网络之间的脆弱对齐。项目页面：https://thaw-vla.trung-dt.com/。",
+  "tldr_zh": "将世界模型内部特征蒸馏给VLA，无需生成未来即可提升鲁棒性。",
+  "cover_zh": "世界模型太慢？只取它的表征，VLA直接起飞",
+  "authors": [
+    {
+      "name": "Trung Dao",
+      "affiliation": ""
+    },
+    {
+      "name": "Sankalp Yamsani",
+      "affiliation": ""
+    },
+    {
+      "name": "Jaden Park",
+      "affiliation": ""
+    },
+    {
+      "name": "Joohyung Kim",
+      "affiliation": ""
+    },
+    {
+      "name": "Yong Jae Lee",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.CV"
+  ],
+  "published": "2026-09-21",
+  "updated": "2026-09-21",
+  "arxiv_id": "2609.24682",
+  "pdf_url": "https://arxiv.org/pdf/2609.24682v1",
+  "abs_url": "http://arxiv.org/abs/2609.24682v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-24682.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-24682-p2.jpg"
+  ],
+  "channels": [
+    "loco-manip-wbc",
+    "manipulation",
+    "world-model"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 30,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 8 个（humanoid manipulation、vision-language-action、manipulation、bimanual）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 3 个频道"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "世界模型蒸馏到VLA策略，提升鲁棒性，含人形操作实验，方法新颖。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University of Wisconsin–Madison",
+    "University of Illinois Urbana-Champaign"
+  ],
+  "method_tags": [
+    "World Model",
+    "Knowledge Distillation",
+    "VLA"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Think Like a World Model, Act Like a VLA: Distilling World-Model Representations into Compact Robot Policies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.24682v1\n---\n>[!abstract] 一句话总结：在普通 VLA 训练中只加一项特征对齐损失：先用冻结的世界模型对训练帧推理一次并缓存其内部特征，学生策略学习与缓存特征一致；训练时不加载教师、投影器用完即弃，部署的策略与未蒸馏基线逐字节相同。\n\n\n# 一、动机\n\n> VLA 只以\"观测→动作\"为目标，没有任何刻画世界如何响应动作的监督，鲁棒性因此被数据覆盖范围卡死；而世界模型虽有这种物理 grounding，却因每步决策需数秒的生成式推演而无法进入控制回路。论文要解决的是：如何在不付出推理代价的前提下，把世界模型的物理表征能力继承给小型 VLA 策略。\n\n\n# 二、方法\n\n> 在普通 VLA 训练中只加一项特征对齐损失：先用冻结的世界模型对训练帧推理一次并缓存其内部特征，学生策略学习与缓存特征一致；训练时不加载教师、投影器用完即弃，部署的策略与未蒸馏基线逐字节相同。\n\n\n# 三、核心实验结果\n\n> 0.8B 学生模型在 LIBERO 上达到 97.9%；在 RoboCasa-GR1 人形操作上从 48.2% 提升到 50.5%；部署开销与基线一致，单次决策 32 ms、显存 1.86 GB（消费级 RTX 5090）；同一目标在真机单臂与双臂平台上同样有效，且增益在学生规模、backbone、对齐层、教师模型更换后依然保持。\n\n\n# 四、对我的启发\n\n> 核心启发是：世界模型的价值在内部表征而非未来生成，可以把 grounding 与生成机制解耦，用一次性离线缓存替代昂贵的 test-time 推演，从而保证增益全部归因于表征而非容量或测试时算力。局限在于仍依赖一个足够强的冻结世界模型作为教师，其物理先验的上限决定学生上限，且需为训练集预先缓存特征；该方法与具身智能/VLA 课题高度相关。\n"
+}

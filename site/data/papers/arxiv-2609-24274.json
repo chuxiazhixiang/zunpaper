@@ -1,0 +1,103 @@
+{
+  "id": "arxiv-2609-24274",
+  "source": "arxiv",
+  "title": "vla.simd: Efficient CPU Inference for Language-Conditioned Manipulation",
+  "title_zh": "vla.simd：面向语言条件操作的高效CPU推理",
+  "abstract": "Deploying language-conditioned manipulation without a dedicated GPU requires efficient inference and action chunks that cover the delay between policy queries. We present vla.simd, a CPU inference engine that combines shared SIMD micro-kernels, reusable computation, and target-specific optimization. We relate query latency and execution horizon to action availability under lagged and time-aligned execution, distinguishing action supply from feedback frequency. Across six policies and four CPUs, vla.simd achieves approximately $1.4\\times$ median speedup over compiled PyTorch references while preserving fp32 numerical fidelity. We also introduce IMPACT, an ACT-based policy with cached text representations and language-modulated visual features. IMPACT is the only language-conditioned policy in our evaluated set that supplies at least 30 actions/s on the Raspberry Pi 5: after a 90 s thermal soak, it supplies 33.5 actions/s in fp32 and 81.2 with int8. Separate GPU evaluations yield $76.4\\%$ mean success across four LIBERO suites without robot pretraining; instruction-shuffling tests demonstrate selection among familiar goals. Trials with IMPACT on an SO-101 arm and SmolVLA on a UR10e with a Robotiq gripper demonstrate CPU deployment on two robot embodiments.",
+  "abstract_zh": "在没有专用GPU的情况下部署语言条件操作，需要高效的推理和能够覆盖策略查询之间延迟的动作块。我们提出了vla.simd，一种CPU推理引擎，它结合了共享SIMD微内核、可重用计算和针对目标的优化。我们将查询延迟和执行范围与滞后和时间对齐执行下的动作可用性联系起来，区分了动作供应和反馈频率。在六种策略和四种CPU上，vla.simd相比编译的PyTorch参考实现了约1.4倍的中位加速，同时保持了fp32数值保真度。我们还介绍了IMPACT，一种基于ACT的策略，具有缓存的文本表示和语言调制的视觉特征。IMPACT是我们评估集中唯一在Raspberry Pi 5上提供至少30个动作/秒的语言条件策略：在90秒热浸后，它在fp32下提供33.5个动作/秒，在int8下提供81.2个。单独的GPU评估在四个LIBERO套件上产生了76.4%的平均成功率，无需机器人预训练；指令混洗测试展示了在熟悉目标中的选择。在SO-101机械臂上使用IMPACT和在配备Robotiq夹爪的UR10e上使用SmolVLA的试验展示了在两个机器人实体上的CPU部署。",
+  "tldr_zh": "vla.simd引擎在CPU上实现高效语言条件操作推理，并推出IMPACT策略。",
+  "cover_zh": "CPU也能跑语言操作？这个引擎让推理速度飞起！",
+  "authors": [
+    {
+      "name": "Khanh D. Nguyen",
+      "affiliation": ""
+    },
+    {
+      "name": "Hoang M. Truong",
+      "affiliation": ""
+    },
+    {
+      "name": "An T. Le",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.AI",
+    "eess.SY"
+  ],
+  "published": "2026-09-21",
+  "updated": "2026-09-21",
+  "arxiv_id": "2609.24274",
+  "pdf_url": "https://arxiv.org/pdf/2609.24274v1",
+  "abs_url": "http://arxiv.org/abs/2609.24274v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-24274.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-24274-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 19,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 6,
+      "hint": "频道关键词命中 2 个（manipulation、libero）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "面向语言条件操作的高效CPU推理引擎，含ACT策略优化，对边缘部署有参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "VinRobotics, Vietnam",
+    "Center for AI Research, VinUniversity, Vietnam",
+    "Intelligent Autonomous Systems, TU Darmstadt, Germany"
+  ],
+  "method_tags": [
+    "ACT",
+    "action chunking",
+    "CPU inference"
+  ],
+  "platform": [
+    "SO-101",
+    "UR10e",
+    "Robotiq gripper"
+  ],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/系统\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"vla.simd: Efficient CPU Inference for Language-Conditioned Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.24274v1\n---\n>[!abstract] 一句话总结：提出 CPU 推理引擎 vla.simd（共享 SIMD 微内核 + 可复用计算 + 目标平台专属优化），并配套基于 ACT 的语言条件策略 IMPACT（缓存文本表征 + 语言调制视觉特征），同时用滞后执行与时间对齐执行两种模型刻画查询延迟、执行时域与动作可用性的关系。\n\n\n# 一、动机\n\n> 语言条件操作策略通常依赖 GPU 才能实时推理，在无 GPU 的边缘设备（如树莓派）上，策略查询延迟与动作块供给不足会导致执行中断；现有工作也常混淆「动作供给频率」与「反馈频率」这两个概念。\n\n\n# 二、方法\n\n> 提出 CPU 推理引擎 vla.simd（共享 SIMD 微内核 + 可复用计算 + 目标平台专属优化），并配套基于 ACT 的语言条件策略 IMPACT（缓存文本表征 + 语言调制视觉特征），同时用滞后执行与时间对齐执行两种模型刻画查询延迟、执行时域与动作可用性的关系。\n\n\n# 三、核心实验结果\n\n> 在 6 个策略、4 款 CPU 上相比编译后的 PyTorch 参考实现取得约 1.4× 中位加速且保持 fp32 数值一致性；IMPACT 是评测集中唯一在 Raspberry Pi 5 上供给 ≥30 actions/s 的语言条件策略，90 s 热稳定后 fp32 达 33.5 actions/s、int8 达 81.2 actions/s；在四个 LIBERO 套件上无机器人预训练即取得 76.4% 平均成功率；并在 SO-101 机械臂与 UR10e+Robotiq 夹爪两种本体上完成 CPU 部署验证。\n\n\n# 四、对我的启发\n\n> 局限在于真实机器人实验仅为演示性质、缺少系统化的真机成功率与长时序统计，且 int8 精度损失未在真机任务上量化；启发是「动作块供给速率」应作为边缘部署的一等指标来设计策略与推理栈，缓存文本表征、语言调制视觉特征这类结构改动比单纯压缩网络更能提升 CPU 上的动作供给吞吐。\n"
+}

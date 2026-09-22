@@ -1,0 +1,99 @@
+{
+  "id": "arxiv-2609-24317",
+  "source": "arxiv",
+  "title": "Performance-Preserving Online Adaptation in Social Navigation via Diffusion Steering",
+  "title_zh": "通过扩散引导实现社交导航中保持性能的在线适应",
+  "abstract": "In social navigation, modeling the complex interactions between humans and robots is difficult, and deep reinforcement learning has therefore been actively studied. However, because simulation alone cannot fully reproduce diverse scenarios, robot dynamics, and the social conventions that vary across deployment environments, fine-tuning in the deployment environment is promising. In doing so, learning that preserves the base model's performance is required, so as not to compromise the primary objective of navigation, namely avoiding pedestrians and reaching the destination. In this study, we propose a method that applies diffusion steering via reinforcement learning (DSRL), which trains only the noise policy while keeping the diffusion policy fixed, thereby achieving learning that preserves performance. Furthermore, we integrate diffusion-based RL policies trained with multiple seeds to construct the base policy, improving learning performance. Our evaluation shows that, compared with other methods, the proposed method enables efficient learning while preserving performance, and we confirm flexible behavior control through adaptation to social conventions, as well as its effectiveness on a physical robot through hardware-in-the-loop simulation.",
+  "abstract_zh": "在社交导航中，建模人与机器人之间的复杂交互十分困难，因此深度强化学习受到了广泛研究。然而，仅靠仿真无法完全复现多样化的场景、机器人动力学以及因部署环境而异的社会习俗，因此在部署环境中进行微调具有前景。在此过程中，需要保持基础模型性能的学习，以免损害导航的主要目标，即避开行人并到达目的地。在本研究中，我们提出了一种通过强化学习应用扩散引导（DSRL）的方法，该方法仅训练噪声策略而保持扩散策略固定，从而实现保持性能的学习。此外，我们集成了用多个随机种子训练的基于扩散的强化学习策略来构建基础策略，提高了学习性能。我们的评估表明，与其他方法相比，所提方法能够在保持性能的同时实现高效学习，并且我们通过适应社会习俗确认了灵活的行为控制，以及通过硬件在环仿真验证了其在物理机器人上的有效性。",
+  "tldr_zh": "仅训练噪声策略的扩散引导方法，在社交导航中保持性能并适应社会习俗。",
+  "cover_zh": "只训练噪声也能学？扩散引导让社交导航适应新环境不翻车",
+  "authors": [
+    {
+      "name": "Haruto Nagahisa",
+      "affiliation": ""
+    },
+    {
+      "name": "Kohei Matsumoto",
+      "affiliation": ""
+    },
+    {
+      "name": "Yuki Hyodo",
+      "affiliation": ""
+    },
+    {
+      "name": "Ryo Kurazume",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-09-21",
+  "updated": "2026-09-21",
+  "arxiv_id": "2609.24317",
+  "pdf_url": "https://arxiv.org/pdf/2609.24317v1",
+  "abs_url": "http://arxiv.org/abs/2609.24317v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-24317.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-24317-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（diffusion policy）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "sim2real",
+    "reason": "社交导航扩散策略在线适应，仿真到真机迁移，属sim2real与操作策略范畴。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Kyushu University"
+  ],
+  "method_tags": [
+    "Diffusion Policy",
+    "Reinforcement Learning",
+    "Social Navigation"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - 论文/应用\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Performance-Preserving Online Adaptation in Social Navigation via Diffusion Steering\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.24317v1\n---\n>[!abstract] 一句话总结：提出 DSRL（Diffusion Steering via RL）：冻结扩散策略、只用强化学习训练其噪声策略以实现「保性能」的在线自适应，并把多个随机种子训练出的扩散 RL 策略集成为基座策略。\n\n\n# 一、动机\n\n> 社交导航中的人机交互高度依赖部署环境的社会规范与机器人动力学，仿真难以完全复现，因此需要在部署环境中在线微调；但普通微调容易破坏基座模型原本「避让行人并到达目标」的导航主目标。\n\n\n# 二、方法\n\n> 提出 DSRL（Diffusion Steering via RL）：冻结扩散策略、只用强化学习训练其噪声策略以实现「保性能」的在线自适应，并把多个随机种子训练出的扩散 RL 策略集成为基座策略。\n\n\n# 三、核心实验结果\n\n> 摘要中未给出具体数值指标；作者报告与对比方法相比，所提方法在保持基座性能的前提下学习效率更高，能够通过适应社会规范实现灵活的行为控制，并通过硬件在环仿真（hardware-in-the-loop）验证了在物理机器人上的有效性。\n\n\n# 四、对我的启发\n\n> 仅训练噪声策略可保证不遗忘，但也限制了策略可迁移/可改变的范围；多 seed 集成的收益与推理开销之间的权衡未在摘要中量化，且目前只有 HIL 仿真验证、缺少真实部署中的长期在线适应证据。\n"
+}
