@@ -42,7 +42,8 @@
     "assets/img/covers/arxiv-2609-24385-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -53,13 +54,13 @@
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 33,
+  "score": 38,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 6 个（manipulation、dexterous、dexterous manipulation、in-hand）"
+      "hint": "频道关键词命中 7 个（manipulation、dexterous、dexterous manipulation、in-hand）"
     },
     {
       "id": "freshness",
@@ -78,6 +79,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 9 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -105,20 +112,20 @@
   "training_summary": "",
   "demo_videos": [
     {
-      "kind": "youtube",
-      "url": "https://www.youtube.com/watch?v=lJ4JGNmo-do",
       "embed_url": "https://www.youtube.com/embed/lJ4JGNmo-do",
+      "kind": "youtube",
+      "source": "project_page",
       "title": "GitHub - E-Kovtun/tactile · GitHub",
-      "source": "project_page"
+      "url": "https://www.youtube.com/watch?v=lJ4JGNmo-do"
     },
     {
-      "kind": "youtube",
-      "url": "https://www.youtube.com/watch?v=T_ha7fH7qKM",
       "embed_url": "https://www.youtube.com/embed/T_ha7fH7qKM",
+      "kind": "youtube",
+      "source": "project_page",
       "title": "GitHub - E-Kovtun/tactile · GitHub",
-      "source": "project_page"
+      "url": "https://www.youtube.com/watch?v=T_ha7fH7qKM"
     }
   ],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Tactile-JEPA: Topology-Aware Self-Supervised Representation Learning for Distributed Tactile Sensors\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.24385v1\n---\n>[!abstract] 一句话总结：提出 Tactile-JEPA：一种基于 JEPA 的自监督预训练方法，利用传感器连接图引导空间掩码，让模型从可见传感单元预测被掩码单元的嵌入，并通过双尺度掩码同时捕获局部接触细节与全局触觉表面状态。\n\n\n# 一、动机\n\n> 机器人在视觉遮挡下的富接触灵巧操作依赖触觉，但触觉编码器通常从原始噪声信号从零训练，且现有自监督方法几乎只针对视觉触觉传感器，未覆盖稀疏、不规则排布的分布式电子皮肤，直接套用视觉 SSL 并非最优。\n\n\n# 二、方法\n\n> 提出 Tactile-JEPA：一种基于 JEPA 的自监督预训练方法，利用传感器连接图引导空间掩码，让模型从可见传感单元预测被掩码单元的嵌入，并通过双尺度掩码同时捕获局部接触细节与全局触觉表面状态。\n\n\n# 三、核心实验结果\n\n> 在覆盖磁性/压阻传感器、不同机器人本体、单传感器与双传感器配置的三个数据集上，相比此前最优方法力估计误差降低 6.3%、手内朝向估计误差降低 20.8%，在策略学习等下游任务上也获得一致提升。\n\n\n# 四、对我的启发\n\n> 结论强调触觉感知的收益关键取决于编码器预训练质量；局限在于方法依赖已知的传感器拓扑连接图，且主要在力/朝向等回归与策略任务上验证，对更复杂接触操作与跨本体零样本迁移的泛化性仍待检验。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Tactile-JEPA: Topology-Aware Self-Supervised Representation Learning for Distributed Tactile Sensors\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.24385v1\n---\n>[!abstract] 一句话总结：提出 Tactile-JEPA：以传感器连接图引导空间掩码，从可见传感单元的嵌入预测被掩码单元的嵌入，并通过双尺度掩码同时捕捉局部接触细节与全局触觉表面状态，实现拓扑感知的自监督触觉预训练。\n\n\n# 一、动机\n\n> 机器人接触丰富操作中触觉感知关键，但现有触觉编码器多从头在含噪原始信号上训练，且自监督方法几乎只面向视觉触觉传感器（如 GelSight），忽略了传感单元稀疏、不规则排布的分布式电子皮肤，直接套用视觉 SSL 并不合适。\n\n\n# 二、方法\n\n> 提出 Tactile-JEPA：以传感器连接图引导空间掩码，从可见传感单元的嵌入预测被掩码单元的嵌入，并通过双尺度掩码同时捕捉局部接触细节与全局触觉表面状态，实现拓扑感知的自监督触觉预训练。\n\n\n# 三、核心实验结果\n\n> 在覆盖磁性与压阻传感器、不同机器人本体、单传感器与双传感器配置的三个数据集上，相比此前最优方法将力估计误差降低 6.3%、手内姿态误差降低 20.8%，并在策略学习等下游任务上取得一致增益；结果表明触觉感知的收益关键取决于编码器预训练质量。\n\n\n# 四、对我的启发\n\n> 该方法依赖已知的传感器连接拓扑图，当触觉布局变化或拓扑未知时的泛化能力有待验证；同时提示触觉表征需要兼顾局部接触细节与全局表面状态，对具身智能中的触觉预训练与跨本体迁移有直接启发。\n"
 }

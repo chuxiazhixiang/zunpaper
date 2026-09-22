@@ -138,5 +138,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"VLAW: Iterative Co-Improvement of Vision-Language-Action Policy and World Model\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2602.12063v2\n---\n>[!abstract] 一句话总结：提出一种简单的迭代共提升算法：用真实机器人 rollout 数据持续微调动作条件视频世界模型以提升其物理保真度，再用该世界模型生成补充合成 rollout 数据来训练并改进 VLA 策略，形成「世界模型—策略」交替迭代的闭环。\n\n\n# 一、动机\n\n> 真实世界中采集 VLA 策略的 rollout 数据代价高昂，而现有世界模型（动作条件视频生成模型）主要在缺乏失败案例覆盖的示范数据上训练，物理保真度不足，尤其难以刻画富接触操作中的关键物理细节，无法直接用于策略改进。\n\n\n# 二、方法\n\n> 提出一种简单的迭代共提升算法：用真实机器人 rollout 数据持续微调动作条件视频世界模型以提升其物理保真度，再用该世界模型生成补充合成 rollout 数据来训练并改进 VLA 策略，形成「世界模型—策略」交替迭代的闭环。\n\n\n# 三、核心实验结果\n\n> 在真实机器人多个下游任务上，相比基础策略取得 39.2% 的绝对成功率提升；其中仅靠生成合成 rollout 数据训练即带来 11.6% 的提升，验证了世界模型保真度与策略性能之间的正向循环。\n\n\n# 四、对我的启发\n\n> 该方法说明仿真/生成式世界模型作为数据源的瓶颈在于物理保真度而非数据量，用真实 rollout 反哺世界模型是关键；局限在于迭代仍需真实交互数据启动，且视频生成模型对接触丰富操作的建模能力与计算开销可能限制其扩展性，与具身智能中降低真机数据依赖的课题高度相关。\n"
 }

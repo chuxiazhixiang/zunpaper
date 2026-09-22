@@ -41,7 +41,8 @@
     "assets/img/covers/arxiv-2609-24317-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "sim2real"
   ],
   "badges": [
     {
@@ -52,7 +53,7 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 16,
+  "score": 21,
   "score_breakdown": [
     {
       "id": "keyword_density",
@@ -71,6 +72,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -95,5 +102,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - 论文/应用\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Performance-Preserving Online Adaptation in Social Navigation via Diffusion Steering\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.24317v1\n---\n>[!abstract] 一句话总结：提出 DSRL（Diffusion Steering via RL）：冻结扩散策略、只用强化学习训练其噪声策略以实现「保性能」的在线自适应，并把多个随机种子训练出的扩散 RL 策略集成为基座策略。\n\n\n# 一、动机\n\n> 社交导航中的人机交互高度依赖部署环境的社会规范与机器人动力学，仿真难以完全复现，因此需要在部署环境中在线微调；但普通微调容易破坏基座模型原本「避让行人并到达目标」的导航主目标。\n\n\n# 二、方法\n\n> 提出 DSRL（Diffusion Steering via RL）：冻结扩散策略、只用强化学习训练其噪声策略以实现「保性能」的在线自适应，并把多个随机种子训练出的扩散 RL 策略集成为基座策略。\n\n\n# 三、核心实验结果\n\n> 摘要中未给出具体数值指标；作者报告与对比方法相比，所提方法在保持基座性能的前提下学习效率更高，能够通过适应社会规范实现灵活的行为控制，并通过硬件在环仿真（hardware-in-the-loop）验证了在物理机器人上的有效性。\n\n\n# 四、对我的启发\n\n> 仅训练噪声策略可保证不遗忘，但也限制了策略可迁移/可改变的范围；多 seed 集成的收益与推理开销之间的权衡未在摘要中量化，且目前只有 HIL 仿真验证、缺少真实部署中的长期在线适应证据。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/SocialNavigation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Performance-Preserving Online Adaptation in Social Navigation via Diffusion Steering\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.24317v1\n---\n>[!abstract] 一句话总结：提出 DSRL（diffusion steering via reinforcement learning）：冻结扩散策略、只训练噪声策略做扩散引导，从而实现保性能的在线自适应；同时把多个随机种子训练出的扩散 RL 策略集成为基础策略以提升学习效果。\n\n\n# 一、动机\n\n> 社会导航中人机交互建模困难，而纯仿真无法复现真实场景、机器人动力学与各地社会规范，因此需要在部署环境中微调；但直接微调容易破坏基础模型原有的导航性能（避让行人、到达目的地）。\n\n\n# 二、方法\n\n> 提出 DSRL（diffusion steering via reinforcement learning）：冻结扩散策略、只训练噪声策略做扩散引导，从而实现保性能的在线自适应；同时把多个随机种子训练出的扩散 RL 策略集成为基础策略以提升学习效果。\n\n\n# 三、核心实验结果\n\n> 摘要未给出具体定量数字；作者报告相比其他方法能在保持性能的同时高效学习，可灵活调整行为以适配社会规范，并通过 hardware-in-the-loop 仿真在物理机器人上验证了有效性。\n\n\n# 四、对我的启发\n\n> 局限在于验证主要停留在硬件在环仿真、缺少真实部署与量化指标；启发是「冻结生成主策略、只微调引导/噪声策略」可作为基础策略在线微调的通用保性能范式，可迁移到其他扩散策略的部署自适应场景。\n"
 }
