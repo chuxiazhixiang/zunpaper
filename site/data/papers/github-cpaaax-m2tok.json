@@ -1,0 +1,74 @@
+{
+  "id": "github-cpaaax-m2tok",
+  "source": "github",
+  "title": "cpaaax/M2Tok",
+  "title_zh": "cpaaax/M2Tok",
+  "abstract": "# M2Tok (ECCV 2026): Getting Started This guide provides instructions for setting up the environment, training the M2Tok action tokenizer, and training the M2Tok-based VLA model. --- ## 1. Environment Setup Create a Conda environment and install the required dependencies: --- ## 2. Training M2Tok Action Tokenizer ### Dataset Preparation We provide the preprocessed dataset for training the action tokenizer. Download it from Hugging Face: - [RoboTwin_actions_chunk_8.pkl](https://huggingface.co/datasets/cpxu/M2Tok_data/blob/main/RoboTwin_actions_chunk_8.pkl) Place the downloaded file under your data directory and ensure the `train_data_path` in the config file (`action_tokenizer/pretrain_config_epoch200.yaml`) is set correctly. ### Training Train the action tokenizer using an 8-GPU distributed setup via `torchrun`: --- ## 3. Training M2Tok-based VLA ### Dataset Preparation The training data consists of 12 demonstration tasks collected on the Piper robotic arm in RoboTwin 2.0. Download the dataset from Hugging Face: - [RoboTwin Piper 12 Tasks Dataset](https://huggingface.co/datasets/cpxu/RoboTwin_piper_12_tasks_data) ### Model Backbones The VLA model utilizes the following pretrained components: - **Vision Encoder**: [google/siglip-so400m-patch14-224](https://huggingface.co/google/siglip-so400m-patch14-224) - **VLA Backbone**: [Qwen/Qwen2.5-0.5B](https://huggingface.co/Qwen/Qwen2.5-0.5B) ### Configuration Before starting the training, update the following paths in `src/vla/configs/training_based_on_qwen2.5_0.5B.yaml`: - `img_encoder`: Path for the SigLIP vision encoder. - `vla_model.vlm_model_path`: Path for Qwen2.5-0.5B. - `action_vae.model_path`: Checkpoint path of your trained M2Tok action tokenizer. - `data_root_dir`: Directory containing the downloaded RoboTwin trajectories. - `instruction_path`: Path to task instructions. ### Training Execution We train the VLA model on 4 $\\times$ H800 GPUs using Accelerate with DeepSpeed ZeRO-2:",
+  "abstract_zh": "本指南提供设置环境、训练 M2Tok 动作分词器以及训练基于 M2Tok 的 VLA 模型的说明。\n\n---\n\n## 1. 环境设置\n\n创建 Conda 环境并安装所需依赖：\n\n---\n\n## 2. 训练 M2Tok 动作分词器\n\n### 数据集准备\n\n我们提供了用于训练动作分词器的预处理数据集。从 Hugging Face 下载：\n\n- [RoboTwin_actions_chunk_8.pkl](https://huggingface.co/datasets/cpxu/M2Tok_data/blob/main/RoboTwin_actions_chunk_8.pkl)\n\n将下载的文件放在您的数据目录下，并确保配置文件（`action_tokenizer/pretrain_config_epoch200.yaml`）中的 `train_data_path` 设置正确。\n\n### 训练\n\n使用 8 卡分布式设置通过 `torchrun` 训练动作分词器：\n\n---\n\n## 3. 训练基于 M2Tok 的 VLA\n\n### 数据集准备\n\n训练数据由在 RoboTwin 2.0 中 Piper 机械臂上收集的 12 个演示任务组成。从 Hugging Face 下载数据集：\n\n- [RoboTwin Piper 12 Tasks Dataset](https://huggingface.co/datasets/cpxu/RoboTwin_piper_12_tasks_data)\n\n### 模型骨干\n\nVLA 模型使用以下预训练组件：\n\n- **视觉编码器**：[google/siglip-so400m-patch14-224](https://huggingface.co/google/siglip-so400m-patch14-224)\n- **VLA 骨干**：[Qwen/Qwen2.5-0.5B](https://huggingface.co/Qwen/Qwen2.5-0.5B)\n\n### 配置\n\n开始训练前，更新 `src/vla/configs/training_based_on_qwen2.5_0.5B.yaml` 中的以下路径：\n\n- `img_encoder`：SigLIP 视觉编码器的路径。\n- `vla_model.vlm_model_path`：Qwen2.5-0.5B 的路径。\n- `action_vae.model_path`：您训练好的 M2Tok 动作分词器的检查点路径。\n- `data_root_dir`：包含下载的 RoboTwin 轨迹的目录。\n- `instruction_path`：任务指令的路径。\n\n### 训练执行\n\n我们使用 Accelerate 和 DeepSpeed ZeRO-2 在 4 块 H800 GPU 上训练 VLA 模型：",
+  "tldr_zh": "M2Tok 动作分词器及 VLA 模型的训练指南。",
+  "cover_zh": "ECCV 2026 新作｜M2Tok 动作分词器让机器人学习更高效",
+  "authors": [
+    {
+      "name": "cpaaax",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2026-09-17",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/cpaaax/M2Tok",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 12,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 12,
+      "hint": "⭐ 4"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "ECCV 2026 官方动作 tokenizer + VLA 训练框架，含数据集与配置，属操作 VLA 方向，有参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "操作"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "cpaaax",
+    "repo": "M2Tok",
+    "stars": 4,
+    "language": "Python",
+    "pushed_at": "2026-09-17",
+    "created_at": "2026-06-29",
+    "topics": [],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"cpaaax/M2Tok\"\nYear: \"\"\nURL: https://github.com/cpaaax/M2Tok\n---\n>[!abstract] 一句话总结：作者提出 M2Tok（ECCV 2026）动作分词器：先在 RoboTwin 动作块数据（chunk 长度 8）上以 8 卡分布式、200 epoch 预训练一个动作 VAE 式 tokenizer，再把该 tokenizer 作为 action_vae 接入以 SigLIP-so400m 为视觉编码器、Qwen2.5-0.5B 为骨干的 VLA 模型中联合训练。\n\n\n# 一、动机\n\n> 视觉-语言-动作（VLA）模型需要把连续的机器人动作序列转成可被语言模型处理的离散单元，而通用分词器/直接回归往往难以在动作维度上兼顾多模态分布与重建精度，缺少专为动作块设计的可复用分词器。\n\n\n# 二、方法\n\n> 作者提出 M2Tok（ECCV 2026）动作分词器：先在 RoboTwin 动作块数据（chunk 长度 8）上以 8 卡分布式、200 epoch 预训练一个动作 VAE 式 tokenizer，再把该 tokenizer 作为 action_vae 接入以 SigLIP-so400m 为视觉编码器、Qwen2.5-0.5B 为骨干的 VLA 模型中联合训练。\n\n\n# 三、核心实验结果\n\n> README 未给出量化指标，仅报告了训练配置：动作分词器用 8 张 GPU、torchrun 分布式预训练 200 epoch；下游 VLA 在 RoboTwin 2.0 的 Piper 机械臂 12 个演示任务上、以 4×H800 + Accelerate + DeepSpeed ZeRO-2 训练；数据（RoboTwin_actions_chunk_8.pkl、RoboTwin Piper 12 Tasks）与配置均已开源。\n\n\n# 四、对我的启发\n\n> 目前只有工程流程而缺少成功率/重建误差等评测与消融，无法判断 M2Tok 相比朴素离散化或连续回归的实际增益；但其“动作块 → 离散 token → 复用为 VLA 动作头”的路线，对需要跨本体共享动作词表的具身策略研究有直接参考价值，值得跟进其正式论文的定量结果。\n"
+}

@@ -57,7 +57,8 @@
     "assets/img/covers/arxiv-2609-26408-p2.jpg"
   ],
   "channels": [
-    "locomotion"
+    "locomotion",
+    "manipulation"
   ],
   "badges": [
     {
@@ -68,7 +69,7 @@
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 19,
+  "score": 24,
   "score_breakdown": [
     {
       "id": "keyword_density",
@@ -87,6 +88,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 9 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -111,5 +118,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/VisionLanguageNavigation\n  - 状态/待读\nTitle: \"SparseNav: Instruction-conditioned Sparse Semantic Perception for Training-Free Vision-Language Navigation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.26408v1\n---\n>[!abstract] 一句话总结：提出免训练框架 SparseNav：持续维护轻量几何 BEV 地图与稀疏路标记忆，由指令管理器跟踪导航进度并识别当前活跃路标查询，仅在查询路标可见且其度量位置有助于下一步决策时调用开放词汇分割，再让 VLM 在混合前沿与局部方向 waypoint 候选中进行选择。\n\n\n# 一、动机\n\n> 现有基于地图的视觉语言导航会持续积累与当前指令无关的语义，导致不必要的感知开销、无关标注，并让 VLM 规划器消费的视觉-空间表示变得杂乱。SparseNav 旨在用“少即是多”的稀疏语义感知解决这一问题。\n\n\n# 二、方法\n\n> 提出免训练框架 SparseNav：持续维护轻量几何 BEV 地图与稀疏路标记忆，由指令管理器跟踪导航进度并识别当前活跃路标查询，仅在查询路标可见且其度量位置有助于下一步决策时调用开放词汇分割，再让 VLM 在混合前沿与局部方向 waypoint 候选中进行选择。\n\n\n# 三、核心实验结果\n\n> 无需额外训练即在 Val-Unseen 上取得 R2R-CE 成功率 42.8%、RxR-CE 成功率 40.7%；消融实验分析了语义感知策略及各组件贡献；并成功部署在 Unitree Go2 四足机器人上，使用 Intel RealSense D455 RGB-D 做几何建图与路标 grounding、Livox MID-360 LiDAR 做定位，无需预建地图，在多个室内环境中验证了指令条件 waypoint 导航的有效性。\n\n\n# 四、对我的启发\n\n> 该工作表明按指令稀疏获取语义可降低感知与表示冗余，对具身导航和机器人系统有借鉴意义；局限可能在于依赖开放词汇分割与 VLM，真实世界验证目前限于室内环境，且未展示更大规模户外或动态场景性能。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/VLN\n  - 状态/待读\nTitle: \"SparseNav: Instruction-conditioned Sparse Semantic Perception for Training-Free Vision-Language Navigation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.26408v1\n---\n>[!abstract] 一句话总结：提出免训练框架 SparseNav，持续维护轻量几何 BEV 地图与稀疏路标记忆，由指令管理器跟踪导航进度并识别当前子指令所需路标，仅在路标可见且其度量位置能辅助下一步决策时调用开放词汇分割，最终由 VLM 在混合 frontier 与局部方向路点候选中进行选择。\n\n\n# 一、动机\n\n> 现有基于地图的 VLN 持续累积语义，会超出当前指令需求，带来额外感知开销和无关标注，并让 VLM 规划器处理冗余的视觉-空间表示；SparseNav 旨在按需稀疏感知，避免“多即是好”的语义建图。\n\n\n# 二、方法\n\n> 提出免训练框架 SparseNav，持续维护轻量几何 BEV 地图与稀疏路标记忆，由指令管理器跟踪导航进度并识别当前子指令所需路标，仅在路标可见且其度量位置能辅助下一步决策时调用开放词汇分割，最终由 VLM 在混合 frontier 与局部方向路点候选中进行选择。\n\n\n# 三、核心实验结果\n\n> 无需额外训练，SparseNav 在 R2R-CE 和 RxR-CE 的 Val-Unseen 划分上分别取得 42.8% 和 40.7% 的成功率；并在 Unitree Go2 四足机器人上部署，使用 Intel RealSense D455 RGB-D 相机与 Livox MID-360 LiDAR，无需预建地图，在多个室内环境中验证了指令条件路点导航的有效性。\n\n\n# 四、对我的启发\n\n> 局限可能包括开放词汇分割在复杂环境中的可靠性、稀疏路标记忆对动态或遮挡场景的鲁棒性，以及对 VLM 推理能力的依赖；启发是“按需感知”能显著降低具身导航中的计算与标注成本，为免训练机器人导航提供可扩展思路。\n"
 }

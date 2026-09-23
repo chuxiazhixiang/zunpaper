@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 56,
-      "hint": "⭐ 613"
+      "hint": "⭐ 615"
     }
   ],
   "judge": {
@@ -62,12 +62,12 @@
   "github": {
     "owner": "NVIDIA",
     "repo": "GR00T-Dreams",
-    "stars": 613,
+    "stars": 615,
     "language": "Jupyter Notebook",
     "pushed_at": "2025-10-24",
     "created_at": "2025-06-09",
     "topics": [],
     "archived": false
   },
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/VideoGen\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"NVIDIA/GR00T-Dreams\"\nYear: \"\"\nURL: https://github.com/NVIDIA/GR00T-Dreams\n---\n>[!abstract] 一句话总结：以 NVIDIA Cosmos-Predict2 视频世界模型为基础，在机器人视频上后训练（video2world 微调），仅用一张初始图像加语言指令即可生成大规模合成机器人操作视频；再用微调过的 IDM（逆动力学模型）从生成视频中提取动作，转成 LeRobot 格式数据，最后用于微调 GR00T N1 策略，形成「世界模型生成 → IDM 反解动作 → 策略微调」的五步流水线（微调世界模型 / 生成合成视频 / 提取 IDM 动作 / 微调 GR00T N1 / 复现 DreamGenBench）。\n\n\n# 一、动机\n\n> 机器人操作策略的泛化受限于真实遥操作数据的稀缺与昂贵：为新任务、新物体、新环境采集轨迹成本极高，导致 GR00T N1 这类基础策略在训练分布之外表现骤降。GR00T-Dreams 试图用视频世界模型替代人工采集，把「数据问题」转化为「生成问题」。\n\n\n# 二、方法\n\n> 以 NVIDIA Cosmos-Predict2 视频世界模型为基础，在机器人视频上后训练（video2world 微调），仅用一张初始图像加语言指令即可生成大规模合成机器人操作视频；再用微调过的 IDM（逆动力学模型）从生成视频中提取动作，转成 LeRobot 格式数据，最后用于微调 GR00T N1 策略，形成「世界模型生成 → IDM 反解动作 → 策略微调」的五步流水线（微调世界模型 / 生成合成视频 / 提取 IDM 动作 / 微调 GR00T N1 / 复现 DreamGenBench）。\n\n\n# 三、核心实验结果\n\n> 1) 官方发布了完整可复现 pipeline（含 cosmos-predict2 后训练与推理文档、Reference Architecture 与 DreamGenBench 复现脚本），首次把视频世界模型作为机器人数据引擎开源出来；2) 定性结论是：仅凭单张图像 + 语言提示生成的合成轨迹，即可让机器人在未见过的物体与环境中学会新任务，无需任何针对性的遥操作数据；3) 注意：本摘要（仓库 README）未披露具体成功率数字，DreamGenBench 的量化提升需查阅配套论文（DreamGen: Unlocking Generalization in Robot Learning through Video World Models）中的表格。\n\n\n# 四、对我的启发\n\n> 这是「世界模型即数据工厂」范式在具身智能上的代表工作，与数据采集/跨本体迁移课题高度相关：若生成视频的物理真实性与 IDM 反解精度足够，长尾任务的数据成本可从人工遥操作降到近零。局限在于合成视频存在物理不合理与长时漂移，动作标签完全依赖 IDM，误差会累积并被策略学习放大；此外世界模型微调本身需要一定量的目标域机器人视频，对全新本体的零样本迁移能力仍待验证。\n"
 }

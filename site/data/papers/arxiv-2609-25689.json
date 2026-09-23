@@ -65,7 +65,8 @@
     "assets/img/covers/arxiv-2609-25689-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -80,7 +81,7 @@
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 41,
+  "score": 49,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -91,8 +92,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（manipulation）"
+      "points": 6,
+      "hint": "频道关键词命中 2 个（manipulation、long-horizon manipulation）"
     },
     {
       "id": "freshness",
@@ -105,6 +106,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 9 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -131,5 +138,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/数据\n  - 论文/系统\n  - 状态/待读\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\nTitle: \"MotionForge: A Data Generation Pipeline and Large-Scale Benchmark for Long-Horizon Manipulation of Dynamic Objects with Domain Shifts\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.25689v1\n---\n>[!abstract] 一句话总结：提出 MotionForge——首个面向动态操作的大规模仿真基准与数据生成流水线：构建覆盖 11 种运动模式的 40 个动态交互任务（含 17 个长时程任务），并提供单因子与联合域偏移的系统评测协议，以及将环境演化与策略推理时间解耦的延迟感知执行协议。\n\n\n# 一、动机\n\n> 现有动态操作仿真基准多聚焦于短时程、反应式的简单运动交互，既不支持系统性的域偏移（domain shift）评估，也缺乏与模型无关的实时执行协议，因而无法衡量策略在长时程动态场景下的鲁棒性。\n\n\n# 二、方法\n\n> 提出 MotionForge——首个面向动态操作的大规模仿真基准与数据生成流水线：构建覆盖 11 种运动模式的 40 个动态交互任务（含 17 个长时程任务），并提供单因子与联合域偏移的系统评测协议，以及将环境演化与策略推理时间解耦的延迟感知执行协议。\n\n\n# 三、核心实验结果\n\n> 1) 基准包含 40 个动态交互任务、11 种运动模式，其中 17 个为长时程任务；2) 在单因子偏移（如仅背景变化）下策略尚可应对，但在对象、背景、光照、速度同时变化的联合域偏移下，代表性通用机器人策略性能出现显著下降；3) 解耦的延迟感知执行协议揭示了推理延迟对动态长时程操作成功率的关键影响。\n\n\n# 四、对我的启发\n\n> 结论表明当前通用机器人策略距离在域偏移下稳健完成长时程动态操作仍有明显差距；其价值在于提供了可复现的评测与数据生成工具，但基准仍局限于仿真环境，sim-to-real 迁移与真实动态操作的验证尚未涉及。\n"
+  "note": "---\ntags:\n  - 论文/数据\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"MotionForge: A Data Generation Pipeline and Large-Scale Benchmark for Long-Horizon Manipulation of Dynamic Objects with Domain Shifts\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.25689v1\n---\n>[!abstract] 一句话总结：提出 MotionForge——首个面向动态物体操作的数据生成管线与大规模仿真基准，构建 40 个动态交互任务（覆盖 11 种运动模式，其中 17 个为长时程任务），并配套单因子/联合域偏移评估协议与解耦的延迟感知执行协议（环境演化不受策略推理耗时影响）。\n\n\n# 一、动机\n\n> 现有动态操作基准多局限于短时程、反应式的简单运动交互，既无法系统评估策略在域偏移（背景、物体、光照、速度变化）下的鲁棒性，也缺乏与模型无关的实时执行协议，导致动态环境中的长时程操作能力难以被真实衡量。\n\n\n# 二、方法\n\n> 提出 MotionForge——首个面向动态物体操作的数据生成管线与大规模仿真基准，构建 40 个动态交互任务（覆盖 11 种运动模式，其中 17 个为长时程任务），并配套单因子/联合域偏移评估协议与解耦的延迟感知执行协议（环境演化不受策略推理耗时影响）。\n\n\n# 三、核心实验结果\n\n> 对代表性通用机器人策略的评测显示：在单一域偏移下性能尚可，但在联合域偏移（物体、背景、光照、速度同时变化）下性能大幅下降，暴露出当前策略能力与动态物体长时程鲁棒操作需求之间的显著差距；基准共含 40 个任务、11 种运动模式、17 个长时程任务。\n\n\n# 四、对我的启发\n\n> 该工作将「域偏移」与「长时程动态交互」两个维度联合考察，指出了现有通用策略在分布外动态场景下的关键短板；局限在于全部评测基于仿真，真实世界的动力学误差与感知噪声尚未验证，但延迟感知执行协议对真机部署评测具有直接借鉴价值。\n"
 }

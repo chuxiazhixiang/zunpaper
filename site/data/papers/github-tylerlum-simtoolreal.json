@@ -16,7 +16,7 @@
   "primary_category": "",
   "categories": [],
   "published": "",
-  "updated": "2026-09-04",
+  "updated": "2026-09-21",
   "arxiv_id": "",
   "pdf_url": "",
   "abs_url": "https://github.com/tylerlum/simtoolreal",
@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 52,
-      "hint": "⭐ 388"
+      "hint": "⭐ 393"
     }
   ],
   "judge": {
@@ -62,12 +62,12 @@
   "github": {
     "owner": "tylerlum",
     "repo": "simtoolreal",
-    "stars": 388,
+    "stars": 393,
     "language": "Jupyter Notebook",
-    "pushed_at": "2026-09-04",
+    "pushed_at": "2026-09-21",
     "created_at": "2026-02-08",
     "topics": [],
     "archived": false
   },
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"tylerlum/simtoolreal\"\nYear: \"\"\nURL: https://github.com/tylerlum/simtoolreal\n---\n>[!abstract] 一句话总结：学习一个以物体为中心的强化学习策略：在 Isaac Sim / Isaac Gym 仿真中用 RL 训练灵巧手操作策略，策略输入以被操作物体的点云/位姿（由 SAM + FoundationPose 感知提供）为核心的物体中心表征而非工具特定的关节或外形编码，从而可零样本迁移到训练中未见过的工具并部署到真机。\n\n\n# 一、动机\n\n> 灵巧手使用工具（如锤子、螺丝刀、勺子等）的操作策略通常针对特定工具训练，难以泛化到未见过的工具与新物体；该工作希望用「以物体为中心」的表征摆脱对特定工具几何的过拟合，实现对新工具与真实场景的零样本泛化。\n\n\n# 二、方法\n\n> 学习一个以物体为中心的强化学习策略：在 Isaac Sim / Isaac Gym 仿真中用 RL 训练灵巧手操作策略，策略输入以被操作物体的点云/位姿（由 SAM + FoundationPose 感知提供）为核心的物体中心表征而非工具特定的关节或外形编码，从而可零样本迁移到训练中未见过的工具并部署到真机。\n\n\n# 三、核心实验结果\n\n> 公开仓库与摘要未给出量化指标（成功率、泛化工具数量等具体数字），主要交付物为：(1) 官方实现与预训练策略（config.yaml + model.pth）；(2) DexToolBench 灵巧工具操作基准，支持按工具类别/实例/任务在网页交互 demo（localhost:8080）中评测；(3) Isaac Sim（推荐，Python 3.11，pip 安装）与 Isaac Gym（legacy，Python 3.8）两套仿真训练/评测环境；(4) 仿真与真实世界的策略部署流程。\n\n\n# 四、对我的启发\n\n> 启发：以物体为中心的表征是把灵巧操作策略从「单工具专用」推向「零样本通用」的关键设计，配合 SAM+FoundationPose 的通用物体位姿感知，可将「工具」当作任意刚体处理，减少工具特定工程。局限：策略性能上界受感知精度（FoundationPose 位姿跟踪）制约；仓库为工程实现，暂未提供可量化的跨工具/真机成功率对比，零样本泛化的边界（接触丰富、铰接物体等）仍需实验验证。\n"
 }

@@ -49,7 +49,8 @@
     "assets/img/covers/arxiv-2609-25961-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -64,7 +65,7 @@
   "related_links": [],
   "page_count": 28,
   "source_tags": [],
-  "score": 44,
+  "score": 49,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -89,6 +90,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 28 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -116,5 +123,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"An Action Is Worth One Patch: Unified World-Action Modeling with PatchWAM\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.25961v1\n---\n>[!abstract] 一句话总结：提出 PatchWAM（Patch World-Action Model），通过固定的 Action-as-Patch 映射把连续动作视作另一种 patch 输入到视觉骨干中，使单个模型在同一生成过程中同时预测机器人动作与未来场景，无需专用 action head 或单独 action expert。\n\n\n# 一、动机\n\n> 现有世界模型/生成式视觉模型接入连续控制时，普遍需要额外的可训练 action head 或独立的 action expert 来桥接低维动作与高维视觉表征，隐含假设是视觉预测与动作生成需要分离的计算通路。\n\n\n# 二、方法\n\n> 提出 PatchWAM（Patch World-Action Model），通过固定的 Action-as-Patch 映射把连续动作视作另一种 patch 输入到视觉骨干中，使单个模型在同一生成过程中同时预测机器人动作与未来场景，无需专用 action head 或单独 action expert。\n\n\n# 三、核心实验结果\n\n> 在子采样训练窗口设置下，性能超过参数匹配的双专家（dual-expert）控制基线；全量数据并加入额外增强示范后，LIBERO-Plus 成功率达 91.8%，RoboTwin 2.0 成功率达 96.12%。\n\n\n# 四、对我的启发\n\n> 核心启发是“能力不必新增，只需继承”——扩展生成式骨干的瓶颈在于新信号写入的接口形式（表示兼容性），而非模型本身的建模容量；局限在于依赖固定的 Action-as-Patch 映射，且结果集中在仿真操作基准，真实机器人泛化性仍待验证。与课题相关性：对具身智能/机器人操作与统一世界-动作建模方向高度相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"An Action Is Worth One Patch: Unified World-Action Modeling with PatchWAM\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.25961v1\n---\n>[!abstract] 一句话总结：提出 PatchWAM（Patch World-Action Model）：用固定映射 Action-as-Patch 把连续动作直接表示成与视觉 token 同构的 patch，使单一生成式视觉骨干在同一生成过程中同时输出机器人动作与未来场景预测，无需专用动作头或独立动作专家。\n\n\n# 一、动机\n\n> 现有世界模型转向连续控制时，通常需要额外引入可训练的动作头或独立动作专家，把低维动作与高维视觉表征分开处理，从而割裂了视觉预测与动作生成，并带来额外参数与训练负担。\n\n\n# 二、方法\n\n> 提出 PatchWAM（Patch World-Action Model）：用固定映射 Action-as-Patch 把连续动作直接表示成与视觉 token 同构的 patch，使单一生成式视觉骨干在同一生成过程中同时输出机器人动作与未来场景预测，无需专用动作头或独立动作专家。\n\n\n# 三、核心实验结果\n\n> 在子采样训练窗口设置下，性能优于参数匹配的双专家控制方案；全量数据并加入增强演示后，LIBERO-Plus 成功率 91.8%，RoboTwin 2.0 成功率 96.12%。\n\n\n# 四、对我的启发\n\n> 结论表明能力不必新增而可被继承——扩展生成式骨干的瓶颈在于新信号的接口表示（写成什么 patch），而非模型本身的建模容量；局限在于 Action-as-Patch 为固定映射，动作分辨率与异构动作空间的适配性仍待验证，且与视觉 patch 共享通道可能在高频精细控制上受限。\n"
 }

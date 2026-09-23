@@ -1,0 +1,74 @@
+{
+  "id": "github-baai-humanoid-mosaic",
+  "source": "github",
+  "title": "BAAI-Humanoid/MOSAIC",
+  "title_zh": "BAAI-Humanoid/MOSAIC",
+  "abstract": "MOSAIC: Bridging the Sim-to-Real Gap in Generalist Humanoid Motion Tracking and Teleoperation with Rapid Residual Adaptation\n\n# MOSAIC Training Code [ ](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html) [ ](https://isaac-sim.github.io/IsaacLab) [ ](https://docs.python.org/3/whatsnew/3.10.html) [ ](https://releases.ubuntu.com/20.04/) [ ](https://pre-commit.com/) [ ](https://opensource.org/license/apache-2-0) [[Website]](https://baai-humanoid.github.io/MOSAIC/) [[Arxiv]](https://arxiv.org/pdf/2602.08594) [[Dataset]](https://huggingface.co/datasets/BAAI-Humanoid/MOSAIC_Dataset) [[Model]](https://huggingface.co/BAAI-Humanoid/MOSAIC_Model) ## Overview MOSAIC is an open-source system for generalist humanoid motion tracking and whole-body teleoperation across multiple interfaces. It trains a teleoperation-oriented tracker with rewards that emphasize global motion consistency for stable, long-horizon behaviors. To bridge sim-to-real interface gaps, it uses rapid residual adaptation to inject interface-specific corrections while preserving generality. This repo focuses on the teleoperation policy training; for sim-to-sim and sim-to-real deployment, see [RobotBridge](https://github.com/BAAI-Humanoid/RobotBridge). ## Installation - Install Isaac Lab v2.1.0 by following the [installation guide](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/index.html). We recommend using the conda installation as it simplifies calling Python scripts from the terminal. - Clone this repository separately from the Isaac Lab installation (i.e., outside the `IsaacLab` directory): - Using a Python interpreter that has Isaac Lab installed, install the library and install the algorithm library ## General Training Pipeline ### Motion Preprocessing We store all processed motions locally. The reference motion should be retargeted and use generalized coordinates only. - Gather the reference motion datasets (please follow the original licenses), we use the same convention as .csv of [Unitree's dataset](https://huggingface.co/datasets/lvhaidong/LAFAN1_Retargeting_Dataset) - Convert retargeted mo",
+  "abstract_zh": "MOSAIC 是一个开源系统，用于跨多种接口的通用人形运动跟踪和全身遥操作。它训练了一个面向遥操作的跟踪器，其奖励强调全局运动一致性，以实现稳定、长时程的行为。为了弥合仿真到现实的接口差距，它使用快速残差自适应来注入接口特定的修正，同时保持通用性。本仓库专注于遥操作策略训练；关于仿真到仿真和仿真到现实的部署，请参见 RobotBridge。",
+  "tldr_zh": "MOSAIC 开源系统通过快速残差自适应实现通用人形运动跟踪与遥操作。",
+  "cover_zh": "人形机器人也能玩转遥操作？MOSAIC 用残差自适应搞定仿真到现实",
+  "authors": [
+    {
+      "name": "BAAI-Humanoid",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2026-03-07",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/BAAI-Humanoid/MOSAIC",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "loco-manip-wbc"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 43,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 43,
+      "hint": "⭐ 142"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "loco-manip-wbc",
+    "reason": "官方开源人形全身运动跟踪与遥操作训练系统，含数据集与模型，具科研价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "全身控制"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "BAAI-Humanoid",
+    "repo": "MOSAIC",
+    "stars": 142,
+    "language": "Python",
+    "pushed_at": "2026-03-07",
+    "created_at": "2026-02-10",
+    "topics": [],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/Teleoperation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"BAAI-Humanoid/MOSAIC\"\nYear: \"\"\nURL: https://github.com/BAAI-Humanoid/MOSAIC\n---\n>[!abstract] 一句话总结：训练面向遥操作的运动跟踪器，通过强调全局运动一致性的奖励获得稳定长时程行为，再用快速残差适配（rapid residual adaptation）注入接口特定的修正量，在保留通用性的同时弥合仿真到现实的接口差异。\n\n\n# 一、动机\n\n> 通用人形机器人的运动跟踪与全身遥操作在仿真到现实之间存在接口差异（不同遥操作设备、观测与动作空间的 gap），导致通用策略迁移到真机时性能下降，难以保持长时程稳定行为。\n\n\n# 二、方法\n\n> 训练面向遥操作的运动跟踪器，通过强调全局运动一致性的奖励获得稳定长时程行为，再用快速残差适配（rapid residual adaptation）注入接口特定的修正量，在保留通用性的同时弥合仿真到现实的接口差异。\n\n\n# 三、核心实验结果\n\n> 所给材料（标题、摘要与仓库说明）未提供具体量化指标，无法给出数值结果；系统组成上，训练侧基于 Isaac Lab v2.1.0 与 Isaac Sim，部署侧由 RobotBridge 负责 sim-to-sim 与 sim-to-real，并开源了数据集与模型权重。\n\n\n# 四、对我的启发\n\n> 局限：残差适配依赖接口特定数据，跨接口泛化能力与残差模块的容量/收敛性未在摘要中说明；启发：将「通用跟踪策略 + 轻量接口残差」分层解耦，是低成本适配多种遥操作硬件与真机接口的可复用范式，对跨具身/跨设备迁移有参考价值。\n"
+}

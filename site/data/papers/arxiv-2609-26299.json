@@ -77,7 +77,8 @@
     "assets/img/covers/arxiv-2609-26299-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -88,13 +89,13 @@
   "related_links": [],
   "page_count": 17,
   "source_tags": [],
-  "score": 16,
+  "score": 30,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（imitation learning）"
+      "points": 12,
+      "hint": "频道关键词命中 5 个（imitation learning、world model、world models、latent world model）"
     },
     {
       "id": "freshness",
@@ -107,6 +108,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 17 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -132,5 +139,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/CV\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/AutonomousDriving\n  - 状态/待读\nTitle: \"ForeDrive: Foresight-Guided End-to-End Autonomous Driving with a Planning-Relevant Latent World Model\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.26299v1\n---\n>[!abstract] 一句话总结：提出 ForeDrive：用 JEPA 风格世界模型学习多时域规划相关的潜在未来表征，并以非对称方式耦合到 Diffusion Transformer 规划器——规划梯度更新共享在线编码器，stop-gradient 路径仅用预测损失训练潜在预测器，同时引入门控视觉融合、未来状态注入与轨迹自适应偏置（TAB）在不压制当前观测的前提下注入未来引导。\n\n\n# 一、动机\n\n> 现有潜在世界模型以「未来可预测性」为优化目标，学到的表征未必对规划有用，预测结果通常只用于预训练或辅助监督，而非作为轨迹生成的直接条件信号。\n\n\n# 二、方法\n\n> 提出 ForeDrive：用 JEPA 风格世界模型学习多时域规划相关的潜在未来表征，并以非对称方式耦合到 Diffusion Transformer 规划器——规划梯度更新共享在线编码器，stop-gradient 路径仅用预测损失训练潜在预测器，同时引入门控视觉融合、未来状态注入与轨迹自适应偏置（TAB）在不压制当前观测的前提下注入未来引导。\n\n\n# 三、核心实验结果\n\n> 仅用纯模仿学习训练、推理时只输入当前前视图像：NAVSIM v1 上达到 89.9 PDMS，NAVSIM v2 上达到 90.0 one-stage EPDMS；无需强化学习，也无需外部轨迹评分器（trajectory scorer）。\n\n\n# 四、对我的启发\n\n> 局限在于仅依赖单目前视图、评测限于 NAVSIM 仿真基准，且未来潜在表征的可靠性随时域变化需靠门控机制补偿；其「规划梯度反向塑造世界模型表征 + stop-gradient 非对称耦合」的思路可迁移到机器人操作/具身导航中，把世界模型从辅助监督变为策略的直接条件输入。\n"
 }

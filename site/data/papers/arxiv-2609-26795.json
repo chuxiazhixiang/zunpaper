@@ -63,7 +63,8 @@
     "assets/img/covers/arxiv-2609-26795-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "sim2real"
   ],
   "badges": [
     {
@@ -74,7 +75,7 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 16,
+  "score": 21,
   "score_breakdown": [
     {
       "id": "keyword_density",
@@ -93,6 +94,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -119,5 +126,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/CV\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"φ-RIE: From Photorealistic Reconstruction to Interactive Environments\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.26795v1\n---\n>[!abstract] 一句话总结：提出 φ-RIE，一个 Gaussian-native 管线：把场景观测（Scene Observation）作为共享证据送入耦合场景构建（Coupled Scene Construction），用同一物体身份同时定义可动仿真资产与需要被移除并补全的场景内容，从而在保持未编辑高斯不变的前提下，为交互式环境渲染输出配准好的资产与补全后的背景高斯。\n\n\n# 一、动机\n\n> 3D Gaussian Splatting 重建出的场景虽然视觉逼真，但整体表示本身不支持物理交互：机器人仿真要求物体能独立移动、发生接触、并露出原本被遮挡的环境。这一差距源于物体外观与背景纠缠、隐藏的物体几何与被遮挡的背景内容未被观测到。\n\n\n# 二、方法\n\n> 提出 φ-RIE，一个 Gaussian-native 管线：把场景观测（Scene Observation）作为共享证据送入耦合场景构建（Coupled Scene Construction），用同一物体身份同时定义可动仿真资产与需要被移除并补全的场景内容，从而在保持未编辑高斯不变的前提下，为交互式环境渲染输出配准好的资产与补全后的背景高斯。\n\n\n# 三、核心实验结果\n\n> 在 50 个 ScanNet++ 场景上，基于证据的物体选择与配准重试（registration retry）在固定保留率下把 20 mm 阈值下的匹配 F1 从 0.336 提升到 0.383；额外实验验证了资产的可在仿真器中执行、相比单一生成器基线的操作性能提升，并量化了场景转换带来的视觉代价。\n\n\n# 四、对我的启发\n\n> 核心启发是「资产构建与源场景移除应当耦合」，即一个物体身份同时决定可动资产和需要删除/补全的背景，这比先分割再独立生成更一致，可直接服务于机器人仿真与具身智能数据生成。局限在于转换存在视觉质量损失，且效果依赖重建质量与遮挡内容补全的准确性，未观测几何仍是误差来源。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/CV\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"φ-RIE: From Photorealistic Reconstruction to Interactive Environments\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.26795v1\n---\n>[!abstract] 一句话总结：提出φ-RIE，一个Gaussian-native流水线：将选定对象转化为可移动仿真资产，同时保留其余重建；核心是耦合资产构建与源移除，由同一对象身份定义可移动资产及需移除/补全的场景内容，并通过Scene Observation共享证据给Coupled Scene Construction，生成配准资产和补全背景Gaussians，用于交互环境中的仿真驱动渲染。\n\n\n# 一、动机\n\n> 3DGS虽能对捕获场景进行照片级重建，但其表示本身不支持物理交互；机器人仿真需要对象可独立运动、发生接触并暴露原本被遮挡的环境，而当前对象外观常与背景纠缠，隐藏几何与被遮挡背景也可能未被观测。\n\n\n# 二、方法\n\n> 提出φ-RIE，一个Gaussian-native流水线：将选定对象转化为可移动仿真资产，同时保留其余重建；核心是耦合资产构建与源移除，由同一对象身份定义可移动资产及需移除/补全的场景内容，并通过Scene Observation共享证据给Coupled Scene Construction，生成配准资产和补全背景Gaussians，用于交互环境中的仿真驱动渲染。\n\n\n# 三、核心实验结果\n\n> 在50个ScanNet++场景上，基于证据的选择与配准重试在固定保留率下将20 mm匹配F1从0.336提升至0.383；进一步实验验证了资产生成可执行性、相较单一生成器基线在操作任务上的增益，并量化了场景转换的视觉代价。\n\n\n# 四、对我的启发\n\n> 方法依赖可观测证据与配准质量，对被遮挡区域的补全可能引入视觉/几何误差，且转换存在视觉代价；但其耦合资产构建与源移除的思路对机器人仿真中的交互场景生成具有启发。\n"
 }

@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 53,
-      "hint": "⭐ 459"
+      "hint": "⭐ 460"
     }
   ],
   "judge": {
@@ -62,7 +62,7 @@
   "github": {
     "owner": "danijar",
     "repo": "daydreamer",
-    "stars": 459,
+    "stars": 460,
     "language": "Jupyter Notebook",
     "pushed_at": "2022-12-19",
     "created_at": "2022-09-13",
@@ -73,5 +73,5 @@
     ],
     "archived": false
   },
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"danijar/daydreamer\"\nYear: \"\"\nURL: https://github.com/danijar/daydreamer\n---\n>[!abstract] 一句话总结：DayDreamer 用「actor 进程与环境交互写入 replay buffer + learner 进程训练世界模型并用其想象轨迹训练 actor-critic」的双进程框架：世界模型先把同一时间步的本体感知与视觉输入融合成紧凑离散表征，用 RNN 预测其序列并重构输入、预测奖励与回合结束，随后行为策略完全在世界模型的表征空间内做 on-policy 想象式强化学习。\n\n\n# 一、动机\n\n> 真实机器人上的强化学习通常需要仿真器预训练或海量真实交互数据，而仿真到现实迁移存在差距；该工作希望让机器人在真实世界中仅用少量经验、完全不用模拟器就能学会复杂行为。\n\n\n# 二、方法\n\n> DayDreamer 用「actor 进程与环境交互写入 replay buffer + learner 进程训练世界模型并用其想象轨迹训练 actor-critic」的双进程框架：世界模型先把同一时间步的本体感知与视觉输入融合成紧凑离散表征，用 RNN 预测其序列并重构输入、预测奖励与回合结束，随后行为策略完全在世界模型的表征空间内做 on-policy 想象式强化学习。\n\n\n# 三、核心实验结果\n\n> 在四种真实机器人上验证：(1) A1 四足机器人约 1 小时真实经验学会行走，且无需仿真器先验；(2) XArm 约 1 小时学会抓取放置；(3) UR5 在真实世界中学会堆叠物体（数小时量级）；(4) Sphero 学会目标点驱动，均在真实世界在线学习，样本效率显著优于从零的 model-free 方法。\n\n\n# 四、对我的启发\n\n> 局限在于真实机器人试错存在安全风险，需要人工重置/干预，且高维视觉与稀疏奖励任务仍较脆弱，训练稳定性和长期记忆能力受限；启发是将世界模型 + 想象 RL 作为真机低数据学习范式，为跨本体、视觉-本体融合的通用机器人学习提供了可复用的工程基线（代码为 TensorFlow 2 实现）。\n"
 }

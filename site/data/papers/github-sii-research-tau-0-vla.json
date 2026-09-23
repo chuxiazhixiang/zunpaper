@@ -3,7 +3,7 @@
   "source": "github",
   "title": "sii-research/tau-0-vla",
   "title_zh": "sii-research/tau-0-vla",
-  "abstract": "This repo is the official implementation of  \"τ0-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation\".\n\n# τ₀-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation &nbsp; &nbsp; This repo is the official implementation of **τ₀-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation**. ## News - **[2026.07.27]** 🚀 We release the **τ₀-VLA** model [Paper](https://arxiv.org/abs/2608.16885), [Project Website](https://tau0-vla.github.io/), and [Hugging Face](https://huggingface.co/sii-research/tau-0-vla). - **[2026.08.19]** 📢 We plan to progressively release components of the high-level policy. Please stay tuned for updates. ## Overview τ₀-VLA is a hierarchical robot foundation model for long-horizon manipulation. A memory-augmented high-level policy generates the next subtask and uses world-model-guided test-time computation to search over alternatives when additional reasoning is needed. A generalist low-level policy then executes the selected subtask across robot embodiments. The low-level policy combines a Qwen3.5 vision-language backbone with a Mixture-of-Transformers action expert trained through conditional flow matching. It uses a unified 40-dimensional state/action space and was trained on 40,115 hours of heterogeneous real-world robot data with multimodal co-training. ## Installation The reference environment uses Python 3.11, CUDA 12.8, and PyTorch 2.7.1. ## Example data and post-training [`example_data/`](example_data/README.md) contains a small AgiBot World subset in LeRobot v3.0 format. The matching post-training recipe is under [`configs/example_agibot_world_gong/`](configs/example_agibot_world_gong/README.md). For another dataset or robot, start from [`configs/_template/`](configs/_template/README.md) and [`src/tau0_vla/adapters/_template/`](src/tau0_vla/adapters/_template/README.md). ## Serving and evaluation Public v1 serving supports joint-control checkpoints only. Native EEF data may be used for training, but EEF serving is not supported in this release. Serve a post-trained joint-control",
+  "abstract": "This repo is the official implementation of  \"τ0-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation\".\n\n# τ₀-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation &nbsp; &nbsp; This repo is the official implementation of **τ₀-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation**. ## News - **[2026.09.21]** We release the **high-level proposal and world model**, with weights, inference and fine-tuning code. See the [high-level guide](high_level/README.md) for setup and usage. - **[2026.09.20]** We release **LIBERO post-training and simulation evaluation**. See the [LIBERO guide](configs/libero/README.md) for checkpoints, setup, and evaluation results. - **[2026.08.19]** 📢 We plan to progressively release components of the high-level policy. Please stay tuned for updates. - **[2026.07.27]** 🚀 We release the **τ₀-VLA** model [Paper](https://arxiv.org/abs/2608.16885), [Project Website](https://tau0-vla.github.io/), and [Hugging Face](https://huggingface.co/sii-research/tau-0-vla). ## Overview τ₀-VLA is a hierarchical robot foundation model for long-horizon manipulation. A memory-augmented high-level policy generates the next subtask and uses world-model-guided test-time computation to search over alternatives when additional reasoning is needed. A generalist low-level policy then executes the selected subtask across robot embodiments. The low-level policy combines a Qwen3.5 vision-language backbone with a Mixture-of-Transformers action expert trained through conditional flow matching. It uses a unified 40-dimensional state/action space and was trained on 40,115 hours of heterogeneous real-world robot data with multimodal co-training. ## Model checkpoints | Model | Description | | --- | --- | | [τ₀-VLA](https://huggingface.co/sii-research/tau-0-vla) | Pretrained low-level policy for robot post-training | | [τ₀-VLA LIBERO](https://huggingface.co/sii-research/tau-0-vla-libero) | LIBERO checkpoint for simulation evaluation | | [τ₀-VLA Proposal](https://huggingface.co/sii-research/tau-0-vla-proposal) | Hig",
   "abstract_zh": "本仓库是“τ₀-VLA：一个具有世界模型引导测试时计算的分层机器人基础模型”的官方实现。τ₀-VLA是一个用于长时程操作任务的分层机器人基础模型。其高层策略具有记忆增强功能，能够生成下一个子任务，并在需要额外推理时，利用世界模型引导的测试时计算来搜索替代方案。随后，一个通用的低层策略跨机器人本体执行所选子任务。低层策略结合了Qwen3.5视觉语言骨干网络和通过条件流匹配训练的混合Transformer动作专家。它使用统一的40维状态/动作空间，并在40,115小时异构真实世界机器人数据上进行了多模态协同训练。",
   "tldr_zh": "τ₀-VLA是分层机器人基础模型，用世界模型引导测试时计算，提升长时程操作能力。",
   "cover_zh": "机器人也能“深思熟虑”？这个新模型用世界模型引导推理，长时程操作稳了！",
@@ -16,7 +16,7 @@
   "primary_category": "",
   "categories": [],
   "published": "",
-  "updated": "2026-09-03",
+  "updated": "2026-09-21",
   "arxiv_id": "",
   "pdf_url": "",
   "abs_url": "https://github.com/sii-research/tau-0-vla",
@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 56,
-      "hint": "⭐ 619"
+      "hint": "⭐ 627"
     }
   ],
   "judge": {
@@ -62,12 +62,12 @@
   "github": {
     "owner": "sii-research",
     "repo": "tau-0-vla",
-    "stars": 619,
+    "stars": 627,
     "language": "Python",
-    "pushed_at": "2026-09-03",
+    "pushed_at": "2026-09-21",
     "created_at": "2026-07-26",
     "topics": [],
     "archived": false
   },
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"sii-research/tau-0-vla\"\nYear: \"\"\nURL: https://github.com/sii-research/tau-0-vla\n---\n>[!abstract] 一句话总结：τ0-VLA 采用分层架构：记忆增强的高层策略生成下一子任务，并在需要时用世界模型引导的测试时计算（test-time computation）在多个候选方案间搜索；低层通用策略以 Qwen3.5 视觉-语言骨干加 Mixture-of-Transformers 动作专家、经条件流匹配（conditional flow matching）训练，在统一的 40 维状态/动作空间中跨本体执行子任务。\n\n\n# 一、动机\n\n> 长时序操作任务中，单一端到端策略难以在需要额外推理时进行多步规划与纠错，且高层决策缺乏对候选子任务的搜索与验证机制；同时不同机器人本体之间的状态/动作空间异构，阻碍了通用策略的迁移。\n\n\n# 二、方法\n\n> τ0-VLA 采用分层架构：记忆增强的高层策略生成下一子任务，并在需要时用世界模型引导的测试时计算（test-time computation）在多个候选方案间搜索；低层通用策略以 Qwen3.5 视觉-语言骨干加 Mixture-of-Transformers 动作专家、经条件流匹配（conditional flow matching）训练，在统一的 40 维状态/动作空间中跨本体执行子任务。\n\n\n# 三、核心实验结果\n\n> 低层策略在 40,115 小时异构真实机器人数据上以多模态联合训练完成预训练，并使用统一 40 维状态/动作空间覆盖多种机器人本体；已完成 LIBERO 后训练与仿真评测，并开源高层 proposal 与世界模型权重、推理及微调代码（含 LIBERO checkpoint）。\n\n\n# 四、对我的启发\n\n> 分层 + 世界模型引导的测试时搜索思路对长时序操作很有参考价值，记忆增强的高层策略与统一动作空间是跨本体迁移的关键设计；但仓库未给出具体的仿真/真机成功率数字，实际增益需查阅论文原文验证，且测试时搜索带来的推理延迟与算力开销在真机部署中可能成为瓶颈。\n"
 }

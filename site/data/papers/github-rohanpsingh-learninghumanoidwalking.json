@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 62,
-      "hint": "⭐ 1215"
+      "hint": "⭐ 1222"
     }
   ],
   "judge": {
@@ -62,7 +62,7 @@
   "github": {
     "owner": "rohanpsingh",
     "repo": "LearningHumanoidWalking",
-    "stars": 1215,
+    "stars": 1222,
     "language": "Python",
     "pushed_at": "2026-05-03",
     "created_at": "2022-07-13",
@@ -77,5 +77,5 @@
     ],
     "archived": false
   },
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/HumanoidLocomotion\n  - 状态/待读\nTitle: \"rohanpsingh/LearningHumanoidWalking\"\nYear: \"\"\nURL: https://github.com/rohanpsingh/LearningHumanoidWalking\n---\n>[!abstract] 一句话总结：该仓库基于深度强化学习（PPO 风格，含动作平滑、观测历史与镜像对称等训练技巧）训练人形机器人行走策略，支持给定规划落脚点的步态学习与关节电流反馈输入，实现仿真训练到真机部署。\n\n\n# 一、动机\n\n> 人形机器人双足行走在柔性、不平整地形上容易出现失稳与步态漂移，传统基于规划/模型的控制器难以兼顾鲁棒性与地形适应性，且电流反馈、规划落脚点等信息未被充分用于学习式步态控制。\n\n\n# 二、方法\n\n> 该仓库基于深度强化学习（PPO 风格，含动作平滑、观测历史与镜像对称等训练技巧）训练人形机器人行走策略，支持给定规划落脚点的步态学习与关节电流反馈输入，实现仿真训练到真机部署。\n\n\n# 三、核心实验结果\n\n> 元数据中未给出成功率和速度等具体指标，仅能从代码配置给出的数值说明实现细节：仿真步长 sim_dt=0.001 s、控制周期 control_dt=0.025 s（即 40 Hz 控制频率）、动作平滑系数 action_smoothing=0.5、观测历史长度 1；示例任务 cartpole 训练 500 次迭代，std-dev=0.15、entropy-coeff=0.01、minibatch=256、max-traj-len=500。对应三篇论文分别验证了柔性/不平地形上的稳健行走、引入电流反馈的双足行走、以及基于规划落脚点的双足行走能力。\n\n\n# 四、对我的启发\n\n> 局限：仓库说明偏工程与复现入口，缺少量化对比结果与真机实验细节，也未涉及上肢操作或全身多任务。启发：把电流反馈、落脚点规划这类传统控制先验注入 RL 观测/奖励，是提升人形行走鲁棒性的可行思路，其模块化配置（sim_dt/control_dt/action_smoothing）也便于迁移到不同机器人平台。\n"
 }

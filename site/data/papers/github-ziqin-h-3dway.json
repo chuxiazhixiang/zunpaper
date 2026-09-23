@@ -1,0 +1,74 @@
+{
+  "id": "github-ziqin-h-3dway",
+  "source": "github",
+  "title": "ziqin-h/3DWay",
+  "title_zh": "ziqin-h/3DWay",
+  "abstract": "Official implementation of 3DWay: Generalizing Robot Manipulation via 3D Consistent Waypoints, accepted at ECCV 2026.\n\n# 3DWay: Generalizing Robot Manipulation via 3D Consistent Waypoints **ECCV 2026** Ziqin Huang \\* , Yingyue Li \\* , Chenyangguang Zhang, Ruida Zhang, Yuxin Chen, Gu Wang, Xingyu Liu, Masayoshi Tomizuka, Xiangyang Ji \\* Equal contribution Tsinghua University · ETH Zürich · University of California, Berkeley · ITOOM Project Page &nbsp;·&nbsp; Paper &nbsp;·&nbsp; Video > **TL;DR:** 3DWay lets a vision-language model predict corresponding 2D > waypoints from calibrated camera views, then uses geometry to reconstruct an > explicit 3D trajectory. The resulting waypoints can be executed directly on > simple tasks or used to guide a foundation vision-language-action model. ## Overview Trajectory representations provide a compact bridge between visual-language reasoning and robot control, but image-space trajectories are ambiguous in 3D. Lifting a single-view trajectory with depth does not fully solve this problem: depth is noisy, and free-space waypoints do not necessarily lie on observed surfaces. 3DWay instead predicts **multi-view consistent 2D waypoints (2D-MCW)** in a VLM-friendly text format. Given known camera intrinsics and extrinsics, corresponding rays are triangulated into **3D Consistent Waypoints** in the world frame. This keeps prediction in the modality where pretrained VLMs are strong while producing an explicit and actionable 3D representation. The released pipeline supports: 1. fine-tuning NVILA at 2B, 8B, or 15B scale for multi-view waypoint generation; 2. serving a fine-tuned checkpoint through an OpenAI-compatible endpoint; 3. parsing paired 2D trajectories and triangulating them into 3D; 4. exporting pose-plus-gripper actions and 2D/3D visualizations. ## Results The paper evaluates 3DWay in simulation and on a real AgileX PIPER robot. Selected headline results are shown below; see the [paper](https://arxiv.org/abs/2609.08224) for protocols, uncertainty estimates, and full ablations. | Evaluation | Setting | Reported success rate | | --- | --- | ---: |",
+  "abstract_zh": "3DWay的官方实现：通过3D一致路点泛化机器人操作，已被ECCV 2026接收。# 3DWay：通过3D一致路点泛化机器人操作 **ECCV 2026** Ziqin Huang *，Yingyue Li *，Chenyangguang Zhang，Ruida Zhang，Yuxin Chen，Gu Wang，Xingyu Liu，Masayoshi Tomizuka，Xiangyang Ji * 同等贡献 清华大学 · 苏黎世联邦理工学院 · 加州大学伯克利分校 · ITOOM 项目页面 · 论文 · 视频 > **TL;DR：** 3DWay让视觉语言模型从标定的相机视角预测对应的2D路点，然后利用几何重建出显式的3D轨迹。生成的路点可以直接在简单任务上执行，或用于指导基础视觉-语言-动作模型。 ## 概述 轨迹表示为视觉-语言推理和机器人控制之间提供了紧凑的桥梁，但图像空间中的轨迹在3D中是模糊的。用深度提升单视角轨迹并不能完全解决这个问题：深度有噪声，且自由空间路点不一定位于观测表面上。3DWay改为以VLM友好的文本格式预测**多视角一致的2D路点（2D-MCW）**。给定已知的相机内参和外参，对应的射线被三角化为世界坐标系中的**3D一致路点**。这使预测保持在预训练VLM擅长的模态中，同时产生显式且可操作的3D表示。发布的流程支持：1. 在2B、8B或15B规模上微调NVILA以进行多视角路点生成；2. 通过OpenAI兼容端点服务微调后的检查点；3. 解析成对的2D轨迹并三角化为3D；4. 导出位姿加夹爪动作以及2D/3D可视化。 ## 结果 论文在仿真和真实的AgileX PIPER机器人上评估了3DWay。部分主要结果如下所示；协议、不确定性估计和完整消融见[论文](https://arxiv.org/abs/2609.08224)。 | 评估 | 设置 | 报告的成功率 | | --- | --- | ---: |",
+  "tldr_zh": "3DWay通过多视角2D路点三角化生成3D轨迹，泛化机器人操作。",
+  "cover_zh": "多视角2D路点直接三角化成3D轨迹？机器人操作泛化新思路",
+  "authors": [
+    {
+      "name": "ziqin-h",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2026-09-09",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/ziqin-h/3DWay",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 20,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 20,
+      "hint": "⭐ 10"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "ECCV 2026 官方工作，多视角 3D 一致 waypoint 引导 VLA 操作，算法与真机验证完整，值得收录。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "操作"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "ziqin-h",
+    "repo": "3DWay",
+    "stars": 10,
+    "language": "Python",
+    "pushed_at": "2026-09-09",
+    "created_at": "2026-08-26",
+    "topics": [],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"ziqin-h/3DWay\"\nYear: \"\"\nURL: https://github.com/ziqin-h/3DWay\n---\n>[!abstract] 一句话总结：让 VLM（NVILA，2B/8B/15B）以文本格式预测多视角一致的 2D 路点（2D-MCW），再结合已知相机内参和外参对对应射线做三角化，得到世界坐标系下显式的 3D 一致路点轨迹，可直接执行或用于引导基础 VLA 模型，并开源了微调、OpenAI 兼容服务、三角化与位姿+夹爪动作导出的完整流程。\n\n\n# 一、动机\n\n> 图像空间（2D）轨迹是视觉语言推理与机器人控制之间的紧凑桥梁，但存在 3D 歧义：单视角轨迹用深度提升到 3D 并不能真正解决问题，因为深度噪声大，且自由空间中的路点在观测表面上并不一定有对应点。\n\n\n# 二、方法\n\n> 让 VLM（NVILA，2B/8B/15B）以文本格式预测多视角一致的 2D 路点（2D-MCW），再结合已知相机内参和外参对对应射线做三角化，得到世界坐标系下显式的 3D 一致路点轨迹，可直接执行或用于引导基础 VLA 模型，并开源了微调、OpenAI 兼容服务、三角化与位姿+夹爪动作导出的完整流程。\n\n\n# 三、核心实验结果\n\n> 论文在仿真环境与真实 AgileX PIPER 机器人上进行了评测，报告了相应成功率（摘要中给出的结果表格未包含具体数值，需查阅原文 arXiv:2609.08224 获取协议、不确定性估计与完整消融）；管线支持 NVILA 2B/8B/15B 三个规模的微调，验证了预测仍保留在预训练 VLM 擅长的模态中同时产出可直接执行的 3D 表示。\n\n\n# 四、对我的启发\n\n> 把预测留在 VLM 擅长的 2D 文本模态、再用几何三角化恢复 3D，是绕开深度噪声与自由空间路点不可靠的一种简洁思路；局限在于依赖标定准确的多视角相机（内外参已知），单视角或标定误差大时三角化精度会退化，且 3D 路点需额外引导 VLA 才能应对复杂任务。\n"
+}
