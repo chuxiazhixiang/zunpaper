@@ -1,0 +1,94 @@
+{
+  "id": "arxiv-2609-26420",
+  "source": "arxiv",
+  "title": "Sample, Simulate, Select: Physics-in-the-Loop Text-to-Motion for Humanoids Without Training",
+  "title_zh": "采样、模拟、选择：无需训练的人形机器人物理在环文本到动作",
+  "abstract": "Text-to-motion models generate plausible human motion but do not model a robot's dynamics; whole-body tracking controllers execute robot references reliably but cannot replan an infeasible one. Recent language-to-humanoid systems bridge this gap by training. We measure how much of the gap closes with no training at all, by putting the deployment controller itself in the loop. Sample-simulate-select (S$^3$) draws $N$ motions per prompt from a frozen text-to-motion model, retargets each to a Unitree G1 by direction-matching inverse kinematics, rolls all of them out under full rigid-body dynamics with the pretrained SONIC tracking policy, and keeps the candidate the policy executed best. Because the verifier is the deterministic simulator itself, S$^3$ attains the any-of-$N$ ceiling by construction; what we measure is where that ceiling lies and what falls short of it. On 200 stratified HumanML3D test prompts with $N=8$, upright execution rises from 83.5% to 89.5% and hardware-gate passes from 33 to 85; on the complete test split (4,184 prompts) it rises from 80.5% to 89.5%. A kinematic verifier that predicts falls well (AUROC 0.90) recovers only a quarter of this gain: ranking a prompt's own candidates is harder than classifying the population. What selection cannot fix is one class, prompts that lower the pelvis, which a generator trained on retargeted robot data does execute. We further score the semantic fidelity of the executed motion with the standard text-motion evaluator, with a real-mocap control that attributes the loss to the robot projection, ablate the retargeter against GMR (complementary failures: the any-of-8 ceiling rises to 95.0% over both), and execute all 177 gate-selected clips on the real G1: every one completes standing, with hardware tracking error matching simulation ($r=0.94$).",
+  "abstract_zh": "文本到动作模型能生成看似合理的人体动作，但未对机器人动力学建模；全身跟踪控制器能可靠执行机器人参考轨迹，却无法对不可行的参考重新规划。近期语言到人形机器人的系统通过训练来弥合这一差距。我们通过将部署控制器本身置于环路中，测量了在完全无需训练的情况下这一差距能缩小多少。采样-模拟-选择（S$^3$）对每个提示从冻结的文本到动作模型中抽取 $N$ 个动作，通过方向匹配逆运动学将每个动作重定向到 Unitree G1，使用预训练的 SONIC 跟踪策略在完整刚体动力学下展开所有候选，并保留策略执行最佳的候选。由于验证器就是确定性模拟器本身，S$^3$ 在构造上达到了任意 $N$ 个候选的上限；我们测量的是该上限的位置以及哪些因素未能达到。在 200 个分层的 HumanML3D 测试提示上，$N=8$ 时，直立执行率从 83.5% 提升至 89.5%，硬件门通过数从 33 提升至 85；在完整测试集（4,184 个提示）上，从 80.5% 提升至 89.5%。一个能很好预测跌倒的运动学验证器（AUROC 0.90）仅恢复了这一增益的四分之一：对提示自身的候选进行排序比分类整个群体更难。选择无法修复的是一类提示——降低骨盆的提示，而一个在重定向机器人数据上训练的生成器能够执行这类提示。我们进一步用标准文本-动作评估器对执行动作的语义保真度进行评分，并通过真实动捕控制将损失归因于机器人投影；将重定向器与 GMR 进行消融对比（互补性失败：两者的任意 8 个候选上限提升至 95.0%），并在真实 G1 上执行所有 177 个门选片段：每一个都完成站立，硬件跟踪误差与模拟匹配（$r=0.94$）。",
+  "tldr_zh": "无需训练，通过采样-模拟-选择闭环提升人形机器人文本到动作执行成功率。",
+  "cover_zh": "不训练也能让机器人动起来？｜采样模拟选择直接提升执行率",
+  "authors": [
+    {
+      "name": "Raphael Memmesheimer",
+      "affiliation": ""
+    },
+    {
+      "name": "Sven Behnke",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.CV"
+  ],
+  "published": "2026-09-22",
+  "updated": "2026-09-22",
+  "arxiv_id": "2609.26420",
+  "pdf_url": "https://arxiv.org/pdf/2609.26420v1",
+  "abs_url": "http://arxiv.org/abs/2609.26420v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-26420.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-26420-p2.jpg"
+  ],
+  "channels": [
+    "loco-manip-wbc"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 25,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 4 个（whole-body、whole-body tracking、humanoids、unitree g1）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "loco-manip-wbc",
+    "reason": "人形全身文本到动作，无需训练，物理仿真选择，真机G1验证，属loco-manip-wbc。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University of Bonn"
+  ],
+  "method_tags": [
+    "Sample-Simulate-Select",
+    "Inverse Kinematics Retargeting",
+    "Whole-Body Tracking"
+  ],
+  "platform": [
+    "Unitree G1"
+  ],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/CrossEmbodimentTransfer\n  - Task/TextToMotion\n  - 状态/待读\nTitle: \"Sample, Simulate, Select: Physics-in-the-Loop Text-to-Motion for Humanoids Without Training\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.26420v1\n---\n>[!abstract] 一句话总结：Sample-simulate-select（S^3）对每个提示从冻结的文本到动作模型采样 N 个动作，通过方向匹配逆运动学重定向到 Unitree G1，全部用预训练 SONIC 跟踪策略在完整刚体动力学下 rollout，并保留策略执行得最好的候选。\n\n\n# 一、动机\n\n> 文本到动作模型能生成合理人体动作但不建模机器人动力学，而全身跟踪控制器虽能可靠执行参考却无法重规划不可行的参考；现有语言到人形系统依赖训练来弥合这一差距。本文测量在完全不做训练、仅把部署控制器放进回路时，这一差距能被弥合多少。\n\n\n# 二、方法\n\n> Sample-simulate-select（S^3）对每个提示从冻结的文本到动作模型采样 N 个动作，通过方向匹配逆运动学重定向到 Unitree G1，全部用预训练 SONIC 跟踪策略在完整刚体动力学下 rollout，并保留策略执行得最好的候选。\n\n\n# 三、核心实验结果\n\n> 在 200 条分层 HumanML3D 测试提示、N=8 时，直立执行率从 83.5% 升至 89.5%，硬件门槛通过数从 33 增至 85；在完整测试集（4,184 条提示）上从 80.5% 升至 89.5%。一个对跌倒预测良好的运动学验证器（AUROC 0.90）只能恢复约四分之一的增益，说明对同一提示内部候选排序比整体分类更难。与 GMR 重定向器互补后，any-of-8 上限提升到 95.0%。真机 G1 上执行的 177 个通过门槛的片段全部站立完成，硬件跟踪误差与仿真匹配（r=0.94）。\n\n\n# 四、对我的启发\n\n> 局限在于选择无法修正一整类提示，即会让骨盆降低的动作，而这类动作需用重定向机器人数据训练的生成器才能执行；同时语义保真度损失被真实动捕对照归因于机器人投影环节。启发是把确定性仿真器本身当作验证器可构造性地达到 any-of-N 上限，但选择仍不能替代训练，且候选排序是主要瓶颈。\n"
+}

@@ -55,14 +55,24 @@
   "badges": [
     {
       "kind": "lab",
+      "label": "⭐ Caltech AMBER"
+    },
+    {
+      "kind": "lab",
       "label": "⭐ Aaron Ames"
     }
   ],
   "related_links": [],
   "page_count": 25,
   "source_tags": [],
-  "score": 37,
+  "score": 62,
   "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “Caltech AMBER” 关键词"
+    },
     {
       "id": "key_author",
       "label": "关键作者上榜",
@@ -89,14 +99,23 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "Amazon",
+    "University of Washington, Seattle",
+    "University of California, Los Angeles",
+    "California Institute of Technology"
+  ],
+  "method_tags": [
+    "Control Barrier Function",
+    "Distillation",
+    "Whole-Body Control"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/WholeBodyControl\n  - 状态/待读\nTitle: \"LIMBO: Learning and Internalizing Model-Free Barrier Objectives for Agile and Safe Whole-Body Control\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.22075v1\n---\n>[!abstract] 一句话总结：LIMBO 在冻结的基座控制器上定义残差动作空间，从黑盒状态转移和基于状态的失败规范中学习状态-动作控制屏障函数（Q-CBF），再用风险引导采样在可恢复边界附近探索，并把该安全价值作为教师信号蒸馏进任务策略，从而在部署时无需在线安全滤波器。\n\n\n# 一、动机\n\n> 安全全身控制需要在高维非线性动力学下同时处理避障与平衡，而安全证书（如 CBF）难以手工设计、也难以在不同行为间复用；已有的学习型 CBF 方法难以扩展到全身控制维度。\n\n\n# 二、方法\n\n> LIMBO 在冻结的基座控制器上定义残差动作空间，从黑盒状态转移和基于状态的失败规范中学习状态-动作控制屏障函数（Q-CBF），再用风险引导采样在可恢复边界附近探索，并把该安全价值作为教师信号蒸馏进任务策略，从而在部署时无需在线安全滤波器。\n\n\n# 三、核心实验结果\n\n> 在 29 自由度人形机器人上验证了躲避球避障与低矮障碍下行走两个任务；学到的策略可直接迁移到真实硬件且不做在线安全过滤；在同一安全规范下，仅改变采样集中度即可得到从蹲行到全新后仰 limbo 式动作的不同策略，说明风险引导边界采样能系统性地探索可恢复性边界。\n\n\n# 四、对我的启发\n\n> 方法依赖冻结的基座控制器与显式的失败规范，安全证书的可迁移性仍受限于该规范；采样集中度这一超参直接决定最终行为风格（蹲行 vs 后仰），提示安全性学习中的探索分布设计本身是一种行为塑造手段。与具身智能/机器人全身控制课题高度相关。\n"
 }
