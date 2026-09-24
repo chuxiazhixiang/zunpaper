@@ -130,7 +130,8 @@
     "assets/img/covers/arxiv-2609-27656-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -145,7 +146,7 @@
   "related_links": [],
   "page_count": 24,
   "source_tags": [],
-  "score": 50,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -157,7 +158,7 @@
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 4 个（manipulation、dexterous、dexterous manipulation、contact-rich）"
+      "hint": "频道关键词命中 6 个（manipulation、dexterous、dexterous manipulation、contact-rich）"
     },
     {
       "id": "freshness",
@@ -170,6 +171,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 24 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -195,5 +202,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"InternW0: A Foundational Physical World Model for Efficient Real-World Interactions\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.27656v1\n---\n>[!abstract] 一句话总结：提出 InternW0，采用非对称视频-动作架构与 flow matching 联合学习未来视觉动态和连续机器人控制：高容量视频专家提供长时程预测上下文，轻量动作专家在更快时间尺度上运行，并复用层间 K/V 通过观测条件上下文路由适配新状态；同时引入域特定接口与软提示支持异构本体，并通过接触感知后训练融合力与触觉信号。\n\n\n# 一、动机\n\n> 现有物理世界模型虽能预测未来演化，但预测结果难以在持续变化的真实环境中保持可操作性，且缺乏对异步多频率、部分观测和外部影响下局部物理建模的支持。\n\n\n# 二、方法\n\n> 提出 InternW0，采用非对称视频-动作架构与 flow matching 联合学习未来视觉动态和连续机器人控制：高容量视频专家提供长时程预测上下文，轻量动作专家在更快时间尺度上运行，并复用层间 K/V 通过观测条件上下文路由适配新状态；同时引入域特定接口与软提示支持异构本体，并通过接触感知后训练融合力与触觉信号。\n\n\n# 三、核心实验结果\n\n> 在约 7,200 小时异构机器人与自我中心数据（含 275 小时真实实验室自我中心数据集 EgoLab）上训练；在仿真基准和真实科学任务中验证，包括 15 阶段金属-有机框架合成流程和 5 阶段接触/力感知灵巧操作通用定量移液任务。\n\n\n# 四、对我的启发\n\n> 与具身智能和机器人操作课题高度相关；该工作的异步架构与 K/V 复用机制为长时程、高频控制的物理世界模型提供了高效推理思路，但性能仍依赖大规模异构数据和接触感知后训练，跨本体泛化与真实部署的鲁棒性值得进一步验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/CrossEmbodimentTransfer\n  - Task/RoboticManipulation\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"InternW0: A Foundational Physical World Model for Efficient Real-World Interactions\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.27656v1\n---\n>[!abstract] 一句话总结：InternW0 采用异步多频率的非对称视频—动作架构与 flow matching：大容量视频专家提供长时程预测上下文，轻量动作专家在更快的时标上输出连续机器人控制，并通过复用层级 K/V 与观测条件上下文路由（observation-conditioned context routing）把旧的预测适配到新观测，避免为每次动作更新重生成未来；同时用领域专用接口与软提示支持异质本体，并以接触感知后训练引入力/触觉信号。\n\n\n# 一、动机\n\n> 现有物理世界模型多把预测当作目的，预测结果未必可执行（actionable），且每次动作更新都要重新生成未来帧，在部分观测和外部扰动下效率低、难以支撑异质本体的实时闭环控制。\n\n\n# 二、方法\n\n> InternW0 采用异步多频率的非对称视频—动作架构与 flow matching：大容量视频专家提供长时程预测上下文，轻量动作专家在更快的时标上输出连续机器人控制，并通过复用层级 K/V 与观测条件上下文路由（observation-conditioned context routing）把旧的预测适配到新观测，避免为每次动作更新重生成未来；同时用领域专用接口与软提示支持异质本体，并以接触感知后训练引入力/触觉信号。\n\n\n# 三、核心实验结果\n\n> 1) 在约 7,200 小时异质机器人数据与自我中心数据上训练，其中包含新发布的 EgoLab——275 小时真实实验室自我中心数据集；2) 真实科学任务上完成了 15 阶段的金属—有机框架（MOF）合成流程，以及 5 阶段的接触/力感知灵巧操作通用定量移液；3) 摘要未给出仿真基准的具体成功率或相对基线的量化提升幅度。\n\n\n# 四、对我的启发\n\n> 局限：论文未披露仿真基准与真实任务的量化成功率、基线对比和异步 K/V 复用的误差累积分析，方法在长时程漂移、软提示对新本体的泛化边界上仍待验证。启发：把“预测未来的视频专家”与“高频动作专家”解耦、用 K/V 复用代替重复生成未来，是构建高效可执行世界模型的可行范式；接触/力触觉后训练对移液、合成等接触密集的科学实验任务尤为关键，也为具身智能的实验室自动化提供了参考。\n"
 }

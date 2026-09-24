@@ -30,7 +30,8 @@
   ],
   "channels": [
     "manipulation",
-    "locomotion"
+    "locomotion",
+    "sim2real"
   ],
   "badges": [
     {
@@ -65,7 +66,7 @@
       "id": "cross_channel",
       "label": "跨多个方向",
       "points": 5,
-      "hint": "同时命中 2 个频道"
+      "hint": "同时命中 3 个频道"
     }
   ],
   "judge": {
@@ -88,5 +89,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Amplify: A Lightweight Library for Reproducible Nonlinear Programming Problems in Robotics\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.28377v1\n---\n>[!abstract] 一句话总结：提出 Amplify——一个仅 537 行（每行 80 字符）的轻量级非线性规划库，用 AMPL 建模语言以声明式范式把动力学计算、轨迹生成与参考运动等算法直接写成优化模型的目标、决策变量与约束，从而把算法嵌入优化模型本身。\n\n\n# 一、动机\n\n> 机器人中的非线性规划（轨迹优化、抓取规划等）虽被广泛使用，但结果复现性差：现有转录（transcription）库依赖繁重、环境配置复杂，导致同一问题在不同实现下难以得到一致结果。\n\n\n# 二、方法\n\n> 提出 Amplify——一个仅 537 行（每行 80 字符）的轻量级非线性规划库，用 AMPL 建模语言以声明式范式把动力学计算、轨迹生成与参考运动等算法直接写成优化模型的目标、决策变量与约束，从而把算法嵌入优化模型本身。\n\n\n# 三、核心实验结果\n\n> 1）库体量极小：537 行代码、80 字符/行的极简依赖，只需联网、AMPL 建模语言基础与文本编辑器即可运行；2）在双足行走、抓取规划等多个领域的基准优化问题上与 3 个其他库进行了对比；3）给出了如何把目标/决策变量/约束的这套写法迁移到其他追求轻量与可复现的转录库的指导。\n\n\n# 四、对我的启发\n\n> 局限在于强依赖 AMPL（商业建模语言）与网络连接，声明式建模在超大规模问题上可能牺牲求解效率，且摘要未给出可复现性的量化指标；但其「把算法写成约束」的思路对机器人优化问题的可复现基准建设有借鉴意义，可作为轨迹优化实验的轻量基线。\n"
+  "note": "---\ntags:\n  - 论文/系统\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Amplify: A Lightweight Library for Reproducible Nonlinear Programming Problems in Robotics\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.28377v1\n---\n>[!abstract] 一句话总结：提出 Amplify —— 一个仅 537 行（每行 80 字符）的轻量级非线性规划库，把动力学计算、轨迹生成与参考运动的算法以声明式编程范式直接写成优化问题（OP）的约束与目标，只需联网、熟悉 AMPL 建模语言和一个文本编辑器即可使用。\n\n\n# 一、动机\n\n> 机器人领域的非线性优化（尤其是轨迹优化）研究普遍面临可复现性差的问题：现有转录（transcription）库往往依赖繁重的软件栈、复杂的依赖与实现细节，导致他人难以复现结果。\n\n\n# 二、方法\n\n> 提出 Amplify —— 一个仅 537 行（每行 80 字符）的轻量级非线性规划库，把动力学计算、轨迹生成与参考运动的算法以声明式编程范式直接写成优化问题（OP）的约束与目标，只需联网、熟悉 AMPL 建模语言和一个文本编辑器即可使用。\n\n\n# 三、核心实验结果\n\n> 1) 用极小的代码量（537 行）实现了轨迹优化算法的声明式建模，显著降低了复现门槛；2) 在双足行走（bipedal locomotion）与抓取规划（grasp planning）等多个基准优化问题上，与另外 3 个库进行了对比；3) 给出了如何让其他转录库变得轻量且可复现的建模指导（目标、决策变量、约束的组织方式）。\n\n\n# 四、对我的启发\n\n> 局限在于依赖 AMPL 建模语言与商业求解器生态，且库规模小可能限制其对大规模/实时问题的扩展性；启发是「算法即约束」的声明式建模思路可作为提升机器人优化研究可复现性的通用范式。\n"
 }

@@ -94,7 +94,8 @@
     "assets/img/covers/arxiv-2609-27450-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -109,7 +110,7 @@
   "related_links": [],
   "page_count": 11,
   "source_tags": [],
-  "score": 47,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -120,8 +121,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 9,
-      "hint": "频道关键词命中 3 个（vision-language-action、manipulation、libero）"
+      "points": 12,
+      "hint": "频道关键词命中 4 个（vision-language-action、manipulation、libero、long-horizon manipulation）"
     },
     {
       "id": "freshness",
@@ -134,6 +135,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 11 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -159,5 +166,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\nTitle: \"BEE: Intervention-Adaptive Real-World Reinforcement Learning with Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.27450v1\n---\n>[!abstract] 一句话总结：提出 BEE，一个在冻结 VLA 之上的干预自适应真实世界 RL 框架：不再把人类纠正当作要复现的动作，而是视为关于约束的证据——用校正模型预测人类会对给定 VLA 提议做出怎样的纠正，以及该纠正在每个动作维度上的一致程度，并用这一预测一致性逐维度地设定策略优化约束的松紧，一致处让策略贴近人类，变化大处则放松约束，从而超越专家模仿。\n\n\n# 一、动机\n\n> VLA 模型在长程操作中往往因少数精度关键阶段出现毫米级误差而前功尽弃，在线强化学习可以针对性优化这些动作，但真实机器人上的自由探索代价过高、必须依赖人工纠正；而现有面向 VLA 的在线 RL 方法要么无法利用人类纠正，要么把所有纠正当作无差别的监督信号，忽略了纠正本身在不同动作维度上可靠程度并不相同这一事实。\n\n\n# 二、方法\n\n> 提出 BEE，一个在冻结 VLA 之上的干预自适应真实世界 RL 框架：不再把人类纠正当作要复现的动作，而是视为关于约束的证据——用校正模型预测人类会对给定 VLA 提议做出怎样的纠正，以及该纠正在每个动作维度上的一致程度，并用这一预测一致性逐维度地设定策略优化约束的松紧，一致处让策略贴近人类，变化大处则放松约束，从而超越专家模仿。\n\n\n# 三、核心实验结果\n\n> 在 3 个真实世界操作任务和 1 个 LIBERO-Pro 仿真任务上、在匹配的在线数据预算下，BEE 在所有任务上均取得最高成功率，平均成功率达 91.2%，而 RLT 为 57.5%、DSRL 为 42.1%；在所有真实世界任务上 BEE 的人类干预率也最低。\n\n\n# 四、对我的启发\n\n> 核心启发是「把人类干预建模为带维度置信度的约束而非监督标签」，这一思路可迁移到其他依赖稀疏人工反馈的真实机器人学习场景；局限在于仍需要人类在环纠正、依赖校正模型对纠正一致性的估计质量，且策略被冻结 VLA 的表征能力所约束，其能否扩展到全新任务分布与多模态动作空间尚待验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\nTitle: \"BEE: Intervention-Adaptive Real-World Reinforcement Learning with Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.27450v1\n---\n>[!abstract] 一句话总结：BEE 在冻结的 VLA 上做真机在线 RL：把人类纠正重新解释为关于「约束」的证据——用一个 Correction Model 预测人类会如何纠正当前 VLA 提议，并给出每个动作维度上纠正的一致性，该一致性决定策略优化时各维度约束的松紧，纠正稳定的维度上策略被拉近人类，纠正多变的维度上约束放松，从而在模仿之外继续优化。\n\n\n# 一、动机\n\n> VLA 模型在长程操作中往往被少数毫米级精度关键阶段拖垮，在线 RL 虽能针对这些动作优化，但真机自由探索代价过高、必须依赖人类干预；而现有 VLA 在线 RL 方法要么无法利用人类纠正，要么把所有纠正当作同质监督信号处理，忽略了纠正在不同动作维度上可靠性并不一致这一事实。\n\n\n# 二、方法\n\n> BEE 在冻结的 VLA 上做真机在线 RL：把人类纠正重新解释为关于「约束」的证据——用一个 Correction Model 预测人类会如何纠正当前 VLA 提议，并给出每个动作维度上纠正的一致性，该一致性决定策略优化时各维度约束的松紧，纠正稳定的维度上策略被拉近人类，纠正多变的维度上约束放松，从而在模仿之外继续优化。\n\n\n# 三、核心实验结果\n\n> 在 3 个真实机器人操作任务和 1 个 LIBERO-Pro 仿真任务、相同在线数据预算下，BEE 在每个任务上都取得最高成功率，平均 91.2%，显著优于 RLT 的 57.5% 和 DSRL 的 42.1%；并且在所有真机任务上人类干预率最低。\n\n\n# 四、对我的启发\n\n> 局限在于仍依赖人类实时纠错、Correction Model 的维度一致性估计质量直接决定约束松紧，且策略被约束在冻结 VLA 的行为邻域内、难以跳出基座能力边界。启发是「把干预当作约束证据而非监督标签」这一思路可迁移到其它有人类在环的机器人学习中，用维度级不确定性来自适应调节优化强度。\n"
 }

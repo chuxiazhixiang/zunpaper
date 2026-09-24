@@ -55,7 +55,8 @@
   ],
   "channels": [
     "locomotion",
-    "sim2real"
+    "sim2real",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -100,7 +101,7 @@
       "id": "cross_channel",
       "label": "跨多个方向",
       "points": 5,
-      "hint": "同时命中 2 个频道"
+      "hint": "同时命中 3 个频道"
     }
   ],
   "judge": {
@@ -130,5 +131,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Talk2Escape: Conversational Grounding for Vision-and-Language Navigation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.28296v1\n---\n>[!abstract] 一句话总结：提出 Talk2Escape：一个轻量视觉语言模块持续监控智能体运动学，在检测到局部绕圈或轨迹严重偏离时，将第一视角观测转成简洁的 grounded 查询，向算法 oracle 或人类在环请求针对性纠正反馈，从而把导航重构为闭环交互过程，且与具体基础智能体无关（model-agnostic）。\n\n\n# 一、动机\n\n> 现有视觉语言导航（VLN）多为单轮开环范式，感知歧义、传感器噪声与里程计漂移会累积小偏差，导致任务失败且缺乏内建纠错机制。\n\n\n# 二、方法\n\n> 提出 Talk2Escape：一个轻量视觉语言模块持续监控智能体运动学，在检测到局部绕圈或轨迹严重偏离时，将第一视角观测转成简洁的 grounded 查询，向算法 oracle 或人类在环请求针对性纠正反馈，从而把导航重构为闭环交互过程，且与具体基础智能体无关（model-agnostic）。\n\n\n# 三、核心实验结果\n\n> 在 R2R-CE、RxR-CE、VLNVerse 等高保真仿真中，Talk2Escape 对多种基础智能体均带来一致提升；在 R2R-CE 上达到 66.0% 成功率，超越当前监督式与零样本 SOTA；并在 Unitree Go2 四足机器人上验证了 sim-to-real 迁移，证明主动对话能显著提升真实环境导航鲁棒性。\n\n\n# 四、对我的启发\n\n> 该方法依赖 oracle 或人类反馈，存在额外交互成本与延迟，且触发条件（绕圈/严重偏离检测）的阈值与泛化性可能受限；但把导航从开环改为主动闭环纠错的思路，对具身智能体的鲁棒性与人在环交互设计有参考价值。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Talk2Escape: Conversational Grounding for Vision-and-Language Navigation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.28296v1\n---\n>[!abstract] 一句话总结：提出 Talk2Escape——一个主动式、与模型无关的对话干预框架，把导航重构为闭环交互过程：轻量级视觉-语言模块持续监控智能体运动学状态，一旦检测到局部绕圈或严重轨迹偏移，便将第一视角观测转化为简洁且有据可依的提问，向算法 oracle 或人类在环（human-in-the-loop）请求针对性的纠正反馈。\n\n\n# 一、动机\n\n> 现有视觉-语言导航（VLN）多为单轮开环范式，感知歧义、传感器噪声与里程计漂移会使微小偏差不断累积，最终导致任务失败且缺乏内置的纠错机制。\n\n\n# 二、方法\n\n> 提出 Talk2Escape——一个主动式、与模型无关的对话干预框架，把导航重构为闭环交互过程：轻量级视觉-语言模块持续监控智能体运动学状态，一旦检测到局部绕圈或严重轨迹偏移，便将第一视角观测转化为简洁且有据可依的提问，向算法 oracle 或人类在环（human-in-the-loop）请求针对性的纠正反馈。\n\n\n# 三、核心实验结果\n\n> 在 R2R-CE、RxR-CE、VLNVerse 等高保真仿真器中，Talk2Escape 对多种基础智能体均带来一致性提升；在 R2R-CE 上取得 66.0% 的成功率，超过当前监督式与零样本的 SOTA 方法；并在 Unitree Go2 四足机器人上完成 sim-to-real 迁移，证明主动对话能显著提升物理环境中的导航鲁棒性。\n\n\n# 四、对我的启发\n\n> 局限在于干预依赖 oracle 或人工反馈，额外交互成本与人类可用性会影响可扩展性；启发是将「主动提问+闭环纠错」作为通用插件，可迁移到其他长程具身任务，与具身智能/机器人导航课题高度相关。\n"
 }

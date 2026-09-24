@@ -61,7 +61,8 @@
     "assets/img/covers/arxiv-2609-27381-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -80,7 +81,7 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 61,
+  "score": 69,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -97,8 +98,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（manipulation）"
+      "points": 6,
+      "hint": "频道关键词命中 2 个（manipulation、unitree g1）"
     },
     {
       "id": "freshness",
@@ -111,6 +112,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -140,5 +147,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/HardwareCoDesign\n  - 状态/待读\nTitle: \"CoPRE: Improving Sensitivity in Proprioceptive Contact Detection for Low-Cost Robot Arms\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.27381v1\n---\n>[!abstract] 一句话总结：提出无需接触标签、力传感器和解析动力学模型的 CoPRE（Contact-free Proprioceptive Response Estimation）：仅用无接触运动数据，从本体感知状态历史与指令运动估计无接触条件下的期望关节扭矩（并剔除可能已包含接触的近期观测），再用噪声加权雅可比将期望扭矩与观测扭矩的残差映射为接触分数。\n\n\n# 一、动机\n\n> 低成本机械臂通常没有专用的力/触觉传感器，而本体感知信号中由接触引起的扭矩变化往往被机器人自身运动带来的噪声和正常波动淹没，导致微弱接触难以被检出；已有的学习式扭矩预测和逆动力学方法在该场景下召回率极低（ARX 上 0%）。\n\n\n# 二、方法\n\n> 提出无需接触标签、力传感器和解析动力学模型的 CoPRE（Contact-free Proprioceptive Response Estimation）：仅用无接触运动数据，从本体感知状态历史与指令运动估计无接触条件下的期望关节扭矩（并剔除可能已包含接触的近期观测），再用噪声加权雅可比将期望扭矩与观测扭矩的残差映射为接触分数。\n\n\n# 三、核心实验结果\n\n> 在 ARX Arm 与 Unitree G1 真机上，CoPRE 在测试接触试验中分别达到 74.1% 和 82.2% 的召回率，而学习式扭矩预测与逆动力学基线在 ARX 上为 0%/0%、在 G1 上为 16.3%/42.2%；对推力的 90% 检出率阈值为 ARX 3.5 N、G1 5.5 N；下游将接触检测接入置信空间操作规划，实现了避障放置与插书任务中的后退、姿态调整与重试。\n\n\n# 四、对我的启发\n\n> 方法的优势在于只依赖无接触运动即可标定、无需额外硬件，适合低成本平台；局限是依赖关节扭矩估计精度与噪声建模质量，接触分数阈值需按机型标定，且实验主要针对单臂操作场景，对高频/多接触点或柔性物体的泛化性尚待验证。对低成本机械臂的力觉感知与接触感知操作课题有直接参考价值。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"CoPRE: Improving Sensitivity in Proprioceptive Contact Detection for Low-Cost Robot Arms\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.27381v1\n---\n>[!abstract] 一句话总结：提出 CoPRE（Contact-free Proprioceptive Response Estimation）：仅使用无接触运动数据，从本体感知状态历史与指令运动预测无接触情况下的期望关节力矩，并刻意排除可能已包含接触的近期观测；随后计算期望与观测力矩之间的残差，并通过噪声加权雅可比将残差映射为接触分数。\n\n\n# 一、动机\n\n> 低成本机械臂通常没有专用的力/触觉传感器，而仅靠本体感知检测弱接触十分困难：接触引起的关节信号变化往往小于机器人自身运动带来的正常波动与噪声，导致现有方法灵敏度不足。\n\n\n# 二、方法\n\n> 提出 CoPRE（Contact-free Proprioceptive Response Estimation）：仅使用无接触运动数据，从本体感知状态历史与指令运动预测无接触情况下的期望关节力矩，并刻意排除可能已包含接触的近期观测；随后计算期望与观测力矩之间的残差，并通过噪声加权雅可比将残差映射为接触分数。\n\n\n# 三、核心实验结果\n\n> 在 ARX Arm 与 Unitree G1 真机实验中，CoPRE 在测试接触试验上分别取得 74.1% 和 82.2% 的召回率，而学习式力矩预测与逆动力学基线在 ARX 上为 0%/0%、在 G1 上为 16.3%/42.2%；对推力的 90% 检测率对应 ARX 3.5 N、G1 5.5 N。下游任务中，结合信念空间操作规划实现了障碍物感知的物体放置与插书，检测到的接触可更新空间信念并让机器人退避、调整姿态后重试。\n\n\n# 四、对我的启发\n\n> 方法无需力传感器、接触标签或解析动力学模型，为低成本平台提供了实用的接触感知方案；局限在于依赖充分的无接触运动数据覆盖，且噪声加权雅可比对噪声建模的准确性较敏感，训练/标定分布外的接触可能仍会漏检。\n"
 }

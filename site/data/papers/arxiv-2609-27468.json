@@ -54,7 +54,8 @@
     "assets/img/covers/arxiv-2609-27468-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "sim2real"
   ],
   "badges": [
     {
@@ -73,7 +74,7 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 64,
+  "score": 72,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -90,8 +91,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 6,
-      "hint": "频道关键词命中 2 个（vision-language-action、libero）"
+      "points": 9,
+      "hint": "频道关键词命中 3 个（vision-language-action、libero、residual adaptation）"
     },
     {
       "id": "freshness",
@@ -104,6 +105,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -130,5 +137,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"CereVLA: Cerebellum-Inspired Consequence-Aware Residual Governance for Efficient Vision-Language-Action Execution\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.27468v1\n---\n>[!abstract] 一句话总结：提出受小脑启发的后果感知残差治理框架 CereVLA：在完全冻结的 VLA 执行之上，先用基于流的残差细化生成纠正动作，再用循环状态空间模型与历史感知分类器分别评估其短期与间隔时域后果，最后由一个轻量 governor 选择性地抑制被预测为不利的残差纠正。\n\n\n# 一、动机\n\n> 动作分块（action-chunked）的 VLA 策略虽然提升了推理效率，但在已提交的动作块内部反馈有限，容易造成执行误差累积；已有的残差自适应方法只在「与参考动作保持一致」这一目标上优化纠正量，没有显式评估纠正动作带来的下游后果，因此可能做出短视甚至有害的修正。\n\n\n# 二、方法\n\n> 提出受小脑启发的后果感知残差治理框架 CereVLA：在完全冻结的 VLA 执行之上，先用基于流的残差细化生成纠正动作，再用循环状态空间模型与历史感知分类器分别评估其短期与间隔时域后果，最后由一个轻量 governor 选择性地抑制被预测为不利的残差纠正。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO-10 与 LIBERO-GOAL 上与当前最优方法对比验证了有效性；在真实 SO-101 平台上，相对冻结的 SmolVLA 基线将任务成功率从 57.5% 提升到 90.0%，并在成功试验中将平均控制步数减少 19.6%。\n\n\n# 四、对我的启发\n\n> 主要启发是「不重训大模型、只在执行层做带后果预测的残差治理」这一低成本范式，可迁移到其他冻结 VLA 的部署场景；局限在于依赖额外的后果预测模块与 governor，其预测可靠性、超参敏感性和在更复杂长程任务上的泛化仍待验证，且目前主要在 LIBERO 基准与单一 SO-101 平台上评估。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"CereVLA: Cerebellum-Inspired Consequence-Aware Residual Governance for Efficient Vision-Language-Action Execution\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.27468v1\n---\n>[!abstract] 一句话总结：CereVLA 在冻结 VLA 之上构建小脑式「残差生成—后果评估—门控」框架：先用基于流的残差细化模块产生纠偏动作，再由循环状态空间模型与历史感知分类器分别评估短期和区间视野的后果，最后由轻量 governor 选择性抑制预测为不利的残差修正。\n\n\n# 一、动机\n\n> 动作分块（action-chunked）VLA 策略虽提升推理效率，但一个 chunk 内缺乏反馈，执行误差会逐步累积；已有的残差修正方法只优化与参考动作的一致性，没有显式考虑修正动作带来的下游后果，可能引入有害纠正。\n\n\n# 二、方法\n\n> CereVLA 在冻结 VLA 之上构建小脑式「残差生成—后果评估—门控」框架：先用基于流的残差细化模块产生纠偏动作，再由循环状态空间模型与历史感知分类器分别评估短期和区间视野的后果，最后由轻量 governor 选择性抑制预测为不利的残差修正。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO-10 与 LIBERO-GOAL 上优于现有 SOTA 方法；在真实 SO-101 平台上，相对冻结的 SmolVLA 基线将任务成功率从 57.5% 提升到 90.0%，并在成功回合中将平均控制步数减少 19.6%。\n\n\n# 四、对我的启发\n\n> 核心启发是「纠正动作要先看后果再执行」，把残差适配从动作空间一致性转向结果空间评估，为冻结大模型 + 轻量治理层的部署范式提供了思路；局限在于后果评估模块需额外训练数据与推理开销，且有效性依赖冻结 VLA 本身的能力上限，跨本体泛化性未充分验证。\n"
 }
