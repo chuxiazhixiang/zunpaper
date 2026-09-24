@@ -1,0 +1,92 @@
+{
+  "id": "arxiv-2609-28377",
+  "source": "arxiv",
+  "title": "Amplify: A Lightweight Library for Reproducible Nonlinear Programming Problems in Robotics",
+  "title_zh": "Amplify：面向机器人可复现非线性规划问题的轻量级库",
+  "abstract": "Optimization problems (OPs) are key to solving many challenging research problems in robotics. However, reproducibility still remains a major issue. In this paper, we present Amplify, a lightweight nonlinear programming library aimed at reproducible results of robotic-related trajectory optimization problems. The minimalistic requirements for the 537-line library (80 characters per line) are an Internet connection, familiarity with the AMPL modeling language, and a text editor. Our primary contribution is the formulation of a library where trajectory optimization algorithms are represented directly within the optimization model. Specifically, we implement the algorithms used to compute the dynamics, trajectories, and reference motions as constraints of the OP in a declarative programming paradigm. We outline how our formulation of objectives, decisions variables, and constraints can be implemented in other transcription libraries that want to be lightweight and reproducible. We also compare the Amplify framework with 3 other libraries across examples of benchmark optimization problems across several fields, including bipedal locomotion and grasp planning.",
+  "abstract_zh": "优化问题（OPs）是解决机器人领域许多挑战性研究问题的关键。然而，可复现性仍然是一个主要问题。在本文中，我们提出了 Amplify，一个轻量级非线性规划库，旨在实现机器人相关轨迹优化问题的可复现结果。这个537行（每行80字符）的库对用户的最低要求是：互联网连接、熟悉 AMPL 建模语言以及一个文本编辑器。我们的主要贡献是构建了一个库，其中轨迹优化算法直接表示在优化模型内部。具体来说，我们以声明式编程范式，将用于计算动力学、轨迹和参考运动的算法实现为优化问题的约束。我们概述了如何将我们关于目标、决策变量和约束的表述实现在其他希望轻量且可复现的转录库中。我们还在一系列跨领域的基准优化问题示例上，将 Amplify 框架与另外3个库进行了比较，包括双足运动和抓取规划。",
+  "tldr_zh": "Amplify 是一个轻量级库，将轨迹优化算法直接嵌入优化模型，提升机器人非线性规划的可复现性。",
+  "cover_zh": "537行代码就能复现机器人轨迹优化？这个轻量库把算法直接写进模型里",
+  "authors": [
+    {
+      "name": "Nelson Rosa",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-09-23",
+  "updated": "2026-09-23",
+  "arxiv_id": "2609.28377",
+  "pdf_url": "https://arxiv.org/pdf/2609.28377v1",
+  "abs_url": "http://arxiv.org/abs/2609.28377v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-28377.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-28377-p2.jpg"
+  ],
+  "channels": [
+    "manipulation",
+    "locomotion"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 21,
+  "source_tags": [],
+  "score": 27,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（grasp、locomotion、bipedal）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 21 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "sim2real",
+    "reason": "轻量级NLP库，用于机器人轨迹优化，提升可复现性，涉及双足运动与抓取规划，对优化算法研究有参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "trajectory optimization",
+    "nonlinear programming",
+    "bipedal locomotion"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Amplify: A Lightweight Library for Reproducible Nonlinear Programming Problems in Robotics\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.28377v1\n---\n>[!abstract] 一句话总结：提出 Amplify——一个仅 537 行（每行 80 字符）的轻量级非线性规划库，用 AMPL 建模语言以声明式范式把动力学计算、轨迹生成与参考运动等算法直接写成优化模型的目标、决策变量与约束，从而把算法嵌入优化模型本身。\n\n\n# 一、动机\n\n> 机器人中的非线性规划（轨迹优化、抓取规划等）虽被广泛使用，但结果复现性差：现有转录（transcription）库依赖繁重、环境配置复杂，导致同一问题在不同实现下难以得到一致结果。\n\n\n# 二、方法\n\n> 提出 Amplify——一个仅 537 行（每行 80 字符）的轻量级非线性规划库，用 AMPL 建模语言以声明式范式把动力学计算、轨迹生成与参考运动等算法直接写成优化模型的目标、决策变量与约束，从而把算法嵌入优化模型本身。\n\n\n# 三、核心实验结果\n\n> 1）库体量极小：537 行代码、80 字符/行的极简依赖，只需联网、AMPL 建模语言基础与文本编辑器即可运行；2）在双足行走、抓取规划等多个领域的基准优化问题上与 3 个其他库进行了对比；3）给出了如何把目标/决策变量/约束的这套写法迁移到其他追求轻量与可复现的转录库的指导。\n\n\n# 四、对我的启发\n\n> 局限在于强依赖 AMPL（商业建模语言）与网络连接，声明式建模在超大规模问题上可能牺牲求解效率，且摘要未给出可复现性的量化指标；但其「把算法写成约束」的思路对机器人优化问题的可复现基准建设有借鉴意义，可作为轨迹优化实验的轻量基线。\n"
+}

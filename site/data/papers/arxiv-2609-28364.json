@@ -1,0 +1,107 @@
+{
+  "id": "arxiv-2609-28364",
+  "source": "arxiv",
+  "title": "LEAP-CBF: A Safety Filter for Uncertain Systems with Least-Effort Adversarial Potentials",
+  "title_zh": "LEAP-CBF：面向不确定系统的最小努力对抗势安全过滤器",
+  "abstract": "Control barrier functions (CBF) are a popular safety filter to ensure safety for nonlinear dynamical systems. However, when the system is subject to uncertainties and disturbances, this requires the use of robust variants of CBFs, which can be difficult to construct and can be overly conservative, especially for high-dimensional systems under input constraints. In this work, we propose a new approach to solve these challenges by introducing Least-Effort Adversarial Potentials (LEAP), a certificate that quantifies the robustness of a given state against disturbances in terms of the effort required by the disturbance to cause failure. We show that LEAP is a CBF for the undisturbed system, but can also be used to construct a safety filter that is robust to disturbances whose cumulative effort is bounded. We propose a method for constructing LEAPs with on-policy deep reinforcement learning. Next, we demonstrate LEAPs in simulation on a variety of multi-agent systems with disturbances and uncertainties. Finally, hardware experiments on a quadruped and quadrotors validate that LEAPs are well suited to tackle the disturbances and uncertainties from real-world robotic systems.",
+  "abstract_zh": "控制屏障函数（CBF）是一种流行的安全过滤器，用于确保非线性动力系统的安全性。然而，当系统受到不确定性和扰动时，需要使用鲁棒CBF变体，这些变体难以构造，且可能过于保守，尤其对于输入约束下的高维系统。在本工作中，我们提出了一种新方法来解决这些挑战，通过引入最小努力对抗势（LEAP），这是一种证书，以扰动导致失败所需的努力来量化给定状态对扰动的鲁棒性。我们证明LEAP是无扰动系统的CBF，但也可用于构造对累积努力有界的扰动具有鲁棒性的安全过滤器。我们提出了一种使用同策略深度强化学习构造LEAP的方法。接下来，我们在多种带扰动和不确定性的多智能体系统的仿真中演示了LEAP。最后，在四足机器人和四旋翼上的硬件实验验证了LEAP非常适合处理真实机器人系统中的扰动和不确定性。",
+  "tldr_zh": "提出LEAP证书，用强化学习构建鲁棒安全过滤器，仿真和硬件验证有效。",
+  "cover_zh": "安全过滤器还能这么玩？LEAP让不确定系统也稳如老狗",
+  "authors": [
+    {
+      "name": "Oswin So",
+      "affiliation": ""
+    },
+    {
+      "name": "Eric Yu",
+      "affiliation": ""
+    },
+    {
+      "name": "Chuchu Fan",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.LG",
+    "math.OC"
+  ],
+  "published": "2026-09-23",
+  "updated": "2026-09-23",
+  "arxiv_id": "2609.28364",
+  "pdf_url": "https://arxiv.org/pdf/2609.28364v1",
+  "abs_url": "http://arxiv.org/abs/2609.28364v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-28364.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-28364-p2.jpg"
+  ],
+  "channels": [
+    "locomotion"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ MIT CSAIL"
+    },
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 41,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “MIT CSAIL” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（quadruped）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "sim2real",
+    "reason": "CBF安全滤波器+RL，四足/无人机真机验证，属控制安全方向，与sim2real相关但非核心。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Massachusetts Institute of Technology"
+  ],
+  "method_tags": [
+    "Control Barrier Functions",
+    "Deep Reinforcement Learning",
+    "Safety Filter"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/EmbodiedAI\nTitle: \"LEAP-CBF: A Safety Filter for Uncertain Systems with Least-Effort Adversarial Potentials\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.28364v1\n---\n>[!abstract] 一句话总结：提出最小努力对抗势（LEAP）——以扰动力图下造成系统失效所需的'努力'量化状态鲁棒性，证明 LEAP 本身是名义系统的 CBF，并据此构造对累积扰动努力有界的鲁棒安全滤波器，用同策略（on-policy）深度强化学习来构造 LEAP。\n\n\n# 一、动机\n\n> 传统鲁棒控制障碍函数（robust CBF）在高维、带输入约束且存在扰动与不确定性时难以构造，且往往过于保守，缺乏可量化、可学习的鲁棒性证书。\n\n\n# 二、方法\n\n> 提出最小努力对抗势（LEAP）——以扰动力图下造成系统失效所需的'努力'量化状态鲁棒性，证明 LEAP 本身是名义系统的 CBF，并据此构造对累积扰动努力有界的鲁棒安全滤波器，用同策略（on-policy）深度强化学习来构造 LEAP。\n\n\n# 三、核心实验结果\n\n> 在多种带扰动与不确定性的多智能体系统仿真中验证了 LEAP 安全滤波的有效性；并在四足机器人与四旋翼上完成硬件实验，证明 LEAP 能应对真实机器人系统中的扰动与不确定性（摘要未给出具体量化指标，如成功率或性能提升幅度）。\n\n\n# 四、对我的启发\n\n> 优点是把鲁棒性转化为可学习的'最小对抗努力'标量，避免显式构造保守的鲁棒 CBF 集合；局限在于保证仅对累积努力有界的扰动成立，且依赖 on-policy 深度 RL 训练，构造成本与可扩展性（高维、输入约束）仍待进一步考察。\n"
+}

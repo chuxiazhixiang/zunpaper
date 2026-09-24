@@ -1,0 +1,101 @@
+{
+  "id": "arxiv-2609-28107",
+  "source": "arxiv",
+  "title": "Distillation for Efficient Multitask Manipulation Policies via Conditional Flow Matching",
+  "title_zh": "通过条件流匹配蒸馏实现高效多任务操作策略",
+  "abstract": "Advances in generative modeling have recently been extensively employed in robotics for policy learning. In particular, Conditional Flow Matching (CFM) trained with expert demonstrations has been shown to outperform existing methods on robot manipulation benchmarks. While prior work has mainly focused on single-task settings, we study the problem from a multi-task perspective, as training independent models for each task is computationally expensive. Multi-Task policy learning comes with its own set of challenges, as naively training on a concatenated dataset of demonstrations would either require increased model capacity to accommodate the added complexity or result in drops in performance. We propose to distill knowledge from single-task CFM experts into a shared multi-task policy by transferring their learned velocity fields. We combine this distillation signal with the original CFM objective to retain fidelity to the demonstrations. Experiments on RLBench show that our approach improves multi-task policy performance over naive training while maintaining a fixed model size.",
+  "abstract_zh": "生成建模的进展最近在机器人策略学习中被广泛采用。特别是，使用专家演示训练的条件流匹配（CFM）已被证明在机器人操作基准上优于现有方法。虽然先前的工作主要关注单任务设置，但我们从多任务角度研究该问题，因为为每个任务训练独立模型计算成本高昂。多任务策略学习有其自身的挑战，因为简单地在拼接的演示数据集上训练要么需要增加模型容量以容纳增加的复杂性，要么导致性能下降。我们提出通过转移单任务CFM专家学习到的速度场，将知识蒸馏到一个共享的多任务策略中。我们将这种蒸馏信号与原始CFM目标相结合，以保持对演示的保真度。在RLBench上的实验表明，我们的方法在保持固定模型大小的同时，提高了多任务策略性能，优于朴素训练。",
+  "tldr_zh": "通过蒸馏单任务CFM专家提升多任务策略性能，保持模型大小不变。",
+  "cover_zh": "多任务操作策略还能这样蒸馏？性能不降反升！",
+  "authors": [
+    {
+      "name": "Shreya Deshmukh",
+      "affiliation": ""
+    },
+    {
+      "name": "Imen Mahdi",
+      "affiliation": ""
+    },
+    {
+      "name": "Nick Heppert",
+      "affiliation": ""
+    },
+    {
+      "name": "Abhinav Valada",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.AI",
+    "cs.LG"
+  ],
+  "published": "2026-09-23",
+  "updated": "2026-09-23",
+  "arxiv_id": "2609.28107",
+  "pdf_url": "https://arxiv.org/pdf/2609.28107v1",
+  "abs_url": "http://arxiv.org/abs/2609.28107v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-28107.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-28107-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 6,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（manipulation）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 6 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "多任务操作策略蒸馏，基于条件流匹配，RLBench验证，属manipulation方向，算法有创新。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University of Freiburg"
+  ],
+  "method_tags": [
+    "Conditional Flow Matching",
+    "Distillation",
+    "Multi-Task Policy Learning"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Distillation for Efficient Multitask Manipulation Policies via Conditional Flow Matching\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.28107v1\n---\n>[!abstract] 一句话总结：将多个单任务 Conditional Flow Matching（CFM）专家所学的速度场（velocity field）蒸馏到一个共享的多任务策略中，并把该蒸馏信号与原始 CFM 训练目标结合，以在压缩到固定模型规模的同时保持对专家演示的保真度。\n\n\n# 一、动机\n\n> 多任务机器人策略学习若为每个任务单独训练模型，计算开销过大；而直接在拼接数据集上朴素地训练多任务策略，要么需要更大的模型容量来容纳任务复杂度，要么导致性能下降。作者希望在不增加模型规模的前提下获得多任务操纵策略。\n\n\n# 二、方法\n\n> 将多个单任务 Conditional Flow Matching（CFM）专家所学的速度场（velocity field）蒸馏到一个共享的多任务策略中，并把该蒸馏信号与原始 CFM 训练目标结合，以在压缩到固定模型规模的同时保持对专家演示的保真度。\n\n\n# 三、核心实验结果\n\n> 在 RLBench 基准上，该蒸馏方法相较朴素多任务训练（naive training）提升了多任务策略性能，同时保持固定的模型大小（fixed model size）。摘要中未报告具体数值指标，需查阅正文获取各任务成功率与提升幅度。\n\n\n# 四、对我的启发\n\n> 局限在于需要预先为每个任务训练单任务 CFM 专家，任务数量增长时专家训练成本与蒸馏开销会线性上升；固定模型容量在多任务数量继续扩大时可能成为瓶颈。启发是：生成式策略（CFM）的速度场可作为跨任务可迁移的知识载体，为多任务/多具身策略压缩提供了一条不需扩大模型的路径。\n"
+}

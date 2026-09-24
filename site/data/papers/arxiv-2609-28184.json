@@ -1,0 +1,109 @@
+{
+  "id": "arxiv-2609-28184",
+  "source": "arxiv",
+  "title": "VLMs Can Describe, But Not Measure: Object-Centric Scene Understanding for Robotic Manipulation",
+  "title_zh": "VLM 能描述，但不能测量：面向机器人操作的以物体为中心的场景理解",
+  "abstract": "Robotic operation in previously unseen environments requires both semantic understanding and reliable metric information. While vision--language models (VLMs) provide strong semantic capabilities, their geometric estimates remain less reliable. In this paper, we propose a VLM-driven, modular perception framework for scene understanding using off-the-shelf approaches. Starting from a single RGB-D observation, the scene is segmented into object-level regions, annotated by a VLM, and grounded with depth information to construct a task-independent object-centric representation. Experiments on 151 tabletop scenes show that the proposed decomposition preserves strong semantic performance while substantially improving localization and depth estimation over direct VLM inference. The resulting representation is also integrated with a task-planning framework for robotic execution.",
+  "abstract_zh": "在未见过的环境中进行机器人操作，既需要语义理解，也需要可靠的度量信息。尽管视觉语言模型（VLM）提供了强大的语义能力，但其几何估计仍然不太可靠。本文提出了一种由 VLM 驱动、模块化的场景理解感知框架，采用现成方法。从单次 RGB-D 观测出发，场景被分割为物体级区域，由 VLM 进行标注，并利用深度信息进行接地，从而构建任务无关的以物体为中心的表示。在 151 个桌面场景上的实验表明，所提出的分解方法在保持强大语义性能的同时，相比直接 VLM 推理显著改善了定位和深度估计。由此得到的表示还与任务规划框架集成，用于机器人执行。",
+  "tldr_zh": "VLM 驱动模块化感知，提升机器人场景定位与深度估计。",
+  "cover_zh": "VLM 只会说不会量？这个框架让机器人真正看懂距离",
+  "authors": [
+    {
+      "name": "Enrico Saccon",
+      "affiliation": ""
+    },
+    {
+      "name": "Tommaso Faraci",
+      "affiliation": ""
+    },
+    {
+      "name": "Iñigo De La Ossa Zarzuelo",
+      "affiliation": ""
+    },
+    {
+      "name": "Luigi Palopoli",
+      "affiliation": ""
+    },
+    {
+      "name": "Marco Roveri",
+      "affiliation": ""
+    },
+    {
+      "name": "Matteo Saveriano",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.CV"
+  ],
+  "published": "2026-09-23",
+  "updated": "2026-09-23",
+  "arxiv_id": "2609.28184",
+  "pdf_url": "https://arxiv.org/pdf/2609.28184v1",
+  "abs_url": "http://arxiv.org/abs/2609.28184v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-28184.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-28184-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（manipulation）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "面向机器人操作的对象中心场景理解，结合VLM与深度信息，提升定位与深度估计，属manipulation方向。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University of Trento",
+    "Mondragón University"
+  ],
+  "method_tags": [
+    "VLM",
+    "object-centric representation",
+    "task-planning"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"VLMs Can Describe, But Not Measure: Object-Centric Scene Understanding for Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.28184v1\n---\n>[!abstract] 一句话总结：提出一个 VLM 驱动的模块化感知框架：从单张 RGB-D 观测出发，先用现成分割方法将场景分解为物体级区域，再由 VLM 进行语义标注，并用深度信息做几何 grounding，从而构建任务无关的物体中心表示，最后接入任务规划框架驱动机器人执行。\n\n\n# 一、动机\n\n> 机器人在未见环境中操作既需要语义理解又需要可靠的度量信息，而 VLM 虽语义能力强，其几何估计（定位、深度）却不可靠，直接推理难以支撑精细操作。\n\n\n# 二、方法\n\n> 提出一个 VLM 驱动的模块化感知框架：从单张 RGB-D 观测出发，先用现成分割方法将场景分解为物体级区域，再由 VLM 进行语义标注，并用深度信息做几何 grounding，从而构建任务无关的物体中心表示，最后接入任务规划框架驱动机器人执行。\n\n\n# 三、核心实验结果\n\n> 在 151 个桌面场景上的实验表明，该分解式流程在保持强语义性能的同时，相比直接 VLM 推理显著提升了目标定位与深度估计精度；构建的物体中心表示可直接与任务规划框架集成，完成机器人执行。\n\n\n# 四、对我的启发\n\n> 核心启发是「VLM 负责语义、专用几何模块负责度量」的解耦范式，比让 VLM 端到端输出空间量更可靠；局限在于仅验证桌面小场景、依赖现成（off-the-shelf）分割与深度模块，泛化到杂乱、遮挡或透明物体场景的效果未知，且任务规划部分的闭环成功率未在摘要中量化。\n"
+}

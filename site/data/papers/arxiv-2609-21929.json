@@ -55,12 +55,35 @@
   "channels": [
     "manipulation"
   ],
-  "badges": [],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ CMU RI"
+    },
+    {
+      "kind": "lab",
+      "label": "⭐ SJTU"
+    },
+    {
+      "kind": "lab",
+      "label": "⭐ HKU"
+    },
+    {
+      "kind": "lab",
+      "label": "⭐ USTC"
+    }
+  ],
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 12,
+  "score": 37,
   "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “CMU RI” 关键词"
+    },
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
@@ -75,14 +98,23 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "Carnegie Mellon University",
+    "Shanghai Jiao Tong University",
+    "University of Science and Technology of China",
+    "The University of Hong Kong"
+  ],
+  "method_tags": [
+    "Imitation Learning",
+    "Active Perception",
+    "Multi-Agent Manipulation"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"MAAP: Multi-Agent Active Perception for Collaborative Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21929v1\n---\n>[!abstract] 一句话总结：提出 MAAP：让每条机械臂身兼双职——既执行操作动作，又通过腕部相机充当团队的移动视角；并配以 RAIL（Role-Aware Imitation Learning）控制器，在同一个网络中同时预测各臂当前角色与动作 chunk，并以角色为条件生成动作，从而在一个策略内表达角色相关的行为。\n\n\n# 一、动机\n\n> 多臂协作操作中每个机械臂都自带腕部相机并在运动，但这些任务驱动的视角通常被浪费；已有主动感知工作往往需要额外的专用感知智能体，增加了系统复杂度与成本。\n\n\n# 二、方法\n\n> 提出 MAAP：让每条机械臂身兼双职——既执行操作动作，又通过腕部相机充当团队的移动视角；并配以 RAIL（Role-Aware Imitation Learning）控制器，在同一个网络中同时预测各臂当前角色与动作 chunk，并以角色为条件生成动作，从而在一个策略内表达角色相关的行为。\n\n\n# 三、核心实验结果\n\n> 在四个仿真任务上，扩大感知范围可将平均成功率从固定相机的 56.5% 提升到单个主动腕部视角的 62.5%、全部腕部视角的 70.0%，MAAP+RAIL 进一步达到 79.2%；RAIL 的增益主要来自三臂 Microwave 任务，在相同多腕视角输入下成功率从 47% 提升到 82%；在双臂真机平台上，MAAP+RAIL 在 20 次放置试验中成功 14 次，而固定视角 ACT 为 0/20。\n\n\n# 四、对我的启发\n\n> 核心启发是协作操作本身即可作为一种主动感知机制，无需专门的感知智能体，且显式建模“角色”能显著缓解多臂策略中的行为歧义；局限在于真机仅验证了双臂放置任务、样本量较小（20 次），角色划分依赖任务先验且未展示对更多臂数、动态场景或失败恢复的泛化能力。\n"
 }

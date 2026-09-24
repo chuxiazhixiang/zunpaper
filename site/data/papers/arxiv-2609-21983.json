@@ -51,14 +51,28 @@
   "badges": [
     {
       "kind": "lab",
+      "label": "⭐ 清华"
+    },
+    {
+      "kind": "lab",
+      "label": "⭐ 北大"
+    },
+    {
+      "kind": "lab",
       "label": "⭐ Hang Zhao"
     }
   ],
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 37,
+  "score": 62,
   "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “清华” 关键词"
+    },
     {
       "id": "key_author",
       "label": "关键作者上榜",
@@ -85,14 +99,26 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
-  "platform": [],
+  "institutions": [
+    "Peking University",
+    "Feagine",
+    "Tsinghua University"
+  ],
+  "method_tags": [
+    "World-Action Model",
+    "cross-embodiment transfer",
+    "zero-shot"
+  ],
+  "platform": [
+    "Franka",
+    "JAKA mini2",
+    "Feagine A03"
+  ],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/CrossEmbodimentTransfer\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"SkelWAM: A Skeleton-Guided World-Action Model for Zero-Shot Cross-Embodiment Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21983v1\n---\n>[!abstract] 一句话总结：提出 SkelWAM，用统一的骨架几何表征（手臂中心线几何 + TCP 位姿 + 平行夹爪指令，共 25 维共享状态）来同时定义第三人称/腕部观测与未来全身动作目标，以视频-动作混合 Transformer 在预测性视觉监督下预测规范骨架动作块，再由各具身特有的约束解码器转换为关节或连续体机器人控制。\n\n\n# 一、动机\n\n> 跨具身复用操作经验面临视觉外观、动作维度与语义、以及实现同一工具位姿所需全身构型不一致的问题，现有方法往往依赖关节间一一对应或目标域演示与策略微调。\n\n\n# 二、方法\n\n> 提出 SkelWAM，用统一的骨架几何表征（手臂中心线几何 + TCP 位姿 + 平行夹爪指令，共 25 维共享状态）来同时定义第三人称/腕部观测与未来全身动作目标，以视频-动作混合 Transformer 在预测性视觉监督下预测规范骨架动作块，再由各具身特有的约束解码器转换为关节或连续体机器人控制。\n\n\n# 三、核心实验结果\n\n> 在自建的 LIBERO-Cross10（10 任务、10 个目标具身、4 类形态、源域仅 Franka）基准上，1000 个 episode 取得 43.3% 成功率，比最优对比基线高 36.2 个百分点；并将 JAKA mini2 训练的策略零样本部署到 Feagine A03 连续体机器人，完成 3 项桌面操作任务。\n\n\n# 四、对我的启发\n\n> 方法无需关节一一对应、无需目标域演示与策略更新，验证了显式几何中间表征在跨具身迁移上的有效性；局限在于共享状态仍依赖平行夹爪与手臂中心线假设，对灵巧手、多臂等形态的泛化以及连续体机器人的实验规模（仅 3 个任务）尚待验证。\n"
 }

@@ -1,0 +1,96 @@
+{
+  "id": "arxiv-2609-28299",
+  "source": "arxiv",
+  "title": "Contact-Implicit Stein Projected ADMM for Discovery of Diverse Contact-Rich Manipulation Strategies",
+  "title_zh": "接触隐式Stein投影ADMM用于发现多样化的富接触操作策略",
+  "abstract": "Contact-implicit trajectory optimization formulates contact-rich manipulation as a single constrained program; however, that single program run collapses onto one local optimum out of many equally valid contact modes, grasps, or push directions. As a consequence, the resulting manipulation strategy is reluctant to change and sensitive to initialization. In order to promote robust manipulation, this paper investigates how contact-implicit solvers can discover diverse contact-rich strategies. Our approach derives a variation of Consensus Alternating Direction Method of Multipliers (ADMM) combined with Stein variational inference methods to output a set of distinct contact-rich solutions. We find that applying the Stein repulsive force to ADMM's split variable (rather than its primal form) allows for effective coverage over the set of feasible contact strategies without prematurely stalling the solver. We demonstrate the effectiveness of our approach on a variety of contact-rich manipulation tasks, including pushing, grasping, and multi-robot handover. Last, we find the proposed solver is simpler in form and capable of discovering unique contact modes when compared with existing solvers. Videos and code with examples are found in https://anon-website-submission.github.io/stein-admm-website/.",
+  "abstract_zh": "接触隐式轨迹优化将富接触操作建模为单个约束规划问题；然而，该单个规划运行会收敛到众多同样有效的接触模式、抓取或推动方向中的一个局部最优解。因此，所得到的操作策略不愿改变且对初始化敏感。为了促进鲁棒操作，本文研究了接触隐式求解器如何发现多样化的富接触策略。我们的方法推导出共识交替方向乘子法（ADMM）的变体，结合Stein变分推断方法，输出一组不同的富接触解。我们发现，将Stein排斥力应用于ADMM的分裂变量（而非其原始形式）能够有效覆盖可行接触策略集合，而不会过早使求解器停滞。我们在多种富接触操作任务上展示了该方法的有效性，包括推动、抓取和多机器人交接。最后，我们发现与现有求解器相比，所提出的求解器形式更简单，并且能够发现独特的接触模式。视频和代码示例见 https://anon-website-submission.github.io/stein-admm-website/。",
+  "tldr_zh": "提出Stein投影ADMM求解器，发现多样化的富接触操作策略。",
+  "cover_zh": "接触隐式优化只能收敛到一个解？这个新方法让策略多样性直接拉满",
+  "authors": [
+    {
+      "name": "Hrishikesh Sathyanarayan",
+      "affiliation": ""
+    },
+    {
+      "name": "Christian Hughes",
+      "affiliation": ""
+    },
+    {
+      "name": "Ian Abraham",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-09-23",
+  "updated": "2026-09-23",
+  "arxiv_id": "2609.28299",
+  "pdf_url": "https://arxiv.org/pdf/2609.28299v1",
+  "abs_url": "http://arxiv.org/abs/2609.28299v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-28299.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-28299-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 25,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 5 个（manipulation、grasp、grasping、contact-rich）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "接触隐式轨迹优化用于富接触操作，提出Stein变分ADMM发现多样策略，算法新颖，属操作方向。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Yale University",
+    "University of Sydney"
+  ],
+  "method_tags": [
+    "Contact-Implicit Trajectory Optimization",
+    "ADMM",
+    "Stein Variational Inference"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Contact-Implicit Stein Projected ADMM for Discovery of Diverse Contact-Rich Manipulation Strategies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.28299v1\n---\n>[!abstract] 一句话总结：提出 Contact-Implicit Stein Projected ADMM：以 Consensus ADMM 为骨架，将 Stein 变分推断的排斥力施加在 ADMM 的 split variable（而非原始变量）上，从而在不使求解器过早停滞的前提下，一次性输出一组彼此差异明显的接触丰富解。\n\n\n# 一、动机\n\n> 接触隐式轨迹优化把接触丰富操作建模为单个约束优化问题，但单次求解只会收敛到众多等价解（接触模式、抓取方式、推的方向）中的一个局部最优，导致策略僵化且对初始化敏感，无法提供可供选择或鲁棒的多样化操作方案。\n\n\n# 二、方法\n\n> 提出 Contact-Implicit Stein Projected ADMM：以 Consensus ADMM 为骨架，将 Stein 变分推断的排斥力施加在 ADMM 的 split variable（而非原始变量）上，从而在不使求解器过早停滞的前提下，一次性输出一组彼此差异明显的接触丰富解。\n\n\n# 三、核心实验结果\n\n> 在推动（pushing）、抓取（grasping）与多机器人交接（multi-robot handover）等接触丰富任务上验证了方法有效性；关键发现是排斥力作用在 ADMM 的 split variable 上才能有效覆盖可行接触策略集合，若作用于 primal form 则会使求解器过早停滞；相比现有求解器形式更简洁并能发现独特的接触模式。摘要未给出收敛率、成功率等具体数值指标。\n\n\n# 四、对我的启发\n\n> 局限在于摘要层面尚缺量化对比与成功率/多样性度量，效果主要靠任务演示支撑；启发是将 Stein 排斥力与 ADMM 分裂变量结合可作为一种通用机制，为接触丰富操作提供多模态策略集合，可用于后续鲁棒性或跨本体迁移中的策略选择。\n"
+}
