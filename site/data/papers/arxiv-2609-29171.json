@@ -66,7 +66,8 @@
     "assets/img/covers/arxiv-2609-29171-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -85,7 +86,7 @@
   "related_links": [],
   "page_count": 17,
   "source_tags": [],
-  "score": 61,
+  "score": 72,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -102,8 +103,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（manipulation）"
+      "points": 9,
+      "hint": "频道关键词命中 3 个（manipulation、world model、world models）"
     },
     {
       "id": "freshness",
@@ -116,6 +117,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 17 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -140,5 +147,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Representation World Model: Learning States, Transition and Executable Plans in Representation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.29171v1\n---\n>[!abstract] 一句话总结：RWM 直接在表示空间中学习状态、转移与可执行计划：通过在由端点表示构造的隐路径上施加局部逆动力学监督来塑造表示几何（要求路径保留任务相关的状态与转移信息），推理时只需在当前表示与目标表示之间直接构造一条隐路径，再用逆动力学还原对应动作，无需递归 rollout 或动作空间搜索。\n\n\n# 一、动机\n\n> 现有世界模型通常把隐表示学习与显式动力学模型绑定，并在推理时依赖搜索、优化或策略预测来规划，计算开销大且规划过程与表示几何本身是割裂的。\n\n\n# 二、方法\n\n> RWM 直接在表示空间中学习状态、转移与可执行计划：通过在由端点表示构造的隐路径上施加局部逆动力学监督来塑造表示几何（要求路径保留任务相关的状态与转移信息），推理时只需在当前表示与目标表示之间直接构造一条隐路径，再用逆动力学还原对应动作，无需递归 rollout 或动作空间搜索。\n\n\n# 三、核心实验结果\n\n> 在连续控制基准上验证了直接规划的有效性，在机器人操作任务上进一步展示了向更复杂具身控制扩展的潜力；但摘要未给出具体量化指标（如成功率或分数数值），需查阅正文确认。\n\n\n# 四、对我的启发\n\n> 把规划内嵌进表示几何、用一条隐路径替代递归预测的思路，对具身控制的效率有启发；局限在于路径的可达性与多模态任务下的表示几何是否足够，且缺少与基线方法在统一指标上的定量对比。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - Task/WorldModel\n  - 状态/待读\nTitle: \"Representation World Model: Learning States, Transition and Executable Plans in Representation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.29171v1\n---\n>[!abstract] 一句话总结：RWM 直接在表征空间学习状态、转移与可执行计划：沿由端点表征构造的潜路径施加局部逆动力学监督，使路径保留任务相关状态与转移信息；推理时在当前与目标表征间直接构造潜路径，并用逆动力学恢复动作，无需递归 rollout 或动作空间搜索。\n\n\n# 一、动机\n\n> 现有世界模型通常将隐表征与显式动力学模型联合学习，并通过搜索、优化或策略预测进行规划，导致规划与表征几何分离，推理时依赖递归 rollout 或动作空间搜索，效率与一致性受限。\n\n\n# 二、方法\n\n> RWM 直接在表征空间学习状态、转移与可执行计划：沿由端点表征构造的潜路径施加局部逆动力学监督，使路径保留任务相关状态与转移信息；推理时在当前与目标表征间直接构造潜路径，并用逆动力学恢复动作，无需递归 rollout 或动作空间搜索。\n\n\n# 三、核心实验结果\n\n> 在连续控制基准上验证了直接规划的有效性，并在机器人操作任务上展示了扩展到更复杂具身控制任务的潜力；摘要未给出具体数值指标（如成功率或性能提升），需查阅正文。\n\n\n# 四、对我的启发\n\n> 局限：方法依赖端点表征间潜路径的质量与逆动力学可辨识性，对长时程、动态环境及跨本体泛化仍需验证；启发：将规划嵌入表征几何可避免递归 rollout 和动作搜索，为具身控制提供更直接的世界模型规划范式。\n"
 }

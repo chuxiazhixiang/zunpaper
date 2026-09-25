@@ -118,7 +118,8 @@
     "assets/img/covers/arxiv-2609-29166-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -129,13 +130,13 @@
   "related_links": [],
   "page_count": 45,
   "source_tags": [],
-  "score": 22,
+  "score": 30,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 9,
-      "hint": "频道关键词命中 3 个（embodied agent、robocasa、libero）"
+      "points": 12,
+      "hint": "频道关键词命中 4 个（embodied agent、robocasa、libero、dreamer）"
     },
     {
       "id": "freshness",
@@ -148,6 +149,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 45 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -170,5 +177,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"HarnessPAI: An Evolving Harness for Physical AI\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.29166v1\n---\n>[!abstract] 一句话总结：提出模型与具身无关的 HarnessPAI 框架，把「代码」作为可执行、可演化的接口来组织底层动作原语：单次 rollout 内以固定程序做开环执行与校验，跨 rollout 则利用执行反馈闭环演化程序，并将失败蒸馏为可复用技能。\n\n\n# 一、动机\n\n> Physical AI 领域过度聚焦于动作模型（观测到低层控制的映射），而主流训练范式会侵蚀鲁棒的感知与推理能力，导致即使强动作模型也易受场景扰动影响、难以完成长时序任务。\n\n\n# 二、方法\n\n> 提出模型与具身无关的 HarnessPAI 框架，把「代码」作为可执行、可演化的接口来组织底层动作原语：单次 rollout 内以固定程序做开环执行与校验，跨 rollout 则利用执行反馈闭环演化程序，并将失败蒸馏为可复用技能。\n\n\n# 三、核心实验结果\n\n> 在桌面机械臂、家用机器人、扫地机器人和四足行走智能体上，无需重训底层模型即超越纯动作模型与 code-as-policy 基线：LIBERO-PRO 上比 π0.5 提升 61.6 分，RoboCasa 原子任务上比 WorldDreamer 提升 27.2 分；程序选定后 rollout 执行不需要在线高层 LLM 推理；收敛后的程序还是廉价可靠的专家数据采集器，用其数据微调 π0.5 可使 LIBERO-PRO 成功率再提升 38.8 分。\n\n\n# 四、对我的启发\n\n> 局限在于开环执行阶段依赖程序质量与校验机制，程序演化仍受底层 LLM/反馈信号质量制约；启发是 Physical AI 的前沿不只取决于更强的动作模型，把感知、任务理解推理与动作执行统一为可验证、反馈驱动的可执行 harness 可能是关键路径，同时「程序即数据采集器」为低成本专家数据获取提供了新思路。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"HarnessPAI: An Evolving Harness for Physical AI\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.29166v1\n---\n>[!abstract] 一句话总结：提出 HarnessPAI——一个与模型和本体无关的 Harness 框架，把「代码」当作可执行、可演化的接口来组织底层动作原语：单次 rollout 内在程序层开环执行、由固定程序引导和校验执行，跨 rollout 则闭环演化，用执行反馈修订程序并把失败蒸馏成可复用技能。\n\n\n# 一、动机\n\n> Physical AI 目前几乎只关注把观测映射到低层控制的 action model，而这种训练范式会侵蚀鲁棒行为所需的感知与推理能力，使再强的动作模型也容易被场景扰动和长时程任务击穿。\n\n\n# 二、方法\n\n> 提出 HarnessPAI——一个与模型和本体无关的 Harness 框架，把「代码」当作可执行、可演化的接口来组织底层动作原语：单次 rollout 内在程序层开环执行、由固定程序引导和校验执行，跨 rollout 则闭环演化，用执行反馈修订程序并把失败蒸馏成可复用技能。\n\n\n# 三、核心实验结果\n\n> 在桌面机械臂、家用机器人、扫地机器人和足式行走智能体上均无需重训底层模型即取得提升：LIBERO-PRO 上比 π0.5 高 61.6 分，RoboCasa 原子任务上比 WorldDreamer 高 27.2 分；程序一旦选定，rollout 执行不再需要在线高层 LLM 推理；收敛后的程序还可作为廉价的可靠专家数据采集器，用其数据微调 π0.5 可使 LIBERO-PRO 成功率再提升 38.8 分。\n\n\n# 四、对我的启发\n\n> 启发在于 Physical AI 的前沿不只取决于更强的动作模型，还取决于能把感知、任务理解与推理、动作执行整合为统一、可验证、反馈驱动系统的可执行 harness；局限是仍依赖程序演化与执行反馈的收敛质量，跨本体迁移与复杂长时程任务的程序搜索开销、失败信号稀疏性等问题尚待验证。\n"
 }
