@@ -98,14 +98,24 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
-  "platform": [],
+  "institutions": [
+    "Institute of Intelligent Systems and Robotics (ISIR)",
+    "CNRS",
+    "Sorbonne University"
+  ],
+  "method_tags": [
+    "VLA",
+    "sim-to-real",
+    "action chunks"
+  ],
+  "platform": [
+    "Franka FR3"
+  ],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/系统\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"A Sim-to-Real Integration Pipeline for Training and Deployment of Chunk-Based VLA Manipulation Policies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21817v1\n---\n>[!abstract] 一句话总结：提出一套开源的 sim-to-real 实验协议：先在仿真中生成专家轨迹，再在真实 Franka FR3 平台上开环回放并同步记录真实的视觉与本体重感知观测，转换为兼容 VLA 训练的格式；随后复用同一套部署栈进行闭环策略评测，使数据采集与评测共享完全一致的硬件配置。\n\n\n# 一、动机\n\n> 现有 VLA 操作策略（在末端位姿空间预测动作块）依赖大规模真实演示数据，而真实数据采集通常靠人工遥操作，成本高、耗时长、难以规模化，成为训练与评测的主要瓶颈。\n\n\n# 二、方法\n\n> 提出一套开源的 sim-to-real 实验协议：先在仿真中生成专家轨迹，再在真实 Franka FR3 平台上开环回放并同步记录真实的视觉与本体重感知观测，转换为兼容 VLA 训练的格式；随后复用同一套部署栈进行闭环策略评测，使数据采集与评测共享完全一致的硬件配置。\n\n\n# 三、核心实验结果\n\n> 论文未在摘要中给出量化性能指标；其核心可报告产出为：(1) 每条真实记录都与产生它的仿真轨迹一一配对，从而可直接测量 sim-to-real gap；(2) 提供基于 Franka FR3 的可复用采集+部署流水线，数据采集与闭环评测共用同一硬件与部署栈；(3) 公开发布所采集数据集（Hugging Face）与流水线源码（gitlab.isir.upmc.fr/kappel/sim2real_public_chunk_control）。\n\n\n# 四、对我的启发\n\n> 以仿真专家轨迹开环回放替代遥操作，可大幅降低数据采集成本并天然给出 sim-to-real 差距的度量，但开环回放意味着真实观测的分布受限于仿真轨迹覆盖范围，环境扰动与闭环纠错行为无法被采集；与具身智能/机器人操作直接相关，可作为 VLA 数据规模化与真机评测复用的工程参考。\n"
 }

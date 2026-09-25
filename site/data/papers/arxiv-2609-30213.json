@@ -1,0 +1,106 @@
+{
+  "id": "arxiv-2609-30213",
+  "source": "arxiv",
+  "title": "ReVAMP: Vector-Accelerated Motion Planning for Kinematically-Constrained Systems via Reparameterization",
+  "title_zh": "ReVAMP：通过重参数化实现运动学约束系统的向量加速运动规划",
+  "abstract": "Robots often must satisfy one or more constraints during motion planning for real-world tasks. When such constraints reduce the valid configuration space to a measure-zero subset, sampling based planning algorithms require modifications to draw feasible samples. For many common end-effector constraints, parameterizations built on inverse kinematics (IK) provide an alternate formulation where the constraints are satisfied by construction, allowing directly sampling the feasible set. Despite their elegant approach, parameterized planners have remained slower than vector-accelerated implementations of projection-based approaches, leaving their performance ceiling an open question. We explore a new axis of vectorization built upon reparameterizing the planning space through analytic IK. This approach addresses existing inefficiencies in vectorized projection-based planners and exposes new opportunities for parallelism within the planner. We show that the planner can synthesize plans in microseconds to milliseconds for high dimensional systems (up to 20 dimensions), with complex constraints, up to 10x faster than the current state-of-the-art. Furthermore, we demonstrate how such planning speeds open up avenues for restructuring sequential manipulation pipelines.",
+  "abstract_zh": "在现实世界任务中，机器人通常需要在运动规划过程中满足一个或多个约束。当这些约束将有效构型空间缩减为零测度子集时，基于采样的规划算法需要进行修改以抽取可行样本。对于许多常见的末端执行器约束，基于逆运动学（IK）的参数化提供了一种替代形式，其中约束通过构造得到满足，从而允许直接对可行集进行采样。尽管方法优雅，但参数化规划器一直比基于投影方法的向量加速实现更慢，使其性能上限成为未解之谜。我们探索了一种新的向量化维度，基于通过解析IK对规划空间进行重参数化。这种方法解决了现有向量化投影规划器的低效问题，并在规划器内部揭示了新的并行化机会。我们表明，该规划器能够为高维系统（高达20维）和复杂约束在微秒到毫秒内合成规划，比当前最先进技术快达10倍。此外，我们展示了这种规划速度如何为重构顺序操作流水线开辟新途径。",
+  "tldr_zh": "通过解析IK重参数化实现向量加速运动规划，速度提升达10倍。",
+  "cover_zh": "逆运动学重参数化｜让高维机器人规划快10倍",
+  "authors": [
+    {
+      "name": "Shrutheesh R. Iyer",
+      "affiliation": ""
+    },
+    {
+      "name": "Thomas Cohn",
+      "affiliation": ""
+    },
+    {
+      "name": "Zachary Kingston",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-09-24",
+  "updated": "2026-09-24",
+  "arxiv_id": "2609.30213",
+  "pdf_url": "https://arxiv.org/pdf/2609.30213v1",
+  "abs_url": "http://arxiv.org/abs/2609.30213v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-30213.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-30213-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ MIT CSAIL"
+    },
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 41,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “MIT CSAIL” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（manipulation）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "运动规划算法创新，面向机械臂约束规划，加速10倍，对操作有科研价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Purdue University",
+    "Massachusetts Institute of Technology"
+  ],
+  "method_tags": [
+    "Motion Planning",
+    "Inverse Kinematics",
+    "Vectorization"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"ReVAMP: Vector-Accelerated Motion Planning for Kinematically-Constrained Systems via Reparameterization\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.30213v1\n---\n>[!abstract] 一句话总结：通过解析 IK 对规划空间进行重参数化，在此基础上做新的向量化（vectorization），消除现有向量化投影式规划器的低效环节，并挖掘规划器内部新的并行机会，从而在满足运动学约束的同时实现极高吞吐的规划。\n\n\n# 一、动机\n\n> 当任务约束（如末端执行器约束）把可行配置空间压缩为零测度子集时，基于采样的规划器必须改造采样过程才能采到可行样本；而基于逆运动学参数化的规划器虽能按构造满足约束、直接采样可行集，却一直比向量化加速的投影类方法慢，其性能上限尚不明确。\n\n\n# 二、方法\n\n> 通过解析 IK 对规划空间进行重参数化，在此基础上做新的向量化（vectorization），消除现有向量化投影式规划器的低效环节，并挖掘规划器内部新的并行机会，从而在满足运动学约束的同时实现极高吞吐的规划。\n\n\n# 三、核心实验结果\n\n> 在高维系统（最高 20 维）与复杂约束下，规划器可在微秒到毫秒级完成规划，比当前最先进方法快最多 10 倍；这种规划速度还允许重构串行操作（sequential manipulation）流水线的结构。\n\n\n# 四、对我的启发\n\n> 局限在于方法依赖解析 IK 参数化，仅适用于能写出解析逆运动学的运动学约束系统，约束形式受限；启发是微秒级约束规划可将原先串行的操作流水线重新组织（如并行候选评估、在线重规划），对机器人操作与具身系统中的实时约束规划有直接参考价值。\n"
+}

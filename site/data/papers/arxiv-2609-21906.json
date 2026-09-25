@@ -63,8 +63,13 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "Duke University"
+  ],
+  "method_tags": [
+    "World Model",
+    "Counterfactual Simulation"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
@@ -72,5 +77,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Healthcare\n  - Task/WorldModel\n  - 状态/待读\nTitle: \"Intervention Granularity Matters: Coherent Treatment Bundles in Counterfactual Simulation with Clinical World Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21906v1\n---\n>[!abstract] 一句话总结：对 MIMIC-IV 中 945,707 患者小时做共现审计以识别不可分割的干预组合，并用基于小时级治疗文本条件化的潜世界模型 Clin-JEPA，在固定病史与其他治疗的前提下，对比「只改一个呼吸机设置」与「改整套真实患者配置」两种编辑粒度的预测差异。\n\n\n# 一、动机\n\n> 临床反事实仿真需要定义「一次干预」的边界，但真实临床中干预以捆绑包（bundle）形式记录，单独修改其中一个组分会生成数据中从未出现过的状态，导致模型响应被误导。\n\n\n# 二、方法\n\n> 对 MIMIC-IV 中 945,707 患者小时做共现审计以识别不可分割的干预组合，并用基于小时级治疗文本条件化的潜世界模型 Clin-JEPA，在固定病史与其他治疗的前提下，对比「只改一个呼吸机设置」与「改整套真实患者配置」两种编辑粒度的预测差异。\n\n\n# 三、核心实验结果\n\n> 在 1,019 次有创通气起始点上的实验显示，完整捆绑包编辑比任何单一设置编辑都能把预测的下一状态推得更远，且在全部五个呼吸机设置上一致成立；在控制编辑对模型输入的改变幅度后该差异依然存在，说明干预粒度本身实质影响世界模型响应。\n\n\n# 四、对我的启发\n\n> 单组分编辑会低估治疗敏感性，捆绑感知的编辑更适合作为反事实治疗仿真的基础；局限在于仅在 MIMIC-IV 与呼吸机场景验证，且依赖共现审计来定义捆绑包。与机器人/具身智能不直接相关，但「动作/干预粒度如何影响世界模型预测」这一问题对具身世界模型的动作空间设计有可迁移的启发。\n"
 }

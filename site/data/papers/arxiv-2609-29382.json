@@ -1,0 +1,109 @@
+{
+  "id": "arxiv-2609-29382",
+  "source": "arxiv",
+  "title": "Decoupled Early Exits for Task-Dependent Compute Allocation in Flow-Matching VLAs",
+  "title_zh": "解耦早期退出：面向流匹配VLA的任务相关计算分配",
+  "abstract": "Flow-matching Vision-Language-Action (VLA) models have emerged as a potential solution for generalist robot control, designed by combining a pretrained Vision-Language Model (VLM) backbone with an action expert that generates continuous robot actions. While these models exhibit impressive capabilities, due to their very high number of parameters, their computational requirements are often prohibitive for robotics control. To mitigate these inefficiencies, existing methods predominantly skip VLM backbone layers with early exits or reduce denoising steps, while leaving action expert depth untouched. We propose a framework that exposes backbone depth $V$, action expert depth $A$, and denoising steps $D$ as three jointly configurable compute axes in a VLA. Starting from a pretrained VLA, we attach lightweight Exit Transformers (ET) at intermediate depths in both the backbone and the action expert, trained to distil the last layer of the policy into each exit. Furthermore, we introduce a KV Cache synthesis mechanism that manages the missing keys and values of the skipped backbone layers, allowing the action expert to exit deeper than the backbone. Finally, we show that the optimal compute budget is task-dependent, with different tasks benefiting from different axes and depths. Notably, our method does not require training the original policy from scratch, and for each exit, it increases the number of parameters by only $2.1\\%$ for SmolVLA and $4.1\\%$ for $π_{0.5}$. We validate our approach across two flow-matching VLAs (SmolVLA, $π_{0.5}$) and two benchmarks (LIBERO, Meta-World), revealing complementary effects: $V$ and $A$ respectively reduce FLOPs and latency, while $D$ improves both. Our joint configurations $(V,A,D)$ reduce latency by $79.2\\%$ and computation (FLOPs) by $31.8\\%$, while improving mean success rate by $5.6\\%$.",
+  "abstract_zh": "流匹配视觉-语言-动作（VLA）模型通过结合预训练视觉-语言模型（VLM）主干与生成连续机器人动作的动作专家，已成为通用机器人控制的潜在解决方案。尽管这些模型展现出令人印象深刻的能力，但由于其参数量极高，计算需求往往对机器人控制而言过于昂贵。为缓解这些低效问题，现有方法主要跳过VLM主干层（早期退出）或减少去噪步数，而动作专家的深度保持不变。我们提出一个框架，将主干深度$V$、动作专家深度$A$和去噪步数$D$作为VLA中三个可联合配置的计算轴。从预训练的VLA出发，我们在主干和动作专家的中间深度处附加轻量级退出Transformer（ET），训练其将策略的最后一层蒸馏到每个退出点。此外，我们引入一种KV缓存合成机制，管理被跳过的主干层缺失的键和值，使动作专家能够比主干退出得更深。最后，我们表明最优计算预算依赖于任务，不同任务受益于不同的轴和深度。值得注意的是，我们的方法无需从头训练原始策略，且对于每个退出点，SmolVLA的参数量仅增加$2.1\\%$，$\\pi_{0.5}$增加$4.1\\%$。我们在两个流匹配VLA（SmolVLA、$\\pi_{0.5}$）和两个基准（LIBERO、Meta-World）上验证了我们的方法，揭示了互补效应：$V$和$A$分别减少FLOPs和延迟，而$D$同时改善两者。我们的联合配置$(V,A,D)$将延迟降低$79.2\\%$，计算量（FLOPs）降低$31.8\\%$，同时将平均成功率提高$5.6\\%$。",
+  "tldr_zh": "解耦VLA计算轴，任务自适应分配，降延迟与FLOPs并提升成功率。",
+  "cover_zh": "机器人控制太慢？解耦计算轴让VLA延迟暴降，成功率反升！",
+  "authors": [
+    {
+      "name": "Riccardo Andrea Izzo",
+      "affiliation": ""
+    },
+    {
+      "name": "Rimvydas Rubavicius",
+      "affiliation": ""
+    },
+    {
+      "name": "Gianluca Bardaro",
+      "affiliation": ""
+    },
+    {
+      "name": "Subramanian Ramamoorthy",
+      "affiliation": ""
+    },
+    {
+      "name": "Matteo Matteucci",
+      "affiliation": ""
+    },
+    {
+      "name": "Alessandro Suglia",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.LG"
+  ],
+  "published": "2026-09-24",
+  "updated": "2026-09-24",
+  "arxiv_id": "2609.29382",
+  "pdf_url": "https://arxiv.org/pdf/2609.29382v1",
+  "abs_url": "http://arxiv.org/abs/2609.29382v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-29382.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-29382-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 22,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（vision-language-action、generalist robot、libero）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "面向VLA的高效推理方法，在LIBERO/Meta-World验证，对操作策略部署有参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Politecnico di Milano",
+    "University of Edinburgh"
+  ],
+  "method_tags": [
+    "Early Exit",
+    "Distillation",
+    "Flow-Matching VLA"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/HardwareCoDesign\n  - 状态/待读\nTitle: \"Decoupled Early Exits for Task-Dependent Compute Allocation in Flow-Matching VLAs\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.29382v1\n---\n>[!abstract] 一句话总结：把主干深度 V、action expert 深度 A 和去噪步数 D 显式建模为三个可联合配置的算力轴：在每个中间深度挂接轻量 Exit Transformer 并把策略最后一层蒸馏到各出口，同时提出 KV Cache 合成机制补全被跳过的主干层 keys/values，使 action expert 能比主干退出得更深。\n\n\n# 一、动机\n\n> Flow-matching VLA 模型参数量大、推理算力开销高，难以部署到机器人实时控制中；现有加速方法只剪 VLM 主干层（early exit）或减少去噪步数，却完全没有触及 action expert 的深度，算力-性能的权衡空间被严重浪费。\n\n\n# 二、方法\n\n> 把主干深度 V、action expert 深度 A 和去噪步数 D 显式建模为三个可联合配置的算力轴：在每个中间深度挂接轻量 Exit Transformer 并把策略最后一层蒸馏到各出口，同时提出 KV Cache 合成机制补全被跳过的主干层 keys/values，使 action expert 能比主干退出得更深。\n\n\n# 三、核心实验结果\n\n> 在 SmolVLA 与 π0.5 两个 flow-matching VLA 及 LIBERO、Meta-World 两个基准上验证：V 主要降 FLOPs，A 主要降延迟，D 对两者均有改善；联合配置 (V,A,D) 使延迟降低 79.2%、FLOPs 降低 31.8%，同时平均成功率反而提升 5.6%；每个 exit 仅增加 2.1%（SmolVLA）和 4.1%（π0.5）的参数量，且无需从头训练原策略。\n\n\n# 四、对我的启发\n\n> 核心启发是最优算力预算与任务相关，需按任务选择在不同轴与深度上退出，说明 VLA 推理存在任务级别的不均匀算力需求；局限在于需要为每个 exit 做蒸馏训练，且推理时需任务相关的配置选择策略，跨任务/跨具身的泛化与自动选择机制仍待验证。\n"
+}

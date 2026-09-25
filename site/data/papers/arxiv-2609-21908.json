@@ -90,14 +90,22 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "National University of Defense Technology"
+  ],
+  "method_tags": [
+    "VLA",
+    "long-horizon",
+    "local correction"
+  ],
   "platform": [],
-  "sim_stack": [],
+  "sim_stack": [
+    "RoboTwin 2.0"
+  ],
   "method_family": "",
   "real_robot": "",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"CommitFlow: Semantic Commitment Verification and Local Correction for Long-Horizon Robot Manipulation VLA Execution\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21908v1\n---\n>[!abstract] 一句话总结：提出 CommitFlow 闭环执行框架，在冻结基座策略（pi0.5）的前提下，用语义承诺监视器（SCM）比对阶段要求与当前状态证据、在不满足时抑制依赖动作，再由 BoundaryFlow 依当前状态与基座动作生成局部修正，并通过关系与增益校准（RGC）选择满足约束的最小修正强度。\n\n\n# 一、动机\n\n> 长时程 VLA 执行中，策略常在一个阶段所需的物理效果尚未真正建立时就推进到下一阶段，即「语义承诺」与实际物理状态不匹配；仅凭动作指令无法确认条件是否达成，局部偏差会逐步传播并最终导致任务失败。\n\n\n# 二、方法\n\n> 提出 CommitFlow 闭环执行框架，在冻结基座策略（pi0.5）的前提下，用语义承诺监视器（SCM）比对阶段要求与当前状态证据、在不满足时抑制依赖动作，再由 BoundaryFlow 依当前状态与基座动作生成局部修正，并通过关系与增益校准（RGC）选择满足约束的最小修正强度。\n\n\n# 三、核心实验结果\n\n> 在 RoboTwin 2.0 的十个常用基准任务上取得 75.9% 的平均成功率，相比基座策略 pi0.5 提升 22.7%；跨策略实验也表现出一致的性能增益，指向更可靠的长时程机器人执行。\n\n\n# 四、对我的启发\n\n> 方法依赖对阶段语义承诺与状态证据的良好定义，且因基座策略冻结，纠正能力受限于局部修正；但其「监控—局部纠偏」的解耦思路可低成本叠加到现有 VLA 策略上，对具身长时程任务有较强借鉴价值。\n"
 }
