@@ -122,7 +122,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -155,5 +155,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Robo-Harness K1: Harnessing Robot-Use Agents via Perception Augmentation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.29389v1\n---\n>[!abstract] 一句话总结：提出 Robo-Harness K1 机器人使用智能体（RUA）框架，把感知显式封装为可调用工具——标定深度、持久视觉锚点、空间测量和抓取假设，智能体依据工具返回的证据选择通用运动原语，从而在保持 VLM 架构不变的情况下接入 3D 几何信息。\n\n\n# 一、动机\n\n> VLA 模型需要大量示教且可能破坏预训练理解，而纯 RGB 的 VLM 直接控制代价高、强依赖模型自身能力；如何在不改架构、不训练深度编码器的前提下让 VLM 获得 3D 几何能力是待解问题。\n\n\n# 二、方法\n\n> 提出 Robo-Harness K1 机器人使用智能体（RUA）框架，把感知显式封装为可调用工具——标定深度、持久视觉锚点、空间测量和抓取假设，智能体依据工具返回的证据选择通用运动原语，从而在保持 VLM 架构不变的情况下接入 3D 几何信息。\n\n\n# 三、核心实验结果\n\n> 在匹配的 LIBERO-PRO 任务上，Gemini 3.7 Flash + K1 达 77.8%，超过纯 RGB harness 的 GPT-6 Astra 61.1%；K1 把 Astra 提升至 88.9%；无需目标域微调即迁移到三个 RoboSuite 机械臂与双臂 RoboTwin，在 RoboTwin 上 Easy 32.0%、Hard 28.0%；用仅 107 条教师轨迹蒸馏的 Qwen3.5-9B 学生在新初始状态下达 44.2%（OpenVLA 30.2%），在留出任务条件上达 13.9%（OpenVLA 0.0%）。\n\n\n# 四、对我的启发\n\n> 优势在于用工具接口替代架构改造，样本效率高且跨本体泛化；局限是 RoboTwin 绝对成功率仍偏低（约 30%），性能受底层 VLM 工具调用能力与相机标定质量制约，学生模型在分布外条件仍只有 13.9%；此外文中引用的 Gemini 3.7 Flash、GPT-6 Astra、Qwen3.5-9B 等版本并非当前公开模型，复现与对比需谨慎，工具调用轨迹与 next-token 训练对齐这一点对接具身智能的 VLM 后训练有参考价值。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Robo-Harness K1: Harnessing Robot-Use Agents via Perception Augmentation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.29389v1\n---\n>[!abstract] 一句话总结：提出 Robo-Harness K1 这一 robot-use agent（RUA）框架，把感知以「工具」形式暴露给 VLM：agent 可调用标定深度、持久视觉锚点、空间测量和抓取假设，再依据返回的证据选择通用运动原语，无需改动 VLM 架构或额外训练深度编码器。\n\n\n# 一、动机\n\n> VLA 模型需要大量演示数据且可能损害 VLM 预训练的理解能力，而直接用 RGB-only 的 VLM 做控制成本高、且强依赖模型自身能力，导致 3D 几何与空间关系难以被可靠利用。\n\n\n# 二、方法\n\n> 提出 Robo-Harness K1 这一 robot-use agent（RUA）框架，把感知以「工具」形式暴露给 VLM：agent 可调用标定深度、持久视觉锚点、空间测量和抓取假设，再依据返回的证据选择通用运动原语，无需改动 VLM 架构或额外训练深度编码器。\n\n\n# 三、核心实验结果\n\n> 在匹配的 LIBERO-PRO 任务上，Gemini 3.7 Flash + K1 达 77.8%，超过 GPT-6 Astra 纯 RGB harness 的 61.1%，K1 并把 Astra 提升到 88.9%；无需目标微调即可迁移到三种 RoboSuite 机械臂和双臂 RoboTwin 任务，RoboTwin 上 Easy 32.0%、Hard 28.0%；用仅 107 条教师 episode 训练的 Qwen3.5-9B 学生在新初始状态上达 44.2%（OpenVLA 30.2%），在未见任务条件上 13.9%（OpenVLA 0.0%）。\n\n\n# 四、对我的启发\n\n> 结果表明把 3D 感知封装成可调用工具是让 VLM 获得空间 grounding 的样本高效路径，且工具调用轨迹与 next-token 训练对齐、便于蒸馏；局限在于 RoboTwin Hard 仅 28.0%，绝对性能仍偏低，且整体仍依赖强 VLM 与人工设计的工具接口。\n"
 }

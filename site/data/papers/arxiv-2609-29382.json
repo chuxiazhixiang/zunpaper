@@ -73,7 +73,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -105,5 +105,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Decoupled Early Exits for Task-Dependent Compute Allocation in Flow-Matching VLAs\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.29382v1\n---\n>[!abstract] 一句话总结：把 VLM 主干深度 V、动作专家深度 A、去噪步数 D 显式作为三个可联合配置的计算轴，从预训练 VLA 出发在主干与动作专家的中间层插入轻量 Exit Transformer 蒸馏最后一层输出，并提出 KV Cache 合成机制补全被跳过的主干层键值，使动作专家可以比主干退得更深。\n\n\n# 一、动机\n\n> 现有 flow-matching VLA 参数规模大、推理开销高，而以往的加速方法只做 VLM 主干早退或减少去噪步数，几乎没有触及 action expert 的深度，导致计算与延迟的压缩仍不充分且缺乏任务自适应性。\n\n\n# 二、方法\n\n> 把 VLM 主干深度 V、动作专家深度 A、去噪步数 D 显式作为三个可联合配置的计算轴，从预训练 VLA 出发在主干与动作专家的中间层插入轻量 Exit Transformer 蒸馏最后一层输出，并提出 KV Cache 合成机制补全被跳过的主干层键值，使动作专家可以比主干退得更深。\n\n\n# 三、核心实验结果\n\n> 在 SmolVLA 与 π0.5 两个 flow-matching VLA、LIBERO 与 Meta-World 两个基准上验证：每个 exit 仅增加 2.1%（SmolVLA）和 4.1%（π0.5）的参数量，且无需从零重训原策略；V 与 A 分别主要降低 FLOPs 与延迟，D 对两者都有改善；最优算力预算依任务而定，联合配置 (V,A,D) 在平均成功率提升 5.6% 的同时降低延迟 79.2%、FLOPs 31.8%。\n\n\n# 四、对我的启发\n\n> 工作表明 VLA 的算力分配应任务自适应而非全局统一，三层可解耦的早退轴为机器人实时控制提供了灵活的效率-性能折中；局限在于需要为每个 exit 单独蒸馏训练，KV Cache 合成机制在更长序列或更强主干上的通用性与额外显存开销仍有待验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Decoupled Early Exits for Task-Dependent Compute Allocation in Flow-Matching VLAs\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.29382v1\n---\n>[!abstract] 一句话总结：把主干深度 V、action expert 深度 A 和去噪步数 D 显式建模为三个可联合配置的计算轴，在主干与 action expert 的中间层挂载轻量 Exit Transformer（ET），通过蒸馏策略最后一层来训练各出口，并提出 KV Cache 合成机制补全被跳过的骨干层缺失的 K/V，使 action expert 能比主干退出得更深。\n\n\n# 一、动机\n\n> Flow-matching VLA 参数规模巨大，机器人控制中的计算开销往往难以承受；现有加速方法主要靠跳过 VLM 主干层的 early exit 或减少去噪步数，却完全不动 action expert 的深度，因此计算预算的分配维度被严重限制。\n\n\n# 二、方法\n\n> 把主干深度 V、action expert 深度 A 和去噪步数 D 显式建模为三个可联合配置的计算轴，在主干与 action expert 的中间层挂载轻量 Exit Transformer（ET），通过蒸馏策略最后一层来训练各出口，并提出 KV Cache 合成机制补全被跳过的骨干层缺失的 K/V，使 action expert 能比主干退出得更深。\n\n\n# 三、核心实验结果\n\n> 在 SmolVLA 与 π0.5 两个 flow-matching VLA、LIBERO 与 Meta-World 两个基准上验证：V 与 A 分别主要降低 FLOPs 与延迟，D 则同时改善两者且效果互补；联合配置 (V,A,D) 将延迟降低 79.2%、FLOPs 降低 31.8%，同时平均成功率反而提升 5.6%；每个 exit 仅增加 2.1%（SmolVLA）和 4.1%（π0.5）的参数量，且无需从头训练原策略。\n\n\n# 四、对我的启发\n\n> 核心启发是最优计算预算具有任务依赖性——不同任务受益于不同的计算轴与深度，说明统一固定的加速策略并非最优，可学习按任务动态分配算力；局限在于显式引入并训练多个 exit、需要 KV Cache 合成，且最优 (V,A,D) 组合可能需针对任务搜索，跨任务/跨机器人泛化与部署时的选择开销仍待考察。\n"
 }

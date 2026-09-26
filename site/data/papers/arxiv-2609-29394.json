@@ -114,7 +114,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -147,5 +147,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"RACaP: Agentic Reasoning, Acting, and Coding as Policies for Evolvable Robot Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.29394v1\n---\n>[!abstract] 一句话总结：RACaP 把「写代码」从运行时搬到进化阶段：用两阶段（能力课程学习 + 自主自进化）离线改进一套冻结的、带类型签名的 Policy API 与 ReAct 执行框架，部署时只运行 ReAct 循环调用这些 API，结合工作记忆、长期经验记忆和视觉反馈来选动作、验证结果并从失败中恢复，无需修改源码；再用拒绝采样微调把 GPT-5.6 的 ReAct 决策蒸馏到 Qwen3-VL-8B-Instruct 以便上机部署。\n\n\n# 一、动机\n\n> Code as Policies 类方法在运行时生成和修复程序，带来推理延迟，并把可复用的物理机制与任务特定的决策纠缠在一起，导致长程任务成功率极低（LIBERO-Long 上不超过 4%）且难以持续进化。\n\n\n# 二、方法\n\n> RACaP 把「写代码」从运行时搬到进化阶段：用两阶段（能力课程学习 + 自主自进化）离线改进一套冻结的、带类型签名的 Policy API 与 ReAct 执行框架，部署时只运行 ReAct 循环调用这些 API，结合工作记忆、长期经验记忆和视觉反馈来选动作、验证结果并从失败中恢复，无需修改源码；再用拒绝采样微调把 GPT-5.6 的 ReAct 决策蒸馏到 Qwen3-VL-8B-Instruct 以便上机部署。\n\n\n# 三、核心实验结果\n\n> LIBERO-90 成功率 54.4%，零样本 LIBERO-PRO 45.0%，LIBERO-Long 46.0%，而 CaP 基线在长程任务上最高仅 4.0%；在 LIBERO-PRO 上成功率约为 CaP 基线的 2.5 倍，中位策略耗时加速 1.9 倍；蒸馏后单次决策推理加速 13.2 倍，重复物理调用次数从 16 降到 4。\n\n\n# 四、对我的启发\n\n> 核心启发是把「可复用代码」与「运行时决策」解耦，使系统可持续进化并支持高效长程控制；局限在于性能仍受冻结 API 库的表达力与覆盖度约束（长程任务成功率不到一半），且自进化依赖课程设计与经验记忆质量，小模型蒸馏后决策能力上限受限于 8B 模型本身。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"RACaP: Agentic Reasoning, Acting, and Coding as Policies for Evolvable Robot Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.29394v1\n---\n>[!abstract] 一句话总结：RACaP 将「写代码」前移到进化阶段，先通过能力课程学习与自主自进化迭代改进冻结的带类型 Policy API、ReAct 执行框架和经验记忆，部署时只由 ReAct 循环结合任务工作记忆、长期经验记忆与视觉反馈来选择 API 调用、验证结果并从失败中恢复，不再修改源码。\n\n\n# 一、动机\n\n> Code as Policies（CaP）类方法在运行时生成与修复程序，导致推理延迟高，且把可复用的物理机制与任务特定的决策纠缠在同一段代码中，难以持续进化与跨任务迁移。\n\n\n# 二、方法\n\n> RACaP 将「写代码」前移到进化阶段，先通过能力课程学习与自主自进化迭代改进冻结的带类型 Policy API、ReAct 执行框架和经验记忆，部署时只由 ReAct 循环结合任务工作记忆、长期经验记忆与视觉反馈来选择 API 调用、验证结果并从失败中恢复，不再修改源码。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO-90 上成功率达 54.4%，零样本 LIBERO-PRO 上 45.0%，LIBERO-Long 上 46.0%，而 CaP 基线在长时序任务上最高仅 4.0%；LIBERO-PRO 上成功率约为 CaP 基线的 2.5 倍，策略中位耗时提速 1.9 倍。为便于真机部署，用拒绝采样微调把 GPT-5.6 的 ReAct 决策蒸馏到 Qwen3-VL-8B-Instruct，单次决策推理提速 13.2 倍，重复物理调用次数从 16 降到 4。\n\n\n# 四、对我的启发\n\n> 把可复用代码与运行时决策分离是一条兼顾持续进化、迁移与长时序控制效率的可行路线；但方法效果高度依赖初始 Policy API 的设计质量与蒸馏数据覆盖度，自进化过程的稳定性和真机长时运行的可靠性仍待验证。\n"
 }

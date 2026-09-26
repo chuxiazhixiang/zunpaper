@@ -83,7 +83,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -123,5 +123,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"AdaHVLA: Adaptive Harnesses for Long-Horizon Vision-Language-Action Execution\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.29204v1\n---\n>[!abstract] 一句话总结：提出 AdaHVLA：一种自适应 harness，用代码化的协调策略（coordination policy）承载任务记忆与规划，通过机器人执行经验对其做迭代精化；其解耦式多智能体适配流程把证据分析、harness 修订、行为评估分置于不同工作上下文，用可检验的协调假设指导修订并由后续 rollout 验证预测效果，同时用有状态的 revision graph 串联执行证据、假设、修订与观测效果，保留备选 harness 与适配记忆。\n\n\n# 一、动机\n\n> VLA 模型局部控制与指令跟随能力强，但在需要持久记忆与规划的长时程任务（long-horizon）上表现不佳；已有的 task harness 虽能提供持久上下文与进度跟踪，却是静态固定的，无法随机器人实际经验迭代适配。\n\n\n# 二、方法\n\n> 提出 AdaHVLA：一种自适应 harness，用代码化的协调策略（coordination policy）承载任务记忆与规划，通过机器人执行经验对其做迭代精化；其解耦式多智能体适配流程把证据分析、harness 修订、行为评估分置于不同工作上下文，用可检验的协调假设指导修订并由后续 rollout 验证预测效果，同时用有状态的 revision graph 串联执行证据、假设、修订与观测效果，保留备选 harness 与适配记忆。\n\n\n# 三、核心实验结果\n\n> 仿真中，NaVILA-LH 的平均测试成功率从 22.5% 提升至最高 57.5%；在三个不同 VLA 主干模型上，操作（manipulation）测试成功率相比初始 harness 最多提升 30.8 个百分点；真实世界部署进一步显示适配后的策略能在各任务阶段稳定执行。\n\n\n# 四、对我的启发\n\n> 核心启发是「把 LLM 智能体的记忆/规划层与 VLA 底层执行解耦，并让上层协调代码从经验中自我修订」，这一范式的可迁移性较强；局限在于依赖多次真实/仿真 rollout 作为适配证据，迭代成本高，且成功率数值（如 22.5%→57.5%）显示长时程任务本身仍远未解决，真实部署仅作了定性说明、缺乏量化指标与跨环境泛化统计。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"AdaHVLA: Adaptive Harnesses for Long-Horizon Vision-Language-Action Execution\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.29204v1\n---\n>[!abstract] 一句话总结：AdaHVLA 提出一种自适应 harness：把 VLA 的底层执行与代码化的协调策略解耦，通过解耦多智能体适配流程（证据分析、harness 修订、行为评估各自独立工作上下文）以可检验的协调假设驱动修订，并用有状态修订图连接执行证据、假设、修订与实测效果，从而在重复尝试与跨任务/跨环境执行中持续积累适配记忆。\n\n\n# 一、动机\n\n> VLA 模型局部控制与指令跟随能力强，但在需要持久记忆与规划的长时序任务中表现不佳；而任务 harness 虽能提供持久上下文，却通常是静态、手工设计的，无法随机器人经验自我演化。\n\n\n# 二、方法\n\n> AdaHVLA 提出一种自适应 harness：把 VLA 的底层执行与代码化的协调策略解耦，通过解耦多智能体适配流程（证据分析、harness 修订、行为评估各自独立工作上下文）以可检验的协调假设驱动修订，并用有状态修订图连接执行证据、假设、修订与实测效果，从而在重复尝试与跨任务/跨环境执行中持续积累适配记忆。\n\n\n# 三、核心实验结果\n\n> 在仿真中，AdaHVLA 将 NaVILA-LH 的平均测试成功率从 22.5% 提升至最高 57.5%；在三个 VLA 主干网络上，操作任务测试成功率相比初始 harness 最高提升 30.8 个百分点；真实机器人部署进一步表明适配后的策略能跨任务阶段稳定执行。\n\n\n# 四、对我的启发\n\n> 把长时序推理与记忆交给可迭代修订的外部协调代码、把局部控制留给 VLA，是一条低成本提升长时序成功率的思路；局限在于依赖仿真 rollout 提供证据、代码化 harness 的维护与验证成本较高，且真实世界验证规模有限。对具身智能中 VLA 长时序规划与经验自改进课题有直接参考价值。\n"
 }

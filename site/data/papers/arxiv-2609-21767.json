@@ -65,14 +65,26 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
-  "platform": [],
-  "sim_stack": [],
+  "institutions": [
+    "KU Leuven",
+    "Flanders Make@KU Leuven"
+  ],
+  "method_tags": [
+    "VLM reward learning",
+    "preference-based reward learning",
+    "parallel rollout"
+  ],
+  "platform": [
+    "Franka Panda"
+  ],
+  "sim_stack": [
+    "IsaacLab",
+    "IsaacGym"
+  ],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "no",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/系统\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Scaling Vision-Language Reward Learning for Robot Manipulation in Parallel Simulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21767v1\n---\n>[!abstract] 一句话总结：RAPID 将 GPU 并行 rollout 与数据感知的策略更新结合，配合单次请求偏好标注、自动奖励稳定化和代表性图像采样，把 VLM 奖励学习全流程提速。\n\n\n# 一、动机\n\n> 用 VLM 替代人类标注做偏好奖励学习时，串行 API 请求与单环境数据采集导致训练慢、成本高，难以扩展到多任务机器人操作。\n\n\n# 二、方法\n\n> RAPID 将 GPU 并行 rollout 与数据感知的策略更新结合，配合单次请求偏好标注、自动奖励稳定化和代表性图像采样，把 VLM 奖励学习全流程提速。\n\n\n# 三、核心实验结果\n\n> 在 IsaacLab 的五个 Franka Panda 操作任务上，并行 rollout 与自适应更新使平均运行时间从 9.18 小时降到 3.13 小时；启用全部组件后单次训练仅需 1.15 小时、API 调用从 19,840 降到 896，总体成功率从 86.3% 提升到 98.7%，端到端加速 8.0×、API 用量减少 95.5%；用 Gemma 3 12B 和 GPT-4.1 mini 的离线评测显示单请求提示在两种模型上都降低标注延迟与成本。\n\n\n# 四、对我的启发\n\n> 局限在于评测仅在 IsaacLab 仿真中、任务集为五个 Franka 操作任务，并行化的收益依赖仿真吞吐，向真实机器人迁移时 VLM 标注成本与并行环境数目的权衡仍需验证；但其“并行仿真 + 单请求 VLM 标注 + 奖励稳定化”的组合思路对具身智能中的奖励学习与数据采集管线有直接借鉴意义。\n"
 }

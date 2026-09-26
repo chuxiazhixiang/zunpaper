@@ -63,12 +63,23 @@
   "channels": [
     "sim2real"
   ],
-  "badges": [],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ SJTU"
+    }
+  ],
   "related_links": [],
   "page_count": 12,
   "source_tags": [],
-  "score": 6,
+  "score": 31,
   "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “SJTU” 关键词"
+    },
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
@@ -83,14 +94,23 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "Jinan University",
+    "University of Chinese Academy of Sciences",
+    "Shanghai Jiao Tong University",
+    "Wuyi University"
+  ],
+  "method_tags": [
+    "Coverage Path Planning",
+    "Hierarchical Coverage Tree",
+    "Online Planning"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/CoveragePathPlanning\n  - Task/Navigation\n  - 状态/待读\nTitle: \"TRACE: Coverage Path Planning for Unknown Environments Using Hierarchical Coverage Tree\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21777v1\n---\n>[!abstract] 一句话总结：TRACE 构建一棵分层覆盖树（Hierarchical Coverage Tree）来全局表示未覆盖空间的连通性演化：当空间被切碎时递归展开对应树节点显式表达这些区域并组织后续规划，在树上维护一个增量式全局巡游（global tour），只对受影响局部做精化而保留未变区域的访问顺序，再由局部规划器生成往复（back-and-forth）覆盖路径并在必要时切换到全局巡游感知的规划以完成目标区域。\n\n\n# 一、动机\n\n> 未知环境下的在线覆盖路径规划（CPP）中，随着环境被逐步揭示与覆盖，新发现的障碍和被覆盖的栅格会把剩余未覆盖空间切碎成多个不连通区域，已有方法往往需要全局重规划，计算开销大且难以保持一致的覆盖推进节奏。\n\n\n# 二、方法\n\n> TRACE 构建一棵分层覆盖树（Hierarchical Coverage Tree）来全局表示未覆盖空间的连通性演化：当空间被切碎时递归展开对应树节点显式表达这些区域并组织后续规划，在树上维护一个增量式全局巡游（global tour），只对受影响局部做精化而保留未变区域的访问顺序，再由局部规划器生成往复（back-and-forth）覆盖路径并在必要时切换到全局巡游感知的规划以完成目标区域。\n\n\n# 三、核心实验结果\n\n> 论文从理论上给出了 TRACE 的计算复杂度、完整覆盖（complete coverage）性质，以及增量全局巡游精化的近似界（approximation bound）；在高保真仿真和真实移动机器人实验中，与 6 种现有 CPP 方法对比，在覆盖时间、路径长度、重叠率和转弯次数上均取得显著改善（摘要未给出具体数值）。\n\n\n# 四、对我的启发\n\n> 思路可借鉴之处在于用分层拓扑结构显式维护‘未覆盖空间的连通性演化’，把全局重规划降级为局部增量精化，这一‘增量维护全局结构 + 局部精化’的范式可迁移到具身智能中长程导航与探索任务；局限是摘要未说明动态障碍、三维/非平整地形以及多机器人协同等更复杂场景下的适用性。与机器人操作类课题不直接相关。\n"
 }

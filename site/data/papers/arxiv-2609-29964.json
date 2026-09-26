@@ -123,7 +123,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -156,5 +156,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"World Action Agent: Harnessing VLMs for Robot Manipulation via World Action Rehearsal\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.29964v1\n---\n>[!abstract] 一句话总结：提出 World Action Agent（WAA）：一个多智能体外壳，让 VLM 在视觉动作工作空间中用基础工具直接操控机器人，工作空间具备接触视图自动选取、动作预演（可编辑提案并由 Imagination Agent 预演修正）和视图内校正三个特性，同时通过证据审查从专家视频与人类示教中演化多模态技能（由 Skill Agent 调用），并用交互轨迹微调更小的 VLM。\n\n\n# 一、动机\n\n> 现有 VLM 用于机器人操作时多是间接使用（只预测约束或写代码），或仅给模型一个场景视角而非可供行动的世界，导致 VLM 的通用知识与空间推理能力无法直接闭环地驱动机器人。\n\n\n# 二、方法\n\n> 提出 World Action Agent（WAA）：一个多智能体外壳，让 VLM 在视觉动作工作空间中用基础工具直接操控机器人，工作空间具备接触视图自动选取、动作预演（可编辑提案并由 Imagination Agent 预演修正）和视图内校正三个特性，同时通过证据审查从专家视频与人类示教中演化多模态技能（由 Skill Agent 调用），并用交互轨迹微调更小的 VLM。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO-Pro 上，仅用 LIBERO-90 演化技能的 WAA 达到 75.6% 平均成功率，超越端到端 VLA、code-as-policy 智能体以及同骨干的视觉外壳基线；这些技能无需再学习即可在 robosuite 上继续有效；用 harness 轨迹微调 Qwen3.5-9B 后，其域外成功率从 1.7% 提升到 43.3%。\n\n\n# 四、对我的启发\n\n> 局限在于整套流程依赖强 VLM 骨干与多智能体循环，预演与校正带来额外推理开销，技能演化的证据审查也依赖人工/自动评判质量；启发是「先给 VLM 一个可行动的世界，再让它预演与自我校正」比直接端到端策略更易获得可迁移的具身程序性知识，且交互轨迹可作为小模型蒸馏的宝贵数据。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"World Action Agent: Harnessing VLMs for Robot Manipulation via World Action Rehearsal\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.29964v1\n---\n>[!abstract] 一句话总结：提出 World Action Agent（WAA）：一个多智能体 harness，让 VLM 用基本工具在统一的视觉动作工作空间内驱动机器人——该工作空间由三部分组成：依据场景几何自动选取的接触视图（contact views）、把每个动作变成可编辑提案并可由 Imagination Agent 预先演练与修订的动作排练（action rehearsal）、以及在观测视图内消除残余偏差、闭环连接观测/排练/底层执行的视图内修正（in-view correction）；同时通过证据式审查从专家视频与人类示教中演化多模态技能、由 Skill Agent 调用，并用交互轨迹微调更小的 VLM 来驾驶同一 harness。\n\n\n# 一、动机\n\n> 通用 VLM 已具备广泛知识与空间推理能力，但现有机器人操作系统要么只把 VLM 间接用作约束预测器或代码生成器，要么仅给它一个场景「视图」而非一个可供行动的世界，导致 VLM 无法在感知—决策—执行的闭环中真正操控机器人。\n\n\n# 二、方法\n\n> 提出 World Action Agent（WAA）：一个多智能体 harness，让 VLM 用基本工具在统一的视觉动作工作空间内驱动机器人——该工作空间由三部分组成：依据场景几何自动选取的接触视图（contact views）、把每个动作变成可编辑提案并可由 Imagination Agent 预先演练与修订的动作排练（action rehearsal）、以及在观测视图内消除残余偏差、闭环连接观测/排练/底层执行的视图内修正（in-view correction）；同时通过证据式审查从专家视频与人类示教中演化多模态技能、由 Skill Agent 调用，并用交互轨迹微调更小的 VLM 来驾驶同一 harness。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO-Pro 上，仅从 LIBERO-90 演化技能即可达到 75.6% 平均成功率（SOTA），优于端到端 VLA、code-as-policy 智能体以及共享同一骨干的 visual-harness 基线；同一套技能无需再学习即可在 robosuite 上保持有效；用 harness 交互轨迹微调 Qwen3.5-9B 后，其域外成功率从 1.7% 提升到 43.3%。\n\n\n# 四、对我的启发\n\n> 启发在于「harness 化 + 轨迹蒸馏」的范式：把 VLM 的推理过程约束在可演练、可修正的视觉动作空间里，并用其产生的交互数据反哺小模型，可在不重训大模型的前提下获得可迁移的具身程序性知识。局限在于方法高度依赖 VLM 骨干的视觉推理质量，动作排练与多智能体调用会带来明显的推理延迟与算力开销，且技能演化的证据式审查机制在长尾、杂乱真实场景中的鲁棒性尚待验证。\n"
 }

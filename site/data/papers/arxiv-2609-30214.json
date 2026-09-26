@@ -87,7 +87,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -118,5 +118,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Underwater C3-JEPA: An Object-Centric Cross-View World Model for ROV Salvage\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.30214v1\n---\n>[!abstract] 一句话总结：C3-JEPA（cross-view、control-conditioned、context-extended）把同步多视角 RGB 观测编码为 task-object token 与 context token，通过 held-out-view attention 融合跨相机证据，直接以车辆控制信号为条件在潜空间预测未来状态，并用低标注成本的 weak binding 锚定目标与夹爪、用 SIGReg 锐化几何表征。\n\n\n# 一、动机\n\n> 近场重载水下 ROV 打捞场景中无法布置接触传感器，而目标物体状态会因接触交互与载体的水动力滞后而持续演化，现有无重建潜空间基线难以把足够的任务相关信息迁移到下游控制任务上。\n\n\n# 二、方法\n\n> C3-JEPA（cross-view、control-conditioned、context-extended）把同步多视角 RGB 观测编码为 task-object token 与 context token，通过 held-out-view attention 融合跨相机证据，直接以车辆控制信号为条件在潜空间预测未来状态，并用低标注成本的 weak binding 锚定目标与夹爪、用 SIGReg 锐化几何表征。\n\n\n# 三、核心实验结果\n\n> 1) 所学表征迁移到下游探针的任务相关信息显著多于 reconstruction-free latent 基线，同时预测器保持轻量；2) 在真实水下视频上，同一架构能够恢复被留出（withheld）相机的物体状态，且预测精度始终优于 persistence 基线，说明该配方可跨出仿真迁移；3) 该预测接口可直接支撑 MPC 候选评估与 imagined-rollout 行为智能体训练。（摘要未给出具体数值指标，需查阅正文获取量化结果。）\n\n\n# 四、对我的启发\n\n> 局限在于依赖多视角 RGB 与已知控制信号、缺少接触力反馈，重载接触的水动力建模精度与真实场景泛化范围仍有待验证；启发是用 held-out-view attention 把“留出相机状态恢复”变成自监督信号，是一种低成本的多相机一致性预训练思路，可迁移到其他无接触传感的机器人操作世界模型。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Underwater C3-JEPA: An Object-Centric Cross-View World Model for ROV Salvage\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.30214v1\n---\n>[!abstract] 一句话总结：提出 Underwater C3-JEPA（跨视角、控制条件、上下文扩展）这一以物体为中心的多视角预测式世界模型：将多相机 RGB 观测编码为任务物体 token 与上下文 token，通过 hold-out 视角注意力融合跨相机证据，在潜空间中直接以控制信号为条件预测未来状态；用低成本弱绑定锚定目标与夹爪，并用 SIGReg 锐化几何表征，输出的预测接口可用于 MPC 候选评估与想象 rollout 的行为智能体训练。\n\n\n# 一、动机\n\n> 近场重载水下 ROV 打捞任务中无法安装接触力传感器，且载体受水动力滞后影响，任务物体在接触交互后的状态演化难以直接观测和预测；已有无重建潜空间基线向任务相关下游探针传递的信息不足。\n\n\n# 二、方法\n\n> 提出 Underwater C3-JEPA（跨视角、控制条件、上下文扩展）这一以物体为中心的多视角预测式世界模型：将多相机 RGB 观测编码为任务物体 token 与上下文 token，通过 hold-out 视角注意力融合跨相机证据，在潜空间中直接以控制信号为条件预测未来状态；用低成本弱绑定锚定目标与夹爪，并用 SIGReg 锐化几何表征，输出的预测接口可用于 MPC 候选评估与想象 rollout 的行为智能体训练。\n\n\n# 三、核心实验结果\n\n> 摘要未给出具体数值指标；主要结论为：(1) 所学表征比无重建潜空间基线向下游探针迁移了显著更多任务相关信息，同时预测器保持轻量；(2) 在真实水下视频验证中，同一架构能从其余视角恢复被扣留相机的物体状态，且预测表现持续优于 persistence（保持不变）基线，说明该方案不局限于仿真。\n\n\n# 四、对我的启发\n\n> 局限：依赖多视角同步 RGB 与已知控制信号，缺少接触力等直接物理反馈，潜空间预测的可解释性与长时域漂移风险未在摘要中量化；启发：'跨视角掩蔽 + 控制条件潜预测'的以物体为中心世界模型范式，可作为无接触传感器场景下 MPC 与想象式策略训练的通用接口，对水下/受限环境机器人操作有迁移价值。\n"
 }
