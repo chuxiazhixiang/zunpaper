@@ -63,28 +63,17 @@
   "channels": [
     "manipulation"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 25,
+  "score": 15,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 4 个（manipulation、grasp、imitation learning、tactile sensing）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -116,5 +105,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Self-Supervised Anchoring of Fingertip Sensing to Proprioception and Proactive Actions for Robot Imitation Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.29822v1\n---\n>[!abstract] 一句话总结：提出 PROPRA（PROprioceptive-and-PRoactive Anchoring）预训练方法：以本体感受（proprioception）和动作片段为锚，将每根指尖的压力触觉与反射式接近觉传感器历史分别独立对齐，构造连续可用的感觉运动参照，使各传感器在其信息有效的阶段被单独对齐。\n\n\n# 一、动机\n\n> 机器人模仿学习多依赖外部相机，但指尖附近的目标接近、接触起始与抓取状态等局部交互线索因遮挡和时间分辨率有限而难以观测；而把触觉与接近觉信号直接加入策略并不能稳定提升性能，甚至可能不如纯视觉策略，说明稀疏且分阶段有效的传感器信号难以从有限演示中学习。\n\n\n# 二、方法\n\n> 提出 PROPRA（PROprioceptive-and-PRoactive Anchoring）预训练方法：以本体感受（proprioception）和动作片段为锚，将每根指尖的压力触觉与反射式接近觉传感器历史分别独立对齐，构造连续可用的感觉运动参照，使各传感器在其信息有效的阶段被单独对齐。\n\n\n# 三、核心实验结果\n\n> 在真实机器人操作任务上，PROPRA 预训练相比纯视觉策略与图像锚定（image-anchored）预训练基线均提升了平均成功率；表征分析表明其保留了更丰富的接触前状态信息，从而更有效地利用互补的指尖感知。\n\n\n# 四、对我的启发\n\n> 核心启发是把多模态传感器的对齐放在『自身运动/动作』而非外部图像上，并利用分阶段（接触前用接近觉、接触后用触觉）信息有效性做独立对齐，可推广到其他稀疏、阶段相关的模态；局限是仅用压力触觉与反射接近觉两类指尖传感器、依赖真实平台演示数据，且摘要未给出具体成功率数字与任务数量。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/ImitationLearning\n  - 状态/待读\nTitle: \"Self-Supervised Anchoring of Fingertip Sensing to Proprioception and Proactive Actions for Robot Imitation Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.29822v1\n---\n>[!abstract] 一句话总结：提出本体感觉锚定的预训练方法 PROPRA（PROprioceptive-and-PRoactive Anchoring），利用预训练的触觉（压敏）与反射式接近传感器编码器，将每个指尖传感器的历史序列分别与本体感觉片段和动作片段对齐，从而在传感器各自「信息有效」的阶段独立完成对齐，得到一个持续可用的感觉运动参考。\n\n\n# 一、动机\n\n> 机器人模仿学习多依赖外部相机，但指尖附近的目标接近、接触发生与抓取状态等局部交互线索因遮挡和时间分辨率有限而难以观测；而把触觉/接近传感器信号朴素地加入策略并不能稳定提升性能，甚至在示范数据有限时不如纯视觉策略。\n\n\n# 二、方法\n\n> 提出本体感觉锚定的预训练方法 PROPRA（PROprioceptive-and-PRoactive Anchoring），利用预训练的触觉（压敏）与反射式接近传感器编码器，将每个指尖传感器的历史序列分别与本体感觉片段和动作片段对齐，从而在传感器各自「信息有效」的阶段独立完成对齐，得到一个持续可用的感觉运动参考。\n\n\n# 三、核心实验结果\n\n> 在真实世界操作任务上，PROPRA 预训练相比纯视觉策略和「以图像为锚」的预训练基线取得了更高的平均成功率；表征分析显示该方法保留了更丰富的接触前（pre-contact）状态信息，说明接近与触觉这两个互补模态可按阶段被更有效地利用。注：摘要未给出具体数值，成功率提升幅度需查阅原文及项目页。\n\n\n# 四、对我的启发\n\n> 核心启发是「相位依赖的稀疏信号需要持续可用的锚点」——用本体感觉/动作作为自监督锚，避免直接拼接稀疏触觉信号导致的负迁移；局限在于依赖预训练传感器编码器与真实机器人实验，且性能增益以成功率均值报告、缺乏细粒度量化，泛化到多任务与不同手型的可扩展性仍待验证。与机器人操作/具身智能课题高度相关。\n"
 }

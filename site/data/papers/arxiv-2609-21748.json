@@ -40,12 +40,23 @@
   "channels": [
     "world-model"
   ],
-  "badges": [],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ EPFL"
+    }
+  ],
   "related_links": [],
   "page_count": 33,
   "source_tags": [],
-  "score": 9,
+  "score": 34,
   "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “EPFL” 关键词"
+    },
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
@@ -60,14 +71,23 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "EPFL",
+    "IDIAP Research Institute",
+    "MATS",
+    "University of Bern"
+  ],
+  "method_tags": [
+    "mechanistic analysis",
+    "causal interventions",
+    "world model"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "no",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/理论\n  - Domain/NLP\n  - Task/WorldModel\n  - Task/Navigation\n  - 状态/待读\nTitle: \"World Modeling in Transformers\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21748v1\n---\n>[!abstract] 一句话总结：以在曼哈顿随机游走数据上训练的 transformer（TaxiGPT）为对象，用机制可解释性分析与因果干预（causal interventions）逐一定位其内部表征与行为回路，并进一步提出可量化的机制指标用于跨模型、跨训练阶段的比较。\n\n\n# 一、动机\n\n> 行为上的失败（如 TaxiGPT 在曼哈顿随机游走导航中的出错）常被直接解读为 transformer 内部缺乏连贯的世界模型，但'行为失败'与'表征缺失'之间的因果关系从未被机制层面验证，导致对模型世界建模能力的判断可能系统性偏误。\n\n\n# 二、方法\n\n> 以在曼哈顿随机游走数据上训练的 transformer（TaxiGPT）为对象，用机制可解释性分析与因果干预（causal interventions）逐一定位其内部表征与行为回路，并进一步提出可量化的机制指标用于跨模型、跨训练阶段的比较。\n\n\n# 三、核心实验结果\n\n> 1) 模型确实表征了路口与街道、追踪自身位置、并使用'目标罗盘'进行导航，即世界模型是存在的；2) 失败根源被定位到叠加（superposition）的路口特征之间的干扰，破坏了内部地图中的自定位，而非地图本身不连贯；3) 提出的 affordance packing（把合法移动相同的路口表征归为一组）可限制此类错误的后果，同时机制指标显示世界建模能力在训练的不同阶段分阶段涌现。\n\n\n# 四、对我的启发\n\n> 局限在于结论来自单一网格世界、单一小型模型，叠加干扰与 affordance packing 在其他规模或真实环境中的普适性仍待验证；启发是把研究问题从'模型有没有世界模型'转向'它以何种交互能力表示环境并用该表示指导行为'，这对具身/机器人世界模型的评估思路有间接借鉴，但论文本身不涉及真实机器人或具身任务。\n"
 }

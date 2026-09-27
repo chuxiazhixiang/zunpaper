@@ -65,28 +65,17 @@
     "loco-manip-wbc",
     "locomotion"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 12,
   "source_tags": [],
-  "score": 30,
+  "score": 20,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 4 个（motion retargeting、retargeting、humanoid robot、locomotion）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -129,5 +118,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/CV\n  - Task/CrossEmbodimentTransfer\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"BeyondRetarget: Learning Executable Humanoid Motions Directly from Monocular Video\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.29850v1\n---\n>[!abstract] 一句话总结：提出 BeyondRetarget 端到端框架，抛弃显式人体表示，直接从单目 RGB 视频学习面向机器人的隐式运动表示以捕捉跨形态的运动结构，并设计接触感知的运动优化机制提升时序一致性与物理合理性。\n\n\n# 一、动机\n\n> 现有从人类视频学习人形机器人动作的流程依赖「先估计显式人体运动表示、再做动作重定向」的两阶段范式，人类与人形机器人在运动机制和关节自由度上的巨大差异使生成动作难以执行，且人体运动估计误差会不可逆地传播到重定向阶段，仅靠联合优化无法消除。\n\n\n# 二、方法\n\n> 提出 BeyondRetarget 端到端框架，抛弃显式人体表示，直接从单目 RGB 视频学习面向机器人的隐式运动表示以捕捉跨形态的运动结构，并设计接触感知的运动优化机制提升时序一致性与物理合理性。\n\n\n# 三、核心实验结果\n\n> 摘要未给出具体数值，仅报告：相比基线显著提升了生成机器人动作的准确性与鲁棒性，在仿真环境和真实人形机器人上均取得更高的执行成功率与更低的延迟。\n\n\n# 四、对我的启发\n\n> 端到端隐式表示避免了两阶段误差累积，为跨形态运动迁移提供了新思路；但隐式表示可解释性较弱，且性能可能受单目视频估计质量与接触标注精度制约，具体量化提升与泛化边界需查阅正文。与课题（机器人/具身智能）直接相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/CrossEmbodimentTransfer\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"BeyondRetarget: Learning Executable Humanoid Motions Directly from Monocular Video\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.29850v1\n---\n>[!abstract] 一句话总结：提出 BeyondRetarget 端到端框架，抛弃显式人体运动表示，直接从单目 RGB 视频学习面向机器人的隐式表示以捕捉跨形态运动结构，并设计接触感知的运动优化机制提升时序一致性与物理合理性。\n\n\n# 一、动机\n\n> 现有「人类视频→人体运动表示→重定向到机器人」的两阶段流水线，因人与人形机器人在运动机理和关节自由度配置上的巨大差异，生成的动作难以在机器人上执行；且人体运动估计误差会传播到重定向阶段，无法通过联合优化消除。\n\n\n# 二、方法\n\n> 提出 BeyondRetarget 端到端框架，抛弃显式人体运动表示，直接从单目 RGB 视频学习面向机器人的隐式表示以捕捉跨形态运动结构，并设计接触感知的运动优化机制提升时序一致性与物理合理性。\n\n\n# 三、核心实验结果\n\n> 摘要未给出具体数值，仅报告结论：相比基线显著提升了生成机器人动作的精度与鲁棒性，并在仿真环境和真实人形机器人上取得更高的执行成功率与更低的延迟。\n\n\n# 四、对我的启发\n\n> 启发：用隐式机器人导向表示绕过人体中间表示，是缓解跨形态间隙的可行思路，接触感知优化可作为可插拔的物理约束模块。局限：真实人形硬件的定量指标（成功率、延迟的具体数值）与泛化到其他机型的能力未在摘要中体现，需阅读正文确认。与机器人/具身智能高度相关。\n"
 }

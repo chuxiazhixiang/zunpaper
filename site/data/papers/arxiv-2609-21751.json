@@ -60,14 +60,28 @@
   "badges": [
     {
       "kind": "lab",
+      "label": "⭐ NVIDIA"
+    },
+    {
+      "kind": "lab",
+      "label": "⭐ ETH (RSL)"
+    },
+    {
+      "kind": "lab",
       "label": "⭐ Marco Hutter"
     }
   ],
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 34,
+  "score": 59,
   "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “NVIDIA” 关键词"
+    },
     {
       "id": "key_author",
       "label": "关键作者上榜",
@@ -94,14 +108,26 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
-  "platform": [],
+  "institutions": [
+    "ETH Zurich",
+    "NVIDIA",
+    "Microsoft",
+    "University of Bonn"
+  ],
+  "method_tags": [
+    "physics-informed digital twin",
+    "impedance control",
+    "whole-body door-traversal policies"
+  ],
+  "platform": [
+    "Spot",
+    "Franka FR3"
+  ],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"ForceTwin: Physics-informed Digital Twins for Robotic Manipulation from Instrumented Human Interaction\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21751v1\n---\n>[!abstract] 一句话总结：让操作者手持带力传感的夹爪对物体进行激励式交互，同步采集位姿与交互力，据此辨识关节运动学、参数化动力学（惯性、库仑摩擦、粘滞阻尼）以及一个结构化神经残差项来刻画状态相关的机构力，从而构建物理信息数字孪生。\n\n\n# 一、动机\n\n> 现有数字孪生流程只能从视觉与语言先验恢复运动学或赋予静态物理参数，无法刻画随构型与速度变化的机构动力学（惯性、摩擦、弹簧、闭门器等），导致视觉上相同的门在操作时所需力差异巨大却无法被建模，物理估计常不合理。\n\n\n# 二、方法\n\n> 让操作者手持带力传感的夹爪对物体进行激励式交互，同步采集位姿与交互力，据此辨识关节运动学、参数化动力学（惯性、库仑摩擦、粘滞阻尼）以及一个结构化神经残差项来刻画状态相关的机构力，从而构建物理信息数字孪生。\n\n\n# 三、核心实验结果\n\n> 相比 VLM 先验，ForceTwin 将惯性参数误差几乎减半；在 Spot 与 Franka FR3 上以该孪生作为阻抗控制的前馈动力学模型，九个「物体-本体」组合的平均目标完成率达 87%，而 VLM 先验为 60%、纯运动学孪生为 57%，提升主要来自强机构导致两个基线卡死的物体；此外还用辨识出的孪生训练全身过门策略并完成真机部署。\n\n\n# 四、对我的启发\n\n> 局限在于辨识依赖人工使用专用力传感夹爪逐一激励物体，难以规模化与自动化；残差网络对未见过机构的泛化性、参数可辨识性与力噪声敏感性也值得考察。启发是把「人-物交互力」当作物理参数监督信号，再将其作为前馈模型接入阻抗控制或强化学习策略训练，是打通数字孪生到真实操作的一条可行路径。\n"
 }

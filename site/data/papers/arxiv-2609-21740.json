@@ -70,8 +70,14 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "Montanuniversität Leoben"
+  ],
+  "method_tags": [
+    "Test-time Adaptation",
+    "World Model",
+    "Parameter-Efficient"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
@@ -79,5 +85,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Sandwich-Residuals: Parameter-Efficient Test-time Adaptation of World Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21740v1\n---\n>[!abstract] 一句话总结：提出 Sandwich-Residuals：冻结预训练世界模型，只在预测器周围学习小型残差修正，利用模型自身的自监督预测误差在线优化，无需奖励、标签或源域数据。\n\n\n# 一、动机\n\n> 潜空间世界模型在测试时条件与训练分布不一致时预测会变得不可靠，而现有测试时自适应方法需要更新预训练模型的数百万参数，还要人工挑选适配哪些内部组件，代价高且不灵活。\n\n\n# 二、方法\n\n> 提出 Sandwich-Residuals：冻结预训练世界模型，只在预测器周围学习小型残差修正，利用模型自身的自监督预测误差在线优化，无需奖励、标签或源域数据。\n\n\n# 三、核心实验结果\n\n> 在 AdaJEPA 基准的 21 种条件下，成功率是冻结模型的 1.3 倍，保留最强 AdaJEPA 变体 95% 的性能，同时少适配 97-99% 的参数；在复合分布偏移下提升至冻结模型的 1.9 倍，并与内部模块适配相当；还在 DINO-WM 的 3D 操作任务上验证了同一适配原则。\n\n\n# 四、对我的启发\n\n> 结果表明世界模型的有效测试时自适应不必修改预训练内部权重，但方法依赖自监督预测误差信号，残差容量有限，在线优化带来的额外推理/更新开销与长时程稳定性仍需进一步评估。\n"
 }

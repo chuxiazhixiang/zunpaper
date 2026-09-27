@@ -41,28 +41,17 @@
     "manipulation",
     "locomotion"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 30,
+  "score": 20,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 6 个（whole-body、loco-manipulation、loco-manip、manipulation）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -103,5 +92,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Contact as a Decision Variable: Capability-Tradeoff Contact Selection for Legged Loco-Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.30140v1\n---\n>[!abstract] 一句话总结：提出Capability-Tradeoff Contact Selection (CTCS)：以残余力旋量、末端可达性和基座移动性三项能力度量候选接触，通过表面内分组、局部灵敏度从锚点预测能力，并用选择性精确评估校验，最终对短名单精确优化选出接触与全身构型。\n\n\n# 一、动机\n\n> 腿式移动操作中，环境接触既能提供物理支撑，又会限制任务所需运动，现有方法常固定接触或仅用地面支撑，难以在接触获取成本与任务能力之间做联合权衡，且逐候选全身优化计算代价高。\n\n\n# 二、方法\n\n> 提出Capability-Tradeoff Contact Selection (CTCS)：以残余力旋量、末端可达性和基座移动性三项能力度量候选接触，通过表面内分组、局部灵敏度从锚点预测能力，并用选择性精确评估校验，最终对短名单精确优化选出接触与全身构型。\n\n\n# 三、核心实验结果\n\n> 在Unitree Go2四足+AgileX NERO机械臂上，跨392个任务条件和9个可用支撑面验证；CTCS优于仅地面支撑和固定接触支撑，能选出更有利能力权衡的支撑面；相比逐候选精确评估，实现约3倍加速且平均目标值接近。\n\n\n# 四、对我的启发\n\n> 将接触作为决策变量对腿式移动操作有实用价值；局限在于依赖局部灵敏度预测，接触切换成本、动态可行性和真实环境扰动可能未充分建模，预测失败时仍需精确评估兜底。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - 状态/待读\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\nTitle: \"Contact as a Decision Variable: Capability-Tradeoff Contact Selection for Legged Loco-Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.30140v1\n---\n>[!abstract] 一句话总结：把环境支撑接触作为决策变量，定义残余力旋量、末端可达范围与基座机动性三种能力度量并计入接触获取代价，提出 Capability-Tradeoff Contact Selection（CTCS）：先对候选做接触与任务可行性筛选、按表面分组，再用局部灵敏度分析从少量精确锚点评估预测组内候选能力，经选择性精确校验后按能力排序，仅对短名单做精确评估以完成最终选择。\n\n\n# 一、动机\n\n> 现有腿足 loco-manipulation 工作通常只把地面或固定接触点当作支撑，忽略了支撑接触本身会同时带来物理支撑收益与运动限制这一权衡，缺少对接触选择与全身构型的联合决策。\n\n\n# 二、方法\n\n> 把环境支撑接触作为决策变量，定义残余力旋量、末端可达范围与基座机动性三种能力度量并计入接触获取代价，提出 Capability-Tradeoff Contact Selection（CTCS）：先对候选做接触与任务可行性筛选、按表面分组，再用局部灵敏度分析从少量精确锚点评估预测组内候选能力，经选择性精确校验后按能力排序，仅对短名单做精确评估以完成最终选择。\n\n\n# 三、核心实验结果\n\n> 在 Unitree Go2 四足 + AgileX NERO 机械臂上，跨 392 种任务条件、9 个可用支撑面进行仿真与硬件实验：CTCS 优于仅用地面支撑和固定接触方案，能选出对任务更有利的能力权衡支撑面；相比对每个候选逐一精确评估，CTCS 取得约 3 倍加速，且平均目标值与之接近。\n\n\n# 四、对我的启发\n\n> 局限在于能力评估依赖反复全身优化，CTCS 用灵敏度分析近似换速度，预测偏差需靠选择性精确评估兜底，候选分组与锚点选取对性能影响较大；启发是将‘接触’从固定前提升级为可优化的决策变量，并显式建模支撑-机动权衡，对多接触腿足操作与硬件/构型协同设计具有参考价值。\n"
 }

@@ -39,16 +39,12 @@
     {
       "kind": "lab",
       "label": "⭐ Microsoft"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 10,
   "source_tags": [],
-  "score": 44,
+  "score": 34,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -61,12 +57,6 @@
       "label": "关键词命中密集",
       "points": 6,
       "hint": "频道关键词命中 2 个（manipulation、contact-rich）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -100,5 +90,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Body-Grounded Replanning for Physically Adaptive Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.30024v1\n---\n>[!abstract] 一句话总结：提出 body-grounded 高层重规划：由体态事件触发策略重规划，用 LLM 解读关节级物理状态、近期执行统计与执行历史，在保持任务目标和低层控制器不变的前提下选择情境相关的替代操作策略。\n\n\n# 一、动机\n\n> 现有操作规划只把机器人内部物理状态（关节负载、活动度）用于低层控制，导致策略虽几何可行、却因物理条件恶化而不再适用时无法在执行中调整。\n\n\n# 二、方法\n\n> 提出 body-grounded 高层重规划：由体态事件触发策略重规划，用 LLM 解读关节级物理状态、近期执行统计与执行历史，在保持任务目标和低层控制器不变的前提下选择情境相关的替代操作策略。\n\n\n# 三、核心实验结果\n\n> 在受控负载与不对称活动度约束的 reaching 任务（仿真与真机）中，该方法在维持高任务成功率的同时降低了物理负担、提升了策略适应效率；额外的接触丰富操作实验表明同一重规划接口可推广到 reaching 之外的场景。\n\n\n# 四、对我的启发\n\n> 局限在于依赖 LLM 的决策质量与体态事件的定义，且实验任务规模较小；启发是内部物理状态不仅能驱动低层控制，也可作为高层决策依据，为具身自适应操作提供了一条可复用的重规划接口。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Body-Grounded Replanning for Physically Adaptive Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.30024v1\n---\n>[!abstract] 一句话总结：提出身体感知的高层重规划框架：由身体状态事件触发策略重规划，LLM结合关节级状态、近期执行统计与执行历史，选择上下文相关的替代操作策略，同时保持任务目标与底层控制器不变。\n\n\n# 一、动机\n\n> 现有操作规划主要关注外部环境与几何可行性，忽略机器人自身内部物理状态（如关节负载、移动性受限），导致策略几何可行但物理上不再适合。\n\n\n# 二、方法\n\n> 提出身体感知的高层重规划框架：由身体状态事件触发策略重规划，LLM结合关节级状态、近期执行统计与执行历史，选择上下文相关的替代操作策略，同时保持任务目标与底层控制器不变。\n\n\n# 三、核心实验结果\n\n> 在仿真和真机的负载与非对称移动性约束到达任务中，身体感知重规划保持高任务成功率，并降低物理努力、实现更高效的策略适应；接触丰富操作实验表明同一重规划接口可扩展到到达之外。摘要未披露具体数值。\n\n\n# 四、对我的启发\n\n> 局限在于事件定义、LLM对关节级状态的解释可靠性及向更多任务的泛化仍需验证；启发是内部物理状态不应只用于底层控制，也可参与高层决策，决定操作任务应如何执行。\n"
 }
