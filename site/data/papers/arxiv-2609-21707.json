@@ -47,12 +47,23 @@
   "channels": [
     "sim2real"
   ],
-  "badges": [],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ ZJU"
+    }
+  ],
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 9,
+  "score": 34,
   "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “ZJU” 关键词"
+    },
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
@@ -67,14 +78,22 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "Zhejiang University",
+    "Huzhou Institute of Zhejiang University",
+    "Hangzhou Guixing Intelligent Technology Co., Ltd."
+  ],
+  "method_tags": [
+    "Graph Neural Network",
+    "Attention",
+    "GRU"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/MultiRobotLocalization\n  - 状态/待读\nTitle: \"NeuRIO: A Streaming Neural Estimator for Zero-Shot Sim-to-Real Multi-Robot Relative Inertial Odometry\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21707v1\n---\n>[!abstract] 一句话总结：NeuRIO 将机器人建模为图节点、机器人间观测建模为因子，先把带噪的互测距/测向与 IMU 数据规范化到重力对齐坐标系，再用注意力做空间推理、GRU 做时间建模，通过共享的节点级与因子级算子实现与团队规模和时变观测图无关的流式 6-DoF 相对惯性里程计估计。\n\n\n# 一、动机\n\n> 多机器人相对惯性里程计通常依赖优化方法，在机器人数目增加时计算开销急剧上升，且难以零样本从仿真迁移到真实系统；同时已有方法往往假定固定团队规模或需要锚点。\n\n\n# 二、方法\n\n> NeuRIO 将机器人建模为图节点、机器人间观测建模为因子，先把带噪的互测距/测向与 IMU 数据规范化到重力对齐坐标系，再用注意力做空间推理、GRU 做时间建模，通过共享的节点级与因子级算子实现与团队规模和时变观测图无关的流式 6-DoF 相对惯性里程计估计。\n\n\n# 三、核心实验结果\n\n> 在 24 条真实序列上实现 14.1 cm 位置 RMSE 与 3.9° 旋转 RMSE 的零样本 sim-to-real 迁移；计算可扩展性强，仿真中 400 个机器人时单次更新仍低于 20 ms，而基于优化的方法在仅 24 个机器人时就已超过 20 ms；仅在有限团队规模上训练，也能不做任何结构或参数改动直接迁移到更大的未见团队。\n\n\n# 四、对我的启发\n\n> 方法依赖可被识别（identified）的机器人间测距与测向观测，在遮挡、异步或数据关联失败时性能可能退化，且相对里程计的长期漂移问题未被显式讨论；但其“节点-因子共享算子 + 注意力/GRU”的架构思路，对任何需要处理可变规模、时变拓扑的多智能体状态估计任务（如多机协同、可扩展的具身多机器人系统）都有直接借鉴价值。\n"
 }

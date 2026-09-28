@@ -153,8 +153,14 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "ZYT AI Team"
+  ],
+  "method_tags": [
+    "World Model",
+    "Distillation",
+    "Closed-Loop Simulation"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
@@ -162,5 +168,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - 论文/训练\n  - Domain/CV\n  - Task/VideoGen\n  - Task/CameraControl\n  - 状态/待读\nTitle: \"ZYT-World: A Real-Time Controllable World Model for Closed-Loop Autonomous-Driving Simulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21712v1\n---\n>[!abstract] 一句话总结：ZYT-World 用单一架构原生生成 4 路 FOV>180° 鱼眼视图与 3 路针孔视图：以投影专用的 Plücker 适配器编码相机几何、自车运动自适应 LayerNorm 做全局运动控制、轻量像素对齐布局用实例框/朝向/颜色条件化交通参与者与信号灯；再用教师强制、因果一致性蒸馏、自 rollout 分布匹配蒸馏与联合评估七路相机的 RigCritic，把 40 步双向教师压缩为单步逐 latent 的流式生成器，并配合 19M 的 TinyVAE 解码器、W8A8 量化和自研推理引擎，最后以一个基于真实采集跨轨迹对的插件式隐式记忆模块保持地点特定细节。\n\n\n# 一、动机\n\n> 生成式世界模型用于端到端驾驶策略的闭环仿真时，面临三个落地障碍：无法原生复现鱼眼+针孔混合相机阵列的分辨率与畸变、难以在因果逐步交互下同时保持长时稳定与低延迟、以及重访同一地点时场景身份漂移。\n\n\n# 二、方法\n\n> ZYT-World 用单一架构原生生成 4 路 FOV>180° 鱼眼视图与 3 路针孔视图：以投影专用的 Plücker 适配器编码相机几何、自车运动自适应 LayerNorm 做全局运动控制、轻量像素对齐布局用实例框/朝向/颜色条件化交通参与者与信号灯；再用教师强制、因果一致性蒸馏、自 rollout 分布匹配蒸馏与联合评估七路相机的 RigCritic，把 40 步双向教师压缩为单步逐 latent 的流式生成器，并配合 19M 的 TinyVAE 解码器、W8A8 量化和自研推理引擎，最后以一个基于真实采集跨轨迹对的插件式隐式记忆模块保持地点特定细节。\n\n\n# 三、核心实验结果\n\n> 在内部多视角测试集上，单步学生模型保留教师 90% 以上的 PSNR 与 SSIM，FID/FVD/LPIPS 与教师差距在 11% 以内；仅计生成器耗时，比 40 步双向教师快 107.7 倍；TinyVAE 解码速度是 Wan 的 59.8 倍；30 秒长时 rollout 与跨轨迹重访实验显示出预期的长时稳定性和地点记忆行为。\n\n\n# 四、对我的启发\n\n> 工作亮点是把多相机几何条件、蒸馏加速与隐式地点记忆统一进一个实时世界模型，工程化指标（推理引擎+量化+小解码器）完整，对具身智能的闭环策略评测有直接参考价值；局限在于结果全部来自内部数据集，缺少与公开驾驶仿真基准的对比，隐式记忆依赖真实采集的跨轨迹配对，记忆模块的可扩展性与泛化性尚未验证。\n"
 }

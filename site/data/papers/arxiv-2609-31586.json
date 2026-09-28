@@ -1,0 +1,108 @@
+{
+  "id": "arxiv-2609-31586",
+  "source": "arxiv",
+  "title": "Trust Guided Decision Transformer",
+  "title_zh": "信任引导决策Transformer",
+  "abstract": "Decision Transformer performance degrades on long rollouts because the conditioning context drifts out of the training distribution. We show that this drift is visible through the model's own next state prediction error, which rises during rollout and stays elevated, giving a direct signal of when context has become unreliable. We introduce Trust Guided Decision Transformer (TGDT), which selects context before applying value guidance. At each step, TGDT evaluates several recent context suffixes using rolling next state prediction error, calibrated against held out offline data via split conformal prediction. It keeps only suffixes whose error stays within the calibrated threshold, then uses a frozen critic to choose the highest value action among the trusted suffixes. This reverses the order used by value only elastic selection, where the critic may choose an action generated from a context the model itself has flagged as unreliable. Experiments on D4RL navigation and locomotion tasks show that state prediction, critic guidance, and hard context reset each solve only part of the problem. TGDT reduces persistent high error runs and improves return over vanilla Decision Transformer, reset based context control, and value only context selection.",
+  "abstract_zh": "决策Transformer在长时推演中性能下降，因为条件上下文漂移出了训练分布。我们表明，这种漂移可以通过模型自身的下一状态预测误差观察到，该误差在推演过程中上升并保持高位，直接给出了上下文何时变得不可靠的信号。我们提出了信任引导决策Transformer（TGDT），它在应用价值引导之前先选择上下文。在每一步，TGDT使用滚动下一状态预测误差评估几个最近的上下文后缀，并通过分裂共形预测在留出的离线数据上进行校准。它只保留误差在校准阈值内的后缀，然后使用冻结的评论家从可信后缀中选择最高价值的动作。这逆转了仅价值弹性选择所使用的顺序，其中评论家可能选择由模型自身标记为不可靠的上下文生成的动作。在D4RL导航和运动任务上的实验表明，状态预测、评论家引导和硬上下文重置各自只能解决部分问题。TGDT减少了持续高误差运行，并提高了相对于原始决策Transformer、基于重置的上下文控制和仅价值上下文选择的回报。",
+  "tldr_zh": "TGDT通过预测误差选择可信上下文，提升决策Transformer长时性能。",
+  "cover_zh": "决策Transformer总翻车？新方法用预测误差挑上下文，效果反超",
+  "authors": [
+    {
+      "name": "Chainesh Gautam",
+      "affiliation": ""
+    },
+    {
+      "name": "Raghuram Bharadwaj Diddigi",
+      "affiliation": ""
+    },
+    {
+      "name": "Chandramouli Kamanchi",
+      "affiliation": ""
+    },
+    {
+      "name": "Pankaj Dayama",
+      "affiliation": ""
+    },
+    {
+      "name": "Sumanta Mukherjee",
+      "affiliation": ""
+    },
+    {
+      "name": "Kameshwaran Sampath",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.LG",
+  "categories": [
+    "cs.LG"
+  ],
+  "published": "2026-09-25",
+  "updated": "2026-09-25",
+  "arxiv_id": "2609.31586",
+  "pdf_url": "https://arxiv.org/pdf/2609.31586v1",
+  "abs_url": "http://arxiv.org/abs/2609.31586v1",
+  "venue": "NeurIPS 2026",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-31586.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-31586-p2.jpg"
+  ],
+  "channels": [
+    "locomotion"
+  ],
+  "badges": [
+    {
+      "kind": "venue",
+      "label": "🎓 NeurIPS 2026"
+    }
+  ],
+  "related_links": [],
+  "page_count": 18,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（locomotion）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 18 页"
+    },
+    {
+      "id": "conf_venue",
+      "label": "机器人顶会 / 顶刊出品",
+      "points": 10,
+      "hint": "被「NeurIPS 2026」收录"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "离线RL决策Transformer改进，D4RL导航/运动任务，属操作/RL范畴，有算法新意但非具身VLA核心。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "International Institute of Information Technology Bangalore",
+    "IBM Research Bangalore"
+  ],
+  "method_tags": [
+    "Decision Transformer",
+    "Conformal Prediction",
+    "Offline RL"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "no",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/RL\n  - Task/OfflineRL\n  - 状态/待读\nTitle: \"Trust Guided Decision Transformer\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.31586v1\n---\n>[!abstract] 一句话总结：提出 Trust Guided Decision Transformer（TGDT）：先评估可信度再施加价值引导——每步用滚动下一状态预测误差衡量最近若干上下文后缀，借助 split conformal prediction 在留出离线数据上校准阈值，只保留误差在阈值内的后缀，再用冻结 critic 在这些可信后缀中选出价值最高的动作。\n\n\n# 一、动机\n\n> Decision Transformer 在长 rollout 中条件上下文会漂移到训练分布之外，导致性能退化；而现有的 value-only 上下文选择（如 elastic selection）可能让 critic 在模型自身已判定为不可靠的上下文上挑选动作，顺序颠倒了。\n\n\n# 二、方法\n\n> 提出 Trust Guided Decision Transformer（TGDT）：先评估可信度再施加价值引导——每步用滚动下一状态预测误差衡量最近若干上下文后缀，借助 split conformal prediction 在留出离线数据上校准阈值，只保留误差在阈值内的后缀，再用冻结 critic 在这些可信后缀中选出价值最高的动作。\n\n\n# 三、核心实验结果\n\n> 在 D4RL 的 navigation 与 locomotion 任务上，状态预测（state prediction）、critic 引导（critic guidance）与硬上下文重置（hard context reset）各自只能解决部分问题；TGDT 减少了持续处于高预测误差的 rollout，并在 return 上优于 vanilla Decision Transformer、基于重置的上下文控制和 value-only 上下文选择（摘要未给出具体数值）。\n\n\n# 四、对我的启发\n\n> 核心启发在于把模型自身的预测误差当作上下文可信度的在线代理，并用 conformal prediction 给出有统计保证的阈值，这种“先验证再优化”的顺序可迁移到长时程具身策略的上下文管理。局限是仅在 D4RL 离线仿真导航/运动任务上验证，未涉及真实机器人或高维视觉输入，且“预测误差高即上下文不可靠”仍属经验性假设。\n"
+}

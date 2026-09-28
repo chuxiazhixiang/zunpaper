@@ -1,0 +1,92 @@
+{
+  "id": "arxiv-2609-31313",
+  "source": "arxiv",
+  "title": "Towards VLA-Dreamer: Refining VLA Behavior Using World Models",
+  "title_zh": "迈向VLA-Dreamer：利用世界模型优化VLA行为",
+  "abstract": "Vision-Language-Action models (VLAs), while showing strong potential for robot control, require massive amounts of high-quality imitation learning data. Moreover, the absence of an explicit world model casts further doubt on their control capabilities. In this concept paper, we propose a novel architecture that addresses sample efficiency in VLAs by training a predictive world model on the embedding space of the VLA's vision encoder. We hypothesize that these embeddings are action-relevant and usable for future prediction. To this end, we propose using the suggested architecture to investigate how well these embeddings predict the future based on actions, as the inability to do so would mark a key limitation of VLA architectures: the lack of a non-lossy implicit world model to simulate real-world dynamics. The proposed architecture differs from the standard world model dynamics as the loss comes from the embedding space rather than the pixel space, similar to joint embedding predictive architectures. Furthermore, the trained world model can be utilized for short-term planning tasks by sampling VLA actions given goal images. We intend to examine the richness of vision embeddings in VLAs and reduce their high data requirements through a world model that can also generate plans during inference.",
+  "abstract_zh": "视觉-语言-动作模型（VLA）在机器人控制方面展现出强大潜力，但需要大量高质量的模仿学习数据。此外，缺乏显式的世界模型进一步让人质疑其控制能力。在这篇概念论文中，我们提出了一种新颖的架构，通过在VLA视觉编码器的嵌入空间上训练预测性世界模型来解决VLA的样本效率问题。我们假设这些嵌入与动作相关，并可用于未来预测。为此，我们提出使用所建议的架构来研究这些嵌入基于动作预测未来的效果，因为无法做到这一点将标志着VLA架构的一个关键限制：缺乏一个无损的隐式世界模型来模拟真实世界动态。所提出的架构不同于标准的世界模型动力学，因为损失来自嵌入空间而非像素空间，类似于联合嵌入预测架构。此外，训练好的世界模型可以通过给定目标图像采样VLA动作，用于短期规划任务。我们打算检验VLA中视觉嵌入的丰富性，并通过一个在推理时也能生成计划的世界模型来减少其高数据需求。",
+  "tldr_zh": "提出在VLA视觉编码器嵌入空间训练世界模型，以提升样本效率并支持规划。",
+  "cover_zh": "VLA数据饥渴有救了？世界模型直接嵌入空间预测未来",
+  "authors": [
+    {
+      "name": "Parsa Mastouri Kashani",
+      "affiliation": ""
+    },
+    {
+      "name": "Jan-Gerrit Habekost",
+      "affiliation": ""
+    },
+    {
+      "name": "Stefan Wermter",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.AI"
+  ],
+  "published": "2026-09-25",
+  "updated": "2026-09-25",
+  "arxiv_id": "2609.31313",
+  "pdf_url": "https://arxiv.org/pdf/2609.31313v1",
+  "abs_url": "http://arxiv.org/abs/2609.31313v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-31313.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-31313-p2.jpg"
+  ],
+  "channels": [
+    "manipulation",
+    "world-model"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 20,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 6 个（vision-language-action、imitation learning、world model、world models）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "world-model",
+    "reason": "VLA嵌入空间世界模型，JEPA式预测，用于规划与数据效率，属world-model方向。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University of Hamburg"
+  ],
+  "method_tags": [
+    "VLA",
+    "World Model",
+    "Joint-Embedding Predictive Architecture"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Towards VLA-Dreamer: Refining VLA Behavior Using World Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.31313v1\n---\n>[!abstract] 一句话总结：提出 VLA-Dreamer 概念架构：在 VLA 视觉编码器的嵌入空间上训练一个预测式世界模型（损失作用于嵌入空间而非像素空间，类似 JEPA），用其检验嵌入是否动作相关且可预测未来，并在推理阶段以目标图像为条件采样 VLA 动作实现短时规划。\n\n\n# 一、动机\n\n> VLA 模型依赖海量高质量模仿学习数据，样本效率低，且缺乏显式世界模型，其是否真正理解动作-动力学关系、能否泛化到未见场景仍受质疑。\n\n\n# 二、方法\n\n> 提出 VLA-Dreamer 概念架构：在 VLA 视觉编码器的嵌入空间上训练一个预测式世界模型（损失作用于嵌入空间而非像素空间，类似 JEPA），用其检验嵌入是否动作相关且可预测未来，并在推理阶段以目标图像为条件采样 VLA 动作实现短时规划。\n\n\n# 三、核心实验结果\n\n> 本文为 concept paper（概念论文），尚无实验与量化结果：核心假设是视觉嵌入包含动作相关且可用于未来预测的信息，若无法预测则暴露 VLA 缺乏无损隐式世界模型这一关键局限；预期收益是降低 VLA 的数据需求并赋予推理时规划能力，具体数值留待后续工作验证。\n\n\n# 四、对我的启发\n\n> 局限在于全部论断尚未经实验验证，嵌入空间世界模型能否捕捉接触、摩擦等真实动力学仍是开放问题；启发是将预测式世界模型与 VLA 表征耦合，为机器人操作中的数据高效训练与测试时规划提供了一条可检验的研究路线。\n"
+}

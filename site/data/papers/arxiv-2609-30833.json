@@ -1,0 +1,113 @@
+{
+  "id": "arxiv-2609-30833",
+  "source": "arxiv",
+  "title": "Fast Plans, Faithful Actions: Closing the Planning-Execution Gap in Hierarchical Vision-Language-Action Models",
+  "title_zh": "快速规划，忠实执行：弥合分层视觉-语言-动作模型中的规划-执行差距",
+  "abstract": "Hierarchical vision-language-action (VLA) systems consist of a high-level vision-language planner and a low-level action expert that generates continuous actions. This hierarchical design has practical value only if the planner can generate plans fast enough to meet real-time control requirements, and the resulting plans actually contribute to the generation of action. We study one such system, a waypoint hierarchy pipeline adapted from $π_{0.5}$, and find that neither requirement is satisfied. This baseline relies on token-level autoregressive decoding (Token-AR) to generate a waypoint plan, requiring 57 very expensive vision-language model (VLM) forward passes. However, we find that erasing the waypoint endpoints has little effect on task success. Two findings reveal the misalignment of planner-executor: the planner generates outputs at an excessively fine granularity, and the executor underuses plans as a control condition. We address the latency issue with waypoint-aligned block-autoregressive decoding (Block-AR), and plan underuse issue with normalized goal modulation (NGM), a layer-wise goal path constrained by phase gating and anti-shortcut training so that the waypoint influences action generation maintaining other signals. Our method reduces the maximum number of VLM forward passes from 57 to 8 on LIBERO, including one prefix prefill, and achieves an $8.7\\times$ reduction in planning latency on a Rokae dual-arm robot. With normalized goal modulation and anti-shortcut training, Block-AR's success rate on LIBERO-Long increases from 91.0% to 96.2%, while its average success rate across the four suites increases from 95.85% to 98.45%. On three bimanual tasks with this robot, success rates remain comparable across methods.",
+  "abstract_zh": "分层视觉-语言-动作（VLA）系统由高层视觉-语言规划器和低层动作专家组成，后者生成连续动作。这种分层设计只有在规划器能够足够快地生成计划以满足实时控制需求，并且生成的计划确实有助于动作生成时才具有实用价值。我们研究了一个这样的系统，即从 $π_{0.5}$ 改编的路径点分层流水线，并发现这两个要求均未满足。该基线依赖词元级自回归解码（Token-AR）来生成路径点计划，需要 57 次非常昂贵的视觉-语言模型（VLM）前向传递。然而，我们发现擦除路径点端点对任务成功率几乎没有影响。两项发现揭示了规划器-执行器的错位：规划器以过细的粒度生成输出，而执行器未充分利用计划作为控制条件。我们通过路径点对齐的块自回归解码（Block-AR）解决延迟问题，并通过归一化目标调制（NGM）解决计划利用不足问题，NGM 是一种逐层目标路径，受相位门控和反捷径训练约束，使得路径点影响动作生成同时保持其他信号。我们的方法在 LIBERO 上将 VLM 前向传递的最大次数从 57 次减少到 8 次（包括一次前缀预填充），并在 Rokae 双臂机器人上实现了 $8.7×$ 的规划延迟降低。通过归一化目标调制和反捷径训练，Block-AR 在 LIBERO-Long 上的成功率从 91.0% 提高到 96.2%，而其在四个套件上的平均成功率从 95.85% 提高到 98.45%。在该机器人的三个双臂任务上，各方法的成功率保持相当。",
+  "tldr_zh": "提出Block-AR和NGM，减少VLM前向传递并提升成功率。",
+  "cover_zh": "规划快8倍，执行更精准｜分层VLA的规划-执行差距被这样弥合",
+  "authors": [
+    {
+      "name": "Chuanliang Xie",
+      "affiliation": ""
+    },
+    {
+      "name": "Boyu Ma",
+      "affiliation": ""
+    },
+    {
+      "name": "Gen Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Yizhou Liu",
+      "affiliation": ""
+    },
+    {
+      "name": "Houwang Chen",
+      "affiliation": ""
+    },
+    {
+      "name": "Xinyu Zhou",
+      "affiliation": ""
+    },
+    {
+      "name": "Jianfei Yang",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-09-25",
+  "updated": "2026-09-25",
+  "arxiv_id": "2609.30833",
+  "pdf_url": "https://arxiv.org/pdf/2609.30833v1",
+  "abs_url": "http://arxiv.org/abs/2609.30833v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-30833.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-30833-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ NTU"
+    }
+  ],
+  "related_links": [],
+  "page_count": 13,
+  "source_tags": [],
+  "score": 40,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “NTU” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 4 个（vision-language-action、bimanual、dual-arm、libero）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 13 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "分层VLA规划-执行对齐，提升实时性与成功率，属操作VLA前沿。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "MARS Lab, Nanyang Technological University"
+  ],
+  "method_tags": [
+    "VLA",
+    "Block-AR",
+    "normalized goal modulation"
+  ],
+  "platform": [
+    "Rokae dual-arm robot"
+  ],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Fast Plans, Faithful Actions: Closing the Planning-Execution Gap in Hierarchical Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.30833v1\n---\n>[!abstract] 一句话总结：提出 waypoint-aligned block-autoregressive decoding（Block-AR）按 waypoint 对齐做块级自回归解码以降低规划延迟，并用 normalized goal modulation（NGM）——带相位门控与 anti-shortcut 训练约束的逐层 goal path——让 waypoint 在保留其他信号的前提下真正参与动作生成。\n\n\n# 一、动机\n\n> 分层 VLA（高层视觉语言规划器 + 底层动作专家）只有在规划足够快以满足实时控制、且规划结果真正影响动作生成时才有实用价值；但作者发现基于 π0.5 改造的 waypoint 分层流水线两个条件都不满足：Token-AR 解码需要 57 次昂贵的 VLM 前向，且抹掉 waypoint 端点对任务成功率几乎无影响，说明规划粒度过细而执行器又未充分利用规划。\n\n\n# 二、方法\n\n> 提出 waypoint-aligned block-autoregressive decoding（Block-AR）按 waypoint 对齐做块级自回归解码以降低规划延迟，并用 normalized goal modulation（NGM）——带相位门控与 anti-shortcut 训练约束的逐层 goal path——让 waypoint 在保留其他信号的前提下真正参与动作生成。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO 上把 VLM 最大前向次数从 57 降到 8（含 1 次 prefix prefill），在 Rokae 双臂机器人上规划延迟降低 8.7 倍；加入 NGM 与 anti-shortcut 训练后，Block-AR 在 LIBERO-Long 的成功率从 91.0% 提升到 96.2%，四个套件平均成功率从 95.85% 提升到 98.45%；在该机器人的三个双臂任务上各方法成功率相当。\n\n\n# 四、对我的启发\n\n> 揭示了分层 VLA 中“规划粒度”与“执行器条件利用”之间的错位问题，anti-shortcut 训练的思路可迁移到其他以中间表示为条件的生成系统；局限是真实机器人双臂任务上性能并未提升，只验证了延迟收益，且方法依赖已存在的 waypoint 层次结构，泛化性有待更多平台与任务验证。\n"
+}

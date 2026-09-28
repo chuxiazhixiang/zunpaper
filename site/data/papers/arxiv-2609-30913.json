@@ -1,0 +1,101 @@
+{
+  "id": "arxiv-2609-30913",
+  "source": "arxiv",
+  "title": "Causeway: Restoring Task Accessibility for Instruction Switching in VLA Policies",
+  "title_zh": "Causeway：恢复VLA策略中指令切换的任务可访问性",
+  "abstract": "Vision-language-action (VLA) policies can execute many tasks from standard initial states, yet a new instruction may fail after another task has altered the robot's physical state. We study instruction switching, where a new task is issued during or after the execution of a different one. We observe that a target task that is reliably completed from its standard initial states can become inaccessible from states produced by a preceding task. We call such states task islands. We propose Causeway, a training-free inference-time intervention. Given the current state and a re-entry pose for the target task, Causeway back-propagates through the frozen decoding computation and applies a state-directed write within the action-stream representation. The VLA decodes the return motion itself, without parameter updates, a new action head, or external action generation. Across 71 cross-object pairs, three switch timings, and three VLA architectures on LIBERO-Goal, Causeway raises bare-switch success from 3-26% to 47-65% and increases the rate of reaching the handoff neighborhood by 42-72 percentage points across models. Additional experiments on LIBERO-Object and a real xArm platform show that the recovery extends beyond the main LIBERO-Goal setting, both in simulation and on a robot.",
+  "abstract_zh": "视觉-语言-动作（VLA）策略能够从标准初始状态执行许多任务，然而当另一个任务改变了机器人的物理状态后，新的指令可能会失败。我们研究了指令切换，即在执行一个不同任务期间或之后发出新任务。我们观察到，一个从标准初始状态可靠完成的目标任务，在由前一个任务产生的状态下可能变得不可访问。我们将此类状态称为任务孤岛。我们提出了Causeway，一种无需训练的推理时干预方法。给定当前状态和目标任务的重入姿态，Causeway通过冻结的解码计算进行反向传播，并在动作流表示中应用状态导向的写入。VLA自行解码返回运动，无需参数更新、新的动作头或外部动作生成。在LIBERO-Goal上的71个跨物体对、三种切换时机和三种VLA架构中，Causeway将裸切换成功率从3-26%提升至47-65%，并将到达交接邻域的概率在不同模型上提高了42-72个百分点。在LIBERO-Object和真实xArm平台上的额外实验表明，这种恢复能力超越了主要的LIBERO-Goal设置，在仿真和真实机器人上均有效。",
+  "tldr_zh": "Causeway无需训练，通过推理时干预恢复VLA策略在指令切换后的任务可访问性。",
+  "cover_zh": "指令切换就翻车？Causeway让VLA从任务孤岛中自救",
+  "authors": [
+    {
+      "name": "Qingzi Wang",
+      "affiliation": ""
+    },
+    {
+      "name": "Kaixi Feng",
+      "affiliation": ""
+    },
+    {
+      "name": "Guangyao Shi",
+      "affiliation": ""
+    },
+    {
+      "name": "Xiyang Wu",
+      "affiliation": ""
+    },
+    {
+      "name": "Ang Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Dinesh Manocha",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-09-25",
+  "updated": "2026-09-25",
+  "arxiv_id": "2609.30913",
+  "pdf_url": "https://arxiv.org/pdf/2609.30913v1",
+  "abs_url": "http://arxiv.org/abs/2609.30913v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-30913.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-30913-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 9,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 6,
+      "hint": "频道关键词命中 2 个（vision-language-action、libero）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "VLA指令切换与任务可达性研究，推理时干预无需训练，含真机xArm验证，对VLA鲁棒性有参考价值",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University of Maryland, College Park",
+    "University of Southern California"
+  ],
+  "method_tags": [
+    "VLA",
+    "training-free inference-time intervention",
+    "instruction switching"
+  ],
+  "platform": [
+    "xArm"
+  ],
+  "sim_stack": [
+    "LIBERO"
+  ],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Causeway: Restoring Task Accessibility for Instruction Switching in VLA Policies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.30913v1\n---\n>[!abstract] 一句话总结：提出 Causeway，一种免训练、推理时干预方法：给定当前状态与目标任务的 re-entry pose，对冻结的 VLA 解码计算进行反向传播，并在动作流表示中做状态导向写入，让 VLA 自行解码返回运动，无需参数更新、新增动作头或外部动作生成。\n\n\n# 一、动机\n\n> VLA 策略虽能执行多任务，但当新指令在前一任务改变机器人物理状态后下达时，目标任务会从原本可完成变为不可达；作者将这类由前置任务造成、使目标任务失败的状态称为 task islands，现有策略缺乏跨任务切换时的状态可恢复机制。\n\n\n# 二、方法\n\n> 提出 Causeway，一种免训练、推理时干预方法：给定当前状态与目标任务的 re-entry pose，对冻结的 VLA 解码计算进行反向传播，并在动作流表示中做状态导向写入，让 VLA 自行解码返回运动，无需参数更新、新增动作头或外部动作生成。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO-Goal 的 71 组跨物体对、3 种切换时机和 3 种 VLA 架构上，将 bare-switch 成功率从 3–26% 提升至 47–65%，并使到达 handoff 邻域的比率提高 42–72 个百分点；在 LIBERO-Object 和真实 xArm 平台上，恢复效果也能从主实验设置扩展出去。\n\n\n# 四、对我的启发\n\n> Causeway 展示了通过推理时表示干预即可修复 VLA 的指令切换失败，且无需重训练，对具身智能中的长程任务切换与状态恢复很有启发；局限在于依赖目标任务 re-entry pose 的可用性，且主要围绕动作流表示设计，跨更复杂任务链与不同本体时的泛化仍需验证。\n"
+}
