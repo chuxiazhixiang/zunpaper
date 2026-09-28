@@ -110,13 +110,13 @@
   "training_summary": "",
   "demo_videos": [
     {
-      "kind": "youtube",
-      "url": "https://www.youtube.com/watch?v=U81SjJIKUFY",
       "embed_url": "https://www.youtube.com/embed/U81SjJIKUFY",
+      "kind": "youtube",
+      "source": "project_page",
       "title": "Generate, Track, Improve",
-      "source": "project_page"
+      "url": "https://www.youtube.com/watch?v=U81SjJIKUFY"
     }
   ],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Generate, Track, Improve: Perceptive Multi-Skill Humanoid Locomotion with RL-Fine-Tuned Motion Generators\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.31577v1\n---\n>[!abstract] 一句话总结：提出两层式感知运动架构：上层为基于原始深度图的感知式 flow matching 运动生成器，从深度图像规划全身轨迹；下层为用 control-guided RL 训练的感知式跟踪策略来跟随这些轨迹，核心贡献是一个简单有效的 off-policy RL 微调回路，通过结构化搜索采集数据并用优势加权回归（AWR）迭代改进生成器。\n\n\n# 一、动机\n\n> 通用人形机器人的运动控制器需要在多技能、动态和鲁棒性上同时达标，而现有两层架构中的运动生成器往往只在小规模、与地形不一致的参考动作上训练，且常用的 on-policy 残差微调样本效率低，导致在未见地形和技能组合上表现退化。\n\n\n# 二、方法\n\n> 提出两层式感知运动架构：上层为基于原始深度图的感知式 flow matching 运动生成器，从深度图像规划全身轨迹；下层为用 control-guided RL 训练的感知式跟踪策略来跟随这些轨迹，核心贡献是一个简单有效的 off-policy RL 微调回路，通过结构化搜索采集数据并用优势加权回归（AWR）迭代改进生成器。\n\n\n# 三、核心实验结果\n\n> 改进后的 off-policy 微调回路比 on-policy 残差微调样本效率高得多；成功地形穿越率最高提升 25 个百分点，技能选择准确率最高提升 80 个百分点；仅用一对策略（生成器+跟踪器）即让 Unitree G1 人形机器人在户外完成行走、奔跑、站立、跳上/跳下箱子以及上下楼梯，且无需里程计或高度图，仅靠原始深度图像部署。\n\n\n# 四、对我的启发\n\n> 该方法依赖动力学优化过的人体数据构建的地形一致动作库，动作库的覆盖度可能限制新技能的泛化；off-policy 结构化搜索+AWR 的微调范式可迁移到其他生成式运动/操作策略的迭代改进，但对奖励设计与搜索空间的依赖较强，sim-to-real 与长时程任务的安全性仍有待验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/CV\n  - Task/HumanoidLocomotion\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Generate, Track, Improve: Perceptive Multi-Skill Humanoid Locomotion with RL-Fine-Tuned Motion Generators\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.31577v1\n---\n>[!abstract] 一句话总结：提出两层架构：感知流匹配运动生成器从原始深度图规划全身轨迹，控制引导RL训练的感知跟踪策略执行动作；核心是离策略RL微调循环，用结构化搜索采集数据并做优势加权回归来改进生成器，并在动态优化人类数据构建的地形一致动作库上训练。\n\n\n# 一、动机\n\n> 现有仿人机器人运动控制常依赖高度图、里程计或单一技能，难以在复杂地形中实现感知式、多技能、动态且鲁棒的全身运动；同时运动生成器在未见地形与技能组合上地形一致性不足、微调样本效率低。\n\n\n# 二、方法\n\n> 提出两层架构：感知流匹配运动生成器从原始深度图规划全身轨迹，控制引导RL训练的感知跟踪策略执行动作；核心是离策略RL微调循环，用结构化搜索采集数据并做优势加权回归来改进生成器，并在动态优化人类数据构建的地形一致动作库上训练。\n\n\n# 三、核心实验结果\n\n> 地形穿越成功率最高提升25个百分点，技能选择能力最高提升80个百分点；离策略微调比在策略残差微调样本效率更高；单一策略对使Unitree G1在户外完成走、跑、站立、跳上/跳下箱子和爬楼梯，仅用两个相机与原始深度，无需里程计或高度图。\n\n\n# 四、对我的启发\n\n> 方法依赖高质量动作库与深度感知，真实部署可能受相机视野、标定和光照影响；启发是离策略生成器微调能提升未见地形与技能组合泛化，并减少对外部状态估计和高度图的依赖，对具身智能中的感知-运动闭环有参考价值。\n"
 }

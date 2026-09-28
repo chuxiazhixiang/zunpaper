@@ -45,7 +45,8 @@
     "assets/img/covers/arxiv-2609-30868-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "sim2real"
   ],
   "badges": [
     {
@@ -60,7 +61,7 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 40,
+  "score": 45,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -72,13 +73,19 @@
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 4 个（vision-language-action、manipulation、residual policy、contact-rich）"
+      "hint": "频道关键词命中 5 个（vision-language-action、manipulation、residual policy、contact-rich）"
     },
     {
       "id": "longer_paper",
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -105,5 +112,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"VLaRL: Augmenting Vision-Language-Action Models with Simulation-Trained Latent-Conditioned Residual RL\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.30868v1\n---\n>[!abstract] 一句话总结：VLaRL 用 VLA 内部的视觉-语言隐表征作为残差控制的条件输入与 sim-to-real 迁移接口，并学习一个轻量 mapper 把仿真侧隐表征对齐到真实隐表征分布，从而在仿真中训练冻结 VLA 的残差策略并直接部署到真机，无需真机 RL 或在线自适应。\n\n\n# 一、动机\n\n> VLA 模型虽具备广泛的指令条件操作能力，但在接触密集型交互中物理执行精度不足；残差 RL 可冻结 VLA 修正误差，然而真机 RL 成本高、安全风险大，而仿真训练的策略又因 sim-to-real 视觉鸿沟难以迁移。\n\n\n# 二、方法\n\n> VLaRL 用 VLA 内部的视觉-语言隐表征作为残差控制的条件输入与 sim-to-real 迁移接口，并学习一个轻量 mapper 把仿真侧隐表征对齐到真实隐表征分布，从而在仿真中训练冻结 VLA 的残差策略并直接部署到真机，无需真机 RL 或在线自适应。\n\n\n# 三、核心实验结果\n\n> 在四个接触密集型操作任务与两种 VLA 主干（共 8 个任务-主干组合）上，VLaRL 全部提升了真机成功率；消融实验表明隐表征条件化与隐表征对齐二者对仿真残差控制的成功迁移均为必要。\n\n\n# 四、对我的启发\n\n> 局限在于依赖 VLA 隐空间的可迁移性，且需为每个任务-主干训练 mapper，泛化到新任务或新 VLA 需要额外适配；启发是可用隐表征而非像素作为 sim-to-real 接口，从而以低成本仿真残差 RL 提升具身策略的真机接触精度，与具身智能/机器人操作课题高度相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"VLaRL: Augmenting Vision-Language-Action Models with Simulation-Trained Latent-Conditioned Residual RL\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.30868v1\n---\n>[!abstract] 一句话总结：VLaRL 冻结 VLA，以 VLA 内部的视觉-语言隐表示作为残差控制的条件的以及仿真到现实的迁移接口，并学习一个轻量 mapper 把仿真隐表示对齐到真实隐表示分布，从而在仿真中训练残差策略、零微调直接部署到真机（无需真机 RL 或在线自适应）。\n\n\n# 一、动机\n\n> VLA 模型虽具备广泛的指令条件操作能力，但在接触密集型交互中执行精度不足；用残差强化学习纠偏虽可行，却需在真机上做 RL，成本高且存在安全风险，而仿真训练又面临仿真-现实视觉鸿沟难以迁移的问题。\n\n\n# 二、方法\n\n> VLaRL 冻结 VLA，以 VLA 内部的视觉-语言隐表示作为残差控制的条件的以及仿真到现实的迁移接口，并学习一个轻量 mapper 把仿真隐表示对齐到真实隐表示分布，从而在仿真中训练残差策略、零微调直接部署到真机（无需真机 RL 或在线自适应）。\n\n\n# 三、核心实验结果\n\n> 在 4 个接触密集型操作任务 × 2 个 VLA 骨干的全部 8 种组合上，VLaRL 都提升了真机成功率；消融实验表明隐表示条件化（latent conditioning）与隐表示对齐（latent alignment）两者对迁移仿真训练的残差控制都不可或缺（摘要未给出具体成功率数字）。\n\n\n# 四、对我的启发\n\n> 核心启发是把 sim-to-real 的迁移界面从像素级视觉对齐转移到 VLA 的语义隐空间中，绕开视觉域差，这对机器人学习中冻结大模型 + 小策略头微调的范式很有借鉴意义；局限是仍需仿真环境与真机隐表示采样来训练 mapper，摘要未量化残余视觉域差的影响、未说明对全新任务/新 VLA 骨干的泛化能力，也未报告推理延迟与安全性验证。\n"
 }

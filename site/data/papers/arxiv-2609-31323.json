@@ -115,13 +115,13 @@
   "training_summary": "",
   "demo_videos": [
     {
-      "kind": "youtube",
-      "url": "https://www.youtube.com/watch?v=6EIIcab385g",
       "embed_url": "https://www.youtube.com/embed/6EIIcab385g",
+      "kind": "youtube",
+      "source": "project_page",
       "title": "See to Reach, Feel to Grasp",
-      "source": "project_page"
+      "url": "https://www.youtube.com/watch?v=6EIIcab385g"
     }
   ],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"See to Reach, Feel to Grasp: Learning A Blind Grasp Reflex for Anthropomorphic Robotic Hands\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.31323v1\n---\n>[!abstract] 一句话总结：提出模块化架构，将全局手臂运动与局部接触控制解耦：独立控制的手臂负责将手引导至物体附近，强化学习策略仅凭手部本体感觉（关节位置/力矩等）完成抓取与稳定，并由学习到的稳定抓取分数判断何时抓牢、交棒给手臂执行后续操作，形成所谓“盲抓取反射”。\n\n\n# 一、动机\n\n> 现有灵巧抓取方法大多依赖视觉观测、物体位姿或几何信息，一旦视觉被遮挡、标定失效或缺乏物体先验便难以工作；同时抓取常与特定机械臂控制器强耦合，难以复用。\n\n\n# 二、方法\n\n> 提出模块化架构，将全局手臂运动与局部接触控制解耦：独立控制的手臂负责将手引导至物体附近，强化学习策略仅凭手部本体感觉（关节位置/力矩等）完成抓取与稳定，并由学习到的稳定抓取分数判断何时抓牢、交棒给手臂执行后续操作，形成所谓“盲抓取反射”。\n\n\n# 三、核心实验结果\n\n> 仿真与真机实验均实现了对多种物体的鲁棒盲抓取，并能与多种独立设计的手臂控制器无缝组合；尽管从未观测过接触几何，学习到的抓取分数与独立的基于物理的抓取稳定性度量高度一致。摘要中未给出具体成功率、物体数量等量化数字，需查阅正文补充。\n\n\n# 四、对我的启发\n\n> 核心启发是把抓取从“视觉+位姿估计”问题重构为“接触后的本体感觉反射”，使抓取成为可跨任务复用的手级技能，并避免了视觉与接触物理之间的域差距；局限在于仅靠本体感觉意味着手必须先被手臂带到可接触范围内，物体不可达或初始位姿过远时无法启动，且策略对手部形态与触觉/力矩传感配置的泛化性尚待验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"See to Reach, Feel to Grasp: Learning A Blind Grasp Reflex for Anthropomorphic Robotic Hands\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.31323v1\n---\n>[!abstract] 一句话总结：提出模块化的盲抓取反射架构：由独立控制的机械臂负责将手引导到物体附近（see to reach），手部则仅凭本体感觉（proprioception）输入、通过强化学习策略完成抓取与稳定（feel to grasp），并学习一个稳定的抓取评分来判断何时可安全进入抓后操作。\n\n\n# 一、动机\n\n> 现有灵巧抓取方法高度依赖视觉观测（物体位姿、几何形状），在遮挡、无视觉传感器或接触密集场景下失效；同时抓取与手臂控制耦合，导致抓取技能难以在不同机械臂与任务间复用。\n\n\n# 二、方法\n\n> 提出模块化的盲抓取反射架构：由独立控制的机械臂负责将手引导到物体附近（see to reach），手部则仅凭本体感觉（proprioception）输入、通过强化学习策略完成抓取与稳定（feel to grasp），并学习一个稳定的抓取评分来判断何时可安全进入抓后操作。\n\n\n# 三、核心实验结果\n\n> 仿真与真实硬件实验均表明该策略能在无任何图像、物体位姿或几何观测的条件下稳定抓取多种物体，并可与多种独立设计的臂控制器无缝组合；学习到的抓取评分虽从未接触过接触几何信息，却与独立的基于物理的抓取稳定性度量高度吻合（摘要未给出具体数值指标）。\n\n\n# 四、对我的启发\n\n> 核心启发在于将抓取解耦为可复用的手部技能，使其与臂控制/任务层解耦，从而降低对视觉与物体先验的依赖；局限在于盲抓取仍依赖臂将手带到合适初始位置，且缺少定量指标来界定可抓取物体范围与失败边界。\n"
 }
