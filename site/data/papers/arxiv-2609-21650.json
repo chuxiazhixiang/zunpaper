@@ -75,14 +75,24 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "Fujitsu Limited",
+    "The Institute of Statistical Mathematics"
+  ],
+  "method_tags": [
+    "VLA",
+    "RL",
+    "SFT"
+  ],
   "platform": [],
-  "sim_stack": [],
+  "sim_stack": [
+    "MuJoCo",
+    "RoboTwin 2.0"
+  ],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"SynthDemo-RL: Breaking the Zero-Reward Barrier in VLA Adaptation with LLM-Guided Synthetic Demonstrations\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21650v1\n---\n>[!abstract] 一句话总结：提出 SynthDemo-RL 的教师-学生框架：自动教师利用仿真器特权状态生成成功操作轨迹，VLA 学生通过监督微调蒸馏这些合成示范，再用带二值任务成功奖励的 PPO 进行精炼。\n\n\n# 一、动机\n\n> VLA 模型微调通常依赖人类遥操作示范，而稀疏二值奖励的强化学习在成功轨迹极少被采样时面临探索困境；在无示范的扰动任务上，策略常陷入 0% 成功率的零奖励屏障。\n\n\n# 二、方法\n\n> 提出 SynthDemo-RL 的教师-学生框架：自动教师利用仿真器特权状态生成成功操作轨迹，VLA 学生通过监督微调蒸馏这些合成示范，再用带二值任务成功奖励的 PPO 进行精炼。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO-PRO 上，基于原始 LIBERO 微调的 pi_0.5 有 27/57 个计分任务成功率为 0%；直接 PPO 仅挽救其中 10 个、仍有 17 个为 0%，而 SynthDemo-RL 每任务用 50 条合成轨迹且无新人类示范，挽救全部 27 个，Position 和 Task 轴平均成功率分别达 97.8% 和 97.1%。在标准 LIBERO 上，同一流程无人类示范达到 96.0%，与每任务 50 条人类示范训练的 pi_0.5 相差 1.7 个百分点。还在 RoboTwin 2.0 上验证，并证明 MuJoCo 孪生环境中训练的策略轨迹可在物理机器人上开环执行。\n\n\n# 四、对我的启发\n\n> 局限在于依赖仿真器特权状态与高质量合成轨迹，真实机器人仅验证开环执行，未展示闭环泛化与复杂接触任务；启发是 reward coverage 可作为平均成功率之外的补充指标，合成示范能有效缓解稀疏奖励探索瓶颈，为无人类示范的 VLA 适配提供可行路径。\n"
 }

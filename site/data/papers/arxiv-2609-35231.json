@@ -1,0 +1,93 @@
+{
+  "id": "arxiv-2609-35231",
+  "source": "arxiv",
+  "title": "Zero-Shot Reactive Obstacle Avoidance for Generative Robot Policies",
+  "title_zh": "生成式机器人策略的零样本反应式避障",
+  "abstract": "We propose NUDGE (Nudge Update via Differentiable GEometry), a training-free obstacle-avoidance procedure that can be incorporated in any robot policy based on diffusion or flow matching, including diffusion policies and vision-language-action models. Our work injects gradients from a signed distance field, a function returning each point's distance to the nearest obstacle, into the policy at inference time to steer it away from obstacles. It supports any common action parameterization, from absolute or relative joint poses to end-effector poses, through a differentiable joint-trajectory decoder. Experiments show that NUDGE preserves the policy's task distribution and runs reactively in real time.",
+  "abstract_zh": "我们提出了 NUDGE（通过可微几何进行微调更新），这是一种无需训练的避障方法，可集成到任何基于扩散或流匹配的机器人策略中，包括扩散策略和视觉-语言-动作模型。我们的工作将符号距离场（一种返回每个点到最近障碍物距离的函数）的梯度在推理时注入策略，以引导其远离障碍物。通过可微的关节轨迹解码器，它支持从绝对或相对关节位姿到末端执行器位姿的任何常见动作参数化。实验表明，NUDGE 保持了策略的任务分布，并能实时反应式运行。",
+  "tldr_zh": "NUDGE：无需训练，为生成式机器人策略注入几何梯度实现实时避障。",
+  "cover_zh": "无需训练！这个新方法让机器人策略秒变避障高手",
+  "authors": [
+    {
+      "name": "Weihang Guo",
+      "affiliation": ""
+    },
+    {
+      "name": "Lydia E. Kavraki",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-09-28",
+  "updated": "2026-09-28",
+  "arxiv_id": "2609.35231",
+  "pdf_url": "https://arxiv.org/pdf/2609.35231v1",
+  "abs_url": "http://arxiv.org/abs/2609.35231v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-35231.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-35231-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（vision-language-action）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "训练无关的扩散/流匹配策略避障方法，可集成到VLA，对操作与移动机器人有科研价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Rice University"
+  ],
+  "method_tags": [
+    "Diffusion Policy",
+    "VLA",
+    "Obstacle Avoidance"
+  ],
+  "platform": [
+    "UR5"
+  ],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Zero-Shot Reactive Obstacle Avoidance for Generative Robot Policies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.35231v1\n---\n>[!abstract] 一句话总结：提出 NUDGE（Nudge Update via Differentiable GEometry）：一种免训练、可在推理时插入任意扩散/流匹配策略（diffusion policy、VLA）的避障过程，通过可微的关节轨迹解码器把符号距离场（SDF，返回每点到最近障碍的距离）的梯度注入采样过程，从而将动作推离障碍，并兼容绝对/相对关节位姿、末端位姿等多种动作参数化。\n\n\n# 一、动机\n\n> 基于扩散或流匹配的生成式机器人策略（含扩散策略与 VLA 模型）虽能完成复杂任务，但本身不具备对环境中障碍物的反应式规避能力，重训练或微调代价高，且难以在推理时实时保证安全。\n\n\n# 二、方法\n\n> 提出 NUDGE（Nudge Update via Differentiable GEometry）：一种免训练、可在推理时插入任意扩散/流匹配策略（diffusion policy、VLA）的避障过程，通过可微的关节轨迹解码器把符号距离场（SDF，返回每点到最近障碍的距离）的梯度注入采样过程，从而将动作推离障碍，并兼容绝对/相对关节位姿、末端位姿等多种动作参数化。\n\n\n# 三、核心实验结果\n\n> 摘要中未给出具体量化数值；作者报告的关键结论是：(1) NUDGE 能保持原策略的任务分布（不破坏原有任务能力）；(2) 可实时反应式运行（reactive, real time）；(3) 对扩散策略与 VLA 等多种生成式策略及多种动作参数化均适用。具体成功率、碰撞率与推理延迟数字需查阅正文。\n\n\n# 四、对我的启发\n\n> 局限在于方法依赖可微的 SDF 与可微关节轨迹解码器，需要场景几何信息，且对非凸/动态障碍的梯度引导可能陷入局部最优或产生抖动。启发是将经典几何约束以梯度形式「零成本」后置到生成式策略采样中，为 VLA/扩散策略的推理时安全约束提供了一条免训练、可插拔的思路。\n"
+}
