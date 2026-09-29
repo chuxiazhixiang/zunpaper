@@ -34,7 +34,8 @@
     "assets/img/covers/arxiv-2609-35700-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -45,7 +46,7 @@
   "related_links": [],
   "page_count": 6,
   "source_tags": [],
-  "score": 16,
+  "score": 21,
   "score_breakdown": [
     {
       "id": "keyword_density",
@@ -64,6 +65,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 6 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -86,5 +93,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/HardwareCoDesign\n  - 状态/待读\nTitle: \"LQR-ArUco Fusion: Robust Hierarchical Control for Navigation and Asymmetric Manipulation in Two-Wheeled Robots\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.35700v1\n---\n>[!abstract] 一句话总结：提出分层/双环控制架构：离板视觉系统通过顶部 ArUco 标记提供高延迟但无漂移的全局航点导航，同时机载低延迟控制环利用惯性（IMU）与编码器数据用 LQR 主动抑制物理扰动，两者分工解耦导航与平衡。\n\n\n# 一、动机\n\n> 双轮倒立摆（TWIP）机器人虽机动性强，但其持续的平衡调整使机载里程计严重漂移，难以精确导航；当侧挂机械臂执行非对称抓取/举升时，会产生无法直接驱动的侧向滚转力矩，在不平整地形上极易失稳摔倒。\n\n\n# 二、方法\n\n> 提出分层/双环控制架构：离板视觉系统通过顶部 ArUco 标记提供高延迟但无漂移的全局航点导航，同时机载低延迟控制环利用惯性（IMU）与编码器数据用 LQR 主动抑制物理扰动，两者分工解耦导航与平衡。\n\n\n# 三、核心实验结果\n\n> 物理实验中，自建双轮机器人实现了准确导航、抑制减速带造成的瞬态冲击、适应动态跷跷板斜坡，并在窄轮距下安全携带负载而不摔倒；但论文摘要未给出定位误差、恢复时间等具体量化数值，仅有定性验证结果（需查阅正文补充数字）。\n\n\n# 四、对我的启发\n\n> 局限在于依赖顶部 ArUco 标记的离板视觉基础设施、对场地有要求，且缺少定量指标与多场景泛化评估；启发是「慢速全局视觉导航 + 快速本体平衡控制」的解耦思路，以及用可驱动控制补偿非对称机械臂产生的不可驱动滚转力矩，对轮腿/双轮平台加装操作臂的具身系统有参考价值。\n"
+  "note": "---\ntags:\n  - 论文/系统\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"LQR-ArUco Fusion: Robust Hierarchical Control for Navigation and Asymmetric Manipulation in Two-Wheeled Robots\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.35700v1\n---\n>[!abstract] 一句话总结：提出分层双环控制架构：离线视觉系统通过顶部 ArUco 标记提供高延迟的全局路点导航，绕过里程计漂移；同时低延迟板载控制环（基于 LQR）利用 IMU 与编码器数据主动抑制外部物理扰动，实现导航与操作的分工解耦。\n\n\n# 一、动机\n\n> 两轮自平衡倒立摆（TWIP）机器人虽机动灵活，但持续的平衡修正使板载里程计严重漂移，难以精确导航；侧挂机械臂举升负载又会产生未驱动的横向滚转力矩，在不平地形上极易导致失稳翻车，现有方案未能同时解决这对耦合问题。\n\n\n# 二、方法\n\n> 提出分层双环控制架构：离线视觉系统通过顶部 ArUco 标记提供高延迟的全局路点导航，绕过里程计漂移；同时低延迟板载控制环（基于 LQR）利用 IMU 与编码器数据主动抑制外部物理扰动，实现导航与操作的分工解耦。\n\n\n# 三、核心实验结果\n\n> 在自建两轮机器人上完成物理实验，摘要报告该双环方案使机器人可精确导航、抑制减速带的瞬态冲击、适应动态跷跷板斜坡，并在窄轮距下安全携带负载而不翻倒；摘要未给出导航误差、恢复时间等量化数字，具体指标需查阅正文。\n\n\n# 四、对我的启发\n\n> 局限在于缺乏定量指标与消融实验，ArUco 依赖外部相机与标记，工作空间受限；启发是『高延迟全局视觉 + 低延迟本体感觉』的分工范式可迁移到其他欠驱动/不稳定的移动操作平台，但与具身智能中的学习型操作策略仅间接相关。\n"
 }

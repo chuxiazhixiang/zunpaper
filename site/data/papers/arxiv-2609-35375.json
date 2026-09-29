@@ -70,7 +70,8 @@
     "assets/img/covers/arxiv-2609-35375-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -93,7 +94,7 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 64,
+  "score": 75,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -110,8 +111,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 6,
-      "hint": "频道关键词命中 2 个（manipulation、tool use）"
+      "points": 12,
+      "hint": "频道关键词命中 4 个（manipulation、tool use、world model、object-centric world model）"
     },
     {
       "id": "freshness",
@@ -124,6 +125,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -150,5 +157,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"From Pixel to Poses: Object-centric Tool Manipulation Learning from Human Demonstrations\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.35375v1\n---\n>[!abstract] 一句话总结：P2P-T 提出以物体为中心的两阶段框架：先用现代基础模型驱动的自动化数据流水线构建物体中心世界模型以提取稳定位姿先验，再将该先验注入高效的位姿感知底层策略，从而完全绕过人-机器人对齐数据，直接从人类示范中学习工具使用。\n\n\n# 一、动机\n\n> 现有基于人类视频示范的机器人操作学习计算开销大、仍依赖成对的人-机器人对齐数据做域对齐，且在大规模预训练模型难以胜任的精细工具操作任务上表现不佳。\n\n\n# 二、方法\n\n> P2P-T 提出以物体为中心的两阶段框架：先用现代基础模型驱动的自动化数据流水线构建物体中心世界模型以提取稳定位姿先验，再将该先验注入高效的位姿感知底层策略，从而完全绕过人-机器人对齐数据，直接从人类示范中学习工具使用。\n\n\n# 三、核心实验结果\n\n> 1) 在真实世界复杂工具操作任务上执行性能较此前最优方法提升 73%；2) 完全无需人-机器人对齐数据，显著降低整体训练开销；3) 仅需极少量按任务的微调即可适配新任务，而这些任务目前对标准大规模预训练模型仍不可及。\n\n\n# 四、对我的启发\n\n> 该工作说明「物体位姿」可作为跨人类视频与机器人执行的中间表示，省去昂贵的域对齐；局限在于仍依赖基础模型的自动数据处理质量，且精细工具操作对位姿先验的精度与鲁棒性要求高，长时序多阶段任务的泛化性有待验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\nTitle: \"From Pixel to Poses: Object-centric Tool Manipulation Learning from Human Demonstrations\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.35375v1\n---\n>[!abstract] 一句话总结：提出 P2P-T（From Pixel to Poses for Tool Manipulation）：先预训练以物体为中心的世界模型提取稳定的位姿先验，再将这些先验注入轻量、位姿感知的底层策略，并借助现代基础模型构建自动化数据处理流水线，从而完全绕开人-机器人对齐数据。\n\n\n# 一、动机\n\n> 现有利用人类视频演示学习操作的方法计算开销大、且仍依赖配对的人-机器人数据做域对齐；同时当前 SOTA 擅长长时序任务，却难以完成复杂工具操作所需的精细、精确控制。\n\n\n# 二、方法\n\n> 提出 P2P-T（From Pixel to Poses for Tool Manipulation）：先预训练以物体为中心的世界模型提取稳定的位姿先验，再将这些先验注入轻量、位姿感知的底层策略，并借助现代基础模型构建自动化数据处理流水线，从而完全绕开人-机器人对齐数据。\n\n\n# 三、核心实验结果\n\n> 1) 在目前大规模预训练模型仍难以完成的真实世界复杂工具操作任务上，执行性能较此前 SOTA 提升 73%；2) 由于无需人-机器人配对数据，整体训练开销大幅降低；3) 每任务仅需极少量的微调即可达到上述效果。\n\n\n# 四、对我的启发\n\n> 启发在于『以物体为中心的位姿先验』可作为跨本体（人→机器人）迁移的低成本中间表示，替代昂贵的像素级视频对齐；局限是方法高度依赖基础模型驱动的数据处理流水线质量，且位姿先验对可变形/关节类工具的适用性未经验证。\n"
 }

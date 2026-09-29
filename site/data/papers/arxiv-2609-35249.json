@@ -59,7 +59,8 @@
     "assets/img/covers/arxiv-2609-35249-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -70,13 +71,13 @@
   "related_links": [],
   "page_count": 17,
   "source_tags": [],
-  "score": 25,
+  "score": 30,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 4 个（vision-language-action、manipulation、dual-arm、robotwin）"
+      "hint": "频道关键词命中 5 个（vision-language-action、manipulation、dual-arm、robotwin）"
     },
     {
       "id": "freshness",
@@ -89,6 +90,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 17 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -115,5 +122,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Spatial Grafting: Grounding 3D Features for Flow-Matching Robot Policies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.35249v1\n---\n>[!abstract] 一句话总结：提出 Spatial Grafting：一个通用轻量的空间模块，将冻结的 3D 重建特征绑定到机器人相对的度量几何上，构造度量落地的空间 token，并通过交叉注意力注入 flow-matching 动作专家，不改动宿主策略的感知通路以保留预训练收益。\n\n\n# 一、动机\n\n> 预训练的机器人操作策略（VLA、WAM）只隐式地编码了与交互相关的度量几何，而现有空间重建模型虽能提供可靠几何，其特征只描述局部形状、不指明相对机器人的位置；如何把这些特征有效注入预训练策略仍未解决。\n\n\n# 二、方法\n\n> 提出 Spatial Grafting：一个通用轻量的空间模块，将冻结的 3D 重建特征绑定到机器人相对的度量几何上，构造度量落地的空间 token，并通过交叉注意力注入 flow-matching 动作专家，不改动宿主策略的感知通路以保留预训练收益。\n\n\n# 三、核心实验结果\n\n> 同一套 graft 架构无需针对宿主重设计，即插到 2 个 VLA 和 2 个 WAM 上、覆盖四个仿真基准与三个真机平台（单/双臂）。在 RoboTwin 2.0 双臂基准上对所有宿主均有提升：grafted π0.5 在干净与随机场景分别提升 11.3% 和 15.6%，达到 94.0% 和 92.4%，超过最强已发表 3D 条件策略 WAM4D（93.8% / 89.9%）。任务时序越长优势越明显：在 BEHAVIOR-1K 双臂移动操作挑战中，于 6 个任务中的 5 个超过 2025 年挑战赛冠军，Q-score 最高领先 0.47，并在两者都报告的三项任务上平均超过地图条件空间策略。\n\n\n# 四、对我的启发\n\n> 方法本身是通用“嫁接”范式，说明冻结重建特征 + 轻量度量对齐即可复用而非重训宿主策略；局限在于仍依赖重建质量与机器人标定精度，且主要在操作任务上验证，尚未扩展到更广泛的具身场景。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Spatial Grafting: Grounding 3D Features for Flow-Matching Robot Policies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.35249v1\n---\n>[!abstract] 一句话总结：提出 Spatial Grafting：一个轻量、通用的空间模块，把冻结的重建特征绑定到度量化的机器人相对几何上，构造 metric-grounded spatial tokens，并通过 cross-attention 注入 flow-matching 动作专家，不修改宿主策略的感知通路，从而保留其预训练能力。\n\n\n# 一、动机\n\n> 预训练的机器人操作策略（VLA/WAM）只隐式地编码了与交互相关的度量几何，而现有空间重建特征虽可靠却只描述局部形状、没有给出相对机器人的位置；如何把这些几何特征有效注入预训练策略仍未解决。\n\n\n# 二、方法\n\n> 提出 Spatial Grafting：一个轻量、通用的空间模块，把冻结的重建特征绑定到度量化的机器人相对几何上，构造 metric-grounded spatial tokens，并通过 cross-attention 注入 flow-matching 动作专家，不修改宿主策略的感知通路，从而保留其预训练能力。\n\n\n# 三、核心实验结果\n\n> 在 RoboTwin 2.0 双臂基准上，同一 graft 架构无需按宿主重新设计即可提升两个 VLA 与两个 WAM 宿主；grafted π0.5 在 clean/randomized 场景分别提升 11.3% 和 15.6%，达到 94.0% 与 92.4%，超过最强已发表 3D 条件策略 WAM4D（93.8% 与 89.9%）；在 BEHAVIOR-1K 双手机器人移动操作上，按平均任务进度在 6 个任务中的 5 个超过 2025 挑战赛冠军，最大领先 0.47 Q-score，并在两者都报告的三个任务上平均超过地图条件空间策略。\n\n\n# 四、对我的启发\n\n> 该方法表明冻结感知、仅通过交叉注意力在动作专家侧注入机器人相对几何，是一种跨宿主通用且不破坏预训练特征的实用范式；局限在于效果仍依赖重建特征的质量与标定精度，且需为每个宿主接入动作专家接口，长时程任务的收益虽更大但评测任务数量有限。\n"
 }

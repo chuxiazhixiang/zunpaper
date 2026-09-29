@@ -55,7 +55,8 @@
     "assets/img/covers/arxiv-2609-35032-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -70,13 +71,13 @@
   "related_links": [],
   "page_count": 22,
   "source_tags": [],
-  "score": 34,
+  "score": 42,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（embodied agent）"
+      "points": 6,
+      "hint": "频道关键词命中 2 个（embodied agent、world model）"
     },
     {
       "id": "freshness",
@@ -101,6 +102,12 @@
       "label": "机器人顶会 / 顶刊出品",
       "points": 10,
       "hint": "被「NeurIPS 2026」收录"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -125,5 +132,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/CV\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"JRDB-AVR: An Active Visual Reasoning Benchmark for Embodied Agents in Real-World Environments\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.35032v1\n---\n>[!abstract] 一句话总结：作者基于真实世界 JRDB 机器人数据，通过结构化问题生成引擎构建了 JRDB-AVR 基准：智能体需按时间戳与视角请求有界的观测，并同时接受最终答案与所依据的视觉证据的双重评估；同时提出参考方法 JRDB-AVR-Agent，维护显式的、基于观测的图式世界模型并通过求解回答问题。\n\n\n# 一、动机\n\n> 现有视觉推理基准主要评估被动观测与最终答案，忽略了智能体视野受限、证据分布在时间/视角/交互对象上的主动推理场景，导致模型可能给出没有实际观测证据支撑的「看似正确」答案。\n\n\n# 二、方法\n\n> 作者基于真实世界 JRDB 机器人数据，通过结构化问题生成引擎构建了 JRDB-AVR 基准：智能体需按时间戳与视角请求有界的观测，并同时接受最终答案与所依据的视觉证据的双重评估；同时提出参考方法 JRDB-AVR-Agent，维护显式的、基于观测的图式世界模型并通过求解回答问题。\n\n\n# 三、核心实验结果\n\n> 基准覆盖多个真实环境，包含时序搜索、视角选择与以人为中心的组合推理等多样化问题；实验显示当前基线在答案准确率与证据准确率之间存在显著差距（答案准确率高、证据准确率明显偏低），表明 VLM 能够产出缺乏观测支撑的正确回答，因此主动且证据感知的评估对具身视觉推理是必要的。\n\n\n# 四、对我的启发\n\n> 核心启发是具身视觉推理应把「证据获取过程」纳入评估，而非只看最终答案；图式世界模型加主动观测请求是一种可行范式。局限在于数据源自单一 JRDB 机器人采集平台，场景与具身形态多样性有限，问题生成与证据标注的可扩展性和跨平台迁移性仍待验证。\n"
+  "note": "---\ntags:\n  - 论文/数据\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/CameraControl\n  - 状态/待读\nTitle: \"JRDB-AVR: An Active Visual Reasoning Benchmark for Embodied Agents in Real-World Environments\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.35032v1\n---\n>[!abstract] 一句话总结：作者基于真实世界 JRDB 机器人数据，用结构化问题生成引擎构建 JRDB-AVR 基准：智能体收到视觉推理问题后按时间戳和视角请求有界观测，评测同时考察最终答案与支撑答案的视觉证据；并提出参考方法 JRDB-AVR-Agent，维护显式的、以观测为锚的图结构世界模型并通过求解完成回答。\n\n\n# 一、动机\n\n> 现有视觉推理基准主要考察被动观测与最终答案，忽略了智能体需要在有限视野下主动获取证据（跨时间、视角、交互对象的证据分布）的场景，导致模型可能在从未观测到相关物体或视角的情况下给出看似合理的正确答案。\n\n\n# 二、方法\n\n> 作者基于真实世界 JRDB 机器人数据，用结构化问题生成引擎构建 JRDB-AVR 基准：智能体收到视觉推理问题后按时间戳和视角请求有界观测，评测同时考察最终答案与支撑答案的视觉证据；并提出参考方法 JRDB-AVR-Agent，维护显式的、以观测为锚的图结构世界模型并通过求解完成回答。\n\n\n# 三、核心实验结果\n\n> 基准覆盖多个真实环境，包含时序搜索、视角选择与面向人的组合推理等多类问题；实验显示当前基线在答案准确率与证据准确率之间存在显著差距（摘要未给出具体数值），即 VLM 能给出正确但缺乏证据支撑的答案，说明主动式、证据感知的评测对具身视觉推理是必要的。\n\n\n# 四、对我的启发\n\n> 局限在于基准派生自 JRDB 单一数据源，环境与任务类型受限，且论文摘要未报告量化指标，需查阅正文确认答案/证据准确率的具体数字与 JRDB-AVR-Agent 的增益；启发是将「证据落地」与「最终答案」解耦评测，可有效暴露 VLM 的伪正确行为，对具身智能体的主动感知与视角/时序规划研究有直接参考价值。\n"
 }

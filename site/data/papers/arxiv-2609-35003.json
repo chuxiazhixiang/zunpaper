@@ -42,7 +42,9 @@
     "assets/img/covers/arxiv-2609-35003-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc",
+    "world-model"
   ],
   "badges": [
     {
@@ -53,13 +55,13 @@
   "related_links": [],
   "page_count": 18,
   "source_tags": [],
-  "score": 22,
+  "score": 30,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 9,
-      "hint": "频道关键词命中 3 个（vision-language-action、vla model、manipulation）"
+      "points": 12,
+      "hint": "频道关键词命中 6 个（vision-language-action、vla model、manipulation、gr00t）"
     },
     {
       "id": "freshness",
@@ -72,6 +74,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 18 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 3 个频道"
     }
   ],
   "judge": {
@@ -98,5 +106,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Learning to Act under Visual Interruptions with Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.35003v1\n---\n>[!abstract] 一句话总结：论文先提出 MAIL-Bench 基准：在每条策略成功参考轨迹的多个阶段中断不同相机，量化策略在视觉输入缺失时的能力保持程度；再提出 MINT，训练阶段让 VLA 策略在缺失视觉输入下仍可运作，推理阶段用光流外推或动作条件世界模型选择性地补齐缺失观测，并在预测视图不可靠时主动撤回。\n\n\n# 一、动机\n\n> 现有 VLA 模型都在「全程所有相机可用」的假设下训练与评测，一旦某个相机在任务执行中途停止输出帧，策略必须在缺失该视角后续观测的情况下继续闭环操作；这种视觉中断对操作性能的影响此前缺乏系统研究，也没有相应的评测基准与鲁棒化方法。\n\n\n# 二、方法\n\n> 论文先提出 MAIL-Bench 基准：在每条策略成功参考轨迹的多个阶段中断不同相机，量化策略在视觉输入缺失时的能力保持程度；再提出 MINT，训练阶段让 VLA 策略在缺失视觉输入下仍可运作，推理阶段用光流外推或动作条件世界模型选择性地补齐缺失观测，并在预测视图不可靠时主动撤回。\n\n\n# 三、核心实验结果\n\n> 在 π0.5 与 GR00T N1.5 上，MINT 在相机丢失条件下的任务成功率相比原始模型有显著提升；在 AgiBot G2 上进一步验证了相机丢失情形下的真机部署可行性。注：摘要未给出具体成功率数值或提升幅度，需查阅正文获取精确数字。\n\n\n# 四、对我的启发\n\n> 局限在于摘要未报告定量指标，也未说明中断类型（完全断流 vs. 丢帧）、恢复机制在多大缺失率下才失效，以及世界模型预测误差累积的风险。启发是：把「传感器失效」当作训练与评测中的一等公民，而非事后补丁，对 VLA 的真实部署很关键；其「先训练鲁棒、再推理补全、不可靠则撤回」的三段式思路可迁移到其他模态缺失场景。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Learning to Act under Visual Interruptions with Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.35003v1\n---\n>[!abstract] 一句话总结：提出 MAIL-Bench 基准评估视觉中断，并提 MINT：先训练 VLA 策略在缺失视觉输入下保持功能，推理时用光流外推或动作条件世界模型选择性补充缺失观测，并在预测不可靠时撤回。\n\n\n# 一、动机\n\n> VLA 模型通常在任务全程相机可用时训练和评估，但实际中相机可能在执行中停止提供画面，现有工作对视觉中断如何影响闭环操作缺乏系统理解与鲁棒策略。\n\n\n# 二、方法\n\n> 提出 MAIL-Bench 基准评估视觉中断，并提 MINT：先训练 VLA 策略在缺失视觉输入下保持功能，推理时用光流外推或动作条件世界模型选择性补充缺失观测，并在预测不可靠时撤回。\n\n\n# 三、核心实验结果\n\n> 在 π0.5 和 GR00T N1.5 上，MINT 显著提升了相机丢失下的任务成功率；在 AgiBot G2 上进一步验证了真实机器人部署。摘要未给出具体成功率数值。\n\n\n# 四、对我的启发\n\n> 方法依赖光流外推或世界模型预测的可靠性，长时间中断或复杂动态场景可能失效；视觉中断鲁棒性对实际机器人部署至关重要，可启发多传感器失效下的策略设计。\n"
 }
