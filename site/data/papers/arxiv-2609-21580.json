@@ -57,14 +57,21 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "Ricerca sul Sistema Energetico (RSE) S.p.A.",
+    "Czech Technical University in Prague"
+  ],
+  "method_tags": [
+    "Control Barrier Function",
+    "Quadratic Program",
+    "control allocation"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "no",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/理论\n  - Domain/Robotics\n  - Task/HardwareCoDesign\n  - 状态/待读\nTitle: \"Tilt as a Certified Resource: Preserving Motor Wrench-Rate Authority on Articulated Multirotors\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21580v1\n---\n>[!abstract] 一句话总结：用主动变构（舵机倾转）作为打破退化的几何资源，构造一个与构型相关、仅含电机的就绪度证书——可达力旋量速率集的对数体积，并显式排除舵机能力以避免「幽灵容量谬误」；该证书作为控制屏障函数（CBF）嵌入统一物理指令二次规划（QP）中，同时求解电机力矩与舵机设定点。\n\n\n# 一、动机\n\n> 全驱动多旋翼不仅要跟踪标称力旋量，还需在扰动下保留快速调制力旋量的「就绪度」，而经典的最小努力分配器完全忽略这一动态极限；若改为最大化就绪度，又会得到拓扑不连通的最优解片，要求物理上不可实现的电机速率。在固定几何的对称平台上强加就绪度安全下限还会遇到零和退化：单纯重分配电机转速无法在不牺牲力旋量跟踪的前提下提升权限。\n\n\n# 二、方法\n\n> 用主动变构（舵机倾转）作为打破退化的几何资源，构造一个与构型相关、仅含电机的就绪度证书——可达力旋量速率集的对数体积，并显式排除舵机能力以避免「幽灵容量谬误」；该证书作为控制屏障函数（CBF）嵌入统一物理指令二次规划（QP）中，同时求解电机力矩与舵机设定点。\n\n\n# 三、核心实验结果\n\n> 在带关节的八旋翼（octorotor）于强阵风扰动下的闭环仿真中，经典分配器出现发散，未认证的带关节分配器违反就绪度安全下限，而所提 CBF 滤波器能够约束系统状态并保住飞行器权限；摘要未给出具体的量化指标（如发散阈值、权限提升百分比等），仅报告了上述定性对比。\n\n\n# 四、对我的启发\n\n> 证据目前仅来自闭环仿真，缺少实机验证；证书刻意排除舵机容量，因而无法刻画舵机自身饱和与带宽受限对权限的影响，且未讨论倾转机构的机械磨损、能耗与故障模式。启发在于：把「动态就绪度」显式建为可认证的几何量并交给 CBF 安全滤波，这一思路可迁移到其他过驱动平台（如空中机械臂、倾转涵道机）的分配器设计中。\n"
 }

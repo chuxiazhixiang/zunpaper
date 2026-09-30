@@ -52,12 +52,23 @@
     "locomotion",
     "sim2real"
   ],
-  "badges": [],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ NTU"
+    }
+  ],
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 20,
+  "score": 45,
   "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “NTU” 关键词"
+    },
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
@@ -78,14 +89,23 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
-  "platform": [],
+  "institutions": [
+    "Institute of Advanced Intelligence and Computing (IAIC), Agency for Science, Technology and Research (A*STAR), Singapore",
+    "Nanyang Technological University, Singapore"
+  ],
+  "method_tags": [
+    "Reinforcement Learning",
+    "Attention",
+    "sim-to-real"
+  ],
+  "platform": [
+    "Unitree B2"
+  ],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"SABER: Learning Attention-based Semantic Affordance for Legged Locomotion\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21572v1\n---\n>[!abstract] 一句话总结：提出 SABER——一个无规划器的强化学习策略，输入统一的地形可供性地图（每格同时编码局部 3D 几何与语义接触代价），在交叉注意力 logits 上加入由接触代价门控的、带符号的可学习语义偏置，按障碍到最近足端的距离重新加权被标记的格子，使危险只在仍能影响下一步落足的位置重塑注意力，从而在摆动相全程避开禁区并把落足点选在允许支撑面上。\n\n\n# 一、动机\n\n> 感知式足式运动虽已把地形几何纳入学习策略，但地形的「语义含义」仍被忽略：管道、草地、脆弱箱子在几何上可通行，却不适合踩踏，工业场景中一次误踩就可能损坏设备或危及场地安全。\n\n\n# 二、方法\n\n> 提出 SABER——一个无规划器的强化学习策略，输入统一的地形可供性地图（每格同时编码局部 3D 几何与语义接触代价），在交叉注意力 logits 上加入由接触代价门控的、带符号的可学习语义偏置，按障碍到最近足端的距离重新加权被标记的格子，使危险只在仍能影响下一步落足的位置重塑注意力，从而在摆动相全程避开禁区并把落足点选在允许支撑面上。\n\n\n# 三、核心实验结果\n\n> 1) 消融实验显示，仅移除语义偏置就使违规接触增加 55%，而速度跟踪性能不变，说明语义分支专门负责接触许可而非运动跟踪；2) 在 Unitree B2 真机上完成室内外环境、四类语义障碍的 sim-to-real 语义接触选择验证；3) 系统消融逐一分离了各架构组件的贡献。\n\n\n# 四、对我的启发\n\n> 语义接触代价被假定为已给定的地图输入，论文未解决语义感知本身的在线获取与不确定性建模；注意力偏置的门控思路（让约束只在「还能起作用」的地方施加影响）可迁移到其他需要空间局部约束的具身策略中，如机械臂禁触区域或精细操作中的接触许可学习。\n"
 }

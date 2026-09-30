@@ -1,0 +1,106 @@
+{
+  "id": "arxiv-2609-38120",
+  "source": "arxiv",
+  "title": "Stochastic World Models for Verifying Vision-Based Neural Feedback Systems",
+  "title_zh": "用于验证基于视觉的神经反馈系统的随机世界模型",
+  "abstract": "Verifying a vision-based neural feedback system requires a model of the observations its controller acts upon. Such a model must capture the variation the sensor produces, while remaining tractable for closed-loop analysis. Generative adversarial networks (GANs) have served as perception surrogates, but they are large, reproduce complex scenes poorly, and are hard to verify. We explore stochastic world models as a richer class of perception surrogates. We train a world model with physically grounded latents, built from operations that standard verifiers bound. It reproduces held-out frames more faithfully than GAN surrogates with up to 130 times as many parameters. To verify these surrogates, we develop a procedure that combines falsification, adaptive refinement, symbolic, and backward analyses. On an emergency braking benchmark with a GAN surrogate, our procedure resolves the entire state space, 38% of which the state-of-the-art verifier left unresolved. On the RGB version of the benchmark, where no verification results have previously been reported, our procedure resolves over 80% of the state space with a world model surrogate.",
+  "abstract_zh": "验证基于视觉的神经反馈系统需要对其控制器所依赖的观测进行建模。这样的模型必须捕捉传感器产生的变化，同时保持闭环分析的可处理性。生成对抗网络（GAN）曾作为感知替代模型，但它们规模大、难以复现复杂场景且难以验证。我们探索随机世界模型作为更丰富的感知替代模型类别。我们训练了一个具有物理基础潜在变量的世界模型，其构建操作可由标准验证器进行边界约束。与参数量高达其130倍的GAN替代模型相比，它能更忠实地复现留出帧。为了验证这些替代模型，我们开发了一种结合证伪、自适应精化、符号和反向分析的程序。在带有GAN替代模型的紧急制动基准上，我们的程序解决了整个状态空间，其中38%是当前最先进的验证器未能解决的。在基准的RGB版本上，此前没有验证结果报道，我们的程序使用世界模型替代模型解决了超过80%的状态空间。",
+  "tldr_zh": "随机世界模型作为感知替代，可验证视觉反馈系统，解决状态空间。",
+  "cover_zh": "GAN替代模型太大难验证？世界模型用更少参数更忠实，验证反超SOTA",
+  "authors": [
+    {
+      "name": "I. Samuel Akinwande",
+      "affiliation": ""
+    },
+    {
+      "name": "Mykel J. Kochenderfer",
+      "affiliation": ""
+    },
+    {
+      "name": "Clark Barrett",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.AI",
+  "categories": [
+    "cs.AI",
+    "eess.SY"
+  ],
+  "published": "2026-09-29",
+  "updated": "2026-09-29",
+  "arxiv_id": "2609.38120",
+  "pdf_url": "https://arxiv.org/pdf/2609.38120v1",
+  "abs_url": "http://arxiv.org/abs/2609.38120v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-38120.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-38120-p2.jpg"
+  ],
+  "channels": [
+    "world-model"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ Stanford"
+    },
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 15,
+  "source_tags": [],
+  "score": 44,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “Stanford” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 6,
+      "hint": "频道关键词命中 2 个（world model、world models）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 15 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "world-model",
+    "reason": "随机世界模型作为感知代理用于验证视觉神经反馈系统，属世界模型方法，有科研参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Stanford University"
+  ],
+  "method_tags": [
+    "World Model",
+    "GAN surrogate",
+    "verification"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/理论\n  - Domain/CV\n  - Domain/Robotics\n  - Task/NeuralNetworkVerification\n  - 状态/待读\nTitle: \"Stochastic World Models for Verifying Vision-Based Neural Feedback Systems\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.38120v1\n---\n>[!abstract] 一句话总结：作者用具有物理可解释隐变量的随机世界模型替代 GAN 作为感知代理，其隐空间由标准验证器可界定的算子构建；并提出一套结合反例搜索（falsification）、自适应精化、符号分析与后向分析的验证流程。\n\n\n# 一、动机\n\n> 验证基于视觉的神经反馈系统需要对其控制器所感知的观测建模，但现有 GAN 感知代理模型参数量大、对复杂场景重建质量差、且难以被验证器处理，导致闭环验证的状态空间大量无法求解。\n\n\n# 二、方法\n\n> 作者用具有物理可解释隐变量的随机世界模型替代 GAN 作为感知代理，其隐空间由标准验证器可界定的算子构建；并提出一套结合反例搜索（falsification）、自适应精化、符号分析与后向分析的验证流程。\n\n\n# 三、核心实验结果\n\n> 世界模型在重建留出帧上比参数量多达 130 倍的 GAN 代理更忠实；在紧急制动基准上，对 GAN 代理可解出全部状态空间，而当前最先进验证器仍有 38% 状态未解；在该基准的 RGB 版本上（此前无任何验证结果报道），使用世界模型代理可解出超过 80% 的状态空间。\n\n\n# 四、对我的启发\n\n> 将世界模型而非 GAN 用作可验证的感知代理，为视觉闭环系统的安全性验证提供了可行路径；局限在于目前仅在紧急制动类基准上评估，世界模型的物理隐变量设计对更复杂/多模态场景的泛化性与可扩展性仍待验证，对具身智能感知-控制闭环的安全验证有直接借鉴意义。\n"
+}

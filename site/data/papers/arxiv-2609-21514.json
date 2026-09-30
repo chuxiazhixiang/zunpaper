@@ -74,14 +74,28 @@
   "badges": [
     {
       "kind": "lab",
+      "label": "⭐ 上海 AI Lab"
+    },
+    {
+      "kind": "lab",
+      "label": "⭐ HKU"
+    },
+    {
+      "kind": "lab",
       "label": "⭐ Jiangmiao Pang"
     }
   ],
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 29,
+  "score": 54,
   "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “上海 AI Lab” 关键词"
+    },
     {
       "id": "key_author",
       "label": "关键作者上榜",
@@ -102,14 +116,23 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "The Chinese University of Hong Kong",
+    "Shanghai AI Laboratory",
+    "Joy Future Academy",
+    "CPII under InnoHK"
+  ],
+  "method_tags": [
+    "World Action Model",
+    "Mixture-of-Transformers",
+    "human-to-robot transfer"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Skel-WAM: A Hand-Skeleton-Conditioned World Action Model for Human-to-Robot Manipulation Transfer\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21514v1\n---\n>[!abstract] 一句话总结：提出 Skel-WAM 世界动作模型，以统一的手部骨架运动接口对齐人与机器人动作：用骨架叠加图将运动落地到场景、用结构化 2.5-D 关键点编码显式手部运动学，Video Expert 与 Keypoint Expert 通过 Mixture-of-Transformers 联合学习视觉与骨架动力学，独立的机器人训练 Action Expert 再将预测映射为可执行控制，从而让人视频无需机器人动作标签即可监督共享动力学。\n\n\n# 一、动机\n\n> 机器人演示数据采集成本高、任务变体覆盖有限，而人类视频虽廉价却存在视觉外观与动作空间上的具身鸿沟，难以直接用于机器人策略学习。\n\n\n# 二、方法\n\n> 提出 Skel-WAM 世界动作模型，以统一的手部骨架运动接口对齐人与机器人动作：用骨架叠加图将运动落地到场景、用结构化 2.5-D 关键点编码显式手部运动学，Video Expert 与 Keypoint Expert 通过 Mixture-of-Transformers 联合学习视觉与骨架动力学，独立的机器人训练 Action Expert 再将预测映射为可执行控制，从而让人视频无需机器人动作标签即可监督共享动力学。\n\n\n# 三、核心实验结果\n\n> 在 4 个真实双臂任务和 7 个仿真任务上分别取得 79.86% 与 63.29% 的平均成功率，超过最强基线 22.22 和 8.28 个百分点；人-机器人协同训练使机器人训练数据中未出现的任务变体真实成功率从 38.89% 提升到 86.11%，翻倍以上。\n\n\n# 四、对我的启发\n\n> 核心启发是共享骨架拓扑可作为跨具身（人手-夹爪）的中间表示，使异构数据直接监督同一动力学模型；局限在于方法依赖手部骨架估计质量，且人手与机器人末端执行器拓扑差异较大时的对齐仍受限。\n"
 }
