@@ -1,0 +1,74 @@
+{
+  "id": "github-h-embodvis-turbovla",
+  "source": "github",
+  "title": "H-EmbodVis/TurboVLA",
+  "title_zh": "H-EmbodVis/TurboVLA",
+  "abstract": "TurboVLA: Real-Time Vision-Language-Action Model at 32 Hz on an RTX 4090 with <1 GB VRAM\n\n# TurboVLA: Real-Time Vision-Language-Action Model at 32 Hz on an RTX 4090 with &lt;1 GB VRAM Hengyi Xie 1* , Chenfei Yao 1* , Xianjin Wu 1 , Xuanyang Xi 2 , Yiping Tang 2 , Di Xu 2 , Yingying Zhu 1 , Dingkang Liang 1&dagger; , Xiang Bai 1 , Han Ding 1 1 Huazhong University of Science and Technology, China 2 Huawei Technologies Co. Ltd, China * Equal contribution, listed alphabetically by surname. &dagger; Project Lead. This repository contains the official implementation of **TurboVLA** for the paper **TurboVLA: Real-Time Vision-Language-Action Model at 32 Hz on an RTX 4090 with &lt;1 GB VRAM**. Real-world tasks with synchronous policy inference. --- ## 📣 News - `2026.09.27`:🚀TurboVLA achieves an **88.06%** average success rate on **RoboTwin 2.0**. The paper, code, and checkpoints have been updated. - `2026.07.31`: Released the TurboVLA model checkpoints on [Hugging Face](https://huggingface.co/H-EmbodVis/TurboVLA). - `2026.07.30`: Released the paper, training and evaluation code. ## 📅 TODO * [ ] Support Huawei Ascend NPUs --- ## 📄 Abstract Vision-language-action (VLA) models commonly adopt an LLM-centric $V\\rightarrow \\boldsymbol{L}\\rightarrow A$ pathway, processing visual observations and language instructions through a large language model before predicting robot actions. Although effective, this design incurs substantial computation and memory overhead. In this work, we introduce **TurboVLA**, a compact VLA architecture built on a direct $\\boldsymbol{V}+\\boldsymbol{L}\\rightarrow A$mapping. Instead of using a large language model as the central interface between perception and action, TurboVLA independently encodes visual observations and language instructions, directly exchanges information between them through lightweight bidirectional vision-language interaction, and predicts continuous action chunks with a compact decoder. This simple design directly constructs task-conditioned representations while avoiding the overhead of an LLM-centric execution pathway.",
+  "abstract_zh": "视觉-语言-动作（VLA）模型通常采用以 LLM 为中心的 $V→ \\boldsymbol{L}→ A$ 路径，先通过大语言模型处理视觉观测和语言指令，再预测机器人动作。尽管有效，但这种设计会带来大量的计算和内存开销。在本工作中，我们提出了 TurboVLA，一种基于直接 $\\boldsymbol{V}+\\boldsymbol{L}→ A$ 映射的紧凑 VLA 架构。TurboVLA 不将大语言模型作为感知与动作之间的核心接口，而是独立编码视觉观测和语言指令，通过轻量级双向视觉-语言交互直接在两者之间交换信息，并使用紧凑解码器预测连续动作块。这种简单设计直接构建任务条件表示，同时避免了以 LLM 为中心的执行路径的开销。",
+  "tldr_zh": "TurboVLA 用直接 V+L→A 映射替代 LLM 中心路径，实现低显存实时 VLA。",
+  "cover_zh": "抛弃 LLM 中心架构｜这个 VLA 模型在 4090 上跑出 32 Hz",
+  "authors": [
+    {
+      "name": "H-EmbodVis",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2026-09-27",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/H-EmbodVis/TurboVLA",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 55,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 55,
+      "hint": "⭐ 585"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "官方VLA模型实现，轻量实时推理，含代码与checkpoint，属操作VLA方向，参考价值高。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "操作"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "H-EmbodVis",
+    "repo": "TurboVLA",
+    "stars": 585,
+    "language": "Python",
+    "pushed_at": "2026-09-27",
+    "created_at": "2026-07-28",
+    "topics": [],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"H-EmbodVis/TurboVLA\"\nYear: \"\"\nURL: https://github.com/H-EmbodVis/TurboVLA\n---\n>[!abstract] 一句话总结：TurboVLA 抛弃 LLM 作为感知与动作之间的中心接口，改为直接的 V+L→A 映射：分别独立编码视觉观测与语言指令，通过轻量级双向视觉-语言交互模块交换信息，再由紧凑解码器一次性预测连续动作块（action chunk）。\n\n\n# 一、动机\n\n> 主流 VLA 模型采用以 LLM 为中心的 V→L→A 通路，把视觉观测和语言指令先送进大语言模型再预测动作，导致计算与显存开销巨大，难以在实时、低功耗的机器人平台上部署。\n\n\n# 二、方法\n\n> TurboVLA 抛弃 LLM 作为感知与动作之间的中心接口，改为直接的 V+L→A 映射：分别独立编码视觉观测与语言指令，通过轻量级双向视觉-语言交互模块交换信息，再由紧凑解码器一次性预测连续动作块（action chunk）。\n\n\n# 三、核心实验结果\n\n> 在 RTX 4090 上实现 32 Hz 的实时同步策略推理，显存占用小于 1 GB；在 RoboTwin 2.0 基准上取得 88.06% 的平均成功率；论文、代码与 Hugging Face 检查点均已开源，后续计划支持华为昇腾 NPU。\n\n\n# 四、对我的启发\n\n> 核心启发是「去 LLM 中心化」可以极大压缩 VLA 的推理成本，同时保持较高成功率，为端侧/实时机器人控制提供了可行路线；局限在于当前验证主要集中在 RoboTwin 2.0 这一仿真操作基准，真实世界任务与跨本体泛化能力仍需更多证据。\n"
+}

@@ -62,7 +62,8 @@
     "assets/img/covers/arxiv-2609-37519-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "locomotion"
   ],
   "badges": [
     {
@@ -73,13 +74,13 @@
   "related_links": [],
   "page_count": 25,
   "source_tags": [],
-  "score": 16,
+  "score": 27,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（manipulation）"
+      "points": 9,
+      "hint": "频道关键词命中 3 个（manipulation、locomotion、quadruped）"
     },
     {
       "id": "freshness",
@@ -92,6 +93,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 25 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -117,5 +124,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Video2STL: Grounding VLM-Generated Temporal Specifications for Robot Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.37519v1\n---\n>[!abstract] 一句话总结：Video2STL 用 VLM 从纯观测视频中抽取与本体无关的语义事件轨迹，构建符号化时序规范库（模型决定任务结构），再用成功的机器人轨迹为谓词阈值与时间边界做数值接地，得到参数化 STL 规范；策略学习时分离短/长时标：短时规范通过滑动窗口定量鲁棒性提供稠密奖励，长时规范的因果监视器为合法时序前缀提供一次性进度奖励，同一表示可直接支持跨本体迁移。\n\n\n# 一、动机\n\n> 现有从视频学习策略的方法要么把视觉观测压缩成标量相似度/价值信号，要么让基础模型直接生成奖励代码，导致任务的时间结构难以检查、难以落地、难以复用；同时缺乏动作标注与同构本体演示时更难迁移。\n\n\n# 二、方法\n\n> Video2STL 用 VLM 从纯观测视频中抽取与本体无关的语义事件轨迹，构建符号化时序规范库（模型决定任务结构），再用成功的机器人轨迹为谓词阈值与时间边界做数值接地，得到参数化 STL 规范；策略学习时分离短/长时标：短时规范通过滑动窗口定量鲁棒性提供稠密奖励，长时规范的因果监视器为合法时序前缀提供一次性进度奖励，同一表示可直接支持跨本体迁移。\n\n\n# 三、核心实验结果\n\n> 在四个操作任务上平均 success-once 达 85.8%、success-at-end 达 67.0%，优于原生稠密 PPO（81.5%/59.5%）与 Text2Reward（65.0%/42.3%）；在四足运动任务上，基于 Qwen-3.8 与 GPT-5.6 的 Video2STL 策略在 0.3–2.1 m/s 速度范围内均达到 100% 成功率，并在高速下的能量效率上保持竞争力。\n\n\n# 四、对我的启发\n\n> 局限在于规范质量高度依赖 VLM 事件抽取的可靠性，且谓词阈值/时间边界仍需成功机器人轨迹来接地，冷启动或任务演示稀缺场景下可能退化；但其『显式、可检查、可复用的时序形式化表示 + 短长时标奖励分解』思路对视频驱动机器人学习与跨本体迁移很有启发。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Video2STL: Grounding VLM-Generated Temporal Specifications for Robot Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.37519v1\n---\n>[!abstract] 一句话总结：Video2STL 用视觉语言模型从无动作标注的视频中抽取与具身无关的语义事件轨迹，构建符号化的参数化 Signal Temporal Logic（STL）规格库；任务结构由 VLM 决定，而谓词数值阈值与时间边界则从成功机器人轨迹中落地标定，随后将时间信息分为短时程与长时程：短时程规格通过滚动窗口的定量鲁棒性提供稠密奖励，保留的长时程规格由因果监视器为合法的时序前缀提供一次性进度奖励，同一形式化表示还可支持从人类或动物视频到机器人的跨具身迁移。\n\n\n# 一、动机\n\n> 从纯观测视频学习机器人策略时，核心难题是「该把视频中的什么信息迁移给机器人」：现有做法把视觉观测压缩成标量相似度/价值信号，或让基础模型直接生成奖励代码，导致任务的时间结构难以检查、难以落地（grounding）也难以复用。\n\n\n# 二、方法\n\n> Video2STL 用视觉语言模型从无动作标注的视频中抽取与具身无关的语义事件轨迹，构建符号化的参数化 Signal Temporal Logic（STL）规格库；任务结构由 VLM 决定，而谓词数值阈值与时间边界则从成功机器人轨迹中落地标定，随后将时间信息分为短时程与长时程：短时程规格通过滚动窗口的定量鲁棒性提供稠密奖励，保留的长时程规格由因果监视器为合法的时序前缀提供一次性进度奖励，同一形式化表示还可支持从人类或动物视频到机器人的跨具身迁移。\n\n\n# 三、核心实验结果\n\n> 在四个操作任务上，Video2STL 取得 85.8% 的 success-once 与 67.0% 的 success-at-end，优于原生稠密 PPO 的 81.5%/59.5% 以及 Text2Reward 的 65.0%/42.3%；在四足运动任务中，基于 Qwen-3.8 与 GPT-5.6 的 Video2STL 策略在 0.3 至 2.1 m/s 的速度范围内实现 100% 成功率，同时高速下的能量效率仍具竞争力。\n\n\n# 四、对我的启发\n\n> 方法的关键优势是 STL 表示可检查、可落地、可复用，并且数值阈值仍需成功机器人轨迹来标定，因此并非完全零样本；VLM 抽取事件轨迹的可靠性、规格库构建的人工/自动成本，以及在更复杂长时程任务上的可扩展性仍待验证，但其「视频→形式化时序规格→奖励」的思路对跨具身策略学习与奖励设计有较强的迁移价值。\n"
 }

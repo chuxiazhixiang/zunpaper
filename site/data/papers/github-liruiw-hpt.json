@@ -1,0 +1,80 @@
+{
+  "id": "github-liruiw-hpt",
+  "source": "github",
+  "title": "liruiw/HPT",
+  "title_zh": "liruiw/HPT",
+  "abstract": "Heterogeneous Pre-trained Transformer (HPT) as Scalable Policy Learner.\n\n# 🦾 Heterogenous Pre-trained Transformers [ ](https://huggingface.co/liruiw/hpt-base) [ ](LICENSE) [ ](http://arxiv.org/abs/2409.20537) [ ](https://liruiw.github.io/hpt) [ ]() [ ]() [Lirui Wang](https://liruiw.github.io/), [Xinlei Chen](https://xinleic.xyz/), [Jialiang Zhao](https://alanz.info/), [Kaiming He](https://people.csail.mit.edu/kaiming/) Neural Information Processing Systems (Spotlight), 2024 This is a pytorch implementation for pre-training Heterogenous Pre-trained Transformers (HPTs). The pre-training procedure train on mixture of embodiment datasets with a supervised learning objective. The pre-training process can take some time, so we also provide pre-trained checkpoints below. You can find more details on our [project page](https://liruiw.github.io/hpt). An alternative clean implementation of HPT in Hugging Face can also be found [here](https://github.com/liruiw/lerobot/). **TL;DR:** HPT aligns different embodiment to a shared latent space and investigates the scaling behaviors in policy learning. Put a scalable transformer in the middle of your policy and don’t train from scratch! ## ⚙️ Setup 1. Install (old-version) Mujoco ## 🚶 Usage 0. Check out ``quickstart.ipynb`` for how to use the pretrained HPTs. 1. train policies on each environment. Add `+mode=debug` for debugging. 2. for example script. 3. Change ``train.pretrained_dir`` for loading pre-trained trunk transformer. The model can be loaded either from local checkpoint folder or huggingface [repository](https://huggingface.co/liruiw/hpt-xlarge). 4. Run the following scripts for mujoco experiments. Metaworld 20 Task Experiments 5. See [here](experiments/config/config.yaml) for defining and modifying the hyperparameters. 6. We use [wandb](https://wandb.ai/home) to log the training process. ## 🤖 Try this On Your Own Dataset 0. For training, it requires a dataset conversion `convert_dataset` function for packing your own datasets. Check [this](env/realworld) for example. 1. For evaluation, it requ",
+  "abstract_zh": "异构预训练 Transformer (HPT) 作为可扩展的策略学习器。NeurIPS 2024 Spotlight。这是 HPT 的 PyTorch 实现，预训练过程在混合具身数据集上以监督学习目标进行训练。预训练可能耗时较长，因此我们也提供了预训练检查点。更多细节见项目页面。Hugging Face 上的另一种简洁实现也可在此找到。TL;DR：HPT 将不同具身对齐到共享潜在空间，并研究策略学习中的缩放行为。在你的策略中间放置一个可扩展的 Transformer，不要从头训练！",
+  "tldr_zh": "HPT 将不同具身对齐到共享潜在空间，研究策略学习的缩放行为。",
+  "cover_zh": "策略学习也能缩放？HPT 把不同具身对齐到共享空间",
+  "authors": [
+    {
+      "name": "liruiw",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2024-12-06",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/liruiw/HPT",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 55,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 55,
+      "hint": "⭐ 547"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "官方HPT算法，多具身预训练策略，NeurIPS Spotlight，可落地。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "操作"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "liruiw",
+    "repo": "HPT",
+    "stars": 547,
+    "language": "Python",
+    "pushed_at": "2024-12-06",
+    "created_at": "2024-04-11",
+    "topics": [
+      "foundation-models",
+      "heterogeneity",
+      "hpt",
+      "policy",
+      "robotics"
+    ],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"liruiw/HPT\"\nYear: \"\"\nURL: https://github.com/liruiw/HPT\n---\n>[!abstract] 一句话总结：HPT（Heterogeneous Pre-trained Transformer）把不同本体（不同机械臂、末端执行器、人类 egocentric 视频、仿真数据等）的状态与动作通过轻量的 stem/encoder 映射到共享的 latent token 空间，中间放一个可扩展的共享 Transformer trunk（从 1M 到 1B 参数）以监督学习目标在大规模异构本体数据混合上预训练，下游任务只需接上小型的任务/本体专用编码器-解码器进行微调。\n\n\n# 一、动机\n\n> 机器人策略学习通常针对单一本体从零训练，数据量小、不同机器人（机械臂、灵巧手、人类视频等）的本体差异导致数据无法复用，也难以观察策略学习是否具备类似语言/视觉领域的可扩展性。\n\n\n# 二、方法\n\n> HPT（Heterogeneous Pre-trained Transformer）把不同本体（不同机械臂、末端执行器、人类 egocentric 视频、仿真数据等）的状态与动作通过轻量的 stem/encoder 映射到共享的 latent token 空间，中间放一个可扩展的共享 Transformer trunk（从 1M 到 1B 参数）以监督学习目标在大规模异构本体数据混合上预训练，下游任务只需接上小型的任务/本体专用编码器-解码器进行微调。\n\n\n# 三、核心实验结果\n\n> 1) 将 trunk 扩展到 1B 参数后在 20 个仿真与真实任务上相比最优基线成功率提升约 50%；2) 异构数据预训练相比从零训练在真实世界任务上相对提升超过 20%，且随模型规模增大收益持续（呈现清晰的 scaling 趋势）；3) 证明预训练 trunk 可跨本体复用并在未见过的本体/任务上产生正迁移，论文获 NeurIPS 2024 Spotlight。\n\n\n# 四、对我的启发\n\n> 局限在于共享 latent 空间依赖人工设计的本体特定 stem，动作空间离散化与统一化仍有难度，且大规模异构本体数据采集成本高；启发是把「本体差异」下沉到轻量适配层、把「通用策略」上移到可扩展主干，为具身智能复用视觉/语言领域的 scaling 范式提供了可行路径。\n"
+}

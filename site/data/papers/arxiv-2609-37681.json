@@ -45,7 +45,8 @@
     "assets/img/covers/arxiv-2609-37681-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -60,13 +61,13 @@
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 34,
+  "score": 42,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（manipulation）"
+      "points": 6,
+      "hint": "频道关键词命中 2 个（manipulation、long-horizon manipulation）"
     },
     {
       "id": "freshness",
@@ -91,6 +92,12 @@
       "label": "机器人顶会 / 顶刊出品",
       "points": 10,
       "hint": "被「IROS 2026」收录"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -116,5 +123,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"ProAct-VLM: Pre-Failure Vision-Language Task Replanning with Continuous Perception Feedback\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.37681v1\n---\n>[!abstract] 一句话总结：ProAct-VLM 将 VLM 嵌入实时「感知—反馈」闭环中，持续监控环境状态并在检测到相关变化时立即重新规划任务，从而在失败发生前完成自适应调整，实现物理可行的长时程任务规划。\n\n\n# 一、动机\n\n> 长时程机器人任务在开放动态环境中易受突发变化影响，而现有基于 VLM 的规划框架多为「事后反应式」——只在执行失败或任务结束后才触发重规划，少数在动作前做离散条件检查的方法又会漏掉执行过程中发生的变化，导致失败或不安全动作。\n\n\n# 二、方法\n\n> ProAct-VLM 将 VLM 嵌入实时「感知—反馈」闭环中，持续监控环境状态并在检测到相关变化时立即重新规划任务，从而在失败发生前完成自适应调整，实现物理可行的长时程任务规划。\n\n\n# 三、核心实验结果\n\n> 在与多个基线的对比以及不同 VLM 骨干（backbone）的实验中，所提框架在动态长时程操作任务上同时提升了成功率与执行效率；但摘要未给出具体数值（如成功率提升百分点、规划次数或耗时对比），需查阅原文与项目页 https://github.com/moured/ProAct-VLM 获取量化结果。\n\n\n# 四、对我的启发\n\n> 局限在于持续感知与重规划的实时性依赖 VLM 推理延迟与感知精度，频繁重规划可能带来计算开销与任务抖动；启发是「失败前重规划」这一范式把 VLM 从离线规划器变为在线闭环控制器，对动态环境下的具身操作有直接参考价值。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"ProAct-VLM: Pre-Failure Vision-Language Task Replanning with Continuous Perception Feedback\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.37681v1\n---\n>[!abstract] 一句话总结：提出 ProAct-VLM：将 VLM 嵌入实时感知—反馈闭环，持续监控环境，一旦检测到相关变化就在失败发生之前重新规划任务，实现物理接地的自适应长时序操作规划。\n\n\n# 一、动机\n\n> 长时序机器人任务在开放动态环境中易受突发变化影响，而现有基于规则的方法泛化性差，已有 VLM 框架多为被动式——只在执行失败或任务结束后才触发重规划，或在动作间做离散条件检查，无法捕捉执行过程中发生的变化，导致危险或无效动作。\n\n\n# 二、方法\n\n> 提出 ProAct-VLM：将 VLM 嵌入实时感知—反馈闭环，持续监控环境，一旦检测到相关变化就在失败发生之前重新规划任务，实现物理接地的自适应长时序操作规划。\n\n\n# 三、核心实验结果\n\n> 在动态长时序操作任务上，与多个基线及不同 VLM 骨干（backbone）对比，框架同时提升了任务成功率和执行效率；论文强调其重规划触发发生在失败之前（pre-failure），避免了被动反应式方法中的失败动作，具体数值指标需查阅原文表格。\n\n\n# 四、对我的启发\n\n> 核心启发是「感知反馈的时序粒度」决定重规划价值：把验证从离散检查点改为连续监控，可把纠错窗口前移到失败之前；局限在于对 VLM 推理延迟、感知噪声导致的误触发/频繁重规划开销尚未在摘要中说明，且依赖视觉可观测的环境变化。\n"
 }

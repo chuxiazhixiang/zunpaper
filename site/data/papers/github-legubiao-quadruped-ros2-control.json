@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 55,
-      "hint": "⭐ 574"
+      "hint": "⭐ 575"
     }
   ],
   "judge": {
@@ -62,7 +62,7 @@
   "github": {
     "owner": "legubiao",
     "repo": "quadruped_ros2_control",
-    "stars": 574,
+    "stars": 575,
     "language": "C++",
     "pushed_at": "2026-02-22",
     "created_at": "2024-09-09",
@@ -79,5 +79,5 @@
     ],
     "archived": false
   },
-  "note": ""
+  "note": "---\ntags:\n  - 论文/系统\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/Sim2Real\n  - 状态/待读\nTitle: \"legubiao/quadruped_ros2_control\"\nYear: \"\"\nURL: https://github.com/legubiao/quadruped_ros2_control\n---\n>[!abstract] 一句话总结：该仓库以 ros2-control 为框架，将四足机器人的控制拆分为 controllers（含 FSM 与 Unitree Guide Controller、OCS2 控制器）、commands（键盘等指令节点）、descriptions（URDF 模型）和 hardwares（硬件接口）四个包，通过标准 hardware_interface 在仿真与真机之间复用同一套控制器，实现 sim2real。\n\n\n# 一、动机\n\n> 四足机器人（尤其 Unitree Go2）从仿真到真机的控制栈通常分散在各家 SDK 与私有实现中，缺少一套基于 ROS2-Control 标准接口、可同时覆盖 MuJoCo/Gazebo/Isaac Sim 仿真与真机的统一方案。\n\n\n# 二、方法\n\n> 该仓库以 ros2-control 为框架，将四足机器人的控制拆分为 controllers（含 FSM 与 Unitree Guide Controller、OCS2 控制器）、commands（键盘等指令节点）、descriptions（URDF 模型）和 hardwares（硬件接口）四个包，通过标准 hardware_interface 在仿真与真机之间复用同一套控制器，实现 sim2real。\n\n\n# 三、核心实验结果\n\n> 已完成的里程碑包括：2025-02-23 加入 Gazebo Playground 与面向 Gazebo 仿真的 OCS2 控制器；完成 FSM 与 Unitree Guide Controller 重构；2025-03-30 支持真机 Unitree Go2；2025-05-20 支持 Isaac Sim；另提供 MuJoCo（unitree_mujoco）与真机共用的 unitree_mujoco_hardware 路径。默认分支基于 ROS2 Jazzy，ROS2 Humble 需切换到 humble 分支；OCS2 感知式（perceptive）locomotion demo 仍未完成。\n\n\n# 四、对我的启发\n\n> 工程价值大于学术新意：README 未给出任何量化指标（步态速度、跟踪误差、sim2real 成功率等），无法评估控制器实际性能；文档中需注意 CycloneDDS RMW 与 unitree_sdk2 的冲突（推荐改用 FastDDS），否则非 sudo 下无法启用 unitree_mujoco_hardware。对做四足 sim2real 与 ros2-control 硬件接口的同学，是可参考的集成模板与代码骨架，但不宜作为方法创新引用。\n"
 }

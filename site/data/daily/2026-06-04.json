@@ -325,6 +325,81 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2606-06218",
+      "source": "arxiv",
+      "title": "TAM: Torque Adaptation Module for Robust Motion Transfer in Manipulation",
+      "title_zh": "TAM：用于鲁棒操作运动传递的扭矩自适应模块",
+      "tldr_zh": "TAM 通过扭矩自适应模块实现跨机器人零样本动态操作迁移，无需域随机化训练策略。",
+      "cover_zh": "同一个策略换台机器人就废了？TAM 让零样本迁移也能稳如老狗",
+      "abstract_zh": "针对一台机器人调优的策略往往在另一台机器人上表现不同，这可能是由于仿真到现实的差距、未知负载或同一型号机器人的个体动力学差异。在接触丰富的动态操作中，即使微小的运动偏差也可能导致无法跟踪参考运动，因为它们会破坏接触的时机和模式。常见的补救措施，如域随机化或系统辨识，要么产生过于保守的任务策略，要么需要为每台机器人或负载重新收集数据。我们引入了扭矩自适应模块（TAM），这是一个学习模块，用于调整发送给机器人的扭矩命令，以匹配理想机器人的行为。TAM 运行在跟踪策略动作的低级控制器和机器人的扭矩接口之间。它包含一个历史编码器，将本体感受历史嵌入到潜在状态中，以及一个扭矩适配器，计算残差扭矩修正。由于 TAM 仅依赖于本体感受历史，而不依赖于策略观测或动作空间，因此相同的 TAM 权重可以重复用于适应具有不同动作空间（关节目标、末端执行器目标或直接扭矩）的策略。策略本身不需要使用机器人参数的域随机化进行训练。相反，我们将域随机化的需求转移到 TAM 上，通过在随机化仿真中完全训练 TAM，使用多机器人预训练，然后进行机器人特定的微调步骤，该步骤仍然不需要真实机器人数据。我们在真实的 Franka Panda 机器人上对 TAM 进行了零样本评估，涉及动态操作任务，包括基于视觉的推箱子策略（来自 RL）、翻转策略（来自 BC）和 MPC 球板平衡。我们的实验表明，与在线系统辨识和 RMA 基线相比，TAM 提高了零样本真实机器人执行性能，并实现了鲁棒的动态操作性能。",
+      "authors": [
+        "Dongwon Son",
+        "Florian Shkurti",
+        "Jason Lee"
+      ],
+      "authors_all": [
+        "Dongwon Son",
+        "Florian Shkurti",
+        "Jason Lee",
+        "Naman Shah",
+        "Beomjoon Kim",
+        "Dieter Fox"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-04",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ KAIST"
+        },
+        {
+          "kind": "venue",
+          "label": "🎉 最新收录 · CoRL 2026"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-06218.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-06218-p2.jpg"
+      ],
+      "arxiv_id": "2606.06218",
+      "abs_url": "http://arxiv.org/abs/2606.06218v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.06218v1",
+      "venue": "CoRL 2026",
+      "venue_announced": "2026-09-30",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "提出力矩适应模块TAM，解决动态操作中策略迁移的动力学差异问题，方法新颖且实验充分，对sim2real和操作领域有高参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "KAIST",
+        "Allen Institute for AI",
+        "University of Toronto",
+        "University of Washington"
+      ],
+      "method_tags": [
+        "Torque Adaptation Module",
+        "sim-to-real transfer"
+      ],
+      "platform": [
+        "Franka Panda"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2606-06033",
       "source": "arxiv",
       "title": "RealDexUMI: A Wearable Universal Manipulation Interface for Dexterous Robot Learning",
@@ -483,77 +558,6 @@
           "source": "abstract"
         }
       ],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2606-06218",
-      "source": "arxiv",
-      "title": "TAM: Torque Adaptation Module for Robust Motion Transfer in Manipulation",
-      "title_zh": "TAM：用于鲁棒操作运动传递的扭矩自适应模块",
-      "tldr_zh": "TAM 通过扭矩自适应模块实现跨机器人零样本动态操作迁移，无需域随机化训练策略。",
-      "cover_zh": "同一个策略换台机器人就废了？TAM 让零样本迁移也能稳如老狗",
-      "abstract_zh": "针对一台机器人调优的策略往往在另一台机器人上表现不同，这可能是由于仿真到现实的差距、未知负载或同一型号机器人的个体动力学差异。在接触丰富的动态操作中，即使微小的运动偏差也可能导致无法跟踪参考运动，因为它们会破坏接触的时机和模式。常见的补救措施，如域随机化或系统辨识，要么产生过于保守的任务策略，要么需要为每台机器人或负载重新收集数据。我们引入了扭矩自适应模块（TAM），这是一个学习模块，用于调整发送给机器人的扭矩命令，以匹配理想机器人的行为。TAM 运行在跟踪策略动作的低级控制器和机器人的扭矩接口之间。它包含一个历史编码器，将本体感受历史嵌入到潜在状态中，以及一个扭矩适配器，计算残差扭矩修正。由于 TAM 仅依赖于本体感受历史，而不依赖于策略观测或动作空间，因此相同的 TAM 权重可以重复用于适应具有不同动作空间（关节目标、末端执行器目标或直接扭矩）的策略。策略本身不需要使用机器人参数的域随机化进行训练。相反，我们将域随机化的需求转移到 TAM 上，通过在随机化仿真中完全训练 TAM，使用多机器人预训练，然后进行机器人特定的微调步骤，该步骤仍然不需要真实机器人数据。我们在真实的 Franka Panda 机器人上对 TAM 进行了零样本评估，涉及动态操作任务，包括基于视觉的推箱子策略（来自 RL）、翻转策略（来自 BC）和 MPC 球板平衡。我们的实验表明，与在线系统辨识和 RMA 基线相比，TAM 提高了零样本真实机器人执行性能，并实现了鲁棒的动态操作性能。",
-      "authors": [
-        "Dongwon Son",
-        "Florian Shkurti",
-        "Jason Lee"
-      ],
-      "authors_all": [
-        "Dongwon Son",
-        "Florian Shkurti",
-        "Jason Lee",
-        "Naman Shah",
-        "Beomjoon Kim",
-        "Dieter Fox"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-04",
-      "channels": [
-        "manipulation",
-        "sim2real"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ KAIST"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2606-06218.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-06218-p2.jpg"
-      ],
-      "arxiv_id": "2606.06218",
-      "abs_url": "http://arxiv.org/abs/2606.06218v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.06218v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 45,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "提出力矩适应模块TAM，解决动态操作中策略迁移的动力学差异问题，方法新颖且实验充分，对sim2real和操作领域有高参考价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "KAIST",
-        "Allen Institute for AI",
-        "University of Toronto",
-        "University of Washington"
-      ],
-      "method_tags": [
-        "Torque Adaptation Module",
-        "sim-to-real transfer"
-      ],
-      "platform": [
-        "Franka Panda"
-      ],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
       "github": {},
       "source_tags": []
     },
@@ -1423,6 +1427,70 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2606-06219",
+      "source": "arxiv",
+      "title": "CLEAR: Cognition and Latent Evaluation for Adaptive Routing in End-to-End Autonomous Driving",
+      "title_zh": "CLEAR：端到端自动驾驶中用于自适应路由的认知与潜在评估",
+      "tldr_zh": "提出CLEAR框架，用单步潜在漂移替代扩散模型多步去噪，实现高效多模态自动驾驶规划。",
+      "cover_zh": "告别扩散模型慢如蜗牛｜单步潜在漂移让自动驾驶规划又快又准",
+      "abstract_zh": "端到端自动驾驶模型通常难以平衡多模态轨迹生成与实时推理约束。虽然扩散模型成功捕捉了多样化的驾驶行为，但其迭代去噪过程在安全关键部署中引入了不可接受的延迟。为解决这一问题，我们提出了CLEAR（Cognition and Latent Evaluation for Adaptive Routing），一个结合超快生成规划与深度语义推理的框架。CLEAR采用Drive-JEPA作为视觉编码器，并将多步去噪链替换为VAE潜在空间中的单步条件漂移，引入条件系数以平衡多样性与专家精度。同时，我们在驾驶问答对上全微调Qwen~3.5~0.8B，以提取场景感知的隐藏状态。这些状态指导自适应调度器（从离散预定义方案中选择条件系数α和样本数量N）以及交叉注意力评分器（从候选中选择最优轨迹）。在NAVSIM v1基准上，CLEAR达到了最先进的PDMS 93.7。我们的结果表明，无需密集几何标注或迭代采样，即可高效执行高保真、多模态规划。",
+      "authors": [
+        "Yining Xing",
+        "Zehong Ke",
+        "Zhiyuan Liu"
+      ],
+      "authors_all": [
+        "Yining Xing",
+        "Zehong Ke",
+        "Zhiyuan Liu",
+        "Yanbo Jiang",
+        "Wenhao Yu",
+        "Jianqiang Wang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-06-04",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎉 最新收录 · ICLR 2027"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2606-06219.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2606-06219-p2.jpg"
+      ],
+      "arxiv_id": "2606.06219",
+      "abs_url": "http://arxiv.org/abs/2606.06219v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.06219v1",
+      "venue": "ICLR 2027",
+      "venue_announced": "2026-09-30",
+      "score": 16,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "提出Drive-JEPA视觉编码器，属于JEPA世界模型方法，且用于端到端自动驾驶规划。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "generative planning",
+        "VAE latent space",
+        "adaptive routing"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2606-06323",
       "source": "arxiv",
       "title": "VOLT: Vision and Language Trajectory Segmentation for Faster-than-Demonstration Policies",
@@ -1606,65 +1674,6 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2606-06219",
-      "source": "arxiv",
-      "title": "CLEAR: Cognition and Latent Evaluation for Adaptive Routing in End-to-End Autonomous Driving",
-      "title_zh": "CLEAR：端到端自动驾驶中用于自适应路由的认知与潜在评估",
-      "tldr_zh": "提出CLEAR框架，用单步潜在漂移替代扩散模型多步去噪，实现高效多模态自动驾驶规划。",
-      "cover_zh": "告别扩散模型慢如蜗牛｜单步潜在漂移让自动驾驶规划又快又准",
-      "abstract_zh": "端到端自动驾驶模型通常难以平衡多模态轨迹生成与实时推理约束。虽然扩散模型成功捕捉了多样化的驾驶行为，但其迭代去噪过程在安全关键部署中引入了不可接受的延迟。为解决这一问题，我们提出了CLEAR（Cognition and Latent Evaluation for Adaptive Routing），一个结合超快生成规划与深度语义推理的框架。CLEAR采用Drive-JEPA作为视觉编码器，并将多步去噪链替换为VAE潜在空间中的单步条件漂移，引入条件系数以平衡多样性与专家精度。同时，我们在驾驶问答对上全微调Qwen~3.5~0.8B，以提取场景感知的隐藏状态。这些状态指导自适应调度器（从离散预定义方案中选择条件系数α和样本数量N）以及交叉注意力评分器（从候选中选择最优轨迹）。在NAVSIM v1基准上，CLEAR达到了最先进的PDMS 93.7。我们的结果表明，无需密集几何标注或迭代采样，即可高效执行高保真、多模态规划。",
-      "authors": [
-        "Yining Xing",
-        "Zehong Ke",
-        "Zhiyuan Liu"
-      ],
-      "authors_all": [
-        "Yining Xing",
-        "Zehong Ke",
-        "Zhiyuan Liu",
-        "Yanbo Jiang",
-        "Wenhao Yu",
-        "Jianqiang Wang"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-06-04",
-      "channels": [
-        "world-model"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2606-06219.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2606-06219-p2.jpg"
-      ],
-      "arxiv_id": "2606.06219",
-      "abs_url": "http://arxiv.org/abs/2606.06219v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.06219v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 6,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "提出Drive-JEPA视觉编码器，属于JEPA世界模型方法，且用于端到端自动驾驶规划。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [],
-      "method_tags": [
-        "generative planning",
-        "VAE latent space",
-        "adaptive routing"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {},

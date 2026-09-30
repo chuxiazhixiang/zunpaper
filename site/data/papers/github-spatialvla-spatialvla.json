@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 57,
-      "hint": "⭐ 726"
+      "hint": "⭐ 727"
     }
   ],
   "judge": {
@@ -62,7 +62,7 @@
   "github": {
     "owner": "SpatialVLA",
     "repo": "SpatialVLA",
-    "stars": 726,
+    "stars": 727,
     "language": "Python",
     "pushed_at": "2025-06-23",
     "created_at": "2025-01-29",
@@ -76,5 +76,5 @@
     ],
     "archived": false
   },
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"SpatialVLA/SpatialVLA\"\nYear: \"\"\nURL: https://github.com/SpatialVLA/SpatialVLA\n---\n>[!abstract] 一句话总结：提出空间增强的 VLA 模型 SpatialVLA：用 Ego3D 位置编码把机器人自身坐标系下的 3D 空间位置注入视觉 token，并设计自适应空间动作网格（Adaptive Spatial Action Grids）将连续动作映射为可变分辨率的动作 token，在 1.1M 真实机器人轨迹上预训练后可高效微调到下游任务。\n\n\n# 一、动机\n\n> 现有视觉-语言-动作（VLA）模型大多直接复用 2D 视觉语言模型的空间表征，缺乏对机器人在自身坐标系下 3D 空间位置的理解，导致空间泛化能力弱、跨场景/跨机器人迁移困难，且动作离散化冗余使推理 token 数多、速度慢。\n\n\n# 二、方法\n\n> 提出空间增强的 VLA 模型 SpatialVLA：用 Ego3D 位置编码把机器人自身坐标系下的 3D 空间位置注入视觉 token，并设计自适应空间动作网格（Adaptive Spatial Action Grids）将连续动作映射为可变分辨率的动作 token，在 1.1M 真实机器人轨迹上预训练后可高效微调到下游任务。\n\n\n# 三、核心实验结果\n\n> 1) 在 1.1M 条真实机器人 episode 上完成预训练，是当时规模最大的真实机器人数据 VLA 之一；2) 在 SimplerEnv 仿真与真实世界多类评测中取得 SOTA，且每个动作所用 token 数显著减少、推理速度明显更快；3) 代码为纯 HuggingFace 实现，模型与预训练权重已开源（RSS 2025 接收）。\n\n\n# 四、对我的启发\n\n> 局限在于预训练高度依赖大规模真实机器人数据，跨本体迁移仍受限于动作空间与观察配置的差异；启发是“以机器人为中心的空间表征”（ego-centric 3D 位置编码 + 自适应动作网格）比单纯扩大 2D VLM 更能提升 VLA 的空间泛化与推理效率，这一思路可直接迁移到具身操作与跨本体策略学习中。\n"
 }

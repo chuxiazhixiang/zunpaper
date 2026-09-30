@@ -54,7 +54,8 @@
     "assets/img/covers/arxiv-2609-38059-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -77,7 +78,7 @@
   "related_links": [],
   "page_count": 30,
   "source_tags": [],
-  "score": 44,
+  "score": 49,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -102,6 +103,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 30 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -129,5 +136,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/VideoGen\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"WorldLine: Action-Driven Visual Simulation for Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.38059v1\n---\n>[!abstract] 一句话总结：WorldLine 将可迁移的动力学学习与异构动作 grounding 解耦：先从上万小时无动作机器人视频中学习操作动力学，再用 2000+ 小时、覆盖十余种本体的动作轨迹进行接地；以图像空间动作表示作为跨本体的共享控制接口，配合多视角与失败样本增强训练及关系正则化提升交互敏感预测，并用面向机器人区域的少步蒸馏实现高效因果 rollout。\n\n\n# 一、动机\n\n> 真实机器人学习受限于经验采集与候选行为评估的高成本；现有视频生成模型往往偏重视觉逼真度，而忽视动作跟随精度与机器人—物体交互动力学的一致性，动作条件模拟器又依赖稀缺且与控制空间绑定的本体专属数据，难以跨本体共享。\n\n\n# 二、方法\n\n> WorldLine 将可迁移的动力学学习与异构动作 grounding 解耦：先从上万小时无动作机器人视频中学习操作动力学，再用 2000+ 小时、覆盖十余种本体的动作轨迹进行接地；以图像空间动作表示作为跨本体的共享控制接口，配合多视角与失败样本增强训练及关系正则化提升交互敏感预测，并用面向机器人区域的少步蒸馏实现高效因果 rollout。\n\n\n# 三、核心实验结果\n\n> 在失败轨迹上，机器人掩码 IoU 比最强 baseline 提升 0.1626；在 RoboTwin 与 AgiBot 上预测轨迹成功的平均准确率达 74%，比最强 baseline 高 1 个百分点；在未使用 RoboTwin 训练或适配的情况下，其 rollout 使任务成功率较直接策略执行最高提升 21.4 个百分点，同时在留出与域外设置下保持较强的视觉质量与机器人运动一致性。\n\n\n# 四、对我的启发\n\n> 局限在于它本质仍是图像空间的视觉模拟器，动作接口依赖图像空间表示，长时程物理精确性与接触力等非视觉因素未被建模，rollout 质量受视频生成先验上限约束；启发是「通用动力学预训练 + 轻量动作接地」的范式可有效缓解跨本体数据稀缺问题，为策略评估与具身规划提供了可扩展的离线试错手段。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"WorldLine: Action-Driven Visual Simulation for Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.38059v1\n---\n>[!abstract] 一句话总结：WorldLine 将可迁移的动力学学习与异构动作接地解耦：先从 10,000+ 小时无动作机器人视频中学习操作动力学，再用 2,000+ 小时、十余种具身的动作轨迹进行接地，并以图像空间动作表示作为跨具身共享控制接口，配合多视角与失败富集训练、关系正则化以及面向机器人的少步蒸馏来实现高效因果 rollout。\n\n\n# 一、动机\n\n> 现有视频生成模型作为视觉模拟器偏重视觉逼真度，而忽视动作遵循与机器人-物体交互动力学的一致性；动作条件模拟器又依赖稀缺且具身特定的数据，难以在不同控制空间之间迁移共享，导致真实机器人学习仍受经验采集与候选行为评估成本制约。\n\n\n# 二、方法\n\n> WorldLine 将可迁移的动力学学习与异构动作接地解耦：先从 10,000+ 小时无动作机器人视频中学习操作动力学，再用 2,000+ 小时、十余种具身的动作轨迹进行接地，并以图像空间动作表示作为跨具身共享控制接口，配合多视角与失败富集训练、关系正则化以及面向机器人的少步蒸馏来实现高效因果 rollout。\n\n\n# 三、核心实验结果\n\n> 在失败轨迹上，机器人掩码 IoU 相比最强基线提升 0.1626；在 RoboTwin 与 AgiBot 上以 74% 平均准确率预测轨迹成败，比最强基线高 1 个百分点；在未使用 RoboTwin 训练或适配的情况下，其 rollout 使任务成功率较直接策略执行最高提升 21.4 个百分点，并在域外场景保持较强的视觉质量与机器人运动一致性。\n\n\n# 四、对我的启发\n\n> 该工作说明「大规模无动作视频学动力学 + 少量跨具身动作对齐」是可扩展的视觉模拟器范式，可用于策略评估与具身规划；局限在于图像空间动作接口虽便于跨具身共享，却可能损失力控与精细接触信息，且预测精度仍受限于动作接地数据的覆盖度，与机器人/具身智能课题高度相关。\n"
 }

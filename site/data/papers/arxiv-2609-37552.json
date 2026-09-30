@@ -57,7 +57,8 @@
     "assets/img/covers/arxiv-2609-37552-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "teleop"
   ],
   "badges": [
     {
@@ -68,13 +69,13 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 25,
+  "score": 30,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 4 个（manipulation、imitation learning、action chunking、contact-rich）"
+      "hint": "频道关键词命中 6 个（manipulation、imitation learning、action chunking、contact-rich）"
     },
     {
       "id": "freshness",
@@ -87,6 +88,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -112,5 +119,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"Wrench-ACT: Enhancing Robot Policies for Contact Rich Behavior Using Direct Wrench Control\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.37552v1\n---\n>[!abstract] 一句话总结：以 Action Chunking with Transformers (ACT) 为基础架构，使用双边力反馈遥操作采集的 wrench 演示训练单任务模仿学习策略，使网络直接输出 wrench 作为唯一动作，交由纯力控制器执行。\n\n\n# 一、动机\n\n> 接触丰富的操作需要主动调节交互力，但现有机器人模仿学习大多将动作表示为目标位置或位姿，力传感要么仅作为观测，要么在输出力时依赖混合力控制器，缺少以力/力矩为唯一动作输出的直接力控策略。\n\n\n# 二、方法\n\n> 以 Action Chunking with Transformers (ACT) 为基础架构，使用双边力反馈遥操作采集的 wrench 演示训练单任务模仿学习策略，使网络直接输出 wrench 作为唯一动作，交由纯力控制器执行。\n\n\n# 三、核心实验结果\n\n> 在 5 个接触丰富操作任务上，wrench 策略全部匹配或超越基于位置的基线，增益大小随任务所需的主动力调节程度而变化；跨条件消融表明双边数据采集接口与 wrench 动作空间各自独立地对性能有贡献；将随论文发布 1000+ 条 wrench 动作演示数据。\n\n\n# 四、对我的启发\n\n> 力域模仿学习的成败高度依赖数据采集方式，力反馈遥操作能捕获操作者的主动力调节意图；但纯力控制可能牺牲自由空间中的位置精度，与混合力控制方案的权衡、以及跨任务/跨具身的泛化能力仍待验证。对具身智能中的力控操作与遥操作数据采集有直接启发。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/Teleoperation\nTitle: \"Wrench-ACT: Enhancing Robot Policies for Contact Rich Behavior Using Direct Wrench Control\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.37552v1\n---\n>[!abstract] 一句话总结：基于 ACT（Action Chunking with Transformers）训练单任务模仿学习策略，以双臂力反馈遥操作采集的 wrench 演示为输入，让策略仅输出 wrench（力/力矩）并直接交给纯力控制器执行。\n\n\n# 一、动机\n\n> 接触丰富操作需要对交互力进行有意调节，但现有机器人操作学习大多把动作表示为目标位置或位姿；即使引入力感知，也仅作为观测，或在预测力时依赖混合力控制器，未能直接以力/力矩作为策略输出。\n\n\n# 二、方法\n\n> 基于 ACT（Action Chunking with Transformers）训练单任务模仿学习策略，以双臂力反馈遥操作采集的 wrench 演示为输入，让策略仅输出 wrench（力/力矩）并直接交给纯力控制器执行。\n\n\n# 三、核心实验结果\n\n> 在 5 项接触丰富操作任务上，wrench 策略在所有任务中持平或优于基于位置的基线，且增益随任务所需力调节程度不同而变化；跨条件消融表明双侧数据采集接口和 wrench 动作空间各自独立地对性能有贡献；将随论文发布 1000+ 条 wrench 动作演示数据。\n\n\n# 四、对我的启发\n\n> 局限在于均为单任务模型、依赖力反馈遥操作数据采集、适用范围限于接触丰富任务；启发是「动作空间即控制接口」的设计思路，以及数据采集界面本身对策略性能的独立影响值得在具身操作中重视。\n"
 }

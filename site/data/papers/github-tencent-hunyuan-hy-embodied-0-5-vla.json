@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 50,
-      "hint": "⭐ 301"
+      "hint": "⭐ 304"
     }
   ],
   "judge": {
@@ -62,12 +62,12 @@
   "github": {
     "owner": "Tencent-Hunyuan",
     "repo": "Hy-Embodied-0.5-VLA",
-    "stars": 301,
+    "stars": 304,
     "language": "Python",
     "pushed_at": "2026-08-04",
     "created_at": "2026-06-12",
     "topics": [],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Tencent-Hunyuan/Hy-Embodied-0.5-VLA\"\nYear: \"\"\nURL: https://github.com/Tencent-Hunyuan/Hy-Embodied-0.5-VLA\n---\n>[!abstract] 一句话总结：基于 Hy-Embodied-0.5 的 MoT 主干构建端到端 VLA 系统：集成 flow-matching 动作专家、压缩式多帧历史记忆编码器，以及与本体运动学解耦的 delta-chunk 动作表示，并配合 FlowPRO 偏好优化（RL 后训练）与异步推理框架，统一打通 10,000+ 小时 UMI 示范数据采集、预训练、SFT、RL 后训练和真机部署全流程。\n\n\n# 一、动机\n\n> 现有 VLA 工作多只覆盖模型设计或后训练等单一环节，缺少从数据采集、预训练到真机部署的完整机器人学习栈；同时动作表示常与特定本体的运动学耦合，导致跨本体迁移困难、真机鲁棒性不足。\n\n\n# 二、方法\n\n> 基于 Hy-Embodied-0.5 的 MoT 主干构建端到端 VLA 系统：集成 flow-matching 动作专家、压缩式多帧历史记忆编码器，以及与本体运动学解耦的 delta-chunk 动作表示，并配合 FlowPRO 偏好优化（RL 后训练）与异步推理框架，统一打通 10,000+ 小时 UMI 示范数据采集、预训练、SFT、RL 后训练和真机部署全流程。\n\n\n# 三、核心实验结果\n\n> 1) 在 RoboTwin 2.0 上取得 SOTA，Clean 场景 90.9%、Randomized 场景 90.1%；2) 依托 10,000+ 小时高保真 UMI 示范（经定制指尖接口 + 光学动捕采集），并开源其中 2K+ 小时 egocentric UMI 数据集及 UMI/RoboTwin 两个模型；3) 在四种真实机器人平台上验证了鲁棒的跨本体迁移，并新增 RoboDojo 基准支持（HDF5 数据加载、训练/评测脚本与策略适配器）。\n\n\n# 四、对我的启发\n\n> 局限：摘要未披露真机任务的成功率、推理延迟等量化指标，UMI 数据依赖定制指尖接口与光学动捕，采集成本与可扩展性受限；异步推理与 FlowPRO 偏好优化对跨本体泛化的独立贡献缺少消融。启发：将动作表示与本体现存运动学解耦（delta-chunk）+ 轻量记忆编码器的设计，对具身策略的跨本体复用和长时序操作有直接参考价值。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\nTitle: \"Tencent-Hunyuan/Hy-Embodied-0.5-VLA\"\nYear: \"\"\nURL: https://github.com/Tencent-Hunyuan/Hy-Embodied-0.5-VLA\n---\n>[!abstract] 一句话总结：Hy-VLA 基于 Hy-Embodied-0.5 MoT 主干，集成 flow-matching 动作专家、压缩多帧历史记忆编码器和与本体运动学解耦的 delta-chunk 动作表示，并配合 FlowPRO 偏好优化与异步推理框架，形成端到端 VLA 系统。\n\n\n# 一、动机\n\n> 现有 VLA 研究多聚焦于单一模型结构，缺乏覆盖数据采集、预训练、微调、RL 后训练到真机部署的完整机器人学习栈，且动作表示往往与特定本体运动学耦合，难以跨具身迁移。\n\n\n# 二、方法\n\n> Hy-VLA 基于 Hy-Embodied-0.5 MoT 主干，集成 flow-matching 动作专家、压缩多帧历史记忆编码器和与本体运动学解耦的 delta-chunk 动作表示，并配合 FlowPRO 偏好优化与异步推理框架，形成端到端 VLA 系统。\n\n\n# 三、核心实验结果\n\n> 使用自定义指尖接口与光学动捕采集的 10,000+ 小时 UMI 演示数据（其中开源 2K+ 小时自我中心 UMI 数据集）；在 RoboTwin 2.0 上取得 Clean 90.9% / Randomized 90.1% 的 SOTA 成绩；在四个真实机器人平台上实现鲁棒的跨具身迁移，并提供 UMI 与 RoboTwin 两个模型版本及 RoboDojo 基准支持。\n\n\n# 四、对我的启发\n\n> 工作价值在于提供从数据到部署的完整开源栈和跨具身动作解耦设计，但真实世界评测主要依赖演示数据规模与特定 UMI 采集硬件，泛化到消费级/无动捕场景的鲁棒性仍待验证。\n"
 }

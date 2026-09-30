@@ -41,7 +41,8 @@
     "assets/img/covers/arxiv-2609-37776-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -52,13 +53,13 @@
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 22,
+  "score": 30,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 9,
-      "hint": "频道关键词命中 3 个（dexterous、grasp、dual-arm）"
+      "points": 12,
+      "hint": "频道关键词命中 5 个（dexterous、grasp、dual-arm、motion retargeting）"
     },
     {
       "id": "freshness",
@@ -71,6 +72,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 9 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -96,5 +103,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/CV\n  - Task/CrossEmbodimentTransfer\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Geometry-Preserving Human-to-Robot Upper-Body Motion Retargeting from Monocular Video\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.37776v1\n---\n>[!abstract] 一句话总结：提出几何保持的运动重定向框架：用逐帧身体估计、视频级观测和手部细节证据共同约束单一可微的 Momentum Human Rig (MHR) 状态并在参数空间修复手部瞬时伪影，再将运动表示为手臂节段方向、肘部构型、相对手掌朝向和双侧手腕关系，通过多级逆运动学与机器人专属手部适配迁移到双臂灵巧机器人（系统内 Across-VAM 负责视频生成，Across-WAM 负责人→机器人运动映射）。\n\n\n# 一、动机\n\n> 单目 RGB 视频是获取上肢机器人示教的便捷来源，但视频驱动的人到机器人迁移困难重重：身体与手部运动在不同空间尺度上恢复、人与机器人运动学差异大、精细的末端（手指）运动难以跨本体重现。\n\n\n# 二、方法\n\n> 提出几何保持的运动重定向框架：用逐帧身体估计、视频级观测和手部细节证据共同约束单一可微的 Momentum Human Rig (MHR) 状态并在参数空间修复手部瞬时伪影，再将运动表示为手臂节段方向、肘部构型、相对手掌朝向和双侧手腕关系，通过多级逆运动学与机器人专属手部适配迁移到双臂灵巧机器人（系统内 Across-VAM 负责视频生成，Across-WAM 负责人→机器人运动映射）。\n\n\n# 三、核心实验结果\n\n> 相对 SAM 3D Body，统一重建把手部平均重投影误差从 22.36 像素降到 7.21 像素；在 16 段单目视频（共 1769 帧，含 10 段手语与 6 段 reach-to-grasp）上，全部 16 条重定向轨迹均完成运动学仿真回放；代表性的手语与抓取动作进一步在真实双臂灵巧机器人上演示成功。\n\n\n# 四、对我的启发\n\n> 方法依赖单目重建且评测规模较小（16 段视频），末端接触力与真实操作成功率未量化；但其“统一身体-手部重建 + 几何表示重定向”的思路对跨本体上肢/手部迁移与遥操作数据采集有直接借鉴价值，尤其是把瞬态手部伪影在参数空间修复而非事后滤波的做法。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/CV\n  - Task/CrossEmbodimentTransfer\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Geometry-Preserving Human-to-Robot Upper-Body Motion Retargeting from Monocular Video\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.37776v1\n---\n>[!abstract] 一句话总结：提出几何保持的人到机器人上肢重定向框架：用逐帧身体估计、视频级观测与手部细节证据共同约束一个可微的 Momentum Human Rig（MHR）状态并在参数空间修复瞬态手部伪影，再将动作表示为手臂段方向、肘部构型、相对掌向与双侧腕部关系，通过多级逆运动学与机器人特定手部适配映射到双臂灵巧机器人上（Across-VAM 负责视频生成，Across-WAM 负责人到机器人运动映射）。\n\n\n# 一、动机\n\n> 单目 RGB 视频是获取人体上肢演示的便捷来源，但视频驱动的人到机器人迁移仍受限于三点：身体与手部运动在不同空间尺度上被恢复、人体与机器人运动学差异显著、末端精细动作难以跨本体保留，导致手部抖动与几何失真在重定向后被放大。\n\n\n# 二、方法\n\n> 提出几何保持的人到机器人上肢重定向框架：用逐帧身体估计、视频级观测与手部细节证据共同约束一个可微的 Momentum Human Rig（MHR）状态并在参数空间修复瞬态手部伪影，再将动作表示为手臂段方向、肘部构型、相对掌向与双侧腕部关系，通过多级逆运动学与机器人特定手部适配映射到双臂灵巧机器人上（Across-VAM 负责视频生成，Across-WAM 负责人到机器人运动映射）。\n\n\n# 三、核心实验结果\n\n> 在 16 段单目视频（共 1769 帧，含 10 段手语与 6 段抓取序列）上，统一重建将平均手部重投影误差从 SAM 3D Body 的 22.36 像素降至 7.21 像素；全部 16 条重定向轨迹均完成运动学仿真回放，并在实体机器人上演示了代表性的手语与 reach-to-grasp 动作。\n\n\n# 四、对我的启发\n\n> 局限在于评测规模较小（仅 16 段视频）、缺乏机器人侧的任务成功率等量化指标，且性能仍依赖单目重建质量与手部修复效果；启发是「统一可微人体参数化 + 形态无关几何表示 + 多级 IK」的组合可作为跨本体上肢迁移的通用范式，对遥操作与示教数据获取有参考价值。\n"
 }
