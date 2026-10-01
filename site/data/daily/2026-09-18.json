@@ -221,6 +221,72 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2609-21482",
+      "source": "arxiv",
+      "title": "Adaptive Rollout Truncation Based on Epistemic Uncertainty for Efficient Offline World Model Training",
+      "title_zh": "基于认知不确定性的自适应展开截断用于高效离线世界模型训练",
+      "tldr_zh": "基于认知不确定性自适应截断展开，减少世界模型训练计算量。",
+      "cover_zh": "世界模型训练太烧算力？认知不确定性让展开自动截断，计算量直降",
+      "abstract_zh": "精确的神经世界模型对于基于模型的机器人学至关重要，它使机器人能够根据先前观察到的轨迹预测未来状态。多步自回归训练改善了长时程预测，但固定的展开长度也会增加计算成本，并且当模型仍不准确时可能放大早期训练误差。现有的训练方案通常在优化过程中使用相同的展开长度，与模型当前的预测可靠性无关。我们提出了一种基于认知不确定性的自适应展开策略，用于离线世界模型训练，遵循自动课程训练方案。模型不再总是展开到固定长度，而是当认知不确定性超过从预热阶段校准的阈值时终止自回归展开。我们研究了两种不确定性估计器：具有共享循环骨干的五头集成和蒙特卡洛Dropout。两阶段预热过程在启用自适应截断之前稳定不确定性估计。在ANYmal-D和ANT上的实验表明，基于集成的自适应截断在预测精度上匹配或优于固定长度训练和RWM-U基线，同时需要显著更少的累积展开步数。在ANYmal-D上按照所提方法训练世界模型，最终性能与基线相当，而展开计算量减少约72%。这些结果表明，认知不确定性不仅对下游策略正则化有用，而且能使世界模型训练本身更加计算高效。",
+      "authors": [
+        "Nikodem Sebastian Zymla",
+        "Laurin Thiele",
+        "Johannes Pitz"
+      ],
+      "authors_all": [
+        "Nikodem Sebastian Zymla",
+        "Laurin Thiele",
+        "Johannes Pitz"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-09-18",
+      "channels": [
+        "locomotion",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ TUM"
+        },
+        {
+          "kind": "venue",
+          "label": "🎓 IROS 2026"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2609-21482.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2609-21482-p2.jpg"
+      ],
+      "arxiv_id": "2609.21482",
+      "abs_url": "http://arxiv.org/abs/2609.21482v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.21482v1",
+      "venue": "IROS 2026",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {},
+      "institutions": [
+        "Technical University of Munich",
+        "TUM School of CIT",
+        "AIDX Lab"
+      ],
+      "method_tags": [
+        "World Model",
+        "Epistemic Uncertainty",
+        "Auto-Curriculum Training"
+      ],
+      "platform": [
+        "ANYmal-D"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2609-21514",
       "source": "arxiv",
       "title": "Skel-WAM: A Hand-Skeleton-Conditioned World Action Model for Human-to-Robot Manipulation Transfer",
@@ -286,6 +352,68 @@
         "World Action Model",
         "Mixture-of-Transformers",
         "human-to-robot transfer"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2609-21497",
+      "source": "arxiv",
+      "title": "FORTE: Task-Adaptive Force Capability Optimization for Mobile Manipulators",
+      "title_zh": "FORTE：移动机械臂的任务自适应力能力优化",
+      "tldr_zh": "VLM推断任务力需求，优化移动机械臂力能力与可操作度平衡。",
+      "cover_zh": "力大砖飞？不！这个框架让机械臂重活轻活都拿手",
+      "abstract_zh": "机器人操作中有效的物理交互控制不仅需要运动学上可行的运动，还需要足够的力交互能力。现有的冗余度求解方法往往忽略任务特定的力需求，或不分场合地最大化力能力，在不需要大力余量时牺牲了灵活性。我们提出了一种面向任务的冗余移动机械臂力能力优化框架。视觉语言模型（VLM）从RGB图像和任务描述中推断物体物理属性，生成捕捉重力和惯性需求的目标任务力序列。然后，我们将面向任务的力能力度量定义为任务力不确定球与动态残余力多面体（RFP）之间的有符号距离，量化任务需求与机器人剩余驱动能力之间的兼容性。该度量与可操作度、关节限位避免、轨迹平滑性和基座振荡抑制一起，被纳入全身多目标轨迹优化问题。在移动机械臂上执行不同负载条件下的举升和单点保持任务的实验表明，所提方法为重负载提供了足够的力能力，同时为轻负载保持了高可操作度。这实现了固定能力最大化基线（RFP内切半径、RFP锥）和仅可操作度优化无法达到的任务自适应平衡。核心实现已公开于 https://github.com/yeying256/FORTE。",
+      "authors": [
+        "Xiao Wang",
+        "Heng Zhang",
+        "Gokhan Solak"
+      ],
+      "authors_all": [
+        "Xiao Wang",
+        "Heng Zhang",
+        "Gokhan Solak",
+        "Fei Zhao",
+        "Arash Ajoudani"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-09-18",
+      "channels": [
+        "manipulation",
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ IIT (Italy)"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2609-21497.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2609-21497-p2.jpg"
+      ],
+      "arxiv_id": "2609.21497",
+      "abs_url": "http://arxiv.org/abs/2609.21497v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.21497v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 53,
+      "judge": {},
+      "institutions": [
+        "HRI2 Lab, Istituto Italiano di Tecnologia",
+        "Xi'an Jiaotong University",
+        "University of Genova"
+      ],
+      "method_tags": [
+        "VLM",
+        "Whole-body trajectory optimization",
+        "Force capability optimization"
       ],
       "platform": [],
       "sim_stack": [],
@@ -1126,58 +1254,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2609-21482",
-      "source": "arxiv",
-      "title": "Adaptive Rollout Truncation Based on Epistemic Uncertainty for Efficient Offline World Model Training",
-      "title_zh": "基于认知不确定性的自适应展开截断用于高效离线世界模型训练",
-      "tldr_zh": "基于认知不确定性自适应截断展开，减少世界模型训练计算量。",
-      "cover_zh": "世界模型训练太烧算力？认知不确定性让展开自动截断，计算量直降",
-      "abstract_zh": "精确的神经世界模型对于基于模型的机器人学至关重要，它使机器人能够根据先前观察到的轨迹预测未来状态。多步自回归训练改善了长时程预测，但固定的展开长度也会增加计算成本，并且当模型仍不准确时可能放大早期训练误差。现有的训练方案通常在优化过程中使用相同的展开长度，与模型当前的预测可靠性无关。我们提出了一种基于认知不确定性的自适应展开策略，用于离线世界模型训练，遵循自动课程训练方案。模型不再总是展开到固定长度，而是当认知不确定性超过从预热阶段校准的阈值时终止自回归展开。我们研究了两种不确定性估计器：具有共享循环骨干的五头集成和蒙特卡洛Dropout。两阶段预热过程在启用自适应截断之前稳定不确定性估计。在ANYmal-D和ANT上的实验表明，基于集成的自适应截断在预测精度上匹配或优于固定长度训练和RWM-U基线，同时需要显著更少的累积展开步数。在ANYmal-D上按照所提方法训练世界模型，最终性能与基线相当，而展开计算量减少约72%。这些结果表明，认知不确定性不仅对下游策略正则化有用，而且能使世界模型训练本身更加计算高效。",
-      "authors": [
-        "Nikodem Sebastian Zymla",
-        "Laurin Thiele",
-        "Johannes Pitz"
-      ],
-      "authors_all": [
-        "Nikodem Sebastian Zymla",
-        "Laurin Thiele",
-        "Johannes Pitz"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-09-18",
-      "channels": [
-        "locomotion",
-        "world-model"
-      ],
-      "badges": [
-        {
-          "kind": "venue",
-          "label": "🎓 IROS 2026"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2609-21482.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2609-21482-p2.jpg"
-      ],
-      "arxiv_id": "2609.21482",
-      "abs_url": "http://arxiv.org/abs/2609.21482v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.21482v1",
-      "venue": "IROS 2026",
-      "venue_announced": "",
-      "score": 30,
-      "judge": {},
-      "institutions": [],
-      "method_tags": [],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2609-21817",
       "source": "arxiv",
       "title": "A Sim-to-Real Integration Pipeline for Training and Deployment of Chunk-Based VLA Manipulation Policies",
@@ -1240,55 +1316,6 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2609-21497",
-      "source": "arxiv",
-      "title": "FORTE: Task-Adaptive Force Capability Optimization for Mobile Manipulators",
-      "title_zh": "FORTE：移动机械臂的任务自适应力能力优化",
-      "tldr_zh": "VLM推断任务力需求，优化移动机械臂力能力与可操作度平衡。",
-      "cover_zh": "力大砖飞？不！这个框架让机械臂重活轻活都拿手",
-      "abstract_zh": "机器人操作中有效的物理交互控制不仅需要运动学上可行的运动，还需要足够的力交互能力。现有的冗余度求解方法往往忽略任务特定的力需求，或不分场合地最大化力能力，在不需要大力余量时牺牲了灵活性。我们提出了一种面向任务的冗余移动机械臂力能力优化框架。视觉语言模型（VLM）从RGB图像和任务描述中推断物体物理属性，生成捕捉重力和惯性需求的目标任务力序列。然后，我们将面向任务的力能力度量定义为任务力不确定球与动态残余力多面体（RFP）之间的有符号距离，量化任务需求与机器人剩余驱动能力之间的兼容性。该度量与可操作度、关节限位避免、轨迹平滑性和基座振荡抑制一起，被纳入全身多目标轨迹优化问题。在移动机械臂上执行不同负载条件下的举升和单点保持任务的实验表明，所提方法为重负载提供了足够的力能力，同时为轻负载保持了高可操作度。这实现了固定能力最大化基线（RFP内切半径、RFP锥）和仅可操作度优化无法达到的任务自适应平衡。核心实现已公开于 https://github.com/yeying256/FORTE。",
-      "authors": [
-        "Xiao Wang",
-        "Heng Zhang",
-        "Gokhan Solak"
-      ],
-      "authors_all": [
-        "Xiao Wang",
-        "Heng Zhang",
-        "Gokhan Solak",
-        "Fei Zhao",
-        "Arash Ajoudani"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-09-18",
-      "channels": [
-        "manipulation",
-        "loco-manip-wbc"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2609-21497.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2609-21497-p2.jpg"
-      ],
-      "arxiv_id": "2609.21497",
-      "abs_url": "http://arxiv.org/abs/2609.21497v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.21497v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 28,
-      "judge": {},
-      "institutions": [],
-      "method_tags": [],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -1563,12 +1590,20 @@
       "venue_announced": "",
       "score": 20,
       "judge": {},
-      "institutions": [],
-      "method_tags": [],
+      "institutions": [
+        "Korea Electronics Technology Institute",
+        "Seoul National University",
+        "Korea University"
+      ],
+      "method_tags": [
+        "Behavior Cloning",
+        "RL",
+        "loco-manipulation"
+      ],
       "platform": [],
       "sim_stack": [],
       "method_family": "",
-      "real_robot": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -2159,9 +2194,9 @@
       "source": "video_youtube",
       "title": "30 Home Generalization",
       "title_zh": "30 个家庭的泛化",
-      "tldr_zh": "Helix 2.5 机器人零样本泛化到 30 个家庭并连续工作 4 小时。",
-      "cover_zh": "机器人直接进 30 个家干活？零训练连续 4 小时！",
-      "abstract_zh": "昨天我们发布了 Helix 2.5。我们在湾区租了 30 个家庭。机器人无需额外训练就到达并开始做有用的工作。以下是连续 4 小时的工作，更多内容请阅读我们的博客：https://www.figure.ai/news/helix-2-5-zero-shot-30-home-generalization",
+      "tldr_zh": "Helix 2.5 机器人在 30 个家庭零样本泛化，连续工作 4 小时。",
+      "cover_zh": "零训练直接上岗｜Helix 2.5 在 30 个家庭连续干活 4 小时",
+      "abstract_zh": "昨天我们发布了 Helix 2.5。我们在湾区租了 30 个家庭。机器人无需额外训练即可到达并开始执行有用的工作。以下是连续 4 小时的工作记录，更多内容请阅读我们的博客：https://www.figure.ai/news/helix-2-5-zero-shot-30-home-generalization",
       "authors": [],
       "authors_all": [],
       "primary_category": "video",
@@ -2404,12 +2439,19 @@
       "venue_announced": "",
       "score": 12,
       "judge": {},
-      "institutions": [],
-      "method_tags": [],
+      "institutions": [
+        "Aerospace Information Research Institute, Chinese Academy of Sciences",
+        "University of Chinese Academy of Sciences"
+      ],
+      "method_tags": [
+        "video-action co-training",
+        "world action model",
+        "video diffusion Transformer"
+      ],
       "platform": [],
       "sim_stack": [],
       "method_family": "",
-      "real_robot": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -2835,8 +2877,17 @@
       "venue_announced": "",
       "score": 6,
       "judge": {},
-      "institutions": [],
-      "method_tags": [],
+      "institutions": [
+        "Zhongnan University of Economics and Law",
+        "Wuhan University",
+        "Dongguan University of Technology",
+        "National Institute of Natural Hazards, Ministry of Emergency Management of China"
+      ],
+      "method_tags": [
+        "agentic image restoration",
+        "skill-guided framework",
+        "multimodal agents"
+      ],
       "platform": [],
       "sim_stack": [],
       "method_family": "",

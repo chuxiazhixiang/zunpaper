@@ -89,7 +89,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -126,5 +126,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"RawVLA: Embodied Neural Image Signal Processor For Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.37530v1\n---\n>[!abstract] 一句话总结：提出 RawVLA——一个流式神经 ISP，将能力集中在与具身行为相关的成像因素上，自适应地把 RAW 观测渲染成适合冻结 VLA 策略的输入；同时构建 RawVLA-Bench，在干净与恶劣采集条件下把图像处理显式作为评测变量。\n\n\n# 一、动机\n\n> 现有 VLA 模型直接消费固定相机 ISP 输出的 RGB 图像，把成像管线排除在学习与评测闭环之外；论文系统考察这一被忽视的设计选择对动作预测与操作成功率的影响，指出 RAW-to-RGB 处理实质上塑造了具身策略的行为。\n\n\n# 二、方法\n\n> 提出 RawVLA——一个流式神经 ISP，将能力集中在与具身行为相关的成像因素上，自适应地把 RAW 观测渲染成适合冻结 VLA 策略的输入；同时构建 RawVLA-Bench，在干净与恶劣采集条件下把图像处理显式作为评测变量。\n\n\n# 三、核心实验结果\n\n> 作者在增益、传感器噪声、色度响应、色调响应、位深五个 ISP 维度上分析，发现不同维度对动作预测与操作成功的影响差异显著；在 RawVLA-Bench 上，RawVLA 在标准条件下保持原有性能，并在成像退化条件下大幅提升鲁棒性（摘要未给出具体数值）。\n\n\n# 四、对我的启发\n\n> 启发在于把 ISP 从固定预处理变为可学习、可评测的具身接口，为传感器噪声/低照等恶劣采集条件下的操作提供新思路；局限是目前证据主要来自自建 RawVLA-Bench，真实机器人闭环部署、与不同 VLA 主干及跨硬件泛化仍有待验证。\n"
 }

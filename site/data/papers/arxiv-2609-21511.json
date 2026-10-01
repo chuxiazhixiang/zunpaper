@@ -94,5 +94,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"2nd Place Solution to the HANDS 2026 Workshop Challenge-Dexterous Grasp Motion Track: Single-Shot Trajectory Warping for Grasp Motion Generation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21511v1\n---\n>[!abstract] 一句话总结：不再逐步生成动作，而是对单条成功的 GraspM3 演示轨迹做\"编辑\"：策略只观测物体一次，输出一个 12 维的 warp 参数来形变整条演示轨迹，随后以开环方式回放；warp 策略用 one-step PPO 在全部 4,824 个训练物体上并行训练。\n\n\n# 一、动机\n\n> 灵巧手抓取动作生成中，逐步（per-step）策略需要对约 70 个十二维动作做序列决策，误差随时间累积，且测试物体与物理动力学分布可能与训练不同，导致成功率低、泛化差。\n\n\n# 二、方法\n\n> 不再逐步生成动作，而是对单条成功的 GraspM3 演示轨迹做\"编辑\"：策略只观测物体一次，输出一个 12 维的 warp 参数来形变整条演示轨迹，随后以开环方式回放；warp 策略用 one-step PPO 在全部 4,824 个训练物体上并行训练。\n\n\n# 三、核心实验结果\n\n> 在 HANDS 2026 Workshop Challenge（Dexterous Grasp Motion 赛道，12-DoF LinkerHand O6，仿真环境）获得第二名：easy 赛道私有测试集成功率 94.61%，为所有提交中最高；hard 赛道私有测试集成功率 57.18%。\n\n\n# 四、对我的启发\n\n> 局限在于 warp+开环回放的范式缺乏在线反馈，hard 赛道成功率仅约 57%，说明面对强随机初始位姿与动力学差异时鲁棒性仍不足，且方法依赖存在一条可用的成功演示；启发是\"单次观测→轨迹级编辑\"相比逐步策略能显著抑制误差累积，是具身动作生成中值得借鉴的降维思路，但需研究闭环修正与真机迁移。\n"
 }

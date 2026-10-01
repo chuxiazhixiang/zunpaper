@@ -1,0 +1,105 @@
+{
+  "id": "arxiv-2609-40222",
+  "source": "arxiv",
+  "title": "LOCI: Spatial Linear Memory for Streaming World Models",
+  "title_zh": "LOCI：面向流式世界模型的空间线性记忆",
+  "abstract": "When a camera revisits a previously observed region, a video world model should reproduce what was there before. This requires both remembering past observations and retrieving the right one for the current viewpoint. Key-value caches preserve visual detail but grow with video length; recurrent memory is compact but compresses history into a fixed-size state, so individual past observations are no longer directly accessible. We introduce LOCI, a hybrid spatial-memory architecture that keeps both representations. In half of the transformer blocks, main attention keeps a key-value cache of past observations; in the other half, it is restricted to the current chunk and complemented by a recurrent linear-attention memory whose reads and writes are conditioned on projective camera geometry, so viewpoint enters both memory addressing and stored content. Recurrent readouts flow into subsequent cache-backed blocks and supply their queries with accumulated scene context. On the public MIND memory benchmark and on held-out recorded trajectories, LOCI reproduces revisited content more faithfully than representative world models and a same-recipe full-softmax model; with full history, it lowers peak memory at equal length by about 30% relative to full softmax. With a bounded bank of retained observations, it streams long videos at constant memory and remains more faithful than full softmax under the same budget.",
+  "abstract_zh": "当相机重新访问先前观察过的区域时，视频世界模型应当重现之前存在的内容。这既需要记住过去的观察，也需要为当前视角检索出正确的记忆。键值缓存能保留视觉细节，但会随视频长度增长；循环记忆虽然紧凑，却将历史压缩为固定大小的状态，导致过去的单个观察无法直接访问。我们提出 LOCI，一种混合空间记忆架构，同时保留这两种表示。在一半的 Transformer 块中，主注意力保留过去观察的键值缓存；在另一半中，主注意力被限制在当前块，并辅以一个循环线性注意力记忆，其读写均以投影相机几何为条件，因此视角同时进入记忆寻址和存储内容。循环读出的信息流入后续由缓存支持的块，并为它们的查询提供累积的场景上下文。在公开的 MIND 记忆基准和留存的录制轨迹上，LOCI 比代表性世界模型和相同配方的全 softmax 模型更忠实地重现重访内容；在完整历史下，与全 softmax 相比，在相同长度下将峰值内存降低约 30%。通过有界保留观察库，它能在恒定内存下流式处理长视频，并在相同预算下比全 softmax 更忠实。",
+  "tldr_zh": "LOCI 混合空间记忆架构，结合键值缓存与循环线性注意力，实现流式世界模型的高保真重访。",
+  "cover_zh": "相机重访旧地，世界模型竟能完美复现？LOCI 让记忆不再爆内存！",
+  "authors": [
+    {
+      "name": "Ji Xia",
+      "affiliation": ""
+    },
+    {
+      "name": "Tingting Liao",
+      "affiliation": ""
+    },
+    {
+      "name": "Xuezhi Liang",
+      "affiliation": ""
+    },
+    {
+      "name": "Hao Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Guangyi Liu",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.CV",
+  "categories": [
+    "cs.CV"
+  ],
+  "published": "2026-09-30",
+  "updated": "2026-09-30",
+  "arxiv_id": "2609.40222",
+  "pdf_url": "https://arxiv.org/pdf/2609.40222v1",
+  "abs_url": "http://arxiv.org/abs/2609.40222v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-40222.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-40222-p2.jpg"
+  ],
+  "channels": [
+    "world-model"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 25,
+  "source_tags": [],
+  "score": 22,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（world model、world models、video world model）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 25 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "world-model",
+    "reason": "视频世界模型的空间线性记忆架构，解决长视频流式生成与视角重访一致性，属世界模型核心方向。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Institute of Foundation Models, Mohamed bin Zayed University of Artificial Intelligence",
+    "Mohamed bin Zayed University of Artificial Intelligence",
+    "Pinscreen"
+  ],
+  "method_tags": [
+    "World Model",
+    "Linear Attention",
+    "Spatial Memory"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"LOCI: Spatial Linear Memory for Streaming World Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.40222v1\n---\n>[!abstract] 一句话总结：提出 LOCI 混合空间记忆架构：一半 transformer 块的主注意力保留过去观测的 key-value 缓存，另一半块的主注意力仅限当前 chunk，并由一个循环线性注意力记忆补充，该记忆的读写均以投影相机几何为条件，使视角同时进入记忆寻址与存储内容；循环读出结果流入后续带缓存的块，为其 query 提供累积的场景上下文。\n\n\n# 一、动机\n\n> 视频世界模型在相机重访已观测区域时应能重现此前的内容，这既需要记住历史观测，又需要针对当前视角检索出正确的记忆；但现有方案存在两难：KV 缓存能保留视觉细节却随视频长度线性增长，而循环记忆虽紧凑却把历史压缩进固定大小的状态，单个过去的观测不再可直接访问。\n\n\n# 二、方法\n\n> 提出 LOCI 混合空间记忆架构：一半 transformer 块的主注意力保留过去观测的 key-value 缓存，另一半块的主注意力仅限当前 chunk，并由一个循环线性注意力记忆补充，该记忆的读写均以投影相机几何为条件，使视角同时进入记忆寻址与存储内容；循环读出结果流入后续带缓存的块，为其 query 提供累积的场景上下文。\n\n\n# 三、核心实验结果\n\n> 在公开的 MIND 记忆基准和留存的录制轨迹上，LOCI 对重访内容的重现保真度优于代表性世界模型以及同配方（same-recipe）的全 softmax 模型；在完整历史设定下，等长度时峰值内存相比全 softmax 降低约 30%；使用有界的保留观测 bank 时，可在恒定内存下流式处理长视频，并在相同预算下仍比全 softmax 更忠实。\n\n\n# 四、对我的启发\n\n> 局限在于有界记忆 bank 的容量与保真度之间存在权衡，且几何条件化依赖较可靠的相机位姿；其思路（KV 缓存 + 几何条件化循环记忆的混合、视角参与读写寻址）对具身智能中的长时序空间记忆与视角一致的场景建模有借鉴意义。\n"
+}

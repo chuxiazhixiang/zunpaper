@@ -1,0 +1,94 @@
+{
+  "id": "arxiv-2609-40007",
+  "source": "arxiv",
+  "title": "Multi-Link Safety Filtering for VLA Policies Around Moving Hazards",
+  "title_zh": "面向移动危险物的VLA策略多连杆安全过滤",
+  "abstract": "A vision-language-action (VLA) policy can finish a manipulation task while knocking over objects unrelated to it, so task success alone does not show that the policy is safe to deploy in clutter. We study how to keep a pretrained VLA policy clear of such hazards at run time without retraining it, which requires guarding more of the arm than the end effector, following the hazard as it moves, and sharing onboard compute with the policy. Our training-free shield covers the gripper, wrist, and forearm with five ellipsoids and filters every commanded motion through one barrier program against a keep-out ellipsoid fitted from RGB-D perception at reset. Sparse optical flow then carries that ellipsoid's center along with the hazard, with no repeated detection or refitting. Over six simulated hazard-motion conditions, the shield lowers collision from $65.62\\%$ to $27.27\\%$ and raises safe-success, task completion without collision, from $29.35\\%$ to $50.43\\%$. Ablations show that guarding the arm links protects beyond end-effector shielding, and that tracking recovers most of the protection lost when the hazard estimate is frozen at reset. On heterogeneous edge hardware, the five-ellipsoid barrier runs on the CPU in $2.2$~ms at the 99th percentile, and trimming the vision--language prefix and taking fewer flow-matching steps shortens each $π_{0.5}$ policy call on the integrated GPU from $343$ to $177.3$~ms. On a physical SO-101 arm across four tasks, the arm touched the hazard in 3 of 16 shielded episodes versus 11 of 16 unshielded ones. Project page: https://yathag.github.io/multilink-safety-filter/",
+  "abstract_zh": "视觉-语言-动作（VLA）策略在完成操作任务时可能撞倒无关物体，因此仅凭任务成功无法说明策略在杂乱环境中部署是安全的。我们研究如何在运行时让预训练的VLA策略避开此类危险物，而无需重新训练，这要求保护范围超出末端执行器、跟随移动的危险物，并与策略共享机载计算资源。我们的免训练防护罩用五个椭球覆盖夹爪、手腕和前臂，并通过一个障碍函数程序对每条指令运动进行过滤，该程序针对复位时从RGB-D感知拟合的禁入椭球。稀疏光流随后携带该椭球的中心随危险物移动，无需重复检测或重新拟合。在六种模拟危险物运动条件下，防护罩将碰撞率从$65.62\\%$降至$27.27\\%$，并将安全成功率（无碰撞完成任务）从$29.35\\%$提升至$50.43\\%$。消融实验表明，保护臂连杆比仅保护末端执行器更有效，而跟踪可恢复因复位时冻结危险物估计而损失的大部分保护。在异构边缘硬件上，五椭球障碍函数在CPU上以第99百分位$2.2$~ms运行，裁剪视觉-语言前缀并减少流匹配步骤后，集成GPU上每次$\\pi_{0.5}$策略调用从$343$缩短至$177.3$~ms。在物理SO-101机械臂上执行四项任务时，防护的16次试验中机械臂触碰危险物3次，而未防护的16次中为11次。项目页面：https://yathag.github.io/multilink-safety-filter/",
+  "tldr_zh": "免训练多连杆安全过滤让VLA策略在移动危险物中碰撞率降低。",
+  "cover_zh": "不重训也能避障｜VLA策略碰撞率直降，安全成功率翻倍",
+  "authors": [
+    {
+      "name": "Yatharth Agarwal",
+      "affiliation": ""
+    },
+    {
+      "name": "Vijay Raghunathan",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.CV"
+  ],
+  "published": "2026-09-30",
+  "updated": "2026-09-30",
+  "arxiv_id": "2609.40007",
+  "pdf_url": "https://arxiv.org/pdf/2609.40007v1",
+  "abs_url": "http://arxiv.org/abs/2609.40007v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-40007.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-40007-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 9,
+  "source_tags": [],
+  "score": 22,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（vision-language-action、vla policy、manipulation）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 9 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "VLA策略安全过滤，多连杆避障，真机验证，属manipulation方向，有算法创新。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Purdue University"
+  ],
+  "method_tags": [
+    "VLA",
+    "safety filter",
+    "optical flow"
+  ],
+  "platform": [
+    "SO-101"
+  ],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Multi-Link Safety Filtering for VLA Policies Around Moving Hazards\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.40007v1\n---\n>[!abstract] 一句话总结：提出免训练的安全屏蔽器：用五个椭球覆盖夹爪、手腕与前臂，在复位时由 RGB-D 拟合一个禁入椭球，并通过单一障碍函数程序对所有指令运动实时滤波，再用稀疏光流将该椭球中心随移动障碍物一起平移（无需重复检测或重新拟合），同时在边缘设备上裁剪 VLM 前缀与减少 flow-matching 步数来提速策略调用。\n\n\n# 一、动机\n\n> 预训练 VLA 策略即使完成操作任务，也可能碰倒无关物体，任务成功率无法反映其在杂乱环境中的安全性；而现有安全机制多只保护末端执行器、假设障碍静止，且难以与策略共享机载算力。\n\n\n# 二、方法\n\n> 提出免训练的安全屏蔽器：用五个椭球覆盖夹爪、手腕与前臂，在复位时由 RGB-D 拟合一个禁入椭球，并通过单一障碍函数程序对所有指令运动实时滤波，再用稀疏光流将该椭球中心随移动障碍物一起平移（无需重复检测或重新拟合），同时在边缘设备上裁剪 VLM 前缀与减少 flow-matching 步数来提速策略调用。\n\n\n# 三、核心实验结果\n\n> 在六种仿真障碍运动条件下，碰撞率从 65.62% 降至 27.27%，安全成功率（无碰撞完成任务）从 29.35% 提升到 50.43%；消融显示保护多个手臂连杆优于仅保护末端执行器，且光流跟踪能挽回障碍估计冻结在复位时刻时的大部分保护性能。五椭球障碍函数在 CPU 上 99 分位耗时 2.2 ms，裁剪视觉-语言前缀并减少 flow-matching 步数后，π₀.₅ 策略在集成 GPU 上的单次调用从 343 ms 缩短到 177.3 ms；真实 SO-101 机械臂四项任务中，开启屏蔽时 16 次试验有 3 次触碰障碍物，未开启时为 11 次。\n\n\n# 四、对我的启发\n\n> 局限在于禁入椭球只在复位时拟合，依赖光流假设障碍物运动连续且可见，快速遮挡或形变物体可能跟踪失效，且椭球对细长/非凸障碍的包络偏保守；启发是把免训练、连杆级安全滤波与 VLA 推理加速结合，可低成本部署到杂乱真实环境，多椭球包络与光流跟踪的解耦设计也便于迁移到其他具身策略。\n"
+}

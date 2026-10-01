@@ -1,0 +1,97 @@
+{
+  "id": "arxiv-2609-39652",
+  "source": "arxiv",
+  "title": "Making Waves: A Membrane-Coupled Delta Array for Manipulating Objects Below the Actuator Spacing",
+  "title_zh": "Making Waves: 一种膜耦合Delta阵列用于操控小于执行器间距的物体",
+  "abstract": "Distributed manipulator systems manipulate objects through the coordinated motion of many actuators. However, an object must be supported by several actuators at once, so the centre-to-centre actuator spacing imposes a hard lower bound on manipulable object size. We remove this bound by coupling the end-effectors of an 8 x 8 array of three degrees-of-freedom delta robots with a stretchable fabric, turning 64 discrete contacts into a continuous surface capable of manipulating objects smaller than the actuator spacing. Viewing the array as a displacement field over that surface, we investigate local quasi-static and cyclic fields as manipulation primitives. These primitives can be applied globally across the array or locally confined around each tracked object to independently manipulate several objects in parallel. We then train a policy acting on low-order discrete cosine transform coefficients: at equal action dimension, commanding a nineteen-delta neighbourhood halves the placement error of commanding the whole array. The policy transfers to hardware without adaptation at 76% success. The platform manipulates objects from 15mm-90mm, a six-fold range spanning both sides of the actuator spacing, 43.3mm, on a single surface.",
+  "abstract_zh": "分布式操纵器系统通过多个执行器的协调运动来操纵物体。然而，物体必须同时由多个执行器支撑，因此执行器中心间距对可操纵物体的尺寸施加了严格的下限。我们通过将8x8个三自由度delta机器人的末端执行器与可拉伸织物耦合，消除了这一限制，将64个离散接触点转变为能够操纵小于执行器间距的物体的连续表面。将该阵列视为该表面上的位移场，我们研究了局部准静态和循环场作为操纵基元。这些基元可以全局应用于整个阵列，也可以局部限制在每个被跟踪物体周围，以并行独立操纵多个物体。然后，我们训练了一个作用于低阶离散余弦变换系数的策略：在相同动作维度下，指挥一个包含19个delta的邻域可将放置误差减半，而指挥整个阵列则误差较大。该策略无需适应即可迁移到硬件，成功率为76%。该平台在单一表面上操纵从15毫米到90毫米的物体，六倍范围跨越了执行器间距43.3毫米的两侧。",
+  "tldr_zh": "膜耦合Delta阵列可操控小于执行器间距的物体，策略迁移成功率达76%。",
+  "cover_zh": "执行器间距不再是极限！这个膜耦合阵列能操控更小的物体",
+  "authors": [
+    {
+      "name": "Bailey Dacre",
+      "affiliation": ""
+    },
+    {
+      "name": "Andrés Faíña",
+      "affiliation": ""
+    },
+    {
+      "name": "Oliver Kroemer",
+      "affiliation": ""
+    },
+    {
+      "name": "Zeynep Temel",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-09-30",
+  "updated": "2026-09-30",
+  "arxiv_id": "2609.39652",
+  "pdf_url": "https://arxiv.org/pdf/2609.39652v1",
+  "abs_url": "http://arxiv.org/abs/2609.39652v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-39652.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-39652-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（manipulation）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "分布式机械臂阵列操作，提出膜耦合连续表面与策略学习，属操作方向，有算法新意。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "distributed manipulation",
+    "policy learning",
+    "discrete cosine transform"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/HardwareCoDesign\n  - 状态/待读\nTitle: \"Making Waves: A Membrane-Coupled Delta Array for Manipulating Objects Below the Actuator Spacing\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.39652v1\n---\n>[!abstract] 一句话总结：用可拉伸织物把 8×8 个三自由度 delta 机器人的末端执行器耦合成一张连续膜表面，将 64 个离散接触点变为连续位移场，以局部准静态与循环位移场作为操作基元（可全局施加或围绕每个被跟踪物体局部施加以并行操作多物体），并训练一个作用于低阶 DCT 系数的策略来生成这些位移场。\n\n\n# 一、动机\n\n> 分布式操作器阵列受限于「物体必须同时被多个执行器支撑」这一假设，执行器中心间距成为可操作物体尺寸的硬下界，无法操作小于间距的物体。\n\n\n# 二、方法\n\n> 用可拉伸织物把 8×8 个三自由度 delta 机器人的末端执行器耦合成一张连续膜表面，将 64 个离散接触点变为连续位移场，以局部准静态与循环位移场作为操作基元（可全局施加或围绕每个被跟踪物体局部施加以并行操作多物体），并训练一个作用于低阶 DCT 系数的策略来生成这些位移场。\n\n\n# 三、核心实验结果\n\n> 在相同动作维度下，只驱动 19 个 delta 的邻域策略相比驱动整个阵列将放置误差减半；策略无需任何适配即可迁移到真实硬件，成功率达 76%；单张表面上可操作 15mm–90mm 的物体，约六倍尺寸范围，跨越执行器间距 43.3mm 的两侧。\n\n\n# 四、对我的启发\n\n> 工作证明了「软膜耦合 + 位移场基元」可以突破离散执行器间距的尺寸下界，但当前验证限于 8×8 阵列与准静态/循环基元，织物拉伸的疲劳与非线性、更大阵列的可扩展性、以及对动态物体的闭环高速操作仍有待研究；其「局部激励优于全局激励」的结论对其它分布式操作与触觉显示系统也有参考价值。\n"
+}

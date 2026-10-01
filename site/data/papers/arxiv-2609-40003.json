@@ -1,0 +1,102 @@
+{
+  "id": "arxiv-2609-40003",
+  "source": "arxiv",
+  "title": "DashVMC: Real-Time Discrete World Model Control in Geometry Dash",
+  "title_zh": "DashVMC：在《几何冲刺》中实时离散世界模型控制",
+  "abstract": "World-model agents are usually evaluated in simulators that can wait for the policy; live games impose the opposite constraint, requiring capture, prediction, and action before the next frame. We present DashVMC, which learns a compact, action-conditioned world model from approximately two hours of recorded Geometry Dash gameplay. To test whether the learned dynamics are actionable, a controller is initialized by behavioural cloning (BC) and refined with Proximal Policy Optimization (PPO) entirely in frozen-model rollouts, without further interaction with the live game. Across three controller seeds, the refined policies survive longer than their BC initializations on all three official levels and a held-out community layout. At deployment, the baseline skips visual generation and sustains a 60-Hz capture-to-action loop on a consumer GPU. Action-conditioned continuations and rollout diagnostics show that the model remains useful for control despite imperfect long-horizon fidelity.",
+  "abstract_zh": "世界模型智能体通常在可以等待策略的模拟器中进行评估；而实时游戏施加了相反的约束，需要在下一帧之前完成捕获、预测和动作。我们提出了 DashVMC，它从大约两小时的《几何冲刺》游戏记录中学习一个紧凑的、以动作为条件的世界模型。为了测试学习到的动力学是否可操作，控制器通过行为克隆（BC）初始化，并完全在冻结模型的展开中利用近端策略优化（PPO）进行微调，无需与实时游戏进一步交互。在三个控制器种子下，微调后的策略在所有三个官方关卡和一个保留的社区布局上比其 BC 初始化存活更长时间。在部署时，基线跳过视觉生成，并在消费级 GPU 上维持 60 Hz 的捕获到动作循环。以动作为条件的延续和展开诊断表明，尽管长期保真度不完美，该模型对于控制仍然有用。",
+  "tldr_zh": "DashVMC 用世界模型在《几何冲刺》中实现实时控制，无需实时交互。",
+  "cover_zh": "实时游戏也能用世界模型？｜《几何冲刺》里直接跑出 60Hz 控制",
+  "authors": [
+    {
+      "name": "Florent Tariolle",
+      "affiliation": ""
+    },
+    {
+      "name": "Florian Yger",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.LG",
+  "categories": [
+    "cs.LG"
+  ],
+  "published": "2026-09-30",
+  "updated": "2026-09-30",
+  "arxiv_id": "2609.40003",
+  "pdf_url": "https://arxiv.org/pdf/2609.40003v1",
+  "abs_url": "http://arxiv.org/abs/2609.40003v1",
+  "venue": "NeurIPS 2026",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-40003.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-40003-p2.jpg"
+  ],
+  "channels": [
+    "world-model"
+  ],
+  "badges": [
+    {
+      "kind": "venue",
+      "label": "🎓 NeurIPS 2026"
+    },
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 10,
+  "source_tags": [],
+  "score": 29,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 6,
+      "hint": "频道关键词命中 2 个（world model、action-conditioned world）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 10 页"
+    },
+    {
+      "id": "conf_venue",
+      "label": "机器人顶会 / 顶刊出品",
+      "points": 10,
+      "hint": "被「NeurIPS 2026」收录"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "world-model",
+    "reason": "学习动作条件世界模型并用于实时控制，属world-model方向，但游戏场景非机器人，参考价值中等。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "INSA Rouen Normandy",
+    "LITIS"
+  ],
+  "method_tags": [
+    "World Model",
+    "Behavioral Cloning",
+    "PPO"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - 论文/应用\n  - Domain/CV\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"DashVMC: Real-Time Discrete World Model Control in Geometry Dash\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.40003v1\n---\n>[!abstract] 一句话总结：用约 2 小时录制的 Geometry Dash 游戏画面训练一个紧凑的动作条件世界模型，控制器先用行为克隆（BC）初始化，再完全在冻结世界模型的 rollout 中用 PPO 微调，不再与真实游戏交互。\n\n\n# 一、动机\n\n> 世界模型智能体通常在可以暂停等待策略的仿真器中评估，而实时游戏恰恰相反：必须在下一帧到来前完成画面捕获、状态预测与动作输出，因此「学到的动力学是否真的可用于实时控制」这一问题此前缺乏在真实运行环境中、无暂停条件下的验证。\n\n\n# 二、方法\n\n> 用约 2 小时录制的 Geometry Dash 游戏画面训练一个紧凑的动作条件世界模型，控制器先用行为克隆（BC）初始化，再完全在冻结世界模型的 rollout 中用 PPO 微调，不再与真实游戏交互。\n\n\n# 三、核心实验结果\n\n> 在 3 个控制器随机种子下，微调后的策略在 3 个官方关卡和 1 个留出的社区关卡上存活时间均长于其 BC 初始化；部署时若跳过视觉生成，可在消费级 GPU 上维持 60 Hz 的「捕获到动作」闭环。\n\n\n# 四、对我的启发\n\n> 动作条件续帧与 rollout 诊断表明，即使模型的长时域保真度不完美，其动力学对控制仍然有用，说明世界模型的价值不必以高质量长程生成为前提；局限在于只在单一 2D 游戏上验证，且未闭环回归真实游戏继续训练，向机器人等真实物理系统的迁移仍待检验。\n"
+}

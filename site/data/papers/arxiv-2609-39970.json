@@ -1,0 +1,101 @@
+{
+  "id": "arxiv-2609-39970",
+  "source": "arxiv",
+  "title": "PhasePlan: Ordered Future-Phase Planning for Robot Brain Models",
+  "title_zh": "PhasePlan：面向机器人脑模型的有序未来阶段规划",
+  "abstract": "Robot brain models integrate vision, language, and robot state to generate actions for complex manipulation tasks. Most predict fixed-length action chunks that may span multiple task phases. This can obscure phase transitions and favor frequent action patterns, compromising action timing in dynamic environments. We propose \\method, an ordered future-phase planning method for robot brain models. From current multimodal observations, it predicts the task phase at each future action position. The resulting planning representations condition the corresponding actions, preserving temporal alignment between task progress and action generation. Training first learns the planner, then freezes it during action-model adaptation to maintain stable phase representations. We instantiate \\method on pretrained $π_{0.5}$ and AcrossWAM1.0 robot brain models. Detailed quantitative evaluation uses the $π_{0.5}$ implementation. On conveyor-belt manipulation, \\method reduces offline joint-action error by approximately 22.5\\% relative to the original $π_{0.5}$ model. It also improves phase-transition modeling and cross-phase action prediction. These results demonstrate the value of ordered future-phase planning for continuous action generation.",
+  "abstract_zh": "机器人脑模型整合视觉、语言和机器人状态，为复杂操作任务生成动作。大多数模型预测固定长度的动作块，这些动作块可能跨越多个任务阶段。这会模糊阶段转换，并偏向频繁出现的动作模式，从而在动态环境中损害动作时序。我们提出了 method，一种面向机器人脑模型的有序未来阶段规划方法。它从当前多模态观测中预测每个未来动作位置的任务阶段。由此产生的规划表示对相应动作进行条件化，保持任务进展与动作生成之间的时间对齐。训练时首先学习规划器，然后在动作模型适配期间冻结它，以维持稳定的阶段表示。我们在预训练的 $π_{0.5}$ 和 AcrossWAM1.0 机器人脑模型上实例化了 method。详细的定量评估使用 $π_{0.5}$ 实现。在传送带操作任务上，method 相对于原始 $π_{0.5}$ 模型将离线关节动作误差降低了约 22.5\\%。它还改善了阶段转换建模和跨阶段动作预测。这些结果证明了有序未来阶段规划在连续动作生成中的价值。",
+  "tldr_zh": "提出有序未来阶段规划方法，提升机器人脑模型动作时序与阶段转换建模。",
+  "cover_zh": "机器人动作总卡在阶段切换？这个规划器让时序对齐了",
+  "authors": [
+    {
+      "name": "Xiaoyu Yang",
+      "affiliation": ""
+    },
+    {
+      "name": "Yafei Zhang",
+      "affiliation": ""
+    },
+    {
+      "name": "Wensheng Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Qing Zhan",
+      "affiliation": ""
+    },
+    {
+      "name": "Nan Wu",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-09-30",
+  "updated": "2026-09-30",
+  "arxiv_id": "2609.39970",
+  "pdf_url": "https://arxiv.org/pdf/2609.39970v1",
+  "abs_url": "http://arxiv.org/abs/2609.39970v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2609-39970.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2609-39970-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（manipulation）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "面向机器人脑模型的分阶段未来规划，提升π0.5操作动作生成，属manipulation",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "VLA",
+    "future-phase planning",
+    "action-chunk prediction"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"PhasePlan: Ordered Future-Phase Planning for Robot Brain Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.39970v1\n---\n>[!abstract] 一句话总结：提出 PhasePlan：从当前多模态观测出发，预测未来每个动作位置所处的任务阶段，用这些有序的未来阶段规划表示去条件化对应的动作，从而保持任务进度与动作生成之间的时间对齐；训练采用两阶段策略，先学习规划器，再在动作模型适配时冻结规划器以维持稳定的阶段表示。\n\n\n# 一、动机\n\n> 现有机器人脑模型大多预测固定长度的动作块（action chunk），一个块往往跨越多个任务阶段，导致阶段转换被掩盖、模型偏向高频动作模式，在动态环境中损害动作时序的准确性。\n\n\n# 二、方法\n\n> 提出 PhasePlan：从当前多模态观测出发，预测未来每个动作位置所处的任务阶段，用这些有序的未来阶段规划表示去条件化对应的动作，从而保持任务进度与动作生成之间的时间对齐；训练采用两阶段策略，先学习规划器，再在动作模型适配时冻结规划器以维持稳定的阶段表示。\n\n\n# 三、核心实验结果\n\n> 在预训练的 π0.5 与 AcrossWAM1.0 脑模型上实例化，其中 π0.5 版本做了详细定量评估：在传送带操作任务上，相比原始 π0.5，离线关节动作误差降低约 22.5%；同时在阶段转换建模与跨阶段动作预测上也有提升。\n\n\n# 四、对我的启发\n\n> 定量结果只在 π0.5 实现上给出，且以离线关节动作误差为主要指标，缺少真机闭环成功率与动态环境下的在线验证；两阶段冻结规划器的设计对阶段标注质量依赖较强。\n"
+}
