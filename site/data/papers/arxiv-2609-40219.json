@@ -74,7 +74,8 @@
     "assets/img/covers/arxiv-2609-40219-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -85,7 +86,7 @@
   "related_links": [],
   "page_count": 23,
   "source_tags": [],
-  "score": 24,
+  "score": 29,
   "score_breakdown": [
     {
       "id": "keyword_density",
@@ -110,6 +111,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 23 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -137,5 +144,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Learning Skills from Historical Action Trajectories: Action Experience Dictionary for World Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.40219v1\n---\n>[!abstract] 一句话总结：构建动作经验字典（AED）：先用预训练动作 tokenizer 将历史物理动作轨迹编码为共享动作嵌入并按视觉观测检索，再通过交叉注意力做视觉条件化并前置到噪声动作 token 上提供交互上下文与动作意图，同时引入运动感知转移损失，在随机时间间隔上监督视觉特征变化预测。\n\n\n# 一、动机\n\n> 现有 World Action Model（WAM）虽将视觉动态预测与动作生成耦合，但无法显式复用跨操作任务的动作经验，且冗余背景会干扰关键视觉信息提取，难以建模跨任务语义关系来指导目标动作预测。\n\n\n# 二、方法\n\n> 构建动作经验字典（AED）：先用预训练动作 tokenizer 将历史物理动作轨迹编码为共享动作嵌入并按视觉观测检索，再通过交叉注意力做视觉条件化并前置到噪声动作 token 上提供交互上下文与动作意图，同时引入运动感知转移损失，在随机时间间隔上监督视觉特征变化预测。\n\n\n# 三、核心实验结果\n\n> 在仿真基准和真实跨本体（cross-embodiment）设置上验证了 AED 的有效性；相比已有 WAM 方法提升了动作经验复用能力与跨任务关系建模能力，运动感知转移损失降低了对无关背景线索的依赖（摘要未给出具体数值指标）。\n\n\n# 四、对我的启发\n\n> 与具身智能/机器人操作高度相关：动作经验字典的思路可迁移到跨本体技能复用与少样本新任务适配；局限在于摘要未报告量化提升与检索库规模、实时性开销，真实场景下的经验检索效率与失效模式仍有待评估。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/CV\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Learning Skills from Historical Action Trajectories: Action Experience Dictionary for World Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.40219v1\n---\n>[!abstract] 一句话总结：提出动作经验字典（AED）：先用预训练 action tokenizer 将历史物理动作轨迹编码为共享动作嵌入并按视觉观测检索，再经 cross-attention 做视觉条件化后前置到带噪动作 token 上提供交互上下文与动作意图，同时引入 motion-aware transition loss 在随机时间间隔上监督视觉特征变化预测，以建模动作相关运动并削弱背景依赖。\n\n\n# 一、动机\n\n> 现有 World Action Models 虽将视觉动态预测与动作生成耦合，却无法显式复用跨操作任务的历史动作经验，且冗余背景信息会干扰模型提取可指导目标动作预测的跨任务语义关系。\n\n\n# 二、方法\n\n> 提出动作经验字典（AED）：先用预训练 action tokenizer 将历史物理动作轨迹编码为共享动作嵌入并按视觉观测检索，再经 cross-attention 做视觉条件化后前置到带噪动作 token 上提供交互上下文与动作意图，同时引入 motion-aware transition loss 在随机时间间隔上监督视觉特征变化预测，以建模动作相关运动并削弱背景依赖。\n\n\n# 三、核心实验结果\n\n> 摘要仅说明在仿真基准与真实世界跨本体（cross-embodiment）设置上实验验证了 AED 的有效性，未给出具体量化指标（如成功率、提升幅度等数字需查阅原文）。\n\n\n# 四、对我的启发\n\n> 局限在于效果高度依赖历史动作库的覆盖度与检索质量，跨本体场景下动作空间/形态对齐仍较脆弱；启发是「外部动作记忆 + 世界模型」是一种轻量的技能复用与长程迁移思路，可与机器人操作中的跨任务、跨本体策略复用课题结合。\n"
 }

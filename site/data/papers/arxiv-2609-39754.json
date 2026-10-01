@@ -89,7 +89,8 @@
     "assets/img/covers/arxiv-2609-39754-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -104,7 +105,7 @@
   "related_links": [],
   "page_count": 34,
   "source_tags": [],
-  "score": 44,
+  "score": 52,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -115,8 +116,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 6,
-      "hint": "频道关键词命中 2 个（robocasa、robotwin）"
+      "points": 9,
+      "hint": "频道关键词命中 3 个（robocasa、robotwin、gr00t）"
     },
     {
       "id": "freshness",
@@ -129,6 +130,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 34 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -159,5 +166,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\nTitle: \"ChunkTrust: Adapting Execution Horizons for Robot Policies with Action-Expert Evidence\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.39754v1\n---\n>[!abstract] 一句话总结：ChunkTrust 把执行视界建模为由动作专家证据推断的隐变量：免训练的 Action-aware Horizon Selector（AHS）融合 chunk 内生成轨迹的谱稳定性与已执行历史同预测动作之间的 chunk 间连续性，并用带核遗忘的在线 Beta 后验跨重规划跟踪视界偏好；可选的轻量 Query-based Horizon Adapter（QHA）在冻结基座策略的前提下，从互补证据学习上下文条件的稠密先验，并与当前证据及 episode 内 Beta 记忆融合。\n\n\n# 一、动机\n\n> 机器人基础策略通常预测一整段动作块（action chunk），但每次重规划前到底执行多少步，往往被当作固定超参数，无法适应任务不同阶段对反应性/一致性的不同需求。\n\n\n# 二、方法\n\n> ChunkTrust 把执行视界建模为由动作专家证据推断的隐变量：免训练的 Action-aware Horizon Selector（AHS）融合 chunk 内生成轨迹的谱稳定性与已执行历史同预测动作之间的 chunk 间连续性，并用带核遗忘的在线 Beta 后验跨重规划跟踪视界偏好；可选的轻量 Query-based Horizon Adapter（QHA）在冻结基座策略的前提下，从互补证据学习上下文条件的稠密先验，并与当前证据及 episode 内 Beta 记忆融合。\n\n\n# 三、核心实验结果\n\n> 在 RoboTwin2.0 全部 50 个任务上，AHS 使 π0.5 平均成功率提升 +6.80 个百分点；在 RoboCasa GR1 Tabletop 上使 Qwen3GR00T 提升 +9.67 个百分点；AHS+QHA 在八任务 π0.5 评测中相对 Base 增益达 +9.44 个百分点；四个真实家务任务上等任务平均归一化过程分从 50.4% 提升到 57.5%，消融验证了两项证据、时序记忆与学习先验的贡献。\n\n\n# 四、对我的启发\n\n> 该方法把执行视界从超参数转为可在线推断的隐变量，思路可迁移到任何预测动作块再重规划的策略外层；局限在于依赖在线证据质量与 Beta 遗忘核等超参设定，且未直接改动基座策略能力，长时程与多模态动态场景下的鲁棒性仍需验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"ChunkTrust: Adapting Execution Horizons for Robot Policies with Action-Expert Evidence\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.39754v1\n---\n>[!abstract] 一句话总结：ChunkTrust 把执行 horizon 视为从「动作专家证据」推断的隐变量：训练无关的 AHS 用块内生成轨迹的谱稳定性与块间（已执行历史与预测动作）连续性打分，配合带核遗忘的在线 Beta 后验跟踪偏好，可选的轻量 QHA 再从互补证据学习上下文相关的稠密先验，与当前证据和回合内 Beta 记忆融合，基座策略全程冻结。\n\n\n# 一、动机\n\n> 机器人基础策略通常预测动作块（action chunk），但重规划前执行多少步往往被设为固定超参数，无法随任务阶段变化；固定 horizon 在需要精细调整的阶段会过短、在长程稳定阶段会过长，导致成功率受限。\n\n\n# 二、方法\n\n> ChunkTrust 把执行 horizon 视为从「动作专家证据」推断的隐变量：训练无关的 AHS 用块内生成轨迹的谱稳定性与块间（已执行历史与预测动作）连续性打分，配合带核遗忘的在线 Beta 后验跟踪偏好，可选的轻量 QHA 再从互补证据学习上下文相关的稠密先验，与当前证据和回合内 Beta 记忆融合，基座策略全程冻结。\n\n\n# 三、核心实验结果\n\n> 在 RoboTwin2.0 全部 50 个任务上，AHS 对每种基座策略配置的任务平均成功率均有提升，π0.5 提升 +6.80 个百分点；RoboCasa GR1 Tabletop 上 Qwen3GR00T 提升 +9.67 个百分点；八任务 π0.5 评测中 AHS+QHA 相对 Base 提升 +9.44 个百分点；四个真实家庭任务中，等任务平均归一化过程得分从 50.4% 提升到 57.5%。消融验证了两类证据项、时间记忆与学习先验各自的贡献。\n\n\n# 四、对我的启发\n\n> 局限在于方法依赖在线证据打分与后验更新，带来额外推理开销，且证据项设计（谱稳定性、连续性）可能对策略/动作空间有偏好，泛化到差异较大的动作表示时需重新调参；启发是可以把「执行长度」这类推理期超参数统一建模为由观测与生成痕迹推断的隐变量，为冻结基座策略提供即插即用的增益，这与具身策略的自适应推理课题直接相关。\n"
 }

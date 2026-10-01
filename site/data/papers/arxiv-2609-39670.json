@@ -65,7 +65,8 @@
     "assets/img/covers/arxiv-2609-39670-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -84,7 +85,7 @@
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 44,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -95,8 +96,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 6,
-      "hint": "频道关键词命中 2 个（vision-language-action、manipulation）"
+      "points": 12,
+      "hint": "频道关键词命中 4 个（vision-language-action、manipulation、whole-body、whole-body vla）"
     },
     {
       "id": "freshness",
@@ -109,6 +110,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 9 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -136,5 +143,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"From Local Whole-Body VLA Behaviors to Scene-Scale Aerial Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.39670v1\n---\n>[!abstract] 一句话总结：提出一个面向关节式无人机操作臂（UAM）的合成策略训练与场景级执行统一框架：用场景可重构流水线合成任务条件化、运动动力学可行的轨迹与同步多视角观测以替代真机示范，用实测进度对齐（MPAR）把异步返回的动作块与实测执行进度对齐并实现为连续动力学可行轨迹，并以关系式场景图（Scene Graph）将语言目标落到物体实例与可行交互区域、以拓扑引导迁移连接跨站点局部技能。\n\n\n# 一、动机\n\n> VLA 模型虽能实现任务条件化交互，但扩展到场景级空中操作面临三大障碍：全身示范数据采集成本高昂、异步推理延迟导致动作与状态错位、跨站点局部行为的组合与迁移困难。\n\n\n# 二、方法\n\n> 提出一个面向关节式无人机操作臂（UAM）的合成策略训练与场景级执行统一框架：用场景可重构流水线合成任务条件化、运动动力学可行的轨迹与同步多视角观测以替代真机示范，用实测进度对齐（MPAR）把异步返回的动作块与实测执行进度对齐并实现为连续动力学可行轨迹，并以关系式场景图（Scene Graph）将语言目标落到物体实例与可行交互区域、以拓扑引导迁移连接跨站点局部技能。\n\n\n# 三、核心实验结果\n\n> 局部 VLA 技能在 oracle 目标与可行交接条件下仿真成功 39/60（65.0%）；在额外 500 ms 延迟、含或不含瞬时指令更新停顿时，MPAR 相比标称时间对齐将中位接管相位误差降低 0.212 s；完整系统完成 21/50 次仿真多站点任务（42.0%），并在物理关节式 UAM 上进一步验证。\n\n\n# 四、对我的启发\n\n> 局限在于训练主要依赖合成数据与仿真评估、真机验证规模有限，跨站点迁移与延迟鲁棒性仍是主要瓶颈；但其「实测进度对齐 + 场景图任务分解」的思路对具身操作中的异步策略执行与长程任务组合具有通用启发。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"From Local Whole-Body VLA Behaviors to Scene-Scale Aerial Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.39670v1\n---\n>[!abstract] 一句话总结：提出面向关节式无人机操作臂（UAM）的统一框架：用场景可重配置的合成流水线生成任务条件化、运动学动力学可行的轨迹与同步多视角观测以训练 VLA；用「实测进度对齐」（MPAR）把异步返回的动作块对齐到真实执行进度并实现为连续可行轨迹；再用关系式 Scene Graph 将语言目标接地到物体实例与可交互区域，并以拓扑引导迁移连接跨站点局部行为。\n\n\n# 一、动机\n\n> VLA 模型可实现任务条件化交互，但扩展到场景级空中操作时面临全身演示数据采集昂贵、异步延迟导致动作与状态错位、跨站点行为难以组合三大障碍。\n\n\n# 二、方法\n\n> 提出面向关节式无人机操作臂（UAM）的统一框架：用场景可重配置的合成流水线生成任务条件化、运动学动力学可行的轨迹与同步多视角观测以训练 VLA；用「实测进度对齐」（MPAR）把异步返回的动作块对齐到真实执行进度并实现为连续可行轨迹；再用关系式 Scene Graph 将语言目标接地到物体实例与可交互区域，并以拓扑引导迁移连接跨站点局部行为。\n\n\n# 三、核心实验结果\n\n> 局部 VLA 技能在 oracle 目标与可行交接条件下于仿真中取得 39/60 成功（65.0%）；在额外 500 ms 延迟（含与不含瞬时指令更新卡顿）下，MPAR 相比按名义时间对齐将接管相位误差中位数降低 0.212 s；完整系统在仿真中完成 21/50 多站点任务（42.0%），并在实体关节式 UAM 上得到进一步验证。\n\n\n# 四、对我的启发\n\n> 整体多站点任务成功率仅 42.0%，且局部技能依赖 oracle 目标与可行交接条件，说明跨站点组合与长程鲁棒性仍是瓶颈；不依赖真实平台演示的合成数据流水线思路对数据稀缺的具身任务有借鉴价值。\n"
 }

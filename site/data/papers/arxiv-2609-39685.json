@@ -66,7 +66,8 @@
     "assets/img/covers/arxiv-2609-39685-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -81,7 +82,7 @@
   "related_links": [],
   "page_count": 26,
   "source_tags": [],
-  "score": 41,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -92,8 +93,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（manipulation）"
+      "points": 12,
+      "hint": "频道关键词命中 4 个（manipulation、world model、world models、action-conditioned world）"
     },
     {
       "id": "freshness",
@@ -106,6 +107,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 26 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -135,5 +142,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"RoboCoach: World Models as Active Coaches for Compositional Robot Skills\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.39685v1\n---\n>[!abstract] 一句话总结：提出 ROBOCOACH，用共享的动作条件世界模型 COACHWORLD 执行可复用技能专家，通过 Route-Imagine-Diagnose-Improve（RIDI）循环：先想象 rollout、由进度判别器定位首个失败的子任务、聚合失败记录来选择采集哪些子任务示范并更新哪些专家适配器，从而把「想象出的失败」转化为有针对性的监督信号。\n\n\n# 一、动机\n\n> 长程机器人操作需要在大量任务组合上复用技能，但用端到端示范来改进这些组合代价高昂；系统必须同时决定「下一步教什么」和「把监督施加到哪里」，而现有方法缺乏这种主动选择机制。\n\n\n# 二、方法\n\n> 提出 ROBOCOACH，用共享的动作条件世界模型 COACHWORLD 执行可复用技能专家，通过 Route-Imagine-Diagnose-Improve（RIDI）循环：先想象 rollout、由进度判别器定位首个失败的子任务、聚合失败记录来选择采集哪些子任务示范并更新哪些专家适配器，从而把「想象出的失败」转化为有针对性的监督信号。\n\n\n# 三、核心实验结果\n\n> 想象成功率与真实部署成功率在 22 个任务-策略对上高度相关（rho = 0.840）；在相同数据预算与更新计划下，仅追加 150 条子任务示范即把 Franka 成功率从 13.3% 提升到 75.0%、AgileX 从 40.0% 提升到 83.8%；教练后的专家在四个留出组合上平均成功率 35.0%，而用均匀采集示范更新的共享策略基线为 0%。\n\n\n# 四、对我的启发\n\n> 结果表明世界模型可以作为「主动教练」把想象失败转为定向监督，为模块化策略的自改进提供了低成本路径；局限在于仍需真实环境交互来采集示范、世界模型与真实动力学存在偏差，且留出组合上的绝对成功率（35%）仍偏低，跨本体迁移的泛化性有待进一步验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"RoboCoach: World Models as Active Coaches for Compositional Robot Skills\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.39685v1\n---\n>[!abstract] 一句话总结：RoboCoach 用共享的动作条件世界模型 COACHWORLD 执行可复用技能专家，通过 Route-Imagine-Diagnose-Improve (RIDI) 循环想象失败轨迹，用进度判别器记录第一个未完成的子任务，据此定向采集子任务演示并只更新对应的专家适配器。\n\n\n# 一、动机\n\n> 长程机器人操作通过复用技能来组合新任务，但用更多端到端演示来提升这些组合代价高昂；自改进系统缺乏一个机制来同时决定「接下来该教什么」和「把监督施加在哪里」。\n\n\n# 二、方法\n\n> RoboCoach 用共享的动作条件世界模型 COACHWORLD 执行可复用技能专家，通过 Route-Imagine-Diagnose-Improve (RIDI) 循环想象失败轨迹，用进度判别器记录第一个未完成的子任务，据此定向采集子任务演示并只更新对应的专家适配器。\n\n\n# 三、核心实验结果\n\n> 想象成功率与实机部署成功率在 22 组任务-策略对上高度相关（rho = 0.840）；在相同数据预算与更新调度下，仅新增 150 条子任务演示即把成功率从 13.3% 提升到 75.0%（Franka）、从 40.0% 提升到 83.8%（AgileX）；受训专家还能迁移到 4 个留出组合，平均成功率 35.0%，而用均匀采集数据更新的共享策略基线为 0%。\n\n\n# 四、对我的启发\n\n> 局限在于依赖世界模型的想象保真度与子任务可切分性，且留出组合的绝对迁移成功率仍偏低；启发是把世界模型从「评估/规划器」变成「主动教学调度器」，用想象失败做数据采集与适配器更新的优先级信号，这一思路可迁移到其他模块化策略的自改进与跨本体技能复用场景。\n"
 }
