@@ -99,5 +99,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Learning Distance-Conditioned Object Transport for Humanoid Loco-Manipulation from a Single Motion Clip\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21467v1\n---\n>[!abstract] 一句话总结：提出 Distance-Conditioned Reference Recomposition（DCRR）：把演示中的终止片段重新安置到各个中间搬运状态上，用冻结的 tracking teacher 在闭环动力学下重放重组后的参考，将保留的轨迹按实际达成的物体位置重新打标，再蒸馏成一个无需参考（reference-free）的距离条件策略，并辅以 RL 微调。\n\n\n# 一、动机\n\n> 从单条重定向运动片段训练的人形 loco-manipulation 策略只会复现演示中的那个搬运终点，虽然源轨迹途经了各种中间物体位移，但终止动作只在终点被演示过——即 termination-versus-passage gap，导致策略无法按指令把物体搬运到不同距离。\n\n\n# 二、方法\n\n> 提出 Distance-Conditioned Reference Recomposition（DCRR）：把演示中的终止片段重新安置到各个中间搬运状态上，用冻结的 tracking teacher 在闭环动力学下重放重组后的参考，将保留的轨迹按实际达成的物体位置重新打标，再蒸馏成一个无需参考（reference-free）的距离条件策略，并辅以 RL 微调。\n\n\n# 三、核心实验结果\n\n> 在 Carry、Kick-Push、Crouch-Push、Drag 四种交互模式下，DCRR-BC 实现命令相关的搬运，归一化距离 MAE 为 0.15，而仅用源数据的行为克隆为 0.28；RL 微调进一步提升了训练仿真器内及 sim-to-sim 迁移下的命令响应与执行鲁棒性；硬件实验在四种交互模式下均展示了搬运距离的调制能力。\n\n\n# 四、对我的启发\n\n> 核心启发是：单条演示中的“经过态”可被借用作“终止态”监督，通过状态重定位+重打标把运动跟踪转化为距离条件控制，避免了额外数据采集；局限在于依赖一个可靠的冻结 teacher 和闭环重放筛选，且距离泛化范围仍受源轨迹覆盖的物体位移约束，硬件验证目前限于四种接触式搬运模式。\n"
 }

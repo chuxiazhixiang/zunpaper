@@ -84,5 +84,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\nTitle: \"MT-WAM: Reorienting the One-Pass Predictive Representation Toward Action Generation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21474v1\n---\n>[!abstract] 一句话总结：MT-WAM 在保留原训练目标的同时，从视频骨干最后若干 block 复制出轻量双流分支，并用结构化注意力掩码阻断跨流注意力，新增未来二维点轨迹（motion stream）与未来视觉特征两类互补监督；motion token 作为额外动力学条件送入 action expert，而视觉特征流仅用于监督、不加入动作条件；推理时每次重规划只计算一次 video/motion cache 并跳过未来视频预测。\n\n\n# 一、动机\n\n> Fast-WAM 证明了视频-动作联合训练可在推理时不生成未来视频而提升控制，其性能依赖视频扩散 Transformer 单次前向得到的表征，但原有的未来观测预测目标并未显式优先建模控制所需的未来动力学与视觉结构信息。\n\n\n# 二、方法\n\n> MT-WAM 在保留原训练目标的同时，从视频骨干最后若干 block 复制出轻量双流分支，并用结构化注意力掩码阻断跨流注意力，新增未来二维点轨迹（motion stream）与未来视觉特征两类互补监督；motion token 作为额外动力学条件送入 action expert，而视觉特征流仅用于监督、不加入动作条件；推理时每次重规划只计算一次 video/motion cache 并跳过未来视频预测。\n\n\n# 三、核心实验结果\n\n> 在无需额外具身策略预训练的情况下，LIBERO 成功率达 98.2%，LIBERO-Plus 达 73.7%，比 Fast-WAM 高出 23.8 个百分点；RoboTwin 2.0 Clean2Rand 上 Random 设置成功率从 6.30% 提升到 19.40%；四个真实世界任务平均成功率从 67.0% 提升到 77.8%。\n\n\n# 四、对我的启发\n\n> 视觉特征监督以隐式方式改善视频骨干提供的视觉上下文而非直接进入动作条件，说明“表征正则化”式监督即可带来显著增益，这对复用预训练视频模型做策略学习很有启发；局限在于额外双流分支与点轨迹标注带来训练成本，真实任务提升约 10.8 个百分点，跨本体与更大规模场景的泛化性仍待验证。\n"
 }
