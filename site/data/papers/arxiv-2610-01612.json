@@ -1,0 +1,113 @@
+{
+  "id": "arxiv-2610-01612",
+  "source": "arxiv",
+  "title": "ReCo: Response-Consistent Locomotion with Policy-Aware MPC for Legged Manipulation",
+  "title_zh": "ReCo：面向腿式操作的响应一致运动与策略感知MPC",
+  "abstract": "Continuous legged manipulation requires accurate end-effector tracking while the base keeps walking. Combining reinforcement learning (RL) with model predictive control (MPC) suits this task: the learned policy provides robust locomotion, while MPC coordinates the base and arm to compensate for tracking errors. However, MPC can compensate only for base motion that it can predict, and a learned policy's command response varies with gait phase, contact, and payload. We present ReCo, a framework that couples response-consistent locomotion with policy-aware MPC for legged manipulation. Response shaping trains the policy to respond to commands consistently and repeatably across randomized dynamics. An identified closed-loop response model then lets MPC jointly plan locomotion commands and arm motion. On the simulation benchmark, ReCo reduces position and orientation root-mean-square error (RMSE) by 28.7% and 27.4% relative to the best baseline for each metric. Real-world experiments demonstrate onboard continuous legged manipulation with coordinated base and arm motion.",
+  "abstract_zh": "连续腿式操作要求末端执行器在基座持续行走时保持精确跟踪。将强化学习（RL）与模型预测控制（MPC）结合适合此任务：学习到的策略提供鲁棒的运动，而MPC协调基座和手臂以补偿跟踪误差。然而，MPC只能补偿其可预测的基座运动，且学习策略的命令响应随步态相位、接触和负载而变化。我们提出ReCo，一个将响应一致运动与策略感知MPC耦合用于腿式操作的框架。响应塑造训练策略在随机动力学下一致且可重复地响应命令。然后，辨识的闭环响应模型使MPC能够联合规划运动命令和手臂运动。在仿真基准上，ReCo相对于每个指标的最佳基线，将位置和姿态均方根误差（RMSE）分别降低了28.7%和27.4%。真实世界实验展示了机载连续腿式操作，基座和手臂运动协调。",
+  "tldr_zh": "ReCo框架通过响应一致策略与策略感知MPC实现腿式操作，显著降低跟踪误差。",
+  "cover_zh": "腿式机器人边走边操作｜MPC+RL新框架让跟踪误差大降",
+  "authors": [
+    {
+      "name": "Kuankuan Sima",
+      "affiliation": ""
+    },
+    {
+      "name": "Yichao Gao",
+      "affiliation": ""
+    },
+    {
+      "name": "Chenxi Gu",
+      "affiliation": ""
+    },
+    {
+      "name": "Kefan Zhao",
+      "affiliation": ""
+    },
+    {
+      "name": "Lin Zhao",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-10-01",
+  "updated": "2026-10-01",
+  "arxiv_id": "2610.01612",
+  "pdf_url": "https://arxiv.org/pdf/2610.01612v1",
+  "abs_url": "http://arxiv.org/abs/2610.01612v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-01612.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-01612-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ NUS"
+    },
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 41,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “NUS” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（manipulation）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "loco-manip-wbc",
+    "reason": "腿式移动操作，RL+MPC全身协调，真机验证，属loco-manip-wbc核心方向。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "National University of Singapore"
+  ],
+  "method_tags": [
+    "RL",
+    "MPC",
+    "loco-manipulation"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"ReCo: Response-Consistent Locomotion with Policy-Aware MPC for Legged Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01612v1\n---\n>[!abstract] 一句话总结：提出 ReCo 框架：通过响应塑造（response shaping）训练策略在随机化动力学下对指令保持一致且可重复的响应，并基于辨识得到的闭环响应模型，让策略感知 MPC 联合规划运动指令与手臂动作。\n\n\n# 一、动机\n\n> 在连续腿式操作中，机械臂末端跟踪需要基座行走与手臂协调，但 MPC 只能补偿其能够预测的基座运动，而学习到的运动策略对指令的响应会随步态相位、接触状态和负载变化，导致跟踪误差难以被准确补偿。\n\n\n# 二、方法\n\n> 提出 ReCo 框架：通过响应塑造（response shaping）训练策略在随机化动力学下对指令保持一致且可重复的响应，并基于辨识得到的闭环响应模型，让策略感知 MPC 联合规划运动指令与手臂动作。\n\n\n# 三、核心实验结果\n\n> 在仿真基准上，ReCo 相比各指标最优基线将位置 RMSE 降低 28.7%、姿态 RMSE 降低 27.4%；真实世界实验展示了机载的连续腿式操作，基座与手臂协同运动。\n\n\n# 四、对我的启发\n\n> 局限在于闭环响应模型通常需要针对具体机器人/负载进行辨识，策略响应塑造也依赖随机化动力学覆盖的充分性；启发是将“策略响应一致性”作为学习型运动与 MPC 耦合的显式设计目标，对腿式移动操作与全身协调控制有参考价值。\n"
+}

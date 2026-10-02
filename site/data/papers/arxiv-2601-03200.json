@@ -45,8 +45,9 @@
     "assets/img/covers/arxiv-2601-03200-p2.jpg"
   ],
   "channels": [
-    "manipulation",
-    "sim2real"
+    "world-model",
+    "sim2real",
+    "manipulation"
   ],
   "badges": [
     {
@@ -78,7 +79,7 @@
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 9,
-      "hint": "频道关键词命中 3 个（manipulation、pick-and-place、sim-to-real）"
+      "hint": "频道关键词命中 3 个（sim-to-real、manipulation、pick-and-place）"
     },
     {
       "id": "longer_paper",
@@ -90,7 +91,7 @@
       "id": "cross_channel",
       "label": "跨多个方向",
       "points": 5,
-      "hint": "同时命中 2 个频道"
+      "hint": "同时命中 3 个频道"
     }
   ],
   "judge": {},
@@ -112,5 +113,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"A High-Fidelity Digital Twin for Robotic Manipulation Based on 3D Gaussian Splatting\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2601.03200v2\n---\n>[!abstract] 一句话总结：以 3D Gaussian Splatting 作为统一场景表示，从稀疏 RGB 输入快速重建照片级数字孪生，并加入可见性感知语义融合做 3D 标注，再通过基于滤波的高效几何转换生成碰撞模型，集成到 Unity-ROS2-MoveIt 物理引擎中。\n\n\n# 一、动机\n\n> 现有机器人数字孪生方法重建慢、视觉保真度有限，且难以把逼真模型转换为可用于规划的碰撞几何，阻碍闭环运动规划与可靠的 sim-to-real 迁移。\n\n\n# 二、方法\n\n> 以 3D Gaussian Splatting 作为统一场景表示，从稀疏 RGB 输入快速重建照片级数字孪生，并加入可见性感知语义融合做 3D 标注，再通过基于滤波的高效几何转换生成碰撞模型，集成到 Unity-ROS2-MoveIt 物理引擎中。\n\n\n# 三、核心实验结果\n\n> 可在数分钟内从稀疏 RGB 输入构建高质量数字孪生；在 Franka Emika Panda 机器人 pick-and-place 真机实验中，增强后的几何精度能够支持鲁棒的真实世界操作。摘要未给出成功率、重建误差等具体定量指标。\n\n\n# 四、对我的启发\n\n> 局限在于摘要未报告定量评估，且对多物体、动态场景及复杂接触的泛化性尚不明确；启发是 3DGS 可作为连接感知与规划的统一场景表示，语义与几何一致性有助于加速 sim-to-real，但碰撞几何的保真转换和物理引擎集成仍是关键环节。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"A High-Fidelity Digital Twin for Robotic Manipulation Based on 3D Gaussian Splatting\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2601.03200v2\n---\n>[!abstract] 一句话总结：以 3D Gaussian Splatting 作为统一场景表示，在数分钟内从稀疏 RGB 输入重建照片级数字孪生，并加入可见性感知的语义融合完成 3D 标注，再通过高效的基于滤波的几何转换方法生成碰撞模型，接入 Unity-ROS2-MoveIt 物理引擎。\n\n\n# 一、动机\n\n> 现有机器人数字孪生方案重建速度慢、视觉保真度有限，且难以把照片级逼真的 3D 模型转换为可用于运动规划的碰撞几何体，制约了闭环规划与 sim-to-real 迁移。\n\n\n# 二、方法\n\n> 以 3D Gaussian Splatting 作为统一场景表示，在数分钟内从稀疏 RGB 输入重建照片级数字孪生，并加入可见性感知的语义融合完成 3D 标注，再通过高效的基于滤波的几何转换方法生成碰撞模型，接入 Unity-ROS2-MoveIt 物理引擎。\n\n\n# 三、核心实验结果\n\n> 在 Franka Emika Panda 机械臂的抓取-放置实验中，该框架可在分钟级完成从稀疏 RGB 到高保真孪生的重建；语义与几何一致性的增强有效支撑了真实环境下的鲁棒操作；论文摘要未给出成功率、重建误差等具体量化指标，需查阅正文补充数字。\n\n\n# 四、对我的启发\n\n> 把 3DGS 从纯渲染表示推进到规划可用表示的关键在于语义融合与碰撞几何转换，为感知到操作的快速链路提供了可扩展范式；局限是缺少量化评测、对可变形/透明物体的适用性未知，且真实执行的鲁棒性仍依赖物理引擎与标定精度。与具身智能/机器人课题高度相关。\n"
 }
