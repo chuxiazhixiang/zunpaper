@@ -110,5 +110,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"InterEvolve: Test-Time Evolution of Reward Programs for Humanoid Loco-Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02196v1\n---\n>[!abstract] 一句话总结：InterEvolve 构建「规划—控制」接口：在冻结的 body prior 上训练物体感知的前向-后向（FB）行为基础模型，使新奖励在测试时直接转化为 loco-manipulation 行为；同时把任务写成带有完成条件和可调常量的分阶段奖励程序，由 LLM agent 依据执行反馈与已验证程序技能库修改程序结构、数值优化器调参，并在并行仿真场景中验证候选，从而在测试时自我迭代进化。\n\n\n# 一、动机\n\n> 人形机器人 loco-manipulation 通常需要为每个新任务重新训练或手工设计奖励，已训练控制器中蕴含的大量运动能力无法被新任务直接调用，导致面对训练分布外任务时成本高、复用性差。\n\n\n# 二、方法\n\n> InterEvolve 构建「规划—控制」接口：在冻结的 body prior 上训练物体感知的前向-后向（FB）行为基础模型，使新奖励在测试时直接转化为 loco-manipulation 行为；同时把任务写成带有完成条件和可调常量的分阶段奖励程序，由 LLM agent 依据执行反馈与已验证程序技能库修改程序结构、数值优化器调参，并在并行仿真场景中验证候选，从而在测试时自我迭代进化。\n\n\n# 三、核心实验结果\n\n> 论文声称人工设计奖励远未能释放 FB 模型已有的 loco-manipulation 能力，而 InterEvolve 进化出的奖励程序能量化地提升表现，并常通过新颖策略实现（如以非预期方式诱导/复用/组合已有运动技能）；方法在仿真中覆盖多种任务、复杂场景与长时序组合任务，且进化后的技能可在真实 Unitree G1 上仅凭第一视角机载感知自主运行。注意：摘要未给出具体成功率、提升幅度等数值指标，具体数字需查阅正文表格。\n\n\n# 四、对我的启发\n\n> 核心启发是把「测试时适应」从微调网络参数转为搜索可解释的奖励程序结构＋常量，配合 LLM 先验与并行仿真验证，可在不重训练的前提下复用大规模预训练控制器的潜在能力；局限在于依赖昂贵的并行仿真验证与 LLM 调用预算、奖励程序的表达力上界、以及仿真到真实（尤其是接触丰富任务与机载感知噪声）的泛化性仍需正文数据佐证。\n"
 }
