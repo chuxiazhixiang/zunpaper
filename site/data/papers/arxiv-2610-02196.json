@@ -71,7 +71,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -110,5 +110,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/CV\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"InterEvolve: Test-Time Evolution of Reward Programs for Humanoid Loco-Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02196v1\n---\n>[!abstract] 一句话总结：InterEvolve 将任务表示为带完成条件和可调常数的分阶段奖励程序，并用 LLM 代理结合执行反馈与已验证技能库修改程序结构、数值优化器调节常数；同时构建 object-aware forward-backward 行为基础模型，把关于身体或物体的新奖励在冻结身体先验上转化为 loco-manipulation 行为。\n\n\n# 一、动机\n\n> 现有控制器在测试时难以解决未训练过的人形 loco-manipulation 任务，且人工设计奖励往往无法充分释放控制器已具备的运动与操作能力；作者希望无需重新训练，就能复用已有技能并从自身尝试中持续改进。\n\n\n# 二、方法\n\n> InterEvolve 将任务表示为带完成条件和可调常数的分阶段奖励程序，并用 LLM 代理结合执行反馈与已验证技能库修改程序结构、数值优化器调节常数；同时构建 object-aware forward-backward 行为基础模型，把关于身体或物体的新奖励在冻结身体先验上转化为 loco-manipulation 行为。\n\n\n# 三、核心实验结果\n\n> 实验表明，人工设计奖励会遗漏 FB 模型大量 loco-manipulation 能力，而 InterEvolve 进化出的奖励程序能够释放这些能力，并有时产生新策略；方法可在仿真中生成多样任务、复杂场景和长时程组合行为，进化后的技能还能在实体 Unitree G1 上基于第一视角机载感知自主运行。摘要未给出具体成功率或数值指标。\n\n\n# 四、对我的启发\n\n> 局限在于依赖仿真并行验证与 LLM 迭代，缺少定量成功率、真机安全性与泛化性分析；启发是测试时进化奖励程序可作为释放基础模型潜在技能、组合长时程行为的通用接口，对具身智能中的技能复用与自动奖励设计有参考价值。\n"
+  "note": ""
 }

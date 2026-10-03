@@ -82,7 +82,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -114,5 +114,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Watch, Infer, Coordinate: Inferring Robot Partner Constraints for Zero-Shot Coordination\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02170v1\n---\n>[!abstract] 一句话总结：提出 Watch, Infer, Coordinate 基准（覆盖三个物理耦合操作场景）以及一种约束推断方法：利用「约束会塑造团队联合行为」这一洞见，基于观察到的双机器人联合动作序列对候选约束打分，推断伙伴的物理能力，并据此在新任务上实现零样本协调。\n\n\n# 一、动机\n\n> 多机器人协作搬运等物理耦合任务中，伙伴机器人可能因硬件退化或执行器故障存在自身未知的物理能力约束，而演示只能显示它「做了什么」而非「本可以做什么」，加之另一机器人会主动补偿其缺陷，导致仅从受限机器人自身行为难以识别其真实能力边界。\n\n\n# 二、方法\n\n> 提出 Watch, Infer, Coordinate 基准（覆盖三个物理耦合操作场景）以及一种约束推断方法：利用「约束会塑造团队联合行为」这一洞见，基于观察到的双机器人联合动作序列对候选约束打分，推断伙伴的物理能力，并据此在新任务上实现零样本协调。\n\n\n# 三、核心实验结果\n\n> 在全部三个物理耦合操作场景中，该方法显著提升了约束推断准确率与零样本协调成功率，性能接近拥有真实约束信息的 oracle 上界；论文同时指出联合行为信息比仅观察受限机器人自身行为更具判别力（具体数值见原文实验部分，摘要未给出）。\n\n\n# 四、对我的启发\n\n> 启发在于把「伙伴建模」从个体行为扩展到团队联合行为，可用于容错协作与跨具身迁移；局限是约束空间与候选集需预先定义，且目前仅在三个仿真操作场景验证，真实硬件退化与在线约束变化的泛化性仍待检验。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Watch, Infer, Coordinate: Inferring Robot Partner Constraints for Zero-Shot Coordination\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02170v1\n---\n>[!abstract] 一句话总结：提出 Watch, Infer, Coordinate 基准（覆盖三类物理耦合操作场景），并给出一种约束推断方法：利用双机器人联合行为对候选约束进行打分，从而推断伙伴的物理能力，再据此实现对新任务的零样本协调。\n\n\n# 一、动机\n\n> 机器人协作（尤其是搬运过大或过重物体的操作任务）中，伙伴可能因硬件退化或执行器故障存在未知的物理能力约束，而演示只能显示其「做了什么」、无法显示其「本可以做什么」，物理耦合任务中另一机器人还会补偿其缺陷，导致约束难以从单侧行为中识别。\n\n\n# 二、方法\n\n> 提出 Watch, Infer, Coordinate 基准（覆盖三类物理耦合操作场景），并给出一种约束推断方法：利用双机器人联合行为对候选约束进行打分，从而推断伙伴的物理能力，再据此实现对新任务的零样本协调。\n\n\n# 三、核心实验结果\n\n> 在全部 3 类物理耦合操作场景中，该方法显著提升了约束推断与零样本协调性能，效果接近拥有真实约束信息的 oracle（摘要未报告具体数值指标）。\n\n\n# 四、对我的启发\n\n> 关键启发是「约束会塑造团队的联合行为」，因此双方动作都可作为推断依据；局限在于推断依赖可观测的耦合交互，若伙伴未充分暴露行为差异或补偿过强，约束仍可能难以识别；与机器人协作/具身智能课题直接相关。\n"
 }

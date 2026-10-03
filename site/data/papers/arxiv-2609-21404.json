@@ -83,5 +83,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/AutonomousDriving\n  - 状态/待读\nTitle: \"Stabilizing Trajectory Outputs in End-to-End Autonomous Driving via SC-IMM Based Teacher Signals\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.21404v1\n---\n>[!abstract] 一句话总结：提出基于场景条件交互多模型（SC-IMM）的离线教师信号生成与学习框架：把专家轨迹转换到路径-速度（path-speed）状态空间，用场景线索条件化 IMM 更新，产出路径-速度教师标签与运动模式后验概率，作为辅助监督叠加到原轨迹损失上训练，推理结构与下游 waypoint 控制器保持不变。\n\n\n# 一、动机\n\n> 端到端自动驾驶的 waypoint 模仿学习通常只最小化坐标级误差，难以刻画随场景变化的路径-速度耦合关系，导致 waypoint 输出在时序上不稳定、闭环控制抖动明显。\n\n\n# 二、方法\n\n> 提出基于场景条件交互多模型（SC-IMM）的离线教师信号生成与学习框架：把专家轨迹转换到路径-速度（path-speed）状态空间，用场景线索条件化 IMM 更新，产出路径-速度教师标签与运动模式后验概率，作为辅助监督叠加到原轨迹损失上训练，推理结构与下游 waypoint 控制器保持不变。\n\n\n# 三、核心实验结果\n\n> 在 CARLA Town12 的 100 条短路线闭环评测中，相比基线驾驶分数提升 28.0%，Collision/km 降低 62.3%，同时 jerk 与轨迹变化量（trajectory-variation）指标也得到改善；且不改变推理时的网络结构与控制器，无额外在线开销。\n\n\n# 四、对我的启发\n\n> 仅改训练信号、不动推理管线的思路对具身智能策略学习有借鉴意义：用显式运动模型先验（模式后验）替代纯坐标回归监督，可提升时序稳定性。局限在于实验仅限 CARLA 仿真与短路线、依赖专家轨迹质量与 IMM 超参设置，未在真实车辆或跨场景泛化上验证。\n"
 }

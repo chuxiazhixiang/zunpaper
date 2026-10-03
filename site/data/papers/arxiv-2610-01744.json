@@ -71,7 +71,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "github_repo",
@@ -109,5 +109,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/数据\n  - Domain/CV\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/PointCloud\n  - 状态/待读\nTitle: \"3DROID: A Renderable 3D Gaussian Dataset with Measured Per-Scene Reliability\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01744v1\n---\n>[!abstract] 一句话总结：本文系统研究外参可靠性与位姿条件对前馈 3DGS 的影响，提出一套标定感知（calibration-aware）的重建流程，将重建场景锚定到机器人的度量工作空间，并据此构建可渲染、度量位姿锚定的机器人操作数据集。\n\n\n# 一、动机\n\n> 机器人操作模型主要在 2D 观测下推理，而现有 3D 监督（深度、点云、轨迹）与可渲染 3DGS 表征缺乏真实世界度量尺度，尤其是在相机外参不可靠时，3DGS 的重建几何无法锚定到机器人的物理工作空间。\n\n\n# 二、方法\n\n> 本文系统研究外参可靠性与位姿条件对前馈 3DGS 的影响，提出一套标定感知（calibration-aware）的重建流程，将重建场景锚定到机器人的度量工作空间，并据此构建可渲染、度量位姿锚定的机器人操作数据集。\n\n\n# 三、核心实验结果\n\n> 实验表明位姿条件（pose conditioning）能提升新视角渲染保真度，但其几何收益高度依赖注入外参的可靠性；作者据此发布了带场景级可靠性标注的可渲染 3D Gaussian 数据集 3DROID（已开源在 Hugging Face），为机器人操作研究提供度量一致、可信度可查的 3D 监督。\n\n\n# 四、对我的启发\n\n> 该工作揭示了 3DGS 的光度优化目标与度量几何一致性之间的根本矛盾：外参不可靠时，位姿条件反而可能损害几何精度，因此下游使用必须结合场景级可靠性标签；对具身智能而言，如何将这种可靠性信息纳入策略训练（如按可靠性加权或过滤监督）是值得探索的方向，同时也提示外参标定质量应成为机器人数据采集的标准元数据。\n"
+  "note": "---\ntags:\n  - 论文/数据\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"3DROID: A Renderable 3D Gaussian Dataset with Measured Per-Scene Reliability\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01744v1\n---\n>[!abstract] 一句话总结：系统研究外参可靠性与位姿条件（pose conditioning）对前馈式 3DGS 的影响，并提出一套校准感知（calibration-aware）流程，将重建场景锚定到机器人的米制工作空间，从而构建可渲染、度量位姿锚定、并附带场景级可靠性信息的数据集 3DROID。\n\n\n# 一、动机\n\n> 机器人操作模型主要在 2D 观测上推理，却要在 3D 物理世界中行动；现有深度、点云、3D 轨迹等几何先验虽被引入，但 3D Gaussian Splatting 表示主要面向光度保真，缺乏真实世界度量尺度，尤其当相机外参不可靠时几何监督会失真。\n\n\n# 二、方法\n\n> 系统研究外参可靠性与位姿条件（pose conditioning）对前馈式 3DGS 的影响，并提出一套校准感知（calibration-aware）流程，将重建场景锚定到机器人的米制工作空间，从而构建可渲染、度量位姿锚定、并附带场景级可靠性信息的数据集 3DROID。\n\n\n# 三、核心实验结果\n\n> （1）位姿条件化能提升新视角合成保真度，但其几何层面的收益取决于所注入外参的可靠性；（2）基于该流程发布了带场景级可靠性标注的可渲染 3DGS 数据集，可用于机器人操作研究（https://huggingface.co/datasets/wonguen/3DROID）；（3）摘要未报告具体定量指标（如 PSNR、深度误差、成功率等数值），需查阅原文获取。\n\n\n# 四、对我的启发\n\n> 局限在于方法依赖对相机外参可靠性的判断，外参不可靠时几何收益会下降，且数据集规模、真实机器人平台覆盖度与下游策略提升效果尚待验证；启发是可把「外参可靠性」作为显式信号纳入 3D 监督数据的质量标注，为具身策略提供带置信度的几何先验。\n"
 }

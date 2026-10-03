@@ -85,7 +85,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -122,5 +122,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Continuous Conditioning of VLAs with Augmenting EMG and Visual Task Descriptors\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01794v1\n---\n>[!abstract] 一句话总结：提出并微调两个 VLA 变体来验证该假设：EC-VLA 将 8 通道肌电（EMG）包络作为连续条件输入拼接进本体感知向量；VA-VLA 将视觉分割标注叠加到图像输入中，二者均在语言提示之外提供任务条件信号。\n\n\n# 一、动机\n\n> VLA 模型虽宣称多模态输入，但任务信息几乎完全依赖语言描述；在杂乱或语义歧义的场景中，单一语言提示难以消解任务歧义，缺少语言之外的任务条件化通道。\n\n\n# 二、方法\n\n> 提出并微调两个 VLA 变体来验证该假设：EC-VLA 将 8 通道肌电（EMG）包络作为连续条件输入拼接进本体感知向量；VA-VLA 将视觉分割标注叠加到图像输入中，二者均在语言提示之外提供任务条件信号。\n\n\n# 三、核心实验结果\n\n> 在 3 名被试参与的方块选择任务上：EC-VLA 在无杂乱、同分布条件下与语言提示基线相当，而在杂乱、分布外场景中显著优于基线；VA-VLA 在同分布场景有小幅提升，在杂乱分布外试次中提升明显。摘要仅给出 8 通道 EMG、3 名被试与两类模型等设定数字，未披露具体成功率/性能数值。\n\n\n# 四、对我的启发\n\n> 局限在于仅验证单一 cube-selection 任务、被试仅 3 人、EMG 需额外可穿戴采集设备，跨任务与跨用户泛化性未知。启发是连续生理信号与视觉标注可作为语言之外的任务条件通道，对杂乱场景下的具身操作与遥操作任务有一定参考价值。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Continuous Conditioning of VLAs with Augmenting EMG and Visual Task Descriptors\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01794v1\n---\n>[!abstract] 一句话总结：提出并微调两个变体模型：EC-VLA 将 8 通道肌电（EMG）包络作为连续条件输入，直接拼接到本体感受（proprioceptive）向量上；VA-VLA 则将视觉分割标注叠加到图像输入中，二者均在语言提示基线之上提供额外任务条件。\n\n\n# 一、动机\n\n> 现有 VLA 模型虽号称多模态，但任务条件几乎完全依赖语言描述，在杂乱或语义歧义的场景中语言提示容易失效；论文试图验证状态空间中的其他模态（生理信号、视觉标注）能否作为补充任务条件。\n\n\n# 二、方法\n\n> 提出并微调两个变体模型：EC-VLA 将 8 通道肌电（EMG）包络作为连续条件输入，直接拼接到本体感受（proprioceptive）向量上；VA-VLA 则将视觉分割标注叠加到图像输入中，二者均在语言提示基线之上提供额外任务条件。\n\n\n# 三、核心实验结果\n\n> 在三名被试参与的方块选择任务上，EC-VLA 在无杂乱、分布内场景中与语言提示基线持平，但在杂乱、分布外场景中显著优于基线；VA-VLA 在分布内场景仅小幅提升，而在杂乱分布外试验中提升明显。摘要未给出具体量化指标（如成功率提升百分比），文中结论以「匹配/显著超越/明显提升」等相对表述为主，需查阅正文获取数值。\n\n\n# 四、对我的启发\n\n> 结论支持「任务条件不应局限于语言」这一观点，对杂乱场景下的具身操作有启发；但局限也很明显：EMG 需要可穿戴采集设备且高度依赖被试个体，跨被试、跨具身迁移与工程部署成本尚未验证，实验规模仅 3 人、单一 cube-selection 任务，泛化性证据有限。\n"
 }

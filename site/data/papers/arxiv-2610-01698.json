@@ -37,7 +37,8 @@
     "assets/img/covers/arxiv-2610-01698-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -48,25 +49,31 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 22,
+  "score": 30,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 9,
-      "hint": "频道关键词命中 3 个（manipulation、bimanual、robotwin）"
+      "points": 12,
+      "hint": "频道关键词命中 4 个（manipulation、bimanual、robotwin、kitchen task）"
     },
     {
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -94,5 +101,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CameraControl\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"ActiveWAM: Evidence-Aware Active Vision for World-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01698v1\n---\n>[!abstract] 一句话总结：提出 ActiveWAM——一个联合学习观测与操作的统一世界-动作模型：用「训练时反演」（training-time inversion）以携带任务的源证据和可见时序变化来约束冻结的视频先验，从而免去测试时反演与候选排序；部署时策略从视角感知历史中直接生成双臂与 pan/tilt 动作（含 stay 与 reacquisition 行为），并用新测得的 RGB 观测更新上下文，未来视频预测仅作协同训练信号，动作生成不需解码未来视频或最优视角标注。\n\n\n# 一、动机\n\n> 主动视觉操作中相机运动决定了有限观测窗口内保留哪些证据：获取新视角可能把任务关键线索移出视野，而保持当前视角又放弃了潜在有用观测。现有世界-动作模型缺乏对这种「保留 vs 获取」权衡的显式建模，且常依赖测试时反演或候选视角排序，代价高、难以部署。\n\n\n# 二、方法\n\n> 提出 ActiveWAM——一个联合学习观测与操作的统一世界-动作模型：用「训练时反演」（training-time inversion）以携带任务的源证据和可见时序变化来约束冻结的视频先验，从而免去测试时反演与候选排序；部署时策略从视角感知历史中直接生成双臂与 pan/tilt 动作（含 stay 与 reacquisition 行为），并用新测得的 RGB 观测更新上下文，未来视频预测仅作协同训练信号，动作生成不需解码未来视频或最优视角标注。\n\n\n# 三、核心实验结果\n\n> 1) 在 TAVIS 的分布外设置上，成功率比最强基线最多提升 17.0 个百分点；2) 在作者提出的 RoboTwin-AV（50 个任务、支持可执行 pan/tilt 控制与自动生成示范的基准）上比 Fast-WAM 高 20.0 分；3) 在真实物理厨房任务上比 Fast-WAM 高 26.7 分。\n\n\n# 四、对我的启发\n\n> 把主动视觉形式化为证据感知的 retain–acquire 决策，并用未来视频预测做协同训练而不在推理时解码，是很有借鉴价值的思路。局限在于方法依赖冻结视频先验的质量与域覆盖，且新增基准 RoboTwin-AV 为自动生成示范，真机任务规模仍有限；对做具身操作与主动感知的研究直接相关。\n"
+  "note": ""
 }

@@ -71,7 +71,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -108,5 +108,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"SkeleWAM: Skeleton World-Action Modeling for Efficient Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02120v1\n---\n>[!abstract] 一句话总结：SkeleWAM 用机器人关节、物体中心和交互点构成的稀疏 3D 骨架作为统一几何状态表示，该骨架由当前 RGB-D 观测与本体感知在线构建，动作生成与未来骨架预测共享这一状态；未来骨架预测为动作学习提供额外几何监督而无需视觉重建，推理时直接由当前骨架和语言指令生成动作，并用 Medoid Action Consensus (MAC) 对随机动作采样做一致性聚合。\n\n\n# 一、动机\n\n> 现有 World Action Model 通常预测视频或学习到的视觉隐变量，只能隐式表达交互几何，并保留与控制无关的外观信息，导致模型冗余、泛化性差；同时缺少显式的几何监督信号。\n\n\n# 二、方法\n\n> SkeleWAM 用机器人关节、物体中心和交互点构成的稀疏 3D 骨架作为统一几何状态表示，该骨架由当前 RGB-D 观测与本体感知在线构建，动作生成与未来骨架预测共享这一状态；未来骨架预测为动作学习提供额外几何监督而无需视觉重建，推理时直接由当前骨架和语言指令生成动作，并用 Medoid Action Consensus (MAC) 对随机动作采样做一致性聚合。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO-Plus 上，SkeleWAM 以 57.1M 参数取得 85.9% 的总体成功率，比 Cosmos-Policy 高出 3.7 个百分点；实验表明稀疏 3D 机器人-物体结构是一种参数高效且鲁棒的世界-动作学习状态空间。\n\n\n# 四、对我的启发\n\n> 用稀疏几何骨架替代视频/视觉隐变量可显著降低参数量并提升泛化，说明具身操作中「与控制相关的几何」比像素外观更值得建模；局限在于骨架构建依赖可靠的 RGB-D 与物体中心/交互点估计，遮挡、透明或形变物体场景下可能失效，且缺少对未来物理动力学（如接触力、形变）的显式建模。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"SkeleWAM: Skeleton World-Action Modeling for Efficient Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02120v1\n---\n>[!abstract] 一句话总结：SkeleWAM 用稀疏 3D 骨架（机器人关节、物体中心、交互点）统一表示操作场景，该骨架由当前 RGB-D 观测与机器人本体感知在线构建；模型以当前骨架和语言指令为条件直接生成动作，并额外以「未来骨架预测」作为几何监督（无需视觉重建），推理时用 Medoid Action Consensus（MAC）对随机动作采样做一致性聚合。\n\n\n# 一、动机\n\n> 现有 world action model（WAM）通常预测视频或学到的视觉 latent，这类表示只隐式地编码交互几何，并会保留大量与控制无关的外观信息，导致状态空间冗余、参数效率低；同时动作学习缺乏显式的几何监督。\n\n\n# 二、方法\n\n> SkeleWAM 用稀疏 3D 骨架（机器人关节、物体中心、交互点）统一表示操作场景，该骨架由当前 RGB-D 观测与机器人本体感知在线构建；模型以当前骨架和语言指令为条件直接生成动作，并额外以「未来骨架预测」作为几何监督（无需视觉重建），推理时用 Medoid Action Consensus（MAC）对随机动作采样做一致性聚合。\n\n\n# 三、核心实验结果\n\n> 1) 在 LIBERO-Plus 上取得 85.9% 的总体成功率，超过 Cosmos-Policy 3.7 个百分点；2) 模型仅 57.1M 参数，验证了稀疏 3D 机器人-物体结构是参数高效的世界-动作建模状态空间；3) 未来骨架预测提供额外几何监督即可提升动作学习，无需任何视觉重建损失。\n\n\n# 四、对我的启发\n\n> 局限：骨架依赖在线 RGB-D 感知与关节/物体中心/交互点提取，遮挡或杂乱场景下可能不稳；评测仅在 LIBERO-Plus 仿真环境，未验证真机与跨具身迁移；MAC 作为随机采样的辅助共识策略会带来额外推理开销。启发：用极简几何状态替代像素级预测，或可作为具身策略中「世界模型」的轻量替代方案。\n"
 }

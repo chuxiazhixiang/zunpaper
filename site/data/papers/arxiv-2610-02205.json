@@ -84,7 +84,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -115,5 +115,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/数据\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\n  - Task/CameraControl\nTitle: \"ROWBench: Do Video Models Render What the Program Specifies?\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02205v1\n---\n>[!abstract] 一句话总结：提出 PROWBench：用可扩展框架程序化构建场景并控制行为，将 170 个程序的实体状态与带时间戳事件（含视野外）记录为可重放的世界记录，再渲染同步视角与代理表示（如粗 3D、包围盒），从而把生成视频与程序执行的可观测后果逐事件比对，并用两个 VLM 指标评测逻辑-渲染对齐与交互成功率。\n\n\n# 一、动机\n\n> 可编程世界模型将可执行动力学与视觉生成解耦，但现有基准只评测视觉质量、可控性、指令或物理遵循，很少检验生成视频对细粒度、程序指定的世界事件（含相机视野外事件）的视觉忠实度。\n\n\n# 二、方法\n\n> 提出 PROWBench：用可扩展框架程序化构建场景并控制行为，将 170 个程序的实体状态与带时间戳事件（含视野外）记录为可重放的世界记录，再渲染同步视角与代理表示（如粗 3D、包围盒），从而把生成视频与程序执行的可观测后果逐事件比对，并用两个 VLM 指标评测逻辑-渲染对齐与交互成功率。\n\n\n# 三、核心实验结果\n\n> 1) 基准包含 170 个程序化构建的 episode 与 600 段代理视频，覆盖多样场景与交互；2) 覆盖第一人称与第三人称视角，其中部分 episode 提供同步多视角观测；3) 评测维度包括实体控制、长程记忆、Logic-Render Alignment 与 Interaction Success Rate 两项 VLM 指标，用于检验时间线遵循与带时间戳引擎事件的视觉实现。\n\n\n# 四、对我的启发\n\n> 与机器人/具身智能课题不直接相关，但其「记录程序事件→检验生成视频是否实现该事件」的评测范式可迁移到具身世界模型的可控性与长程一致性评估；局限在于 VLM 指标可能与人类判断存在偏差，且 170 段 episode 规模偏小、代理视频与真实渲染存在域差。\n"
+  "note": "---\ntags:\n  - 论文/数据\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\n  - Task/CameraControl\n  - 状态/待读\nTitle: \"ROWBench: Do Video Models Render What the Program Specifies?\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02205v1\n---\n>[!abstract] 一句话总结：提出 PROWBench：用可扩展框架程序化构建场景与行为，记录实体状态和带时间戳事件作为可回放的世界记录，并据此同步渲染不同相机视角与代理表示（如粗 3D、边界框），再把生成视频与程序执行的可观测结果对比；评测实体控制、长时记忆，并引入两个基于 VLM 的指标 Logic-Render Alignment 与 Interaction Success Rate 来衡量时间线一致性与事件的视觉实现。\n\n\n# 一、动机\n\n> 可编程世界模型把可执行动力学与视觉生成解耦，但现有基准多只评测视觉质量、可控性和指令/物理一致性，很少检验生成视频对细粒度、程序指定世界事件（含相机视野外事件）的忠实度，缺少统一的评估手段。\n\n\n# 二、方法\n\n> 提出 PROWBench：用可扩展框架程序化构建场景与行为，记录实体状态和带时间戳事件作为可回放的世界记录，并据此同步渲染不同相机视角与代理表示（如粗 3D、边界框），再把生成视频与程序执行的可观测结果对比；评测实体控制、长时记忆，并引入两个基于 VLM 的指标 Logic-Render Alignment 与 Interaction Success Rate 来衡量时间线一致性与事件的视觉实现。\n\n\n# 三、核心实验结果\n\n> 基准含 170 个程序化 episode 与 600 段代理视频，覆盖多样场景与交互，并包含第一人称与第三人称视角，其中部分 episode 提供同步多视角观测；提出 2 个 VLM 评判指标（Logic-Render Alignment、Interaction Success Rate），用于检验时间线遵循与带时间戳引擎事件的视觉落地。\n\n\n# 四、对我的启发\n\n> 局限在于评测依赖代理表示（粗 3D/框）与 VLM 打分，可能引入渲染差异和模型偏差，且事件记录虽含视野外信息，仍需保证代理视图与目标视图的语义对齐；启发是可作为可编程世界模型/下一代游戏引擎的保真度诊断工具。与机器人/具身智能不直接相关，但若世界模型被用作具身仿真的渲染前端则有一定参考价值。\n"
 }

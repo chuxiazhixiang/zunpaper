@@ -53,7 +53,8 @@
     "assets/img/covers/arxiv-2610-01758-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "sim2real"
   ],
   "badges": [
     {
@@ -64,25 +65,31 @@
   "related_links": [],
   "page_count": 19,
   "source_tags": [],
-  "score": 16,
+  "score": 24,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（manipulation）"
+      "points": 6,
+      "hint": "频道关键词命中 2 个（manipulation、real-world deployment）"
     },
     {
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 19 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -109,5 +116,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/CV\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"GenCOPE: Syn2Real Generalized Category-Level Object Pose Estimation for Robotic Picking\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01758v1\n---\n>[!abstract] 一句话总结：通过引入 2D 与 3D 语义一致性约束学习域不变表征以降低编码器对域特有特征的敏感度，并设计一个仅依赖全局特征、以 2D-3D 跨模态稠密融合进行交叉一致性学习的端到端位姿回归框架，从而在保持轻量高效的同时提升跨域位姿估计精度。\n\n\n# 一、动机\n\n> 现有类别级物体位姿估计（COPE）方法在遇到新物体类别时仍需重新采集并标注大量真实数据，扩展成本高、难以落地；本文希望实现只在合成渲染数据上训练、直接泛化到真实场景的 Syn2Real 通用 COPE，其核心难点是合成域与真实域在纹理外观上的巨大域差异。\n\n\n# 二、方法\n\n> 通过引入 2D 与 3D 语义一致性约束学习域不变表征以降低编码器对域特有特征的敏感度，并设计一个仅依赖全局特征、以 2D-3D 跨模态稠密融合进行交叉一致性学习的端到端位姿回归框架，从而在保持轻量高效的同时提升跨域位姿估计精度。\n\n\n# 三、核心实验结果\n\n> 在 REAL275 与 Wild6D 两个公开基准以及真实机器人抓取场景上验证，模型仅用合成数据训练即可在真实数据上取得优于现有范式的 Syn2Real 泛化表现，并可直接支持真实抓取任务；需要说明的是，所提供的摘要未给出具体误差指标或提升百分比（如 mIoU/5°2cm 等具体数值），需查阅原文实验表格确认定量结果。\n\n\n# 四、对我的启发\n\n> 优势在于免真实数据重采集 + 全局特征带来的轻量化，适合真实机器人部署；局限是摘要未量化域差异处理在纹理极端变化、遮挡与传感器噪声下的鲁棒性，且仅依赖全局特征可能在强遮挡或细粒度对称物体上损失精度，后续可关注其与局部特征/在线自适应的结合。与具身智能中的类别级抓取课题直接相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/PointCloud\n  - 状态/待读\nTitle: \"GenCOPE: Syn2Real Generalized Category-Level Object Pose Estimation for Robotic Picking\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01758v1\n---\n>[!abstract] 一句话总结：提出 GenCOPE：通过 2D 与 3D 语义一致性约束学习域不变表征以缩小合成-真实纹理域差，并设计端到端的 2D-3D 交叉一致性位姿回归框架，借助密集跨模态融合细化位姿；模型仅使用全局特征，结构轻量高效。\n\n\n# 一、动机\n\n> 现有类别级物体位姿估计（COPE）在面向新物体类别时，仍需耗费大量人力重新采集真实训练数据，可扩展性差；本文希望仅用渲染合成数据训练、直接泛化到真实机器人部署场景。\n\n\n# 二、方法\n\n> 提出 GenCOPE：通过 2D 与 3D 语义一致性约束学习域不变表征以缩小合成-真实纹理域差，并设计端到端的 2D-3D 交叉一致性位姿回归框架，借助密集跨模态融合细化位姿；模型仅使用全局特征，结构轻量高效。\n\n\n# 三、核心实验结果\n\n> 在 REAL275 与 Wild6D 两个公开基准以及真实机器人抓取场景上验证，Syn2Real 泛化性能优于现有范式（摘要未给出具体数值指标，仅报告了一致的优越性）；模型保持轻量高效，适合真实机器人部署，代码与演示已开源。\n\n\n# 四、对我的启发\n\n> 核心启发是「语义一致性 + 全局特征」可在无真实数据下实现跨域泛化，降低机器人部署的数据采集成本；局限在于仅依赖全局特征可能损失细粒度几何/部件信息，且合成数据纹理多样性对域不变表征的上限影响未充分讨论，具体量化增益需查阅正文；该工作直接面向机器人抓取，与具身智能课题高度相关。\n"
 }

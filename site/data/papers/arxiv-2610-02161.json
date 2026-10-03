@@ -92,7 +92,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -131,5 +131,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"DuoMind: Enabling Distributed Multi-Robot Coordination with Semantic Communication\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02161v1\n---\n>[!abstract] 一句话总结：提出 DuoMind 分布式分层框架：每个机器人用基于 VLA 的动作模型做底层执行、用基于 VLM 的 orchestrator 做高层推理与跨机协调，每个规划步中 orchestrator 结合任务指令、局部观测与同伴发来的语义消息，产出给动作模型的低层指令和给其他机器人的语义消息，从而把 VLM 的语义推理与 VLA 的精确动作生成互补结合。\n\n\n# 一、动机\n\n> VLM/VLA 的进展大多集中在单机器人设定，把这类通用能力扩展到多机器人系统时，机器人既要协调长时序行为，又要保证可靠、细粒度的执行，现有工作缺乏相应框架与评测基准。\n\n\n# 二、方法\n\n> 提出 DuoMind 分布式分层框架：每个机器人用基于 VLA 的动作模型做底层执行、用基于 VLM 的 orchestrator 做高层推理与跨机协调，每个规划步中 orchestrator 结合任务指令、局部观测与同伴发来的语义消息，产出给动作模型的低层指令和给其他机器人的语义消息，从而把 VLM 的语义推理与 VLA 的精确动作生成互补结合。\n\n\n# 三、核心实验结果\n\n> 作者同时构建了 RoboPoly 基准，包含需要在分布式控制下闭环协作的长时序操作任务；在 RoboPoly 与 RoboTwin 上的实验表明 DuoMind 提升了多机器人任务表现，消融实验验证了分层编排与语义通信各自的贡献（注：摘要未给出具体数值指标，仅给出基准与相对提升结论）。\n\n\n# 四、对我的启发\n\n> 局限在于摘要未披露具体量化结果与真实机器人验证规模，语义消息的通信带宽、延迟与失败恢复机制也待考察；启发是多机器人具身系统中可把「高层语义通信 + 底层动作模型」解耦，用语言/语义消息替代原始观测共享来降低通信成本，这一分层思路对跨本体协作与分布式 VLA 部署有参考价值。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"DuoMind: Enabling Distributed Multi-Robot Coordination with Semantic Communication\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02161v1\n---\n>[!abstract] 一句话总结：提出 DuoMind 分布式分层框架：每台机器人用 VLA 做低层动作执行、用 VLM 做高层编排，在每一步规划中对任务指令、局部观测与其他机器人发来的语义消息进行推理，输出给动作模型的低层指令和给同伴的语义消息，从而结合 VLM 的语义推理与 VLA 的精确动作生成。\n\n\n# 一、动机\n\n> VLM/VLA 的进展主要集中在单机器人场景，多机器人系统仍难以在保持细粒度可靠执行的同时完成长程协同，且缺少评估分布式多机器人协同的基准。\n\n\n# 二、方法\n\n> 提出 DuoMind 分布式分层框架：每台机器人用 VLA 做低层动作执行、用 VLM 做高层编排，在每一步规划中对任务指令、局部观测与其他机器人发来的语义消息进行推理，输出给动作模型的低层指令和给同伴的语义消息，从而结合 VLM 的语义推理与 VLA 的精确动作生成。\n\n\n# 三、核心实验结果\n\n> 在自建基准 RoboPoly（需要分布式闭环协同的长程操作任务）和 RoboTwin 上，DuoMind 提升了多机器人任务表现；消融实验验证了分层编排与语义通信两个组件的必要性。摘要未给出具体数值指标，需查阅正文获取成功率等数字。\n\n\n# 四、对我的启发\n\n> 与课题相关：语义通信作为机器人间的高层抽象消息通道，为多机器人/多具身协同和遥操作提供了一种低成本的分层方案；局限在于依赖 VLM 编排的推理延迟与消息带宽，以及分布式闭环下的误差累积与一致性保障，且 RoboPoly 规模尚待更大范围验证。\n"
 }

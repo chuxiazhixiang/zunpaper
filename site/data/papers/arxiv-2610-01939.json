@@ -114,7 +114,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -148,5 +148,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Fewer Tokens, Better Action: GPT-6 Astra Robot Agents with 14% Higher Success Rate but 65% Fewer Tokens\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01939v1\n---\n>[!abstract] 一句话总结：提出 PyRUA-Lean——一种交互式代码执行框架，让 agent 把经典机器人原语与学习式 VLA 策略组合成可执行 Python 单元，在单元内完成条件判断与局部重试，仅在明确请求时返回图像和状态用于重规划，从而减少外部观察与模型调用。\n\n\n# 一、动机\n\n> VLM 机器人在视觉反馈与动作原语之间反复调用模型，冗余观测和重复调用带来巨大的 token 开销，现有工具调用式（tool-calling）范式在等量调用预算下效率与成功率都受限。\n\n\n# 二、方法\n\n> 提出 PyRUA-Lean——一种交互式代码执行框架，让 agent 把经典机器人原语与学习式 VLA 策略组合成可执行 Python 单元，在单元内完成条件判断与局部重试，仅在明确请求时返回图像和状态用于重规划，从而减少外部观察与模型调用。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO-PRO、RoboTwin 2.0、RoboCasa365 共 700 个仿真任务实例上，与使用同一 GPT-6 Astra 规划器和相同底层原语的工具调用基线相比：同等 LLM 调用预算下总体成功率从 63.1% 提升到 71.7%；在两者均解决的实例上，LLM 调用减少 49%、输入 token 减少 65%。\n\n\n# 四、对我的启发\n\n> 主要局限是仅做仿真验证、缺少真机实验，且 49%/65% 的效率收益只在「两者都成功」的实例子集上统计，存在选择性偏差；启发是将控制逻辑下沉到代码单元内执行、按需回传观测，是降低具身 agent 推理成本的通用思路，可迁移到本课题的 VLA/操作策略部署中。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Fewer Tokens, Better Action: GPT-6 Astra Robot Agents with 14% Higher Success Rate but 65% Fewer Tokens\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01939v1\n---\n>[!abstract] 一句话总结：提出 PyRUA-Lean 交互式代码执行框架：让智能体把经典机器人原语与学习到的 VLA 策略组合成带条件判断和局部重试的 Python cell，只返回显式请求的图像与状态反馈用于重规划，从而用更少 token 完成闭环控制。\n\n\n# 一、动机\n\n> VLM 智能体通过视觉反馈和动作原语控制机器人时，需要反复调用模型并回传冗余观测，导致 token 开销巨大、推理成本高昂，限制了长程任务的可扩展性。\n\n\n# 二、方法\n\n> 提出 PyRUA-Lean 交互式代码执行框架：让智能体把经典机器人原语与学习到的 VLA 策略组合成带条件判断和局部重试的 Python cell，只返回显式请求的图像与状态反馈用于重规划，从而用更少 token 完成闭环控制。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO-PRO、RoboTwin 2.0、RoboCasa365 共 700 个仿真任务实例上，与使用同一 GPT-6 Astra 规划器和底层原语的 tool-calling 基线对比：同等 LLM 调用预算下总体成功率从 63.1% 提升到 71.7%（相对提升约 14%）；在两者都解出的实例上，LLM 调用次数减少 49%，输入 token 减少 65%。\n\n\n# 四、对我的启发\n\n> 结果表明「选择性观测 + 代码内局部重试」比逐步 tool-calling 更省 token 且更鲁棒，为具身智能体的成本-性能折中提供了可行范式；局限在于全部实验限于三个仿真 benchmark、依赖 GPT-6 Astra 与已有 VLA 原语，未在真实机器人上验证，且代码执行方式的错误恢复与安全性边界尚不清楚。\n"
 }

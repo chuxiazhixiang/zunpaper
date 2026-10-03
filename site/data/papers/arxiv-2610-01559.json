@@ -47,7 +47,8 @@
     "assets/img/covers/arxiv-2610-01559-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -62,7 +63,7 @@
   "related_links": [],
   "page_count": 6,
   "source_tags": [],
-  "score": 41,
+  "score": 49,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -73,20 +74,26 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（robotwin）"
+      "points": 6,
+      "hint": "频道关键词命中 2 个（robotwin、world model）"
     },
     {
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 6 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -112,5 +119,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Completion Aware Guidance for World Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01559v1\n---\n>[!abstract] 一句话总结：提出 Completion Aware Guidance（CAG），一种无需训练（training-free）的采样引导方法：在生成过程中引入面向任务完成的引导信号，把采样轨迹从仅局部合理的延续偏向能够真正完成任务的状态转移，可直接叠加在现有 WAM 上使用。\n\n\n# 一、动机\n\n> 世界动作模型（WAMs）虽能预测视觉未来与机器人动作，但在短片段（short-chunk）控制设定下容易产生「任务未完成的想象」——预测结果看似合理且动作自洽，却遗漏了完成任务所需的关键状态转移，导致任务反复停留在局部合理延续上而无法收尾。\n\n\n# 二、方法\n\n> 提出 Completion Aware Guidance（CAG），一种无需训练（training-free）的采样引导方法：在生成过程中引入面向任务完成的引导信号，把采样轨迹从仅局部合理的延续偏向能够真正完成任务的状态转移，可直接叠加在现有 WAM 上使用。\n\n\n# 三、核心实验结果\n\n> 在代表性 WAM 上，CAG 将 RoboTwin 2.0 子集的任务成功率从 64% 提升到 70%，零样本仿真中从 69% 提升到 75%；同时把「任务未完成想象」的比例从 79% 大幅降低到 40%。\n\n\n# 四、对我的启发\n\n> 该工作表明失败并非源于世界模型主干本身，而是短片段控制适配带来的采样偏差，因此用推理期的引导即可缓解，无需重训模型；局限在于未验证更长时程、多阶段或真实机器人上的泛化性，且引导信号的设计可能依赖任务完成度的可判定性，对难以自动评估成功与否的开放任务可能不适用。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Completion Aware Guidance for World Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01559v1\n---\n>[!abstract] 一句话总结：提出 Completion Aware Guidance（CAG），一种免训练（training-free）的采样引导方法，在生成采样阶段将预测/生成方向偏向「任务完成」的转移，从而抑制仅局部合理的延续，无需重新训练或微调 WAM。\n\n\n# 一、动机\n\n> World Action Models 在适配短片段（short-chunk）控制时容易出现「任务未完成的想象」：生成视觉未来与动作自洽、局部合理，却跳过了完成任务所需的关键状态转移，导致任务失败。作者指出这一缺陷并非世界模型骨干本身固有，而是控制适配方式带来的。\n\n\n# 二、方法\n\n> 提出 Completion Aware Guidance（CAG），一种免训练（training-free）的采样引导方法，在生成采样阶段将预测/生成方向偏向「任务完成」的转移，从而抑制仅局部合理的延续，无需重新训练或微调 WAM。\n\n\n# 三、核心实验结果\n\n> 在代表性 WAM 上，CAG 将 RoboTwin 2.0 子集的任务成功率从 64% 提升到 70%，零样本仿真中从 69% 提升到 75%；同时将「任务未完成想象」的比例从 79% 大幅降至 40%。\n\n\n# 四、对我的启发\n\n> 核心启发是：任务失败可能来自采样/控制时域的适配偏差而非模型能力上限，用免训练引导即可显著改善，这为具身世界模型与策略的解耦改进提供了思路。局限在于任务完成信号的定义与引导强度可能需任务相关调参，且目前仅在 RoboTwin 2.0 子集与仿真中验证，真机与长时域任务的泛化性仍待考察。\n"
 }
