@@ -54,16 +54,12 @@
     {
       "kind": "lab",
       "label": "⭐ KAIST"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 6,
   "source_tags": [],
-  "score": 49,
+  "score": 39,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -76,12 +72,6 @@
       "label": "关键词命中密集",
       "points": 6,
       "hint": "频道关键词命中 2 个（robotwin、world model）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -119,5 +109,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Completion Aware Guidance for World Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01559v1\n---\n>[!abstract] 一句话总结：提出 Completion Aware Guidance（CAG），一种无需训练的采样引导方法：在生成过程中引入面向任务完成的引导信号，把采样轨迹从「局部合理延续」推向「能完成任务的状态转移」，无需额外训练或修改模型结构。\n\n\n# 一、动机\n\n> 世界动作模型（WAM）在适配短块（short-chunk）控制时容易出现「任务未完成的想象」：预测出的未来在动作上自洽、局部合理，却跳过了完成任务所必需的关键状态转移，导致成功率高但任务实际未完成。作者指出这一失败并非世界模型骨干固有的，而是短块控制适配带来的采样偏差。\n\n\n# 二、方法\n\n> 提出 Completion Aware Guidance（CAG），一种无需训练的采样引导方法：在生成过程中引入面向任务完成的引导信号，把采样轨迹从「局部合理延续」推向「能完成任务的状态转移」，无需额外训练或修改模型结构。\n\n\n# 三、核心实验结果\n\n> 在代表性 WAM 上，CAG 将 RoboTwin 2.0 子集成功率从 64% 提升到 70%；零样本仿真中从 69% 提升到 75%；同时将任务未完成想象的比例从 79% 大幅降到 40%。\n\n\n# 四、对我的启发\n\n> CAG 表明该失败模式来自采样阶段的短块偏好而非模型能力本身，因此训练-free 的引导即可显著改善；局限在于引导信号依赖任务完成的判别方式，在长时序、多阶段任务及不同 WAM 骨干上的泛化仍需验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Completion Aware Guidance for World Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01559v1\n---\n>[!abstract] 一句话总结：提出 Completion Aware Guidance（CAG），一种无需训练（training-free）的采样引导方法，在生成/采样阶段把世界模型的未来预测引导向「任务完成」的方向，从而抑制只追求局部合理性的想象。\n\n\n# 一、动机\n\n> World Action Models 虽然能同时预测视觉未来与机器人动作，但在短 chunk 控制场景下容易产生「任务未完成的想象」：预测画面看起来合理、与动作一致，却始终缺少完成任务所需的关键状态转移，导致成功率受限。作者指出这一缺陷并非世界模型骨干本身的固有问题，而是适配短 chunk 控制后偏向局部合理延续所导致的。\n\n\n# 二、方法\n\n> 提出 Completion Aware Guidance（CAG），一种无需训练（training-free）的采样引导方法，在生成/采样阶段把世界模型的未来预测引导向「任务完成」的方向，从而抑制只追求局部合理性的想象。\n\n\n# 三、核心实验结果\n\n> 在代表性 WAM 上，CAG 将 RoboTwin 2.0 子集上的任务成功率从 64% 提升到 70%；在零样本仿真设置下从 69% 提升到 75%；同时将「任务未完成想象」的比例从 79% 大幅降到 40%。\n\n\n# 四、对我的启发\n\n> 该工作的启发在于：世界模型的失败可能来自采样/控制粒度的适配问题而非模型能力本身，用推理期引导即可低成本修复，这一思路可迁移到其他生成式策略的推理时纠偏；局限是仅在 RoboTwin 2.0 子集与零样本仿真上验证，训练无关引导会带来额外采样开销，对长时序、多阶段任务的泛化性仍有待检验。\n"
 }

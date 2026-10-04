@@ -75,28 +75,18 @@
     {
       "kind": "venue",
       "label": "🎓 NeurIPS 2026"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 25,
   "source_tags": [],
-  "score": 29,
+  "score": 19,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 6,
       "hint": "频道关键词命中 2 个（vision-language-action、manipulation）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -136,5 +126,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"ATI-VLA: Action-Centric Predictive Vision-Language-Action Models via Actionable Alignment Then Adaptive Injection\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01741v1\n---\n>[!abstract] 一句话总结：提出 ATI-VLA：先用统一码本将预测观测与动作表征对齐到共享离散隐空间（Actionable Alignment），再通过轻量自适应旁路把预测观测隐变量作为显式先验注入动作解码（Adaptive Injection），在单一动作中心目标下实现自适应预测引导。\n\n\n# 一、动机\n\n> 预测式 VLA 模型本应通过预测未来观测或世界动态来提升机器人操作能力，但现有方法因观测与动作之间存在模态错位，且联合优化时目标冲突使学习偏离以动作为中心的方向，实际表现反而不如直接预测动作的模型。\n\n\n# 二、方法\n\n> 提出 ATI-VLA：先用统一码本将预测观测与动作表征对齐到共享离散隐空间（Actionable Alignment），再通过轻量自适应旁路把预测观测隐变量作为显式先验注入动作解码（Adaptive Injection），在单一动作中心目标下实现自适应预测引导。\n\n\n# 三、核心实验结果\n\n> 论文声称在仿真与真实机器人任务上均取得 state-of-the-art 性能并具有更快的收敛速度；但摘要仅给出定性结论，未披露具体任务成功率、提升幅度或收敛加速倍数等数值指标，需查阅正文实验部分补充。\n\n\n# 四、对我的启发\n\n> 核心启发是：预测式 VLA 的瓶颈可能不在预测能力本身，而在表征对齐与优化目标冲突，用共享离散码本对齐 + 旁路注入是可复用的轻量思路；局限在于摘要缺乏定量证据，且两阶段设计与码本引入可能带来额外训练复杂度与超参敏感性。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"ATI-VLA: Action-Centric Predictive Vision-Language-Action Models via Actionable Alignment Then Adaptive Injection\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01741v1\n---\n>[!abstract] 一句话总结：ATI-VLA 采用\"先对齐、后自适应注入\"的两步设计：先用统一共享码本把预测观测与动作表征映射到同一离散隐空间完成可操作表征对齐，再通过轻量级自适应侧路将预测观测隐变量作为显式预测先验注入动作解码，在单一动作中心目标下实现自适应预测引导。\n\n\n# 一、动机\n\n> 现有预测式 VLA（预测未来观测或世界动态）在机器人操作上往往无法兑现潜力，反而弱于直接预测动作的模型；作者认为根因是观测与动作之间的模态错位，以及联合优化中的目标冲突使学习偏离了以动作为中心的优化方向。\n\n\n# 二、方法\n\n> ATI-VLA 采用\"先对齐、后自适应注入\"的两步设计：先用统一共享码本把预测观测与动作表征映射到同一离散隐空间完成可操作表征对齐，再通过轻量级自适应侧路将预测观测隐变量作为显式预测先验注入动作解码，在单一动作中心目标下实现自适应预测引导。\n\n\n# 三、核心实验结果\n\n> 在仿真与真实机器人任务上取得 SOTA 性能并收敛更快；但摘要仅给出定性结论（state-of-the-art performance with faster convergence），未提供具体成功率、提升幅度或加速倍数等数字，需查阅正文实验表格补充。\n\n\n# 四、对我的启发\n\n> 核心启发是把\"预测\"从与动作共享的联合优化目标改造为对齐后可注入的先验信号，从而缓解多模态联合训练的梯度冲突，这一思路可迁移到其他多模态条件生成/控制任务；局限在于对齐依赖离散码本，码本容量与量化误差可能成为性能瓶颈，且摘要未披露定量结果与真实任务规模，泛化性有待验证。\n"
 }

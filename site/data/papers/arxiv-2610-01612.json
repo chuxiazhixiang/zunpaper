@@ -53,16 +53,12 @@
     {
       "kind": "lab",
       "label": "⭐ NUS"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 55,
+  "score": 45,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -75,12 +71,6 @@
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 5 个（manipulation、end-effector tracking、locomotion、gait）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -117,5 +107,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"ReCo: Response-Consistent Locomotion with Policy-Aware MPC for Legged Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01612v1\n---\n>[!abstract] 一句话总结：ReCo 通过响应塑形（response shaping）训练策略在随机化动力学下对指令给出一致、可重复的响应，再用辨识得到的闭环响应模型让 MPC 联合规划运动指令与机械臂动作，实现「响应一致的行走 + 策略感知 MPC」耦合。\n\n\n# 一、动机\n\n> 腿式机器人在持续行走中执行机械臂操作时，末端执行器跟踪精度受基座运动影响；RL+MPC 方案中 MPC 只能补偿可预测的基座运动，而学习策略的指令响应会随步态相位、接触状态和负载变化，导致补偿不准。\n\n\n# 二、方法\n\n> ReCo 通过响应塑形（response shaping）训练策略在随机化动力学下对指令给出一致、可重复的响应，再用辨识得到的闭环响应模型让 MPC 联合规划运动指令与机械臂动作，实现「响应一致的行走 + 策略感知 MPC」耦合。\n\n\n# 三、核心实验结果\n\n> 在仿真基准上，ReCo 的位置 RMSE 相比各指标最优基线降低 28.7%，姿态 RMSE 降低 27.4%；真机实验验证了机载的连续腿式操作，基座与机械臂运动协同。\n\n\n# 四、对我的启发\n\n> 核心启发是把策略的「指令—响应」闭环特性显式建模并交给 MPC 使用，从而弥合学习策略非线性和 MPC 预测模型之间的鸿沟；局限在于响应模型需针对不同策略/负载重新辨识，泛化到新地形或强扰动时的鲁棒性仍待验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/HardwareCoDesign\n  - 状态/待读\nTitle: \"ReCo: Response-Consistent Locomotion with Policy-Aware MPC for Legged Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01612v1\n---\n>[!abstract] 一句话总结：ReCo 先通过响应塑形（response shaping）训练在随机化动力学下对速度指令响应一致且可重复的行走策略，再辨识其闭环响应模型，使 policy-aware MPC 能联合规划运动指令与机械臂动作。\n\n\n# 一、动机\n\n> 足式移动操作中，机械臂跟踪误差主要来自基座运动，但 MPC 只能补偿它能预测的基座运动，而 RL 策略对指令的响应会随步态相位、接触状态和负载变化而变化，导致基座-臂协调补偿失效。\n\n\n# 二、方法\n\n> ReCo 先通过响应塑形（response shaping）训练在随机化动力学下对速度指令响应一致且可重复的行走策略，再辨识其闭环响应模型，使 policy-aware MPC 能联合规划运动指令与机械臂动作。\n\n\n# 三、核心实验结果\n\n> 在仿真基准上，ReCo 相比各指标最优基线将位置与姿态的 RMSE 分别降低 28.7% 和 27.4%；真机实验实现了机载的连续足式操作，基座行走与机械臂运动协调进行。\n\n\n# 四、对我的启发\n\n> 核心启发是「策略响应要可辨识/可预测，控制器才能补偿」，把策略响应一致性当作显式训练目标而非副产物；局限在于依赖闭环响应模型的辨识质量，随机化范围外的动力学或大负载变化可能使模型失配，且真机未给出量化对比。\n"
 }

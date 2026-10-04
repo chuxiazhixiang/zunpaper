@@ -127,5 +127,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Workspace Models: Lightweight Robotic Memory via Saliency-Driven Supervision\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.20820v1\n---\n>[!abstract] 一句话总结：在训练阶段用 VLM 标出完成任务所需的当前与历史显著信息，再通过集合重建（set-reconstruction）解码器损失把这些信息蒸馏成一个轻量隐变量——workspace token，部署时它可直接替代原始观测作为策略输入，无需在环调用 VLM。\n\n\n# 一、动机\n\n> 长时程机器人操作需要历史记忆，但直接以完整历史为条件会让策略学到虚假相关并降低性能；现有做法又依赖推理时反复调用昂贵的 VLM 来筛选任务相关信息，部署代价高。\n\n\n# 二、方法\n\n> 在训练阶段用 VLM 标出完成任务所需的当前与历史显著信息，再通过集合重建（set-reconstruction）解码器损失把这些信息蒸馏成一个轻量隐变量——workspace token，部署时它可直接替代原始观测作为策略输入，无需在环调用 VLM。\n\n\n# 三、核心实验结果\n\n> 论文在仿真与真实硬件上均验证了 workspace token 可作为观测的即插即用替代，使策略在无 VLM 在环推理的情况下完成记忆密集型任务；作者报告 workspace token 不仅更轻量，还带来了更好的策略性能（摘要未给出具体量化指标，需查正文表格）。\n\n\n# 四、对我的启发\n\n> 启发在于把重计算从部署时前移到训练时，用蒸馏把 VLM 的显著性判断压缩进轻量 latent memory，这种“训时重、用时轻”的范式可迁移到其他需要长时记忆的具身策略；局限是记忆质量上限受训时 VLM 显著性标注的准确性与覆盖度制约，集合重建损失也可能丢失细粒度历史信息。\n"
 }

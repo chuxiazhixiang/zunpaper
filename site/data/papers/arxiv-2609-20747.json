@@ -68,14 +68,23 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
-  "platform": [],
+  "institutions": [
+    "University of the Bundeswehr Munich"
+  ],
+  "method_tags": [
+    "Reinforcement Learning",
+    "sim-to-real",
+    "BEVFusion"
+  ],
+  "platform": [
+    "MuCAR-3",
+    "MuCAR-4"
+  ],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/CV\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"MILER: Semantic Mid-Level Representation for Sim-to-Real Reinforcement Learning in Unstructured Autonomous Driving\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.20747v1\n---\n>[!abstract] 一句话总结：提出 MILER 端到端策略框架：离线阶段用自定义的语义中层表示（MLR）模拟器训练 RL 策略，其控制输出直接作用于自行车模型；实车部署时用 BEVFusion 从相机与 LiDAR 生成与模拟器一致的语义 BEV 表示，并通过轨迹对齐策略实现感知与控制的零样本 sim-to-real 迁移。\n\n\n# 一、动机\n\n> 强化学习在自动驾驶中潜力巨大，但真实非结构化环境下的仿真到现实（sim-to-real）迁移极为困难，导致其真实车辆部署案例稀少。\n\n\n# 二、方法\n\n> 提出 MILER 端到端策略框架：离线阶段用自定义的语义中层表示（MLR）模拟器训练 RL 策略，其控制输出直接作用于自行车模型；实车部署时用 BEVFusion 从相机与 LiDAR 生成与模拟器一致的语义 BEV 表示，并通过轨迹对齐策略实现感知与控制的零样本 sim-to-real 迁移。\n\n\n# 三、核心实验结果\n\n> 在包含多种障碍物、发卡弯、越野路段且最高时速 33.6 km/h 的 3.0 km 测试赛道上，用两辆不同车辆完成了 17.3 km 无人工干预的自动驾驶；整套软件栈可运行于 Jetson AGX Orin 车载平台。\n\n\n# 四、对我的启发\n\n> 局限在于仅在单条自建测试赛道与特定传感器配置上验证，性能强依赖自定义 MLR 模拟器与实车语义 BEV 的一致性，跨场景与跨车型泛化性尚待检验；但「中层语义表示 + 轨迹对齐」为 RL 策略的零样本实车迁移提供了可复用的工程范式。\n"
 }

@@ -63,28 +63,17 @@
   "channels": [
     "world-model"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 39,
   "source_tags": [],
-  "score": 19,
+  "score": 9,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 6,
       "hint": "频道关键词命中 2 个（world model、world models）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -115,5 +104,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/数据\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\n  - Task/CameraControl\n  - 状态/待读\nTitle: \"ROWBench: Do Video Models Render What the Program Specifies?\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02205v1\n---\n>[!abstract] 一句话总结：提出 PROWBench 基准：用可扩展框架程序化构建 170 个 episode 与 600 段代理视频，将实体状态与带时间戳的事件（含相机视野外事件）记录为可重放的世界记录，并据此渲染同步视角与代理表示（如粗糙 3D、边界框），从而将生成视频与程序执行的可观测后果逐条对齐检查。\n\n\n# 一、动机\n\n> 可编程世界模型将可执行动力学与视觉生成分离，但现有基准多评估视觉质量、可控性与指令/物理一致性，很少检验生成视频对细粒度、程序指定世界事件的忠实度，导致「渲染是否忠实执行程序」这一核心问题缺乏评估手段。\n\n\n# 二、方法\n\n> 提出 PROWBench 基准：用可扩展框架程序化构建 170 个 episode 与 600 段代理视频，将实体状态与带时间戳的事件（含相机视野外事件）记录为可重放的世界记录，并据此渲染同步视角与代理表示（如粗糙 3D、边界框），从而将生成视频与程序执行的可观测后果逐条对齐检查。\n\n\n# 三、核心实验结果\n\n> 基准覆盖一/三人称视角，部分 episode 提供同步多视角观测；共 170 个程序化 episode、600 段代理视频；评估维度包括实体控制、长时程记忆，以及两个基于 VLM 的指标——Logic-Render Alignment（逻辑-渲染对齐）与 Interaction Success Rate（交互成功率），用于检验对规定时间线与带时间戳引擎事件的视觉实现。\n\n\n# 四、对我的启发\n\n> 将评估对象从「画面好不好看」转向「是否忠实渲染程序语义」，为可编程世界模型/游戏引擎式视频生成提供了可复现的记录-回放式评测范式；局限在于依赖 VLM 作为指标裁判可能引入偏差，且代理视频（粗糙 3D/框）与真实渲染之间存在域差距。对具身智能中「仿真-视觉一致性」评测有直接借鉴价值，但与机器人操作本身不直接相关。\n"
+  "note": "---\ntags:\n  - 论文/数据\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"ROWBench: Do Video Models Render What the Program Specifies?\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02205v1\n---\n>[!abstract] 一句话总结：提出 PROWBench（标题中亦写作 ROWBench）：程序化构建场景并记录实体状态与带时间戳事件（含视野外事件）作为可回放世界记录，据此渲染同步多视角视图与代理表示（如粗糙 3D、包围框），从而把生成视频与程序执行的可观测后果逐条比对。\n\n\n# 一、动机\n\n> 可编程世界模型把可执行动力学与视觉生成解耦，但生成视频是否忠实呈现程序规定的事件与交互，缺乏细粒度评测；现有基准多关注视觉质量、可控性或指令/物理合理性，很少检验对程序级世界事件的还原度。\n\n\n# 二、方法\n\n> 提出 PROWBench（标题中亦写作 ROWBench）：程序化构建场景并记录实体状态与带时间戳事件（含视野外事件）作为可回放世界记录，据此渲染同步多视角视图与代理表示（如粗糙 3D、包围框），从而把生成视频与程序执行的可观测后果逐条比对。\n\n\n# 三、核心实验结果\n\n> 1) 基准包含 170 个程序化构建的 episode 与 600 段代理视频，覆盖多样场景与交互；2) 覆盖第一/第三人称视角，部分 episode 提供同步多视角观测；3) 从世界记录出发评测实体控制、长程记忆，并提出两个基于 VLM 的指标——Logic-Render Alignment（逻辑-渲染一致性）与 Interaction Success Rate（交互成功率），用于检验对既定时间线的遵循和时间戳事件在画面中的真实实现。\n\n\n# 四、对我的启发\n\n> 把“世界记录/事件时间戳”作为评测锚点，而非依赖人工评判画面美观或粗略物理合理性，为可编程世界模型提供了可扩展、可回放的评测范式；局限在于代理表示（粗糙 3D、包围框）与真实渲染之间仍有域差，VLM 指标本身也引入模型偏差，且目前关注的仍是短片段可控性，对机器人具身闭环控制不直接适用。\n"
 }

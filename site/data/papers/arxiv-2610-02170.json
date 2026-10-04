@@ -61,28 +61,17 @@
   "channels": [
     "manipulation"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 17,
   "source_tags": [],
-  "score": 16,
+  "score": 6,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 3,
       "hint": "频道关键词命中 1 个（manipulation）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -114,5 +103,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Watch, Infer, Coordinate: Inferring Robot Partner Constraints for Zero-Shot Coordination\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02170v1\n---\n>[!abstract] 一句话总结：提出 Watch, Infer, Coordinate 基准，覆盖三种物理耦合操作场景，并提出一种通过观测双机器人联合行为来给候选约束打分、进而推断伙伴能力并实现零样本协作的方法。\n\n\n# 一、动机\n\n> 多机器人协作操作中，伙伴可能因硬件退化或执行器故障存在未知的物理能力约束，而仅观察其示范只能看到「做了什么」，无法直接知道「本来能做什么」；在物理耦合任务中伙伴还会主动补偿，使约束更难从单机器人行为中识别。\n\n\n# 二、方法\n\n> 提出 Watch, Infer, Coordinate 基准，覆盖三种物理耦合操作场景，并提出一种通过观测双机器人联合行为来给候选约束打分、进而推断伙伴能力并实现零样本协作的方法。\n\n\n# 三、核心实验结果\n\n> 在三个物理耦合操作场景中，该方法显著提升了约束推断与零样本协作表现，并接近拥有真实约束信息的 oracle；摘要未给出具体数值指标。\n\n\n# 四、对我的启发\n\n> 核心启发是物理耦合任务中的联合行为比单个受约束机器人的行为更具信息量，可用于 ad-hoc teamwork 与辅助机器人适应伙伴能力；局限在于方法依赖物理耦合交互，对非耦合任务、未知约束类型和更广泛真实故障的泛化性仍待验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/CrossEmbodimentTransfer\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Watch, Infer, Coordinate: Inferring Robot Partner Constraints for Zero-Shot Coordination\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02170v1\n---\n>[!abstract] 一句话总结：提出 Watch, Infer, Coordinate 基准（覆盖三种物理耦合操作场景）及配套的约束推断方法：以观察到的人类/机器人协作演示中双方联合行为为依据，对候选约束集合打分，从而推断受约束伙伴的能力，并据此在新任务上实现零样本协调。\n\n\n# 一、动机\n\n> 多机器人协同搬运大/重物体时，伙伴可能因硬件退化或执行器故障而存在未知的物理能力约束，且这些约束在耦合任务中常被另一台机器人的补偿行为掩盖，导致协助者难以事先获知其真实能力边界。\n\n\n# 二、方法\n\n> 提出 Watch, Infer, Coordinate 基准（覆盖三种物理耦合操作场景）及配套的约束推断方法：以观察到的人类/机器人协作演示中双方联合行为为依据，对候选约束集合打分，从而推断受约束伙伴的能力，并据此在新任务上实现零样本协调。\n\n\n# 三、核心实验结果\n\n> 摘要只给出定性结论：在全部三个场景中，该方法在约束推断与零样本协调两项指标上均显著优于基线，性能接近拥有真实约束信息的 oracle；但论文摘要未报告具体数值指标，需查阅正文表格获取确切数字。\n\n\n# 四、对我的启发\n\n> 关键启发是「约束塑造的是团队的联合行为而非单机行为」，因此必须把伙伴的补偿动作一并纳入推断证据；局限在于目前仅在三种仿真操作场景验证，且假设约束属于可枚举的候选集合，尚未处理连续约束空间与真实硬件退化情形。\n"
 }

@@ -44,16 +44,12 @@
     {
       "kind": "lab",
       "label": "⭐ 北大"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 52,
+  "score": 42,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -66,12 +62,6 @@
       "label": "关键词命中密集",
       "points": 9,
       "hint": "频道关键词命中 3 个（manipulation、libero、cosmos）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -108,5 +98,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"SkeleWAM: Skeleton World-Action Modeling for Efficient Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02120v1\n---\n>[!abstract] 一句话总结：SkeleWAM 将操作场景在线构建为由机器人关节、物体中心和交互点组成的稀疏 3D 骨架，用其作为动作生成与未来骨架预测的统一几何状态；推理时由当前骨架和语言指令直接生成动作，并引入 Medoid Action Consensus（MAC）对随机动作样本做一致性聚合。\n\n\n# 一、动机\n\n> 现有世界动作模型（WAM）多以视频或学习到的视觉隐表示为预测目标，只能隐式表达交互几何，并保留与控制无关的外观信息，导致状态表示冗余、参数效率低。\n\n\n# 二、方法\n\n> SkeleWAM 将操作场景在线构建为由机器人关节、物体中心和交互点组成的稀疏 3D 骨架，用其作为动作生成与未来骨架预测的统一几何状态；推理时由当前骨架和语言指令直接生成动作，并引入 Medoid Action Consensus（MAC）对随机动作样本做一致性聚合。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO-Plus 上以 57.1M 参数取得 85.9% 的总体成功率，比 Cosmos-Policy 高出 3.7 个百分点；未来骨架预测无需视觉重建即可为动作学习提供额外几何监督，验证了稀疏 3D 机器人-物体结构是高效且鲁棒的世界动作学习状态空间。\n\n\n# 四、对我的启发\n\n> 稀疏 3D 骨架作为状态空间避免了视觉重建开销，参数效率高，但其依赖 RGB-D 观测与骨架提取质量，遮挡或感知噪声下可能退化；该思路对具身智能中跨本体状态抽象与低成本世界模型有借鉴意义。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"SkeleWAM: Skeleton World-Action Modeling for Efficient Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02120v1\n---\n>[!abstract] 一句话总结：SkeleWAM 将操作场景表示为由机器人关节、物体中心和交互点组成的稀疏 3D 骨架，在线地从当前 RGB-D 观测与机器人本体感知构建该几何状态，并以此为统一状态同时进行动作生成与未来骨架预测（提供额外几何监督、无需视觉重建），推理时直接从当前骨架和语言指令生成动作，并用 Medoid Action Consensus (MAC) 对随机动作采样做共识聚合。\n\n\n# 一、动机\n\n> 现有世界动作模型（WAM）通常预测视频或学到的视觉隐变量，只能隐式表达交互几何，且会保留与控制无关的外观信息，导致状态空间冗余、参数效率低。\n\n\n# 二、方法\n\n> SkeleWAM 将操作场景表示为由机器人关节、物体中心和交互点组成的稀疏 3D 骨架，在线地从当前 RGB-D 观测与机器人本体感知构建该几何状态，并以此为统一状态同时进行动作生成与未来骨架预测（提供额外几何监督、无需视觉重建），推理时直接从当前骨架和语言指令生成动作，并用 Medoid Action Consensus (MAC) 对随机动作采样做共识聚合。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO-Plus 上，SkeleWAM 以仅 57.1M 参数取得 85.9% 的整体成功率，比 Cosmos-Policy 高出 3.7 个百分点，表明稀疏 3D 机器–物体结构是鲁棒且参数高效的世界动作学习状态空间。\n\n\n# 四、对我的启发\n\n> 局限在于依赖 RGB-D 与本体感知的在线骨架构建质量，稀疏骨架可能损失细粒度接触/形变信息，且仅在 LIBERO-Plus 上验证、未涉及真机与跨本体迁移；启发是以几何骨架替代视觉重建作为世界模型监督，可显著降低参数量并提升控制相关性，值得在真实机器人和跨本体场景中进一步检验。\n"
 }

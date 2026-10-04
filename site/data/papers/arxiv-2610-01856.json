@@ -67,28 +67,17 @@
   "channels": [
     "manipulation"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 22,
+  "score": 12,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 9,
       "hint": "频道关键词命中 3 个（vision-language-action、openvla、action chunking）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -123,5 +112,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/应用\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"ChunkVLA-AM: Parallel Action Chunking for Vision-Language-Action Robot Control in Additive Manufacturing\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01856v1\n---\n>[!abstract] 一句话总结：将单目真实演示数据通过数据管线转换为 OpenVLA 兼容的 TFDS/RLDS 数据集以适配 FAIRINO FR3 本体，运行时每次推理预测 8 步 7 维动作块（parallel action chunking），FR3 开环执行整块后再采集新观测形成块间闭环，并以云-边架构通过 FastAPI 由 FR3 客户端向远程推理服务器流式传输观测。\n\n\n# 一、动机\n\n> VLA 模型在增材制造（AM）场景落地存在两大障碍：适配未见过的机器人本体成本高，且环境变化（如光照）会导致性能下降；本文针对固定 AM 工作单元中的 FR3 机械臂给出低成本部署方案。\n\n\n# 二、方法\n\n> 将单目真实演示数据通过数据管线转换为 OpenVLA 兼容的 TFDS/RLDS 数据集以适配 FAIRINO FR3 本体，运行时每次推理预测 8 步 7 维动作块（parallel action chunking），FR3 开环执行整块后再采集新观测形成块间闭环，并以云-边架构通过 FastAPI 由 FR3 客户端向远程推理服务器流式传输观测。\n\n\n# 三、核心实验结果\n\n> 在 42 次物理 A→B 物体搬运试验（红/蓝目标各半）中成功 39 次，成功率 92.9%；3 次失败均发生在最终放置阶段，原因是释放高度控制不足导致物体倾倒；光照扫描（0-255 尺度）显示低误差亮度区间为 85-125，平均空间误差最低点在 95。\n\n\n# 四、对我的启发\n\n> 局限在于仅适配单一固定工作单元与单一本体，动作块开环执行对精细放置（如释放高度）不够鲁棒，且高度依赖光照条件；启发是「块级开环 + 块间闭环」的 chunking 策略与云-边推理接口能以较低改造成本把通用 VLA 迁移到工业机械臂，但精细力/位控制环节仍需专门设计。\n"
+  "note": "---\ntags:\n  - 论文/应用\n  - 论文/系统\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"ChunkVLA-AM: Parallel Action Chunking for Vision-Language-Action Robot Control in Additive Manufacturing\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.01856v1\n---\n>[!abstract] 一句话总结：将 OpenVLA-OFT 部署到固定增材制造工位中的 FAIRINO FR3 机械臂：先用数据管线把单目真实示教转换为 OpenVLA 兼容的 TFDS/RLDS 数据集以适配 FR3 本体，运行时每次推理预测 8 步 7 维动作块（parallel action chunking），FR3 开环执行整块后再采集新观测形成块间闭环，并通过 FastAPI 组成的云-边架构让客户端流式上传观测、远端服务器推理。\n\n\n# 一、动机\n\n> VLA 模型在增材制造（AM）场景部署面临两大障碍：适配未见过的机器人本体成本高，且环境光照等条件变化会导致性能下降；现有工作缺乏在真实 AM 工位上的完整部署与可靠性验证。\n\n\n# 二、方法\n\n> 将 OpenVLA-OFT 部署到固定增材制造工位中的 FAIRINO FR3 机械臂：先用数据管线把单目真实示教转换为 OpenVLA 兼容的 TFDS/RLDS 数据集以适配 FR3 本体，运行时每次推理预测 8 步 7 维动作块（parallel action chunking），FR3 开环执行整块后再采集新观测形成块间闭环，并通过 FastAPI 组成的云-边架构让客户端流式上传观测、远端服务器推理。\n\n\n# 三、核心实验结果\n\n> 在 42 次真实 A 到 B 物体搬运试验（红/蓝目标各半）中成功 39 次，成功率 92.9%；仅有的 3 次失败全部发生在最终放置阶段，原因是释放高度控制不足导致物体倾倒；光照扫描显示 0-255 尺度下的低误差亮度区间为 85-125，其中亮度 95 时平均空间误差最低。\n\n\n# 四、对我的启发\n\n> 局限在于：仅在单一固定工位、单一 FR3 本体上验证，动作块开环执行对动态干扰鲁棒性存疑，且放置阶段的释放高度是明确的失败瓶颈；启发是块间闭环 + 云边推理的低成本部署范式对工业场景可行，后续可加入释放高度/末端力反馈的精细控制与更大规模跨本体验证。与具身智能机器人操作课题直接相关。\n"
 }
