@@ -9,7 +9,7 @@
   "cover_zh": "机器人操作也能跑在手机上？剪枝+蒸馏让扩散策略实时推理",
   "authors": [
     {
-      "name": "Yiming Wu",
+      "name": "Yi-Ming Wu",
       "affiliation": ""
     },
     {
@@ -17,7 +17,7 @@
       "affiliation": ""
     },
     {
-      "name": "Zhenghao Chen",
+      "name": "Zheng-Hao Chen",
       "affiliation": ""
     },
     {
@@ -77,5 +77,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"On-Device Diffusion Transformer Policy for Efficient Robot Manipulation\"\nYear: \"2025\"\nURL: https://arxiv.org/abs/2508.00697\n---\n>[!abstract] 一句话总结：LightDP 先通过计算分析定位去噪网络为主要延迟来源，再采用「剪枝 + 重训练」的统一流水线显式优化剪枝后的可恢复性以压缩去噪模块，并将剪枝与一致性蒸馏（consistency distillation）结合，在保持动作预测精度的同时大幅减少采样步数，实现端侧实时的扩散策略推理。\n\n\n# 一、动机\n\n> Diffusion Policy 在机器人模仿学习上表现优异，但去噪网络计算量大、内存占用高、采样步数多，导致其难以在算力受限的移动端实时部署，现有剪枝方法又会带来明显的性能退化。\n\n\n# 二、方法\n\n> LightDP 先通过计算分析定位去噪网络为主要延迟来源，再采用「剪枝 + 重训练」的统一流水线显式优化剪枝后的可恢复性以压缩去噪模块，并将剪枝与一致性蒸馏（consistency distillation）结合，在保持动作预测精度的同时大幅减少采样步数，实现端侧实时的扩散策略推理。\n\n\n# 三、核心实验结果\n\n> 在 PushT、Robomimic、CALVIN、LIBERO 四个标准基准上，LightDP 能在移动设备上实现实时动作预测且性能具有竞争力（对比对象为 SOTA Diffusion Policy）；真实世界实验表明其性能与当前最优 Diffusion Policy 相当。摘要未给出具体加速倍数与精度损失的数值，需查正文确认。\n\n\n# 四、对我的启发\n\n> 思路与机器人具身智能直接相关：端侧实时扩散策略是低成本机器人落地的关键瓶颈之一，剪枝+一致性蒸馏的组合可迁移到 VLA / 其他生成式策略的部署。局限在于方法依赖逐架构的计算分析与剪枝后重训练流程，通用性与训练成本未被充分讨论，且任务仍限于模仿学习设定。\n"
 }

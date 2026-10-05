@@ -17,11 +17,11 @@
       "affiliation": ""
     },
     {
-      "name": "Rongtao Xu",
+      "name": "Rong-Tao Xu",
       "affiliation": ""
     },
     {
-      "name": "Gengze Zhou",
+      "name": "Geng-Ze Zhou",
       "affiliation": ""
     },
     {
@@ -37,11 +37,11 @@
       "affiliation": ""
     },
     {
-      "name": "Zhizheng Zhang",
+      "name": "Zhi-Zheng Zhang",
       "affiliation": ""
     },
     {
-      "name": "Wanggui He",
+      "name": "He Wang",
       "affiliation": ""
     }
   ],
@@ -93,5 +93,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"NaVid: Video-based VLM Plans the Next Step for Vision-and-Language Navigation\"\nYear: \"2024\"\nURL: https://arxiv.org/abs/2402.15852\n---\n>[!abstract] 一句话总结：提出 NaVid，一个基于视频的大规模视觉语言模型：仅以机器人单目 RGB 相机的在线视频流和语言指令为输入，将历史观测编码为时空上下文，直接自回归输出下一步动作，无需地图、里程计与深度；用 51 万条连续环境导航样本（含动作规划与指令推理）加 76.3 万条网络数据联合训练。\n\n\n# 一、动机\n\n> 视觉语言导航（VLN）长期受困于泛化难题：面对分布外场景以及从仿真到真实环境（Sim2Real）的迁移时性能大幅下降，而现有方法普遍依赖地图、里程计或深度输入，这些输入本身带有噪声且在真机上难以获得，进一步放大了域间差距。\n\n\n# 二、方法\n\n> 提出 NaVid，一个基于视频的大规模视觉语言模型：仅以机器人单目 RGB 相机的在线视频流和语言指令为输入，将历史观测编码为时空上下文，直接自回归输出下一步动作，无需地图、里程计与深度；用 51 万条连续环境导航样本（含动作规划与指令推理）加 76.3 万条网络数据联合训练。\n\n\n# 三、核心实验结果\n\n> 1) 在没有任何地图/里程计/深度输入的前提下，于仿真环境中达到 SOTA 级导航性能（R2R-CE、RxR-CE 等基准上优于使用额外输入的基线）；2) 训练数据规模为 510k 导航样本 + 763k 网络数据，验证了大规模视频-VLM 训练的可行性；3) 真实世界实验与跨数据集测试表明其跨域与 Sim2Real 迁移能力显著优于先前方法。\n\n\n# 四、对我的启发\n\n> 启发：把导航建模为“视频输入→下一步动作”的 VLM 生成问题，可天然规避里程计噪声与地图/深度的 Sim2Real 鸿沟，是具身智能中一条值得借鉴的极简接口路线。局限：仅输出离散下一步动作、缺少显式度量地图，长期规划与精细几何避障能力受限；VLM 推理延迟与真机算力开销可能影响实时闭环，且真机实验场景规模仍较小。\n"
 }

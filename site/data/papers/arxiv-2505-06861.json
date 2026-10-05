@@ -9,7 +9,7 @@
   "cover_zh": "反向规划比正向更准？新方法从终点倒推子目标，长程任务不掉线！",
   "authors": [
     {
-      "name": "Dongxiu Liu",
+      "name": "Dong-Xiu Liu",
       "affiliation": ""
     },
     {
@@ -17,7 +17,7 @@
       "affiliation": ""
     },
     {
-      "name": "Zhihao Wang",
+      "name": "Zhi-Hao Wang",
       "affiliation": ""
     },
     {
@@ -29,7 +29,7 @@
       "affiliation": ""
     },
     {
-      "name": "Zhonghong Ou",
+      "name": "Zhong-Hong Ou",
       "affiliation": ""
     },
     {
@@ -93,5 +93,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Efficient Robotic Policy Learning via Latent Space Backward Planning\"\nYear: \"2025\"\nURL: https://arxiv.org/abs/2505.06861\n---\n>[!abstract] 一句话总结：提出隐空间反向规划（LBP）：先将任务锚定为最终的隐空间目标任务，再从终点递归地向当前状态反向预测中间子目标，并用一个可学习 token 汇总子目标序列来调节子目标条件策略的动作提取。\n\n\n# 一、动机\n\n> 现有机器人规划方法多依赖逐帧预测完整像素级图像，计算开销大、难以实时部署，且误差累积会误导动作提取；粗粒度子目标的「前向规划」虽提升效率，却仍因累积误差产生偏离任务的预测，与长期目标不一致。\n\n\n# 二、方法\n\n> 提出隐空间反向规划（LBP）：先将任务锚定为最终的隐空间目标任务，再从终点递归地向当前状态反向预测中间子目标，并用一个可学习 token 汇总子目标序列来调节子目标条件策略的动作提取。\n\n\n# 三、核心实验结果\n\n> 摘要仅给出定性结论：在长时程仿真与真机实验中，LBP 均优于细粒度规划与现有前向规划方法，取得 SOTA 性能；摘要未披露具体数值指标（如成功率提升幅度、推理加速倍数），需查看正文与项目页 https://lbp-authors.github.io 确认。\n\n\n# 四、对我的启发\n\n> 反向规划因始终以任务完成状态为锚点，天然缓解前向规划的偏离任务问题，这一「以终为始」的子目标分解思路可迁移到其他长时程决策任务；潜在局限是隐空间丢失细粒度几何信息可能影响精细操作，且最终隐目标如何 grounding（是否依赖 VLM 或人工指定）决定其泛化边界。\n"
 }

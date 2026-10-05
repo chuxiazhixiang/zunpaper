@@ -1,0 +1,84 @@
+{
+  "id": "arxiv-2610-02803",
+  "source": "arxiv",
+  "title": "LOCUS: Landmark-Oriented Container Discrimination Using Spatial Graphs",
+  "title_zh": "LOCUS：基于空间图的面向地标的容器判别",
+  "abstract": "As robots are increasingly deployed in unstructured, real-world environments, the ability to reason about complex spatial and semantic relationships among objects remains a fundamental challenge in enabling robust and generalizable manipulation and navigation. For example, deciding where to search for an object that is not in plain sight depends on where it is physically plausible as well as semantically likely. Popular methods such as cosine similarity with CLIP struggle to disambiguate between spatially and semantically similar objects that could contain a target object. We propose Landmark-Oriented Container Discrimination Using Spatial Graphs (LOCUS). To jointly reason about spatial information and semantics, we train a GNN to update CLIP embeddings on a full environment scene graph by passing embedding information between nodes based on proximity. CLIP embeddings, augmented by semantic knowledge from a fusion of household ontologies provide a robust semantic signal. We evaluate in simulation on a noiseless scene graph from simulator metadata, making the approach detection-agnostic. Our approach outperforms random, CLIP, Tidybot, and an LLM planner in the majority of room classes and configurations in simulation. To show our approach is robust to scene graph node placement and label noise, we demonstrate a physical mobile manipulator running in an exploration pipeline start-to-finish including scene graph labels from Detic.",
+  "abstract_zh": "随着机器人越来越多地部署在非结构化真实环境中，对物体间复杂空间和语义关系进行推理仍然是实现鲁棒且可泛化的操作与导航的根本挑战。例如，决定在哪里寻找一个不在视线内的物体，取决于它物理上可能的位置以及语义上可能的位置。诸如使用 CLIP 进行余弦相似度计算等流行方法，难以区分可能包含目标物体的空间和语义相似的物体。我们提出了基于空间图的面向地标的容器判别（LOCUS）。为了联合推理空间信息和语义，我们训练了一个 GNN，通过基于邻近性在节点之间传递嵌入信息，在完整的环境场景图上更新 CLIP 嵌入。CLIP 嵌入通过融合家庭本体提供的语义知识进行增强，提供了鲁棒的语义信号。我们在模拟中基于来自模拟器元数据的无噪声场景图进行评估，使该方法与检测无关。在模拟中，我们的方法在大多数房间类别和配置中优于随机、CLIP、Tidybot 和 LLM 规划器。为了证明我们的方法对场景图节点放置和标签噪声具有鲁棒性，我们展示了一个物理移动操作器在探索管道中从头到尾运行，包括来自 Detic 的场景图标签。",
+  "tldr_zh": "LOCUS 用空间图增强 CLIP 嵌入，提升机器人容器判别能力。",
+  "cover_zh": "机器人找东西总翻车？LOCUS 用空间图让 CLIP 开窍！",
+  "authors": [
+    {
+      "name": "Taylor Bergeron",
+      "affiliation": ""
+    },
+    {
+      "name": "Shibani Senthilbabu",
+      "affiliation": ""
+    },
+    {
+      "name": "Kevin Leahy",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-10-02",
+  "updated": "2026-10-02",
+  "arxiv_id": "2610.02803",
+  "pdf_url": "https://arxiv.org/pdf/2610.02803v1",
+  "abs_url": "http://arxiv.org/abs/2610.02803v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-02803.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-02803-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 9,
+  "source_tags": [],
+  "score": 6,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（manipulation）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 9 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "移动操作中的空间语义推理，GNN增强CLIP，真机验证，属manipulation范畴。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Worcester Polytechnic Institute"
+  ],
+  "method_tags": [
+    "GNN",
+    "CLIP",
+    "scene graph"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"LOCUS: Landmark-Oriented Container Discrimination Using Spatial Graphs\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02803v1\n---\n>[!abstract] 一句话总结：LOCUS 在整场景图（scene graph）上用 GNN 按节点邻近关系在节点间传递信息以更新 CLIP 嵌入，并融合家庭物品本体（household ontologies）提供额外语义先验，从而联合推理空间与语义信息来做容器判别。\n\n\n# 一、动机\n\n> 机器人在非结构化环境中寻找不显眼的物体时，需要判断哪个容器「最可能装目标物」，但仅靠 CLIP 余弦相似度无法区分在空间位置与语义上都相似的容器（如两个都像装杯子柜子的地方）。\n\n\n# 二、方法\n\n> LOCUS 在整场景图（scene graph）上用 GNN 按节点邻近关系在节点间传递信息以更新 CLIP 嵌入，并融合家庭物品本体（household ontologies）提供额外语义先验，从而联合推理空间与语义信息来做容器判别。\n\n\n# 三、核心实验结果\n\n> 在仿真中基于模拟器元数据构建的无噪声场景图上（与检测解耦）评估，LOCUS 在大多数房间类别与配置下优于 Random、CLIP 相似度、Tidybot 和 LLM 规划器；同时对场景图节点位置与标签噪声具有一定鲁棒性——作者用真实移动操作臂跑通完整探索流水线，并使用 Detic 生成的场景图标签（摘要未给出具体数值指标）。\n\n\n# 四、对我的启发\n\n> 优势在于把开放词汇语义嵌入（CLIP）与场景图空间关系结合，且刻意用模拟器元数据做检测无关评估，便于隔离算法本身的效果；局限是主要结论来自无噪声仿真，真实机器人部分仅作为鲁棒性演示，未量化端到端成功率，且方法依赖场景图与本体库的质量。对具身智能中的物体搜索/容器推理课题有直接参考价值。\n"
+}

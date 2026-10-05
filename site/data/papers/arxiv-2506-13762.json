@@ -1,0 +1,91 @@
+{
+  "id": "arxiv-2506-13762",
+  "source": "conf",
+  "title": "Touch begins where vision ends: Generalizable policies for contact-rich manipulation",
+  "title_zh": "",
+  "abstract": "Data-driven approaches struggle with precise manipulation; imitation learning requires many hard-to-obtain demonstrations, while reinforcement learning yields brittle, non-generalizable policies. We introduce VisuoTactile Local (ViTaL) policy learning, a framework that solves fine-grained manipulation tasks by decomposing them into two phases: a reaching phase, where a vision-language model (VLM) enables scene-level reasoning to localize the object of interest, and a local interaction phase, where a reusable, scene-agnostic ViTaL policy performs contact-rich manipulation using egocentric vision and tactile sensing. This approach is motivated by the observation that while scene context varies, the low-level interaction remains consistent across task instances. By training local policies once in a canonical setting, they can generalize via a localize-then-execute strategy. ViTaL achieves around 90% success on contact-rich tasks in unseen environments and is robust to distractors. ViTaL's effectiveness stems from three key insights: (1) foundation models for segmentation enable training robust visual encoders via behavior cloning; (2) these encoders improve the generalizability of policies learned using residual RL; and (3) tactile sensing significantly boosts performance in contact-rich tasks. Ablation studies validate each of these insights, and we demonstrate that ViTaL integrates well with high-level VLMs, enabling robust, reusable low-level skills. Results and videos are available at https://vitalprecise.github.io.",
+  "abstract_zh": "",
+  "tldr_zh": "",
+  "cover_zh": "",
+  "authors": [
+    {
+      "name": "Zi-Fan Zhao",
+      "affiliation": ""
+    },
+    {
+      "name": "Siddhant Haldar",
+      "affiliation": ""
+    },
+    {
+      "name": "Jinda Cui",
+      "affiliation": ""
+    },
+    {
+      "name": "Lerrel Pinto",
+      "affiliation": ""
+    },
+    {
+      "name": "Raunaq M. Bhirangi",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "2025-06-16",
+  "updated": "",
+  "arxiv_id": "2506.13762",
+  "pdf_url": "https://arxiv.org/pdf/2506.13762",
+  "abs_url": "https://arxiv.org/abs/2506.13762",
+  "venue": "RA-L 2025",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ Lerrel Pinto"
+    },
+    {
+      "kind": "venue",
+      "label": "🎓 RA-L 2025"
+    }
+  ],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [],
+  "score": 42,
+  "score_breakdown": [
+    {
+      "id": "key_author",
+      "label": "关键作者上榜",
+      "points": 20,
+      "hint": "作者列表里有 Lerrel Pinto"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 5 个（manipulation、imitation learning、contact-rich、fine-grained manipulation）"
+    },
+    {
+      "id": "conf_venue",
+      "label": "机器人顶会 / 顶刊出品",
+      "points": 10,
+      "hint": "被「RA-L 2025」收录"
+    }
+  ],
+  "judge": {},
+  "institutions": [],
+  "method_tags": [],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Touch begins where vision ends: Generalizable policies for contact-rich manipulation\"\nYear: \"2025\"\nURL: https://arxiv.org/abs/2506.13762\n---\n>[!abstract] 一句话总结：提出 ViTaL 局部策略学习框架，把操作分解为「到达阶段」与「局部交互阶段」：前者用 VLM 做场景级推理定位目标物体，后者在规范（canonical）场景下一次性训练一个与场景无关、可复用的视触觉局部策略（自我中心视觉 + 触觉），再通过「先定位后执行」的策略迁移到新场景；训练上用分割基础模型做行为克隆得到鲁棒视觉编码器，再用残差 RL 提升泛化性。\n\n\n# 一、动机\n\n> 数据驱动的精细操作存在两难：模仿学习需要大量难以获取的示教，强化学习得到的策略脆弱且难以泛化；纯视觉在接触丰富的精细操作中缺乏局部力反馈信息。\n\n\n# 二、方法\n\n> 提出 ViTaL 局部策略学习框架，把操作分解为「到达阶段」与「局部交互阶段」：前者用 VLM 做场景级推理定位目标物体，后者在规范（canonical）场景下一次性训练一个与场景无关、可复用的视触觉局部策略（自我中心视觉 + 触觉），再通过「先定位后执行」的策略迁移到新场景；训练上用分割基础模型做行为克隆得到鲁棒视觉编码器，再用残差 RL 提升泛化性。\n\n\n# 三、核心实验结果\n\n> 在未见环境中的接触丰富任务上成功率达到约 90%，并对干扰物保持鲁棒；消融实验验证三点：基础模型分割 + 行为克隆能训练出更鲁棒的视觉编码器、该编码器显著提升残差 RL 策略的泛化性、触觉感知在接触丰富任务中带来明显性能提升；ViTaL 可与高层 VLM 良好集成，形成可复用的低层技能。\n\n\n# 四、对我的启发\n\n> 局限在于依赖「场景级定位 + 局部技能」的分解假设，局部策略在规范设置下训练，对物体几何/接触模式差异较大的新任务可能需要重训，且高层 VLM 定位失败会直接导致整体失败；启发是「任务上下文多变、但低层接触交互在实例间一致」这一观察可推广到其他可分解的机器人操作技能复用场景。\n"
+}

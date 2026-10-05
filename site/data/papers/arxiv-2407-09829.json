@@ -9,7 +9,7 @@
   "cover_zh": "机器人操作总翻车？试试给MPC装上VLM的眼睛｜复杂场景也能稳如老手",
   "authors": [
     {
-      "name": "Wentao Zhao",
+      "name": "Wen-Tao Zhao",
       "affiliation": ""
     },
     {
@@ -94,5 +94,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/VideoGen\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"VLMPC: Vision-Language Model Predictive Control for Robotic Manipulation\"\nYear: \"2024\"\nURL: https://arxiv.org/abs/2407.09829\n---\n>[!abstract] 一句话总结：提出 VLMPC 框架：以目标图像或语言指令为条件，用 VLM 采样一组候选动作序列，再通过轻量级动作条件视频预测模型生成对应的未来帧，最后用同时刻画像素级与知识级一致性的分层代价函数，借助 VLM 选出最优动作序列并交由 MPC 执行。\n\n\n# 一、动机\n\n> 传统模型预测控制（MPC）虽然能预测系统未来状态并广泛应用于机器人操作，但缺乏环境感知能力，在复杂场景下容易失败；而单纯依赖 VLM 的方法又缺少长程动力学预测与闭环控制能力。\n\n\n# 二、方法\n\n> 提出 VLMPC 框架：以目标图像或语言指令为条件，用 VLM 采样一组候选动作序列，再通过轻量级动作条件视频预测模型生成对应的未来帧，最后用同时刻画像素级与知识级一致性的分层代价函数，借助 VLM 选出最优动作序列并交由 MPC 执行。\n\n\n# 三、核心实验结果\n\n> 摘要在公开基准上报告 VLMPC 优于现有 SOTA 方法；在多种真实世界机器人操作任务中同样展现出优异性能（代码已开源）。注：摘要未给出具体数值指标，需查阅正文获取成功率等量化结果。\n\n\n# 四、对我的启发\n\n> 局限可能在于动作条件视频预测模型的精度上限、VLM 与视频预测带来的推理开销对实时闭环控制的影响，以及分层代价函数权重的调参成本；启发是将 VLM 的语义感知作为 MPC 的感知与评价模块，用「生成—评估」替代直接回归动作，为具身操作提供了一条可解释的控制路线，与具身智能/机器人操作课题高度相关。\n"
 }

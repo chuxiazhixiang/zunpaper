@@ -17,7 +17,7 @@
       "affiliation": ""
     },
     {
-      "name": "Zechu Li",
+      "name": "Ze-Chu Li",
       "affiliation": ""
     },
     {
@@ -102,5 +102,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Reconciling Reality through Simulation: A Real-to-Sim-to-Real Approach for Robust Manipulation\"\nYear: \"2024\"\nURL: https://arxiv.org/abs/2403.03949\n---\n>[!abstract] 一句话总结：提出 RialTo 系统：用少量真实数据快速扫描并构建真实环境的『数字孪生』仿真，提供易用的扫描建图接口，并设计『逆蒸馏』流程把真实示范迁移进仿真中，从而在仿真里用强化学习高效微调真实世界模仿学习策略，形成 real-to-sim-to-real 闭环。\n\n\n# 一、动机\n\n> 模仿学习要获得对物体位姿变化、物理扰动和视觉干扰鲁棒的策略，需要大量人工监督；而强化学习虽能自主探索获得鲁棒行为，却需要在真实世界中采集大量不安全且不切实际的数据。本文希望在不依赖大量人工标注、也不做危险的真机试错的前提下，得到既高性能又鲁棒的策略。\n\n\n# 二、方法\n\n> 提出 RialTo 系统：用少量真实数据快速扫描并构建真实环境的『数字孪生』仿真，提供易用的扫描建图接口，并设计『逆蒸馏』流程把真实示范迁移进仿真中，从而在仿真里用强化学习高效微调真实世界模仿学习策略，形成 real-to-sim-to-real 闭环。\n\n\n# 三、核心实验结果\n\n> 在真机上评估了 8 个操作任务（如把盘子稳健地叠到架子上、把书放到书架上等）；相比纯模仿学习基线，策略鲁棒性提升超过 67%，且无需大规模人工数据采集；对物体位姿改变、物理扰动和视觉干扰均表现出更强的鲁棒性。\n\n\n# 四、对我的启发\n\n> 主要局限在于数字孪生的保真度与扫描成本：真实到仿真的建模误差仍会带来 sim-to-real 差距，且每个新场景都需重新扫描构建。启发是：可用少量真实示范 + 在线构建的数字孪生 + RL 微调，作为提升模仿学习鲁棒性的通用低成本范式，对具身操作任务的可扩展训练很有参考价值。\n"
 }

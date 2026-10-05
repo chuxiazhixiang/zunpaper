@@ -91,5 +91,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Explore until Confident: Efficient Exploration for Embodied Question Answering\"\nYear: \"2024\"\nURL: https://arxiv.org/abs/2403.15941\n---\n>[!abstract] 一句话总结：先利用深度信息与 VLM 的视觉提示（visual prompting）构建场景的语义地图，借助 VLM 的常识知识判断哪些区域值得探索；再用保形预测（conformal prediction）对 VLM 的问答置信度进行标定，据此判断机器人何时可以停止探索并给出答案。\n\n\n# 一、动机\n\n> 将大视觉语言模型（VLM）直接用于具身问答（EQA）存在两个痛点：VLM 本身没有场景记忆、无法据此规划长时序探索路径；同时其问答置信度往往标定不准，会导致机器人在信息不足时过早停止探索（premature stop）或过度探索（over-explore），从而牺牲成功率与效率。\n\n\n# 二、方法\n\n> 先利用深度信息与 VLM 的视觉提示（visual prompting）构建场景的语义地图，借助 VLM 的常识知识判断哪些区域值得探索；再用保形预测（conformal prediction）对 VLM 的问答置信度进行标定，据此判断机器人何时可以停止探索并给出答案。\n\n\n# 三、核心实验结果\n\n> 摘要中未给出具体数值指标，仅说明仿真与真实机器人实验均表明所提方法在性能（答题正确率）与效率（探索代价）上优于两类基线——不使用 VLM 引导探索的基线，以及对 VLM 置信度不做标定的基线；同时论文基于 Habitat-Matterport 3D（HM3D）构建了一个包含多样、真实人-机器人场景的新 EQA 数据集，并开源了代码与实验视频。\n\n\n# 四、对我的启发\n\n> 局限在于置信度标定依赖保形预测所需的校准集，其覆盖率保证在分布外场景下可能失效；语义地图的质量也受 VLM 感知与深度估计精度制约。启发是「用 VLM 做语义先验 + 用统计工具校准不确定性来决定终止时机」这一范式，可推广到其他需要「探索到足够自信再行动」的具身决策任务。\n"
 }

@@ -1,0 +1,96 @@
+{
+  "id": "arxiv-2510-08568",
+  "source": "conf",
+  "title": "NovaFlow: Zero-Shot Manipulation via Actionable Flow from Generated Videos",
+  "title_zh": "",
+  "abstract": "Enabling robots to execute novel manipulation tasks zero-shot is a central goal in robotics. Most existing methods assume in-distribution tasks or rely on fine-tuning with embodiment-matched data, limiting transfer across platforms. We present NovaFlow, an autonomous manipulation framework that converts a task description into an actionable plan for a target robot without any demonstrations. Given a task description, NovaFlow synthesizes a video using a video generation model and distills it into 3D actionable object flow using off-the-shelf perception modules. From the object flow, it computes relative poses for rigid objects and realizes them as robot actions via grasp proposals and trajectory optimization. For deformable objects, this flow serves as a tracking objective for model-based planning with a particle-based dynamics model. By decoupling task understanding from low-level control, NovaFlow naturally transfers across embodiments. We validate on rigid, articulated, and deformable object manipulation tasks using a table-top Franka arm and a Spot quadrupedal mobile robot, and achieve effective zero-shot execution without demonstrations or embodiment-specific training. Project website: https://novaflow.lhy.xyz/.",
+  "abstract_zh": "",
+  "tldr_zh": "",
+  "cover_zh": "",
+  "authors": [
+    {
+      "name": "Hongyu Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Ling-Feng Sun",
+      "affiliation": ""
+    },
+    {
+      "name": "Ya-Fei Hu",
+      "affiliation": ""
+    },
+    {
+      "name": "Duy-Nguyen Ta",
+      "affiliation": ""
+    },
+    {
+      "name": "Jennifer L. Barry",
+      "affiliation": ""
+    },
+    {
+      "name": "G. Konidaris",
+      "affiliation": ""
+    },
+    {
+      "name": "Jia-Hui Fu",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "2025-10-09",
+  "updated": "",
+  "arxiv_id": "2510.08568",
+  "pdf_url": "https://arxiv.org/pdf/2510.08568",
+  "abs_url": "https://arxiv.org/abs/2510.08568",
+  "venue": "ICRA 2025",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation",
+    "locomotion"
+  ],
+  "badges": [
+    {
+      "kind": "venue",
+      "label": "🎓 ICRA 2025"
+    }
+  ],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [],
+  "score": 24,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（manipulation、grasp、quadruped）"
+    },
+    {
+      "id": "conf_venue",
+      "label": "机器人顶会 / 顶刊出品",
+      "points": 10,
+      "hint": "被「ICRA 2025」收录"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
+    }
+  ],
+  "judge": {},
+  "institutions": [],
+  "method_tags": [],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"NovaFlow: Zero-Shot Manipulation via Actionable Flow from Generated Videos\"\nYear: \"2025\"\nURL: https://arxiv.org/abs/2510.08568\n---\n>[!abstract] 一句话总结：NovaFlow 将任务描述先经视频生成模型合成演示视频，再用现成感知模块蒸馏出 3D 可操作物体流（actionable object flow）；对刚体与铰接物体由流计算相对位姿，并通过抓取候选与轨迹优化转成机器人动作，对可变形物体则把该流作为基于粒子动力学的模型规划跟踪目标，从而解耦任务理解与底层控制、实现跨本体零样本执行。\n\n\n# 一、动机\n\n> 现有机器人操作方法大多假定任务在训练分布内，或依赖与本体匹配的数据进行微调，导致难以跨平台迁移，且需要昂贵的示教数据。\n\n\n# 二、方法\n\n> NovaFlow 将任务描述先经视频生成模型合成演示视频，再用现成感知模块蒸馏出 3D 可操作物体流（actionable object flow）；对刚体与铰接物体由流计算相对位姿，并通过抓取候选与轨迹优化转成机器人动作，对可变形物体则把该流作为基于粒子动力学的模型规划跟踪目标，从而解耦任务理解与底层控制、实现跨本体零样本执行。\n\n\n# 三、核心实验结果\n\n> 论文在无需示教、无需本体特定训练的条件下实现了零样本执行，验证对象覆盖刚体、铰接物体与可变形物体三类操作任务，硬件平台包括桌面 Franka 机械臂与 Spot 四足移动机器人（摘要中未给出成功率等定量指标，需查阅正文与项目主页 https://novaflow.lhy.xyz/）。\n\n\n# 四、对我的启发\n\n> 核心启发是把「任务理解」交给生成模型、把「执行」交给经典感知与规划，从而天然跨本体迁移；局限在于整条链路高度依赖视频生成质量与现成感知模块的精度，2D 视频蒸馏到 3D 流可能引入几何与物理不一致，可变形物体还依赖粒子动力学模型的对象级建模，且零样本长时序任务的鲁棒性与失败恢复能力有待定量评估。\n"
+}

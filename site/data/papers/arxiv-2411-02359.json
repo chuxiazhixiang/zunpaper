@@ -17,7 +17,7 @@
       "affiliation": ""
     },
     {
-      "name": "Bingyi Kang",
+      "name": "Bing-Yi Kang",
       "affiliation": ""
     },
     {
@@ -25,15 +25,15 @@
       "affiliation": ""
     },
     {
-      "name": "Shenzhi Wang",
+      "name": "Shen-Zhi Wang",
       "affiliation": ""
     },
     {
-      "name": "Shiji Song",
+      "name": "Shi-Ji Song",
       "affiliation": ""
     },
     {
-      "name": "Jiashi Feng",
+      "name": "Jia-Shi Feng",
       "affiliation": ""
     },
     {
@@ -95,5 +95,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"DeeR-VLA: Dynamic Inference of Multimodal Large Language Models for Efficient Robot Execution\"\nYear: \"2024\"\nURL: https://arxiv.org/abs/2411.02359\n---\n>[!abstract] 一句话总结：提出 DeeR-VLA（DeeR），在机器人视觉-语言-动作 MLLM 中引入多层提前退出（multi-exit early-exit）架构，让模型按当前情境只激活所需规模的层并在满足条件时提前终止，同时设计以平均计算开销（功耗）、峰值计算开销（时延）和 GPU 显存为约束条件的提前终止判据，从而在给定资源预算下动态调整激活模型大小。\n\n\n# 一、动机\n\n> 机器人平台算力与内存受限，而面向机器人的多模态大模型（MLLM）推理需存储数十亿参数并进行海量计算，硬件需求过高，难以在真实机器人上部署。现有 VLA 模型通常以固定规模推理，无法根据任务难易自适应调节开销。\n\n\n# 二、方法\n\n> 提出 DeeR-VLA（DeeR），在机器人视觉-语言-动作 MLLM 中引入多层提前退出（multi-exit early-exit）架构，让模型按当前情境只激活所需规模的层并在满足条件时提前终止，同时设计以平均计算开销（功耗）、峰值计算开销（时延）和 GPU 显存为约束条件的提前终止判据，从而在给定资源预算下动态调整激活模型大小。\n\n\n# 三、核心实验结果\n\n> 在 CALVIN 机器人操作基准上，DeeR 将 LLM 部分的计算开销降低 5.2–6.5 倍、GPU 显存降低 2–6 倍，且不损失（保持与基线竞争性）任务性能；并能按预设的功耗/时延/显存约束自动调节加速比。\n\n\n# 四、对我的启发\n\n> 核心启发是「按需计算」：具身智能体在不同时刻任务难度差异大，用动态深度/提前退出替代固定规模推理可大幅提升 VLA 模型在真实机器人上的可部署性。局限在于提前退出阈值依赖预先设定的资源预算，且多层退出架构需要额外训练/校准，在极端困难或分布外场景下过早退出的决策可能带来性能风险。\n"
 }

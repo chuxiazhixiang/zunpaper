@@ -83,5 +83,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/ActionAnticipation\n  - 状态/待读\nTitle: \"Gated Temporal Diffusion for Stochastic Long-Term Dense Anticipation\"\nYear: \"2024\"\nURL: https://arxiv.org/abs/2407.11954\n---\n>[!abstract] 一句话总结：提出门控时序扩散网络 GTD：以门控预测网络 GTAN 作为扩散生成器，用「互表征」同时建模已观测与未观测帧，并通过门控机制让两者以不同的方式处理、受控地交换信息，从而在扩散过程中联合建模观测歧义与未来歧义。\n\n\n# 一、动机\n\n> 长期动作预测（long-term action anticipation）随着预测视界变长，未来不确定性急剧上升，但现有方法大多在确定性框架下预测，忽略了观测本身与未来预测中隐含的不确定性。\n\n\n# 二、方法\n\n> 提出门控时序扩散网络 GTD：以门控预测网络 GTAN 作为扩散生成器，用「互表征」同时建模已观测与未观测帧，并通过门控机制让两者以不同的方式处理、受控地交换信息，从而在扩散过程中联合建模观测歧义与未来歧义。\n\n\n# 三、核心实验结果\n\n> 在 Breakfast、50Salads 和 Assembly101 三个长期动作预测数据集上，所作方法在随机（stochastic）与确定性（deterministic）两种评测设定下均取得 state-of-the-art（论文摘要未给出具体数值指标，需查阅正文表格确认）。\n\n\n# 四、对我的启发\n\n> 局限：扩散采样带来额外推理开销，且依赖互表征的门控设计对超参较敏感；启发：对机器人/人机交互中的长期意图预测而言，显式区分「观测不确定性」与「未来不确定性」并做随机多模态预测，比单点确定性预测更契合下游规划需求，但该工作本身仅停留在视频预测层面，未与真实机器人闭环结合。\n"
 }

@@ -25,7 +25,7 @@
       "affiliation": ""
     },
     {
-      "name": "J. Carpentier",
+      "name": "Justin Carpentier",
       "affiliation": ""
     }
   ],
@@ -77,5 +77,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/InverseKinematics\n  - 状态/待读\nTitle: \"Linear-time Differential Inverse Kinematics: an Augmented Lagrangian Perspective\"\nYear: \"2024\"\nURL: https://www.semanticscholar.org/paper/3790f82c84401b47f0900fec9ecb3bf02921ced8\n---\n>[!abstract] 一句话总结：作者借鉴 Featherstone 刚体动力学算法的思路，用增广拉格朗日方法（AL）配合 ADMM（即 OSQP 所推广的策略）重写等式约束下的微分 IK：在机器人运动链结构上做稀疏/递归式 AL 求解，从而把复杂度从 O(n³) 降为关于问题维度的线性时间 O(n)，同时仍能处理与 QP-based IK 相同类别的问题（含不等式约束），并开源了 C++ 实现。\n\n\n# 一、动机\n\n> 现有微分逆运动学（differential IK）的 SOTA 解法几乎都建立在二次规划（QP）之上，求解复杂度随问题维度呈三次增长，当自由度较高（如人形机器人全身控制）时计算代价成为实时控制的瓶颈。\n\n\n# 二、方法\n\n> 作者借鉴 Featherstone 刚体动力学算法的思路，用增广拉格朗日方法（AL）配合 ADMM（即 OSQP 所推广的策略）重写等式约束下的微分 IK：在机器人运动链结构上做稀疏/递归式 AL 求解，从而把复杂度从 O(n³) 降为关于问题维度的线性时间 O(n)，同时仍能处理与 QP-based IK 相同类别的问题（含不等式约束），并开源了 C++ 实现。\n\n\n# 三、核心实验结果\n\n> 1) 提出了线性时间复杂度的等式约束微分 IK 求解器，处理问题类别与 QP 方法一致但复杂度由三次降为线性；2) 在机械臂与人形机器人行走任务的基准测试上，计算时间比基于 QP 的 SOTA 缩短 2–3 倍；3) 发布了开源 C++ 软件实现。\n\n\n# 四、对我的启发\n\n> 把经典刚体动力学中的增广拉格朗日/递归稀疏思想迁移到 IK 优化上，是一个很有启发性的“结构先验换复杂度”范式；局限在于论文主要面向等式约束（不等式靠 ADMM 外挂处理），其收敛速度与对超参数（罚因子、ADMM 步长）的敏感性、以及在大规模并行/GPU 场景下的表现仍待验证。\n"
 }

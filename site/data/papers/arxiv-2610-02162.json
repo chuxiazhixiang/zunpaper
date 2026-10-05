@@ -107,5 +107,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\n  - Task/CameraControl\n  - 状态/待读\nTitle: \"World Observer: Joint Actor-Observer Generation for Persistent World Modeling\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02162v1\n---\n>[!abstract] 一句话总结：提出 World Observer，将\"观察\"与\"行动\"解耦：在生成 actor 视角的同时，联合生成一个或多个全景 observer 持续观察选定世界区域，并通过从共享全景源 warp 建立 actor 与 observer 的显式几何对应，再用 Observer Sink 保存高分辨率透视参考以恢复重入时的精细外观。\n\n\n# 一、动机\n\n> 现有视频世界模型以 actor 为中心，物体一旦离开其视野就丢失直接观测，无法保持状态与动力学，重新进入时常常出现状态不一致或突变。\n\n\n# 二、方法\n\n> 提出 World Observer，将\"观察\"与\"行动\"解耦：在生成 actor 视角的同时，联合生成一个或多个全景 observer 持续观察选定世界区域，并通过从共享全景源 warp 建立 actor 与 observer 的显式几何对应，再用 Observer Sink 保存高分辨率透视参考以恢复重入时的精细外观。\n\n\n# 三、核心实验结果\n\n> 在作者提出的涵盖真实与合成场景的 out-of-view 动态 benchmark 与 world-space 指标上，World Observer 显著提升了视野外动态的表现，同时在视觉保真度、相机控制和 3D 一致性上保持有竞争力（摘要未给出具体数值）。\n\n\n# 四、对我的启发\n\n> 局限在于需要共享全景源作为几何锚点，observer 的数量与摆放方式会带来额外设计成本与计算开销；启发是将观察者从 actor 解耦可自由布点、多区域扩展并用控制信号引导视野外演化，这对具身智能的长期世界建模与物体持久性记忆有参考价值。\n"
 }

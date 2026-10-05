@@ -1,0 +1,95 @@
+{
+  "id": "arxiv-2610-03498",
+  "source": "arxiv",
+  "title": "Detect and Suppress: A Mechanistic Defense against Adversarial Patches in VLA Models",
+  "title_zh": "检测与抑制：针对VLA模型中对抗性补丁的机制性防御",
+  "abstract": "Adversarial patches can disrupt Vision-Language-Action (VLA) models by manipulating visual observations, leading to failures in robot control. However, it remains poorly understood which internal mechanisms underlie these failures and how targeted interventions can mitigate them. In this work, we mechanistically analyze VLA representations using a sparse autoencoder (SAE) and identify a feature whose activation strongly correlates with the presence of an adversarial patch. Based on this analysis, we suppress the identified feature at inference time only when a linear probe detects an attack. This intervention improves robustness without the cost of fine-tuning the VLA. We evaluate our method against VLA adversarial patch attacks on LIBERO-10. Conditional intervention improves success rate under intermittent attacks, whereas continuously applying the same intervention substantially degrades policy performance. These results show that attack-related internal representations can provide useful targets for VLA adversarial defense and that controlling when to intervene is important for limiting disruption to nominal policy behavior.",
+  "abstract_zh": "对抗性补丁可以通过操纵视觉观察来干扰视觉-语言-动作（VLA）模型，导致机器人控制失败。然而，这些失败背后的内部机制以及如何通过针对性干预来缓解它们，目前仍知之甚少。在这项工作中，我们使用稀疏自编码器（SAE）对VLA表示进行机制性分析，并识别出一个激活与对抗性补丁存在强相关的特征。基于此分析，我们仅在线性探针检测到攻击时，在推理阶段抑制该识别出的特征。这种干预提高了鲁棒性，且无需微调VLA的代价。我们在LIBERO-10上针对VLA对抗性补丁攻击评估了我们的方法。条件干预在间歇性攻击下提高了成功率，而持续应用相同的干预则会大幅降低策略性能。这些结果表明，与攻击相关的内部表示可以为VLA对抗性防御提供有用的目标，并且控制干预时机对于限制对正常策略行为的干扰至关重要。",
+  "tldr_zh": "用稀疏自编码器找到对抗补丁相关特征，检测到攻击时才抑制，提升VLA鲁棒性。",
+  "cover_zh": "VLA模型被攻击？找到关键特征，只在检测到攻击时抑制，鲁棒性飙升！",
+  "authors": [
+    {
+      "name": "Yukiya Horiba",
+      "affiliation": ""
+    },
+    {
+      "name": "Koshiro Aoki",
+      "affiliation": ""
+    },
+    {
+      "name": "Shunsuke Yasuki",
+      "affiliation": ""
+    },
+    {
+      "name": "Bum Jun Kim",
+      "affiliation": ""
+    },
+    {
+      "name": "Taiki Miyanishi",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.AI"
+  ],
+  "published": "2026-10-02",
+  "updated": "2026-10-02",
+  "arxiv_id": "2610.03498",
+  "pdf_url": "https://arxiv.org/pdf/2610.03498v1",
+  "abs_url": "http://arxiv.org/abs/2610.03498v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-03498.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-03498-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 11,
+  "source_tags": [],
+  "score": 12,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（vision-language-action、vla model、libero）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 11 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "VLA对抗补丁防御，机制可解释性+推理干预，属操作VLA安全方向，有科研参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Keio University",
+    "Waseda University",
+    "The University of Tokyo"
+  ],
+  "method_tags": [
+    "Sparse Autoencoder",
+    "Mechanistic Interpretability",
+    "Adversarial Robustness"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Detect and Suppress: A Mechanistic Defense against Adversarial Patches in VLA Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.03498v1\n---\n>[!abstract] 一句话总结：该工作用稀疏自编码器（SAE）对 VLA 表征做机制分析，定位到一个激活与对抗补丁存在强相关的特征，并在推理阶段先用线性探针判断是否受到攻击，仅在检测到攻击时抑制该特征，从而在不微调 VLA 的前提下提升鲁棒性。\n\n\n# 一、动机\n\n> 对抗补丁能让 VLA 模型因视觉观测被操纵而出现机器人控制失败，但此前对其内部机制以及如何进行针对性干预仍缺乏理解。\n\n\n# 二、方法\n\n> 该工作用稀疏自编码器（SAE）对 VLA 表征做机制分析，定位到一个激活与对抗补丁存在强相关的特征，并在推理阶段先用线性探针判断是否受到攻击，仅在检测到攻击时抑制该特征，从而在不微调 VLA 的前提下提升鲁棒性。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO-10 的 VLA 对抗补丁攻击评测中，条件式（检测到攻击才干预）抑制策略提升了间歇性攻击下的任务成功率，而持续施加同样干预会显著损害策略性能；摘要未报告具体成功率数值，仅以这组对比说明干预时机的重要性。\n\n\n# 四、对我的启发\n\n> 局限在于仅于 LIBERO-10 上验证、探针与特征抑制的选择依赖特定模型和攻击类型，且不当干预会破坏正常策略行为；启发是攻击相关的内部表征可作为 VLA 对抗防御的有效靶点，而“何时干预”与“干预什么”同样关键。\n"
+}

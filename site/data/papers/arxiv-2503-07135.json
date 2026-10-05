@@ -9,15 +9,15 @@
   "cover_zh": "不用真机训练｜看人类视频就能学会操作，零样本泛化新突破！",
   "authors": [
     {
-      "name": "Hanzhi Chen",
+      "name": "Han-Zhi Chen",
       "affiliation": ""
     },
     {
-      "name": "Boyang Sun",
+      "name": "Bo-Yang Sun",
       "affiliation": ""
     },
     {
-      "name": "Anran Zhang",
+      "name": "An-Ran Zhang",
       "affiliation": ""
     },
     {
@@ -77,5 +77,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"VidBot: Learning Generalizable 3D Actions from In-the-Wild 2D Human Videos for Zero-Shot Robotic Manipulation\"\nYear: \"2025\"\nURL: https://arxiv.org/abs/2503.07135\n---\n>[!abstract] 一句话总结：VidBot 从单目 RGB 人类视频中提取显式 3D 表示：结合深度基础模型与 SfM 重建出时序一致、度量尺度且与本体无关的 3D 手部轨迹；再用由粗到细的 affordance 学习模型，先从像素空间识别粗粒度动作，随后以扩散模型在粗动作条件与测试时约束引导下生成细粒度交互轨迹，实现零样本操作规划。\n\n\n# 一、动机\n\n> 机器人学习依赖大量真实机器人数据，采集成本高、难以规模化，且存在不同本体之间的鸿沟；希望利用互联网上大量现成的第一人称/第三人称人类视频来学习可迁移的操作技能。\n\n\n# 二、方法\n\n> VidBot 从单目 RGB 人类视频中提取显式 3D 表示：结合深度基础模型与 SfM 重建出时序一致、度量尺度且与本体无关的 3D 手部轨迹；再用由粗到细的 affordance 学习模型，先从像素空间识别粗粒度动作，随后以扩散模型在粗动作条件与测试时约束引导下生成细粒度交互轨迹，实现零样本操作规划。\n\n\n# 三、核心实验结果\n\n> 在 13 个操作任务的零样本设定下显著优于对比方法，并可在真实环境的多种机器人系统上无缝部署；其核心结论是仅用 in-the-wild 单目人类视频学到的 3D affordance 即可跨本体迁移，无需目标机器人的物理试错数据。\n\n\n# 四、对我的启发\n\n> 局限性在于重建质量依赖深度基础模型与 SfM 在野外视频上的稳定性，遮挡、快速运动与视角变化可能带来噪声；同时人类手部轨迹到不同机器人末端执行器的映射仍隐含形态假设。启发是「从人类视频学 3D affordance + 扩散轨迹生成 + 测试时约束」可作为跨本体零样本操作的可扩展范式。\n"
 }

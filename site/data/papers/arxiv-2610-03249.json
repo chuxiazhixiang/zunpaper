@@ -1,0 +1,99 @@
+{
+  "id": "arxiv-2610-03249",
+  "source": "arxiv",
+  "title": "Self-Repairing Recurrent Ensembles for Real-Time Recovery from Distribution Shift",
+  "title_zh": "自修复循环集成：面向分布偏移的实时恢复",
+  "abstract": "Deploying a pretrained controller exposes it to conditions that are absent from its training data. Sensor drift, outright sensor failure and accumulating measurement noise all induce a distribution shift that can collapse an otherwise competent policy; typically at a point in time where no expert is available to supply corrective labels. We present a method that lets a policy recover from such shifts online and without supervision. Our controller is an ensemble of recurrent networks, each of which observes a randomly masked subset of the observation vector, and whose Gaussian outputs are combined through sequential Kalman fusion so that confident members dominate the consensus action. At deployment, we treat this consensus as a self-supervised label and fine-tune each member towards it, scaling each member's contribution proportional to the complement of its squared Kalman gain. Gradients are computed using RFLO, an efficient and biologically plausible approximation of Real-Time Recurrent Learning, so that a parameter update follows every environment step and the policy reacts to a shift as it unfolds. On a range of simulated continuous control tasks, our approach recovers close to the original performance after a sensor shift, while ensembles that see the full observation are unable to recover. The same framework subsumes fully online interactive imitation learning: when an expert is present, the consensus label is replaced by the expert action and the identical update rule refines the policy during teleoperation.",
+  "abstract_zh": "部署预训练控制器会使其暴露于训练数据中不存在的条件。传感器漂移、传感器完全失效以及累积的测量噪声都会引发分布偏移，可能使原本胜任的策略崩溃；通常发生在没有专家可提供纠正标签的时刻。我们提出一种方法，使策略能够在线、无监督地从这种偏移中恢复。我们的控制器是一个循环网络集成，每个网络观察观测向量的一个随机掩码子集，其高斯输出通过序贯卡尔曼融合进行组合，从而让置信度高的成员主导共识动作。在部署时，我们将该共识视为自监督标签，并微调每个成员向其靠拢，每个成员的贡献按其卡尔曼增益平方的补数成比例缩放。梯度使用 RFLO 计算，这是一种高效且生物学上合理的实时循环学习近似，因此每个环境步骤后都会进行参数更新，策略能够随着偏移的展开而做出反应。在一系列模拟连续控制任务上，我们的方法在传感器偏移后恢复到接近原始性能，而观察完整观测的集成则无法恢复。同一框架还涵盖了完全在线的交互式模仿学习：当专家在场时，共识标签被专家动作替换，相同的更新规则在遥操作期间精炼策略。",
+  "tldr_zh": "循环网络集成通过自监督共识和卡尔曼融合，在线无监督恢复分布偏移。",
+  "cover_zh": "传感器坏了也不怕｜这个循环集成让策略自己修复",
+  "authors": [
+    {
+      "name": "Julian Lemmel",
+      "affiliation": ""
+    },
+    {
+      "name": "Pedro D. Wendel Garcia",
+      "affiliation": ""
+    },
+    {
+      "name": "Taisuke Kobayashi",
+      "affiliation": ""
+    },
+    {
+      "name": "Radu Grosu",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.NE",
+  "categories": [
+    "cs.NE",
+    "cs.RO",
+    "eess.SY"
+  ],
+  "published": "2026-10-02",
+  "updated": "2026-10-02",
+  "arxiv_id": "2610.03249",
+  "pdf_url": "https://arxiv.org/pdf/2610.03249v1",
+  "abs_url": "http://arxiv.org/abs/2610.03249v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-03249.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-03249-p2.jpg"
+  ],
+  "channels": [
+    "manipulation",
+    "teleop"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 17,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（imitation learning、teleoperation、teleop）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "sim2real",
+    "reason": "在线自修复集成策略应对分布偏移，仿真连续控制，属sim2real与鲁棒控制，有参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Vienna University of Technology",
+    "Medical University of Vienna",
+    "National Institute of Informatics, Tokyo"
+  ],
+  "method_tags": [
+    "Recurrent Ensembles",
+    "Kalman Fusion",
+    "Online Imitation Learning"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"Self-Repairing Recurrent Ensembles for Real-Time Recovery from Distribution Shift\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.03249v1\n---\n>[!abstract] 一句话总结：用一组循环网络构成集成控制器，每个成员只观测被随机掩码后的部分观测向量，其高斯输出经序贯卡尔曼融合后由高置信成员主导形成共识动作；部署时把该共识当作自监督标签，按卡尔曼增益平方的补数缩放各成员权重，并用 RFLO（实时循环学习的近似）在每个环境步后立即更新参数，从而在线、无监督地修复策略。\n\n\n# 一、动机\n\n> 预训练控制器一旦部署，就会遭遇训练分布中不存在的传感器漂移、传感器失效与累积噪声，由此引发的分布偏移可能让原本可用的策略彻底崩溃，而此时往往没有专家可以提供纠正标签。\n\n\n# 二、方法\n\n> 用一组循环网络构成集成控制器，每个成员只观测被随机掩码后的部分观测向量，其高斯输出经序贯卡尔曼融合后由高置信成员主导形成共识动作；部署时把该共识当作自监督标签，按卡尔曼增益平方的补数缩放各成员权重，并用 RFLO（实时循环学习的近似）在每个环境步后立即更新参数，从而在线、无监督地修复策略。\n\n\n# 三、核心实验结果\n\n> 在多个模拟连续控制任务上，该方法在传感器偏移后能恢复到接近原有性能，而观测完整向量的集成基线无法恢复；同一框架还可涵盖完全在线的交互式模仿学习——有专家在场时把共识标签替换为专家动作，用同一更新规则在遥操作过程中持续精炼策略。摘要未给出具体量化指标，故上述恢复程度为定性结论。\n\n\n# 四、对我的启发\n\n> 启发在于把“集成共识”当作部署期的自监督信号、并以 RFLO 实现每步更新的在线适应，为具身智能体的传感器故障鲁棒性与遥操作在线模仿学习提供了统一方案；局限是摘要缺乏量化对比，且多成员循环网络加每步反传的算力开销、共识标签在全体成员同时出错时的可靠性、以及 RFLO 近似带来的偏差都值得进一步检验。\n"
+}

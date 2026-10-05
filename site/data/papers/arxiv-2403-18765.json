@@ -81,5 +81,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/Locomotion\n  - 状态/待读\nTitle: \"CaT: Constraints as Terminations for Legged Locomotion Reinforcement Learning\"\nYear: \"2024\"\nURL: https://arxiv.org/abs/2403.18765\n---\n>[!abstract] 一句话总结：提出 Constraints as Terminations (CaT)：把约束违反重新表述为策略学习过程中的随机终止——一旦违反约束，就以一定概率截断智能体未来可获得的奖励，从而把硬约束转成奖励折扣机制，并只需对PPO等现成RL算法做极小改动即可实现。\n\n\n# 一、动机\n\n> 深度强化学习虽已在四足运动等复杂机器人任务上取得进展，但现有求解器难以产出既高效又满足硬约束的策略——经典约束RL形式（如Lagrangian/CPO）要么惩罚项调参困难，要么计算开销大、难落地。\n\n\n# 二、方法\n\n> 提出 Constraints as Terminations (CaT)：把约束违反重新表述为策略学习过程中的随机终止——一旦违反约束，就以一定概率截断智能体未来可获得的奖励，从而把硬约束转成奖励折扣机制，并只需对PPO等现成RL算法做极小改动即可实现。\n\n\n# 三、核心实验结果\n\n> 1) 在真实四足机器人 Solo 上完成跨越挑战性障碍的实验，验证了方法在真机上的可行性；2) 相比经典约束RL形式，CaT 在保持优异约束遵守度（constraint adherence）的同时，不引入额外的算法复杂度与计算开销；3) 由于只是对 PPO 等主流算法的最小修改，方法易于被社区采纳与复现（代码与视频已公开）。\n\n\n# 四、对我的启发\n\n> 启发：把「约束违反」等价为「随机终止」是一种极简的约束注入接口，可低成本地迁移到其他已用 PPO 的机器人任务上；局限在于约束遵守是概率性的而非严格保证，且论文主要在单一四足平台 Solo 的运动任务上验证，对操作、多约束耦合等场景的泛化性仍待检验。\n"
 }

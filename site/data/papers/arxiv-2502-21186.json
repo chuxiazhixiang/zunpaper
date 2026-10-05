@@ -77,5 +77,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Scalable Decision-Making in Stochastic Environments through Learned Temporal Abstraction\"\nYear: \"2025\"\nURL: https://arxiv.org/abs/2502.21186\n---\n>[!abstract] 一句话总结：提出 Latent Macro Action Planner（L-MAP）：用状态条件化的 VQ-VAE 学习一组时间上扩展的宏动作以压缩动作维度，再用单独学习的先验模型充当隐空间转移模型，并在规划阶段以蒙特卡洛树搜索（MCTS）在离散隐动作上搜索，从而同时建模环境与行为策略的随机性。\n\n\n# 一、动机\n\n> 高维连续动作空间中的序贯决策（尤其是在随机环境中）计算开销巨大，传统的离线强化学习方法在动作维度升高时规划效率急剧下降，难以兼顾决策质量与实时性。\n\n\n# 二、方法\n\n> 提出 Latent Macro Action Planner（L-MAP）：用状态条件化的 VQ-VAE 学习一组时间上扩展的宏动作以压缩动作维度，再用单独学习的先验模型充当隐空间转移模型，并在规划阶段以蒙特卡洛树搜索（MCTS）在离散隐动作上搜索，从而同时建模环境与行为策略的随机性。\n\n\n# 三、核心实验结果\n\n> 在包括固有随机动力学的连续控制到高维机械手操作等离线 RL 任务上，L-MAP 显著优于现有基于模型的方法，并与强 model-free actor-critic 基线表现相当；在动作维度增加的情况下仍保持较低的决策延迟。\n\n\n# 四、对我的启发\n\n> 方法依赖高质量离线数据与隐空间宏动作的离散化，隐动作粒度与 MCTS 搜索成本的权衡、以及对行为策略分布偏移的鲁棒性仍是潜在限制；其“时间抽象 + 隐空间规划”思路对高维机器人操作与具身决策中的实时规划有借鉴价值。\n"
 }

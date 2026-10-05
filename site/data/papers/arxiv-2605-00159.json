@@ -1,0 +1,89 @@
+{
+  "id": "arxiv-2605-00159",
+  "source": "conf",
+  "title": "E2DT: Efficient and Effective Decision Transformer with Experience-Aware Sampling for Robotic Manipulation",
+  "title_zh": "",
+  "abstract": "In reinforcement learning (RL) for robotic manipulation, the Decision Transformer (DT) has emerged as an effective framework for addressing long-horizon tasks. However, DT’s performance depends heavily on the coverage of collected experiences. Without an active exploration mechanism, standard DT relies on uniform replay, which leads to poor sample efficiency, limited exploration, and reduced overall effectiveness. At the same time, while excessive exploration can help avoid local optima, it often delays policy convergence and leads to degraded efficiency. To address these limitations, we propose E2DT, a DT-guided k-Determinantal Point Process sampling framework that enables the model to actively shape its own experience selection. Our framework is experience-aware, allowing E2DT to be both efficient, by prioritizing sampling quality (e.g., high-return, high-uncertainty, and underrepresented trajectories), and effective, by ensuring diversity across trajectory windows to preserve policy optimality. Specifically, DT’s internal latent embeddings measure diversity across trajectory windows, while quality is quantified through a composite metric that integrates return-to-go (RTG) quantiles, predictive uncertainty, and stage coverage (inverse frequency). These two dimensions are integrated into a novel quality–diversity joint kernel that prioritizes the most informative experiences, thereby enabling learning that is both efficient and effective. We evaluate E2DT on challenging robotic manipulation benchmarks in both simulation and real-robot settings. Results show that it consistently outperforms prior methods. These findings demonstrate that coupling policy learning with experience-aware sampling provides a principled path toward robust long-horizon robotic learning.",
+  "abstract_zh": "",
+  "tldr_zh": "",
+  "cover_zh": "",
+  "authors": [
+    {
+      "name": "Kai-Yan Zhao",
+      "affiliation": ""
+    },
+    {
+      "name": "Bo-Rong Zhang",
+      "affiliation": ""
+    },
+    {
+      "name": "Yi-Ming Wang",
+      "affiliation": ""
+    },
+    {
+      "name": "Xing-Yu Liu",
+      "affiliation": ""
+    },
+    {
+      "name": "Xue-Tao Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Yu-Yang Chen",
+      "affiliation": ""
+    },
+    {
+      "name": "Xiao-Guang Niu",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "2026-04-30",
+  "updated": "",
+  "arxiv_id": "2605.00159",
+  "pdf_url": "https://arxiv.org/pdf/2605.00159",
+  "abs_url": "https://arxiv.org/abs/2605.00159",
+  "venue": "ICRA 2026",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "venue",
+      "label": "🎓 ICRA 2026"
+    }
+  ],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [],
+  "score": 13,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（manipulation）"
+    },
+    {
+      "id": "conf_venue",
+      "label": "机器人顶会 / 顶刊出品",
+      "points": 10,
+      "hint": "被「ICRA 2026」收录"
+    }
+  ],
+  "judge": {},
+  "institutions": [],
+  "method_tags": [],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"E2DT: Efficient and Effective Decision Transformer with Experience-Aware Sampling for Robotic Manipulation\"\nYear: \"2026\"\nURL: https://arxiv.org/abs/2605.00159\n---\n>[!abstract] 一句话总结：提出 E2DT——一种由 DT 引导的 k-Determinantal Point Process（k-DPP）经验感知采样框架：用 DT 内部隐嵌入度量轨迹窗口之间的多样性（diversity），用整合 return-to-go 分位数、预测不确定性与阶段覆盖度（逆频率）的复合指标度量质量（quality），二者组合成质量–多样性联合核，优先采样信息量最大的经验来联合优化策略学习。\n\n\n# 一、动机\n\n> Decision Transformer 在长时序机器人操作中严重依赖经验覆盖度：标准 DT 采用均匀回放，缺乏主动探索机制，导致样本效率低、探索受限；而一味加大探索虽可规避局部最优，却会拖慢策略收敛、降低效率。\n\n\n# 二、方法\n\n> 提出 E2DT——一种由 DT 引导的 k-Determinantal Point Process（k-DPP）经验感知采样框架：用 DT 内部隐嵌入度量轨迹窗口之间的多样性（diversity），用整合 return-to-go 分位数、预测不确定性与阶段覆盖度（逆频率）的复合指标度量质量（quality），二者组合成质量–多样性联合核，优先采样信息量最大的经验来联合优化策略学习。\n\n\n# 三、核心实验结果\n\n> 论文在仿真与真机机器人操作基准上对 E2DT 进行了评测，摘要层面报告其「一致优于」已有方法（uniform replay 等），并验证了将策略学习与经验感知采样耦合可提升长时序操作的鲁棒性；但摘要未给出具体成功率、样本效率倍数等数值指标，需查阅正文表格确认。\n\n\n# 四、对我的启发\n\n> 思路启发性较强：把「回放/数据选择」从被动均匀采样升级为与策略学习耦合的主动决策，质量–多样性联合核可迁移到 VLA 微调的数据筛选或离线 RL 数据集构建。局限在于摘要缺少量化对比，k-DPP 采样与隐嵌入相似度计算带来额外开销与超参（质量三项权重、窗口粒度 k）敏感性未讨论，且质量指标依赖 RTG 分位数，在稀疏奖励或非平稳任务中的适用性待验证。\n"
+}

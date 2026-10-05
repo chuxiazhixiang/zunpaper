@@ -9,7 +9,7 @@
   "cover_zh": "双臂机器人还能更快？直接优化执行时间，效率飙升！",
   "authors": [
     {
-      "name": "Yucheng Tang",
+      "name": "Yu-Cheng Tang",
       "affiliation": ""
     },
     {
@@ -17,7 +17,7 @@
       "affiliation": ""
     },
     {
-      "name": "Yongzhou Zhang",
+      "name": "Yong-Zhou Zhang",
       "affiliation": ""
     },
     {
@@ -81,5 +81,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"ETA-IK: Execution-Time-Aware Inverse Kinematics for Dual-Arm Systems\"\nYear: \"2024\"\nURL: https://arxiv.org/abs/2411.14381\n---\n>[!abstract] 一句话总结：提出 ETA-IK：把整条双臂系统当作优化对象，用神经网络执行时间近似器直接预测省时的关节构型，并在预测中隐式考虑碰撞，从而在满足相对位姿约束的前提下直接最小化运动执行时间。\n\n\n# 一、动机\n\n> 传统逆运动学（IK）通常用可操作度、关节距离等代理指标来间接优化运动质量，并未直接优化执行时间；而在双臂扫描未知物体这类仅约束双机器人相对位姿的任务中，系统整体冗余未被充分利用。\n\n\n# 二、方法\n\n> 提出 ETA-IK：把整条双臂系统当作优化对象，用神经网络执行时间近似器直接预测省时的关节构型，并在预测中隐式考虑碰撞，从而在满足相对位姿约束的前提下直接最小化运动执行时间。\n\n\n# 三、核心实验结果\n\n> 在 UR5 + KUKA iiwa 组成的双臂系统上实验，执行时间相比传统 IK 方法显著降低，运动效率提升且定位精度没有损失（摘要未披露具体百分比数值）。\n\n\n# 四、对我的启发\n\n> 局限：以神经网络近似执行时间与碰撞，泛化性和安全性依赖训练分布，且仅在特定双臂平台与扫描任务上验证；启发是把「真实执行时间」而非代理指标作为 IK 目标，可推广到其他高冗余机器人系统的效率优化。\n"
 }
