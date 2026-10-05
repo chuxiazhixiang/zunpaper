@@ -95,5 +95,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/理论\n  - 论文/方法\n  - Domain/CV\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"What Should World Models Forget? Stratified Retention for Continual Adaptation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.03713v1\n---\n>[!abstract] 一句话总结：作者提出按不变性时间尺度分层的保留（stratified retention）观点，把物理规律、客体永久性等永不修改的不变量与应随环境变化立即修改的实例级事实分开，并设计 differential retention 评测协议：在不做聚合的前提下，同时报告沿适应流的不变量回归测试结果与知识修正延迟（revision latency）。\n\n\n# 一、动机\n\n> 持续学习领域沿用了「在旧数据上性能下降即为失败」的假设，但该假设建立在预测目标平稳不变的前提下；世界模型的预测目标是不断变化的环境，旧知识可能从正确变为错误，此时丢弃它是必要行为而非缺陷。现有工作既没有为世界模型形式化这种非平稳真值问题，也没有区分「正确修正过时知识」与「灾难性遗忘」的评测手段。\n\n\n# 二、方法\n\n> 作者提出按不变性时间尺度分层的保留（stratified retention）观点，把物理规律、客体永久性等永不修改的不变量与应随环境变化立即修改的实例级事实分开，并设计 differential retention 评测协议：在不做聚合的前提下，同时报告沿适应流的不变量回归测试结果与知识修正延迟（revision latency）。\n\n\n# 三、核心实验结果\n\n> 论文为立场/评测协议类工作，未给出实验数字，主要结论有三条：(1) 标准遗忘指标无法区分「正确修正过时知识」与「灾难性遗忘」，因此会把冻结不更新的模型排在最高位；(2) 现有物理推理基准只评测冻结的 checkpoint，无法暴露修正能力；(3) 提出的 differential retention 用不变量回归 + 修正延迟两项指标替代单一聚合分数。\n\n\n# 四、对我的启发\n\n> 局限在于全文为概念性论述，未提供任何数据集、基线或实证验证，分层边界的判定标准也未量化；启发是：对具身/世界模型做评测时，应把「不该变的」与「该变的」分开度量，并引入修正延迟作为一等指标，避免用单一遗忘分数掩盖正确更新。\n"
 }

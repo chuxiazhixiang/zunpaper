@@ -37,7 +37,8 @@
     "assets/img/covers/arxiv-2610-02811-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "teleop"
   ],
   "badges": [
     {
@@ -48,7 +49,7 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 32,
+  "score": 40,
   "score_breakdown": [
     {
       "id": "key_author",
@@ -59,14 +60,20 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 9,
-      "hint": "频道关键词命中 3 个（manipulation、dual-arm、contact-rich）"
+      "points": 12,
+      "hint": "频道关键词命中 4 个（manipulation、dual-arm、contact-rich、teleop）"
     },
     {
       "id": "longer_paper",
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -91,5 +98,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Learning Reflexive Behavior for Contact-Rich Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02811v1\n---\n>[!abstract] 一句话总结：在仿真中用弹簧、平面、导轨三个简单交互基元训练一个本体感受式\"反射\"策略，它以状态历史为输入、把任务空间指令映射为关节位置目标（不使用直接的力或几何测量），训练后冻结为高层控制器（运动规划器、学习策略、遥操作）之下的执行层。\n\n\n# 一、动机\n\n> 接触丰富操作中，传统位置控制、混合力位控制或笛卡尔阻抗控制所设定的跟踪目标、刚度或力控方向往往与局部几何约束不一致，导致跟踪误差大、接触力过高甚至任务失败。\n\n\n# 二、方法\n\n> 在仿真中用弹簧、平面、导轨三个简单交互基元训练一个本体感受式\"反射\"策略，它以状态历史为输入、把任务空间指令映射为关节位置目标（不使用直接的力或几何测量），训练后冻结为高层控制器（运动规划器、学习策略、遥操作）之下的执行层。\n\n\n# 三、核心实验结果\n\n> 在双臂搬箱任务中反射策略将接触力保持在阈值以下而基线失败；粗糙表面跟随中接触力低于 10 N 参考值，与调参后的混合力位控制相当；在 0.02 mm 轴孔插入任务中，平均估计接触力降至基线的一半以下，硬件成功率从最多 22% 提升到 36–58%。\n\n\n# 四、对我的启发\n\n> 方法把\"接触响应\"与\"指令生成\"解耦，思路可迁移到其他具身操作场景；局限在于仅在三种极简交互基元的仿真中训练，对复杂/未知几何形状的泛化性、真实力传感器的缺失带来的隐式偏差，以及冻结执行层无法在线调整刚度等问题尚不明确。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"Learning Reflexive Behavior for Contact-Rich Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02811v1\n---\n>[!abstract] 一句话总结：在仿真中针对弹簧、平面、导轨三种简单交互基元学习一个本体感受反射策略，仅用状态历史将任务空间指令映射为关节位置目标，不直接使用力或几何测量；训练后冻结为高层控制器之下的执行层。\n\n\n# 一、动机\n\n> 接触丰富操作中，传统位置控制、混合力位控制或笛卡尔阻抗控制所预设的跟踪目标、刚度与力控方向常与局部几何约束不匹配，导致执行性能下降甚至失败。\n\n\n# 二、方法\n\n> 在仿真中针对弹簧、平面、导轨三种简单交互基元学习一个本体感受反射策略，仅用状态历史将任务空间指令映射为关节位置目标，不直接使用力或几何测量；训练后冻结为高层控制器之下的执行层。\n\n\n# 三、核心实验结果\n\n> 在双臂抬箱中，反射策略将力保持在阈值以下而基线失败；在粗糙表面跟随中力低于 10 N 参考，与调好的混合力位控制相当；在 0.02 mm 轴孔插入中，平均估计接触力降至基线的一半以下，硬件成功率从最高 22% 提升到 36-58%。\n\n\n# 四、对我的启发\n\n> 局限在于策略仅在仿真中由三个简单交互基元训练，对复杂几何与真实接触动力学的泛化性仍待验证；启发是将接触响应与指令生成解耦，可为运动规划器、学习策略和遥操作提供鲁棒的接触丰富底层执行。与具身智能/机器人操作课题直接相关。\n"
 }

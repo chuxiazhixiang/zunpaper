@@ -43,13 +43,14 @@
     "assets/img/covers/arxiv-2610-03516-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [],
   "related_links": [],
   "page_count": 27,
   "source_tags": [],
-  "score": 6,
+  "score": 11,
   "score_breakdown": [
     {
       "id": "keyword_density",
@@ -62,6 +63,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 27 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -87,5 +94,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"XGenAct: Geometry-Enhanced World Action Models through Cross-Task Generation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.03516v1\n---\n>[!abstract] 一句话总结：XGenAct 用确定性编解码器把 RGB 观测、机器人动作、度量深度、表面法线和功能角色分割统一编码为 RGB 视频，训练时随机采样感知与动作任务，仅用单个视频扩散 Transformer 和单一目标函数学习跨这些空间的时间预测，无需任何模态专用预测头。\n\n\n# 一、动机\n\n> 现有 world action model（WAM）主要基于 RGB 观测和动作预测未来，未显式建模机器人操作所需的几何与空间理解；已有做法仅通过专用 head 或分支加入少量空间预测任务，导致空间监督范围狭窄、模型架构碎片化。\n\n\n# 二、方法\n\n> XGenAct 用确定性编解码器把 RGB 观测、机器人动作、度量深度、表面法线和功能角色分割统一编码为 RGB 视频，训练时随机采样感知与动作任务，仅用单个视频扩散 Transformer 和单一目标函数学习跨这些空间的时间预测，无需任何模态专用预测头。\n\n\n# 三、核心实验结果\n\n> 在 RLBench 留出任务上，加入结构化感知训练相比纯 RGB 训练提升了平均闭环成功率；在五任务外部对比中 XGenAct 达到 52% 成功率，而最强评测基线仅 26%；同时其未来深度与分割预测精度优于「先生成 RGB、再套用冻结感知专家」的流程。\n\n\n# 四、对我的启发\n\n> 把多模态空间监督统一成 RGB 视频、用单一扩散 Transformer 多任务采样的思路，对具身策略学习与几何感知控制有较强启发；但目前仅在 RLBench 仿真小规模任务上验证，跨本体与真实机器人上的泛化性、以及视频扩散带来的推理开销仍待考察。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"XGenAct: Geometry-Enhanced World Action Models through Cross-Task Generation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.03516v1\n---\n>[!abstract] 一句话总结：XGenAct 用确定性编解码器把 RGB 观测、机器人动作、度量深度、表面法线和功能角色分割统一表示为 RGB 视频，训练时对感知任务与动作任务采样，仅用一个视频扩散 Transformer 和一个目标函数学习跨这些空间的时序预测，无需模态专属学习头。\n\n\n# 一、动机\n\n> 现有 world action model 仅基于 RGB 与动作预测未来，未显式建模机器人操作所需的空间理解；已有工作通过专用 head 或分支补充少量空间预测任务，导致空间监督范围有限、模型架构碎片化。\n\n\n# 二、方法\n\n> XGenAct 用确定性编解码器把 RGB 观测、机器人动作、度量深度、表面法线和功能角色分割统一表示为 RGB 视频，训练时对感知任务与动作任务采样，仅用一个视频扩散 Transformer 和一个目标函数学习跨这些空间的时序预测，无需模态专属学习头。\n\n\n# 三、核心实验结果\n\n> 在 held-out RLBench 任务上，结构化感知训练相比仅用 RGB 训练提升了平均闭环成功率；在五任务外部对比中 XGenAct 成功率达 52%，而最强的被评估基线仅 26%；在预测未来深度与分割上也优于「先生成 RGB 再套用冻结感知专家」的流程。\n\n\n# 四、对我的启发\n\n> 启发在于把多种空间感知模态编码进同一 RGB 视频空间，可用单一扩散 Transformer 和统一目标实现密集空间监督，避免多分支/多头架构；局限是仅在 RLBench 等仿真操作任务上验证，真实机器人、长时序与多具身泛化性仍待考察。\n"
 }

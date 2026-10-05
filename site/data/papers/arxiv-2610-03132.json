@@ -43,7 +43,8 @@
   ],
   "channels": [
     "locomotion",
-    "sim2real"
+    "sim2real",
+    "manipulation"
   ],
   "badges": [
     {
@@ -92,7 +93,7 @@
       "id": "cross_channel",
       "label": "跨多个方向",
       "points": 5,
-      "hint": "同时命中 2 个频道"
+      "hint": "同时命中 3 个频道"
     }
   ],
   "judge": {
@@ -120,5 +121,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/MotionPlanning\n  - 状态/待读\nTitle: \"Safe Streaming Flow Planning by Aligning Sampling Dynamics with Execution Dynamics\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.03132v1\n---\n>[!abstract] 一句话总结：提出 SafeStreamingFlow：一种目标条件规划器，通过顺序积分学习到的状态向量场并配合分层状态预测，使流采样的动力学逐步对齐真实执行动力学（流式逐步生成，而非整轨迹生成）；安全约束只对当前要执行的那一步用高阶控制障碍函数（HOCBF）施加，从而在保持目标可达性的同时实现低延迟的安全执行。\n\n\n# 一、动机\n\n> 已有的安全扩散/流匹配规划器一次性生成整条轨迹，并反复扰动中间状态以满足安全约束，既计算开销大，又因「采样动力学」与「系统执行动力学」不一致而引入分布偏移，难以支撑高速在线重规划与实时执行。\n\n\n# 二、方法\n\n> 提出 SafeStreamingFlow：一种目标条件规划器，通过顺序积分学习到的状态向量场并配合分层状态预测，使流采样的动力学逐步对齐真实执行动力学（流式逐步生成，而非整轨迹生成）；安全约束只对当前要执行的那一步用高阶控制障碍函数（HOCBF）施加，从而在保持目标可达性的同时实现低延迟的安全执行。\n\n\n# 三、核心实验结果\n\n> 在导航、竞速（racing）与运动控制（locomotion）三类基准上，相较于现有安全扩散/流规划方法，SafeStreamingFlow 降低了规划延迟并提升了安全性，同时保持有竞争力的目标到达成功率；摘要未给出具体量化数值（延迟降幅、约束违反率、成功率等需查阅正文）。\n\n\n# 四、对我的启发\n\n> 启发：把「采样动力学≡执行动力学」作为流式生成规划的核心设计原则，可避免整轨迹生成+中间状态扰动的分布偏移与算力浪费；安全只在执行步上用 HOCBF 约束，是把安全保证从全局轨迹松弛到单步的实用折中，但其对多步预判/未来约束的保证范围有限，且在高速动态场景下的分层预测误差累积值得进一步考察。与具身智能/机器人规划课题高度相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Safe Streaming Flow Planning by Aligning Sampling Dynamics with Execution Dynamics\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.03132v1\n---\n>[!abstract] 一句话总结：提出 SafeStreamingFlow：目标条件规划器将流的采样动态与执行动态对齐，通过顺序积分学习到的状态向量场并结合分层状态预测，逐步流式生成轨迹，且只对被实际执行的那一步用高阶控制屏障函数（HOCBF）施加安全约束。\n\n\n# 一、动机\n\n> 现有基于扩散/流匹配的安全规划器需要一次性生成整条轨迹，并反复扰动中间状态来满足安全约束，计算开销大，而且其采样动态与真实执行动态不一致，造成分布偏移，难以在快速执行频率下在线重规划并同时保证安全。\n\n\n# 二、方法\n\n> 提出 SafeStreamingFlow：目标条件规划器将流的采样动态与执行动态对齐，通过顺序积分学习到的状态向量场并结合分层状态预测，逐步流式生成轨迹，且只对被实际执行的那一步用高阶控制屏障函数（HOCBF）施加安全约束。\n\n\n# 三、核心实验结果\n\n> 在导航、竞速（racing）和运动（locomotion）三类基准上，相比现有安全扩散/流规划方法，SafeStreamingFlow 降低了规划延迟并提升了安全性，同时保持了有竞争力的目标到达成功率；原文摘要未给出具体数值，需查阅正文获取定量指标。\n\n\n# 四、对我的启发\n\n> 核心启发是「只对已执行的一步做安全约束」+「采样动态与执行动态对齐」，这为流式生成式规划器提供了降低延迟与保持安全的通用思路；局限在于安全保证依赖于 HOCBF 的建模与控制仿射假设，且摘要未报告跨实体泛化与真实硬件实验的定量结果。\n"
 }

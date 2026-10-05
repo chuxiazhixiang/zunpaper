@@ -37,25 +37,32 @@
     "assets/img/covers/arxiv-2610-02803-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [],
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 6,
+  "score": 14,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（manipulation）"
+      "points": 6,
+      "hint": "频道关键词命中 2 个（manipulation、mobile manipulator）"
     },
     {
       "id": "longer_paper",
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 9 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -80,5 +87,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"LOCUS: Landmark-Oriented Container Discrimination Using Spatial Graphs\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02803v1\n---\n>[!abstract] 一句话总结：LOCUS 在整场景图（scene graph）上用 GNN 按节点邻近关系在节点间传递信息以更新 CLIP 嵌入，并融合家庭物品本体（household ontologies）提供额外语义先验，从而联合推理空间与语义信息来做容器判别。\n\n\n# 一、动机\n\n> 机器人在非结构化环境中寻找不显眼的物体时，需要判断哪个容器「最可能装目标物」，但仅靠 CLIP 余弦相似度无法区分在空间位置与语义上都相似的容器（如两个都像装杯子柜子的地方）。\n\n\n# 二、方法\n\n> LOCUS 在整场景图（scene graph）上用 GNN 按节点邻近关系在节点间传递信息以更新 CLIP 嵌入，并融合家庭物品本体（household ontologies）提供额外语义先验，从而联合推理空间与语义信息来做容器判别。\n\n\n# 三、核心实验结果\n\n> 在仿真中基于模拟器元数据构建的无噪声场景图上（与检测解耦）评估，LOCUS 在大多数房间类别与配置下优于 Random、CLIP 相似度、Tidybot 和 LLM 规划器；同时对场景图节点位置与标签噪声具有一定鲁棒性——作者用真实移动操作臂跑通完整探索流水线，并使用 Detic 生成的场景图标签（摘要未给出具体数值指标）。\n\n\n# 四、对我的启发\n\n> 优势在于把开放词汇语义嵌入（CLIP）与场景图空间关系结合，且刻意用模拟器元数据做检测无关评估，便于隔离算法本身的效果；局限是主要结论来自无噪声仿真，真实机器人部分仅作为鲁棒性演示，未量化端到端成功率，且方法依赖场景图与本体库的质量。对具身智能中的物体搜索/容器推理课题有直接参考价值。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"LOCUS: Landmark-Oriented Container Discrimination Using Spatial Graphs\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02803v1\n---\n>[!abstract] 一句话总结：提出 LOCUS：在完整环境场景图上训练 GNN，按邻近性在节点间传递嵌入信息以更新 CLIP 嵌入，并融合家庭本体论提供语义先验，从而对候选容器做联合空间-语义的地标式判别。\n\n\n# 一、动机\n\n> 机器人在非结构化环境中寻找不在视线内的物体时，需要判断哪里既物理可行又语义合理；现有 CLIP 余弦相似度等方法难以区分空间与语义上都相似、却可能容纳目标物体的候选容器。\n\n\n# 二、方法\n\n> 提出 LOCUS：在完整环境场景图上训练 GNN，按邻近性在节点间传递嵌入信息以更新 CLIP 嵌入，并融合家庭本体论提供语义先验，从而对候选容器做联合空间-语义的地标式判别。\n\n\n# 三、核心实验结果\n\n> 在仿真无噪声场景图上评估（与检测器解耦），在大多数房间类别与配置下优于 random、CLIP、Tidybot 和 LLM planner 基线（摘要未给出具体数值）；进一步在物理移动机械臂上端到端跑通探索流程，场景图标签由 Detic 生成，验证了对节点布局与标签噪声的鲁棒性。\n\n\n# 四、对我的启发\n\n> 局限在于依赖场景图质量与家庭本体论先验，评估以仿真为主；启发是可把图神经网络的关系推理与视觉语言嵌入结合，用于开放词汇的容器/物体搜索与具身探索。\n"
 }

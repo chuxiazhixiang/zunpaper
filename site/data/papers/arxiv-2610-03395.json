@@ -46,7 +46,8 @@
     "assets/img/covers/arxiv-2610-03395-p2.jpg"
   ],
   "channels": [
-    "locomotion"
+    "locomotion",
+    "manipulation"
   ],
   "badges": [
     {
@@ -65,7 +66,7 @@
   "related_links": [],
   "page_count": 17,
   "source_tags": [],
-  "score": 51,
+  "score": 56,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -90,6 +91,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 17 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -115,5 +122,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Bidirectional Voronoi-biased Exploration Curriculum for Reinforcement Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.03395v1\n---\n>[!abstract] 一句话总结：受双向 RRT 规划启发，BVER 同时从两端生长课程：以目标为起点反向扩展初始状态、以初始状态分布为起点正向扩展目标，用 Voronoi 分区把两侧都偏向未探索的任务空间并相互牵引，最终在两侧生成的状态-目标对上训练同一个目标条件策略。\n\n\n# 一、动机\n\n> 长时程稀疏奖励任务中，目标条件策略从初始状态出发几乎无法到达目标，因而不获得任何学习信号；参考动作、手工课程和奖励塑形可提供信号但依赖演示或任务特定工程，而现有的自动起始状态/目标课程多只从单侧扩展，必须由这一侧独自覆盖到目标的全部距离。\n\n\n# 二、方法\n\n> 受双向 RRT 规划启发，BVER 同时从两端生长课程：以目标为起点反向扩展初始状态、以初始状态分布为起点正向扩展目标，用 Voronoi 分区把两侧都偏向未探索的任务空间并相互牵引，最终在两侧生成的状态-目标对上训练同一个目标条件策略。\n\n\n# 三、核心实验结果\n\n> 在点质量迷宫、四足机器人爬箱和机械臂 ring-on-peg 三项任务上，BVER 比所有对比的无参考课程学得更快；爬 0.4 m 箱子达到 95% 成功率，迭代次数比最优对比方法少约 65%，并且是唯一学会爬 0.7 m 箱子的方法，所得策略对起始状态、目标和偏航变化均鲁棒；在无演示条件下，其在 0.4 m 爬箱和 ring-on-peg 上的样本效率接近基于参考动作的课程；消融实验表明双向扩展优于任一单向扩展。\n\n\n# 四、对我的启发\n\n> 局限在于方法仍依赖手工定义的任务空间表示、距离度量与 Voronoi 划分，在高维或非欧空间中的可扩展性有待验证；其启发是双向自动课程结合空间偏置能显著降低长时程操作/移动任务对演示的依赖，可与目标条件策略学习直接结合用于机器人操作与运动。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Bidirectional Voronoi-biased Exploration Curriculum for Reinforcement Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.03395v1\n---\n>[!abstract] 一句话总结：提出 BVER——受双向 RRT 规划启发的双向 Voronoi 偏置探索课程：同时从目标向外生长起始状态、从初始状态分布向外生长目标，用 Voronoi 偏置把两侧都推向未探索的任务空间并相互靠近，最终在这两侧数据上训练同一个 goal-conditioned 策略。\n\n\n# 一、动机\n\n> 长时序稀疏奖励任务中，goal-conditioned RL 从初始状态出发几乎无法到达目标，因而得不到学习信号；已有的参考动作、手工课程与奖励塑形依赖演示或任务定制工程，而自动的起点/目标课程又通常只从单侧扩展，必须由这一侧独自覆盖到目标的全部距离。\n\n\n# 二、方法\n\n> 提出 BVER——受双向 RRT 规划启发的双向 Voronoi 偏置探索课程：同时从目标向外生长起始状态、从初始状态分布向外生长目标，用 Voronoi 偏置把两侧都推向未探索的任务空间并相互靠近，最终在这两侧数据上训练同一个 goal-conditioned 策略。\n\n\n# 三、核心实验结果\n\n> 在 point-mass 迷宫、四足机器人爬箱和机械臂 ring-on-peg 三类任务上，BVER 均比所有对比的无参考课程学得更快；爬箱任务中在 0.4 m 箱子上达到 95% 成功率所需的迭代次数比最好的对比方法少约 65%，且是唯一学会爬 0.7 m 箱子的方法，所得策略对起始状态、目标位置和偏航角变化具有鲁棒性；在无演示的情况下，其在 0.4 m 爬箱与 ring-on-peg 上的样本效率接近基于参考动作的课程；消融实验表明双向扩展优于任一单向扩展。\n\n\n# 四、对我的启发\n\n> 表明自动课程无需演示即可逼近参考动作课程的效率，双向生长是关键；局限在于 Voronoi 偏置与状态空间划分在高维任务中的可扩展性、以及仍依赖能定义起点/目标分布的任务结构，尚需验证更复杂接触丰富任务与真实硬件上的表现。\n"
 }

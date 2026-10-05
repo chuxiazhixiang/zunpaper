@@ -68,7 +68,8 @@
     "assets/img/covers/arxiv-2610-02832-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "sim2real"
   ],
   "badges": [
     {
@@ -79,7 +80,7 @@
   "related_links": [],
   "page_count": 26,
   "source_tags": [],
-  "score": 40,
+  "score": 45,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -91,13 +92,19 @@
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 4 个（vision-language-action、manipulation、robotwin、libero）"
+      "hint": "频道关键词命中 5 个（vision-language-action、manipulation、robotwin、libero）"
     },
     {
       "id": "longer_paper",
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 26 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -123,5 +130,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"FastOPD: On-Policy Distillation for Lightweight VLA Deployment\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02832v1\n---\n>[!abstract] 一句话总结：FastOPD 提出「基础模型→轻量模型」的 on-policy 蒸馏框架：用 flow map 为单状态提供教师监督，并与自一致性（self-consistency）目标联合训练一个紧凑学生模型，使其学得教师的动力学，实现少步甚至单步推理，并从理论上证明最小化该目标可让蒸馏学生恢复到与理想少步教师模型相当的分布。\n\n\n# 一、动机\n\n> VLA 基础模型参数与计算规模快速膨胀，带来了难以承受的推理开销，使真机部署愈发困难；现有做法（直接缩小架构或减少 flow-based 策略的去噪步数）往往以显著牺牲操作性能与泛化性为代价。\n\n\n# 二、方法\n\n> FastOPD 提出「基础模型→轻量模型」的 on-policy 蒸馏框架：用 flow map 为单状态提供教师监督，并与自一致性（self-consistency）目标联合训练一个紧凑学生模型，使其学得教师的动力学，实现少步甚至单步推理，并从理论上证明最小化该目标可让蒸馏学生恢复到与理想少步教师模型相当的分布。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO 上，FastOPD 仅用 2 步推理即保留教师 π0.5 约 84% 的性能，推理延迟降低 78.1%，平均成功率优于已有 few-step 蒸馏基线；以 LingBot-VLA 为教师时，在 RoboTwin 2.0 上把单步成功率相对基础学生提升 15.9 个百分点；方法还适用于 World Action Model (WAM)，并成功将由 MolmoAct2 蒸馏得到的紧凑学生模型部署到真实机器人上。\n\n\n# 四、对我的启发\n\n> 该方法的价值在于为大规模 VLA 提供了一条可证明的少步蒸馏路径，把「部署成本」与「基础模型能力」解耦，对具身智能的真机落地有直接启发；局限在于整体性能仍受教师上限约束（LIBERO 上只保留 84% 性能），且蒸馏效果对教师质量与 flow map 设计较为敏感，跨载体、多任务长时程场景下的泛化性尚待更多验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"FastOPD: On-Policy Distillation for Lightweight VLA Deployment\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.02832v1\n---\n>[!abstract] 一句话总结：提出 FastOPD 的 foundation-to-lightweight 蒸馏框架：为单状态教师监督适配 flow map，并结合自一致性（self-consistency）目标训练紧凑学生模型以学习教师动力学，理论上证明最小化该目标可使学生恢复到理想少步教师模型的分布水平。\n\n\n# 一、动机\n\n> 大规模 VLA 基座模型推理开销过高，难以实际部署；已有做法（缩小架构或减少 flow-based 策略的去噪步数）往往牺牲性能，缺乏兼顾轻量化与性能保持的蒸馏方案。\n\n\n# 二、方法\n\n> 提出 FastOPD 的 foundation-to-lightweight 蒸馏框架：为单状态教师监督适配 flow map，并结合自一致性（self-consistency）目标训练紧凑学生模型以学习教师动力学，理论上证明最小化该目标可使学生恢复到理想少步教师模型的分布水平。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO 上仅用 2 步推理即保留 π_0.5 性能的 84%，推理延迟降低 78.1%，平均成功率超过现有少步蒸馏基线；以 LingBot-VLA 为教师时，在 RoboTwin 2.0 上把单步成功率相对基础学生提升 15.9 个百分点；方法还适用于 World Action Model（WAM），并将由 MolmoAct2 蒸馏出的紧凑学生部署到真实机器人上。\n\n\n# 四、对我的启发\n\n> 工作给出了单状态 flow map 蒸馏的理论保证并验证了仿真到真机的可行性，但摘要未给出真机任务的定量成功率与推理硬件细节；对具身智能中 VLA 的实时部署与跨模型蒸馏有较强参考价值。\n"
 }
