@@ -125,5 +125,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"HIL-UMI: Bringing Human-in-the-Loop Post-Training of Vision-Language-Action Models to Universal Manipulation Interface\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.20659v1\n---\n>[!abstract] 一句话总结：HIL-UMI 提出一种策略引导的无机器人人类在环（HIL）后训练框架：在手持 UMI 演示过程中，将当前策略在同一观测流上推理但不执行其动作，用 Energy Score 比较人类动作轨迹与策略推理的差异，在判定为分布外区域时触发数据采集；另一路反馈循环用低在线优势预测定位关键片段来精炼基于进展（progress）的优势估计器，再由更新后的估计器引导 advantage-conditioned 行为克隆，训练数据为基础演示与新策略数据的平衡混合。\n\n\n# 一、动机\n\n> VLA 模型在特定部署场景下仍需适配，而基于静态示教的 SFT 存在两个瓶颈：数据难以覆盖分布外状态，且标准模仿目标无法区分「有进展」与「低价值」的行为；已有的交互式后训练又必须在真实机器人上反复执行并依赖人工干预，成本高、难扩展。\n\n\n# 二、方法\n\n> HIL-UMI 提出一种策略引导的无机器人人类在环（HIL）后训练框架：在手持 UMI 演示过程中，将当前策略在同一观测流上推理但不执行其动作，用 Energy Score 比较人类动作轨迹与策略推理的差异，在判定为分布外区域时触发数据采集；另一路反馈循环用低在线优势预测定位关键片段来精炼基于进展（progress）的优势估计器，再由更新后的估计器引导 advantage-conditioned 行为克隆，训练数据为基础演示与新策略数据的平衡混合。\n\n\n# 三、核心实验结果\n\n> 在四个真实世界任务（覆盖长时序与精细操作）上，HIL-UMI 相比 SFT 取得一致提升，并同时受益于定向采集与优势精炼；在 Clean Up Table 任务上优于 HG-DAgger，且单帧采集时间更低，显示出可跨操作者、跨地点扩展的 VLA 后训练路径。\n\n\n# 四、对我的启发\n\n> 主要局限在于方法强依赖 UMI 手持采集硬件与人工参与，Energy Score 与优势估计器的阈值/精炼依赖任务调参，且实验规模较小（4 个真实任务），尚无仿真或大规模跨本体泛化验证；但其「策略在环、采集与机器人解耦」的思路对降低具身数据采集成本很有启发。\n"
 }

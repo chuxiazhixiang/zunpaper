@@ -1,0 +1,86 @@
+{
+  "id": "arxiv-2610-06078",
+  "source": "arxiv",
+  "title": "Do VLAs Understand and Adapt to the Objects They Handle, or Simply Replay Learned Behaviors?",
+  "title_zh": "VLA 是理解并适应所操作物体，还是仅仅重放已学行为？",
+  "abstract": "This paper asks whether VLA generalization is grounded in a global understanding of objects' physical properties that enables policies to adapt their motion to unseen setups, or if policies simply replay the motions they've learnt that happen to succeed in new setups. The former reflects genuine generalization; the latter reflects incidental robustness. We first examine awareness of physical properties in seven VLAs by applying linear probing and representational similarity analysis (RSA) to their activations. We find that physical properties, including mass, fragility, deformability, friction and size are less decodable than non-physical properties such as semantic category, material, sound and price in nearly every modality stream. Compared with their base VLMs, robot pre-training weakens the linear encoding of physical properties in the language stream. Neither pre-training nor downstream fine-tuning strengthens the alignment between physical-property differences and activation distances. We then ask whether the weak physical information present in these activations shapes the actions a VLA generates. In a controlled LIBERO case study, we increase the mass of an in-domain object and signal the change through language or vision. Most VLAs use similar lifting behaviour for the heavier and original-mass objects, leading to task success declines. The few exceptions change their behaviour in response to lexical or visual cues rather than to mass itself. These results suggest that VLAs encode physical properties weakly and do not reliably use them to adapt their motion.",
+  "abstract_zh": "本文探讨 VLA 的泛化能力是源于对物体物理属性的全局理解（使策略能适应未见过的场景），还是仅仅重放恰好在新场景中成功的已学动作。前者反映真正的泛化，后者反映偶然的鲁棒性。我们首先通过线性探测和表征相似性分析（RSA）检查七个 VLA 的激活，发现物理属性（包括质量、易碎性、可变形性、摩擦力和尺寸）在几乎所有模态流中都比非物理属性（如语义类别、材料、声音和价格）更难解码。与基础 VLM 相比，机器人预训练削弱了语言流中物理属性的线性编码。预训练和下游微调均未增强物理属性差异与激活距离之间的对齐。接着，我们探究这些激活中微弱的物理信息是否影响 VLA 生成的动作。在受控的 LIBERO 案例研究中，我们增加域内物体的质量，并通过语言或视觉信号提示变化。大多数 VLA 对更重和原始质量的物体使用相似的提升行为，导致任务成功率下降。少数例外根据词汇或视觉线索而非质量本身改变行为。这些结果表明，VLA 对物理属性的编码较弱，且不能可靠地利用它们来调整动作。",
+  "tldr_zh": "VLA 对物体物理属性编码弱，无法据此调整动作。",
+  "cover_zh": "VLA 真的懂物理吗？实验结果让人大跌眼镜",
+  "authors": [
+    {
+      "name": "Xinnuo Xu",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.AI"
+  ],
+  "published": "2026-10-05",
+  "updated": "2026-10-05",
+  "arxiv_id": "2610.06078",
+  "pdf_url": "https://arxiv.org/pdf/2610.06078v1",
+  "abs_url": "http://arxiv.org/abs/2610.06078v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-06078.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-06078-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（libero）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "分析VLA对物体物理属性的理解与泛化，属操作VLA基础研究，对科研者有高参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "VLA",
+    "linear probing",
+    "representational similarity analysis"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Do VLAs Understand and Adapt to the Objects They Handle, or Simply Replay Learned Behaviors?\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.06078v1\n---\n>[!abstract] 一句话总结：对 7 个 VLA 的激活做线性探测与表征相似性分析（RSA），考察质量、易碎性、可变形性、摩擦、尺寸等物理属性相对于语义类别、材质、声音、价格等非物理属性的可解码性及其与激活距离的对齐程度；并在受控 LIBERO 案例中增大域内物体质量，分别通过语言或视觉提示告知变化，观察策略是否改变运动。\n\n\n# 一、动机\n\n> 现有 VLA 被期望具备泛化能力，但尚不清楚其泛化究竟源于对物体物理属性的全局理解并据此调整动作，还是仅仅重复已学会、恰好在新场景中成功的运动轨迹——前者是真泛化，后者只是偶然鲁棒。\n\n\n# 二、方法\n\n> 对 7 个 VLA 的激活做线性探测与表征相似性分析（RSA），考察质量、易碎性、可变形性、摩擦、尺寸等物理属性相对于语义类别、材质、声音、价格等非物理属性的可解码性及其与激活距离的对齐程度；并在受控 LIBERO 案例中增大域内物体质量，分别通过语言或视觉提示告知变化，观察策略是否改变运动。\n\n\n# 三、核心实验结果\n\n> 在几乎所有模态流中，质量、易碎性、可变形性、摩擦、尺寸等物理属性的可解码性都低于语义类别、材质、声音、价格等非物理属性；与基座 VLM 相比，机器人预训练反而削弱了语言流中物理属性的线性编码，且预训练与下游微调均未增强物理属性差异与激活距离之间的对齐。在 LIBERO 质量增大实验中，多数 VLA 对更重物体采用与原始质量物体相似的抬升行为，导致任务成功率下降；少数会改变行为的模型是响应词汇或视觉线索，而非质量本身。\n\n\n# 四、对我的启发\n\n> 结果表明 VLA 对物理属性编码微弱，且不可靠地将其用于动作自适应，即所谓泛化更接近『偶然鲁棒』而非基于理解的适应；这提示未来需在预训练数据与目标中显式注入物理属性监督，或设计显式物理推理接口，才能让策略真正依据物体性质调整动作。\n"
+}

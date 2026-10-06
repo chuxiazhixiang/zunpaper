@@ -1,0 +1,2005 @@
+{
+  "date": "2026-10-05",
+  "count": 28,
+  "papers": [
+    {
+      "id": "arxiv-2610-06598",
+      "source": "arxiv",
+      "title": "SimForcing: Distilling Simulation Motion Priors into Real-Domain Robot World Models",
+      "title_zh": "SimForcing：将模拟运动先验蒸馏到真实域机器人世界模型",
+      "tldr_zh": "SimForcing通过蒸馏模拟运动先验，提升真实域机器人世界模型生成质量。",
+      "cover_zh": "模拟数据也能训真实世界模型？｜SimForcing让机器人预测更准",
+      "abstract_zh": "动作条件机器人世界模型必须精确响应机器人轨迹，同时保持逼真的视觉动态，然而从异构机器人视频中同时学习这两者仍然具有挑战性。模拟提供了结构化的运动监督，但外观差异阻碍了直接迁移，且不准确的模拟预测可能误导真实视频生成。我们提出SimForcing，一个模拟引导的框架，将模拟既作为可迁移运动知识的来源，又作为预测的可控参考。首先，我们通过潜在运动蒸馏从模拟教师迁移运动知识，对齐潜在空间中的时间变化以内化运动先验，同时减轻外观差异的影响。其次，我们引入带条件丢弃的多块模拟条件，以利用预测的模拟轨迹而不至于过度依赖其准确性。我们的模拟条件无分类器引导方案通过平衡基于内化运动知识的预测与额外由模拟潜在引导的预测，统一了这两种思想。联合训练的学生模型同时生成模拟条件和真实域视频，推理时无需额外的世界模型。在Bridge上，SimForcing在无需外部具身预训练的情况下，在对比方法中取得了最佳的PSNR、SSIM、LPIPS和FVD。在InternData-A1上的评估进一步支持了其在机器人数据集上的适用性。此外，使用我们训练的世界模型初始化视觉-语言-动作模型提高了LIBERO成功率，表明其对下游策略学习的实用性。url{https://github.com/Wang-Xiaodong1899/SimForcing}",
+      "authors": [
+        "Xiaodong Wang",
+        "Tianle Li",
+        "Chuanxin Song"
+      ],
+      "authors_all": [
+        "Xiaodong Wang",
+        "Tianle Li",
+        "Chuanxin Song",
+        "Junliang Xie",
+        "Zhanmi Zhong",
+        "Suiying Wu",
+        "Peixi Peng"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 北大"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06598.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06598-p2.jpg"
+      ],
+      "arxiv_id": "2610.06598",
+      "abs_url": "http://arxiv.org/abs/2610.06598v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06598v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 63,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "仿真先验蒸馏进真实域机器人世界模型，含VLA下游验证，属world-model核心方向。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Peking University"
+      ],
+      "method_tags": [
+        "latent-motion distillation",
+        "world model",
+        "classifier-free guidance"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06235",
+      "source": "arxiv",
+      "title": "Encoded but Not in Control: Revealing the Grounding Gap in Vision-Language Robot Policies",
+      "title_zh": "编码但不受控：揭示视觉-语言机器人策略中的接地鸿沟",
+      "tldr_zh": "VLA策略能编码指令但无法控制动作，存在接地鸿沟。",
+      "cover_zh": "机器人假装听懂了？新研究揭示指令编码却不受控的真相",
+      "abstract_zh": "指令跟随是语言条件机器人策略的核心：当同一场景允许多种有效动作时，语言应决定做什么。然而，仅凭成功执行无法确定策略是遵循指令还是从场景推断任务。我们通过保持场景不变的指令干预来研究这种模糊性，使用有效的目标替换、任意名词和不相关的句子，同时固定场景。我们在仿真和真实世界实验中评估了视觉-语言-动作（VLA）策略和世界动作模型（WAMs）。我们的分析解决三个问题：(a) 任务成功是否意味着指令跟随？当指令要求不同的可见物体时，所有评估的策略都主要接近并拾取与场景相关的错误原始目标。(b) 这种失败是由语言不敏感引起的吗？指令扰动影响任务性能。逐层动作透镜显示中间动作预测对这些扰动有响应。线性探针准确恢复指令目标，表明修改后的指令被编码，尽管很少决定目标选择。(c) 为什么编码的语言未能控制动作？注意力分析表明指令标记对动作生成的贡献微弱。目标标记注意力可能仍集中在原始物体上，揭示目标编码与视觉接地之间的不匹配。UMAP和共享非负矩阵分解显示目标信息在越来越由场景身份组织的表示中仍可访问。我们的发现揭示了被名义成功掩盖的接地鸿沟，并提供了一个诊断框架。它们进一步为进展建立了一个具体标准：策略应可靠地遵循用户意图的有效变化，即使这些变化与场景偏好的行为冲突。",
+      "authors": [
+        "Shaohan Jiang",
+        "Jiahang Cao",
+        "Qiduo He"
+      ],
+      "authors_all": [
+        "Shaohan Jiang",
+        "Jiahang Cao",
+        "Qiduo He",
+        "Fengting Deng",
+        "Kun Wu",
+        "Jingkai Sun",
+        "Jiaxu Wang",
+        "Qiang Zhang",
+        "Qihao Zheng",
+        "Chunfeng Song",
+        "Ping Luo",
+        "Andrew F. Luo"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 上海 AI Lab"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Ping Luo"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06235.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06235-p2.jpg"
+      ],
+      "arxiv_id": "2610.06235",
+      "abs_url": "http://arxiv.org/abs/2610.06235v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06235v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 61,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "VLA策略指令跟随的grounding gap分析，诊断框架对操作策略研究有高参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "HKU",
+        "Shanghai AI Lab",
+        "CUHK(SZ)",
+        "Horizon Robotics"
+      ],
+      "method_tags": [
+        "VLA",
+        "World Action Models",
+        "Instruction Following"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06641",
+      "source": "arxiv",
+      "title": "Physics Residual Dynamics and Reduced Order Whole-Body Planning for Obstacle Aware Human Robot Cloth CoTransportation",
+      "title_zh": "物理残差动力学与降阶全身规划用于避障人-机器人布料协同运输",
+      "tldr_zh": "分层规划框架结合学习布料模型与降阶全身模型，实现避障协同运输。",
+      "cover_zh": "布料运输不再撞障碍｜降阶模型让计算快80%",
+      "abstract_zh": "人-机器人协同运输可变形物体需要在运动过程中预测物体变形，因为避障间隙取决于抓取点和未驱动的内部区域。我们提出了一种分层规划框架，将学习到的布料模型与双臂移动机械臂的降阶全身模型相结合。物理残差条件循环变分自编码器（p-cRVAE）通过从抓取点观测中学习对计算高效线性化物理模型的残差修正来预测完整布料构型，从而在40步规划时域内限制误差累积。预测的布料动力学被嵌入到模型预测路径积分（MPPI）规划器中，该规划器使用双臂移动机械臂的降阶表示，保留了非完整基座约束和机械臂工作空间限制。随后，MPC层将采样的运动细化为平滑、可执行的全身控制参考。降阶公式在跟踪性能上与完整17自由度模型相当，同时将计算时间减少约80%。在四种协同运输场景和两种携带速度下，所提出的框架保持了布料-障碍物间隙，而基于角点跟随的基线方法会导致碰撞，同时全身细化将最终布料变形从0.93米减少到0.28米。",
+      "authors": [
+        "Moein Forouhar",
+        "Kosar Behnia",
+        "Anirvan Dutta"
+      ],
+      "authors_all": [
+        "Moein Forouhar",
+        "Kosar Behnia",
+        "Anirvan Dutta",
+        "Hamid Sadeghian",
+        "Ville Kyrki",
+        "Sami Haddadin",
+        "Gokhan Alcan",
+        "Eckehard Steinbach"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ TUM"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06641.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06641-p2.jpg"
+      ],
+      "arxiv_id": "2610.06641",
+      "abs_url": "http://arxiv.org/abs/2610.06641v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06641v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "双臂移动操作+全身规划+布料协同运输，属loco-manipulation与WBC，算法新颖。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Technical University of Munich (TUM)",
+        "Tampere University",
+        "Aalto University",
+        "Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)"
+      ],
+      "method_tags": [
+        "physics-residual conditional recurrent variational autoencoder",
+        "MPPI",
+        "MPC"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06850",
+      "source": "arxiv",
+      "title": "InterMimicGen: Scaling Humanoid Loco-Manipulation through Self-Evolving Motion Imitation",
+      "title_zh": "InterMimicGen：通过自演化运动模仿扩展人形机器人全身移动操作",
+      "tldr_zh": "InterMimicGen通过自演化运动模仿框架，让人形机器人从稀疏人类演示中持续扩展移动操作能力。",
+      "cover_zh": "稀疏演示不够用？这个自演化框架让人形机器人自己教自己",
+      "abstract_zh": "捕获的人-物交互数据为人形机器人的移动操作提供了丰富的监督信号，但这些数据稀疏、异构且无法直接被机器人执行。我们提出 InterMimicGen，一个自演化的运动模仿框架，其中机器人运动数据和跟踪策略相互促进。首先，我们整合运动捕捉的人-物交互数据集，并将其重定向为人形机器人参考，同时保留全身协调性和灵巧的手-物关系。这产生了一个大规模且多样的人形机器人参考集合，用于灵巧的全身移动操作。其次，我们训练了一个基于物理的通用跟踪器，在仿真中让人形机器人（配备灵巧手）执行这些参考，其规模和多样性超越了先前用于移动操作的人形机器人跟踪系统。第三，我们闭合了一个数据飞轮：每一轮对交互发生的位置和身体的执行方式做出小的、保持任务的改变，并在这些变体上微调跟踪器，只保留那些在仿真执行中完成任务的变体，这些变体又作为下一轮的种子。随着迭代次数增加，这些小的编辑在稀疏的原始演示周围复合为更广泛的覆盖，同时保持任务语义和运动质量。实验表明，跨机器人配置的保持接触的重定向、单一通用策略的广泛跟踪、在增强轮次中不断增长的可执行运动，以及向真实机器人的迁移。InterMimicGen 提供了一条从异构人类演示到持续扩展的人形机器人学习运动资源的统一路径。",
+      "authors": [
+        "Yucheng Zhang",
+        "Sirui Xu",
+        "Jinhong Li"
+      ],
+      "authors_all": [
+        "Yucheng Zhang",
+        "Sirui Xu",
+        "Jinhong Li",
+        "Liuyu Bian",
+        "Anatulya Nandi",
+        "Derek Zhang",
+        "Xiangchen Liu",
+        "Xueting Li",
+        "Umar Iqbal",
+        "Yu-Xiong Wang",
+        "Liang-Yan Gui"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "loco-manip-wbc",
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ NVIDIA"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06850.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06850-p2.jpg"
+      ],
+      "arxiv_id": "2610.06850",
+      "abs_url": "http://arxiv.org/abs/2610.06850v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06850v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "人形全身移动操作，自进化运动模仿框架，含重定向、通用跟踪器与数据飞轮，科研价值高。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Illinois Urbana-Champaign",
+        "NVIDIA"
+      ],
+      "method_tags": [
+        "Motion Imitation",
+        "Retargeting",
+        "Loco-Manipulation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06617",
+      "source": "arxiv",
+      "title": "RealtimeWAM: One-Step Asynchronous World Action Models",
+      "title_zh": "RealtimeWAM：一步异步世界动作模型",
+      "tldr_zh": "RealtimeWAM实现一步动作生成与异步推理，大幅加速世界动作模型。",
+      "cover_zh": "一步动作生成+异步推理｜这个WAM模型推理速度直接起飞",
+      "abstract_zh": "世界动作模型（WAMs）利用视频生成骨干网络中的视觉表示来指导动作预测。近期高效WAMs采用混合Transformer（MoT）架构，并一次性计算视频表示以供动作专家复用。然而，专家内部迭代（即多步动作去噪）和专家间等待（即视频与动作专家的顺序执行）仍然限制了推理效率。为此，我们提出RealtimeWAM，一种极其高效的WAM变体，通过一步动作生成和异步推理解决了这两个瓶颈。为减少专家内部迭代，我们提出教师锚定一致性蒸馏（TACD），以解决局部-全局误差差距：仅低局部一致性误差并不能保证最终动作准确。TACD通过冻结教师的多步展开端点的显式监督来补充局部一致性，从而实现准确的一步动作生成。此外，我们提出跨专家波前流水线（CEWP）以消除不必要的专家级等待。它通过分块共享视频KV缓存来重叠两个专家，仅在相应的动作注意力消耗之前进行同步。在多种基准（如LIBERO、LIBERO-Plus和RoboTwin）和模型变体（如Fast-WAM和Faster-WAM）上的大量实验证明了RealtimeWAM的优越性。值得注意的是，RealtimeWAM在这些基准上保持近乎无损的性能（即<1%下降），同时提供显著的端到端加速（例如，在H100上约25倍）。我们的代码和检查点可通过此链接获取。",
+      "authors": [
+        "Chengtao Lv",
+        "Jinyang Du",
+        "Shuyi Feng"
+      ],
+      "authors_all": [
+        "Chengtao Lv",
+        "Jinyang Du",
+        "Shuyi Feng",
+        "Yang Yong",
+        "Shiqiao Gu",
+        "Shunzi Yang",
+        "Ruihao Gong",
+        "Shen Ren",
+        "Tianwei Zhang",
+        "Wenya Wang"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ Beihang (BUAA)"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ NTU"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06617.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06617-p2.jpg"
+      ],
+      "arxiv_id": "2610.06617",
+      "abs_url": "http://arxiv.org/abs/2610.06617v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06617v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 52,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "World Action Model 加速推理，一步动作生成+异步流水线，LIBERO/RoboTwin 验证，属 manipulation 高效 VLA 工作。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Nanyang Technological University",
+        "Beihang University",
+        "Sensetime",
+        "Continental Automotive Singapore"
+      ],
+      "method_tags": [
+        "Consistency Distillation",
+        "World Action Model",
+        "Asynchronous Inference"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06331",
+      "source": "arxiv",
+      "title": "DexForge: High-Fidelity Physics-Informed Dexterous Retargeting",
+      "title_zh": "DexForge：高保真物理信息驱动的灵巧重定向",
+      "tldr_zh": "DexForge 用可微物理框架将人类视频转为高保真机器人灵巧操作轨迹。",
+      "cover_zh": "人类视频直接变机器人动作？DexForge 让灵巧手高保真复现",
+      "abstract_zh": "人类演示提供了丰富的精确灵巧操作示例，是机器人训练数据的有前景来源。然而，在物理约束下，跨机器人本体高保真地复现演示动作和手-物交互仍然具有挑战性。我们提出 DexForge，一个可微的、基于物理的框架，用于将人类视频演示转换为高保真机器人轨迹。我们从视觉观测中重建球面高斯物体模型和手-物运动，然后构建一个可微模拟器，将高效的高斯碰撞检测与现有的可微动力学相结合。基于该模拟器，DexForge 将接触感知的运动学重定向与力感知的动力学重定向相结合：机器人适配的稳定接触指导运动学参考构建，以及后续基于梯度的控制细化，以实现精确的物理运动复现。在 130 个 DexYCB 和 HOT3D 演示、七种灵巧手上的实验表明，相比基线，成功率提升约 35-53 个百分点，成功轨迹上的物体位置和方向跟踪误差分别降低约 34-67% 和 71-78%。进一步实验展示了到 MuJoCo 的开环迁移和真实机器人执行。项目页面：https://wmz1226.github.io/DexForge/",
+      "authors": [
+        "Meizhong Wang",
+        "Kun Cao",
+        "Ruiqi Ni"
+      ],
+      "authors_all": [
+        "Meizhong Wang",
+        "Kun Cao",
+        "Ruiqi Ni",
+        "Lihua Xie",
+        "Yiguang Hong"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ NTU"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06331.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06331-p2.jpg"
+      ],
+      "arxiv_id": "2610.06331",
+      "abs_url": "http://arxiv.org/abs/2610.06331v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06331v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 50,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "灵巧手动作重定向+可微物理仿真，跨本体高保真复现人手操作，属manipulation高价值工作",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Tongji University",
+        "Shanghai Research Institute for Intelligent Autonomous Systems",
+        "Purdue University",
+        "Nanyang Technological University"
+      ],
+      "method_tags": [
+        "differentiable physics",
+        "kinematic retargeting",
+        "dynamics retargeting"
+      ],
+      "platform": [],
+      "sim_stack": [
+        "MuJoCo"
+      ],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06349",
+      "source": "arxiv",
+      "title": "KineWorld: Action-Induced Transport Fields for Embodied World Modeling",
+      "title_zh": "KineWorld：面向具身世界建模的动作诱导传输场",
+      "tldr_zh": "KineWorld 利用运动学传输场重新加权扩散监督，提升具身世界模型的动作后果预测。",
+      "cover_zh": "动作后果预测新突破｜KineWorld 让世界模型不再只拟合外观",
+      "abstract_zh": "具身世界模型在动作执行前预测其视觉后果。然而，现有动作条件世界模型常采用均匀加权的视觉生成目标，这可能与具身预测需求不一致。即使有显式运动条件，这些目标也可能低估对交互至关重要的空间稀疏变化。我们提出 KineWorld，一种传输感知的世界建模框架，将机器人运动学从运动条件扩展到生成监督的空间分配。运动学传输提升（KTL）从指令机器人运动构建渲染器导出的、相机对齐的传输场。传输感知世界扩散（TAWD）在视频潜网格上校准其运动支持，并通过均匀分布和传输聚焦分布的归一化混合重新加权未来 RGB 流匹配。我们使用 RoboTwin 2.0 的 ALOHA-AgileX 双臂操作数据训练 KineWorld。KineWorld 在单视图评估中达到 68.95 的 EWMScore-P，在多视图评估中达到 54.82 的 TWB-Score。这些结果支持从外观拟合转向面向具身决策的动作后果建模。",
+      "authors": [
+        "Ziying Song",
+        "Yuchen Liu",
+        "Zhuoran Xu"
+      ],
+      "authors_all": [
+        "Ziying Song",
+        "Yuchen Liu",
+        "Zhuoran Xu",
+        "Ziyang Liu",
+        "Jian Jin",
+        "Jiangtao Su",
+        "Haibao Yu",
+        "Lei Yang",
+        "Yuanpei Chen"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ NTU"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06349.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06349-p2.jpg"
+      ],
+      "arxiv_id": "2610.06349",
+      "abs_url": "http://arxiv.org/abs/2610.06349v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06349v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 50,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "具身世界模型，动作条件视频预测，方法新颖，属world-model方向。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Nanyang Technological University",
+        "North University of China",
+        "Psibot",
+        "The Hong Kong Polytechnic University"
+      ],
+      "method_tags": [
+        "World Model",
+        "Diffusion",
+        "Flow Matching"
+      ],
+      "platform": [
+        "ALOHA-AgileX"
+      ],
+      "sim_stack": [
+        "RoboTwin 2.0"
+      ],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06582",
+      "source": "arxiv",
+      "title": "Mind the Execution Gap: Action-Semantic Mismatch in World-Model Control",
+      "title_zh": "注意执行差距：世界模型控制中的动作语义不匹配",
+      "tldr_zh": "异步执行导致世界模型控制器动作语义不匹配，提出轻量接口修正。",
+      "cover_zh": "异步执行竟让世界模型失控？两个轻量接口直接修正",
+      "abstract_zh": "世界模型控制器依赖动作条件动态进行预测和规划，然而实际控制系统常因通信延迟、丢包、乱序和执行器缓冲而异步执行命令。我们研究异步执行如何改变世界模型控制器中假设的动作语义，而非仅将其视为外部控制干扰。通过受控干预，我们识别出两种架构相关的故障模式：基于规划的控制器（如TD-MPC2）在想象和实际执行的动作序列之间存在未来动作时间线不匹配，而循环世界模型（如DreamerV3）可能将观察到的状态转移归因于未实际应用的动作。分析表明，TD-MPC2在潜在动态展开中需要正确的未来动作序列，而DreamerV3需要将每个状态转移及时归因于产生它的动作。基于这些发现，我们引入了两个轻量级执行一致性接口：用于TD-MPC2的Future-Sequence和用于DreamerV3的Applied-Action Feedback，可在不修改预训练世界模型的情况下纠正这些不匹配。在延迟、丢包、乱序、多个控制领域、实测网络轨迹以及进程分离的异步栈上的实验一致支持了这两种诊断及相应的架构特定修正。",
+      "authors": [
+        "Shengtao Wen",
+        "Xiang Chen",
+        "Yu Tian"
+      ],
+      "authors_all": [
+        "Shengtao Wen",
+        "Xiang Chen",
+        "Yu Tian",
+        "Lingbing Guo",
+        "Lina Gong",
+        "Sheng-Jun Huang"
+      ],
+      "primary_category": "cs.AI",
+      "published": "2026-10-05",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06582.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06582-p2.jpg"
+      ],
+      "arxiv_id": "2610.06582",
+      "abs_url": "http://arxiv.org/abs/2610.06582v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06582v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 50,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "研究世界模型控制中的异步执行问题，提出轻量接口修正TD-MPC2和DreamerV3，对世界模型控制有高参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Nanjing University of Aeronautics and Astronautics",
+        "Tsinghua University",
+        "Nanjing University"
+      ],
+      "method_tags": [
+        "World Model",
+        "TD-MPC2",
+        "DreamerV3"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06184",
+      "source": "arxiv",
+      "title": "Arm-wise Compositional Generalization in Dual-Arm Vision-Language-Action Models",
+      "title_zh": "双臂视觉-语言-动作模型中的臂级组合泛化",
+      "tldr_zh": "提出ACG-Bench基准和AE-VLA方法，显著提升双臂组合泛化成功率。",
+      "cover_zh": "双臂机器人泛化难题被攻克？新方法成功率飙升！",
+      "abstract_zh": "多臂协作中的泛化可以视为以新方式跨臂组合熟悉的原子技能。然而，现有评估对哪些训练和架构选择在不同协调需求下支持这一能力提供的见解有限。我们引入了 ACG-Bench，一个用于臂级组合泛化的基准，为研究双臂策略中的技能重组提供了通用测试平台。它包含 8 个任务族中的 23 个任务-条件对，其中 6 个域内条件和 17 个未见组合，涵盖重排序、同步、它们的组合以及跨任务组合。所有方法接收相同的每臂原子提示，成功需要在满足物理里程碑和指定顺序或时间约束的同时实现任务目标。使用 π_{0.5} 作为通用视觉-语言-动作骨干，我们在共享源数据和通用评估协议下比较了代表性的数据增强和架构策略。我们的架构研究考察了臂令牌分组、技能特定的 LoRA 适配器（SkillLoRA）和臂级注意力（AWA），突出了技能条件参数和注意力结构的互补性。结合这些选择产生了 AE-VLA，在模拟中实现了 21.53% 的泛化成功率，而 Single π_{0.5} 为 2.94%，MA-VLA 为 3.06%，两个独立控制的 π_{0.5} 策略为 5.53%。在物理 SO101 机器人上，AE-VLA 在五个未见条件下达到 39.00% 的平均成功率，而最强基线为 10.00%。这些发现为设计超越固定训练流程泛化的双臂策略提供了实证指导。",
+      "authors": [
+        "Zaibin Zhang",
+        "Binghao Ran",
+        "Yuhan Wu"
+      ],
+      "authors_all": [
+        "Zaibin Zhang",
+        "Binghao Ran",
+        "Yuhan Wu",
+        "Zhongbo Zhang",
+        "Yifan Wang",
+        "Junwei Jiang",
+        "Junlan Xiao",
+        "Wangcheng Shi",
+        "Li Kang",
+        "Yiran Qin",
+        "Zhenfei Yin",
+        "Lijun Wang",
+        "Huchuan Lu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ SJTU"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06184.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06184-p2.jpg"
+      ],
+      "arxiv_id": "2610.06184",
+      "abs_url": "http://arxiv.org/abs/2610.06184v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06184v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 44,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "双臂VLA组合泛化基准，含架构与训练策略对比，对操作研究有高参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Dalian University of Technology",
+        "University of Oxford",
+        "Shanghai Jiao Tong University",
+        "The Chinese University of Hong Kong, Shenzhen"
+      ],
+      "method_tags": [
+        "VLA",
+        "LoRA",
+        "compositional generalization"
+      ],
+      "platform": [
+        "SO101"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06280",
+      "source": "arxiv",
+      "title": "Future Anchored Verification and Online Recovery for World Action Models",
+      "title_zh": "未来锚定验证与在线恢复：面向世界动作模型",
+      "tldr_zh": "FAVOR利用预测未来帧作为锚点，验证并恢复机器人操作偏差。",
+      "cover_zh": "机器人跑偏了怎么办？用未来锚点拉回正轨",
+      "abstract_zh": "世界动作模型（WAM）已成为机器人操作的一种有前景的范式。它们首先预测任务应如何执行，然后从该未来中解码动作。然而，一旦执行偏离预测，剩余动作便失效。简单地从已分布外状态重新规划，很少能恢复任务仍需要的部分；现有执行监控器决定何时停止，但不决定恢复什么。我们观察到答案已在手中：WAM 在行动前预测的未来，恰好描绘了它意图经过的状态。我们提出 FAVOR（未来锚定验证与在线恢复），一个轻量级框架，将这些预测帧保留为锚点，并用于验证和恢复。锚点验证器将每个观测与其锚点及已执行动作进行比较，标记破坏任务的偏差。锚点引导恢复使用视觉语言模型将标记的锚点转化为简短纠正指令。在增强指令引导下，WAM 执行该指令以返回预期未来，然后恢复任务。在不修改策略的情况下，FAVOR 将基础 WAM 的任务成功率在 LIBERO 上从 97.85% 提升至 98.10%，在 LIBERO-Plus 上从 72.60% 提升至 72.98%。",
+      "authors": [
+        "Zhibin Qin",
+        "Zhenxiong Tan",
+        "Xinchao Wang"
+      ],
+      "authors_all": [
+        "Zhibin Qin",
+        "Zhenxiong Tan",
+        "Xinchao Wang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ NUS"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06280.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06280-p2.jpg"
+      ],
+      "arxiv_id": "2610.06280",
+      "abs_url": "http://arxiv.org/abs/2610.06280v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06280v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 44,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "面向机器人操作的世界动作模型验证与恢复框架，属manipulation方向，有算法新意但提升有限。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "National University of Singapore"
+      ],
+      "method_tags": [
+        "World Action Model",
+        "Vision-Language Model",
+        "Online Recovery"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06129",
+      "source": "arxiv",
+      "title": "I-BFM: Reward-Conditioned Robust Humanoid Interaction via Unsupervised Reinforcement Learning",
+      "title_zh": "I-BFM：通过无监督强化学习实现奖励条件化的鲁棒人形交互",
+      "tldr_zh": "I-BFM 是首个用于人形-物体交互的行为基础模型，通过无监督强化学习实现鲁棒交互。",
+      "cover_zh": "机器人跌倒后还能继续？这个新模型让交互成功率不降反升",
+      "abstract_zh": "行为基础模型（BFMs）最近表明，单一的人形策略可以支持多样化的全身控制，但将这种通用性扩展到物理交互仍然具有挑战性。我们提出了 I-BFM，据我们所知，这是第一个用于人形-物体交互的 BFM。I-BFM 不依赖于任务特定的策略或参考跟踪，而是使用前向-后向表示和无监督强化学习来学习人形、物体及其接触之间耦合动力学的共享表示。给定下游任务奖励，相同的策略可以直接以潜在命令为条件执行闭环交互，而无需任务特定的策略优化。为了改善不同时间尺度上的交互控制，我们进一步使用短时域交互目标和长时域目标目标来训练策略。单个 I-BFM 策略执行搬运、推动和踢球，同时还支持目标到达、运动跟踪、风格控制和长时域任务链。更重要的是，它在偏离标称执行较大偏差后仍然有效：在 Carry 任务上，I-BFM 实现了 94.3% 的标称成功率，并且在机器人跌倒后仍保持 89.3% 的成功率，而基于规划的基线仅为 1.3%。在 Unitree G1 上的真实世界实验进一步展示了多样化的移动操作行为、从交互失败和外部干扰中快速恢复，以及无需任务特定重新训练的任务链。",
+      "authors": [
+        "Ziqi Han",
+        "Yitang Li",
+        "Junhan Sun"
+      ],
+      "authors_all": [
+        "Ziqi Han",
+        "Yitang Li",
+        "Junhan Sun",
+        "Fanrong Dong",
+        "Yaojie Shen",
+        "Lei Ye",
+        "Zetong Jing",
+        "Yongqi Zhang",
+        "Yiming Zhang",
+        "Xue Wang",
+        "Hao Zhao"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ ZJU"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06129.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06129-p2.jpg"
+      ],
+      "arxiv_id": "2610.06129",
+      "abs_url": "http://arxiv.org/abs/2610.06129v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06129v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 41,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "人形全身交互基础模型，无监督RL实现搬运推踢等loco-manipulation，G1真机验证，科研价值高。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Tongji University",
+        "Tsinghua University",
+        "Zhejiang University",
+        "RoboParty Lab"
+      ],
+      "method_tags": [
+        "Unsupervised Reinforcement Learning",
+        "Forward-Backward Representations",
+        "Loco-Manipulation"
+      ],
+      "platform": [
+        "Unitree G1"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06643",
+      "source": "arxiv",
+      "title": "AffordCraft: Scalable Construction of Task-Ready Simulation Assets from Single Images",
+      "title_zh": "AffordCraft：从单张图像可扩展地构建任务就绪的仿真资产",
+      "tldr_zh": "AffordCraft 通过检索从单张图像构建物理有效的仿真资产，性能优于生成方法。",
+      "cover_zh": "单张图就能造仿真资产？检索法让生成模型集体沉默",
+      "abstract_zh": "仿真中的机器人学习依赖于仿真器提供的物体。许多任务需要具有独立部件、允许所需运动的关节以及在接触下保持有效的物理属性的物体。现有方法为每张图像重新恢复这种结构：生成模型预测的部件和关节大多无法在仿真中稳定或运动，而通用智能体需要为每张照片进行长时间的模型调用。AffordCraft 通过检索而非生成，从单张 RGB 图像和任务指令构建这样的资产：它定位物体和要操作的部分，从关节资产库中选择匹配条目，并将其拟合到图像，同时保持其部件和关节完整。在没有任何框或掩码标记物体的情况下，AffordCraft 为来自 31 个类别的 2,000 张照片中的 1,703 张生成了物理有效的资产。五种生成方法在相同照片上最多通过 45%，且中位数上每个有效资产需要 10 到 78 倍于我们的 GPU 时间。在 50 张杂乱图像上，自动检测后 237 个标注物体中有 162 个通过相同的物理测试。将库从 141 个条目增长到 11,372 个条目无需改变方法，并将类别覆盖率从 46% 提高到 100%，具有请求标签的选择份额从 18% 提高到 51%。我们还从构建的资产中构建操作任务，包括单个物体和组合场景；在脚本化演示上训练的策略从训练中未见的初始状态完成两种任务。",
+      "authors": [
+        "Haoyun Yang",
+        "Xueyang Zhou",
+        "Ziyi Xie"
+      ],
+      "authors_all": [
+        "Haoyun Yang",
+        "Xueyang Zhou",
+        "Ziyi Xie",
+        "Yongchao Chen"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ NUS"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06643.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06643-p2.jpg"
+      ],
+      "arxiv_id": "2610.06643",
+      "abs_url": "http://arxiv.org/abs/2610.06643v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06643v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 41,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "sim2real",
+        "reason": "从单图构建可仿真铰接资产，提升仿真环境真实性与任务多样性，属sim2real关键工具。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Tsinghua University",
+        "Chongqing University",
+        "Huazhong University of Science and Technology",
+        "National University of Singapore"
+      ],
+      "method_tags": [
+        "retrieval-based asset construction",
+        "articulated asset fitting",
+        "manipulation policy learning"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06805",
+      "source": "arxiv",
+      "title": "H-JEPA: End-to-End Learning of Hierarchical World Models for Visual Planning",
+      "title_zh": "H-JEPA：面向视觉规划的层次化世界模型端到端学习",
+      "tldr_zh": "H-JEPA通过层次化JEPA世界模型实现端到端视觉规划，提升长时程任务成功率。",
+      "cover_zh": "分层世界模型让规划成功率从18%飙到73%！",
+      "abstract_zh": "利用潜在世界模型进行长时程规划，需要在多个时间尺度和抽象层次上进行推理。现有的任务无关JEPA世界模型在单一时间尺度上预测和规划，或在共享的潜在空间中使用多个预测视野。我们提出H-JEPA，一种端到端训练动作条件JEPA层次结构的方案，其中每一层在其自身学习到的潜在空间中预测更远的未来。规划自顶向下进行：顶层优化朝向目标的进展，每一层的预测成为其下层规划器的子目标。当数据中的因素以分离的时间尺度演化时，更高层丢弃快速、不可预测的细节，保留较慢的任务相关状态。在四个模拟导航和操作环境中，层次化规划优于平坦JEPA；在Visual AntMaze上，三层层次结构将成功率从18%提升至73%，且规划器计算量更少。消融实验将这些增益归因于时间分解和更高层目标表示。通过逆动力学监督，该方法扩展到来自DROID的多样化真实机器人视频，其中层次结构在更低规划器计算量下提高了离线规划保真度。",
+      "authors": [
+        "Wancong Zhang",
+        "Basile Terver",
+        "Michael Rabbat"
+      ],
+      "authors_all": [
+        "Wancong Zhang",
+        "Basile Terver",
+        "Michael Rabbat",
+        "Yann LeCun",
+        "Randall Balestriero"
+      ],
+      "primary_category": "cs.LG",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06805.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06805-p2.jpg"
+      ],
+      "arxiv_id": "2610.06805",
+      "abs_url": "http://arxiv.org/abs/2610.06805v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06805v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "JEPA分层世界模型，用于视觉规划，提升长时程任务成功率，属world-model方向。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "NYU",
+        "Advanced Machine Intelligence",
+        "INRIA Paris",
+        "Brown University"
+      ],
+      "method_tags": [
+        "JEPA",
+        "World Model",
+        "Hierarchical Planning"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06814",
+      "source": "arxiv",
+      "title": "TAPDreamer: Transferable Adversarial Patches for World Action Models",
+      "title_zh": "TAPDreamer：面向世界动作模型的可迁移对抗补丁",
+      "tldr_zh": "TAPDreamer 用公开编码器生成可迁移对抗补丁，无需查询目标策略即可攻击世界动作模型。",
+      "cover_zh": "一个补丁就能让机器人成功率归零？世界动作模型的新漏洞",
+      "abstract_zh": "世界模型学习预测环境如何演变，是通用机器人控制的重要基础。然而，世界动作模型依赖摄像头输入，对其操纵可能破坏跨任务和动作策略中使用的视觉表示。现有针对这些模型的攻击优化目标为受害者的动作或预测未来，因此需要访问目标模型的输出。本文提出了一种针对世界动作模型的攻击 TAPDreamer，它仅使用一个公开编码器来构造固定的局部扰动，该扰动可跨任务和动作架构迁移。TAPDreamer 无需查询目标策略。我们的关键见解是，补丁引起的注意力权重变化与值向量之间的交互会在远超补丁覆盖范围之外广播几乎相同的表示偏移，并且这种偏移在不同任务观测中保持稳定。基于这一见解，TAPDreamer 使用来自一个源任务的六帧图像，最大化干净编码器表示与补丁编码器表示之间的全局 L1 距离。在闭环评估中，每个基准测试使用一个冻结补丁，覆盖约 6.5% 的输入，将 FastWAM 在 40 个 LIBERO 任务上的成功率从 97.7% 降至 0.0%，在 50 个 RoboTwin 任务上从 90.8% 降至 0.0%；匹配的随机补丁则分别保持 81.5% 和 79.2% 的成功率。相同的补丁在两个 DreamWAM 配置上将成功率降至 2.1% 和 0.8%，在 Motus 上降至 10.0%。这些结果表明，仅保护下游动作生成是不够的：世界动作模型的防御还必须保护共享视觉编码器免受持续局部扰动的影响。",
+      "authors": [
+        "Xuanyu Lu",
+        "Fengqing Jiang",
+        "Kaiyuan Zheng"
+      ],
+      "authors_all": [
+        "Xuanyu Lu",
+        "Fengqing Jiang",
+        "Kaiyuan Zheng",
+        "Yichen Feng",
+        "Yaorui Ding",
+        "Yuetai Li",
+        "Zhen Xiang",
+        "Bhaskar Ramasubramanian",
+        "Basel Alomair",
+        "Luyao Niu",
+        "Radha Poovendran"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06814.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06814-p2.jpg"
+      ],
+      "arxiv_id": "2610.06814",
+      "abs_url": "http://arxiv.org/abs/2610.06814v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06814v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "world-model",
+        "reason": "针对world action模型的对抗攻击，揭示共享视觉编码器脆弱性，对world model安全研究有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Washington",
+        "University of Georgia",
+        "Western Washington University",
+        "King Abdulaziz City for Science and Technology"
+      ],
+      "method_tags": [
+        "Adversarial Patch",
+        "World Action Models",
+        "Transferable Attack"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-05994",
+      "source": "arxiv",
+      "title": "How (and How Not) to Use Data Augmentation in VLA Post-Training",
+      "title_zh": "如何（以及如何不）在 VLA 后训练中使用数据增强",
+      "tldr_zh": "仅增强critic模块可提升VLA后训练泛化，增强actor则导致训练崩溃。",
+      "cover_zh": "只增强critic不碰actor｜VLA后训练泛化直接起飞",
+      "abstract_zh": "视觉-语言-动作（VLA）模型目前在广泛的真实世界机器人任务中表现出强大性能。然而，它们往往仍缺乏处理大视觉分布外偏移的泛化能力。用强化学习（RL）对 VLA 进行后训练已被证明有助于鲁棒性，但仍有很大改进空间。在这项工作中，我们系统研究了图像增强对 VLA 后训练的影响。我们发现，在 RL 更新期间仅增强 critic 模块，同时在 rollout 和更新期间保持 actor 输入干净，这一点至关重要。对于 $π_{0.5}$ 和 GR00T N1.5，这分别将 LIBERO-Plus 上的分布外成功率提高了 $7.8$ 和 $10.0$ 个百分点，而增强 actor 则完全导致训练崩溃。我们研究了一系列增强类型和强度，并为改进 VLA 后训练中的泛化提供了实用建议。",
+      "authors": [
+        "Bram Grooten",
+        "Joaquin Vanschoren"
+      ],
+      "authors_all": [
+        "Bram Grooten",
+        "Joaquin Vanschoren"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 NeurIPS 2026"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-05994.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-05994-p2.jpg"
+      ],
+      "arxiv_id": "2610.05994",
+      "abs_url": "http://arxiv.org/abs/2610.05994v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.05994v1",
+      "venue": "NeurIPS 2026",
+      "venue_announced": "",
+      "score": 29,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "VLA后训练数据增强研究，提升泛化性，对操作策略有直接参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "TU Eindhoven"
+      ],
+      "method_tags": [
+        "RL",
+        "Data Augmentation",
+        "VLA post-training"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-05969",
+      "source": "arxiv",
+      "title": "Reachability-Aware Diffusion Policy Optimization",
+      "title_zh": "可达性感知的扩散策略优化",
+      "tldr_zh": "无模型扩散策略优化，结合可达性与预算反馈提升安全性。",
+      "cover_zh": "无模型也能安全？扩散策略新方法让约束违反大降",
+      "abstract_zh": "扩散策略为连续控制强化学习提供了表达力强的动作分布。然而，安全感知的在线扩散策略优化仍未被充分探索，尤其是那些在没有显式动力学模型的情况下使用预测可达性信息的方法。我们提出了可达性感知扩散策略优化（RADPO），一种无模型方法，它将预测性首次命中安全估计与累积成本预算反馈相结合。RADPO 学习一个折扣首次命中可达性值，该值捕捉成本事件的折扣风险，对更早发生的事件赋予更大的权重，并利用该信号来塑造奖励。一个独立的类对偶乘子根据实际回合成本相对于规定预算来调整塑造强度。扩散演员通过加权去噪回归在由奖励评论家评分的候选动作上进行改进。我们的方法既不需要学习动力学模型，也不需要动作对评论家的梯度，也不需要通过反向扩散采样器进行微分。我们建立了可达性值的理论性质，并表明累积可达性惩罚为未来折扣累积成本提供了一个保守的替代。在十个连续控制安全任务中，RADPO 实现了有竞争力的奖励-成本权衡，在若干任务上相对于比较基线大幅减少了约束违反。我们的理论和实证分析支持，将可达性与累积预算反馈相结合是安全感知扩散策略的一种可行方法。",
+      "authors": [
+        "Hikmet Simsir",
+        "Kutay Demiray",
+        "Ozgur S. Oguz"
+      ],
+      "authors_all": [
+        "Hikmet Simsir",
+        "Kutay Demiray",
+        "Ozgur S. Oguz"
+      ],
+      "primary_category": "cs.LG",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 ICLR 2027"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-05969.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-05969-p2.jpg"
+      ],
+      "arxiv_id": "2610.05969",
+      "abs_url": "http://arxiv.org/abs/2610.05969v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.05969v1",
+      "venue": "ICLR 2027",
+      "venue_announced": "",
+      "score": 26,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "扩散策略优化，面向连续控制安全，属操作/RL范畴，有理论贡献，但未在真机验证。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Bilkent University"
+      ],
+      "method_tags": [
+        "Diffusion Policy",
+        "Reinforcement Learning",
+        "Safety-aware"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06306",
+      "source": "arxiv",
+      "title": "Inspect Robots: Evaluating the Capabilities and Safety of Embodied AI",
+      "title_zh": "Inspect Robots：评估具身 AI 的能力与安全性",
+      "tldr_zh": "开源框架 Inspect Robots 用于评估具身 AI 的能力与安全性。",
+      "cover_zh": "机器人安全评估新框架｜三个月下载近十万次",
+      "abstract_zh": "通用语言模型正日益能够控制机器人硬件。因此，理解这些模型在具身化时的能力和安全性，对于理解其社会影响和风险变得越来越重要。为此，我们推出了 Inspect Robots，一个模块化、开源的框架，用于开发和运行具身智能体的评估。Inspect Robots 将可定制、可复用的抽象（用于指定物理评估并分析其结果）与自动化评估设置、执行和终止的基础设施相结合。我们通过使用 Inspect Robots 评估基于前沿语言模型的六种策略的能力和安全性来展示其功能。Inspect Robots 已获得显著的早期采用，在发布后的三个月内下载量接近 100,000 次。",
+      "authors": [
+        "Christopher Leet",
+        "Achu Menon",
+        "Sravanthi Machcha"
+      ],
+      "authors_all": [
+        "Christopher Leet",
+        "Achu Menon",
+        "Sravanthi Machcha",
+        "Sabrina Zou",
+        "Aayushya Patel",
+        "Aditya Kumar Singh",
+        "Anish Kr Singh",
+        "Galaba Vamsi",
+        "Javin Ahuja",
+        "Sai Asish Yamani",
+        "Tushar Anand",
+        "Vedang Alle",
+        "Zihan Jack Zhang",
+        "Tzu Kit Chan",
+        "Jay Chooi"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "venue",
+          "label": "🎓 CoRL 2026"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06306.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06306-p2.jpg"
+      ],
+      "arxiv_id": "2610.06306",
+      "abs_url": "http://arxiv.org/abs/2610.06306v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06306v1",
+      "venue": "CoRL 2026",
+      "venue_announced": "",
+      "score": 26,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "具身智能体评估框架，开源且高下载量，对VLA/策略安全评测有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Robocurve",
+        "University of Southern California",
+        "San Jose State University",
+        "Independent Open Source Contributor"
+      ],
+      "method_tags": [
+        "Evaluation Framework",
+        "Embodied AI Safety",
+        "Language Model Policies"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06137",
+      "source": "arxiv",
+      "title": "Robotizing Human Videos with Physically Consistent Interactions",
+      "title_zh": "将人类视频机器人化：实现物理一致的交互",
+      "tldr_zh": "通过接触重建与深度合成，将人类视频转化为物理一致的机器人操作数据。",
+      "cover_zh": "人类视频直接变机器人训练数据？物理一致性这次真做到了",
+      "abstract_zh": "人类视频提供了可扩展的操作数据，但人手与机器人操作器之间的具身差异限制了其直接使用。现有的视频编辑方法用渲染的机器人替换人手，然而不准确的交互重建与合成可能导致不一致的抓取和不合乎物理的机器人-物体遮挡。我们从交互几何和场景可见性这两个互补的物理层面解决这些失败。首先，一个交互感知的接触重建模块结合手-物分割与网格级接触预测来恢复密集的3D接触，然后将其转换为平行夹爪的时间稳定抓取。其次，一个深度感知的合成模块利用场景和机器人深度来强制实现物理一致的机器人-物体遮挡。所得视频以机器人兼容的形式保留了人类演示的交互结构，并与机器人演示协同训练。使用相同的人类视频和机器人数据，我们与仅机器人训练和原始Masquerade流程进行比较。在四个RoboTwin任务和两个Diffusion Policy视觉编码器上，我们的方法取得了最高的平均成功率，在分布外场景变化下提升尤为显著。真实世界部署进一步表明，所提出的协同训练方法在任务几何可观察时提高了对视觉干扰的鲁棒性，而深度敏感抓取的性能仍受限于单相机设置。",
+      "authors": [
+        "Ching-Lam Cheng",
+        "Shengfeng He",
+        "Bin Zhu"
+      ],
+      "authors_all": [
+        "Ching-Lam Cheng",
+        "Shengfeng He",
+        "Bin Zhu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06137.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06137-p2.jpg"
+      ],
+      "arxiv_id": "2610.06137",
+      "abs_url": "http://arxiv.org/abs/2610.06137v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06137v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 25,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "人视频转机器人操作数据，接触重建与深度合成，真机验证，属manipulation高价值工作",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Singapore Management University"
+      ],
+      "method_tags": [
+        "Diffusion Policy",
+        "co-training",
+        "human-to-robot video editing"
+      ],
+      "platform": [],
+      "sim_stack": [
+        "RoboTwin"
+      ],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06327",
+      "source": "arxiv",
+      "title": "Dual Variational Autoencoders for Efficient Sim-to-Real Transfer in Low-Cost Robotic Navigation",
+      "title_zh": "双变分自编码器实现低成本机器人导航中高效的仿真到现实迁移",
+      "tldr_zh": "双变分自编码器结合域随机化与特征适应，实现低成本机器人仿真到现实高效迁移。",
+      "cover_zh": "仅用少量真实数据｜双VAE让仿真到现实迁移成功率近91%",
+      "abstract_zh": "基于视觉的低成本机器人自主导航仍然是一个根本性挑战，主要原因是仿真训练环境与现实操作条件之间存在显著差距。直接从仿真迁移策略往往无效，而仅使用真实数据训练又不切实际。我们提出了一种混合迁移学习框架，通过结合域随机化和特征级域适应，有效弥合仿真到现实的差距。我们的方法采用双卷积变分自编码器架构，共享解码器，在包含45225张仿真图像和仅4556个真实世界样本的最小数据集上进行训练。该架构学习到一个紧凑的公共潜在表示空间，对齐了两个域的分布。两种互补的数据增强技术进一步增强了适应过程，以扩展有限的真实世界数据。实验评估表明，我们的方法在真实世界室内导航的图像分类任务上平均成功率接近91%，显著优于仅仿真和仅真实世界训练。我们通过直接的现实世界部署验证了这些发现，所提出的策略成功引导低成本机器人在反应式探索任务中运行。此外，我们通过严格的计算估计验证了模型的效率，确认其适用于资源受限的嵌入式平台，如Raspberry Pi 4和NVIDIA Jetson Nano。这项工作为低成本机器人系统开发有效且高效的导航策略提供了一个实用的解决方案。",
+      "authors": [
+        "Álvaro Díez",
+        "Fidel Aznar"
+      ],
+      "authors_all": [
+        "Álvaro Díez",
+        "Fidel Aznar"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06327.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06327-p2.jpg"
+      ],
+      "arxiv_id": "2610.06327",
+      "abs_url": "http://arxiv.org/abs/2610.06327v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06327v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 25,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "sim2real",
+        "reason": "双VAE域适应实现低成本机器人导航的sim-to-real迁移，方法有参考价值，但偏导航非操作。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Alicante"
+      ],
+      "method_tags": [
+        "sim-to-real",
+        "domain randomization",
+        "domain adaptation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06089",
+      "source": "arxiv",
+      "title": "Adaptive Mean Flow for Responsive Closed-Loop Robot Control",
+      "title_zh": "自适应平均流用于响应式闭环机器人控制",
+      "tldr_zh": "提出自适应平均流方法，实现平滑响应式闭环机器人控制。",
+      "cover_zh": "机器人控制新突破｜这个流模型让闭环响应又快又稳",
+      "abstract_zh": "基于扩散和流的机器人策略最近在机器人模仿学习（IL）中变得广泛，因为它们具有高性能和建模连续及多模态分布的能力。然而，这些模型使用的迭代去噪过程引入了显著的预测延迟，阻碍了高频闭环机器人控制，并在频繁更新机器人动作预测时导致抖动、不稳定的运动。因此，常见的做法是训练模型预测可以顺序执行而无需反馈的动作块，即使这会降低响应性，并可能意味着最新的状态信息未被使用。在本文中，我们提出了自适应平均流（AMF），一种基于流的IL方法，能够实现平滑、响应式的全闭环机器人控制。AMF使用平均流，这是一种加速形式的流匹配（FM），以最小化预测延迟。为了确保预测的平滑性和一致性，AMF在预测新的机器人动作时使用上一步轨迹的损坏版本，信噪比随轨迹的时间参数增加而增加。这抑制了预测从一步到下一步的大幅变化，同时允许自由调整未来步骤的预测。我们在广泛的模拟和真实机器人任务上评估了AMF，并证明与基线相比性能显著提高。代码：https://github.com/akselva/Adaptive-mean-flow-RoboticIL。",
+      "authors": [
+        "Aksel Vaaler",
+        "Marco Job",
+        "Christian Holden"
+      ],
+      "authors_all": [
+        "Aksel Vaaler",
+        "Marco Job",
+        "Christian Holden",
+        "Olav Egeland"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06089.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06089-p2.jpg"
+      ],
+      "arxiv_id": "2610.06089",
+      "abs_url": "http://arxiv.org/abs/2610.06089v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06089v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 24,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "基于流匹配的机器人IL方法，实现高频闭环控制，提升响应性，属操作方向，有算法创新。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Norwegian University of Science and Technology (NTNU)"
+      ],
+      "method_tags": [
+        "Imitation Learning",
+        "Flow Matching",
+        "closed-loop control"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06090",
+      "source": "arxiv",
+      "title": "Execution-Aligned Progressive Noise for Consistent Asynchronous Replanning in Generative Robot Policies",
+      "title_zh": "执行对齐的渐进噪声：用于生成式机器人策略中一致的异步重规划",
+      "tldr_zh": "提出执行对齐渐进噪声，提升异步重规划中生成式机器人策略的一致性。",
+      "cover_zh": "机器人策略总在重规划时翻车？这个噪声对齐方法让执行稳如老狗",
+      "abstract_zh": "连续异步重规划对于实时生成式机器人策略至关重要，但独立的随机初始化可能导致模式切换和动作块之间的不一致延续。我们提出了执行对齐的渐进噪声（EAPN），它在块间和块内两个层面引入结构化随机性。在重规划步骤中，EAPN 传播共享的噪声轨迹，并将其与实际执行位移对齐，建立执行对齐的块间相关性。在每个动作块内，它沿动作时间建模时间相关性。对齐的随机历史进一步与已提交的动作上下文结合，以条件化后续生成，使新块能够从执行一致的生成状态继续，而不是从独立噪声重新开始。我们在 D3IL、Kinetix、LIBERO 和真实世界操作任务上评估了 EAPN。EAPN 提高了 D3IL 上的多模态行为一致性，并在 Kinetix 上实现了 88.59% 的平均成功率。在 LIBERO 上，它保持稳健，即使在长推理延迟下也能维持强大的任务性能。真实机器人实验进一步在物体存储上达到 90.0% 的成功率，在双臂叠衣服上达到 96.7%，展示了异步重规划下可靠的连续执行。",
+      "authors": [
+        "Di Wu",
+        "Ping Liu",
+        "Xuhua Chen"
+      ],
+      "authors_all": [
+        "Di Wu",
+        "Ping Liu",
+        "Xuhua Chen",
+        "He Zheng",
+        "Lingfeng Zhang",
+        "Tao Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06090.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06090-p2.jpg"
+      ],
+      "arxiv_id": "2610.06090",
+      "abs_url": "http://arxiv.org/abs/2610.06090v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06090v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 22,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "生成式机器人策略的异步重规划一致性方法，在LIBERO和真机操作任务上验证，属manipulation方向。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Magiclab Robotics Technology Co., Ltd.",
+        "Southeast University"
+      ],
+      "method_tags": [
+        "Flow Matching",
+        "Action Chunking"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06104",
+      "source": "arxiv",
+      "title": "Conditional Trajectory Peaks: Single-Pass Multimodal Policies over Action Chunks",
+      "title_zh": "条件轨迹峰值：基于动作块的单次多模态策略",
+      "tldr_zh": "CTP 单次预测多模态动作块，兼顾一致性与低延迟。",
+      "cover_zh": "单次预测也能多模态？CTP 让推理延迟直接砍半",
+      "abstract_zh": "多模态模仿学习需要在相同观测下生成多样化的可执行未来，并在重规划周期中保持一致行为。我们提出条件轨迹峰值（CTP），一种单次策略框架，联合预测完整的动作块候选、概率质量和轨迹尺度。分布感知峰值特化（DAPS）利用轨迹级后验责任以及质量和尺度调制的重叠约束来特化轨迹峰值。证据门控轨迹信念传输（ETBT）通过可交换候选集之间的几何对应关系保持跨块一致性，同时允许当前策略证据覆盖历史约束。CTP 在 Push-T 上达到 91.40% 的覆盖率；在 D3IL 的 Avoiding、Aligning 和 Sorting-2 任务上成功率分别为 100.0%、79.72% 和 84.44%。在 LIBERO 上，CTP 平均成功率为 97.25%。在真实世界双臂实验中，CTP 在双盘任务中保留了两种放置模式，50 次试验全部成功。在扶正瓶子和将笔放入笔筒任务中，其成功率与 $π_{0.5}$ 相当，同时将策略推理延迟从 218.24 毫秒降低到 75.80 毫秒。这些结果表明，单次轨迹建模可以结合多模态行为、闭环一致性和高效推理。",
+      "authors": [
+        "Di Wu",
+        "Rongtian Shen",
+        "Ping Liu"
+      ],
+      "authors_all": [
+        "Di Wu",
+        "Rongtian Shen",
+        "Ping Liu",
+        "Xuhua Chen",
+        "He Zheng",
+        "Lingfeng Zhang",
+        "Tao Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06104.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06104-p2.jpg"
+      ],
+      "arxiv_id": "2610.06104",
+      "abs_url": "http://arxiv.org/abs/2610.06104v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06104v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 22,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "多模态模仿学习策略，动作块轨迹建模，真机双臂实验，属操作方向",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Magiclab Robotics Technology Co., Ltd.",
+        "Southeast University"
+      ],
+      "method_tags": [
+        "Imitation Learning",
+        "Multimodal Policy",
+        "Action Chunking"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06271",
+      "source": "arxiv",
+      "title": "VLA-ZO: Fast Zeroth-Order Adaptation for Vision-Language-Action Models",
+      "title_zh": "VLA-ZO：面向视觉-语言-动作模型的快速零阶自适应",
+      "tldr_zh": "VLA-ZO 通过冻结视觉语言前缀并重用状态，大幅加速零阶自适应。",
+      "cover_zh": "零阶优化慢到哭？VLA-ZO 让自适应速度飙升 32 倍！",
+      "abstract_zh": "将视觉-语言-动作（VLA）模型适应于部署时的分布偏移，对于可靠的机器人操作至关重要，但传统的一阶自适应可能超出面向推理的部署平台的内存预算。零阶（ZO）优化提供了一种仅前向的替代方案，具有推理级内存，但精确的梯度估计需要大量扰动查询，使得朴素 ZO 对大型 VLA 模型而言慢得令人望而却步。我们提出 VLA-ZO，一个利用 VLA 计算结构的快速 ZO 自适应框架。通过将自适应限制在动作侧，VLA-ZO 保持昂贵的视觉-语言前缀冻结，并在扰动查询和优化器步骤中重用其条件状态，同时调度感知预取隐藏了状态传输开销。在 LIBERO 相机视角偏移上，相对于基线 ZO，VLA-ZO 在 q=16 时将端到端自适应时间减少了 25.59 倍，在 q=64 时减少了 32.54 倍，同时将平均任务成功率从无自适应的 48.27% 分别提升至 58.17% 和 63.58%。这些结果表明，让 ZO 更快可以使更大的查询预算变得可行，为在部署平台上实现资源高效的 VLA 自适应提供了一条有前景的路径。",
+      "authors": [
+        "Jaemin Kim",
+        "Jiahn Kim",
+        "Taesik Gong"
+      ],
+      "authors_all": [
+        "Jaemin Kim",
+        "Jiahn Kim",
+        "Taesik Gong"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06271.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06271-p2.jpg"
+      ],
+      "arxiv_id": "2610.06271",
+      "abs_url": "http://arxiv.org/abs/2610.06271v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06271v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 22,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "VLA模型零阶微调适配，属操作类VLA部署优化，有算法新意但偏工程。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "UNIST"
+      ],
+      "method_tags": [
+        "Zeroth-Order Optimization",
+        "VLA Adaptation",
+        "one-shot adaptation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06843",
+      "source": "arxiv",
+      "title": "Recursive Video In-Context Learning for Agentic Robot",
+      "title_zh": "面向智能体机器人的递归视频上下文学习",
+      "tldr_zh": "无需训练，将演示视频转为层次结构，让机器人智能体按需读取细节，提升任务成功率。",
+      "cover_zh": "视频演示还能这样用？机器人智能体成功率直接飙升！",
+      "abstract_zh": "通过文本记忆来编排冻结的视觉-语言-动作（VLA）策略的LLM智能体，能在多个回合中不断改进，但文本记忆只记录了智能体做了什么，而非任务是如何完成的。演示视频能展示过程，却难以融入智能体的上下文。完整视频会拖慢每一轮，固定关键帧会丢失决定抓取是否成功的接触细节，而智能体所需的信息会从规划时的任务结构转变为每个接触点周围的帧。我们提出了递归视频上下文学习（RV-ICL），这是一种无需训练的方法，它将演示转化为智能体可以导航的层次结构，而非接收的提示。该层次结构由演示的子事件（如抓取和释放）构建而成。其层级越来越精细，从整个任务的关键帧到阶段、时刻和短片段，并通过只读工具暴露。智能体在规划前读取粗粒度层级。在执行过程中，每当某个步骤需要更多细节时，它就会重新进入层次结构，并仅加载当前子目标的片段。每个任务只需一次演示。基于RPent，RV-ICL在LIBERO-PRO上将成功率从92.6%提升至96.5%，在LIBERO-Plus上从86.7%提升至95.8%。",
+      "authors": [
+        "Wenrui Bao",
+        "Xinxin Liu",
+        "Bingxin Xu"
+      ],
+      "authors_all": [
+        "Wenrui Bao",
+        "Xinxin Liu",
+        "Bingxin Xu",
+        "Yuzhang Shang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06843.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06843-p2.jpg"
+      ],
+      "arxiv_id": "2610.06843",
+      "abs_url": "http://arxiv.org/abs/2610.06843v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06843v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 22,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "VLA智能体通过视频上下文学习提升操作成功率，属manipulation方向，方法有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Central Florida",
+        "University of Southern California"
+      ],
+      "method_tags": [
+        "In-Context Learning",
+        "VLA"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06318",
+      "source": "arxiv",
+      "title": "Wiring Matters: Injection Topology and Initialization of Affordance Heads in Vision-Language-Action Policies",
+      "title_zh": "连接方式很重要：视觉-语言-动作策略中可供性头的注入拓扑与初始化",
+      "tldr_zh": "停止梯度保护主干，主动残差桥接以极少参数匹配复杂模型。",
+      "cover_zh": "停止梯度保护主干｜主动桥接让VLA性能飙升",
+      "abstract_zh": "密集可供性监督是视觉-语言-动作（VLA）策略中一种有吸引力的辅助信号，但简单地协同训练一个可供性头可能会严重损害指令跟随能力。我们在 LIBERO 基准上对如何将这样的头连接到现代 VLA 中进行了受控研究。我们的方法通过停止梯度读取主干，并通过学习到的桥接将中间头特征重新注入动作专家。停止梯度是一个前提条件：让可供性梯度到达主干会使策略性能低于无头基线（85.5% vs. 93.1%）。在主干受到保护的情况下，对注入拓扑（拼接 vs. 残差）和桥接初始化（零 vs. 随机）进行相同预算的 2*2 消融实验表明，初始化是主导杠杆。最佳连接方式，即主动初始化的残差桥接，达到了 96.2%，以不到 1% 的额外参数匹配了更为复杂的三专家 AffordanceVLA（95.8%）。两个探针解释了其机制：将真实可供性作为输入会带来损害，而推理时置零表明，懒惰的桥接仅作为训练时的正则化器，而主动的桥接则成为承重结构。",
+      "authors": [
+        "Zijian An",
+        "Linhan Wang",
+        "Jiayan Wang"
+      ],
+      "authors_all": [
+        "Zijian An",
+        "Linhan Wang",
+        "Jiayan Wang",
+        "Shijie Geng",
+        "Ran Yang",
+        "Yiming Feng",
+        "Lifeng Zhou"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06318.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06318-p2.jpg"
+      ],
+      "arxiv_id": "2610.06318",
+      "abs_url": "http://arxiv.org/abs/2610.06318v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06318v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 19,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "VLA策略中affordance头的注入拓扑与初始化研究，在LIBERO基准上验证，对操作策略设计有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Drexel University",
+        "Virginia Tech",
+        "Amazon Store Foundation AI (SFAI)"
+      ],
+      "method_tags": [
+        "VLA",
+        "Imitation Learning",
+        "Affordance Supervision"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06651",
+      "source": "arxiv",
+      "title": "Considering Context: When World Models Need Context Encoders",
+      "title_zh": "考虑上下文：当世界模型需要上下文编码器时",
+      "tldr_zh": "提出预测充分性指标，量化上下文对世界模型预测的增益，并给出匹配上下文机制与可用信息的实用标准。",
+      "cover_zh": "世界模型真的需要上下文吗？这个指标告诉你答案",
+      "abstract_zh": "基于模型的强化学习中的泛化方法通常假设智能体无法从自身经验中恢复支配环境动力学的潜在上下文，因此需要外部提供。我们通过“预测充分性”来形式化并检验这一假设，该指标量化了在智能体诱导的访问分布下，访问上下文对下一步预测的增益，并将该增益分解为历史可恢复部分、需要真实上下文的残差部分以及有限模型带来的不足。我们根据上下文感知算法的条件集所能针对的预测风险对其进行分类，并在识别难度递增的环境中证明，预测余量并不遵循MDP类别。同一任务在不同先验下，一种设置中留有预测余量，而另一种设置中则与零无显著差异，此时智能体的行为隐含地识别了上下文，此类机制的任何收益都不能归因于缺失信息。在余量持续存在的情况下，学习到的状态仅部分暴露该余量，而添加真实上下文仍能降低风险。我们的贡献是一个实用标准，用于将上下文机制与其可获得的信息相匹配，该标准可从普通训练智能体中估计，无需参考策略。",
+      "authors": [
+        "Oleg Smirnov",
+        "Sofiane Ennadir",
+        "John Pertoft"
+      ],
+      "authors_all": [
+        "Oleg Smirnov",
+        "Sofiane Ennadir",
+        "John Pertoft",
+        "Bjartur Hjaltason",
+        "Sara Karimi"
+      ],
+      "primary_category": "cs.LG",
+      "published": "2026-10-05",
+      "channels": [
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06651.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06651-p2.jpg"
+      ],
+      "arxiv_id": "2610.06651",
+      "abs_url": "http://arxiv.org/abs/2610.06651v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06651v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 19,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "world-model",
+        "reason": "世界模型上下文编码器理论分析，属world-model范畴，对模型基RL有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "King AI Labs, Microsoft Gaming",
+        "KTH Royal Institute of Technology"
+      ],
+      "method_tags": [
+        "model-based RL",
+        "context encoders",
+        "predictive sufficiency"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06078",
+      "source": "arxiv",
+      "title": "Do VLAs Understand and Adapt to the Objects They Handle, or Simply Replay Learned Behaviors?",
+      "title_zh": "VLA 是理解并适应所操作物体，还是仅仅重放已学行为？",
+      "tldr_zh": "VLA 对物体物理属性编码弱，无法据此调整动作。",
+      "cover_zh": "VLA 真的懂物理吗？实验结果让人大跌眼镜",
+      "abstract_zh": "本文探讨 VLA 的泛化能力是源于对物体物理属性的全局理解（使策略能适应未见过的场景），还是仅仅重放恰好在新场景中成功的已学动作。前者反映真正的泛化，后者反映偶然的鲁棒性。我们首先通过线性探测和表征相似性分析（RSA）检查七个 VLA 的激活，发现物理属性（包括质量、易碎性、可变形性、摩擦力和尺寸）在几乎所有模态流中都比非物理属性（如语义类别、材料、声音和价格）更难解码。与基础 VLM 相比，机器人预训练削弱了语言流中物理属性的线性编码。预训练和下游微调均未增强物理属性差异与激活距离之间的对齐。接着，我们探究这些激活中微弱的物理信息是否影响 VLA 生成的动作。在受控的 LIBERO 案例研究中，我们增加域内物体的质量，并通过语言或视觉信号提示变化。大多数 VLA 对更重和原始质量的物体使用相似的提升行为，导致任务成功率下降。少数例外根据词汇或视觉线索而非质量本身改变行为。这些结果表明，VLA 对物理属性的编码较弱，且不能可靠地利用它们来调整动作。",
+      "authors": [
+        "Xinnuo Xu"
+      ],
+      "authors_all": [
+        "Xinnuo Xu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06078.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06078-p2.jpg"
+      ],
+      "arxiv_id": "2610.06078",
+      "abs_url": "http://arxiv.org/abs/2610.06078v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06078v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 16,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "分析VLA对物体物理属性的理解与泛化，属操作VLA基础研究，对科研者有高参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [],
+      "method_tags": [
+        "VLA",
+        "linear probing",
+        "representational similarity analysis"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-06376",
+      "source": "arxiv",
+      "title": "Towards Robust Prehensile Manipulation in Open-Ended Environments",
+      "title_zh": "面向开放式环境中鲁棒抓取操作的研究",
+      "tldr_zh": "用质量-多样性算法发现鲁棒抓取配置，提升开放环境操作泛化性。",
+      "cover_zh": "抓取总是失败？QD算法让机器人自己学会应对开放世界",
+      "abstract_zh": "我们提出使用质量-多样性（QD）算法来解决开放式环境中的机器人抓取操作任务。我们的方法能够高效地发现大量鲁棒的抓取配置，这些配置作为可靠起点，用于在铰接物体上生成多样化的抓取操作轨迹。由此产生的操作行为多样性增强了泛化性和适应性，使得在持续演化的开放世界环境中能够有效部署。",
+      "authors": [
+        "Mathilde Kappel",
+        "Mahdi Khoramshahi",
+        "Louis Annabi"
+      ],
+      "authors_all": [
+        "Mathilde Kappel",
+        "Mahdi Khoramshahi",
+        "Louis Annabi",
+        "Faïz Ben Amar",
+        "Stéphane Doncieux"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-05",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-06376.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-06376-p2.jpg"
+      ],
+      "arxiv_id": "2610.06376",
+      "abs_url": "http://arxiv.org/abs/2610.06376v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.06376v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 16,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "QD算法用于开放环境抓取操作，属manipulation，方法有新意但偏抓取规划。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Sorbonne Université",
+        "CNRS",
+        "Institut des Systèmes Intelligents et de Robotique (ISIR)"
+      ],
+      "method_tags": [
+        "Quality-Diversity",
+        "prehensile manipulation",
+        "grasp generation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    }
+  ]
+}

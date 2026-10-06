@@ -119,5 +119,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/CV\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - Task/WorldModel\n  - 状态/待读\nTitle: \"World-VLA-Loop: Closed-Loop Learning of Video World Model and VLA Policy\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2602.06508v2\n---\n>[!abstract] 一句话总结：提出 World-VLA-Loop：先用混合成功与近成功轨迹的 SANS 数据改善动作-结果对齐，再训练一个状态感知视频世界模型，从扩散隐变量中联合预测未来帧与二值奖励（奖励估计与生成器耦合而非独立模块），并通过「精炼后的世界模型迭代后训练 VLA、各代策略的 rollout 回灌微调世界模型」的共演化闭环来持续对齐策略。\n\n\n# 一、动机\n\n> 真实世界强化学习微调 VLA 策略代价高昂（需大量 rollout、重置、人工监督且有安全风险），而现有动作条件视频世界模型动作跟随不精确、尤其在接近成功的细微失败上失真，且缺乏原生奖励信号，导致基于不准确视觉预测的奖励不可靠。\n\n\n# 二、方法\n\n> 提出 World-VLA-Loop：先用混合成功与近成功轨迹的 SANS 数据改善动作-结果对齐，再训练一个状态感知视频世界模型，从扩散隐变量中联合预测未来帧与二值奖励（奖励估计与生成器耦合而非独立模块），并通过「精炼后的世界模型迭代后训练 VLA、各代策略的 rollout 回灌微调世界模型」的共演化闭环来持续对齐策略。\n\n\n# 三、核心实验结果\n\n> 摘要中未给出具体数值指标；论文报告在仿真与真机实验中 World-VLA-Loop 显著提升 VLA 策略性能，同时降低对昂贵真机物理交互的依赖，并验证了联合奖励预测对视觉预测的反哺效果。\n\n\n# 四、对我的启发\n\n> 核心启发是把世界模型与策略做成共演化闭环而非固定模拟器，避免策略漂移导致的仿真失配；局限在于奖励仅建模为二值信号、对细微近成功失败的视觉保真度仍是瓶颈，且缺少可复现的定量基准对比（摘要未披露具体数字），落地到真实机器人仍需关注 sim-to-real 与安全性。与具身智能 / 机器人操作课题高度相关。\n"
 }

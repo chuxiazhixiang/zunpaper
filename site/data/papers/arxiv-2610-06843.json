@@ -1,0 +1,102 @@
+{
+  "id": "arxiv-2610-06843",
+  "source": "arxiv",
+  "title": "Recursive Video In-Context Learning for Agentic Robot",
+  "title_zh": "面向智能体机器人的递归视频上下文学习",
+  "abstract": "LLM agents that orchestrate frozen vision-language-action (VLA) policies improve across episodes through text memory, which records what the agent did but not how the task is done. A demonstration video shows it, but fits poorly into an agent's context. The full video slows every turn, fixed keyframes lose the contact detail that decides whether a grasp holds, and what the agent needs shifts from the task's structure while planning to the frames around each contact. We introduce Recursive Video In-Context Learning (RV-ICL), a training-free method that turns a demonstration into a hierarchy the agent navigates rather than a prompt it receives. The hierarchy is built from the sub-events of the demonstration, such as grasps and releases. Its levels grow finer, from keyframes of the whole task to phases, moments and short clips, and are exposed through read-only tools. The agent reads the coarse levels before planning. During execution it re-enters the hierarchy whenever a step needs more detail and loads only the clip of its current sub-goal. One demonstration per task is enough. Built on RPent, RV-ICL raises success from 92.6% to 96.5% on LIBERO-PRO and from 86.7% to 95.8% on LIBERO-Plus.",
+  "abstract_zh": "通过文本记忆来编排冻结的视觉-语言-动作（VLA）策略的LLM智能体，能在多个回合中不断改进，但文本记忆只记录了智能体做了什么，而非任务是如何完成的。演示视频能展示过程，却难以融入智能体的上下文。完整视频会拖慢每一轮，固定关键帧会丢失决定抓取是否成功的接触细节，而智能体所需的信息会从规划时的任务结构转变为每个接触点周围的帧。我们提出了递归视频上下文学习（RV-ICL），这是一种无需训练的方法，它将演示转化为智能体可以导航的层次结构，而非接收的提示。该层次结构由演示的子事件（如抓取和释放）构建而成。其层级越来越精细，从整个任务的关键帧到阶段、时刻和短片段，并通过只读工具暴露。智能体在规划前读取粗粒度层级。在执行过程中，每当某个步骤需要更多细节时，它就会重新进入层次结构，并仅加载当前子目标的片段。每个任务只需一次演示。基于RPent，RV-ICL在LIBERO-PRO上将成功率从92.6%提升至96.5%，在LIBERO-Plus上从86.7%提升至95.8%。",
+  "tldr_zh": "无需训练，将演示视频转为层次结构，让机器人智能体按需读取细节，提升任务成功率。",
+  "cover_zh": "视频演示还能这样用？机器人智能体成功率直接飙升！",
+  "authors": [
+    {
+      "name": "Wenrui Bao",
+      "affiliation": ""
+    },
+    {
+      "name": "Xinxin Liu",
+      "affiliation": ""
+    },
+    {
+      "name": "Bingxin Xu",
+      "affiliation": ""
+    },
+    {
+      "name": "Yuzhang Shang",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.AI",
+    "cs.CL",
+    "cs.MA"
+  ],
+  "published": "2026-10-05",
+  "updated": "2026-10-05",
+  "arxiv_id": "2610.06843",
+  "pdf_url": "https://arxiv.org/pdf/2610.06843v1",
+  "abs_url": "http://arxiv.org/abs/2610.06843v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-06843.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-06843-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 13,
+  "source_tags": [],
+  "score": 22,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（vision-language-action、grasp、libero）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 13 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "VLA智能体通过视频上下文学习提升操作成功率，属manipulation方向，方法有参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University of Central Florida",
+    "University of Southern California"
+  ],
+  "method_tags": [
+    "In-Context Learning",
+    "VLA"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\nTitle: \"Recursive Video In-Context Learning for Agentic Robot\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.06843v1\n---\n>[!abstract] 一句话总结：提出免训练的递归视频上下文学习 RV-ICL：把一次演示按子事件（如抓取、释放）构建成可导航的层级结构，自上而下由全任务关键帧到阶段、时刻、短片逐级细化，并以只读工具暴露；agent 规划前读粗层，执行中遇到需要细节的步骤就重入层级，只加载当前子目标对应的片段。\n\n\n# 一、动机\n\n> LLM agent 调度冻结 VLA 策略时，文本记忆只记录「做了什么」而非「任务如何完成」；演示视频虽能补足，却难以塞进 agent 上下文——整段视频拖慢每一轮推理，固定关键帧又丢失决定抓取成败的接触细节，且 agent 所需信息随规划/执行阶段动态变化。\n\n\n# 二、方法\n\n> 提出免训练的递归视频上下文学习 RV-ICL：把一次演示按子事件（如抓取、释放）构建成可导航的层级结构，自上而下由全任务关键帧到阶段、时刻、短片逐级细化，并以只读工具暴露；agent 规划前读粗层，执行中遇到需要细节的步骤就重入层级，只加载当前子目标对应的片段。\n\n\n# 三、核心实验结果\n\n> 在 RPent 基础上无需训练即取得提升：LIBERO-PRO 成功率从 92.6% 提升到 96.5%，LIBERO-Plus 从 86.7% 提升到 95.8%；每个任务仅需一段演示视频即可。\n\n\n# 四、对我的启发\n\n> 把长视频从「一次性提示」变成「按需检索的层级记忆」是核心启发，可迁移到其他长上下文/视频条件设定；局限在于依赖 VLA 冻结策略与 RPent 框架，层级质量取决于子事件（抓取/释放）切分与检测的准确性，且目前仅在 LIBERO 系列仿真基准验证，真实机器人泛化性有待检验。\n"
+}

@@ -1,0 +1,104 @@
+{
+  "id": "arxiv-2610-06651",
+  "source": "arxiv",
+  "title": "Considering Context: When World Models Need Context Encoders",
+  "title_zh": "考虑上下文：当世界模型需要上下文编码器时",
+  "abstract": "Methods for generalization in model-based reinforcement learning typically assume that an agent cannot recover the latent context governing the environment dynamics from its own experience, and therefore supplies it externally. We formalize and test this assumption with \\emph{predictive sufficiency}, which quantifies what access to the context adds to next-step prediction under the visitation distribution an agent induces, and separates that quantity into a history-recoverable part, a residual requiring the true context, and the deficit added by a finite model. We classify context-aware algorithms by the predictive risk their conditioning set can target and demonstrate across environments of increasing identification difficulty that the headroom does not follow the MDP class. The same task under different priors leaves predictive headroom in one setting and nothing distinguishable from zero in another, where the agent's behavior implicitly identifies the context and any benefit of such a mechanism cannot be attributed to missing information. Where headroom persists, the learned state exposes it only partially, and adding the true context still lowers the risk. Our contribution is a practical criterion for matching contextual mechanisms to the information available to them, estimated from the ordinary trained agent without a reference policy.",
+  "abstract_zh": "基于模型的强化学习中的泛化方法通常假设智能体无法从自身经验中恢复支配环境动力学的潜在上下文，因此需要外部提供。我们通过“预测充分性”来形式化并检验这一假设，该指标量化了在智能体诱导的访问分布下，访问上下文对下一步预测的增益，并将该增益分解为历史可恢复部分、需要真实上下文的残差部分以及有限模型带来的不足。我们根据上下文感知算法的条件集所能针对的预测风险对其进行分类，并在识别难度递增的环境中证明，预测余量并不遵循MDP类别。同一任务在不同先验下，一种设置中留有预测余量，而另一种设置中则与零无显著差异，此时智能体的行为隐含地识别了上下文，此类机制的任何收益都不能归因于缺失信息。在余量持续存在的情况下，学习到的状态仅部分暴露该余量，而添加真实上下文仍能降低风险。我们的贡献是一个实用标准，用于将上下文机制与其可获得的信息相匹配，该标准可从普通训练智能体中估计，无需参考策略。",
+  "tldr_zh": "提出预测充分性指标，量化上下文对世界模型预测的增益，并给出匹配上下文机制与可用信息的实用标准。",
+  "cover_zh": "世界模型真的需要上下文吗？这个指标告诉你答案",
+  "authors": [
+    {
+      "name": "Oleg Smirnov",
+      "affiliation": ""
+    },
+    {
+      "name": "Sofiane Ennadir",
+      "affiliation": ""
+    },
+    {
+      "name": "John Pertoft",
+      "affiliation": ""
+    },
+    {
+      "name": "Bjartur Hjaltason",
+      "affiliation": ""
+    },
+    {
+      "name": "Sara Karimi",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.LG",
+  "categories": [
+    "cs.LG"
+  ],
+  "published": "2026-10-05",
+  "updated": "2026-10-05",
+  "arxiv_id": "2610.06651",
+  "pdf_url": "https://arxiv.org/pdf/2610.06651v1",
+  "abs_url": "http://arxiv.org/abs/2610.06651v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-06651.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-06651-p2.jpg"
+  ],
+  "channels": [
+    "world-model"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 19,
+  "source_tags": [],
+  "score": 19,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 6,
+      "hint": "频道关键词命中 2 个（world model、world models）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 19 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "world-model",
+    "reason": "世界模型上下文编码器理论分析，属world-model范畴，对模型基RL有参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "King AI Labs, Microsoft Gaming",
+    "KTH Royal Institute of Technology"
+  ],
+  "method_tags": [
+    "model-based RL",
+    "context encoders",
+    "predictive sufficiency"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/理论\n  - Domain/RL\n  - 状态/待读\nTitle: \"Considering Context: When World Models Need Context Encoders\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.06651v1\n---\n>[!abstract] 一句话总结：提出\"预测充分性\"（predictive sufficiency）指标，在智能体自身诱导的访问分布下量化\"获取上下文\"对下一步预测的增益，并将其分解为历史可恢复部分、必须依赖真实上下文的残差部分，以及有限模型引入的亏空；进而按条件集可瞄准的预测风险对上下文感知算法分类，并给出无需参考策略、仅由普通训练后智能体估计的匹配准则。\n\n\n# 一、动机\n\n> 基于模型的强化学习中，通用化方法通常先验地假设智能体无法从自身经验中恢复支配环境动力学的隐上下文，因而必须由外部提供上下文信息；这一假设此前缺乏形式化检验。\n\n\n# 二、方法\n\n> 提出\"预测充分性\"（predictive sufficiency）指标，在智能体自身诱导的访问分布下量化\"获取上下文\"对下一步预测的增益，并将其分解为历史可恢复部分、必须依赖真实上下文的残差部分，以及有限模型引入的亏空；进而按条件集可瞄准的预测风险对上下文感知算法分类，并给出无需参考策略、仅由普通训练后智能体估计的匹配准则。\n\n\n# 三、核心实验结果\n\n> 在识别难度递增的多类环境中，预测余量（headroom）并不随 MDP 类别变化：同一任务在不同先验下，一种设定仍存在可利用余量，另一种设定下余量与零无法区分——此时智能体行为已隐式识别出上下文，该机制带来的收益不能归因于缺失信息；在余量持续存在的情形下，学习到的状态只能部分暴露该余量，加入真实上下文仍能进一步降低预测风险。\n\n\n# 四、对我的启发\n\n> 与机器人/具身智能课题不直接相关；但其\"先判断信息是否真的缺失、再决定是否引入上下文编码器\"的准则，对具身场景中世界模型与上下文条件机制的选型有方法论借鉴意义，且该指标无需参考策略即可估计，具备落地可行性。\n"
+}

@@ -87,5 +87,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Learning Foresight without Explicit Trajectories for 3D Diffusion Policies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.20669v1\n---\n>[!abstract] 一句话总结：提出 Movement Trend Guidance：从短观测历史中学习一个紧凑的交互演化隐变量，训练时用稀疏的未来夹爪状态监督该隐变量，推理时仅保留该隐变量与当前观测一起作为未来导向的条件——隐变量提供全局条件，同时通过一个门控 FiLM 分支仅注入 UNet 瓶颈层，仅增加 3.52% 参数，且保持原有稠密动作与滚动时域（receding-horizon）框架不变。\n\n\n# 一、动机\n\n> 现有 3D 扩散策略（如 DP3）只根据当前观测生成几何可行的动作，缺乏对交互走向的预判能力，这种「前瞻性」只能隐式地从动作学习中涌现，导致在长程或接触丰富任务中表现受限。\n\n\n# 二、方法\n\n> 提出 Movement Trend Guidance：从短观测历史中学习一个紧凑的交互演化隐变量，训练时用稀疏的未来夹爪状态监督该隐变量，推理时仅保留该隐变量与当前观测一起作为未来导向的条件——隐变量提供全局条件，同时通过一个门控 FiLM 分支仅注入 UNet 瓶颈层，仅增加 3.52% 参数，且保持原有稠密动作与滚动时域（receding-horizon）框架不变。\n\n\n# 三、核心实验结果\n\n> 在 RoboTwin2.0 50 任务混合训练中达到 62.8%（DP3 为 56.1%）；在 LIBERO-40 上达到 71.93%（DP3 仅 37.08%，提升近一倍）；在五项真实机器人任务上达到 72.0%（DP3 为 49.0%）。\n\n\n# 四、对我的启发\n\n> 方法表明扩散策略无需显式轨迹规划也能从「交互去向」中显著获益，但监督信号仅为稀疏的未来夹爪状态，对非夹爪式末端执行器或需要精细力控的任务可能不足；此外依赖短观测历史，对历史长度与隐变量维度较敏感，可作为未来方向在更复杂具身任务上验证。\n"
 }
