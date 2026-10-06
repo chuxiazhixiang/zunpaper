@@ -45,7 +45,8 @@
     "assets/img/covers/arxiv-2610-06331-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -60,7 +61,7 @@
   "related_links": [],
   "page_count": 24,
   "source_tags": [],
-  "score": 50,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -72,7 +73,7 @@
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 4 个（manipulation、dexterous、dexterous manipulation、dexterous hand）"
+      "hint": "频道关键词命中 5 个（manipulation、dexterous、dexterous manipulation、dexterous hand）"
     },
     {
       "id": "freshness",
@@ -85,6 +86,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 24 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -114,5 +121,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/CrossEmbodimentTransfer\n  - Task/RoboticManipulation\nTitle: \"DexForge: High-Fidelity Physics-Informed Dexterous Retargeting\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.06331v1\n---\n>[!abstract] 一句话总结：DexForge 从人类视频重建球形高斯物体模型与手-物运动，构建结合高效高斯碰撞检测的可微仿真器，并在此基础上先做接触感知的运动学重定向（生成机器人可稳定接触的运动学参考），再做力感知的动力学重定向，通过基于梯度的控制优化精确复现物理运动。\n\n\n# 一、动机\n\n> 人类演示是机器人灵巧操作训练数据的宝贵来源，但在物理约束下，跨机器人本体高保真复现人手运动与手-物交互仍然困难：纯运动学重定向易产生穿透与接触滑移，纯动力学跟踪又难以稳定接触。\n\n\n# 二、方法\n\n> DexForge 从人类视频重建球形高斯物体模型与手-物运动，构建结合高效高斯碰撞检测的可微仿真器，并在此基础上先做接触感知的运动学重定向（生成机器人可稳定接触的运动学参考），再做力感知的动力学重定向，通过基于梯度的控制优化精确复现物理运动。\n\n\n# 三、核心实验结果\n\n> 在 130 条 DexYCB 与 HOT3D 演示、7 种灵巧手上，成功率相比基线提升约 35–53 个百分点；成功轨迹上的物体位置与朝向跟踪误差分别降低约 34–67% 和 71–78%；并验证了向 MuJoCo 的开环迁移与真机执行。\n\n\n# 四、对我的启发\n\n> 方法高度依赖视觉重建出的物体几何与手-物运动质量，误差会沿可微管线传播；实验主要为开环迁移与有限真机验证，闭环力控与更强 sim-to-real 鲁棒性仍有提升空间。思路（可微仿真+接触/力两阶段重定向）对手-物交互数据生成与灵巧操作策略学习有较大启发。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/CV\n  - Task/CrossEmbodimentTransfer\n  - Task/RoboticManipulation\n  - Task/Teleoperation\nTitle: \"DexForge: High-Fidelity Physics-Informed Dexterous Retargeting\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.06331v1\n---\n>[!abstract] 一句话总结：DexForge 从视频重建球面高斯物体模型与手-物运动，构建结合高效高斯碰撞检测与可微动力学的可微仿真器，并在此基础上先用接触感知的运动学重定向生成机器人适配的稳定接触与参考轨迹，再用力感知的动力学重定向做基于梯度的控制优化，实现精确物理运动复现。\n\n\n# 一、动机\n\n> 人类演示是灵巧操作机器人数据的理想来源，但受物理约束（穿透、接触不稳、动力学不一致）影响，现有重定向方法难以在不同机器人手上高保真复现手-物交互轨迹。\n\n\n# 二、方法\n\n> DexForge 从视频重建球面高斯物体模型与手-物运动，构建结合高效高斯碰撞检测与可微动力学的可微仿真器，并在此基础上先用接触感知的运动学重定向生成机器人适配的稳定接触与参考轨迹，再用力感知的动力学重定向做基于梯度的控制优化，实现精确物理运动复现。\n\n\n# 三、核心实验结果\n\n> 在 130 条 DexYCB 与 HOT3D 演示、七种灵巧手上，成功率相比基线提升约 35-53 个百分点；成功轨迹的物体位置与朝向跟踪误差分别降低约 34-67% 和 71-78%；并进一步验证了向 MuJoCo 的开环迁移与真机执行。\n\n\n# 四、对我的启发\n\n> 方法依赖视觉重建的球面高斯物体模型与手-物运动精度，可微仿真与真机之间仍存在差距；其'接触感知运动学 + 力感知动力学'两级重定向思路对跨本体数据增广与 sim-to-real 有较强启发性。\n"
 }

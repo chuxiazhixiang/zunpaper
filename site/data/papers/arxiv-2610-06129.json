@@ -69,7 +69,8 @@
     "assets/img/covers/arxiv-2610-06129-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -88,7 +89,7 @@
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 41,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -99,8 +100,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（manipulation）"
+      "points": 12,
+      "hint": "频道关键词命中 9 个（manipulation、whole-body、humanoid policy、whole-body control）"
     },
     {
       "id": "freshness",
@@ -113,6 +114,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 9 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -142,5 +149,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - 论文/应用\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"I-BFM: Reward-Conditioned Robust Humanoid Interaction via Unsupervised Reinforcement Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.06129v1\n---\n>[!abstract] 一句话总结：提出 I-BFM，用前向-反向表示和无监督强化学习学习人形-物体-接触耦合动力学的共享表示，并将同一策略以潜在指令条件化到下游任务奖励上，同时用短时程交互目标与长时程目标联合训练，实现无需任务专用策略优化的闭环交互控制。\n\n\n# 一、动机\n\n> 现有行为基础模型虽能让单一人形策略覆盖多种全身控制，但将其通用性扩展到物理交互仍困难：通常依赖任务专用策略或参考轨迹跟踪，难以在接触耦合、失败恢复和长时程任务中保持鲁棒。\n\n\n# 二、方法\n\n> 提出 I-BFM，用前向-反向表示和无监督强化学习学习人形-物体-接触耦合动力学的共享表示，并将同一策略以潜在指令条件化到下游任务奖励上，同时用短时程交互目标与长时程目标联合训练，实现无需任务专用策略优化的闭环交互控制。\n\n\n# 三、核心实验结果\n\n> 单一策略可完成搬运、推、踢等交互，并支持目标到达、运动跟踪、风格控制与长时程任务链。Carry 任务标称成功率 94.3%，机器人跌倒后仍保持 89.3% 成功率，而规划基线仅 1.3%；在 Unitree G1 真机上展示多样化移动操作、交互失败/外部扰动后的快速恢复及无需重训练的任务链。\n\n\n# 四、对我的启发\n\n> 局限：目前主要在特定人形与交互任务上验证，对更广泛物体类别、复杂接触和跨场景泛化的覆盖仍有限。启发：奖励条件化 BFM 把任务适配转为潜在指令条件选择，显著提升失败恢复与任务链能力，为具身智能中通用人形交互策略提供了可扩展思路。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"I-BFM: Reward-Conditioned Robust Humanoid Interaction via Unsupervised Reinforcement Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.06129v1\n---\n>[!abstract] 一句话总结：I-BFM 用前向-后向表示（forward-backward representations）结合无监督强化学习，学习人形、物体及其接触之间耦合动力学的共享隐空间表示；下游任务只需给定奖励，同一策略即可条件化于隐指令执行闭环交互而无需任务专用优化，同时用短时域交互目标与长时域目标联合训练以覆盖不同时间尺度的控制。\n\n\n# 一、动机\n\n> 行为基础模型（BFM）已能让单一人形策略支持多样的全身控制，但把这种通用性扩展到物理交互（人形-物体耦合动力学）仍然困难，现有方法依赖任务专用策略或参考轨迹跟踪，缺乏统一且对偏差鲁棒的交互表示。\n\n\n# 二、方法\n\n> I-BFM 用前向-后向表示（forward-backward representations）结合无监督强化学习，学习人形、物体及其接触之间耦合动力学的共享隐空间表示；下游任务只需给定奖励，同一策略即可条件化于隐指令执行闭环交互而无需任务专用优化，同时用短时域交互目标与长时域目标联合训练以覆盖不同时间尺度的控制。\n\n\n# 三、核心实验结果\n\n> 单个 I-BFM 策略可完成搬运、推、踢，并支持目标到达、动作跟踪、风格控制和长时域任务链；在 Carry 任务上达到 94.3% 的名义成功率，机器人在摔倒后仍保持 89.3% 成功率，而基于规划的基线在摔倒后仅 1.3%；在 Unitree G1 真机上验证了多样化的移动-操作行为、交互失败与外部扰动后的快速恢复，以及无需任务专用重训练的任务链。\n\n\n# 四、对我的启发\n\n> 该方法说明无监督 BFM + 奖励条件化可以让单一策略在强扰动和失败后仍保持交互能力，关键启发是隐空间表示需涵盖接触动力学、且需用多时间尺度目标训练；局限可能在于隐指令与下游奖励的映射仍需额外适配、真实世界验证的任务种类与物体范围有限，以及对高动态接触场景的泛化性尚未充分证明。\n"
 }

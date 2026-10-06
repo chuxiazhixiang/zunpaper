@@ -62,7 +62,8 @@
     "assets/img/covers/arxiv-2610-06349-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -81,7 +82,7 @@
   "related_links": [],
   "page_count": 36,
   "source_tags": [],
-  "score": 50,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -93,7 +94,7 @@
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 5 个（manipulation、bimanual、bimanual manipulation、aloha）"
+      "hint": "频道关键词命中 10 个（manipulation、bimanual、bimanual manipulation、aloha）"
     },
     {
       "id": "freshness",
@@ -106,6 +107,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 36 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -137,5 +144,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"KineWorld: Action-Induced Transport Fields for Embodied World Modeling\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.06349v1\n---\n>[!abstract] 一句话总结：KineWorld 是一个「传输感知」的世界建模框架，把机器人运动学从单纯的运动条件扩展为生成监督信号的空间分配机制：Kinematic Transport Lifting（KTL）依据指令动作构建渲染器导出、相机对齐的传输场，Transport-Aware World Diffusion（TAWD）在视频潜空间网格上校准其运动支撑区域，并以均匀分布与传输聚焦分布的归一化混合来重新加权未来 RGB 的 flow matching 目标。\n\n\n# 一、动机\n\n> 现有动作条件世界模型普遍采用均匀加权的视觉生成目标，即使引入了显式运动条件，也会低估对交互至关重要的空间稀疏变化（如机械臂末端与物体接触处的局部形变），导致监督信号与具身预测需求错位。\n\n\n# 二、方法\n\n> KineWorld 是一个「传输感知」的世界建模框架，把机器人运动学从单纯的运动条件扩展为生成监督信号的空间分配机制：Kinematic Transport Lifting（KTL）依据指令动作构建渲染器导出、相机对齐的传输场，Transport-Aware World Diffusion（TAWD）在视频潜空间网格上校准其运动支撑区域，并以均匀分布与传输聚焦分布的归一化混合来重新加权未来 RGB 的 flow matching 目标。\n\n\n# 三、核心实验结果\n\n> 在 RoboTwin 2.0 的 ALOHA-AgileX 双臂操作数据上训练；单视角评测 EWMScore-P 达 68.95，多视角评测 TWB-Score 达 54.82；结果表明从外观拟合转向动作—后果建模更契合具身决策需求。\n\n\n# 四、对我的启发\n\n> 局限在于依赖渲染器导出的运动学传输场，对无精确运动学先验或高度非刚体/接触不确定场景的适用性待验证；启发是把监督权重与动作可解释的运动学结构绑定，可能是提升稀疏交互区域预测质量的一条通用思路。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"KineWorld: Action-Induced Transport Fields for Embodied World Modeling\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.06349v1\n---\n>[!abstract] 一句话总结：提出 KineWorld 传输感知世界建模框架，把机器人运动学从单纯的运动条件扩展为生成监督信号的空间分配依据：Kinematic Transport Lifting（KTL）由渲染器从指令运动构造相机对齐的传输场，Transport-Aware World Diffusion（TAWD）在视频潜空间网格上校准其运动支撑区域，并通过均匀分布与传输聚焦分布的归一化混合来重加权未来 RGB 的 flow matching 损失。\n\n\n# 一、动机\n\n> 现有动作条件化的具身世界模型普遍采用均匀加权的视觉生成目标，与具身预测的实际需求错位：即便引入显式运动条件，这类目标仍会低估对交互至关重要的、空间上稀疏的局部变化（如末端执行器接触区域的形变）。\n\n\n# 二、方法\n\n> 提出 KineWorld 传输感知世界建模框架，把机器人运动学从单纯的运动条件扩展为生成监督信号的空间分配依据：Kinematic Transport Lifting（KTL）由渲染器从指令运动构造相机对齐的传输场，Transport-Aware World Diffusion（TAWD）在视频潜空间网格上校准其运动支撑区域，并通过均匀分布与传输聚焦分布的归一化混合来重加权未来 RGB 的 flow matching 损失。\n\n\n# 三、核心实验结果\n\n> 在 RoboTwin 2.0 的 ALOHA-AgileX 双臂操作数据上训练：单视角评测取得 EWMScore-P 68.95，多视角评测取得 TWB-Score 54.82，表明建模重心应从外观拟合转向动作—后果预测。\n\n\n# 四、对我的启发\n\n> 方法依赖渲染器生成的传输场，需要已知的机器人运动学与相机内外参，对无标定视频或人类视频的泛化能力尚不明确；但其'用运动学先验重分配生成监督'的思路可迁移到其他需要稀疏关键区域高保真的条件生成任务。\n"
 }

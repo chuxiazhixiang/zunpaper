@@ -37,7 +37,8 @@
     "assets/img/covers/arxiv-2610-06137-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "sim2real"
   ],
   "badges": [
     {
@@ -48,13 +49,13 @@
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 25,
+  "score": 30,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 4 个（manipulation、grasp、diffusion policy、robotwin）"
+      "hint": "频道关键词命中 5 个（manipulation、grasp、diffusion policy、robotwin）"
     },
     {
       "id": "freshness",
@@ -67,6 +68,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 9 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -93,5 +100,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Robotizing Human Videos with Physically Consistent Interactions\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.06137v1\n---\n>[!abstract] 一句话总结：从交互几何与场景可见性两个物理层面出发，先用结合手-物分割与网格级接触预测的交互感知接触重建模块恢复稠密 3D 接触并转换为时序稳定的平行夹爪抓取，再用深度感知合成模块利用场景与机器人深度强制实现物理一致的机器人-物体遮挡关系，生成的视频与真实机器人演示联合训练。\n\n\n# 一、动机\n\n> 人类视频是可扩展的操作数据来源，但人手的形态与机器人夹爪之间存在具身差异，无法直接使用；已有将人手替换为渲染机器人的视频编辑方法因交互重建与合成不准确，会产生不一致的抓取和不合理的机器人-物体遮挡。\n\n\n# 二、方法\n\n> 从交互几何与场景可见性两个物理层面出发，先用结合手-物分割与网格级接触预测的交互感知接触重建模块恢复稠密 3D 接触并转换为时序稳定的平行夹爪抓取，再用深度感知合成模块利用场景与机器人深度强制实现物理一致的机器人-物体遮挡关系，生成的视频与真实机器人演示联合训练。\n\n\n# 三、核心实验结果\n\n> 在相同的真人视频与机器人数据下，与纯机器人训练和原始 Masquerade 流程对比，方法在四个 RoboTwin 任务、两种 Diffusion Policy 视觉编码器上取得最高的平均成功率，且在分布外场景变化下提升尤为明显；真机部署显示联合训练在任务几何可观测时能提升对视觉干扰物的鲁棒性。\n\n\n# 四、对我的启发\n\n> 局限在于单相机设置下对深度敏感的抓取任务性能仍然受限；启发是「人类视频→机器人可用数据」的转换需要同时保证接触几何与遮挡可见性两类物理一致性，且合成数据与真机数据联合训练是提升分布外鲁棒性的实用路径。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Robotizing Human Videos with Physically Consistent Interactions\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.06137v1\n---\n>[!abstract] 一句话总结：提出从「交互几何」与「场景可见性」两个物理层面修复这一问题：先用交互感知的接触重建模块，结合手-物分割与 mesh 级接触预测恢复稠密 3D 接触，再转换成时序稳定的平行夹爪抓取；随后用深度感知合成模块，利用场景与机器人深度图强制生成物理一致的机器人-物体遮挡，最终把生成的机器人视频与真实机器人演示共同训练策略。\n\n\n# 一、动机\n\n> 人类视频是可扩展的操作数据来源，但人手的形态与机器人夹爪之间存在巨大的具身差距；现有视频编辑方法（如 Masquerade）只是把渲染好的机器人贴到画面里，交互重建不准确、合成不物理，导致抓取姿态不一致、机器人与物体的遮挡关系不合理，难以直接用于机器人策略训练。\n\n\n# 二、方法\n\n> 提出从「交互几何」与「场景可见性」两个物理层面修复这一问题：先用交互感知的接触重建模块，结合手-物分割与 mesh 级接触预测恢复稠密 3D 接触，再转换成时序稳定的平行夹爪抓取；随后用深度感知合成模块，利用场景与机器人深度图强制生成物理一致的机器人-物体遮挡，最终把生成的机器人视频与真实机器人演示共同训练策略。\n\n\n# 三、核心实验结果\n\n> 在相同人类视频与机器人数据设置下，与「仅机器人数据训练」和原始 Masquerade 流程对比：(1) 在四个 RoboTwin 任务、两种 Diffusion Policy 视觉编码器上均取得最高平均成功率，在分布外场景变化下提升尤为明显；(2) 真机部署表明，在任务几何可观测时，所提共训练方法对视觉干扰物更鲁棒；(3) 但对深度敏感的抓取任务性能仍受单相机配置限制。\n\n\n# 四、对我的启发\n\n> 局限性在于单相机设置下深度敏感抓取仍不可靠，且方法依赖手-物分割与接触预测的精度；启发是把「物理一致性」拆成几何接触与遮挡可见性两个可分别建模的子问题，并以此作为人类视频到机器人数据转换的质量判据，对利用大规模人类视频做跨具身策略学习有直接参考价值。\n"
 }
