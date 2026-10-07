@@ -1,0 +1,104 @@
+{
+  "id": "arxiv-2610-08777",
+  "source": "arxiv",
+  "title": "CtrlCache: Accelerating Interactive Video World Models with Control-Aware Caching",
+  "title_zh": "CtrlCache：利用控制感知缓存加速交互式视频世界模型",
+  "abstract": "Interactive video world models need to generate each video chunk efficiently while responding faithfully to user controls. Many systems use chunk-wise autoregressive generation with few-step denoising, but each chunk still requires several costly denoising iterations. Training-free caching can reduce this cost, yet existing policies make reuse decisions primarily from model-internal denoising dynamics and do not explicitly account for control transitions. Actually, interactive generation explicitly exposes a signal they do not use: the controls for a chunk arrive before it is denoised, so a schedule derived from them costs no forward pass. To this end, we analyze adjacent chunks under different control regimes and find that structural similarity drops around action changes, while low-frequency structure remains more persistent than high-frequency detail. Motivated by these observations, we propose CtrlCache, a training-free control-aware caching framework that adapts computation to the current control sequence. Specifically, the action-aware scheduling and refresh policy detects action changes across and within chunks, and labels each chunk as initial, transition, turning, or steady state. At one selected interior denoising step, initial and transition chunks retain full computation, while turning and steady chunks reuse the transformer residual from the most recent fully computed step in the same chunk. To exploit the persistence of low-frequency structure during steady interaction, we further introduce a frequency-mixed history prior guidance that incorporates complementary information from the preceding clean latent without an additional DiT forward pass. Evaluated on Matrix-Game 2.0 and LingBot-World v1/v2, CtrlCache achieves 1.21x to 1.41x DiT-backbone speedups without model retraining while improving WBench Overall scores over original inference across all three models.",
+  "abstract_zh": "交互式视频世界模型需要高效生成每个视频块，同时忠实响应用户控制。许多系统采用逐块自回归生成与少步去噪，但每个块仍需多次昂贵的去噪迭代。免训练缓存可以降低这一成本，然而现有策略主要依据模型内部去噪动态做出复用决策，并未显式考虑控制转换。实际上，交互式生成明确暴露了一个它们未利用的信号：一个块的控制信号在其去噪之前就已到达，因此基于这些控制信号推导的调度无需前向传播。为此，我们分析了不同控制机制下的相邻块，发现动作变化附近结构相似性下降，而低频结构比高频细节更持久。受这些观察启发，我们提出CtrlCache，一个免训练的控制感知缓存框架，能够根据当前控制序列自适应调整计算。具体而言，动作感知调度与刷新策略检测块间和块内的动作变化，并将每个块标记为初始、过渡、转折或稳定状态。在一个选定的内部去噪步骤，初始和过渡块保留完整计算，而转折和稳定块复用同一块中最近一次完整计算步骤的Transformer残差。为了利用稳定交互期间低频结构的持久性，我们进一步引入频率混合历史先验引导，在不增加额外DiT前向传播的情况下融合前一个干净潜变量的互补信息。在Matrix-Game 2.0和LingBot-World v1/v2上评估，CtrlCache在无需模型重训练的情况下实现了1.21倍至1.41倍的DiT骨干加速，同时在所有三个模型上提升了WBench Overall分数。",
+  "tldr_zh": "免训练控制感知缓存，根据动作变化自适应复用计算，加速交互视频生成。",
+  "cover_zh": "控制信号提前到｜这个缓存策略让视频世界模型推理提速",
+  "authors": [
+    {
+      "name": "Shangye Song",
+      "affiliation": ""
+    },
+    {
+      "name": "Dong Gong",
+      "affiliation": ""
+    },
+    {
+      "name": "Hong Jia",
+      "affiliation": ""
+    },
+    {
+      "name": "Yun Sing Koh",
+      "affiliation": ""
+    },
+    {
+      "name": "Xinyu Zhang",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.CV",
+  "categories": [
+    "cs.CV"
+  ],
+  "published": "2026-10-06",
+  "updated": "2026-10-06",
+  "arxiv_id": "2610.08777",
+  "pdf_url": "https://arxiv.org/pdf/2610.08777v1",
+  "abs_url": "http://arxiv.org/abs/2610.08777v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-08777.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-08777-p2.jpg"
+  ],
+  "channels": [
+    "world-model"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 18,
+  "source_tags": [],
+  "score": 22,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（world model、world models、video world model）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 18 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "world-model",
+    "reason": "交互式视频世界模型加速，控制感知缓存，属world-model方向，有方法创新。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University of Auckland",
+    "UNSW Sydney"
+  ],
+  "method_tags": [
+    "training-free caching",
+    "control-aware caching",
+    "video world model"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/CV\n  - Domain/Multimodal\n  - Task/VideoGen\n  - Task/CameraControl\n  - 状态/待读\nTitle: \"CtrlCache: Accelerating Interactive Video World Models with Control-Aware Caching\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.08777v1\n---\n>[!abstract] 一句话总结：提出 CtrlCache：一个免训练的控制感知缓存框架，根据动作变化把 chunk 标记为 initial / transition / turning / steady 四类，在指定的内部去噪步上让 initial 与 transition 保持全量计算，而 turning 与 steady 复用本 chunk 内最近一次完整计算步的 transformer 残差；同时引入频率混合历史先验引导，在 steady 交互阶段利用前一个干净 latent 的低频结构信息，且不额外增加 DiT 前向。\n\n\n# 一、动机\n\n> 交互式视频世界模型需要逐 chunk 自回归生成并快速响应用户控制，但每个 chunk 仍需多次昂贵的去噪迭代；现有的免训练缓存方法主要依据模型内部去噪动态决定复用，没有显式利用「控制信号在去噪前就已到达」这一廉价且免费的前向信号。\n\n\n# 二、方法\n\n> 提出 CtrlCache：一个免训练的控制感知缓存框架，根据动作变化把 chunk 标记为 initial / transition / turning / steady 四类，在指定的内部去噪步上让 initial 与 transition 保持全量计算，而 turning 与 steady 复用本 chunk 内最近一次完整计算步的 transformer 残差；同时引入频率混合历史先验引导，在 steady 交互阶段利用前一个干净 latent 的低频结构信息，且不额外增加 DiT 前向。\n\n\n# 三、核心实验结果\n\n> 在 Matrix-Game 2.0 与 LingBot-World v1/v2 上，CtrlCache 在不重新训练模型的前提下实现 1.21x–1.41x 的 DiT 主干加速；三个模型的 WBench Overall 分数均优于原始推理；分析显示动作切换处相邻 chunk 的结构相似度下降，而低频结构比高频细节更持久，这支撑了按控制状态分级复用的策略。\n\n\n# 四、对我的启发\n\n> 方法依赖于控制的时序结构，当动作/视角剧烈突变时复用可能带来细节损失，且需人工设定 chunk 状态划分与指定的复用去噪步；但「用免费的控制信号驱动计算调度」这一思路可迁移到具身智能中的交互式世界模型/仿真器推理加速，与机器人策略学习、跨本体迁移不直接相关，属于上游视频世界模型的高效生成基础设施。\n"
+}

@@ -107,5 +107,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"SmellDiffusion: Diffusion-Based Quadruped Navigation with Olfactory Scene Graphs\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.20624v1\n---\n>[!abstract] 一句话总结：提出 SmellDiffusion 仿真流程：用开放词汇嗅觉场景图表示物种特定的气体区域，让经典与扩散规划器共享同一个目标；核心是仅用训练集校准的峰值局部几何门控做选择性源修正，以及扩散式气体引导轨迹生成。\n\n\n# 一、动机\n\n> 气体泄漏场景中，浓度峰值可能偏离真实源位置，导致机器人错误估计气源并导航失败；现有方法缺乏对偏移峰值的修正与气体引导的轨迹生成。\n\n\n# 二、方法\n\n> 提出 SmellDiffusion 仿真流程：用开放词汇嗅觉场景图表示物种特定的气体区域，让经典与扩散规划器共享同一个目标；核心是仅用训练集校准的峰值局部几何门控做选择性源修正，以及扩散式气体引导轨迹生成。\n\n\n# 三、核心实验结果\n\n> 在424个源-风配置中28个峰值偏移>0.5m；几何门控在10个留出偏移中检出9个（精度0.64）；门控修正使偏移案例平均误差从1.468m降至0.592m（降60%），全案例从0.205m降至0.180m；best-of-ten扩散的气体暴露与gas-guided A*相当（0.0476 vs 0.0455），单次扩散41.7ms vs A* 72.3ms；Gazebo六次运行机器人-源误差：A* 0.39m，扩散0.31m。\n\n\n# 四、对我的启发\n\n> best-of-ten顺序采样会增加总运行时间，且仅在仿真中验证，真实气体传感噪声、动态风场与跨物种泛化仍待检验；与具身智能/机器人嗅觉导航直接相关。\n"
 }

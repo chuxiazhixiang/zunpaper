@@ -91,5 +91,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"TraceFlow: Guiding Frozen Flow-Matching Robot Policies with Success and Failure Traces\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.20646v1\n---\n>[!abstract] 一句话总结：TraceFlow 构建一个进度对齐的引导场，用仅含终止成败比特的「TraceBank」（按时间排序的状态-动作轨迹记录）检索成功与失败轨迹，把其动作密度转化为对冻结流匹配动作专家的有界修正，从而在不更新权重的前提下改变生成的动作 chunk。\n\n\n# 一、动机\n\n> 冻结权重的 VLA 流匹配策略在推理时无法利用此前 rollout 的成败信息，而现有测试时引导方法只用成功样本、学习 critic、verifier 或动力学模型，均未把机器人自身的失败 rollout 当作仅含一个终止结果比特的负证据使用。\n\n\n# 二、方法\n\n> TraceFlow 构建一个进度对齐的引导场，用仅含终止成败比特的「TraceBank」（按时间排序的状态-动作轨迹记录）检索成功与失败轨迹，把其动作密度转化为对冻结流匹配动作专家的有界修正，从而在不更新权重的前提下改变生成的动作 chunk。\n\n\n# 三、核心实验结果\n\n> 在真实机器人有序打包任务中，基础策略 50 次试验按序完成 21 次，TraceFlow 提升到 39 次，堆叠一轮后达 47 次，序列错乱回合从 20 降到 0；仿真中收益具有选择性：RoboMemArena 上 Sequence 任务成功率从 78.92% 升至 91.50%，Transferring 在第二轮堆叠从 54.41% 升至 62.00%，但 26 任务总体指标不变，Counting 与 Occlusion 分别下降 1.12 和 1.42 个点，LIBERO-Plus（Long）仅 +1.27 点（p = 0.0733）。\n\n\n# 四、对我的启发\n\n> 局限在于堆叠增益有限且每个分支都在第十轮前达到峰值，且 TraceBank 的成功/失败比例并不能预测检索分配效果，说明成败信号的使用方式仍较粗糙；启发是仅凭终止比特对冻结策略做测试时引导是一条低成本、可在线扩充轨迹库的路线，但需要更好的检索与分配机制才能稳定泛化。\n"
 }

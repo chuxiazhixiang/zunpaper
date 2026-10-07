@@ -1,0 +1,95 @@
+{
+  "id": "arxiv-2610-08618",
+  "source": "arxiv",
+  "title": "Demo: Closed-Loop Sionna-Isaac Sim Co-Simulation Framework for Wireless-Aware Robot Navigation over ROS 2",
+  "title_zh": "演示：面向无线感知机器人导航的闭环 Sionna-Isaac Sim 联合仿真框架（基于 ROS 2）",
+  "abstract": "A robot that offloads its control loop to the network carries the receiver with it, so link quality is decided by where it goes. Simulating this requires both a physics engine and a site-specific propagation model at once; to our knowledge no simulator natively unifies both, with existing couplings of the two limited to offline analyses. We demonstrate a real-time co-simulation framework coupling NVIDIA Isaac Sim and NVIDIA Sionna over ROS 2 that closes the perception-action-communication (PAC) loop between them. Sionna ray-traces the base-station-to-robot channel over the exact geometry Isaac Sim simulates on, rather than modeling it stochastically, and feeds channel states back into the control loop in real time. Ray-traced on GPU, the coverage map is refreshed in ~16ms (~60 Hz), fast enough for real-time control. To showcase the framework's utility, we implement a wireless-aware navigation application in an OpenStreetMap(OSM)-derived SUTD campus twin with two Nova Carter robots: the closed-loop planner eliminates communication outage at only +7.4% traversal time over the shortest-path baseline (which spends 7.9 s of its 81.2 s run disconnected).",
+  "abstract_zh": "将控制回路卸载到网络的机器人会随身携带接收器，因此链路质量取决于其所在位置。仿真这种场景需要同时具备物理引擎和特定站点的传播模型；据我们所知，尚无仿真器能原生统一两者，现有的耦合仅限于离线分析。我们演示了一个实时联合仿真框架，通过 ROS 2 耦合 NVIDIA Isaac Sim 和 NVIDIA Sionna，闭合了二者之间的感知-行动-通信（PAC）回路。Sionna 在 Isaac Sim 所仿真的精确几何上对基站到机器人的信道进行射线追踪，而非随机建模，并将信道状态实时反馈到控制回路中。在 GPU 上进行射线追踪，覆盖图刷新时间约 16 毫秒（约 60 Hz），足以满足实时控制。为了展示该框架的实用性，我们在一个源自 OpenStreetMap（OSM）的 SUTD 校园孪生环境中，使用两个 Nova Carter 机器人实现了一个无线感知导航应用：闭环规划器消除了通信中断，仅比最短路径基线多出 7.4% 的遍历时间（基线在 81.2 秒的运行中有 7.9 秒处于断开状态）。",
+  "tldr_zh": "实时联合仿真框架闭环耦合物理与信道，实现无线感知导航。",
+  "cover_zh": "机器人导航总掉线？这个联合仿真框架让通信中断直接消失",
+  "authors": [
+    {
+      "name": "Yi Shen Lim",
+      "affiliation": ""
+    },
+    {
+      "name": "Seungeun Oh",
+      "affiliation": ""
+    },
+    {
+      "name": "Jihong Park",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.NI",
+  "categories": [
+    "cs.NI",
+    "cs.RO"
+  ],
+  "published": "2026-10-06",
+  "updated": "2026-10-06",
+  "arxiv_id": "2610.08618",
+  "pdf_url": "https://arxiv.org/pdf/2610.08618v1",
+  "abs_url": "http://arxiv.org/abs/2610.08618v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-08618.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-08618-p2.jpg"
+  ],
+  "channels": [
+    "sim2real"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 2,
+  "source_tags": [],
+  "score": 13,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（isaac sim）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "sim2real",
+    "reason": "Isaac Sim与Sionna实时联合仿真，面向无线感知机器人导航，属仿真器/系统工作，有参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Singapore University of Technology and Design"
+  ],
+  "method_tags": [
+    "co-simulation",
+    "wireless-aware motion planning",
+    "ray tracing"
+  ],
+  "platform": [
+    "Nova Carter"
+  ],
+  "sim_stack": [
+    "Isaac Sim",
+    "Sionna"
+  ],
+  "method_family": "",
+  "real_robot": "no",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/系统\n  - 论文/应用\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RobotNavigation\n  - 状态/待读\nTitle: \"Demo: Closed-Loop Sionna-Isaac Sim Co-Simulation Framework for Wireless-Aware Robot Navigation over ROS 2\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.08618v1\n---\n>[!abstract] 一句话总结：在 ROS 2 上把 NVIDIA Isaac Sim 与 NVIDIA Sionna 耦合成实时联合仿真框架：Sionna 直接基于 Isaac Sim 所仿真的同一份几何做基站—机器人信道的射线追踪（而非随机信道建模），并把信道状态实时回灌到控制回路，从而闭合感知—行动—通信（PAC）回路。\n\n\n# 一、动机\n\n> 机器人把控制回路卸载到网络时，链路质量由其自身位置决定，但现有仿真器无法同时提供物理引擎与站点特定的信道传播模型，已有的耦合方式也只停留在离线分析，缺少实时闭环的验证平台。\n\n\n# 二、方法\n\n> 在 ROS 2 上把 NVIDIA Isaac Sim 与 NVIDIA Sionna 耦合成实时联合仿真框架：Sionna 直接基于 Isaac Sim 所仿真的同一份几何做基站—机器人信道的射线追踪（而非随机信道建模），并把信道状态实时回灌到控制回路，从而闭合感知—行动—通信（PAC）回路。\n\n\n# 三、核心实验结果\n\n> GPU 射线追踪使覆盖图刷新约 16 ms（≈60 Hz），足以支撑实时控制；在基于 OpenStreetMap 的 SUTD 校园数字孪生中，用两台 Nova Carter 机器人实现无线感知导航，闭环规划器完全消除了通信中断，代价仅为相比最短路径基线 +7.4% 的通行时间；而基线在 81.2 s 的运行中有 7.9 s 处于失联状态。\n\n\n# 四、对我的启发\n\n> 局限在于这是 demo 级验证，规模仅两台机器人、单一校园场景，覆盖图刷新率依赖 GPU 射线追踪算力，且未讨论多机器人共享信道时的干扰与可扩展性。启发是把通信链路质量作为可规划的一等约束纳入具身导航回路，为「网络卸载控制」这类依赖连通的机器人应用提供了可复现的评测平台。\n"
+}
