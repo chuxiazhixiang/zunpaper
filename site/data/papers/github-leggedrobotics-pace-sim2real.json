@@ -16,7 +16,7 @@
   "primary_category": "",
   "categories": [],
   "published": "",
-  "updated": "2026-09-28",
+  "updated": "2026-10-05",
   "arxiv_id": "",
   "pdf_url": "",
   "abs_url": "https://github.com/leggedrobotics/pace-sim2real",
@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 58,
-      "hint": "⭐ 772"
+      "hint": "⭐ 778"
     }
   ],
   "judge": {
@@ -62,12 +62,12 @@
   "github": {
     "owner": "leggedrobotics",
     "repo": "pace-sim2real",
-    "stars": 772,
+    "stars": 778,
     "language": "Python",
-    "pushed_at": "2026-09-28",
+    "pushed_at": "2026-10-05",
     "created_at": "2025-09-05",
     "topics": [],
     "archived": false
   },
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - 论文/应用\n  - Domain/Robotics\n  - Task/Sim2Real\nTitle: \"leggedrobotics/pace-sim2real\"\nYear: \"\"\nURL: https://github.com/leggedrobotics/pace-sim2real\n---\n>[!abstract] 一句话总结：PACE 用标准关节编码器采集的激励数据做数据驱动的系统辨识，以 CMA-ES 进化策略拟合具有物理意义的执行器/关节动力学参数，再把学到的参数回填到 NVIDIA Isaac Lab 的仿真环境中，从而闭环提升腿足机器人的 sim-to-real 运动性能。\n\n\n# 一、动机\n\n> 腿足机器人从仿真迁移到真机时，执行器与关节动力学（摩擦、延迟、力矩缩放等未建模效应）造成显著的 sim-to-real gap，而现有做法多依赖昂贵的力矩传感器或手工调参，难以在不同机器人平台与执行器类型间通用。\n\n\n# 二、方法\n\n> PACE 用标准关节编码器采集的激励数据做数据驱动的系统辨识，以 CMA-ES 进化策略拟合具有物理意义的执行器/关节动力学参数，再把学到的参数回填到 NVIDIA Isaac Lab 的仿真环境中，从而闭环提升腿足机器人的 sim-to-real 运动性能。\n\n\n# 三、核心实验结果\n\n> 论文以工程框架形式发布（leggedrobotics/pace-sim2real），流程为：在仿真中采集激励数据（或替换为自采真机数据）→ 用 CMA-ES 拟合参数 → 将参数应用到 Isaac Lab 的 locomotion 任务；框架声明支持多种机器人平台与执行器类型，并与 Isaac Lab 任务/环境规范无缝集成（基于 Isaac Sim 5.0 开发测试）。摘要与仓库说明中未给出具体的成功率、跟踪误差或迁移性能提升数值，具体量化结论需查阅正文。\n\n\n# 四、对我的启发\n\n> 局限在于：参数辨识依赖激励轨迹的质量与覆盖度，通常仍需针对每个新平台/新执行器重新采集数据与拟合，且需要标准关节编码器可见的关节侧信息；启发是可把 CMA-ES 这类无梯度黑箱优化与物理参数化建模结合，作为低成本（无需力矩传感器）的 sim-to-real 校准环节，与强化学习策略训练解耦、可复用。\n"
 }

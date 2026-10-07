@@ -1,0 +1,74 @@
+{
+  "id": "github-gewu-lab-depthhelps-iros2024",
+  "source": "github",
+  "title": "GeWu-Lab/DepthHelps-IROS2024",
+  "title_zh": "GeWu-Lab/DepthHelps-IROS2024",
+  "abstract": "## Depth Helps: Improving Pre-trained RGB-based Policy with Depth Information Injection Authors: [Xincheng Pang](https://github.com/pangxincheng)\\*, [Wenke Xia](https://xwinks.github.io/)\\*, [Zhigang Wang](https://scholar.google.com/citations?hl=zh-CN&user=cw3EaAYAAAAJ&view_op=list_works&sortby=pubdate), [Bin Zhao](https://scholar.google.com/citations?user=DQB0hqwAAAAJ&hl=zh-CN), [Di Hu](https://dtaoo.github.io/)‡, [Dong Wang](https://scholar.google.es/citations?user=dasL9V4AAAAJ&hl=zh-CN)‡, [Xuelong Li](https://iopen.nwpu.edu.cn/info/1329/1171.htm) The repo for \"Depth Helps: Improving Pre-trained RGB-based Policy with Depth Information Injection\", IROS 2024. Due to deleting a lot of useless code, there may be issues during runtime. If you have any questions, please open an issue or send an email to xinchengpang@ruc.edu.cn. #### Setup #### Dataset - Download the LIBERO dataset following [LIBERO](https://github.com/Lifelong-Robot-Learning/LIBERO) and put it in `data/LIBERO/v0` - Preprocess dataset #### Pretrained model - Download the pretrained model following [RoboFlamingo](https://github.com/RoboFlamingo/RoboFlamingo) and put it in `RoboFlamingo` #### Train Before train, we suggest that you check if your directory is consistent with the directory structure below. All of our experiments were trained using 4 NVIDIA A100. Please refernece to the `run.sh` #### Eval You need to install the `libero` following [LIBERO](https://github.com/Lifelong-Robot-Learning/LIBERO) #### Citation",
+  "abstract_zh": "作者：庞新成*、夏文可*、王志刚、赵斌、胡迪‡、王栋‡、李学龙。本仓库对应论文“Depth Helps: Improving Pre-trained RGB-based Policy with Depth Information Injection”，发表于IROS 2024。由于删除了大量无用代码，运行时可能存在问题。如有任何疑问，请提交issue或发送邮件至xinchengpang@ruc.edu.cn。#### 设置 #### 数据集 - 按照LIBERO下载LIBERO数据集，并放置于`data/LIBERO/v0` - 预处理数据集 #### 预训练模型 - 按照RoboFlamingo下载预训练模型，并放置于`RoboFlamingo` #### 训练 训练前，建议检查您的目录是否与下方目录结构一致。我们所有实验均使用4块NVIDIA A100进行训练。请参考`run.sh` #### 评估 您需要按照LIBERO安装`libero` #### 引用",
+  "tldr_zh": "通过深度信息注入改进预训练的基于RGB的策略。",
+  "cover_zh": "RGB策略不够准？注入深度信息，机器人操作直接开挂",
+  "authors": [
+    {
+      "name": "GeWu-Lab",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2024-08-21",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/GeWu-Lab/DepthHelps-IROS2024",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 25,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 25,
+      "hint": "⭐ 18"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "IROS2024官方算法，通过深度信息注入提升预训练RGB策略，属于操作VLA方向，有实验支撑。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "操作"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "GeWu-Lab",
+    "repo": "DepthHelps-IROS2024",
+    "stars": 18,
+    "language": "Python",
+    "pushed_at": "2024-08-21",
+    "created_at": "2024-07-14",
+    "topics": [],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"GeWu-Lab/DepthHelps-IROS2024\"\nYear: \"\"\nURL: https://github.com/GeWu-Lab/DepthHelps-IROS2024\n---\n>[!abstract] 一句话总结：在已预训练的 RGB 策略网络中注入深度信息（DepthHelps），通过轻量级的深度注入模块将深度特征与预训练 RGB 表征融合，从而在不破坏原有预训练知识的前提下提升策略的空间感知能力，并在 LIBERO 数据集上完成训练与评测。\n\n\n# 一、动机\n\n> 现有基于 RGB 的机器人策略（如 RoboFlamingo 等预训练模型）虽然借助大规模视觉-语言预训练获得了较强的语义泛化能力，但缺乏深度/三维几何信息，在需要精确空间定位的精细操作任务上表现受限。\n\n\n# 二、方法\n\n> 在已预训练的 RGB 策略网络中注入深度信息（DepthHelps），通过轻量级的深度注入模块将深度特征与预训练 RGB 表征融合，从而在不破坏原有预训练知识的前提下提升策略的空间感知能力，并在 LIBERO 数据集上完成训练与评测。\n\n\n# 三、核心实验结果\n\n> 原文（README 形式的摘要）未给出具体性能数值；可确认的实验设置是：在 LIBERO（v0）数据集上训练，使用 RoboFlamingo 的预训练模型作为 RGB 主干，全部实验在 4 张 NVIDIA A100 上完成。\n\n\n# 四、对我的启发\n\n> 局限：依赖深度传感器或深度估计，且深度注入模块的设计与微调策略未在摘要中说明；启发：'预训练 RGB 策略 + 深度注入' 是一种可低成本赋予机器人策略 3D 感知的通用范式，可与具身智能中的多模态策略学习课题结合。\n"
+}

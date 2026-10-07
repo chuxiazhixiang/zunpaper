@@ -244,6 +244,83 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2610-08120",
+      "source": "arxiv",
+      "title": "iGPC: Generative Motion Priors for Object-Aware Humanoid Interaction",
+      "title_zh": "iGPC：面向物体感知人形交互的生成式运动先验",
+      "tldr_zh": "将生成式人体运动先验扩展至人形机器人全身物体交互，通过专家蒸馏实现感知驱动策略。",
+      "cover_zh": "人形机器人也能像人一样交互？这个框架让运动先验直接迁移到物体操作",
+      "abstract_zh": "在非结构化环境中运行的人形机器人必须将鲁棒全身控制与感知及物理交互周围物体的能力相结合。虽然大规模人体运动数据为自然且多样的人形控制提供了强大的先验，但有效地将这些先验迁移到感知驱动的物体交互仍然具有挑战性。为了解决这一瓶颈，我们提出了一个框架，将最近提出的生成式预训练控制器（GPC）从一般人体运动扩展到全身人形-环境交互。首先，我们将GPC适配为以场景可供性线索和特权状态信息为条件的交互专家。这些专家利用预训练的人体运动先验，同时学习任务特定的接触行为，包括伸向物体、抓取环境支撑以保持稳定以及推动可移动物体。其次，我们引入了一个感知驱动的学生模型，它保留预训练的GPC策略，并利用机载感官观察从专家中蒸馏交互技能。为了弥合特权专家观察与感官输入之间的差距，我们提出了两个互补的训练目标，使得在蒸馏过程中能够有效适应预训练运动先验。值得注意的是，我们在多个全身交互任务上的实验表明，大规模生成式人体运动先验为学习在接触丰富的真实世界环境中可部署的人形交互策略提供了有效的基础。",
+      "authors": [
+        "Anujith Muraleedharan",
+        "Abdul Ahad Butt",
+        "Nolan Fey"
+      ],
+      "authors_all": [
+        "Anujith Muraleedharan",
+        "Abdul Ahad Butt",
+        "Nolan Fey",
+        "Yash Prabhu",
+        "Anamika J H",
+        "Sandor Felber",
+        "Maurice Rahme",
+        "Ivan Laptev"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-06",
+      "channels": [
+        "manipulation",
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ MIT CSAIL"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-08120.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-08120-p2.jpg"
+      ],
+      "arxiv_id": "2610.08120",
+      "abs_url": "http://arxiv.org/abs/2610.08120v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.08120v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "人形全身控制与物体交互，基于生成式运动先验，属loco-manip-wbc方向，科研价值高。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)",
+        "Massachusetts Institute of Technology (MIT)",
+        "Minerva Humanoids, Inc."
+      ],
+      "method_tags": [
+        "Generative Pretrained Controller (GPC)",
+        "Distillation",
+        "Whole-body Interaction"
+      ],
+      "platform": [
+        "Unitree G1"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2610-08220",
       "source": "arxiv",
       "title": "VOMMI: Collecting and Leveraging Portable Demonstrations for Mobile Manipulation",
@@ -277,7 +354,8 @@
       "published": "2026-10-06",
       "channels": [
         "manipulation",
-        "teleop"
+        "teleop",
+        "loco-manip-wbc"
       ],
       "badges": [
         {
@@ -321,6 +399,81 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-08320",
+      "source": "arxiv",
+      "title": "Humanoid Horizon: Extending Task Horizon in Whole-Body Loco-Manipulation via Parallel Training, Dynamic Starting, and Reward Gating",
+      "title_zh": "人形地平线：通过并行训练、动态起始与奖励门控扩展全身移动操作的任务视界",
+      "tldr_zh": "Humanoid Horizon 框架通过并行训练、动态起始与奖励门控，提升人形机器人长视界移动操作成功率。",
+      "cover_zh": "人形机器人长任务总翻车？这个框架让成功率稳超 80%",
+      "abstract_zh": "杂乱的室内环境中，大型重物散落在不同表面上，要求人形机器人在单个不间断回合内依次导航、抓取、运输并准确放置每个物品。这种长视界全身移动操作任务对当前方法仍是重大挑战。先前方法常面临两个主要问题：易奖励偏差，即训练过度强调早期运输阶段而牺牲后期阶段；以及灾难性遗忘，即关注后期阶段导致早期阶段性能下降。在本工作中，我们提出 Humanoid Horizon，一个统一策略框架，通过三种相互关联的机制克服这些限制。并行训练策略将 $N$ 个场景组织为 $S$ 个并发的阶段流，由共享策略控制，确保所有运输阶段获得持续梯度更新，消除顺序优化的瓶颈。动态起始机制用上游展开的终端状态更新每个环境的初始状态，逐步扩大过渡覆盖范围并增强阶段边界的鲁棒性。奖励门控在后期阶段流中，当紧邻的前一个物体位移超过设定阈值时，将剩余回合的奖励设为零，使共享策略学会不干扰刚放置的物体，从而在整个回合中保持早期放置。这些策略共同在双物体 LHM-Humanoid 基准（350 个训练场景，66 个保留场景）上实现了每阶段成功率超过 80\\%。随着顺序运输物体数量超过两个，成功率随视界下降，但相对于所有基线中出现的急剧下降，退化是平缓的。",
+      "authors": [
+        "Haozhuo Zhang",
+        "Qiang Zhang",
+        "Jian Tang"
+      ],
+      "authors_all": [
+        "Haozhuo Zhang",
+        "Qiang Zhang",
+        "Jian Tang",
+        "Mingzhe Ni",
+        "Michele Caprio",
+        "Angelo Cangelosi",
+        "Wei Pan"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-06",
+      "channels": [
+        "manipulation",
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ USTC"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-08320.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-08320-p2.jpg"
+      ],
+      "arxiv_id": "2610.08320",
+      "abs_url": "http://arxiv.org/abs/2610.08320v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.08320v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "人形全身长程移动操作，并行训练+奖励门控解决长时域遗忘，方法新颖且真机验证。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "The University of Manchester",
+        "University of Science and Technology of China",
+        "X-Humanoid",
+        "University of Warwick"
+      ],
+      "method_tags": [
+        "RL",
+        "Distillation",
+        "long-horizon loco-manipulation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -575,18 +728,18 @@
       "training_summary": "",
       "demo_videos": [
         {
-          "kind": "mp4",
-          "url": "https://soundreactor-wbench-public-728750562872-20260920.s3.us-east-2.amazonaws.com/demo-v1/overview-ust-l4-hq-20260930-v1/hevc/overview.mp4",
           "embed_url": "https://soundreactor-wbench-public-728750562872-20260920.s3.us-east-2.amazonaws.com/demo-v1/overview-ust-l4-hq-20260930-v1/hevc/overview.mp4",
+          "kind": "mp4",
+          "source": "project_page",
           "title": "WorldSonus: Bringing Sound to Worlds",
-          "source": "project_page"
+          "url": "https://soundreactor-wbench-public-728750562872-20260920.s3.us-east-2.amazonaws.com/demo-v1/overview-ust-l4-hq-20260930-v1/hevc/overview.mp4"
         },
         {
-          "kind": "mp4",
-          "url": "https://soundreactor-wbench-public-728750562872-20260920.s3.us-east-2.amazonaws.com/demo-v1/overview-ust-l4-hq-20260930-v1/h264/overview.mp4",
           "embed_url": "https://soundreactor-wbench-public-728750562872-20260920.s3.us-east-2.amazonaws.com/demo-v1/overview-ust-l4-hq-20260930-v1/h264/overview.mp4",
+          "kind": "mp4",
+          "source": "project_page",
           "title": "WorldSonus: Bringing Sound to Worlds",
-          "source": "project_page"
+          "url": "https://soundreactor-wbench-public-728750562872-20260920.s3.us-east-2.amazonaws.com/demo-v1/overview-ust-l4-hq-20260930-v1/h264/overview.mp4"
         }
       ],
       "github": {},
@@ -754,82 +907,6 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2610-08120",
-      "source": "arxiv",
-      "title": "iGPC: Generative Motion Priors for Object-Aware Humanoid Interaction",
-      "title_zh": "iGPC：面向物体感知人形交互的生成式运动先验",
-      "tldr_zh": "将生成式人体运动先验扩展至人形机器人全身物体交互，通过专家蒸馏实现感知驱动策略。",
-      "cover_zh": "人形机器人也能像人一样交互？这个框架让运动先验直接迁移到物体操作",
-      "abstract_zh": "在非结构化环境中运行的人形机器人必须将鲁棒全身控制与感知及物理交互周围物体的能力相结合。虽然大规模人体运动数据为自然且多样的人形控制提供了强大的先验，但有效地将这些先验迁移到感知驱动的物体交互仍然具有挑战性。为了解决这一瓶颈，我们提出了一个框架，将最近提出的生成式预训练控制器（GPC）从一般人体运动扩展到全身人形-环境交互。首先，我们将GPC适配为以场景可供性线索和特权状态信息为条件的交互专家。这些专家利用预训练的人体运动先验，同时学习任务特定的接触行为，包括伸向物体、抓取环境支撑以保持稳定以及推动可移动物体。其次，我们引入了一个感知驱动的学生模型，它保留预训练的GPC策略，并利用机载感官观察从专家中蒸馏交互技能。为了弥合特权专家观察与感官输入之间的差距，我们提出了两个互补的训练目标，使得在蒸馏过程中能够有效适应预训练运动先验。值得注意的是，我们在多个全身交互任务上的实验表明，大规模生成式人体运动先验为学习在接触丰富的真实世界环境中可部署的人形交互策略提供了有效的基础。",
-      "authors": [
-        "Anujith Muraleedharan",
-        "Abdul Ahad Butt",
-        "Nolan Fey"
-      ],
-      "authors_all": [
-        "Anujith Muraleedharan",
-        "Abdul Ahad Butt",
-        "Nolan Fey",
-        "Yash Prabhu",
-        "Anamika J H",
-        "Sandor Felber",
-        "Maurice Rahme",
-        "Ivan Laptev"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-10-06",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ MIT CSAIL"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2610-08120.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-08120-p2.jpg"
-      ],
-      "arxiv_id": "2610.08120",
-      "abs_url": "http://arxiv.org/abs/2610.08120v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.08120v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 47,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "人形全身控制与物体交互，基于生成式运动先验，属loco-manip-wbc方向，科研价值高。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)",
-        "Massachusetts Institute of Technology (MIT)",
-        "Minerva Humanoids, Inc."
-      ],
-      "method_tags": [
-        "Generative Pretrained Controller (GPC)",
-        "Distillation",
-        "Whole-body Interaction"
-      ],
-      "platform": [
-        "Unitree G1"
-      ],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -1046,80 +1123,6 @@
         "video world model",
         "physical consistency benchmark",
         "quantitative physical measurement"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2610-08320",
-      "source": "arxiv",
-      "title": "Humanoid Horizon: Extending Task Horizon in Whole-Body Loco-Manipulation via Parallel Training, Dynamic Starting, and Reward Gating",
-      "title_zh": "人形地平线：通过并行训练、动态起始与奖励门控扩展全身移动操作的任务视界",
-      "tldr_zh": "Humanoid Horizon 框架通过并行训练、动态起始与奖励门控，提升人形机器人长视界移动操作成功率。",
-      "cover_zh": "人形机器人长任务总翻车？这个框架让成功率稳超 80%",
-      "abstract_zh": "杂乱的室内环境中，大型重物散落在不同表面上，要求人形机器人在单个不间断回合内依次导航、抓取、运输并准确放置每个物品。这种长视界全身移动操作任务对当前方法仍是重大挑战。先前方法常面临两个主要问题：易奖励偏差，即训练过度强调早期运输阶段而牺牲后期阶段；以及灾难性遗忘，即关注后期阶段导致早期阶段性能下降。在本工作中，我们提出 Humanoid Horizon，一个统一策略框架，通过三种相互关联的机制克服这些限制。并行训练策略将 $N$ 个场景组织为 $S$ 个并发的阶段流，由共享策略控制，确保所有运输阶段获得持续梯度更新，消除顺序优化的瓶颈。动态起始机制用上游展开的终端状态更新每个环境的初始状态，逐步扩大过渡覆盖范围并增强阶段边界的鲁棒性。奖励门控在后期阶段流中，当紧邻的前一个物体位移超过设定阈值时，将剩余回合的奖励设为零，使共享策略学会不干扰刚放置的物体，从而在整个回合中保持早期放置。这些策略共同在双物体 LHM-Humanoid 基准（350 个训练场景，66 个保留场景）上实现了每阶段成功率超过 80\\%。随着顺序运输物体数量超过两个，成功率随视界下降，但相对于所有基线中出现的急剧下降，退化是平缓的。",
-      "authors": [
-        "Haozhuo Zhang",
-        "Qiang Zhang",
-        "Jian Tang"
-      ],
-      "authors_all": [
-        "Haozhuo Zhang",
-        "Qiang Zhang",
-        "Jian Tang",
-        "Mingzhe Ni",
-        "Michele Caprio",
-        "Angelo Cangelosi",
-        "Wei Pan"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-10-06",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ USTC"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2610-08320.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-08320-p2.jpg"
-      ],
-      "arxiv_id": "2610.08320",
-      "abs_url": "http://arxiv.org/abs/2610.08320v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.08320v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 44,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "人形全身长程移动操作，并行训练+奖励门控解决长时域遗忘，方法新颖且真机验证。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "The University of Manchester",
-        "University of Science and Technology of China",
-        "X-Humanoid",
-        "University of Warwick"
-      ],
-      "method_tags": [
-        "RL",
-        "Distillation",
-        "long-horizon loco-manipulation"
       ],
       "platform": [],
       "sim_stack": [],
@@ -1446,7 +1449,9 @@
       "published": "2026-10-06",
       "channels": [
         "manipulation",
-        "teleop"
+        "teleop",
+        "loco-manip-wbc",
+        "world-model"
       ],
       "badges": [
         {
@@ -1559,6 +1564,72 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-08381",
+      "source": "arxiv",
+      "title": "From Legs to Wheels: Embodiment-Aware Human Motion Retargeting for Mobile-Base Humanoids",
+      "title_zh": "从腿到轮：面向移动底座人形机器人的具身感知人体运动重定向",
+      "tldr_zh": "提出任务条件框架，将人体运动重定向到轮式底座人形机器人。",
+      "cover_zh": "轮式人形机器人也能学人走路？这个框架让运动重定向不再翻车",
+      "abstract_zh": "人类视频为机器人演示提供了可扩展的来源，但大多数人体到人形机器人的重定向方法都假设机器人具有类似人类的腿部运动学结构。这一假设对于配备轮式底座、垂直升降和双臂的移动底座人形机器人并不成立。人类的行走必须通过底座运动来表达，而躯干弯曲可能需要升降和手臂的协调运动。我们通过一个任务条件框架来解决这种不匹配，该框架在机器人特定实现之前，将重建的人体运动分配给底座、升降和手臂的职责。分配器保留人体衍生的路径，稳定朝向，在需要时分离转向和平移，重新调整命令时序以满足底座限制，并修复升降和手臂轨迹。然后，部署适配器通过静止底座检测、死区与转换速率滤波、时间一致的播放缩放以及独立的线性和角增益，将参考转换为50 Hz命令。我们通过人体衍生的任务空间比较、无策略仿真回放以及在物理机器人上的定性执行来评估生成的参考。",
+      "authors": [
+        "Jiyeon Koo",
+        "Eunseom Pyo",
+        "Jeonghee Seo"
+      ],
+      "authors_all": [
+        "Jiyeon Koo",
+        "Eunseom Pyo",
+        "Jeonghee Seo",
+        "Taehwa Kim",
+        "Andrew Jaeyong Choi"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-06",
+      "channels": [
+        "locomotion",
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-08381.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-08381-p2.jpg"
+      ],
+      "arxiv_id": "2610.08381",
+      "abs_url": "http://arxiv.org/abs/2610.08381v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.08381v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "轮式人形全身动作重定向，属loco-manipulation范畴，方法有工程价值但偏系统集成。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "iRASC Lab., School of Computing, Gachon University"
+      ],
+      "method_tags": [
+        "Motion Retargeting",
+        "Embodiment-Aware",
+        "Task-Conditioned Framework"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -1701,6 +1772,72 @@
       ],
       "method_family": "",
       "real_robot": "no",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-08110",
+      "source": "arxiv",
+      "title": "Reactive Exploration of Unknown Environments for Redundant Robots using Virtual Model Control",
+      "title_zh": "基于虚拟模型控制的冗余机器人未知环境反应式探索",
+      "tldr_zh": "冗余机械臂利用虚拟模型控制实现未知环境实时探索与避障。",
+      "cover_zh": "机械臂也能自己探路？虚拟模型控制让未知空间探索不再碰撞",
+      "abstract_zh": "在受限、遮挡和部分已知空间中的探索对机器人操作提出了重大挑战。机械臂的整体位姿必须仔细控制，以遵守严格的几何约束，同时避开新发现的障碍物。我们通过提出一种针对具有手眼相机配置的冗余机械臂的主动探索方法来解决这个问题。我们的方法基于一种新颖的评分方法实时导航和获取信息，该方法利用机器人的当前状态和预期信息增益，直接从未探索空间中选择目标体素。为了安全地将机器人移向目标体素，我们利用虚拟模型控制，这保证了柔顺性，并实现了全身反应式避障，而无需路径重新规划。在受限和开放环境中的仿真和真实机器人实验证明了我们方法的有效性，在所有测试环境中实现了超过90%的建图覆盖率，且在120秒内无碰撞。",
+      "authors": [
+        "Alessio Canzolino",
+        "Omar Faris",
+        "Alessandro De Blasi"
+      ],
+      "authors_all": [
+        "Alessio Canzolino",
+        "Omar Faris",
+        "Alessandro De Blasi",
+        "Fulvio Forni"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-06",
+      "channels": [
+        "manipulation",
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-08110.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-08110-p2.jpg"
+      ],
+      "arxiv_id": "2610.08110",
+      "abs_url": "http://arxiv.org/abs/2610.08110v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.08110v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 27,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "冗余机械臂主动探索与虚拟模型控制避障，属操作方向，有算法新意。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Bologna",
+        "University of Cambridge"
+      ],
+      "method_tags": [
+        "Virtual Model Control",
+        "active exploration",
+        "reactive obstacle avoidance"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -1970,71 +2107,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2610-08110",
-      "source": "arxiv",
-      "title": "Reactive Exploration of Unknown Environments for Redundant Robots using Virtual Model Control",
-      "title_zh": "基于虚拟模型控制的冗余机器人未知环境反应式探索",
-      "tldr_zh": "冗余机械臂利用虚拟模型控制实现未知环境实时探索与避障。",
-      "cover_zh": "机械臂也能自己探路？虚拟模型控制让未知空间探索不再碰撞",
-      "abstract_zh": "在受限、遮挡和部分已知空间中的探索对机器人操作提出了重大挑战。机械臂的整体位姿必须仔细控制，以遵守严格的几何约束，同时避开新发现的障碍物。我们通过提出一种针对具有手眼相机配置的冗余机械臂的主动探索方法来解决这个问题。我们的方法基于一种新颖的评分方法实时导航和获取信息，该方法利用机器人的当前状态和预期信息增益，直接从未探索空间中选择目标体素。为了安全地将机器人移向目标体素，我们利用虚拟模型控制，这保证了柔顺性，并实现了全身反应式避障，而无需路径重新规划。在受限和开放环境中的仿真和真实机器人实验证明了我们方法的有效性，在所有测试环境中实现了超过90%的建图覆盖率，且在120秒内无碰撞。",
-      "authors": [
-        "Alessio Canzolino",
-        "Omar Faris",
-        "Alessandro De Blasi"
-      ],
-      "authors_all": [
-        "Alessio Canzolino",
-        "Omar Faris",
-        "Alessandro De Blasi",
-        "Fulvio Forni"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-10-06",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2610-08110.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-08110-p2.jpg"
-      ],
-      "arxiv_id": "2610.08110",
-      "abs_url": "http://arxiv.org/abs/2610.08110v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.08110v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 19,
-      "judge": {
-        "relevant": true,
-        "research_value": "medium",
-        "primary_channel": "manipulation",
-        "reason": "冗余机械臂主动探索与虚拟模型控制避障，属操作方向，有算法新意。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "University of Bologna",
-        "University of Cambridge"
-      ],
-      "method_tags": [
-        "Virtual Model Control",
-        "active exploration",
-        "reactive obstacle avoidance"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2610-08421",
       "source": "arxiv",
       "title": "Post-Grasp Kinematic Repair for Robotic Insertion via Object-in-Gripper Reorientation",
@@ -2089,71 +2161,6 @@
       "platform": [
         "UR5e"
       ],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2610-08381",
-      "source": "arxiv",
-      "title": "From Legs to Wheels: Embodiment-Aware Human Motion Retargeting for Mobile-Base Humanoids",
-      "title_zh": "从腿到轮：面向移动底座人形机器人的具身感知人体运动重定向",
-      "tldr_zh": "提出任务条件框架，将人体运动重定向到轮式底座人形机器人。",
-      "cover_zh": "轮式人形机器人也能学人走路？这个框架让运动重定向不再翻车",
-      "abstract_zh": "人类视频为机器人演示提供了可扩展的来源，但大多数人体到人形机器人的重定向方法都假设机器人具有类似人类的腿部运动学结构。这一假设对于配备轮式底座、垂直升降和双臂的移动底座人形机器人并不成立。人类的行走必须通过底座运动来表达，而躯干弯曲可能需要升降和手臂的协调运动。我们通过一个任务条件框架来解决这种不匹配，该框架在机器人特定实现之前，将重建的人体运动分配给底座、升降和手臂的职责。分配器保留人体衍生的路径，稳定朝向，在需要时分离转向和平移，重新调整命令时序以满足底座限制，并修复升降和手臂轨迹。然后，部署适配器通过静止底座检测、死区与转换速率滤波、时间一致的播放缩放以及独立的线性和角增益，将参考转换为50 Hz命令。我们通过人体衍生的任务空间比较、无策略仿真回放以及在物理机器人上的定性执行来评估生成的参考。",
-      "authors": [
-        "Jiyeon Koo",
-        "Eunseom Pyo",
-        "Jeonghee Seo"
-      ],
-      "authors_all": [
-        "Jiyeon Koo",
-        "Eunseom Pyo",
-        "Jeonghee Seo",
-        "Taehwa Kim",
-        "Andrew Jaeyong Choi"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-10-06",
-      "channels": [
-        "locomotion"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2610-08381.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-08381-p2.jpg"
-      ],
-      "arxiv_id": "2610.08381",
-      "abs_url": "http://arxiv.org/abs/2610.08381v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.08381v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 16,
-      "judge": {
-        "relevant": true,
-        "research_value": "medium",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "轮式人形全身动作重定向，属loco-manipulation范畴，方法有工程价值但偏系统集成。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "iRASC Lab., School of Computing, Gachon University"
-      ],
-      "method_tags": [
-        "Motion Retargeting",
-        "Embodiment-Aware",
-        "Task-Conditioned Framework"
-      ],
-      "platform": [],
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",

@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 54,
-      "hint": "⭐ 504"
+      "hint": "⭐ 508"
     }
   ],
   "judge": {
@@ -62,12 +62,12 @@
   "github": {
     "owner": "microsoft",
     "repo": "VITRA",
-    "stars": 504,
+    "stars": 508,
     "language": "Python",
     "pushed_at": "2026-06-12",
     "created_at": "2025-10-26",
     "topics": [],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"microsoft/VITRA\"\nYear: \"\"\nURL: https://github.com/microsoft/VITRA\n---\n>[!abstract] 一句话总结：把手视为灵巧机械臂末端执行器，将无脚本的第一人称人类活动视频自动转换为与现有机器人 V-L-A 数据在任务粒度和标签上对齐的格式，构建包含超 100 万条 episode 的人类手部 VLA 数据集，并训练一个带因果动作 Transformer 的 3B VLA 模型（基于 Paligemma2 初始化）。\n\n\n# 一、动机\n\n> 机器人 VLA 预训练严重缺乏大规模、多样化的操作数据，而真实机器人采集成本极高；本文试图把无标注的野外自我中心人类手部视频转化为可直接用于 VLA 训练的机器人格式数据，从而解决数据稀缺问题。\n\n\n# 二、方法\n\n> 把手视为灵巧机械臂末端执行器，将无脚本的第一人称人类活动视频自动转换为与现有机器人 V-L-A 数据在任务粒度和标签上对齐的格式，构建包含超 100 万条 episode 的人类手部 VLA 数据集，并训练一个带因果动作 Transformer 的 3B VLA 模型（基于 Paligemma2 初始化）。\n\n\n# 三、核心实验结果\n\n> 构建了 VITRA-1M 人类手部 VLA 数据集，episode 总数超过 1,000,000 条，其中 ego4d_cooking_and_cleaning 子集为 454,244 条；训练的 VITRA-VLA-3B 在全新场景中展现出强零样本人类手部动作预测能力；并可通过少样本微调迁移到真实机器人操作任务上。\n\n\n# 四、对我的启发\n\n> 局限在于人手与机器人末端执行器之间存在具身差距（自由度、抓取方式、无触觉/力反馈），且野外视频缺乏精确动作标签、遮挡与噪声较多，零样本预测与真实机器人执行之间仍有落差；启发是跨具身大规模人类视频预训练可作为通用操作策略的可扩展数据来源。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"microsoft/VITRA\"\nYear: \"\"\nURL: https://github.com/microsoft/VITRA\n---\n>[!abstract] 一句话总结：把人的手视为灵巧的机器人末端执行器，将无标注的野外第一视角人类活动视频自动转换为在任务粒度和标签上与现有机器人 V-L-A 数据完全对齐的格式，构建超 100 万 episode 的人类手部 V-L-A 数据集，并基于 PaliGemma2-3B 训练带因果动作 Transformer 的 VLA 模型（VITRA-VLA-3B）。\n\n\n# 一、动机\n\n> 机器人 VLA 预训练严重依赖遥操作采集的机器人数据，规模小、成本高且场景单一；而互联网上大规模第一视角人类活动视频虽丰富，却缺少与机器人 V-L-A 训练格式对齐的动作标注，无法直接用于预训练。\n\n\n# 二、方法\n\n> 把人的手视为灵巧的机器人末端执行器，将无标注的野外第一视角人类活动视频自动转换为在任务粒度和标签上与现有机器人 V-L-A 数据完全对齐的格式，构建超 100 万 episode 的人类手部 V-L-A 数据集，并基于 PaliGemma2-3B 训练带因果动作 Transformer 的 VLA 模型（VITRA-VLA-3B）。\n\n\n# 三、核心实验结果\n\n> 1) 构建了包含 100 万以上 episode 的人类手部 V-L-A 数据集，其中 ego4d_cooking_and_cleaning 子集就有 454,244 条 episode。2) VITRA-VLA-3B（3B 参数）在全新场景下展现出强零样本人手动作预测能力，单张图像即可做零样本推理。3) 该预训练模型可作为基座，通过少量样本微调（few-shot）迁移适配到真实世界机器人操作任务；代码、预训练模型与数据集已于 2025-11-30 开源，2026-02-09 补充发布遥操作微调数据集。\n\n\n# 四、对我的启发\n\n> 关键启发是把“人手”当作跨具身代理，用无标注人类视频替代昂贵的机器人遥操作数据，为 VLA 预训练提供可扩展的数据来源；局限在于人手与二指/特定夹爪在运动学形态上存在具身差距，视频中也缺乏力觉与触觉信号，且伪标签动作的噪声水平与真实动作精度尚待量化，向真机迁移可能仍需一定量遥操作数据做对齐。\n"
 }

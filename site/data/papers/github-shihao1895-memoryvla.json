@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 51,
-      "hint": "⭐ 349"
+      "hint": "⭐ 354"
     }
   ],
   "judge": {
@@ -62,7 +62,7 @@
   "github": {
     "owner": "shihao1895",
     "repo": "MemoryVLA",
-    "stars": 349,
+    "stars": 354,
     "language": "Python",
     "pushed_at": "2026-06-13",
     "created_at": "2025-08-24",
@@ -73,5 +73,5 @@
     ],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"shihao1895/MemoryVLA\"\nYear: \"\"\nURL: https://github.com/shihao1895/MemoryVLA\n---\n>[!abstract] 一句话总结：提出 Cognition-Memory-Action 框架，构建类海马体的感知-认知记忆模块，对历史视觉与语义信息进行编码、存储和检索，并将其融入 VLA 策略以增强长时程操作决策。\n\n\n# 一、动机\n\n> 现有视觉-语言-动作模型通常只依赖当前观测进行决策，缺乏对历史信息的长期记忆和时序依赖建模，难以完成需要跨阶段推理的长时程机器人操作任务。\n\n\n# 二、方法\n\n> 提出 Cognition-Memory-Action 框架，构建类海马体的感知-认知记忆模块，对历史视觉与语义信息进行编码、存储和检索，并将其融入 VLA 策略以增强长时程操作决策。\n\n\n# 三、核心实验结果\n\n> 论文被 ICLR 2026 接收；代码于 2025-11-5 开源，模型与日志在 HuggingFace 发布；后续于 2026-6-9 发布扩展版 MemoryVLA++。摘要未给出具体成功率等量化指标。\n\n\n# 四、对我的启发\n\n> 记忆机制为长时程机器人操作提供了有价值的思路，但需关注记忆模块带来的计算/存储开销、遗忘与检索效率，以及真机泛化验证；与机器人具身智能课题相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"shihao1895/MemoryVLA\"\nYear: \"\"\nURL: https://github.com/shihao1895/MemoryVLA\n---\n>[!abstract] 一句话总结：提出 Cognition-Memory-Action 框架：在预训练 VLM 主干上构建类海马体的感知-认知记忆库（PCMB），将低层感知细节与高层语义认知分别以记忆 token 形式压缩存储，并通过记忆巩固与检索机制（含门控融合）在决策时按需回取相关历史，从而把时序上下文注入动作生成过程。\n\n\n# 一、动机\n\n> 现有 Vision-Language-Action（VLA）模型多为无记忆的马尔可夫式策略，只依赖当前观测做决策，难以处理长时序操作中因遮挡、物体被移出视野或需追溯历史状态而产生的时序依赖，导致长程任务成功率显著下降。\n\n\n# 二、方法\n\n> 提出 Cognition-Memory-Action 框架：在预训练 VLM 主干上构建类海马体的感知-认知记忆库（PCMB），将低层感知细节与高层语义认知分别以记忆 token 形式压缩存储，并通过记忆巩固与检索机制（含门控融合）在决策时按需回取相关历史，从而把时序上下文注入动作生成过程。\n\n\n# 三、核心实验结果\n\n> 论文报告在 SimplerEnv 等仿真基准上相比 CogACT 等强基线将平均成功率提升约 10 个百分点量级，在真实机器人长时序任务（含遮挡恢复、物体计数/顺序依赖等）上提升更为明显（约 20 个百分点量级，具体数值以原文为准）；消融显示感知记忆与认知记忆两者互补，去掉任一分支性能均下降；该工作已被 ICLR 2026 接收，并已集成进 Dexbotic 开源 VLA 代码库。\n\n\n# 四、对我的启发\n\n> 局限：记忆库的构建与检索带来额外存储/计算开销，长时序评测规模仍有限，且记忆的写入与遗忘策略对超参较敏感。启发：与具身智能课题高度相关——显式的感知-认知双通道记忆为长时序操作、遮挡恢复与多步任务提供了可借鉴的设计范式，可与机器人操作策略的记忆/历史建模方向直接结合。\n"
 }

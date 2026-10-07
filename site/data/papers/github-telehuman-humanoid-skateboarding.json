@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 50,
-      "hint": "⭐ 308"
+      "hint": "⭐ 310"
     }
   ],
   "judge": {
@@ -62,12 +62,12 @@
   "github": {
     "owner": "TeleHuman",
     "repo": "humanoid_skateboarding",
-    "stars": 308,
+    "stars": 310,
     "language": "Python",
     "pushed_at": "2026-05-10",
     "created_at": "2026-03-09",
     "topics": [],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/WholeBodyControl\n  - 状态/待读\nTitle: \"TeleHuman/humanoid_skateboarding\"\nYear: \"\"\nURL: https://github.com/TeleHuman/humanoid_skateboarding\n---\n>[!abstract] 一句话总结：提出 HUSKY——一个基于学习的物理感知全身控制框架：在自研 mjlab 训练框架中结合强化学习（rsl_rl）、AMP 动作先验与轨迹规划，让 Unitree G1 人形机器人在 MuJoCo 仿真中完成动态滑板控制，并开源数据集、checkpoint 与轻量评估脚本。\n\n\n# 一、动机\n\n> 人形机器人在与可移动物体（滑板）发生动态、富接触交互时，本体欠驱动且接触动力学复杂，现有全身控制方法多限于静态或准静态任务，难以支撑滑板这类高速动态平衡场景。\n\n\n# 二、方法\n\n> 提出 HUSKY——一个基于学习的物理感知全身控制框架：在自研 mjlab 训练框架中结合强化学习（rsl_rl）、AMP 动作先验与轨迹规划，让 Unitree G1 人形机器人在 MuJoCo 仿真中完成动态滑板控制，并开源数据集、checkpoint 与轻量评估脚本。\n\n\n# 三、核心实验结果\n\n> 提供的摘要与仓库信息中未给出量化指标（无成功率、速度、跟踪误差等具体数字），仅说明代码在 Ubuntu 22.04 + CUDA 13.0 下通过测试，并提供训练好的 checkpoint、AMP/轨迹规划运动数据以及 MuJoCo 评估场景，工作被 RSS 2026 接收。\n\n\n# 四、对我的启发\n\n> 局限性：验证目前主要停留在 MuJoCo 仿真，未见实机实验与抗扰/泛化能力量化，且滑板-地面接触建模与奖励设计对物理参数较敏感。启发：该「物理感知 + 动作先验 + 轨迹规划」的全身控制范式可迁移到其他带可动工具的动态全身任务（如平衡车、推车、搬物行走），对具身智能中的人-物动态协调研究有参考价值。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"TeleHuman/humanoid_skateboarding\"\nYear: \"\"\nURL: https://github.com/TeleHuman/humanoid_skateboarding\n---\n>[!abstract] 一句话总结：提出 HUSKY 学习式物理感知全身控制框架：基于 mjlab 仿真与定制化 rsl_rl 强化学习，结合 AMP 动作先验与轨迹规划数据，训练人形机器人（G1）在滑板上完成蹬地推进、转向与平衡维持的动态全身协调控制。\n\n\n# 一、动机\n\n> 人形机器人全身控制多停留在行走、跑跳等准静态或自由空间运动，缺乏对滑板这类需要与外部被动动态物体（板体滚动、摩擦、动量交换）耦合的接触密集型任务建模，难以处理非自身可控的自由度带来的动力学不确定性。\n\n\n# 二、方法\n\n> 提出 HUSKY 学习式物理感知全身控制框架：基于 mjlab 仿真与定制化 rsl_rl 强化学习，结合 AMP 动作先验与轨迹规划数据，训练人形机器人（G1）在滑板上完成蹬地推进、转向与平衡维持的动态全身协调控制。\n\n\n# 三、核心实验结果\n\n> 论文摘要与仓库未给出具体量化指标（如成功率、速度、跟踪误差等），公开信息仅包括：代码已在 Ubuntu 22.04 + CUDA 13.0 环境测试，提供训练框架、AMP/轨迹数据集、轻量 MuJoCo 评估脚本（test_scene）与已测试 checkpoint，仿真中可对滑板施加控制指令进行评测；核心结论为该框架可让人形机器人在物理仿真中实现动态滑板运动并保持平衡。\n\n\n# 四、对我的启发\n\n> 局限在于量化验证与真机部署细节在摘要层面不可见，主要证据仍来自 MuJoCo 仿真，滑板与地面摩擦、板面柔性等物理参数辨识对 sim-to-real 迁移是主要风险；启发是将 AMP 动作先验与外部被动动力学对象联合建模，可推广到滑板车、平衡车、推车等“人-物耦合”的移动操作场景，对具身智能中的全身动态控制与硬件协同设计有参考价值。\n"
 }

@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 69,
-      "hint": "⭐ 2733"
+      "hint": "⭐ 2749"
     }
   ],
   "judge": {
@@ -62,12 +62,12 @@
   "github": {
     "owner": "YanjieZe",
     "repo": "GMR",
-    "stars": 2733,
+    "stars": 2749,
     "language": "Python",
     "pushed_at": "2026-04-02",
     "created_at": "2025-08-03",
     "topics": [],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/系统\n  - 论文/方法\n  - Domain/Robotics\n  - Task/Teleoperation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"YanjieZe/GMR\"\nYear: \"\"\nURL: https://github.com/YanjieZe/GMR\n---\n>[!abstract] 一句话总结：GMR 是一套基于 IK 的通用动作重定向系统，将多种人体动作数据格式（BVH/Xsens/Nokov 等）统一映射到多个不同人形机器人的本体模型上，在 CPU 上实时求解并针对 RL 跟踪策略做了参数调优，同时兼容 MimicKit 等下游工具链。\n\n\n# 一、动机\n\n> 人体动捕数据到人形机器人的动作重定向通常依赖离线优化或针对单一机器人定制，难以在 CPU 上实时运行，也无法直接复用于不同形态的人形平台，阻碍了全身遥操作与 RL 动作跟踪的落地。\n\n\n# 二、方法\n\n> GMR 是一套基于 IK 的通用动作重定向系统，将多种人体动作数据格式（BVH/Xsens/Nokov 等）统一映射到多个不同人形机器人的本体模型上，在 CPU 上实时求解并针对 RL 跟踪策略做了参数调优，同时兼容 MimicKit 等下游工具链。\n\n\n# 三、核心实验结果\n\n> 1) 已在 CPU 上实现实时高质量重定向，直接支撑 TWIST / TWIST2 的实时全身遥操作；2) 仓库已支持 17 种人形机器人（含 Fourier GR3、PAL Talos 等）与多种动捕数据格式；3) 技术报告见 arXiv:2510.02252，论文被 ICRA 2026 接收。\n\n\n# 四、对我的启发\n\n> 局限在于纯 IK 重定向不建模动力学，跨形态泛化质量受限于机器人自由度与人体骨架差异，且新机器人/新数据格式的接入依赖可开源的本体文件；启发是「统一重定向接口 + RL 跟踪策略」可以成为跨本体遥操作与动作数据的通用中间层，与跨具身迁移和遥操作课题高度相关。\n"
+  "note": "---\ntags:\n  - 论文/系统\n  - 论文/方法\n  - Domain/Robotics\n  - Task/CrossEmbodimentTransfer\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"YanjieZe/GMR\"\nYear: \"\"\nURL: https://github.com/YanjieZe/GMR\n---\n>[!abstract] 一句话总结：GMR 提出一套通用的运动重定向系统：基于 IK 将多种人体动作数据格式（如 Xsens、Nokov 等 BVH 数据）映射到多种人形机器人模型上，可在 CPU 上实时运行，并针对强化学习动作跟踪策略进行了专门调参。\n\n\n# 一、动机\n\n> 现有的人体动作重定向方案通常是针对单一机器人平台定制、且计算开销大，难以在不同人形机器人之间通用，也无法支撑实时全身遥操作（如 TWIST）对低延迟重定向的需求。\n\n\n# 二、方法\n\n> GMR 提出一套通用的运动重定向系统：基于 IK 将多种人体动作数据格式（如 Xsens、Nokov 等 BVH 数据）映射到多种人形机器人模型上，可在 CPU 上实时运行，并针对强化学习动作跟踪策略进行了专门调参。\n\n\n# 三、核心实验结果\n\n> 1) 已支持 17 种人形机器人（含 Fourier GR3、PAL Talos 等）与多种人体动作数据格式；2) 可在 CPU 上实现实时高质量重定向，直接支撑 TWIST / TWIST2 的实时全身遥操作；3) 技术报告发表于 arXiv:2510.02252（2025-10-02），并被 Jason Peng 的 MimicKit 采纳为 GMR 格式支持，代码以 MIT 协议开源。\n\n\n# 四、对我的启发\n\n> 局限在于主要依赖 IK 参数调优，摘要未给出定量的重定向精度/延迟指标，效果好坏很大程度上取决于与下游 RL 跟踪策略的联合调试；启发是“通用重定向层 + 多本体支持”能显著降低跨具身数据复用的工程成本，是具身智能中数据规模化的关键基础设施。\n"
 }

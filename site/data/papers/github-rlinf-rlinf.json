@@ -16,7 +16,7 @@
   "primary_category": "",
   "categories": [],
   "published": "",
-  "updated": "2026-09-30",
+  "updated": "2026-10-02",
   "arxiv_id": "",
   "pdf_url": "",
   "abs_url": "https://github.com/RLinf/RLinf",
@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 75,
-      "hint": "⭐ 5419"
+      "hint": "⭐ 5448"
     }
   ],
   "judge": {
@@ -62,9 +62,9 @@
   "github": {
     "owner": "RLinf",
     "repo": "RLinf",
-    "stars": 5419,
+    "stars": 5448,
     "language": "Python",
-    "pushed_at": "2026-09-30",
+    "pushed_at": "2026-10-02",
     "created_at": "2025-08-14",
     "topics": [
       "agentic-ai",
@@ -76,5 +76,5 @@
     ],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/系统\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"RLinf/RLinf\"\nYear: \"\"\nURL: https://github.com/RLinf/RLinf\n---\n>[!abstract] 一句话总结：RLinf 是一个面向具身与 Agentic AI 的开源 RL 基础设施，通过统一的 Robotics Interface 把硬件、任务与 rollout wrapper 解耦管理，并在同一套训练框架内集成仿真与真机、VLA 模型 RL 微调、SFT 与分布式评估等能力。\n\n\n# 一、动机\n\n> 具身智能与 VLA 大模型的强化学习训练缺乏统一、可扩展的基础设施：仿真环境、真实机器人硬件、任务定义与 rollout 封装往往彼此耦合，难以复用与横向扩展，也缺少对主流 VLA 模型（如 π₀ 系列）做 RL 后训练的标准化支持。\n\n\n# 二、方法\n\n> RLinf 是一个面向具身与 Agentic AI 的开源 RL 基础设施，通过统一的 Robotics Interface 把硬件、任务与 rollout wrapper 解耦管理，并在同一套训练框架内集成仿真与真机、VLA 模型 RL 微调、SFT 与分布式评估等能力。\n\n\n# 三、核心实验结果\n\n> 摘要层面给出的是能力清单而非量化指标：2026/09 起重构真机与环境接口，实现硬件/任务/rollout 分离；新增对 π₀-FAST 的 RL 支持；新增对 π₀.₅ 在 LIBERO 上经 ApxInf 加速的评估（保留原生 OpenPI transform chain，走 L1 推理接口）；新增对 FastWAM 的 FSDP 监督微调与批量 LIBERO 评估；并扩展至壁仞（Biren）GPU 支持。\n\n\n# 四、对我的启发\n\n> 该工作是工程与生态层面的基础设施贡献，摘要未提供与基线对比的成功率/吞吐等定量结果，需读文档与代码确认其真实收益；其「硬件—任务—rollout 解耦」的设计思路对构建可跨本体复用的具身 RL 训练管线有直接参考价值，尤其是真机与仿真统一接口、以及 VLA 模型 RL 后训练的工程范式。\n"
+  "note": "---\ntags:\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"RLinf/RLinf\"\nYear: \"\"\nURL: https://github.com/RLinf/RLinf\n---\n>[!abstract] 一句话总结：RLinf 是一个面向具身与智能体 AI 的开源 RL 基础设施，通过统一的机器人接口把硬件、任务与 rollout wrapper 三者解耦，屏蔽仿真与真机差异，并集成 VLA 模型的 RL 微调、FSDP 监督微调、批量仿真评测与遥操作采集等能力（名称中的 inf 兼具 Infrastructure 与 Infinite 双重含义）。\n\n\n# 一、动机\n\n> 具身智能与智能体（Agentic AI）的强化学习训练长期缺乏统一、可扩展的基础设施：真实机器人硬件接口碎片化，VLA 大模型（如 π₀ 系列）的 RL 微调、仿真评测与遥操作数据采集往往各自为政，难以支撑开放式持续学习。\n\n\n# 二、方法\n\n> RLinf 是一个面向具身与智能体 AI 的开源 RL 基础设施，通过统一的机器人接口把硬件、任务与 rollout wrapper 三者解耦，屏蔽仿真与真机差异，并集成 VLA 模型的 RL 微调、FSDP 监督微调、批量仿真评测与遥操作采集等能力（名称中的 inf 兼具 Infrastructure 与 Infinite 双重含义）。\n\n\n# 三、核心实验结果\n\n> 官方 README 以功能支持列表为主，未给出量化指标：2026/09 起支持 π₀-FAST 的强化学习训练、支持 Biren GPU（PR #1581）、支持 ApxInf 在 LIBERO 上加速评测 π₀.₅（保留原生 OpenPI transform 链并通过 L1 推理接口接入引擎）、支持 FastWAM 的 FSDP 监督微调与批量化 LIBERO 评测；真机侧完成统一机器人接口重构，将硬件、任务与 rollout 封装分离。\n\n\n# 四、对我的启发\n\n> 作为系统类工作，其价值在于把零散的具身 RL 训练/评测/真机部署流程工程化统一，对做 VLA 后训练与真机 RL 的课题有直接参考意义；局限是 README 仅列出特性与文档链接，缺少吞吐、成功率、样本效率等定量对比，实际可用性与性能需进一步阅读文档与代码验证。\n"
 }

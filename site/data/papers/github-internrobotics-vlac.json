@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 50,
-      "hint": "⭐ 332"
+      "hint": "⭐ 333"
     }
   ],
   "judge": {
@@ -62,12 +62,12 @@
   "github": {
     "owner": "InternRobotics",
     "repo": "VLAC",
-    "stars": 332,
+    "stars": 333,
     "language": "Python",
     "pushed_at": "2026-09-18",
     "created_at": "2025-09-15",
     "topics": [],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"InternRobotics/VLAC\"\nYear: \"\"\nURL: https://github.com/InternRobotics/VLAC\n---\n>[!abstract] 一句话总结：提出 Vision-Language-Action-Critic（VLAC）模型，以图像+任务描述为输入，采用成对（pair-wise）比较机制替代绝对打分以提升密集进度评论的准确性，并可在任意步骤作为轨迹起点；模型同时具备过程跟踪、完成判定、任务描述估计、VQA 与具身动作输出（VLA）能力，训练数据为 3000h+ 人类第一视角数据、1200h+ 公开机器人操作数据与 15h+ 自采数据；另推出 VLAC-cut 视频评论家（30B-A3B MoE）用于切分具身轨迹中的好/坏片段。\n\n\n# 一、动机\n\n> 真实世界机器人强化学习缺乏可靠、密集的奖励/价值信号：传统 critic 难以判断任务进度与是否完成，对状态变化不敏感，且难以利用失败轨迹。VLAC 旨在提供一个通用的成对评论家兼操作模型，用于进度预测、完成度判定与数据精炼。\n\n\n# 二、方法\n\n> 提出 Vision-Language-Action-Critic（VLAC）模型，以图像+任务描述为输入，采用成对（pair-wise）比较机制替代绝对打分以提升密集进度评论的准确性，并可在任意步骤作为轨迹起点；模型同时具备过程跟踪、完成判定、任务描述估计、VQA 与具身动作输出（VLA）能力，训练数据为 3000h+ 人类第一视角数据、1200h+ 公开机器人操作数据与 15h+ 自采数据；另推出 VLAC-cut 视频评论家（30B-A3B MoE）用于切分具身轨迹中的好/坏片段。\n\n\n# 三、核心实验结果\n\n> 发布 VLAC-2B 与 VLAC-8B 两档模型及代码；训练数据规模为 3000h+ 人类第一视角、1200h+ 公开机器人操作、15h+ 自采操作数据；成对比较机制使密集进度评论更准确、更易识别状态变化；VLAC-cut 配套发布含丰富进度标注、同时包含成功与失败轨迹的数据集及 Benchmark。\n\n\n# 四、对我的启发\n\n> 启发：把 critic 与 VLA 合并成同一多模态模型，用成对比较而非绝对打分来获得更稳的密集进度信号，是把真实世界 RL 与大规模异构操作数据打通的可行路线；局限：摘要/README 未给出真实机器人 RL 任务成功率等具体量化指标，成对比较在部署时可能带来双倍前向开销，且成败标注质量高度依赖数据管线；与具身智能/机器人操作课题高度相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"InternRobotics/VLAC\"\nYear: \"\"\nURL: https://github.com/InternRobotics/VLAC\n---\n>[!abstract] 一句话总结：提出 VLAC（Vision-Language-Action-Critic），一个通用成对（pair-wise）评判 + 操作的统一模型：以图像与任务描述为输入，用成对比较机制做稠密进度预测与完成度校验，同时保留 VQA 与具身动作输出的 VLA 能力；在 3000h+ 人类第一人称数据、1200h+ 公开机器人操作数据和 15h+ 自采数据上训练，提供 2B/8B 版本。\n\n\n# 一、动机\n\n> 真实世界机器人强化学习与数据精炼中，缺乏鲁棒且稠密的奖励/评判信号：现有 VLM 难以稳定判断任务进度与是否完成，且对状态变化不敏感、难以从轨迹任意时刻起评。\n\n\n# 二、方法\n\n> 提出 VLAC（Vision-Language-Action-Critic），一个通用成对（pair-wise）评判 + 操作的统一模型：以图像与任务描述为输入，用成对比较机制做稠密进度预测与完成度校验，同时保留 VQA 与具身动作输出的 VLA 能力；在 3000h+ 人类第一人称数据、1200h+ 公开机器人操作数据和 15h+ 自采数据上训练，提供 2B/8B 版本。\n\n\n# 三、核心实验结果\n\n> 1) 成对比较机制提升了进度稠密评判精度与状态变化识别能力，且轨迹中每一步都可作为起点进行评估；2) 模型覆盖任务进度跟踪、任务完成判定、任务描述估计、视觉问答与具身动作输出多种能力，提供 VLAC-2B 与 VLAC-8B 两个规模；3) 扩展工作 VLAC-Cut 为视频 Critic，可从具身轨迹中切分好/坏片段，并配套进度标注（含成功与失败轨迹）的数据集、30B-A3B 模型与 Benchmark。\n\n\n# 四、对我的启发\n\n> 局限：摘要未给出量化成功率/精度数字，实际评判准确性与下游 RL 收益需查正文；对真实机器人部署而言，评判模型自身的分布偏移（人类第一人称数据占主导）和推理成本是主要风险。启发：用成对比较替代绝对打分、并把 Critic 与 VLA 统一到一个模型，是构建可扩展 real-world RL 奖励信号的可行路线，对具身数据自动清洗与失败轨迹利用有直接参考价值。\n"
 }

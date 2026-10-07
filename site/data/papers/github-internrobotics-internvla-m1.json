@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 53,
-      "hint": "⭐ 432"
+      "hint": "⭐ 433"
     }
   ],
   "judge": {
@@ -62,7 +62,7 @@
   "github": {
     "owner": "InternRobotics",
     "repo": "InternVLA-M1",
-    "stars": 432,
+    "stars": 433,
     "language": "Python",
     "pushed_at": "2026-02-11",
     "created_at": "2025-09-16",
@@ -73,5 +73,5 @@
     ],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"InternRobotics/InternVLA-M1\"\nYear: \"\"\nURL: https://github.com/InternRobotics/InternVLA-M1\n---\n>[!abstract] 一句话总结：以开源 VLM（如 Qwen2.5-VL）为骨干，构建语言头与动作头并行的双系统双监督统一框架，通过大规模多模态预训练获取空间与视觉先验，再用空间提示（spatial prompt）微调迁移到机器人策略。\n\n\n# 一、动机\n\n> 现有 VLA 模型通常需要单独的动作预训练阶段，且空间感知与泛化能力不足，难以把大规模视觉语言先验高效迁移到机器人控制中。\n\n\n# 二、方法\n\n> 以开源 VLM（如 Qwen2.5-VL）为骨干，构建语言头与动作头并行的双系统双监督统一框架，通过大规模多模态预训练获取空间与视觉先验，再用空间提示（spatial prompt）微调迁移到机器人策略。\n\n\n# 三、核心实验结果\n\n> WindowX 成功率 71.7（GR00t 61.9、π0 27.1）；Google Robot VA 76.0 / VM 80.7（π0 为 54.8 / 58.8）；LIBERO 达 95.9（π0 94.2、GR00t 93.9）；无需单独动作预训练即可在约 2.5 个 epoch 内达到 SOTA 级收敛。\n\n\n# 四、对我的启发\n\n> 局限：依赖大规模多模态预训练与空间提示标注，双头架构带来额外推理与训练开销，跨真机泛化仍待验证；启发：'空间提示微调'可作为 VLM 到 VLA 的高效参数/提示迁移范式，模块解耦设计也便于分别替换骨干、数据与训练策略。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"InternRobotics/InternVLA-M1\"\nYear: \"\"\nURL: https://github.com/InternRobotics/InternVLA-M1\n---\n>[!abstract] 一句话总结：提出 InternVLA-M1 空间引导的视觉-语言-动作框架：在统一架构中同时挂载语言头与动作头进行双监督协同训练，借助大规模多模态预训练获得空间与视觉先验，再通过空间提示微调迁移到机器人控制，且各模块（模型、数据、训练策略、评测）完全解耦、即插即用。\n\n\n# 一、动机\n\n> 现有通用机器人策略（如 π0、GR00t）通常需要单独的动作预训练，训练代价高、收敛慢，且缺乏显式的空间引导，难以把开源 VLM 的视觉-语言先验直接迁移到精细操作控制上。\n\n\n# 二、方法\n\n> 提出 InternVLA-M1 空间引导的视觉-语言-动作框架：在统一架构中同时挂载语言头与动作头进行双监督协同训练，借助大规模多模态预训练获得空间与视觉先验，再通过空间提示微调迁移到机器人控制，且各模块（模型、数据、训练策略、评测）完全解耦、即插即用。\n\n\n# 三、核心实验结果\n\n> 在多个基准上取得 SOTA：WindowX 71.7（π0 27.1、GR00t 61.9），Google Robot VA 76.0（π0 54.8、GR00t 44.5），Google Robot VM 80.7（π0 58.8、GR00t 35.2），LIBERO 95.9（π0 94.2、GR00t 93.9）；且无需独立动作预训练，约 2.5 个 epoch 即可收敛。\n\n\n# 四、对我的启发\n\n> 核心启发是「语言头 + 动作头双监督 + 空间提示」能以极低训练成本把 VLM 先验迁移到多本体操作策略，模块化解耦设计也便于复用与扩展；局限在于仍依赖大规模多模态预训练与仿真基准（SimplerEnv/LIBERO），真实机器人长时序、接触密集任务上的泛化与推理效率有待验证。\n"
 }

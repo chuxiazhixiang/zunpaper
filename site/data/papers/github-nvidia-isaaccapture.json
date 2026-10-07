@@ -16,7 +16,7 @@
   "primary_category": "",
   "categories": [],
   "published": "",
-  "updated": "2026-09-30",
+  "updated": "2026-10-07",
   "arxiv_id": "",
   "pdf_url": "",
   "abs_url": "https://github.com/NVIDIA/IsaacCapture",
@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 52,
-      "hint": "⭐ 389"
+      "hint": "⭐ 391"
     }
   ],
   "judge": {
@@ -62,12 +62,12 @@
   "github": {
     "owner": "NVIDIA",
     "repo": "IsaacCapture",
-    "stars": 389,
+    "stars": 391,
     "language": "Python",
-    "pushed_at": "2026-09-30",
+    "pushed_at": "2026-10-07",
     "created_at": "2025-11-07",
     "topics": [],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/系统\n  - 论文/数据\n  - Domain/Robotics\n  - Task/Teleoperation\n  - Task/EmbodiedAI\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"NVIDIA/IsaacCapture\"\nYear: \"\"\nURL: https://github.com/NVIDIA/IsaacCapture\n---\n>[!abstract] 一句话总结：NVIDIA 提出的 Isaac Teleop（IsaacCapture）统一遥操作框架，通过标准化的设备接口与灵活的重定向（retargeting）模块，把 XR 头显、手套、Gr00T-WholeBodyControl(SONIC)、Homie 等不同输入设备统一映射到仿真与真实机器人上，并支持无机器人的第一视角（egocentric）人类数据采集。\n\n\n# 一、动机\n\n> 机器人学习面临高质量操作数据的瓶颈：采集设备接口不统一、人类演示数据缺乏标准化采集流程、设备与数据之间互操作性差，导致真实与仿真遥操作各自为政、数据难以复用。\n\n\n# 二、方法\n\n> NVIDIA 提出的 Isaac Teleop（IsaacCapture）统一遥操作框架，通过标准化的设备接口与灵活的重定向（retargeting）模块，把 XR 头显、手套、Gr00T-WholeBodyControl(SONIC)、Homie 等不同输入设备统一映射到仿真与真实机器人上，并支持无机器人的第一视角（egocentric）人类数据采集。\n\n\n# 三、核心实验结果\n\n> 目前为工程框架型发布，摘要未给出量化指标：已支持 5 类用例（XR 头显夹爪/三指手操作、XR+手套灵巧手、坐姿全身 loco-manipulation（Homie）、基于 GR00T-WholeBodyControl 的全身 loco-manipulation（SONIC）、无机器人 egocentric 数据采集），并规划 4 类后续用例（纯非 XR 设备如 gamepad/Gello/haply、云端仿真遥操作、桌面远程遥操作、XR 沉浸式远程遥操作），与 NVIDIA Isaac Lab 配套使用。\n\n\n# 四、对我的启发\n\n> 局限：仓库/文档性质的系统发布，缺少定量评测、数据质量指标与跨本体迁移效果的实验验证，且强依赖 NVIDIA Isaac 生态与 XR 硬件，非 XR 设备与云端遥操作尚在规划中。启发：其“统一设备接口 + 可插拔重定向”的抽象，是把人类第一视角演示数据规模化喂给 VLA/机器人策略的一条实用路径，可作为具身数据采集流水线的工程参考。\n"
+  "note": "---\ntags:\n  - 论文/系统\n  - 论文/数据\n  - Domain/Robotics\n  - Task/Teleoperation\n  - Task/CrossEmbodimentTransfer\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"NVIDIA/IsaacCapture\"\nYear: \"\"\nURL: https://github.com/NVIDIA/IsaacCapture\n---\n>[!abstract] 一句话总结：提出一个面向仿真与真机遥操作与高保真数据采集的统一框架（与 NVIDIA Isaac Lab 协同工作），核心由三部分构成：统一的仿真+真机遥操作技术栈、标准化的设备接口（device interface）、以及灵活的重定向（retargeting）框架，并以此支持 XR 头显、手套、全身控制等多种交互形态。\n\n\n# 一、动机\n\n> 机器人学习受限于高质量示范数据的稀缺：设备接入方式各异、人类演示数据采集流程缺乏统一标准、设备与数据之间互不兼容，导致数据采集成本高且难以复用。Isaac Teleop / IsaacCapture 试图通过统一框架来打通仿真与真机的遥操作与数据采集链路。\n\n\n# 二、方法\n\n> 提出一个面向仿真与真机遥操作与高保真数据采集的统一框架（与 NVIDIA Isaac Lab 协同工作），核心由三部分构成：统一的仿真+真机遥操作技术栈、标准化的设备接口（device interface）、以及灵活的重定向（retargeting）框架，并以此支持 XR 头显、手套、全身控制等多种交互形态。\n\n\n# 三、核心实验结果\n\n> 摘要为项目/框架介绍，未给出量化评测指标。可确认的支持能力包括：1) 已支持 XR 头显驱动夹爪/三指手操作、XR 头显+手套的灵巧手操作、坐姿全身移动操作（Homie）、基于 GR00T-WholeBodyControl（SONIC）跟踪的全身移动操作，以及“无机器人”的自我中心（egocentric）数据采集等 5 类用例；2) 规划中的用例包括纯非 XR 设备（gamepad、Gello、haply 等）遥操作、云端仿真遥操作、桌面端/XR 端远程沉浸式相机流遥操作；3) 代码与文档已开源（Apache-2.0）。\n\n\n# 四、对我的启发\n\n> 主要局限是作为系统/框架工作，缺少定量对比实验（数据采集效率、重定向精度、跨本体迁移成功率等均未量化），难以判断相比既有遥操作方案的增益。启发在于：标准化设备接口 + 可插拔重定向这一设计思路，为跨本体（人手→灵巧手/人形）数据采集与复用提供了工程范式，若能配合统一的数据格式与质量评估指标，对具身智能的数据瓶颈问题（尤其 egocentric 无机器人采集）具有直接参考价值。\n"
 }

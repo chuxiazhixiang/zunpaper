@@ -46,7 +46,9 @@
   ],
   "channels": [
     "manipulation",
-    "teleop"
+    "teleop",
+    "loco-manip-wbc",
+    "world-model"
   ],
   "badges": [
     {
@@ -67,7 +69,7 @@
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 4 个（grasp、pick-and-place、teleoperation、teleop）"
+      "hint": "频道关键词命中 6 个（grasp、pick-and-place、teleoperation、teleop）"
     },
     {
       "id": "freshness",
@@ -91,7 +93,7 @@
       "id": "cross_channel",
       "label": "跨多个方向",
       "points": 5,
-      "hint": "同时命中 2 个频道"
+      "hint": "同时命中 4 个频道"
     }
   ],
   "judge": {
@@ -119,5 +121,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"AutodidactWAM: Cross-Modal Self-Distillation from Generated Video to Robot Actions\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.08119v1\n---\n>[!abstract] 一句话总结：提出 AutodidactWAM：先训练一个无需遥操作数据的手部姿态估计器，对模型生成的视频做估计再经逆运动学反解出动作，与原生动作配对后作为偏好目标，仅微调动作相关层（视频被 teacher-forcing），并对比监督重标注与基于 rectified-flow 的 Diffusion-DPO 适配。\n\n\n# 一、动机\n\n> 世界动作模型（WAM）在新机器人本体上做轻量 LoRA 微调时存在「视频-动作不对称」：生成的视频看起来能完成任务，但共生成的动作系统性瞄错目标；原生的动作在 pre-grasp/grasp/pick-and-place 三阶段成功率仅约 17%/10%/7%，在留出物体上更差。\n\n\n# 二、方法\n\n> 提出 AutodidactWAM：先训练一个无需遥操作数据的手部姿态估计器，对模型生成的视频做估计再经逆运动学反解出动作，与原生动作配对后作为偏好目标，仅微调动作相关层（视频被 teacher-forcing），并对比监督重标注与基于 rectified-flow 的 Diffusion-DPO 适配。\n\n\n# 三、核心实验结果\n\n> 1) 用恢复动作做门控后三阶段成功率达约 75%/47%/42%，远超原生的 17%/10%/7%；2) 混合目标 DPO+SFT+DTW 最佳：训练物体 Oreo 上 pre-grasp 90%、全任务 20%，留出物体上 80% 与 30%；3) 纯 Flow-DPO 尽管验证偏好准确率 1.000，实际任务成功率却为 0%，说明增益来自多个训练目标的组合而非对比目标本身。\n\n\n# 四、对我的启发\n\n> 核心启发是「生成视频的质量不能作为动作质量的代理指标」，跨模态自蒸馏可在一次性本体适配后摆脱任务级遥操作，但仅靠偏好对比目标会失效，需配合监督拟合与笛卡尔轨迹锚定；局限在于整体全任务成功率仍然偏低（20-30%），恢复动作的精度与本体适配的泛化性仍有待验证。与具身智能/机器人操作课题高度相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"AutodidactWAM: Cross-Modal Self-Distillation from Generated Video to Robot Actions\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.08119v1\n---\n>[!abstract] 一句话总结：提出 AutodidactWAM：训练一个无需遥操作数据的手部姿态估计器，配合逆运动学在模型生成的视频上恢复动作估计，与原生预测配对后作为偏好目标，只微调 action 相关层并对生成视频做 teacher forcing，同时比较监督重标注与 rectified-flow 版本的 Diffusion-DPO。\n\n\n# 一、动机\n\n> World-action model（如 Cosmos 3）迁移到未见过的机器人（Unitree G1 + BrainCo 五指手）时存在 video-action  asymmetry：生成的视频看起来合理，但共同生成的动作系统性打偏，原生动作在 pre-grasp/grasp/pick-and-place 上仅约 17%/10%/7% 成功，且对未见物体更差。\n\n\n# 二、方法\n\n> 提出 AutodidactWAM：训练一个无需遥操作数据的手部姿态估计器，配合逆运动学在模型生成的视频上恢复动作估计，与原生预测配对后作为偏好目标，只微调 action 相关层并对生成视频做 teacher forcing，同时比较监督重标注与 rectified-flow 版本的 Diffusion-DPO。\n\n\n# 三、核心实验结果\n\n> 恢复动作门控使 pre-grasp/grasp/pick-and-place 成功率从 17%/10%/7% 提升到约 75%/47%/42%；混合目标 DPO+SFT+DTW 最优，在训练物体 Oreo 上达 90% pre-grasp 与 20% 全任务成功，在未见物体上达 80% 与 30%；纯 Flow-DPO 尽管验证集偏好准确率为 1.000，真实成功率仍为 0%，说明增益来自训练目标的组合而非单一对比目标。\n\n\n# 四、对我的启发\n\n> 局限在于实验规模较小（单机器人、单任务、单一物体族），依赖手部姿态估计与 IK 的精度，且需一次性的 embodiment adaptation；启发是生成视频可作为机器人动作的自监督监督源，但对比式偏好目标必须与监督拟合和轨迹锚定联合使用才有效，单独的偏好优化可能完全失效。\n"
 }

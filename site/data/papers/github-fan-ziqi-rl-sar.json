@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 63,
-      "hint": "⭐ 1473"
+      "hint": "⭐ 1475"
     }
   ],
   "judge": {
@@ -62,12 +62,12 @@
   "github": {
     "owner": "fan-ziqi",
     "repo": "rl_sar",
-    "stars": 1473,
+    "stars": 1475,
     "language": "C++",
     "pushed_at": "2026-08-16",
     "created_at": "2024-03-06",
     "topics": [],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/系统\n  - 论文/应用\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/Locomotion\n  - 状态/待读\nTitle: \"fan-ziqi/rl_sar\"\nYear: \"\"\nURL: https://github.com/fan-ziqi/rl_sar\n---\n>[!abstract] 一句话总结：提出 rl_sar 框架，以「simulation and real」为目标，统一支持 IsaacGym/IsaacSim、Gazebo/Mujoco、ROS1/ROS2、libtorch/onnxruntime，实现同一策略在仿真与实物上的验证与部署。\n\n\n# 一、动机\n\n> 机器人强化学习算法从仿真验证到实物部署往往依赖特定仿真器、中间件和推理后端，缺乏统一、可复用的工程框架，导致跨平台迁移成本高。\n\n\n# 二、方法\n\n> 提出 rl_sar 框架，以「simulation and real」为目标，统一支持 IsaacGym/IsaacSim、Gazebo/Mujoco、ROS1/ROS2、libtorch/onnxruntime，实现同一策略在仿真与实物上的验证与部署。\n\n\n# 三、核心实验结果\n\n> 支持 12 种机器人（Unitree A1/Go2/Go2W/B2/B2W/G1、FFTAI GR1T1/T2、zhinao L4W4、Deeprobotics Lite3、Agibot D1、DDTRobot Tita），覆盖 Gazebo 与 Mujoco 仿真及多数实物部署；预训练策略来自 legged_gym、himloco、robot_lab 等；同时支持 Locomotion 与 Dance 任务；Python 版本暂停维护，建议使用 v2.3。\n\n\n# 四、对我的启发\n\n> 局限：Python 版本暂停维护，主要面向腿足/轮足机器人的运动控制，未涉及操作任务；启发：可作为具身智能中 Sim2Real 部署的工程架构参考，降低多仿真器、多中间件适配成本。\n"
+  "note": "---\ntags:\n  - 论文/系统\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/CrossEmbodimentTransfer\n  - Task/Locomotion\n  - 状态/待读\nTitle: \"fan-ziqi/rl_sar\"\nYear: \"\"\nURL: https://github.com/fan-ziqi/rl_sar\n---\n>[!abstract] 一句话总结：提供一个名为 rl_sar（simulation and real）的统一 C++ 推理与部署框架：通过 libtorch 或 onnxruntime 加载预训练策略，经 ROS-Noetic 或 ROS2-Foxy/Humble 与机器人通信，在 Gazebo/Mujoco/IsaacGym/IsaacSim 中完成仿真验证并直接下发到真机，覆盖四足、轮足与人形机器人。\n\n\n# 一、动机\n\n> 机器人强化学习算法从仿真到真机的验证与部署长期缺乏统一框架，不同机器人、不同仿真器（IsaacGym/IsaacSim/Gazebo/Mujoco）和不同通信中间件（ROS/ROS2）之间代码割裂，导致策略迁移与实机部署成本高。\n\n\n# 二、方法\n\n> 提供一个名为 rl_sar（simulation and real）的统一 C++ 推理与部署框架：通过 libtorch 或 onnxruntime 加载预训练策略，经 ROS-Noetic 或 ROS2-Foxy/Humble 与机器人通信，在 Gazebo/Mujoco/IsaacGym/IsaacSim 中完成仿真验证并直接下发到真机，覆盖四足、轮足与人形机器人。\n\n\n# 三、核心实验结果\n\n> 1) 支持 12 种机器人平台（A1、Go2、Go2W、B2、B2W、G1、GR1T1/T2、L4W4、Lite3、D1、Tita），其中 Go2、Go2W、G1、L4W4、Lite3、D1 等已在真机验证；2) 兼容两类训练框架（IsaacGym 的 legged_gym/himloco 与 IsaacSim 的 robot_lab）与两类推理后端（libtorch、onnxruntime）；3) 同时支持 Gazebo 与 Mujoco 仿真、ROS-Noetic 与 ROS2，并覆盖 Locomotion 与 Dance（如 G1 的 gangnam_style、dance_102）两类任务。\n\n\n# 四、对我的启发\n\n> 该工作本质是工程系统而非新算法，价值在于降低 sim-to-real 部署门槛，但当前以运动/舞蹈控制为主，操作（manipulation）支持有限（仅 G1 的 robomimic 分支）；Python 版本已暂停维护，需回退到 v2.3，且部分机器人仅在 Ubuntu20.04 可用。对具身智能的跨本体策略部署与 sim-to-real 工程化有直接参考价值。\n"
 }

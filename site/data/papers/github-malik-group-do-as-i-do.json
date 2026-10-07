@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 53,
-      "hint": "⭐ 425"
+      "hint": "⭐ 428"
     }
   ],
   "judge": {
@@ -62,12 +62,12 @@
   "github": {
     "owner": "malik-group",
     "repo": "do-as-i-do",
-    "stars": 425,
+    "stars": 428,
     "language": "Python",
     "pushed_at": "2026-08-02",
     "created_at": "2026-06-04",
     "topics": [],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/数据\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\nTitle: \"malik-group/do-as-i-do\"\nYear: \"\"\nURL: https://github.com/malik-group/do-as-i-do\n---\n>[!abstract] 一句话总结：提出三段式流水线：reconstruction 模块从单目手-物视频中重建物体与手的几何并做 6-DoF 位姿跟踪（SAM3 → SAM3D 网格 → MoGe 点图 → HaWoR → TAPIR → 引导扩散跟踪）；retargeting 模块把重建出的手-物演示重定向到机器人手（数据集处理 → 凸分解 → MJCF 场景生成 → IK → MuJoCo Warp 中的采样型 MPC）；deployment 模块用 MuJoCo 回放/IK 生成双臂 UR3e 关节轨迹并流式下发到真机（双 UR3e + Sharpa Wave 灵巧手）。\n\n\n# 一、动机\n\n> 灵巧操作的机器人数据极度稀缺，传统采集依赖遥操作硬件与专人示教，成本高、规模受限；而互联网上存在海量人类日常操作视频却难以直接用于机器人学习。该工作试图把「随便拍的人类视频」转化为可用于真机复现的灵巧操作数据，打通从人类视频到机器人本体的全链路。\n\n\n# 二、方法\n\n> 提出三段式流水线：reconstruction 模块从单目手-物视频中重建物体与手的几何并做 6-DoF 位姿跟踪（SAM3 → SAM3D 网格 → MoGe 点图 → HaWoR → TAPIR → 引导扩散跟踪）；retargeting 模块把重建出的手-物演示重定向到机器人手（数据集处理 → 凸分解 → MJCF 场景生成 → IK → MuJoCo Warp 中的采样型 MPC）；deployment 模块用 MuJoCo 回放/IK 生成双臂 UR3e 关节轨迹并流式下发到真机（双 UR3e + Sharpa Wave 灵巧手）。\n\n\n# 三、核心实验结果\n\n> 以官方代码库形式发布，含 reconstruction / retargeting / deployment 3 个可独立运行的子模块，外部依赖以 git submodule 形式内置改动；部署端在 2 条 UR3e 机械臂 + 2 只 Sharpa Wave 灵巧手上完成真机回放。摘要与项目页未给出成功率、数据规模等量化指标，需查阅 arXiv:2606.19333 正文核对。\n\n\n# 四、对我的启发\n\n> 价值在于把「人类视频」确立为可扩展的灵巧操作数据源，并给出 reconstruction→retargeting→deployment 的可复现工程范式；局限在于整条链路依赖多个视觉基础模型的串联，手-物遮挡、单目深度尺度歧义与接触缺失都可能被逐级放大，且本次代码发布未配套下游策略学习（如模仿学习）的定量验证，重定向后的接触一致性是否保留仍需实证；该工作与具身智能/机器人操作课题直接相关。\n"
+  "note": ""
 }

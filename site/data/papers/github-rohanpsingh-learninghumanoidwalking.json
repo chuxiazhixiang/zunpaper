@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 62,
-      "hint": "⭐ 1226"
+      "hint": "⭐ 1225"
     }
   ],
   "judge": {
@@ -62,7 +62,7 @@
   "github": {
     "owner": "rohanpsingh",
     "repo": "LearningHumanoidWalking",
-    "stars": 1226,
+    "stars": 1225,
     "language": "Python",
     "pushed_at": "2026-05-03",
     "created_at": "2022-07-13",
@@ -77,5 +77,5 @@
     ],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/HumanoidLocomotion\n  - 状态/待读\nTitle: \"rohanpsingh/LearningHumanoidWalking\"\nYear: \"\"\nURL: https://github.com/rohanpsingh/LearningHumanoidWalking\n---\n>[!abstract] 一句话总结：基于深度强化学习（PPO）训练人形机器人行走策略，融合planned footsteps、电流反馈与动作平滑，并提供训练/评估代码及仿真配置。\n\n\n# 一、动机\n\n> 人形机器人在柔顺与不平地形上的行走鲁棒性不足，传统控制方法难以适应复杂接触与扰动，且缺乏结合planned footsteps与电流反馈的强化学习方案。\n\n\n# 二、方法\n\n> 基于深度强化学习（PPO）训练人形机器人行走策略，融合planned footsteps、电流反馈与动作平滑，并提供训练/评估代码及仿真配置。\n\n\n# 三、核心实验结果\n\n> 仓库实现了三篇论文：柔顺/不平地形鲁棒行走、电流反馈学习双足行走、基于planned footsteps的行走；仿真物理步长0.001s，控制周期0.025s（40Hz），动作平滑系数0.5，观测历史长度1。README未给出量化性能指标。\n\n\n# 四、对我的启发\n\n> 局限在于缺乏公开的具体成功率、速度等量化结果；但提供可复现的代码框架，便于将方法迁移到其他人形机器人或进行消融实验。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/HumanoidLocomotion\n  - 状态/待读\nTitle: \"rohanpsingh/LearningHumanoidWalking\"\nYear: \"\"\nURL: https://github.com/rohanpsingh/LearningHumanoidWalking\n---\n>[!abstract] 一句话总结：该仓库围绕三篇论文提供统一代码：用深度强化学习（PPO 类算法）在仿真中训练人形机器人行走策略，分别通过电流反馈感知接触/地形柔顺性、按规划好的落脚点引导步态、并在观测历史与动作平滑（action_smoothing=0.5、obs_history_len=1）等训练技巧下提升鲁棒性，配合 sim_dt=0.001 物理步长、control_dt=0.025（40 Hz）控制周期，并支持 train/eval 与自定义机器人接入。\n\n\n# 一、动机\n\n> 人形机器人双足行走在柔顺、不平整地形上以及面对真实执行器限制时，传统基于模型的控制方法难以兼顾鲁棒性与泛化性，而纯 RL 策略又常缺乏对落脚点、电流反馈等可用信息的显式利用。\n\n\n# 二、方法\n\n> 该仓库围绕三篇论文提供统一代码：用深度强化学习（PPO 类算法）在仿真中训练人形机器人行走策略，分别通过电流反馈感知接触/地形柔顺性、按规划好的落脚点引导步态、并在观测历史与动作平滑（action_smoothing=0.5、obs_history_len=1）等训练技巧下提升鲁棒性，配合 sim_dt=0.001 物理步长、control_dt=0.025（40 Hz）控制周期，并支持 train/eval 与自定义机器人接入。\n\n\n# 三、核心实验结果\n\n> 仓库给出可直接复现的工程配置与训练脚本（uv run run_experiment.py train/eval，cartpole 示例用 --n-itr 500、--std-dev 0.15、--learn-std、--entropy-coeff 0.01、--minibatch-size 256、--max-traj-len 500），核心控制参数为物理步长 0.001 s、控制周期 0.025 s（40 Hz）、动作平滑系数 0.5、观测历史长度 1；论文层面报告在柔顺/不平整地形上的鲁棒行走、引入电流反馈的行走以及基于规划落脚点的双足行走三类结果，但 README 摘要中未给出具体成功率或速度数值。\n\n\n# 四、对我的启发\n\n> 与机器人与具身智能课题高度相关，是可复用的开源人形行走 RL 训练框架；局限在于结果仅以论文形式给出、仓库摘要缺乏量化指标与真机实验细节，且强依赖仿真到真实的迁移调参。\n"
 }

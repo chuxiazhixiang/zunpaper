@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 51,
-      "hint": "⭐ 342"
+      "hint": "⭐ 341"
     }
   ],
   "judge": {
@@ -62,12 +62,12 @@
   "github": {
     "owner": "ManipTrans",
     "repo": "ManipTrans",
-    "stars": 342,
+    "stars": 341,
     "language": "Python",
     "pushed_at": "2025-10-10",
     "created_at": "2025-03-27",
     "topics": [],
     "archived": false
   },
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"ManipTrans/ManipTrans\"\nYear: \"\"\nURL: https://github.com/ManipTrans/ManipTrans\n---\n>[!abstract] 一句话总结：采用「基策略 + 残余学习」的两阶段框架：先用统一的运动学重定向得到参考轨迹作为基策略，再在 IsaacGym 物理仿真中学习一个小幅度的残余动作来修正基策略，从而以极少样本高效地完成双手灵巧操作的跨本体迁移（ManipTrans）。\n\n\n# 一、动机\n\n> 人类双手灵巧操作数据（如 Grab、OakInk-V2）容易采集，但要迁移到结构、自由度完全不同的灵巧手上时，直接运动学重定向（retargeting）往往产生穿模、滑移、物理不可行的动作；而从零用强化学习训练又极其昂贵、难以扩展到大规模数据。\n\n\n# 二、方法\n\n> 采用「基策略 + 残余学习」的两阶段框架：先用统一的运动学重定向得到参考轨迹作为基策略，再在 IsaacGym 物理仿真中学习一个小幅度的残余动作来修正基策略，从而以极少样本高效地完成双手灵巧操作的跨本体迁移（ManipTrans）。\n\n\n# 三、核心实验结果\n\n> 据论文，该方法在 Grab 与 OakInk-V2 上迁移双手操作动作时成功率显著高于 QuasiSim 等重定向基线，残余学习相比从零 RL 训练可将训练所需迭代/样本量降低一个数量级左右；同时作者释放了 DexManipNet 双手灵巧操作数据集（数千条手-物交互轨迹，覆盖多种灵巧手 URDF），并支持扩展到新的手-物数据集与新手型。具体数值请以原文表格为准。\n\n\n# 四、对我的启发\n\n> 局限在于仍依赖仿真物理环境与人工采集的参考人体动作，存在 sim-to-real 差距，且残余策略只能局部修正、难以挽救基策略结构上失败的动作；但「大规模人类数据 + 轻量残余 RL」的范式对手部/全身跨本体迁移很有启发，可作为具身操作策略预训练与真机部署的中间环节。与机器人具身智能课题直接相关。\n"
 }

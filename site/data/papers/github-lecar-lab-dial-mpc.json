@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 60,
-      "hint": "⭐ 1006"
+      "hint": "⭐ 1007"
     }
   ],
   "judge": {
@@ -62,7 +62,7 @@
   "github": {
     "owner": "LeCAR-Lab",
     "repo": "dial-mpc",
-    "stars": 1006,
+    "stars": 1007,
     "language": "Python",
     "pushed_at": "2025-05-28",
     "created_at": "2024-09-15",
@@ -78,5 +78,5 @@
     ],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"LeCAR-Lab/dial-mpc\"\nYear: \"\"\nURL: https://github.com/LeCAR-Lab/dial-mpc\n---\n>[!abstract] 一句话总结：DIAL-MPC 是一种基于采样的 MPC 框架，借鉴扩散模型的退火思想，在采样迭代中逐步降低噪声尺度（diffusion-style annealing），直接在物理仿真器 Brax 中对全阶动力学进行采样与 rollout，无需梯度、降阶模型、线性化或预定义接触序列。\n\n\n# 一、动机\n\n> 传统腿足机器人 MPC 往往依赖降阶建模、线性化/凸化、预定义接触序列或人工设计的奖励与动力学模型，RL 方案则需大量训练；DIAL-MPC 针对这些不足，提出一种无需训练、无需模型简化的全阶力矩级控制框架。\n\n\n# 二、方法\n\n> DIAL-MPC 是一种基于采样的 MPC 框架，借鉴扩散模型的退火思想，在采样迭代中逐步降低噪声尺度（diffusion-style annealing），直接在物理仿真器 Brax 中对全阶动力学进行采样与 rollout，无需梯度、降阶模型、线性化或预定义接触序列。\n\n\n# 三、核心实验结果\n\n> 在 Unitree Go2 上完成了仿真到真机（Sim2Real）部署，无需任何训练即可实现力矩级全阶运动控制，兼顾精度与敏捷性；工作入选 ICRA 2025 Best Paper Finalist（最佳论文入围），并开源了仿真与真机实验代码，可即插即用地测试自定义环境（如 Allegro 手上转球 demo）；具体量化对比指标见原论文。\n\n\n# 四、对我的启发\n\n> 局限在于依赖 GPU 加速的大批量物理 rollout，采样式 MPC 的实时算力开销较大，且性能受物理仿真保真度与采样预算影响；启发是可将该类免训练采样控制器与学习型先验/蒸馏结合，以降低在线计算成本，并推广到接触丰富的操作任务。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/LeggedLocomotion\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"LeCAR-Lab/dial-mpc\"\nYear: \"\"\nURL: https://github.com/LeCAR-Lab/dial-mpc\n---\n>[!abstract] 一句话总结：提出 DIAL-MPC，一种受扩散模型启发的退火式采样 MPC 框架：在 Brax 物理仿真中对完整动力学直接采样并滚动展开，通过扩散式迭代退火优化动作序列，无需降阶模型、线性化或训练，即可实现力矩级全阶腿足运动控制。\n\n\n# 一、动机\n\n> 现有腿足机器人 MPC 依赖降阶建模、线性化、凸化或预定义接触序列，难以在力矩级全阶控制中同时兼顾精度与敏捷性；强化学习虽可端到端，但需大量训练且奖励设计困难。\n\n\n# 二、方法\n\n> 提出 DIAL-MPC，一种受扩散模型启发的退火式采样 MPC 框架：在 Brax 物理仿真中对完整动力学直接采样并滚动展开，通过扩散式迭代退火优化动作序列，无需降阶模型、线性化或训练，即可实现力矩级全阶腿足运动控制。\n\n\n# 三、核心实验结果\n\n> 1）获 ICRA 2025 最佳论文提名（Best Paper Finalist）；2）在 Unitree Go2 上完成 Sim2Real 部署；3）额外支持 Allegro 手转球（ball-spinning）等灵巧操作 demo，证明方法可插件式迁移至不同机器人平台；摘要未给出具体量化指标。\n\n\n# 四、对我的启发\n\n> 局限在于采样式 MPC 的实时计算开销较大、性能依赖物理仿真精度，Sim2Real 仍存在动力学差距；启发是扩散式退火可作为一种通用的无训练序列优化范式，其插件化设计便于快速迁移到其他机器人本体与任务。\n"
 }

@@ -87,7 +87,8 @@
   ],
   "channels": [
     "manipulation",
-    "teleop"
+    "teleop",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -114,7 +115,7 @@
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 5 个（vision-language-action、pi 0.5、manipulation、teleoperation）"
+      "hint": "频道关键词命中 6 个（vision-language-action、pi 0.5、manipulation、teleoperation）"
     },
     {
       "id": "freshness",
@@ -132,7 +133,7 @@
       "id": "cross_channel",
       "label": "跨多个方向",
       "points": 5,
-      "hint": "同时命中 2 个频道"
+      "hint": "同时命中 3 个频道"
     }
   ],
   "judge": {
@@ -160,5 +161,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"VOMMI: Collecting and Leveraging Portable Demonstrations for Mobile Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.08220v1\n---\n>[!abstract] 一句话总结：提出 VOMMI——一种以视觉里程计为条件的便携式移动操作演示采集与学习框架：同步身体视角与手部视角的 RGB 演示，通过 R2-VO 用稀疏几何锚点离线精修轨迹并生成多预测时程的因果局部运动 token，再经动作组残差适配器仅注入基础分支，实现与 VLA（OpenPI）后训练的对齐。\n\n\n# 一、动机\n\n> 移动操作的真机演示数据稀缺，现有采集方案依赖遥操作或带额外传感器的专用设备，而直接用视觉里程计（VO）估计轨迹会因累积漂移与运动监督不完善而引入不一致，难以从纯 RGB 观测获得可靠且低成本的监督信号。\n\n\n# 二、方法\n\n> 提出 VOMMI——一种以视觉里程计为条件的便携式移动操作演示采集与学习框架：同步身体视角与手部视角的 RGB 演示，通过 R2-VO 用稀疏几何锚点离线精修轨迹并生成多预测时程的因果局部运动 token，再经动作组残差适配器仅注入基础分支，实现与 VLA（OpenPI）后训练的对齐。\n\n\n# 三、核心实验结果\n\n> 仅用便携演示后训练的策略，基座速度误差比用机器人采集演示训练的策略低 18.2%，末端平移精度相当；离线重建使身体流与手部流的绝对轨迹误差相对各自最优基线平均降低 24.6%；在三个真机任务上平均成功率比 OpenPI 0.5 提升 8.3 个百分点。实验设置：每个任务 500 条便携轨迹（75 条留作 RGB-VO 评估），另有 200 条机器人演示作为参考。\n\n\n# 四、对我的启发\n\n> 价值在于把「无机器人、便携 RGB 采集」与 VLA 后训练打通，缓解具身数据稀缺与人体-机器人运动学标定依赖；局限是仍受视觉里程计漂移影响（故需离线精修与在线条件化补偿），缺乏力/触觉等接触模态监督，且仅在 3 个真机任务上验证，跨场景与长时程任务的泛化性有待考察。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"VOMMI: Collecting and Leveraging Portable Demonstrations for Mobile Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.08220v1\n---\n>[!abstract] 一句话总结：提出 VOMMI，一种可便携 RGB 演示采集与学习框架，通过离线轨迹重建和在线视觉-运动条件化连接便携演示与 VLA 后训练；R2-VO 用稀疏几何锚点精炼轨迹并生成多预测视界的因果局部运动 token，动作组残差适配器仅将其注入基础分支。\n\n\n# 一、动机\n\n> 移动操作演示数据稀缺，但现有采集依赖遥操作或特殊硬件，且直接使用估计的视觉里程计轨迹会因漂移和运动监督不完美而引入不一致。\n\n\n# 二、方法\n\n> 提出 VOMMI，一种可便携 RGB 演示采集与学习框架，通过离线轨迹重建和在线视觉-运动条件化连接便携演示与 VLA 后训练；R2-VO 用稀疏几何锚点精炼轨迹并生成多预测视界的因果局部运动 token，动作组残差适配器仅将其注入基础分支。\n\n\n# 三、核心实验结果\n\n> 每个任务使用 500 条便携轨迹，其中 75 条用于 RGB-VO 评估，并以 200 条机器人演示为参考；仅用便携演示后训练的策略相比机器人采集演示训练的策略，基座速度误差降低 18.2%，末端平移精度相当；离线重建使身体和手部流的绝对轨迹误差平均降低 24.6%；完整系统在三个真实机器人任务上相比 OpenPI 0.5 平均成功率提升 8.3 个百分点。\n\n\n# 四、对我的启发\n\n> 该方法无需人-机器人运动学校准，降低了移动操作数据采集成本，但依赖 RGB 与视觉里程计质量，真实机器人任务规模仍有限；其可移植演示与 VLA 后训练思路对具身智能数据扩展有启发。\n"
 }
