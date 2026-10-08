@@ -1,0 +1,95 @@
+{
+  "id": "arxiv-2610-10526",
+  "source": "arxiv",
+  "title": "Rephrase Before You Act: Characterizing and Mitigating Language Sensitivity in Vision-Language-Action Models",
+  "title_zh": "行动前先改写：表征并缓解视觉-语言-行动模型中的语言敏感性",
+  "abstract": "Vision-language-action models (VLAs) are strikingly sensitive to instruction phrasing and do not inherit the language robustness of the vision-language models they are built on. A one-word edit can move success by tens of points: $π_{0.5}$ turns on a LIBERO stove 100% of the time for \"switch on the stove\" and 2% for \"switch on the hot plate\", and a $π_0$ checkpoint finetuned with rephrase augmentation still shows swings of up to 61 points. We characterize this sensitivity with statistically tested single-edit swings and an oracle phrase search, which shows that phrasing alone nearly closes the 21-point gap between in-distribution and out-of-distribution tasks. We then reduce it without modifying the policy. Because the sensitivity is systematic, it can be expressed as explicit rules: we score many phrasings of a few training tasks, have a large language model distill the evidence into ten to twenty rephrasing rules, and at deployment rewrite each incoming instruction once under these rules. The rules improve the frozen $π_0$ by 16 to 27% relative on twelve held-out tasks across adversarial, VLM-generated, and human-generated phrasings, with gains concentrated on out-of-distribution tasks. The pipeline replicates on $π_{0.5}$ and LIBERO, lifting in-finetune success from 93.6% to 97.8%. The method requires no retraining and no per-step verification, and applies zero-shot to unseen tasks and instructions. Project website: https://sttawm.github.io/rephrase-before-you-act",
+  "abstract_zh": "视觉-语言-行动模型（VLA）对指令措辞极为敏感，并未继承其构建所依赖的视觉-语言模型的语言鲁棒性。一个词的修改就能使成功率波动数十个百分点：对于“打开炉子”，π_{0.5} 在 LIBERO 炉灶任务上成功率为 100%，而“打开热板”仅为 2%；即使使用改写增强微调的 π_0 检查点，波动仍高达 61 个百分点。我们通过统计检验的单次编辑波动和 oracle 短语搜索来表征这种敏感性，结果表明仅措辞一项就几乎弥合了分布内与分布外任务之间 21 个百分点的差距。随后，我们在不修改策略的情况下缓解该问题。由于这种敏感性是系统性的，它可以被表达为显式规则：我们对少量训练任务的多种措辞进行评分，让大语言模型将证据提炼为十到二十条改写规则，并在部署时根据这些规则对每个传入指令进行一次改写。这些规则在对抗性、VLM 生成和人类生成的措辞上，将冻结的 π_0 在十二个留出任务上的相对性能提升了 16% 到 27%，增益集中在分布外任务上。该流程在 π_{0.5} 和 LIBERO 上可复现，将微调内成功率从 93.6% 提升至 97.8%。该方法无需重新训练，无需逐步验证，并可零样本应用于未见任务和指令。项目网站：https://sttawm.github.io/rephrase-before-you-act",
+  "tldr_zh": "改写指令可缓解VLA语言敏感性，无需重训即提升成功率。",
+  "cover_zh": "一个词之差，成功率从100%跌到2%？改写指令就能救",
+  "authors": [
+    {
+      "name": "Mikey Watts",
+      "affiliation": ""
+    },
+    {
+      "name": "Yuchen Cui",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.CL",
+    "cs.LG"
+  ],
+  "published": "2026-10-07",
+  "updated": "2026-10-07",
+  "arxiv_id": "2610.10526",
+  "pdf_url": "https://arxiv.org/pdf/2610.10526v1",
+  "abs_url": "http://arxiv.org/abs/2610.10526v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-10526.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-10526-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 9,
+  "source_tags": [],
+  "score": 22,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（vision-language-action、π_0、libero）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 9 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "VLA语言敏感性分析与免训练改写缓解，π0/π0.5实验扎实，对操作VLA鲁棒性有高参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University of California, Los Angeles"
+  ],
+  "method_tags": [
+    "VLA",
+    "instruction rephrasing",
+    "language sensitivity"
+  ],
+  "platform": [],
+  "sim_stack": [
+    "LIBERO"
+  ],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Rephrase Before You Act: Characterizing and Mitigating Language Sensitivity in Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.10526v1\n---\n>[!abstract] 一句话总结：不改动策略本身：先对少量训练任务的大量改述版本进行打分，用统计检验刻画单词级改写带来的成功率波动，再让大语言模型把证据蒸馏成 10–20 条改述规则，部署时按这些规则把每条输入指令改写一次再喂给冻结的 VLA。\n\n\n# 一、动机\n\n> 视觉-语言-动作模型（VLA）对指令措辞异常敏感，且并未继承其底层视觉-语言模型的语言鲁棒性：仅改一个词就能让成功率变化数十个点（如 π0.5 对 \"switch on the stove\" 成功率 100%，换成 \"switch on the hot plate\" 仅 2%），这种系统性缺陷此前缺乏量化刻画与低成本的缓解手段。\n\n\n# 二、方法\n\n> 不改动策略本身：先对少量训练任务的大量改述版本进行打分，用统计检验刻画单词级改写带来的成功率波动，再让大语言模型把证据蒸馏成 10–20 条改述规则，部署时按这些规则把每条输入指令改写一次再喂给冻结的 VLA。\n\n\n# 三、核心实验结果\n\n> 1) 单字改写可造成数十点波动，π0.5 在 LIBERO 灶台任务上从 100% 掉到 2%；用改述增强微调的 π0 检查点仍出现最高 61 点的摆动，说明微调不能根除敏感；2) oracle 短语搜索显示仅靠措辞就能几乎填平 in-distribution 与 out-of-distribution 任务间 21 点的差距；3) 规则化改写让冻结 π0 在 12 个 held-out 任务（对抗式、VLM 生成、人类生成的措辞）上相对提升 16%–27%，增益集中在 OOD 任务，并把 π0.5 在 LIBERO 微调内的成功率从 93.6% 提升到 97.8%。\n\n\n# 四、对我的启发\n\n> 该方法无需重训练、无需逐步验证，可零样本迁移到未见任务与指令，说明语言敏感性是可显式规则化的系统偏差而非随机噪声；局限在于规则需先在训练任务上打分并由 LLM 蒸馏，规则集规模小（10–20 条），对全新动作词汇或跨本体泛化能力仍待验证，且仅在 LIBERO 等桌面操作基准上评估。\n"
+}

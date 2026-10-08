@@ -1,0 +1,121 @@
+{
+  "id": "arxiv-2610-09940",
+  "source": "arxiv",
+  "title": "Juno: Taming Predictive Latents for Vision-Language-Action Models",
+  "title_zh": "Juno：驯服视觉-语言-动作模型中的预测性潜变量",
+  "abstract": "Joint-embedding predictive architectures (JEPAs) predict masked or future observations in representation space, offering a natural source of predictive latents for vision-language-action (VLA) models. Yet making these latents useful across pretraining, policy learning, and deployment requires addressing three failures: mismatch with embodiment-specific control, interference with action learning, and teacher miscalibration under distribution shifts. We introduce Juno, a unified framework built around one action-conditioned JEPA that serves as a control-aligned representation backbone, a predictive teacher, and an adaptable dynamics model. During pretraining, we train it on embodiment-matched trajectories and use a dynamic CLS loss to transfer motion-weighted patch dynamics to a compact global state. During policy learning, we fuse current-frame JEPA patches into VLA perception and use a decoupled reasoning branch with separate transformation parameters to distill future latent states for action generation. During deployment, we adapt the world model on all observed transitions, including failed rollouts, freeze the adapted teacher, and re-align the policy on verified executions using LoRA adapters and a trainable action head, without expert corrections or task rewards. On SimplerEnv, Juno raises average success from $60.9\\%$ to $68.5\\%$ over Qwen3GR00T, the strongest baseline, and test-time adaptation further reaches $72.7\\%$; on a real robot, it retains $70\\%$--$75\\%$ success under background, height, and object shifts where the base policy collapses to $0\\%$.",
+  "abstract_zh": "联合嵌入预测架构（JEPA）在表示空间中预测被掩码或未来的观测，为视觉-语言-动作（VLA）模型提供了天然的预测性潜变量来源。然而，要使这些潜变量在预训练、策略学习和部署中发挥作用，需要解决三个失败：与具身特定控制的不匹配、对动作学习的干扰，以及分布偏移下的教师校准错误。我们提出 Juno，一个围绕单一动作条件 JEPA 构建的统一框架，该 JEPA 同时充当控制对齐的表示骨干、预测教师和可适应的动力学模型。在预训练期间，我们在具身匹配的轨迹上训练它，并使用动态 CLS 损失将运动加权的 patch 动力学转移到紧凑的全局状态。在策略学习期间，我们将当前帧的 JEPA patch 融合到 VLA 感知中，并使用具有独立变换参数的解耦推理分支来蒸馏未来潜状态以生成动作。在部署期间，我们在所有观察到的转移（包括失败的 rollout）上适应世界模型，冻结适应后的教师，并使用 LoRA 适配器和可训练的动作头在已验证的执行上重新对齐策略，无需专家纠正或任务奖励。在 SimplerEnv 上，Juno 将平均成功率从最强基线 Qwen3GR00T 的 60.9% 提升到 68.5%，测试时适应进一步达到 72.7%；在真实机器人上，在背景、高度和物体偏移下，它保持了 70%--75% 的成功率，而基础策略则崩溃到 0%。",
+  "tldr_zh": "Juno 统一 JEPA 框架，提升 VLA 模型在分布偏移下的成功率。",
+  "cover_zh": "机器人策略一偏移就崩？Juno 用预测潜变量稳住 70%+ 成功率",
+  "authors": [
+    {
+      "name": "Yuchen Zhu",
+      "affiliation": ""
+    },
+    {
+      "name": "Chenyi Xu",
+      "affiliation": ""
+    },
+    {
+      "name": "Yulin Zhang",
+      "affiliation": ""
+    },
+    {
+      "name": "Gang Xu",
+      "affiliation": ""
+    },
+    {
+      "name": "Wentao Zhu",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.CV"
+  ],
+  "published": "2026-10-07",
+  "updated": "2026-10-07",
+  "arxiv_id": "2610.09940",
+  "pdf_url": "https://arxiv.org/pdf/2610.09940v1",
+  "abs_url": "http://arxiv.org/abs/2610.09940v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-09940.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-09940-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ USTC"
+    },
+    {
+      "kind": "lab",
+      "label": "⭐ ShanghaiTech"
+    },
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 23,
+  "source_tags": [],
+  "score": 41,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “USTC” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（vision-language-action）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 23 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "JEPA预测潜在用于VLA，提升操作策略泛化，属manipulation且含world-model思想。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University of Science and Technology of China",
+    "Eastern Institute of Technology, Ningbo",
+    "Hangzhou Dianzi University",
+    "ShanghaiTech University"
+  ],
+  "method_tags": [
+    "JEPA",
+    "VLA",
+    "test-time adaptation"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Juno: Taming Predictive Latents for Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.09940v1\n---\n>[!abstract] 一句话总结：Juno 用同一个动作条件化的 JEPA 同时充当控制对齐的表征骨干、预测教师和可适应的动力学模型：预训练阶段在本体匹配轨迹上训练，并用动态 CLS 损失把运动加权的 patch 动态迁移到紧凑全局状态；策略学习阶段把当前帧 JEPA patch 融入 VLA 感知，并用带独立变换参数的解耦推理分支蒸馏未来潜状态以生成动作；部署阶段在所有观测转移（含失败 rollout）上适应世界模型，冻结适应后的教师，再用 LoRA 适配器与可训练动作头在验证成功的执行上重对齐策略，全程无需专家纠正或任务奖励。\n\n\n# 一、动机\n\n> JEPA 类联合嵌入预测架构能在表征空间预测未来观测，是 VLA 模型天然的预测潜变量来源，但直接用会面临三个失败：潜变量与具体本体控制不对齐、与动作学习相互干扰、分布偏移下教师模型失准（miscalibration），导致预测表征难以贯穿预训练、策略学习与部署全流程。\n\n\n# 二、方法\n\n> Juno 用同一个动作条件化的 JEPA 同时充当控制对齐的表征骨干、预测教师和可适应的动力学模型：预训练阶段在本体匹配轨迹上训练，并用动态 CLS 损失把运动加权的 patch 动态迁移到紧凑全局状态；策略学习阶段把当前帧 JEPA patch 融入 VLA 感知，并用带独立变换参数的解耦推理分支蒸馏未来潜状态以生成动作；部署阶段在所有观测转移（含失败 rollout）上适应世界模型，冻结适应后的教师，再用 LoRA 适配器与可训练动作头在验证成功的执行上重对齐策略，全程无需专家纠正或任务奖励。\n\n\n# 三、核心实验结果\n\n> 在 SimplerEnv 上，Juno 相对最强基线 Qwen3GR00T 将平均成功率从 60.9% 提升到 68.5%，测试时自适应进一步提升到 72.7%；在真实机器人上，面对背景、高度和物体三类分布偏移，Juno 仍保持 70%--75% 的成功率，而基础策略在同样条件下崩塌到 0%。\n\n\n# 四、对我的启发\n\n> 核心启发是把预测式世界模型从「辅助表征」变成贯穿预训练—策略学习—部署的统一组件，并用失败 rollout 做无奖励自适应，这对部署阶段的鲁棒性尤其有价值；局限在于方法仍依赖本体匹配的轨迹数据、真实实验规模较小，且教师冻结后的重对齐效果对验证执行的质量较敏感。\n"
+}
