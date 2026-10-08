@@ -69,7 +69,8 @@
     "assets/img/covers/arxiv-2610-10079-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -84,7 +85,7 @@
   "related_links": [],
   "page_count": 24,
   "source_tags": [],
-  "score": 44,
+  "score": 49,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -109,6 +110,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 24 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -135,5 +142,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/CV\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"RealtimeWAM: How Fast Can I Run My World Action Model?\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.10079v1\n---\n>[!abstract] 一句话总结：提出免训练、通用的 RealtimeWAM 框架：利用层间依赖把观测处理与预测并行重叠执行，并配合自适应计算（在视觉稳定区域缓存观测特征、复用 Transformer 残差、只对小幅预测调整做额外精修）来缓解并行分支的 GPU 资源竞争，从而在多种 WAM 架构上实现低延迟推理。\n\n\n# 一、动机\n\n> World Action Model（WAM）虽然把视觉动力学建模与动作生成结合，但推理延迟高，难以支撑实时闭环机器人控制；已有的加速方案要么需要专门定制的架构（如 FastWAM），要么只依赖特征冗余缓存，无法应对闭环控制中计算需求的动态变化。\n\n\n# 二、方法\n\n> 提出免训练、通用的 RealtimeWAM 框架：利用层间依赖把观测处理与预测并行重叠执行，并配合自适应计算（在视觉稳定区域缓存观测特征、复用 Transformer 残差、只对小幅预测调整做额外精修）来缓解并行分支的 GPU 资源竞争，从而在多种 WAM 架构上实现低延迟推理。\n\n\n# 三、核心实验结果\n\n> 在 RTX 4090 上，FastWAM 与 OpenWAM 的平均推理延迟分别降至 24.09 ms 和 63.09 ms，平均加速 8.90× 与 10.67×；在 RoboTwin、LIBERO、LIBERO-Plus 上平均成功率 82.75% 与 87.41%，仅比原生推理低 0.02 和 0.53 个百分点；在五个真实机器人任务上，相对原生推理平均成功率分别提升 17.2 和 37.2 个百分点。\n\n\n# 四、对我的启发\n\n> 局限在于方法依赖特征冗余与视觉稳定的假设，场景剧烈变化或预测调整较大时缓存收益与精度可能下降，且不同 WAM 架构的加速比差异明显；但其“并行重叠 + 自适应计算”的免训练思路对具身智能实时闭环控制很有启发，说明延迟本身会显著影响真实任务成功率，而非仅影响体验。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"RealtimeWAM: How Fast Can I Run My World Action Model?\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.10079v1\n---\n>[!abstract] 一句话总结：提出 RealtimeWAM：一种训练无关（training-free）的通用推理加速框架，通过层级依赖把观测处理与预测并行重叠执行，并配合自适应计算——在视觉稳定区域缓存观测特征、复用 Transformer 残差，同时为小幅动作修正保留额外细化计算，从而在多类 WAM 架构上实现低延迟推理。\n\n\n# 一、动机\n\n> World Action Model（WAM）虽有强视觉动力学建模与动作生成能力，但推理延迟高，难以支撑闭环机器人控制；已有的 FastWAM 需要专门定制的网络结构，而通用缓存策略只利用特征冗余、无法适应闭环控制中计算需求的动态变化。\n\n\n# 二、方法\n\n> 提出 RealtimeWAM：一种训练无关（training-free）的通用推理加速框架，通过层级依赖把观测处理与预测并行重叠执行，并配合自适应计算——在视觉稳定区域缓存观测特征、复用 Transformer 残差，同时为小幅动作修正保留额外细化计算，从而在多类 WAM 架构上实现低延迟推理。\n\n\n# 三、核心实验结果\n\n> 在 RTX 4090 上，FastWAM 与 OpenWAM 的平均推理延迟分别为 24.09 ms 和 63.09 ms，平均加速 8.90× 和 10.67×；在 RoboTwin、LIBERO、LIBERO-Plus 上平均成功率 82.75% 和 87.41%，仅比原生推理低 0.02 和 0.53 个百分点；在五个真实世界任务上，成功率反而比原生推理提升 17.2 和 37.2 个百分点。\n\n\n# 四、对我的启发\n\n> 局限在于自适应缓存依赖'视觉稳定区域'的假设，在快速运动或高动态场景中收益可能下降；启发是在不重训、不改架构的前提下，把并行化与自适应计算结合可显著降低具身策略的闭环延迟并改善真实任务鲁棒性，对实时机器人控制部署有直接参考价值。\n"
 }

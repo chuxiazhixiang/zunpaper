@@ -53,7 +53,8 @@
     "assets/img/covers/arxiv-2610-09857-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "sim2real"
   ],
   "badges": [
     {
@@ -68,7 +69,7 @@
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 41,
+  "score": 49,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -79,8 +80,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（manipulation）"
+      "points": 6,
+      "hint": "频道关键词命中 2 个（manipulation、isaac sim）"
     },
     {
       "id": "freshness",
@@ -93,6 +94,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 9 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -122,5 +129,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/数据\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/Teleoperation\nTitle: \"Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.09857v1\n---\n>[!abstract] 一句话总结：论文构建了 MILD 定位数据集（真实 86 条 Insta360 X5 / Insight9 序列 + Isaac Sim 仿真子集 MILD-Sim）并配套标定资产与逐次执行的 TCP 参考轨迹，同时提出 AprilVINS——将鱼眼视觉惯性估计与序列局部 AprilTag 几何联合优化，并把先验准入与优化状态的受保护导出分离，以实现无预建标记地图的标记增强式定位。\n\n\n# 一、动机\n\n> 现有 SLAM 基准侧重导航运动，而操作类数据集更关注策略学习而非定位评估，导致 UMI 风格的近距离操作教学中，相机遮挡与快速运动下的末端执行器（TCP）定位缺乏准确、时序完整的评测基准。\n\n\n# 二、方法\n\n> 论文构建了 MILD 定位数据集（真实 86 条 Insta360 X5 / Insight9 序列 + Isaac Sim 仿真子集 MILD-Sim）并配套标定资产与逐次执行的 TCP 参考轨迹，同时提出 AprilVINS——将鱼眼视觉惯性估计与序列局部 AprilTag 几何联合优化，并把先验准入与优化状态的受保护导出分离，以实现无预建标记地图的标记增强式定位。\n\n\n# 三、核心实验结果\n\n> 在 Insta360 AprilTag4 录制上，统一协议下 AprilVINS(full) 达到毫米级 SE(3) 对齐的 TCP 相对 APE RMSE，且时间完成度高、报告误差低于各对比方案在其各自协议下的结果；无 tag 因子的鱼眼 VIO 仍停留在厘米级误差；消融实验将定位精度与可导出性分离，MILD-Sim 回放研究给出各任务特定的容差参考。\n\n\n# 四、对我的启发\n\n> 工作为 UMI 风格示范采集提供了诊断性基准，但方法依赖 AprilTag 标记与序列局部几何先验，对无标记或强动态遮挡场景的可扩展性仍待验证；若课题涉及手持式操作数据采集与末端执行器轨迹监督，该数据集与评测协议有直接参考价值。\n"
+  "note": "---\ntags:\n  - 论文/数据\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.09857v1\n---\n>[!abstract] 一句话总结：提出 MILD（真实 + 仿真）操作接口定位数据集与基准协议，并给出 AprilVINS——将鱼眼视觉惯性估计与序列局部 AprilTag 几何结合，把先验准入与联合优化状态的受保护导出分离，从而在无预扫描 fiducial 地图的标记增强工作空间中实现末端定位。\n\n\n# 一、动机\n\n> 现有 SLAM 基准主要面向导航运动，而操作数据集又只关注策略学习、不评估定位质量，导致 UMI 式示教采集在近距操作与相机遮挡场景下缺乏准确且时间连续的末端执行器定位评测手段。\n\n\n# 二、方法\n\n> 提出 MILD（真实 + 仿真）操作接口定位数据集与基准协议，并给出 AprilVINS——将鱼眼视觉惯性估计与序列局部 AprilTag 几何结合，把先验准入与联合优化状态的受保护导出分离，从而在无预扫描 fiducial 地图的标记增强工作空间中实现末端定位。\n\n\n# 三、核心实验结果\n\n> 真实子集包含 Insta360 X5 与 Insight9 的 86 条传感器序列、覆盖 15 个重复桌面任务，并提供标定资产与逐次执行的机器人末端参考轨迹，MILD-Sim 在 Isaac Sim 中扩展任务覆盖；在 Insta360 AprilTag4 录制上，AprilVINS(full) 在统一协议下取得毫米级 SE(3) 对齐的 TCP 相对 APE RMSE 与高时间完成率，报告误差低于各对比路线在其自身协议下的结果，而无 tag 因子的鱼眼 VIO 仍停留在厘米级；消融实验将精度与可导出性分离，MILD-Sim 回放研究给出任务特定的容差参考。\n\n\n# 四、对我的启发\n\n> 方法依赖 AprilTag 增强的工作空间与逐序列调参 profile，泛化到无标记或任意场景仍受限，且代码、数据集与评测清单需待接收后才发布；对具身智能/机器人示教数据采集而言，其价值在于把「定位精度—时间覆盖—任务容差」做成可诊断的基准框架，提醒数据质量评估不应只看向策略性能。\n"
 }

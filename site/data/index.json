@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-08T10:04:48.719643+00:00",
+  "generated_at": "2026-10-08T12:31:21.145657+00:00",
   "count": 3027,
   "papers": [
     {
@@ -3123,7 +3123,8 @@
       "published": "2026-10-07",
       "channels": [
         "loco-manip-wbc",
-        "manipulation"
+        "manipulation",
+        "world-model"
       ],
       "badges": [
         {
@@ -20858,6 +20859,180 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2610-09940",
+      "source": "arxiv",
+      "title": "Juno: Taming Predictive Latents for Vision-Language-Action Models",
+      "title_zh": "Juno：驯服视觉-语言-动作模型中的预测性潜变量",
+      "tldr_zh": "Juno 统一 JEPA 框架，提升 VLA 模型在分布偏移下的成功率。",
+      "cover_zh": "机器人策略一偏移就崩？Juno 用预测潜变量稳住 70%+ 成功率",
+      "abstract_zh": "联合嵌入预测架构（JEPA）在表示空间中预测被掩码或未来的观测，为视觉-语言-动作（VLA）模型提供了天然的预测性潜变量来源。然而，要使这些潜变量在预训练、策略学习和部署中发挥作用，需要解决三个失败：与具身特定控制的不匹配、对动作学习的干扰，以及分布偏移下的教师校准错误。我们提出 Juno，一个围绕单一动作条件 JEPA 构建的统一框架，该 JEPA 同时充当控制对齐的表示骨干、预测教师和可适应的动力学模型。在预训练期间，我们在具身匹配的轨迹上训练它，并使用动态 CLS 损失将运动加权的 patch 动力学转移到紧凑的全局状态。在策略学习期间，我们将当前帧的 JEPA patch 融合到 VLA 感知中，并使用具有独立变换参数的解耦推理分支来蒸馏未来潜状态以生成动作。在部署期间，我们在所有观察到的转移（包括失败的 rollout）上适应世界模型，冻结适应后的教师，并使用 LoRA 适配器和可训练的动作头在已验证的执行上重新对齐策略，无需专家纠正或任务奖励。在 SimplerEnv 上，Juno 将平均成功率从最强基线 Qwen3GR00T 的 60.9% 提升到 68.5%，测试时适应进一步达到 72.7%；在真实机器人上，在背景、高度和物体偏移下，它保持了 70%--75% 的成功率，而基础策略则崩溃到 0%。",
+      "authors": [
+        "Yuchen Zhu",
+        "Chenyi Xu",
+        "Yulin Zhang"
+      ],
+      "authors_all": [
+        "Yuchen Zhu",
+        "Chenyi Xu",
+        "Yulin Zhang",
+        "Gang Xu",
+        "Wentao Zhu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-07",
+      "channels": [
+        "manipulation",
+        "loco-manip-wbc",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ USTC"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ ShanghaiTech"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-09940.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-09940-p2.jpg"
+      ],
+      "arxiv_id": "2610.09940",
+      "abs_url": "http://arxiv.org/abs/2610.09940v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.09940v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "JEPA预测潜在用于VLA，提升操作策略泛化，属manipulation且含world-model思想。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Science and Technology of China",
+        "Eastern Institute of Technology, Ningbo",
+        "Hangzhou Dianzi University",
+        "ShanghaiTech University"
+      ],
+      "method_tags": [
+        "JEPA",
+        "VLA",
+        "test-time adaptation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-10270",
+      "source": "arxiv",
+      "title": "Video Prediction Policy 2: Predict Better, Act Better",
+      "title_zh": "视频预测策略 2：预测更好，行动更好",
+      "tldr_zh": "VPP2通过事件级视频预训练和MoT架构，提升机器人零样本泛化能力。",
+      "cover_zh": "预测不准就动错？VPP2让机器人零样本操作成功率飙升",
+      "abstract_zh": "世界行动模型（WAMs）已成为一类重要的通用机器人策略，旨在将视频预测先验迁移到动作学习中。然而，我们发现现有的 WAMs 在开放式环境中经常产生错误的运动预测，导致错误的动作。我们将这一局限归因于两个因素：（1）基础视频模型未针对操作进行优化；（2）将动作组件简单地融入视频模型会显著降低其泛化能力。我们提出 Video Prediction Policy 2（VPP2），一种在视频预测和动作生成中均能实现强零样本泛化的 WAM。首先，我们整理了一个大规模、多样化的操作视频数据集，用于继续预训练基础视频基础模型。我们为视频片段标注详细描述，并进行事件级视频预训练，以促进在开放式操作任务中的泛化。其次，我们对视频模型进行后训练和蒸馏，将其转化为具有固定预测视野的单步视觉规划器。最后，我们通过混合 Transformer（MoT）架构引入动作模块，以学习隐式逆动力学模型。实验展示了三个关键结果：（1）VPP2-14B 在开放式任务上的视频预测指令遵循成功率比 Cosmos3-64B 高出 11.0 个百分点；（2）VPP2 在真实世界零样本 ALOHA 操作任务上的成功率比最强基线高出 18.5 个百分点；（3）经过基准特定的后训练，VPP2 在具有挑战性的 LIBERO-Pro、LIBERO-OOD 和 RoboDojo 基准上取得了评估方法中最高的成功率。",
+      "authors": [
+        "Yanjiang Guo",
+        "Haodong Yan",
+        "Zhide Zhong"
+      ],
+      "authors_all": [
+        "Yanjiang Guo",
+        "Haodong Yan",
+        "Zhide Zhong",
+        "Zhongru Zhang",
+        "Qingyuan Yang",
+        "Qingzhou Lu",
+        "Xiaoyu Chen",
+        "Yen-Jen Wang",
+        "Shuying Deng",
+        "Chenghan Yang",
+        "Puzhen Yuan",
+        "Chenxin Liu",
+        "Tun Ban",
+        "Xiang Zhu",
+        "Yichen Liu",
+        "Kun Feng",
+        "Haoang Li",
+        "Jianyu Chen"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-10-07",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ RobotEra"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKUST"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-10270.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-10270-p2.jpg"
+      ],
+      "arxiv_id": "2610.10270",
+      "abs_url": "http://arxiv.org/abs/2610.10270v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.10270v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "视频预测世界动作模型，用于操作策略，零样本泛化强，属manipulation方向。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Robotera",
+        "Tsinghua University",
+        "HKUST (GZ)",
+        "University of California, Berkeley"
+      ],
+      "method_tags": [
+        "World Action Model",
+        "Video Prediction",
+        "Mixture-of-Transformers"
+      ],
+      "platform": [
+        "ALOHA"
+      ],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2610-10465",
       "source": "arxiv",
       "title": "LLA-MPPI: Rapidly Adaptive Whole-body Control of Legged Robots with GPU-Accelerated Parallel Simulations",
@@ -29418,101 +29593,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2610-10270",
-      "source": "arxiv",
-      "title": "Video Prediction Policy 2: Predict Better, Act Better",
-      "title_zh": "视频预测策略 2：预测更好，行动更好",
-      "tldr_zh": "VPP2通过事件级视频预训练和MoT架构，提升机器人零样本泛化能力。",
-      "cover_zh": "预测不准就动错？VPP2让机器人零样本操作成功率飙升",
-      "abstract_zh": "世界行动模型（WAMs）已成为一类重要的通用机器人策略，旨在将视频预测先验迁移到动作学习中。然而，我们发现现有的 WAMs 在开放式环境中经常产生错误的运动预测，导致错误的动作。我们将这一局限归因于两个因素：（1）基础视频模型未针对操作进行优化；（2）将动作组件简单地融入视频模型会显著降低其泛化能力。我们提出 Video Prediction Policy 2（VPP2），一种在视频预测和动作生成中均能实现强零样本泛化的 WAM。首先，我们整理了一个大规模、多样化的操作视频数据集，用于继续预训练基础视频基础模型。我们为视频片段标注详细描述，并进行事件级视频预训练，以促进在开放式操作任务中的泛化。其次，我们对视频模型进行后训练和蒸馏，将其转化为具有固定预测视野的单步视觉规划器。最后，我们通过混合 Transformer（MoT）架构引入动作模块，以学习隐式逆动力学模型。实验展示了三个关键结果：（1）VPP2-14B 在开放式任务上的视频预测指令遵循成功率比 Cosmos3-64B 高出 11.0 个百分点；（2）VPP2 在真实世界零样本 ALOHA 操作任务上的成功率比最强基线高出 18.5 个百分点；（3）经过基准特定的后训练，VPP2 在具有挑战性的 LIBERO-Pro、LIBERO-OOD 和 RoboDojo 基准上取得了评估方法中最高的成功率。",
-      "authors": [
-        "Yanjiang Guo",
-        "Haodong Yan",
-        "Zhide Zhong"
-      ],
-      "authors_all": [
-        "Yanjiang Guo",
-        "Haodong Yan",
-        "Zhide Zhong",
-        "Zhongru Zhang",
-        "Qingyuan Yang",
-        "Qingzhou Lu",
-        "Xiaoyu Chen",
-        "Yen-Jen Wang",
-        "Shuying Deng",
-        "Chenghan Yang",
-        "Puzhen Yuan",
-        "Chenxin Liu",
-        "Tun Ban",
-        "Xiang Zhu",
-        "Yichen Liu",
-        "Kun Feng",
-        "Haoang Li",
-        "Jianyu Chen"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-10-07",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ RobotEra"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ 清华"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ HKUST"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2610-10270.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-10270-p2.jpg"
-      ],
-      "arxiv_id": "2610.10270",
-      "abs_url": "http://arxiv.org/abs/2610.10270v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.10270v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 50,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "视频预测世界动作模型，用于操作策略，零样本泛化强，属manipulation方向。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Robotera",
-        "Tsinghua University",
-        "HKUST (GZ)",
-        "University of California, Berkeley"
-      ],
-      "method_tags": [
-        "World Action Model",
-        "Video Prediction",
-        "Mixture-of-Transformers"
-      ],
-      "platform": [
-        "ALOHA"
-      ],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2610-10384",
       "source": "arxiv",
       "title": "OpenViTac: Learning and Benchmarking Visuo-Tactile Policies in a Unified Sim-and-Real Framework",
@@ -30079,6 +30159,161 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-09857",
+      "source": "arxiv",
+      "title": "Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching",
+      "title_zh": "面向UMI风格机器人操作教学的精确末端执行器定位",
+      "tldr_zh": "提出MILD数据集和AprilVINS方法，实现毫米级末端执行器定位。",
+      "cover_zh": "毫米级定位！UMI风格机器人教学新突破｜AprilVINS让末端执行器精准可见",
+      "abstract_zh": "机器人演示学习需要在近距离操作和相机遮挡期间实现准确且时间完整的末端执行器定位。现有SLAM基准强调导航运动，而操作数据集优先考虑策略学习而非定位评估。我们引入了MILD，一个包含真实世界和仿真序列的操作接口定位数据集。真实世界子集提供了来自Insta360 X5和Insight9的86个传感器序列，涵盖15个重复的桌面任务、标定资产以及每次执行的机器人末端执行器参考轨迹。仿真子集MILD-Sim在Isaac Sim中扩展了任务覆盖范围，用于受控的操作重放研究。在仪器化的真实世界记录上对视觉惯性系统和基准辅助系统进行基准测试，揭示了即使在相同的标称任务下，TCP相对轨迹误差和时间覆盖率也存在巨大差异。为了支持无需预先测量基准地图的标记增强教学空间，我们提出了AprilVINS，它将鱼眼视觉惯性估计与序列局部AprilTag几何相结合，并将先验准入与联合优化状态的受保护导出分离。在Insta360 AprilTag4记录上，AprilVINS(full)在统一协议下使用序列特定配置，达到了毫米级SE(3)对齐的TCP相对APE RMSE，具有高时间完成度，并且在各自协议下报告误差低于测试路线，而没有标签因子的鱼眼VIO仍保持在厘米级。消融实验将准确性与可导出性分开，而MILD-Sim重放研究为解释这些误差幅度提供了任务特定的容差参考。总之，MILD和AprilVINS为UMI风格的演示收集提供了一个诊断基准框架。代码、数据集和评估清单将在接受后发布。",
+      "authors": [
+        "Junjie Zhang",
+        "Deteng Zhang",
+        "Zhisong Xu"
+      ],
+      "authors_all": [
+        "Junjie Zhang",
+        "Deteng Zhang",
+        "Zhisong Xu",
+        "Bo Sun",
+        "Liuyang Li",
+        "Yihong Tian",
+        "Jie Yin"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-07",
+      "channels": [
+        "manipulation",
+        "sim2real"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ NWPU"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-09857.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-09857-p2.jpg"
+      ],
+      "arxiv_id": "2610.09857",
+      "abs_url": "http://arxiv.org/abs/2610.09857v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.09857v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 49,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "UMI式示教末端定位数据集与AprilVINS方法，属操作示教感知基础，有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Chongqing University",
+        "Northwestern Polytechnical University",
+        "The University of Tokyo",
+        "Jiaxing University"
+      ],
+      "method_tags": [
+        "visual-inertial odometry",
+        "AprilTag",
+        "benchmark dataset"
+      ],
+      "platform": [],
+      "sim_stack": [
+        "Isaac Sim"
+      ],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-10079",
+      "source": "arxiv",
+      "title": "RealtimeWAM: How Fast Can I Run My World Action Model?",
+      "title_zh": "RealtimeWAM：我的世界动作模型能跑多快？",
+      "tldr_zh": "RealtimeWAM 免训练加速世界动作模型推理，保持成功率。",
+      "cover_zh": "免训练加速世界动作模型｜推理延迟暴降，成功率几乎不掉",
+      "abstract_zh": "世界动作模型（WAM）将视觉动态建模与动作生成相结合，但其高推理延迟限制了响应式机器人控制。近期工作通过在测试时移除显式的未来视频生成来加速推理，例如 FastWAM，但这种方法需要专门定制的架构设计。更通用的缓存策略利用特征冗余，然而仅靠冗余无法捕捉闭环控制中不断变化的计算需求。为了解决这些挑战，我们提出了 RealtimeWAM，一个通用、免训练的框架，它协调并行执行与自适应计算，以实现跨多种 WAM 架构的低延迟推理。我们利用层间依赖关系，将观测处理与预测重叠。然而，并发分支仍然竞争 GPU 资源，限制了并行执行的收益。因此，我们通过选择性重用来在整个流程中自适应计算，在视觉稳定区域缓存观测特征，并重用 Transformer 残差，同时为小的预测调整保留额外的细化。我们在 RoboTwin、LIBERO 和 LIBERO-Plus 上对 FastWAM 和 OpenWAM 评估了 RealtimeWAM。在 RTX 4090 上，测得的平均推理延迟分别为 24.09 和 63.09 毫秒，对应平均加速 8.90 倍和 10.67 倍。平均成功率分别为 82.75% 和 87.41%，与原生推理相差 0.02 和 0.53 个百分点以内。在五个真实世界任务中，RealtimeWAM 在 FastWAM 和 OpenWAM 上将平均成功率分别比原生推理提高了 17.2 和 37.2 个百分点。",
+      "authors": [
+        "Huanan Liu",
+        "Ye Li",
+        "Kangye Ji"
+      ],
+      "authors_all": [
+        "Huanan Liu",
+        "Ye Li",
+        "Kangye Ji",
+        "Xiaoyu Chen",
+        "Hanyun Cui",
+        "Yutian Shen",
+        "Yuan Meng",
+        "Chenglei Wu",
+        "Jingyan Jiang",
+        "Bo Li",
+        "Zhi Wang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-07",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-10079.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-10079-p2.jpg"
+      ],
+      "arxiv_id": "2610.10079",
+      "abs_url": "http://arxiv.org/abs/2610.10079v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.10079v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 49,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "World Action Model 加速推理，属世界模型+操作交叉，对实时机器人控制有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Tsinghua University",
+        "YuanxingGuangnian Robotics",
+        "Nanjing University"
+      ],
+      "method_tags": [
+        "World Action Model",
+        "training-free inference acceleration",
+        "adaptive computation"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -51950,11 +52185,11 @@
       "training_summary": "",
       "demo_videos": [
         {
-          "kind": "youtube",
-          "url": "https://www.youtube.com/watch?v=9b29rSzqaKw",
           "embed_url": "https://www.youtube.com/embed/9b29rSzqaKw",
+          "kind": "youtube",
+          "source": "project_page",
           "title": "Temporal Visuo-Tactile Learning for Dexterous Grasp Stability",
-          "source": "project_page"
+          "url": "https://www.youtube.com/watch?v=9b29rSzqaKw"
         }
       ],
       "github": {},
@@ -53695,83 +53930,6 @@
         "Reinforcement Learning",
         "Diffusion Steering",
         "Tactile Manipulation"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2610-10079",
-      "source": "arxiv",
-      "title": "RealtimeWAM: How Fast Can I Run My World Action Model?",
-      "title_zh": "RealtimeWAM：我的世界动作模型能跑多快？",
-      "tldr_zh": "RealtimeWAM 免训练加速世界动作模型推理，保持成功率。",
-      "cover_zh": "免训练加速世界动作模型｜推理延迟暴降，成功率几乎不掉",
-      "abstract_zh": "世界动作模型（WAM）将视觉动态建模与动作生成相结合，但其高推理延迟限制了响应式机器人控制。近期工作通过在测试时移除显式的未来视频生成来加速推理，例如 FastWAM，但这种方法需要专门定制的架构设计。更通用的缓存策略利用特征冗余，然而仅靠冗余无法捕捉闭环控制中不断变化的计算需求。为了解决这些挑战，我们提出了 RealtimeWAM，一个通用、免训练的框架，它协调并行执行与自适应计算，以实现跨多种 WAM 架构的低延迟推理。我们利用层间依赖关系，将观测处理与预测重叠。然而，并发分支仍然竞争 GPU 资源，限制了并行执行的收益。因此，我们通过选择性重用来在整个流程中自适应计算，在视觉稳定区域缓存观测特征，并重用 Transformer 残差，同时为小的预测调整保留额外的细化。我们在 RoboTwin、LIBERO 和 LIBERO-Plus 上对 FastWAM 和 OpenWAM 评估了 RealtimeWAM。在 RTX 4090 上，测得的平均推理延迟分别为 24.09 和 63.09 毫秒，对应平均加速 8.90 倍和 10.67 倍。平均成功率分别为 82.75% 和 87.41%，与原生推理相差 0.02 和 0.53 个百分点以内。在五个真实世界任务中，RealtimeWAM 在 FastWAM 和 OpenWAM 上将平均成功率分别比原生推理提高了 17.2 和 37.2 个百分点。",
-      "authors": [
-        "Huanan Liu",
-        "Ye Li",
-        "Kangye Ji"
-      ],
-      "authors_all": [
-        "Huanan Liu",
-        "Ye Li",
-        "Kangye Ji",
-        "Xiaoyu Chen",
-        "Hanyun Cui",
-        "Yutian Shen",
-        "Yuan Meng",
-        "Chenglei Wu",
-        "Jingyan Jiang",
-        "Bo Li",
-        "Zhi Wang"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-10-07",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ 清华"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2610-10079.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-10079-p2.jpg"
-      ],
-      "arxiv_id": "2610.10079",
-      "abs_url": "http://arxiv.org/abs/2610.10079v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.10079v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 44,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "World Action Model 加速推理，属世界模型+操作交叉，对实时机器人控制有参考价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Tsinghua University",
-        "YuanxingGuangnian Robotics",
-        "Nanjing University"
-      ],
-      "method_tags": [
-        "World Action Model",
-        "training-free inference acceleration",
-        "adaptive computation"
       ],
       "platform": [],
       "sim_stack": [],
@@ -60543,158 +60701,6 @@
       "platform": [
         "UR5e"
       ],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2610-09857",
-      "source": "arxiv",
-      "title": "Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching",
-      "title_zh": "面向UMI风格机器人操作教学的精确末端执行器定位",
-      "tldr_zh": "提出MILD数据集和AprilVINS方法，实现毫米级末端执行器定位。",
-      "cover_zh": "毫米级定位！UMI风格机器人教学新突破｜AprilVINS让末端执行器精准可见",
-      "abstract_zh": "机器人演示学习需要在近距离操作和相机遮挡期间实现准确且时间完整的末端执行器定位。现有SLAM基准强调导航运动，而操作数据集优先考虑策略学习而非定位评估。我们引入了MILD，一个包含真实世界和仿真序列的操作接口定位数据集。真实世界子集提供了来自Insta360 X5和Insight9的86个传感器序列，涵盖15个重复的桌面任务、标定资产以及每次执行的机器人末端执行器参考轨迹。仿真子集MILD-Sim在Isaac Sim中扩展了任务覆盖范围，用于受控的操作重放研究。在仪器化的真实世界记录上对视觉惯性系统和基准辅助系统进行基准测试，揭示了即使在相同的标称任务下，TCP相对轨迹误差和时间覆盖率也存在巨大差异。为了支持无需预先测量基准地图的标记增强教学空间，我们提出了AprilVINS，它将鱼眼视觉惯性估计与序列局部AprilTag几何相结合，并将先验准入与联合优化状态的受保护导出分离。在Insta360 AprilTag4记录上，AprilVINS(full)在统一协议下使用序列特定配置，达到了毫米级SE(3)对齐的TCP相对APE RMSE，具有高时间完成度，并且在各自协议下报告误差低于测试路线，而没有标签因子的鱼眼VIO仍保持在厘米级。消融实验将准确性与可导出性分开，而MILD-Sim重放研究为解释这些误差幅度提供了任务特定的容差参考。总之，MILD和AprilVINS为UMI风格的演示收集提供了一个诊断基准框架。代码、数据集和评估清单将在接受后发布。",
-      "authors": [
-        "Junjie Zhang",
-        "Deteng Zhang",
-        "Zhisong Xu"
-      ],
-      "authors_all": [
-        "Junjie Zhang",
-        "Deteng Zhang",
-        "Zhisong Xu",
-        "Bo Sun",
-        "Liuyang Li",
-        "Yihong Tian",
-        "Jie Yin"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-10-07",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ NWPU"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2610-09857.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-09857-p2.jpg"
-      ],
-      "arxiv_id": "2610.09857",
-      "abs_url": "http://arxiv.org/abs/2610.09857v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.09857v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 41,
-      "judge": {
-        "relevant": true,
-        "research_value": "medium",
-        "primary_channel": "manipulation",
-        "reason": "UMI式示教末端定位数据集与AprilVINS方法，属操作示教感知基础，有参考价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Chongqing University",
-        "Northwestern Polytechnical University",
-        "The University of Tokyo",
-        "Jiaxing University"
-      ],
-      "method_tags": [
-        "visual-inertial odometry",
-        "AprilTag",
-        "benchmark dataset"
-      ],
-      "platform": [],
-      "sim_stack": [
-        "Isaac Sim"
-      ],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2610-09940",
-      "source": "arxiv",
-      "title": "Juno: Taming Predictive Latents for Vision-Language-Action Models",
-      "title_zh": "Juno：驯服视觉-语言-动作模型中的预测性潜变量",
-      "tldr_zh": "Juno 统一 JEPA 框架，提升 VLA 模型在分布偏移下的成功率。",
-      "cover_zh": "机器人策略一偏移就崩？Juno 用预测潜变量稳住 70%+ 成功率",
-      "abstract_zh": "联合嵌入预测架构（JEPA）在表示空间中预测被掩码或未来的观测，为视觉-语言-动作（VLA）模型提供了天然的预测性潜变量来源。然而，要使这些潜变量在预训练、策略学习和部署中发挥作用，需要解决三个失败：与具身特定控制的不匹配、对动作学习的干扰，以及分布偏移下的教师校准错误。我们提出 Juno，一个围绕单一动作条件 JEPA 构建的统一框架，该 JEPA 同时充当控制对齐的表示骨干、预测教师和可适应的动力学模型。在预训练期间，我们在具身匹配的轨迹上训练它，并使用动态 CLS 损失将运动加权的 patch 动力学转移到紧凑的全局状态。在策略学习期间，我们将当前帧的 JEPA patch 融合到 VLA 感知中，并使用具有独立变换参数的解耦推理分支来蒸馏未来潜状态以生成动作。在部署期间，我们在所有观察到的转移（包括失败的 rollout）上适应世界模型，冻结适应后的教师，并使用 LoRA 适配器和可训练的动作头在已验证的执行上重新对齐策略，无需专家纠正或任务奖励。在 SimplerEnv 上，Juno 将平均成功率从最强基线 Qwen3GR00T 的 60.9% 提升到 68.5%，测试时适应进一步达到 72.7%；在真实机器人上，在背景、高度和物体偏移下，它保持了 70%--75% 的成功率，而基础策略则崩溃到 0%。",
-      "authors": [
-        "Yuchen Zhu",
-        "Chenyi Xu",
-        "Yulin Zhang"
-      ],
-      "authors_all": [
-        "Yuchen Zhu",
-        "Chenyi Xu",
-        "Yulin Zhang",
-        "Gang Xu",
-        "Wentao Zhu"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-10-07",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ USTC"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ ShanghaiTech"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2610-09940.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-09940-p2.jpg"
-      ],
-      "arxiv_id": "2610.09940",
-      "abs_url": "http://arxiv.org/abs/2610.09940v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.09940v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 41,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "JEPA预测潜在用于VLA，提升操作策略泛化，属manipulation且含world-model思想。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "University of Science and Technology of China",
-        "Eastern Institute of Technology, Ningbo",
-        "Hangzhou Dianzi University",
-        "ShanghaiTech University"
-      ],
-      "method_tags": [
-        "JEPA",
-        "VLA",
-        "test-time adaptation"
-      ],
-      "platform": [],
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
@@ -94920,10 +94926,10 @@
       "id": "vid-youtube-GHySQMMrIa4",
       "source": "video_youtube",
       "title": "Unitree General-Purpose Humanoid Foundation Model Fully Upgrade Major Open Source",
-      "title_zh": "宇树通用人形基础模型全面升级并重大开源",
-      "tldr_zh": "宇树开源 UnifoLM-WLA-1.0 具身基础模型，多基准达 SOTA。",
-      "cover_zh": "一个模型搞定全身移动操作｜宇树开源具身基础模型",
-      "abstract_zh": "宇树科技全面开源了 UnifoLM-WLA-1.0 具身基础模型，在全球开源模型中于多个基准测试上取得了新的 SOTA 结果。单一模型即可协调桌面操作与全身移动操作，支持跨任务和跨末端执行器的泛化能力，实现“一个模型驱动，全身协同”。",
+      "title_zh": "Unitree 通用人形基础模型全面升级并重大开源",
+      "tldr_zh": "Unitree 开源 UnifoLM-WLA-1.0 具身基础模型，多基准达 SOTA。",
+      "cover_zh": "一个模型搞定全身协调｜Unitree 开源具身基础模型，多基准 SOTA",
+      "abstract_zh": "Unitree 重大地全面开源了 UnifoLM-WLA-1.0 具身基础模型，在全球开源模型中于多个基准测试上取得了新的 SOTA 结果。单一模型即可协调桌面操作与全身移动操作，支持跨任务和跨末端执行器的泛化能力，由一个模型驱动，实现全身协调。",
       "authors": [],
       "authors_all": [],
       "primary_category": "video",
@@ -95178,10 +95184,10 @@
       "id": "vid-youtube-4whgw2gLBS8",
       "source": "video_youtube",
       "title": "New Hands for Atlas | Boston Dynamics",
-      "title_zh": "Atlas 的新手 | 波士顿动力",
-      "tldr_zh": "波士顿动力为 Atlas 打造 13 自由度直接驱动灵巧手，支持 sim-to-real 强化学习。",
-      "cover_zh": "Atlas 换手了！13 自由度直接驱动，为现代 AI 而生",
-      "abstract_zh": "这一代新手是 Atlas 的完美搭档。拥有 13 个自由度，这些手采用直接驱动，专为高保真仿真而构建，以实现 sim-to-real 强化学习，并且从头开始设计用于灵巧的物理工作。了解我们如何为现代 AI 和实际工作打造机器人手：https://bostondynamics.com/blog/robot-hands-for-modern-ai-and-real-work",
+      "title_zh": "Atlas 的新手 | Boston Dynamics",
+      "tldr_zh": "Boston Dynamics 为 Atlas 打造 13 自由度直接驱动的新手，支持 sim-to-real 强化学习。",
+      "cover_zh": "Atlas 换新手机器人也能做精细活了｜13 自由度直接驱动",
+      "abstract_zh": "这一新一代的手是 Atlas 的完美搭档。拥有 13 个自由度，这些手直接驱动，专为高保真仿真而构建，以实现 sim-to-real 强化学习，并从头开始设计用于灵巧的物理工作。了解我们如何为现代 AI 和实际工作构建机器人手：https://bostondynamics.com/blog/robot-hands-for-modern-ai-and-real-work",
       "authors": [],
       "authors_all": [],
       "primary_category": "video",
@@ -104620,6 +104626,69 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2610-10178",
+      "source": "arxiv",
+      "title": "Do Vision-Language-Action Models Understand Instructions? A Mechanistic Interpretability Study on Language Grounding",
+      "title_zh": "视觉-语言-动作模型能理解指令吗？一项关于语言接地的机制可解释性研究",
+      "tldr_zh": "VLA模型对方向性语言敏感，但接地机制因模型而异。",
+      "cover_zh": "VLA模型真的听懂指令了吗？机制研究揭示语言接地真相",
+      "abstract_zh": "视觉-语言-动作模型旨在泛化到不同环境和任务描述，这引发了一个问题：它们的动作生成究竟是否真正依赖于语言指令，还是主要依赖视觉线索和表面相关性。对视觉和语言观察空间变化的鲁棒性对于实际部署至关重要，然而VLA缺乏显式的接地模块，而是依赖其视觉-语言模型骨干的内在语言接地能力。为此，我们对两个最先进的视觉-语言-动作模型$π_{0.5}$和GR00T N1.7的语言接地能力进行了受控的机制可解释性研究，通过对动作生成模块的残差流应用激活和归因修补。我们按照五种策略系统性地破坏LIBERO基准输入样本的任务指令：同义词替换、语义缩放、方向性破坏、随机物体替换和空字符串。实验发现，两个模型对抽象改写和引用不存在的物体相对不敏感，但对空任务描述、尤其是方向性语言反应强烈。在动作生成过程中，这种敏感性集中在每个模型的不同位置：GR00T N1.7主要在早期的周期性交叉注意力层，而$π_{0.5}$则分布在最早和选定的后期层。对于GR00T N1.7，方向性扰动驱动了一些最大的因果效应，同时内部表征几何结构相对不变，这种分离在$π_{0.5}$中未明显观察到。最后，归因修补的可靠性因模型而异：它对GR00T N1.7与激活修补紧密吻合，但对$π_{0.5}$则不然。",
+      "authors": [
+        "Theodor Wulff",
+        "Angelo Cangelosi"
+      ],
+      "authors_all": [
+        "Theodor Wulff",
+        "Angelo Cangelosi"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-07",
+      "channels": [
+        "manipulation",
+        "sim2real",
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-10178.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-10178-p2.jpg"
+      ],
+      "arxiv_id": "2610.10178",
+      "abs_url": "http://arxiv.org/abs/2610.10178v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.10178v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "VLA语言接地机制可解释性研究，涉及π0.5与GR00T，对VLA鲁棒性有参考价值",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "The University of Manchester"
+      ],
+      "method_tags": [
+        "Mechanistic Interpretability",
+        "Activation Patching",
+        "Attribution Patching"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2610-10470",
       "source": "arxiv",
       "title": "CMP-IRRT*: A Perception-Assisted Height-Adaptive Planner for Quadruped Robots",
@@ -109469,68 +109538,6 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2610-10178",
-      "source": "arxiv",
-      "title": "Do Vision-Language-Action Models Understand Instructions? A Mechanistic Interpretability Study on Language Grounding",
-      "title_zh": "视觉-语言-动作模型能理解指令吗？一项关于语言接地的机制可解释性研究",
-      "tldr_zh": "VLA模型对方向性语言敏感，但接地机制因模型而异。",
-      "cover_zh": "VLA模型真的听懂指令了吗？机制研究揭示语言接地真相",
-      "abstract_zh": "视觉-语言-动作模型旨在泛化到不同环境和任务描述，这引发了一个问题：它们的动作生成究竟是否真正依赖于语言指令，还是主要依赖视觉线索和表面相关性。对视觉和语言观察空间变化的鲁棒性对于实际部署至关重要，然而VLA缺乏显式的接地模块，而是依赖其视觉-语言模型骨干的内在语言接地能力。为此，我们对两个最先进的视觉-语言-动作模型$π_{0.5}$和GR00T N1.7的语言接地能力进行了受控的机制可解释性研究，通过对动作生成模块的残差流应用激活和归因修补。我们按照五种策略系统性地破坏LIBERO基准输入样本的任务指令：同义词替换、语义缩放、方向性破坏、随机物体替换和空字符串。实验发现，两个模型对抽象改写和引用不存在的物体相对不敏感，但对空任务描述、尤其是方向性语言反应强烈。在动作生成过程中，这种敏感性集中在每个模型的不同位置：GR00T N1.7主要在早期的周期性交叉注意力层，而$π_{0.5}$则分布在最早和选定的后期层。对于GR00T N1.7，方向性扰动驱动了一些最大的因果效应，同时内部表征几何结构相对不变，这种分离在$π_{0.5}$中未明显观察到。最后，归因修补的可靠性因模型而异：它对GR00T N1.7与激活修补紧密吻合，但对$π_{0.5}$则不然。",
-      "authors": [
-        "Theodor Wulff",
-        "Angelo Cangelosi"
-      ],
-      "authors_all": [
-        "Theodor Wulff",
-        "Angelo Cangelosi"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-10-07",
-      "channels": [
-        "manipulation",
-        "sim2real"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2610-10178.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-10178-p2.jpg"
-      ],
-      "arxiv_id": "2610.10178",
-      "abs_url": "http://arxiv.org/abs/2610.10178v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.10178v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 27,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "VLA语言接地机制可解释性研究，涉及π0.5与GR00T，对VLA鲁棒性有参考价值",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "The University of Manchester"
-      ],
-      "method_tags": [
-        "Mechanistic Interpretability",
-        "Activation Patching",
-        "Attribution Patching"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -158116,8 +158123,8 @@
       "source": "video_youtube",
       "title": "Helix 2.5 30-Home Generalization",
       "title_zh": "Helix 2.5 30 家庭泛化",
-      "tldr_zh": "Helix 2.5 在 30 个家庭中零训练泛化执行任务。",
-      "cover_zh": "零训练直接上岗｜Helix 2.5 在 30 个家庭干起活来",
+      "tldr_zh": "Helix 2.5 在 30 个家庭中实现零样本泛化。",
+      "cover_zh": "零训练直接上岗｜Helix 2.5 在 30 个家庭里干活了",
       "abstract_zh": "今天我们发布 Helix 2.5。我们在湾区租了 30 个家庭。机器人无需额外训练即可到达并开始执行有用的工作。",
       "authors": [],
       "authors_all": [],
@@ -158374,9 +158381,9 @@
       "id": "vid-youtube-HuYXf_3TNW8",
       "source": "video_youtube",
       "title": "30 Home Generalization",
-      "title_zh": "30 个家庭的泛化",
-      "tldr_zh": "Helix 2.5 机器人零样本泛化到 30 个家庭连续工作 4 小时。",
-      "cover_zh": "机器人直接进 30 个家干活？零训练连续 4 小时",
+      "title_zh": "30 个家庭泛化",
+      "tldr_zh": "Helix 2.5 机器人零样本泛化到 30 个家庭连续工作 4 小时",
+      "cover_zh": "机器人零训练直接上岗｜在 30 个家庭连续干活 4 小时",
       "abstract_zh": "昨天我们发布了 Helix 2.5。我们在湾区租了 30 个家庭。机器人无需额外训练即可到达并开始执行有用的工作。以下是连续 4 小时的工作记录，更多内容请阅读我们的博客：https://www.figure.ai/news/helix-2-5-zero-shot-30-home-generalization",
       "authors": [],
       "authors_all": [],

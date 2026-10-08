@@ -34,7 +34,8 @@
   ],
   "channels": [
     "manipulation",
-    "sim2real"
+    "sim2real",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -45,13 +46,13 @@
   "related_links": [],
   "page_count": 14,
   "source_tags": [],
-  "score": 27,
+  "score": 30,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 9,
-      "hint": "频道关键词命中 3 个（vision-language-action、libero、real-world deployment）"
+      "points": 12,
+      "hint": "频道关键词命中 4 个（vision-language-action、libero、real-world deployment、gr00t）"
     },
     {
       "id": "freshness",
@@ -69,7 +70,7 @@
       "id": "cross_channel",
       "label": "跨多个方向",
       "points": 5,
-      "hint": "同时命中 2 个频道"
+      "hint": "同时命中 3 个频道"
     }
   ],
   "judge": {
@@ -94,5 +95,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/理论\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Do Vision-Language-Action Models Understand Instructions? A Mechanistic Interpretability Study on Language Grounding\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.10178v1\n---\n>[!abstract] 一句话总结：对两个 SOTA VLA 模型（π_{0.5} 与 GR00T N1.7）的动作生成模块残差流施加激活修补（activation patching）与归因修补（attribution patching），并在 LIBERO 基准上用同义词替换、语义缩放、方向性破坏、随机物体替换和空字符串五种策略系统性地破坏任务指令，做受控的机制可解释性研究。\n\n\n# 一、动机\n\n> VLA 模型缺少显式的语言接地模块，其动作生成究竟是否真正依赖语言指令、还是主要依赖视觉线索与表面相关性尚不明确，而这对真实部署中的视觉—语言扰动鲁棒性至关重要。\n\n\n# 二、方法\n\n> 对两个 SOTA VLA 模型（π_{0.5} 与 GR00T N1.7）的动作生成模块残差流施加激活修补（activation patching）与归因修补（attribution patching），并在 LIBERO 基准上用同义词替换、语义缩放、方向性破坏、随机物体替换和空字符串五种策略系统性地破坏任务指令，做受控的机制可解释性研究。\n\n\n# 三、核心实验结果\n\n> 1) 两个模型对抽象改写和指向不存在物体都相对不敏感，但对空指令——尤其是方向性语言——反应强烈；2) 敏感性定位不同：GR00T N1.7 集中在早期周期性的交叉注意力层，π_{0.5} 则分散在最早层和若干较后层；3) 对 GR00T N1.7，方向性扰动产生最大的因果效应，却几乎不改变内部表征几何（出现解离现象），π_{0.5} 无此清晰现象；4) 归因修补的可靠性依模型而异，对 GR00T N1.7 与激活修补高度一致，对 π_{0.5} 则不一致。\n\n\n# 四、对我的启发\n\n> 揭示了 VLA 语言接地的脆弱点在于方向性词汇与指令缺失，而非语义改写，说明可解释性工具（尤其归因修补）跨模型迁移性有限；对具身智能课题的启发是：训练与评测应针对方向性指令做显式接地与鲁棒性正则，且不能默认单一模型上的可解释性结论可推广到其他 VLA。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/理论\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\nTitle: \"Do Vision-Language-Action Models Understand Instructions? A Mechanistic Interpretability Study on Language Grounding\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.10178v1\n---\n>[!abstract] 一句话总结：在 LIBERO 基准上，对两个 SOTA VLA 模型 π0.5 与 GR00T N1.7 的动作生成模块残差流施加激活修补（activation patching）与归因修补（attribution patching），并用同义词替换、语义缩放、方向性破坏、随机物体替换、空字符串五种策略系统性破坏任务指令，做受控的机制可解释性分析。\n\n\n# 一、动机\n\n> VLA 模型缺少显式语言接地模块，其动作生成是否真正依赖语言指令、还是主要依赖视觉线索与表层相关性尚不清楚，而这直接关系到真实部署中对视觉与语言观察空间扰动的鲁棒性。\n\n\n# 二、方法\n\n> 在 LIBERO 基准上，对两个 SOTA VLA 模型 π0.5 与 GR00T N1.7 的动作生成模块残差流施加激活修补（activation patching）与归因修补（attribution patching），并用同义词替换、语义缩放、方向性破坏、随机物体替换、空字符串五种策略系统性破坏任务指令，做受控的机制可解释性分析。\n\n\n# 三、核心实验结果\n\n> 1) 两个模型对抽象改写和引用不存在的物体都相对不敏感，但对空任务描述、尤其是方向性语言反应强烈；2) 敏感位置因模型而异：GR00T N1.7 主要集中在早期周期性交叉注意力层，π0.5 则分散在最早层与若干较后层；3) 对 GR00T N1.7，方向性扰动产生最大的因果效应，却几乎不改变内部表征几何（出现解离现象），π0.5 中未清晰观察到该解离；4) 归因修补的可靠性依模型而定：对 GR00T N1.7 与激活修补高度一致，但对 π0.5 不一致。\n\n\n# 四、对我的启发\n\n> 局限在于：结论仅覆盖两个模型与 LIBERO 单一基准、五种扰动策略，且归因修补并非对所有权重模型都可靠，限制了方法的通用性；启发是 VLA 的语言接地更像“方向词敏感、语义改写钝感”的浅层依赖，未来可据此设计显式接地模块或方向性语言增强的训练与评测。\n"
 }
