@@ -58,7 +58,8 @@
     "assets/img/covers/arxiv-2610-12299-p2.jpg"
   ],
   "channels": [
-    "world-model"
+    "world-model",
+    "locomotion"
   ],
   "badges": [
     {
@@ -73,7 +74,7 @@
   "related_links": [],
   "page_count": 27,
   "source_tags": [],
-  "score": 47,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -84,8 +85,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 9,
-      "hint": "频道关键词命中 3 个（world model、world models、world modeling）"
+      "points": 12,
+      "hint": "频道关键词命中 4 个（world model、world models、world modeling、locomotion）"
     },
     {
       "id": "freshness",
@@ -98,6 +99,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 27 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -122,5 +129,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/VideoGen\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Multi-Agent Egocentric World Model with Fine-Grained Embodied Interaction\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12299v1\n---\n>[!abstract] 一句话总结：提出 ME-World：把多智能体 ego 视频流建模为在共享 token 序列中联合去噪的同步生成问题，每个流以所有智能体的目标视角位姿为条件，并用共享环境记忆（shared environment memory）进行生成锚定，从而保证跨视角动作一致、共享环境一致与交互状态更新的一致传播。\n\n\n# 一、动机\n\n> 现有第一人称（egocentric）世界模型大多只建模单个智能体，而已有多智能体世界模型又依赖运动、相机控制或离散指令等粗粒度动作，无法刻画共享环境中多智能体之间细粒度的具身交互，因此缺乏对多视角动作一致性、共享环境一致性和交互引发状态更新的建模能力。\n\n\n# 二、方法\n\n> 提出 ME-World：把多智能体 ego 视频流建模为在共享 token 序列中联合去噪的同步生成问题，每个流以所有智能体的目标视角位姿为条件，并用共享环境记忆（shared environment memory）进行生成锚定，从而保证跨视角动作一致、共享环境一致与交互状态更新的一致传播。\n\n\n# 三、核心实验结果\n\n> 在真实与合成多智能体数据上训练和评测，并首次提出面向共享世界的一致性指标（环境一致性、更新一致性、身份一致性）。实验表明 ME-World 在共享世界一致性、动作控制精度、身份保持和视频质量上均优于现有方法（摘要未给出具体数值，需查正文表格）。\n\n\n# 四、对我的启发\n\n> 局限在于细粒度交互的多智能体数据获取成本高、依赖合成数据与位姿条件，长时程一致性可能仍受限；启发是把“多流同步去噪 + 共享记忆 + 全体位姿条件”作为具身多智能体世界模型的基础范式，可迁移到机器人协同操作与多视角模仿学习。与课题高度相关（多智能体具身交互世界模型）。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/CV\n  - Domain/Robotics\n  - Task/VideoGen\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Multi-Agent Egocentric World Model with Fine-Grained Embodied Interaction\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12299v1\n---\n>[!abstract] 一句话总结：提出 ME-World，在共享 token 序列中联合去噪多条 ego 视频流，以所有智能体的目标视角位姿分别条件化每条流，并用共享环境记忆约束生成，从而建模跨视角动作一致性、共享环境一致性与交互引发的状态更新传播。\n\n\n# 一、动机\n\n> 现有第一人称世界模型多面向单智能体，已有的多智能体世界模型又仅依赖运动、相机控制或离散命令等粗粒度动作，无法刻画共享环境中多智能体之间细粒度的具身交互。\n\n\n# 二、方法\n\n> 提出 ME-World，在共享 token 序列中联合去噪多条 ego 视频流，以所有智能体的目标视角位姿分别条件化每条流，并用共享环境记忆约束生成，从而建模跨视角动作一致性、共享环境一致性与交互引发的状态更新传播。\n\n\n# 三、核心实验结果\n\n> 摘要未给出具体量化数值，仅报告在真实与合成多智能体数据上的实验表明：ME-World 在共享世界一致性（环境、更新、身份一致性新指标）、动作控制、身份保持和视频质量上均优于现有方法。\n\n\n# 四、对我的启发\n\n> 该工作将多智能体细粒度交互与第一人称视频生成结合，对多机协同/具身智能中的共享世界建模有启发；但真实多智能体交互数据获取成本、跨视角一致性在长时序下的误差累积及推理算力开销仍是潜在局限，且摘要缺少定量对比需待读全文确认。\n"
 }

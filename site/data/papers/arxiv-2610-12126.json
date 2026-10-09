@@ -58,7 +58,8 @@
     "assets/img/covers/arxiv-2610-12126-p2.jpg"
   ],
   "channels": [
-    "locomotion"
+    "locomotion",
+    "manipulation"
   ],
   "badges": [
     {
@@ -73,7 +74,7 @@
   "related_links": [],
   "page_count": 20,
   "source_tags": [],
-  "score": 44,
+  "score": 49,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -98,6 +99,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 20 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -124,34 +131,34 @@
   "training_summary": "",
   "demo_videos": [
     {
-      "kind": "mp4",
-      "url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/overview/overview-960.mp4",
       "embed_url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/overview/overview-960.mp4",
+      "kind": "mp4",
+      "source": "project_page",
       "title": "SuperNav — An Agentic Navigation System",
-      "source": "project_page"
+      "url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/overview/overview-960.mp4"
     },
     {
-      "kind": "mp4",
-      "url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/overview/overview.mp4",
       "embed_url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/overview/overview.mp4",
+      "kind": "mp4",
+      "source": "project_page",
       "title": "SuperNav — An Agentic Navigation System",
-      "source": "project_page"
+      "url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/overview/overview.mp4"
     },
     {
-      "kind": "mp4",
-      "url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/gallery/real-find-printer-then-trashbin.mp4",
       "embed_url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/gallery/real-find-printer-then-trashbin.mp4",
+      "kind": "mp4",
+      "source": "project_page",
       "title": "SuperNav — An Agentic Navigation System",
-      "source": "project_page"
+      "url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/gallery/real-find-printer-then-trashbin.mp4"
     },
     {
-      "kind": "mp4",
-      "url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/gallery/real-go-to-basketball.mp4",
       "embed_url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/gallery/real-go-to-basketball.mp4",
+      "kind": "mp4",
+      "source": "project_page",
       "title": "SuperNav — An Agentic Navigation System",
-      "source": "project_page"
+      "url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/gallery/real-go-to-basketball.mp4"
     }
   ],
   "github": {},
-  "note": "---\ntags:\n  - 论文/系统\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"SuperNav: An Agentic Navigation System for Any Task in Any Scene\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12126v1\n---\n>[!abstract] 一句话总结：SuperNav 不对预训练 MLLM 做导航专用微调，而是为其配备由 Navigation Skills、面向智能体的物理交互 Tools、任务进度与上下文管理构成的 agent harness，并通过统一的视觉点接口让模型直接在图像中指定目标点、依据执行反馈修正决策，将动作执行交给导航工具。\n\n\n# 一、动机\n\n> 现有方法通过微调多模态大模型来预测导航动作，导致其能力受限于导航训练数据的覆盖范围，难以泛化到新请求和新环境，无法同时具备任务通用性和场景通用性。\n\n\n# 二、方法\n\n> SuperNav 不对预训练 MLLM 做导航专用微调，而是为其配备由 Navigation Skills、面向智能体的物理交互 Tools、任务进度与上下文管理构成的 agent harness，并通过统一的视觉点接口让模型直接在图像中指定目标点、依据执行反馈修正决策，将动作执行交给导航工具。\n\n\n# 三、核心实验结果\n\n> 在 instance-level、multi-object 和 demand-driven 三类任务上超越四个对比基线；在 HM3D 上的类别级评估以及在真实四足机器人上的部署进一步验证了跨环境的适用性。\n\n\n# 四、对我的启发\n\n> 核心启发是保留 MLLM 通用能力、以工具调用与视觉点接口替代导航微调，从而解耦决策与运动执行；局限在于系统依赖底层导航工具与技能的质量，且未给出量化泛化边界与失败案例分析。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/CV\n  - Task/EmbodiedAI\n  - Task/RobotNavigation\nTitle: \"SuperNav: An Agentic Navigation System for Any Task in Any Scene\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12126v1\n---\n>[!abstract] 一句话总结：不对预训练 MLLM 做任何导航专用微调，而是为其套上一层智能体框架（agent harness）：由 MLLM 负责理解请求、感知场景与决策，通过 Navigation Skills、面向智能体的物理交互 Tools 以及任务进度与上下文管理支撑决策，并用统一的视觉点位（visual-point）接口让模型直接在图像中指定目标点、并依据执行反馈修正决策，把运动执行下放给导航工具。\n\n\n# 一、动机\n\n> 现有方法通过微调多模态大模型（MLLM）直接预测导航动作，其行为受导航训练数据覆盖度制约，难以泛化到新指令与新环境，即无法同时兼顾任务通用性与场景通用性。\n\n\n# 二、方法\n\n> 不对预训练 MLLM 做任何导航专用微调，而是为其套上一层智能体框架（agent harness）：由 MLLM 负责理解请求、感知场景与决策，通过 Navigation Skills、面向智能体的物理交互 Tools 以及任务进度与上下文管理支撑决策，并用统一的视觉点位（visual-point）接口让模型直接在图像中指定目标点、并依据执行反馈修正决策，把运动执行下放给导航工具。\n\n\n# 三、核心实验结果\n\n> 在实例级、多物体和需求驱动三类导航任务上均超过 4 个对比基线；在 HM3D 数据集上的类别级评测以及在真实四足机器人上的部署进一步验证了跨环境的适用性（摘要未给出具体数值指标）。\n\n\n# 四、对我的启发\n\n> 核心启发是“通用 MLLM + 工具化执行”的解耦范式：保留 MLLM 的开放世界常识以避免数据覆盖瓶颈，把不确定性最高的底层运动交给专用导航工具。局限在于性能上限依赖底层导航技能的可靠性与 MLLM 的实时推理开销，视觉点位接口对细粒度、动态障碍场景的鲁棒性仍有待验证。\n"
 }

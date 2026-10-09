@@ -54,7 +54,8 @@
   ],
   "channels": [
     "manipulation",
-    "teleop"
+    "teleop",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -85,7 +86,7 @@
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
-      "hint": "频道关键词命中 8 个（manipulation、dexterous、dexterous manipulation、diffusion policy）"
+      "hint": "频道关键词命中 9 个（manipulation、dexterous、dexterous manipulation、diffusion policy）"
     },
     {
       "id": "freshness",
@@ -109,7 +110,7 @@
       "id": "cross_channel",
       "label": "跨多个方向",
       "points": 5,
-      "hint": "同时命中 2 个频道"
+      "hint": "同时命中 3 个频道"
     }
   ],
   "judge": {
@@ -137,5 +138,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"SkillWeave: Weaving Heterogeneous Demonstrations into Long-Horizon Manipulation Skills\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12046v1\n---\n>[!abstract] 一句话总结：提出异构示教框架 SkillWeave：用遥操作采集粗定位/搬运数据、用动觉示教采集接触丰富技能，配合物体掩码条件扩散策略（训练时用离线物体分割做监督，部署时用轻量学习的掩码预测器，避免在线分割与图像修复），并引入 successor-aware terminal steering，在前驱策略采样出的动作中挑选能把系统导向后继策略示教初始状态分布的动作，从而平滑子策略交接。\n\n\n# 一、动机\n\n> 长时程灵巧操作同时需要大范围任务推进与精确的接触丰富交互，单一示教模态难以兼顾：遥操作适合粗粒度移动但难以提供精细接触数据，动觉示教（kinesthetic teaching）适合精细技能却会因演示者进入视野造成视觉不匹配，且独立训练的子策略之间存在分布偏移导致交接失败。\n\n\n# 二、方法\n\n> 提出异构示教框架 SkillWeave：用遥操作采集粗定位/搬运数据、用动觉示教采集接触丰富技能，配合物体掩码条件扩散策略（训练时用离线物体分割做监督，部署时用轻量学习的掩码预测器，避免在线分割与图像修复），并引入 successor-aware terminal steering，在前驱策略采样出的动作中挑选能把系统导向后继策略示教初始状态分布的动作，从而平滑子策略交接。\n\n\n# 三、核心实验结果\n\n> 在三个真实世界长时程灵巧操作任务上，SkillWeave 取得平均 27% 的端到端成功率；掩码条件化的动觉策略将灵巧子任务成功率提升到平均 65%；successor-aware 交接的平均组合效率达到 87%。结果表明让示教模态与交互类型匹配、显式处理动觉示教的视觉不匹配、并把策略交接引导到后继策略支持的状态，能显著改善长时程灵巧操作。\n\n\n# 四、对我的启发\n\n> 局限在于端到端成功率仍偏低（27%），说明子任务成功率高（65%）并不等价于长时程任务成功，交接与误差累积仍是瓶颈；掩码条件策略依赖离线分割质量与学习到的掩码预测器的鲁棒性，对快速运动或遮挡变化可能敏感。启发是：多模态示教数据的「按需分配」+ 交接处的状态分布对齐，是可迁移到其他长时程操作/具身任务组合的通用思路；掩码条件化也为避免硬件改造（如遮挡去除）提供了低成本方案。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/Teleoperation\n  - 状态/待读\nTitle: \"SkillWeave: Weaving Heterogeneous Demonstrations into Long-Horizon Manipulation Skills\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12046v1\n---\n>[!abstract] 一句话总结：提出异构演示框架 SkillWeave：用遥操作采集粗定位/搬运轨迹、用动觉教学采集接触丰富技能；针对动觉数据的视觉错配，训练时用离线物体分割作监督、部署时改用轻量学习式掩码预测器，避免在线分割与图像修补；并提出 successor-aware terminal steering，在前驱策略采样的动作中挑选能把系统引向后继策略演示初始状态分布的动作，以缓解独立训练的子策略间的分布漂移。\n\n\n# 一、动机\n\n> 长时程灵巧操作同时需要大范围任务推进与精确的接触丰富交互，单一演示模态难以兼顾：遥操作擅长粗定位与搬运却缺乏精细接触数据，动觉教学（kinesthetic teaching）精确但采数据时演示者身体会进入视野造成视觉错配。\n\n\n# 二、方法\n\n> 提出异构演示框架 SkillWeave：用遥操作采集粗定位/搬运轨迹、用动觉教学采集接触丰富技能；针对动觉数据的视觉错配，训练时用离线物体分割作监督、部署时改用轻量学习式掩码预测器，避免在线分割与图像修补；并提出 successor-aware terminal steering，在前驱策略采样的动作中挑选能把系统引向后继策略演示初始状态分布的动作，以缓解独立训练的子策略间的分布漂移。\n\n\n# 三、核心实验结果\n\n> 在三个真实世界长时程任务上平均端到端成功率 27%；掩码条件化的动觉策略将灵巧子任务成功率提升至平均 65%；successor-aware 交接的平均组合效率达 87%。\n\n\n# 四、对我的启发\n\n> 核心启发是「演示模态应与交互性质（粗运动 vs 接触丰富）匹配」、显式处理动觉演示的视觉错配、并让策略交接被引导到后继策略支持的状态；局限在于端到端成功率仍仅 27%，整体性能受子任务划分质量和后继策略初始状态分布覆盖度制约，且三任务规模较小。\n"
 }

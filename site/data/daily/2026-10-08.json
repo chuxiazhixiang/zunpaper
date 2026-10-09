@@ -3,6 +3,82 @@
   "count": 47,
   "papers": [
     {
+      "id": "arxiv-2610-11771",
+      "source": "arxiv",
+      "title": "PathTime-VLA: Path-Time Decoupling for Factorized Post-Training of Vision-Language-Action Policies",
+      "title_zh": "PathTime-VLA：路径-时间解耦，用于视觉-语言-动作策略的因子化后训练",
+      "tldr_zh": "PathTime-VLA 解耦路径与时间，通过分阶段后训练提升 VLA 策略执行效率。",
+      "cover_zh": "路径时间解耦！VLA 策略后训练新范式，执行效率飙升",
+      "abstract_zh": "视觉-语言-动作（VLA）策略通常以固定时间间隔预测动作，将机器人遵循的路径与其执行节奏耦合在一起。这种耦合使从遥操作进行适应变得复杂：有用的几何引导伴随着由界面延迟和操作者行为塑造的时序。我们的关键见解是将经典运动规划的路径-时间参数化引入到 VLA 的学习动作表示中。我们提出 PathTime-VLA，它将运动表示为进度索引的交互路径 $X(s)$ 和正区间时间剖面。后者定义了单调时间律 $t(s)$，产生控制器命令 $X(s(t))$。对于给定路径，替代执行通过时间剖面表达，允许在不改变几何预测目标的情况下进行块级速度选择。这种表示支持分阶段后训练过程：演示和 DAgger 干预建立目标域先验，Speed-DQN 从机器人交互中学习执行乘数，Path-AWR 使用 rollout 结果来细化扩散路径生成器。路径条件动作专家实现生成的运动，同时保持路径生成和执行时序的独立学习接口。在三个任务中，完整方法实现了 $58/60$ 的成功率，而 PathTime-VLA 在固定 $1×$ 下的 BC + DAgger 为 $57/60$，成功试验的平均完成时间缩短约 $39$-$52\\%$。",
+      "authors": [
+        "Qing Huang",
+        "Yifei Yang",
+        "Ziqing Zou"
+      ],
+      "authors_all": [
+        "Qing Huang",
+        "Yifei Yang",
+        "Ziqing Zou",
+        "Anzhe Chen",
+        "Zhenjie Zhu",
+        "Yufei Wei",
+        "Rong Xiong",
+        "Yue Wang"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-08",
+      "channels": [
+        "manipulation",
+        "teleop"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ ZJU"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ Yue Wang (ZJU)"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-11771.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-11771-p2.jpg"
+      ],
+      "arxiv_id": "2610.11771",
+      "abs_url": "http://arxiv.org/abs/2610.11771v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.11771v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 72,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "VLA策略后训练，路径-时间解耦，提升操作效率，属manipulation方向。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Zhejiang University"
+      ],
+      "method_tags": [
+        "VLA",
+        "DAgger"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2610-12276",
       "source": "arxiv",
       "title": "Toward Lunar Legged Robots: Field Deployment Lessons at LUNA",
@@ -108,7 +184,8 @@
       "published": "2026-10-08",
       "channels": [
         "manipulation",
-        "teleop"
+        "teleop",
+        "loco-manip-wbc"
       ],
       "badges": [
         {
@@ -492,70 +569,76 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2610-11771",
+      "id": "arxiv-2610-12185",
       "source": "arxiv",
-      "title": "PathTime-VLA: Path-Time Decoupling for Factorized Post-Training of Vision-Language-Action Policies",
-      "title_zh": "PathTime-VLA：路径-时间解耦，用于视觉-语言-动作策略的因子化后训练",
-      "tldr_zh": "PathTime-VLA 解耦路径与时间，通过分阶段后训练提升 VLA 策略执行效率。",
-      "cover_zh": "路径时间解耦！VLA 策略后训练新范式，执行效率飙升",
-      "abstract_zh": "视觉-语言-动作（VLA）策略通常以固定时间间隔预测动作，将机器人遵循的路径与其执行节奏耦合在一起。这种耦合使从遥操作进行适应变得复杂：有用的几何引导伴随着由界面延迟和操作者行为塑造的时序。我们的关键见解是将经典运动规划的路径-时间参数化引入到 VLA 的学习动作表示中。我们提出 PathTime-VLA，它将运动表示为进度索引的交互路径 $X(s)$ 和正区间时间剖面。后者定义了单调时间律 $t(s)$，产生控制器命令 $X(s(t))$。对于给定路径，替代执行通过时间剖面表达，允许在不改变几何预测目标的情况下进行块级速度选择。这种表示支持分阶段后训练过程：演示和 DAgger 干预建立目标域先验，Speed-DQN 从机器人交互中学习执行乘数，Path-AWR 使用 rollout 结果来细化扩散路径生成器。路径条件动作专家实现生成的运动，同时保持路径生成和执行时序的独立学习接口。在三个任务中，完整方法实现了 $58/60$ 的成功率，而 PathTime-VLA 在固定 $1×$ 下的 BC + DAgger 为 $57/60$，成功试验的平均完成时间缩短约 $39$-$52\\%$。",
+      "title": "RESETTLE: Robotic Recovery through Disagreement-Triggered Retrieval and Efficient Corrective Control",
+      "title_zh": "RESETTLE：通过分歧触发检索与高效纠正控制的机器人恢复",
+      "tldr_zh": "RESETTLE框架通过分歧触发检索和高效纠正控制，实现机器人操作的低延迟恢复。",
+      "cover_zh": "机器人出错怎么办？这个框架让恢复快人一步｜延迟直降",
+      "abstract_zh": "可靠的机器人操作需要及时干预以纠正出现的偏差并在执行错误后恢复进度。然而，基于重复视觉语言推理或迭代在线优化的恢复方法可能产生显著延迟，从而延误干预。为了解决这些挑战，我们提出了RESETTLE（通过分歧触发检索与高效纠正控制的机器人恢复），这是一个模型无关的框架，在冻结机器人策略的动作执行接口处提供计算高效的恢复。当在相同条件下独立采样的两个动作提议持续不一致时，RESETTLE触发恢复。它使用适配的V-JEPA编码器检索同一任务的演示参考，并结合状态伺服先验与受保护的视觉残差来执行一个纠正动作，无需在线轨迹优化或额外的视觉语言推理，然后将控制权交还给基础策略。在仿真中的六个基础策略上，RESETTLE在LIBERO-Plus、Meta-World和RoboCasa Tabletop上分别实现了高达8.70%、6.28%和6.83%的绝对成功率提升，并在使用两个策略的四个真实世界任务上进一步改进。在基于QwenPI的比较中，其监控与恢复的计算延迟比VoLoAgent在抓取和放置工具调用时的监控与规划延迟低74.04%--93.57%。它还将Harness VLA的LIBERO-Pro Swap成功率从42%提升至50%，展示了与高级智能体规划的兼容性。代码见：https://github.com/JIA-Lab-research/RESETTLE",
       "authors": [
-        "Qing Huang",
-        "Yifei Yang",
-        "Ziqing Zou"
+        "Yuxin Chen",
+        "Senqiao Yang",
+        "Zixuan Wang"
       ],
       "authors_all": [
-        "Qing Huang",
-        "Yifei Yang",
-        "Ziqing Zou",
-        "Anzhe Chen",
-        "Zhenjie Zhu",
-        "Yufei Wei",
-        "Rong Xiong",
-        "Yue Wang"
+        "Yuxin Chen",
+        "Senqiao Yang",
+        "Zixuan Wang",
+        "Jinhui Ye",
+        "Changsheng Lu",
+        "Pengguang Chen",
+        "Shu Liu",
+        "Zhuotao Tian",
+        "Jiaya Jia"
       ],
       "primary_category": "cs.RO",
       "published": "2026-10-08",
       "channels": [
-        "manipulation"
+        "manipulation",
+        "world-model"
       ],
       "badges": [
         {
           "kind": "lab",
-          "label": "⭐ ZJU"
+          "label": "⭐ HKUST"
         },
         {
           "kind": "lab",
-          "label": "⭐ Yue Wang (ZJU)"
+          "label": "⭐ HKU"
         },
         {
           "kind": "fresh",
           "label": "⚡ 新鲜出炉"
         }
       ],
-      "cover_image": "assets/img/covers/arxiv-2610-11771.jpg",
+      "cover_image": "assets/img/covers/arxiv-2610-12185.jpg",
       "preview_pages": [
-        "assets/img/covers/arxiv-2610-11771-p2.jpg"
+        "assets/img/covers/arxiv-2610-12185-p2.jpg"
       ],
-      "arxiv_id": "2610.11771",
-      "abs_url": "http://arxiv.org/abs/2610.11771v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.11771v1",
+      "arxiv_id": "2610.12185",
+      "abs_url": "http://arxiv.org/abs/2610.12185v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.12185v1",
       "venue": "",
       "venue_announced": "",
-      "score": 61,
+      "score": 63,
       "judge": {
         "relevant": true,
         "research_value": "high",
         "primary_channel": "manipulation",
-        "reason": "VLA策略后训练，路径-时间解耦，提升操作效率，属manipulation方向。",
+        "reason": "机器人操作恢复框架，含V-JEPA检索与高效纠正控制，算法新颖且实验充分。",
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Zhejiang University"
+        "The Hong Kong University of Science and Technology",
+        "The Chinese University of Hong Kong",
+        "SmartMore",
+        "Harbin Institute of Technology, Shenzhen"
       ],
       "method_tags": [
-        "VLA",
-        "DAgger"
+        "Disagreement-Triggered Recovery",
+        "Retrieval",
+        "Corrective Control"
       ],
       "platform": [],
       "sim_stack": [],
@@ -735,6 +818,91 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2610-12099",
+      "source": "arxiv",
+      "title": "UNITAS: A 3D-Native World Action Model for Embodied Manipulation",
+      "title_zh": "UNITAS：面向具身操作的3D原生世界动作模型",
+      "tldr_zh": "首个3D原生世界动作模型，统一观测、动作与场景动态。",
+      "cover_zh": "机器人操作新突破！3D原生世界动作模型让预测更准",
+      "abstract_zh": "世界动作模型（WAMs）旨在回答一个耦合的物理问题：给定任务指令，机器人应执行何种运动，以及该运动将如何改变周围世界？现有大多数WAMs基于预训练视频生成器，并通过图像或视觉隐变量表示世界演化。然而，机器人交互发生在度量三维空间中，而图像是视角相关的投影，其像素距离并不直接编码物理距离。我们提出UNITAS，据我们所知，这是首个3D原生世界动作模型，在每次交互中于共享的度量3D框架内统一观测、动作和场景动态，并在机器人本体和人类手部之间使用通用表示。动作流将人类手部和机器人夹爪表示为3D点轨迹，而场景流则描述以这些轨迹为条件的场景点位移。世界对齐的3D位置嵌入为有或无深度输入的视觉令牌提供基础，物理时间轨迹分词器将每个点轨迹编码为一个锚定在其当前3D位置的令牌。该接口支持直接动作执行和动作条件场景预测。UNITAS拥有1.7B参数，在比较方法中于RoboTwin上实现了最佳的动作条件场景预测，位移误差比PointWorld降低高达49%，并达到最先进的操作成功率，包括LIBERO上的99.8%和真实世界任务平均85%。代码见https://github.com/DexForce/UNITAS。",
+      "authors": [
+        "Ruixiang Wang",
+        "Yongyi Su",
+        "Wenlve Zhou"
+      ],
+      "authors_all": [
+        "Ruixiang Wang",
+        "Yongyi Su",
+        "Wenlve Zhou",
+        "Bo Yue",
+        "Hengyan Liu",
+        "Dekun Lu",
+        "Yuxin Tian",
+        "Yihan Fang",
+        "Zerui Wu",
+        "Xing Hu",
+        "Jietao Chen",
+        "Yong Guo",
+        "Ziyan He",
+        "Junbin Yuan",
+        "Guiliang Liu",
+        "Xiaofen Xing",
+        "Kui Jia"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-08",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-12099.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-12099-p2.jpg"
+      ],
+      "arxiv_id": "2610.12099",
+      "abs_url": "http://arxiv.org/abs/2610.12099v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.12099v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 60,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "3D原生世界动作模型，统一动作与场景动态，操作成功率SOTA，属world-model与manipulation交叉。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "The Chinese University of Hong Kong, Shenzhen",
+        "DexForce Technology Co., Ltd.",
+        "Foshan University",
+        "Sun Yat-sen University"
+      ],
+      "method_tags": [
+        "World Action Model",
+        "3D point trajectory",
+        "action-conditioned scene prediction"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2610-12451",
       "source": "arxiv",
       "title": "VersaCamVLA: Camera-Configurable VLA Policies for Robotic Manipulation",
@@ -799,86 +967,6 @@
         "VLA",
         "multi-view",
         "camera-configurable"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2610-12185",
-      "source": "arxiv",
-      "title": "RESETTLE: Robotic Recovery through Disagreement-Triggered Retrieval and Efficient Corrective Control",
-      "title_zh": "RESETTLE：通过分歧触发检索与高效纠正控制的机器人恢复",
-      "tldr_zh": "RESETTLE框架通过分歧触发检索和高效纠正控制，实现机器人操作的低延迟恢复。",
-      "cover_zh": "机器人出错怎么办？这个框架让恢复快人一步｜延迟直降",
-      "abstract_zh": "可靠的机器人操作需要及时干预以纠正出现的偏差并在执行错误后恢复进度。然而，基于重复视觉语言推理或迭代在线优化的恢复方法可能产生显著延迟，从而延误干预。为了解决这些挑战，我们提出了RESETTLE（通过分歧触发检索与高效纠正控制的机器人恢复），这是一个模型无关的框架，在冻结机器人策略的动作执行接口处提供计算高效的恢复。当在相同条件下独立采样的两个动作提议持续不一致时，RESETTLE触发恢复。它使用适配的V-JEPA编码器检索同一任务的演示参考，并结合状态伺服先验与受保护的视觉残差来执行一个纠正动作，无需在线轨迹优化或额外的视觉语言推理，然后将控制权交还给基础策略。在仿真中的六个基础策略上，RESETTLE在LIBERO-Plus、Meta-World和RoboCasa Tabletop上分别实现了高达8.70%、6.28%和6.83%的绝对成功率提升，并在使用两个策略的四个真实世界任务上进一步改进。在基于QwenPI的比较中，其监控与恢复的计算延迟比VoLoAgent在抓取和放置工具调用时的监控与规划延迟低74.04%--93.57%。它还将Harness VLA的LIBERO-Pro Swap成功率从42%提升至50%，展示了与高级智能体规划的兼容性。代码见：https://github.com/JIA-Lab-research/RESETTLE",
-      "authors": [
-        "Yuxin Chen",
-        "Senqiao Yang",
-        "Zixuan Wang"
-      ],
-      "authors_all": [
-        "Yuxin Chen",
-        "Senqiao Yang",
-        "Zixuan Wang",
-        "Jinhui Ye",
-        "Changsheng Lu",
-        "Pengguang Chen",
-        "Shu Liu",
-        "Zhuotao Tian",
-        "Jiaya Jia"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-10-08",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ HKUST"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ HKU"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2610-12185.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-12185-p2.jpg"
-      ],
-      "arxiv_id": "2610.12185",
-      "abs_url": "http://arxiv.org/abs/2610.12185v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.12185v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 58,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "机器人操作恢复框架，含V-JEPA检索与高效纠正控制，算法新颖且实验充分。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "The Hong Kong University of Science and Technology",
-        "The Chinese University of Hong Kong",
-        "SmartMore",
-        "Harbin Institute of Technology, Shenzhen"
-      ],
-      "method_tags": [
-        "Disagreement-Triggered Recovery",
-        "Retrieval",
-        "Corrective Control"
       ],
       "platform": [],
       "sim_stack": [],
@@ -972,81 +1060,75 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2610-12099",
+      "id": "arxiv-2610-12026",
       "source": "arxiv",
-      "title": "UNITAS: A 3D-Native World Action Model for Embodied Manipulation",
-      "title_zh": "UNITAS：面向具身操作的3D原生世界动作模型",
-      "tldr_zh": "首个3D原生世界动作模型，统一观测、动作与场景动态。",
-      "cover_zh": "机器人操作新突破！3D原生世界动作模型让预测更准",
-      "abstract_zh": "世界动作模型（WAMs）旨在回答一个耦合的物理问题：给定任务指令，机器人应执行何种运动，以及该运动将如何改变周围世界？现有大多数WAMs基于预训练视频生成器，并通过图像或视觉隐变量表示世界演化。然而，机器人交互发生在度量三维空间中，而图像是视角相关的投影，其像素距离并不直接编码物理距离。我们提出UNITAS，据我们所知，这是首个3D原生世界动作模型，在每次交互中于共享的度量3D框架内统一观测、动作和场景动态，并在机器人本体和人类手部之间使用通用表示。动作流将人类手部和机器人夹爪表示为3D点轨迹，而场景流则描述以这些轨迹为条件的场景点位移。世界对齐的3D位置嵌入为有或无深度输入的视觉令牌提供基础，物理时间轨迹分词器将每个点轨迹编码为一个锚定在其当前3D位置的令牌。该接口支持直接动作执行和动作条件场景预测。UNITAS拥有1.7B参数，在比较方法中于RoboTwin上实现了最佳的动作条件场景预测，位移误差比PointWorld降低高达49%，并达到最先进的操作成功率，包括LIBERO上的99.8%和真实世界任务平均85%。代码见https://github.com/DexForce/UNITAS。",
+      "title": "Humanoid World Action Model With Joint State--Action Generation",
+      "title_zh": "人形世界动作模型：联合状态-动作生成",
+      "tldr_zh": "HWAM 联合生成动作与执行后状态，缩小人形机器人动作-执行差距。",
+      "cover_zh": "人形机器人动作总跑偏？HWAM 让参考动作和实际执行对齐了",
+      "abstract_zh": "人形机器人是实现通用操作的有前景的平台。近期，视觉-语言-动作（VLA）策略直接从多模态观测中学习动作，而世界动作模型（WAM）进一步引入未来视觉预测来改进动作生成。然而，在分层人形系统中，VLA 和 WAM 策略输出参考动作，这些动作随后通过全身控制、机器人动力学、平衡和接触来实现。这种分层结构造成了动作-执行差距：策略产生的参考动作可能与机器人实际实现的运动不同。若不对实际身体状态进行显式建模，未来视觉预测必须同时解释场景演变以及参考动作与执行运动之间的差异，这使得动作与其物理结果难以关联。我们提出了 HWAM，一种联合状态-动作生成的人形世界动作模型，它将机器人执行后的本体感受状态作为显式预测目标。通过联合生成参考动作及其实际身体状态，HWAM 将执行运动的监督直接融入动作学习。HWAM 通过三个互补的条件路径进行训练。策略路径仅以当前观测为条件，联合去噪状态-动作轨迹，匹配部署条件。前向动力学建模（FDM）以动作和执行后状态为条件预测未来视觉观测，而逆向动力学建模（IDM）从视觉转换中重建联合轨迹。这些路径共同连接了策略参考、实际身体运动和视觉结果。在 LimX OLI 人形机器人上的三个真实机器人任务中，HWAM 在评估基线中取得了最高成功率。在 Candy Picking 任务上，HWAM 的成功率为 70.6%，而 Fast-WAM 为 43.3%。",
       "authors": [
-        "Ruixiang Wang",
-        "Yongyi Su",
-        "Wenlve Zhou"
+        "Yan Yang",
+        "Jikun Rong",
+        "Minzhao Zhu"
       ],
       "authors_all": [
-        "Ruixiang Wang",
-        "Yongyi Su",
-        "Wenlve Zhou",
-        "Bo Yue",
-        "Hengyan Liu",
-        "Dekun Lu",
-        "Yuxin Tian",
-        "Yihan Fang",
-        "Zerui Wu",
-        "Xing Hu",
-        "Jietao Chen",
-        "Yong Guo",
-        "Ziyan He",
-        "Junbin Yuan",
-        "Guiliang Liu",
-        "Xiaofen Xing",
-        "Kui Jia"
+        "Yan Yang",
+        "Jikun Rong",
+        "Minzhao Zhu",
+        "Zheyi Zhao",
+        "Qirui Hu",
+        "Zihan Lan",
+        "Weixin Mao",
+        "Yinhao Li",
+        "Zhen Fu",
+        "Hua Chen"
       ],
       "primary_category": "cs.RO",
       "published": "2026-10-08",
       "channels": [
-        "manipulation"
+        "manipulation",
+        "loco-manip-wbc"
       ],
       "badges": [
         {
           "kind": "lab",
-          "label": "⭐ HKU"
+          "label": "⭐ Limx Dynamics"
         },
         {
           "kind": "fresh",
           "label": "⚡ 新鲜出炉"
         }
       ],
-      "cover_image": "assets/img/covers/arxiv-2610-12099.jpg",
+      "cover_image": "assets/img/covers/arxiv-2610-12026.jpg",
       "preview_pages": [
-        "assets/img/covers/arxiv-2610-12099-p2.jpg"
+        "assets/img/covers/arxiv-2610-12026-p2.jpg"
       ],
-      "arxiv_id": "2610.12099",
-      "abs_url": "http://arxiv.org/abs/2610.12099v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.12099v1",
+      "arxiv_id": "2610.12026",
+      "abs_url": "http://arxiv.org/abs/2610.12026v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.12026v1",
       "venue": "",
       "venue_announced": "",
       "score": 55,
       "judge": {
         "relevant": true,
         "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "3D原生世界动作模型，统一动作与场景动态，操作成功率SOTA，属world-model与manipulation交叉。",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "人形全身世界动作模型，联合状态-动作生成，真机验证，属loco-manip-wbc。",
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "The Chinese University of Hong Kong, Shenzhen",
-        "DexForce Technology Co., Ltd.",
-        "Foshan University",
-        "Sun Yat-sen University"
+        "LimX Dynamics",
+        "Southern University of Science and Technology"
       ],
       "method_tags": [
         "World Action Model",
-        "3D point trajectory",
-        "action-conditioned scene prediction"
+        "VLA",
+        "state-action generation"
       ],
-      "platform": [],
+      "platform": [
+        "LimX OLI"
+      ],
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
@@ -1124,6 +1206,79 @@
         "World Action Model",
         "Inverse Dynamics",
         "Feature Reconstruction"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-12299",
+      "source": "arxiv",
+      "title": "Multi-Agent Egocentric World Model with Fine-Grained Embodied Interaction",
+      "title_zh": "多智能体自我中心世界模型与细粒度具身交互",
+      "tldr_zh": "提出ME-World，实现多智能体细粒度交互的自我中心世界建模。",
+      "cover_zh": "多智能体也能共享世界？ME-World让细粒度交互不再难",
+      "abstract_zh": "自我中心世界模型根据智能体的动作预测第一人称观察，但大多数只关注单个智能体。真实的具身环境通常涉及多个智能体在共享环境中行动和交互。现有的多智能体世界模型依赖于粗粒度动作，如运动、相机控制或离散命令，导致细粒度具身交互未被充分探索。我们将多智能体自我中心世界建模定义为多个智能体通过细粒度动作在共享世界中交互的同步自我流生成。这需要跨视角动作一致性、共享环境一致性以及交互诱导状态更新的一致性传播。我们提出了多智能体自我中心世界模型（ME-World），它在共享令牌序列中联合去噪多个自我流，以所有智能体的目标视角姿态为条件，并利用共享环境记忆来支撑生成。我们在真实和合成多智能体数据上进行训练和评估，并引入了共享世界一致性指标，用于环境、更新和身份一致性。实验表明，ME-World在共享世界一致性、动作控制、身份保持和视频质量方面优于现有方法。",
+      "authors": [
+        "Dahyun Chung",
+        "Siyoon Jin",
+        "Hyunwook Choi"
+      ],
+      "authors_all": [
+        "Dahyun Chung",
+        "Siyoon Jin",
+        "Hyunwook Choi",
+        "Honggyu An",
+        "Junyoung Seo",
+        "Hyunsung Kim",
+        "Seung Wook Kim",
+        "Seungryong Kim"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-10-08",
+      "channels": [
+        "world-model",
+        "locomotion"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ KAIST"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-12299.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-12299-p2.jpg"
+      ],
+      "arxiv_id": "2610.12299",
+      "abs_url": "http://arxiv.org/abs/2610.12299v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.12299v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 55,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "多智能体自我中心世界模型，细粒度具身交互，属world-model方向，科研价值高。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "KAIST AI"
+      ],
+      "method_tags": [
+        "World Model",
+        "multi-agent egocentric world modeling",
+        "fine-grained embodied interaction"
       ],
       "platform": [],
       "sim_stack": [],
@@ -1373,6 +1528,168 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2610-12069",
+      "source": "arxiv",
+      "title": "LIVIN: Benchmarking Spatial and Embodied Intelligence in Digital Twins of Lived-In Homes",
+      "title_zh": "LIVIN：在有人居住的住宅数字孪生中基准测试空间与具身智能",
+      "tldr_zh": "LIVIN基准基于30个真实住宅数字孪生，评估空间与具身智能任务。",
+      "cover_zh": "真实家庭数字孪生｜LIVIN让机器人挑战有人居住的杂乱空间",
+      "abstract_zh": "真实的家庭模拟不仅需要捕捉多样化的环境，还需要捕捉影响机器人运动和交互的有人居住的物体布局和空间约束。现有资源往往在规模、真实世界对应性和交互就绪性之间权衡，导致在真实家庭实际布置的忠实、交互式复制品方面存在空白。为此，我们推出了LIVIN，一个基于30个多样化有人居住住宅的数字孪生的空间与具身智能基准。这些复制品保留了观察到的房间布局、家具配置和日常物品。为了构建它们，我们设计了一个人在回路的工作流程，包括实例识别、建筑重建以及物体生成与放置，每个阶段的中间结果都由人类对照源观察进行审查和修正。我们在LIVIN中评估了四项任务：3D检测、3D重建、导航和移动操作。我们的评估表明，当前方法仍然受到现实有人居住家庭中密集物体布置、遮挡、有限自由空间和受限交互区域的挑战。我们希望LIVIN能够帮助推进现实世界家庭中的具身AI，从空间理解到机器人交互，最终将具身智能带入日常家庭环境。",
+      "authors": [
+        "Peijun Xu",
+        "Chuansen Nie",
+        "Yiyang He"
+      ],
+      "authors_all": [
+        "Peijun Xu",
+        "Chuansen Nie",
+        "Yiyang He",
+        "Yinuo Bai",
+        "Jingyang Liu",
+        "Kuixiang Shao",
+        "Yuyang Jiao",
+        "Kuanhao Xia",
+        "Jiayi Zhu",
+        "Zitian Yang",
+        "Yanqi Zhang",
+        "Tianye Tan",
+        "Shuwei Di",
+        "Junyi Xu",
+        "Jingyi Yu",
+        "Jiayuan Gu"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-10-08",
+      "channels": [
+        "manipulation",
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ ShanghaiTech"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-12069.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-12069-p2.jpg"
+      ],
+      "arxiv_id": "2610.12069",
+      "abs_url": "http://arxiv.org/abs/2610.12069v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.12069v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 52,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "真实家居数字孪生基准，含loco-manipulation任务，对具身智能研究价值高。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "ShanghaiTech University",
+        "Deemos Technology"
+      ],
+      "method_tags": [
+        "loco-manipulation",
+        "navigation",
+        "3D reconstruction"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-12089",
+      "source": "arxiv",
+      "title": "ManiUnit: A Manipulation Skill Dataset and Benchmark for Long-Horizon Tasks",
+      "title_zh": "ManiUnit：面向长时程任务的操控技能数据集与基准",
+      "tldr_zh": "提出ManiUnit数据集与基准，评估长时程操控技能，揭示技能间差异与扰动影响。",
+      "cover_zh": "长时程任务总失败？ManiUnit用技能数据集让机器人成功率翻倍",
+      "abstract_zh": "长时程移动操控要求机器人根据单一自然语言指令，在多房间环境中导航并执行一系列操控技能。学习和评估这些技能面临三个挑战：在固定任务指令下，相似的观测可能导致技能选择模糊；即使前序技能成功，下一个技能继承的机器人状态也可能偏离其演示的起始状态，从而影响执行；任务级指标阻碍了技能特定的诊断，而早期失败会导致后续技能无法被测试。因此，我们提出了 ManiUnit，一个基于 50 个 BEHAVIOR-1K 活动构建的操控技能数据集与基准。其数据集包含 21 种技能类型、417 个子任务中的 137,899 个片段，基准包含 1,260 个测试实例。相应地，ManiUnit 为每个片段配以明确的子任务指令；测量对机器人起始基座位置或关节配置扰动的敏感性；并恢复中间模拟器状态并定义局部成功条件，使得每个技能无需执行前序阶段即可被评估。对代表性视觉-语言-动作（VLA）策略的评估表明，相似的总体得分可能掩盖了显著的技能间差异。测试的起始状态扰动也会降低执行效果：在完整基准上，关节扰动使成功率相对于演示起始状态降低约 56%。在两个长时程活动上，在 ManiUnit 片段上训练的技能策略实现了 78.7% 的局部操控成功率，而在完整演示上训练的任务策略为 49.3%。训练的技能进一步支持这些活动上的完整任务执行，通过规划器协调任务和技能策略，将全任务成功率从 4.0% 提升至 18.0%。",
+      "authors": [
+        "Guoting Wei",
+        "Dawei Yan",
+        "Xia Yuan"
+      ],
+      "authors_all": [
+        "Guoting Wei",
+        "Dawei Yan",
+        "Xia Yuan",
+        "Gengming Zhang",
+        "Yelin He",
+        "Guodong Du",
+        "Jiaquan Ye",
+        "Heng Zhang",
+        "Xinming Wei",
+        "Xianbiao Qi",
+        "Chunxia Zhao",
+        "Haokui Zhang",
+        "Rong Xiao"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-08",
+      "channels": [
+        "manipulation",
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ NWPU"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-12089.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-12089-p2.jpg"
+      ],
+      "arxiv_id": "2610.12089",
+      "abs_url": "http://arxiv.org/abs/2610.12089v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.12089v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 52,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "长时程移动操作技能数据集与基准，含VLA评估，对操作研究有高参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Nanjing University of Science and Technology",
+        "Northwestern Polytechnical University",
+        "Intellifusion"
+      ],
+      "method_tags": [
+        "VLA",
+        "long-horizon",
+        "manipulation skill"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2610-12333",
       "source": "arxiv",
       "title": "RiCo: Neural Simulation of Rigid-Body Interactions via Local Contact Reasoning",
@@ -1442,6 +1759,77 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-12349",
+      "source": "arxiv",
+      "title": "SplitJEPA: Learning Invariant and Variant Latent Worlds without Reconstruction",
+      "title_zh": "SplitJEPA：无需重建学习不变与变化的潜在世界",
+      "tldr_zh": "SplitJEPA无需重建即可学习潜在状态的不变与变化结构。",
+      "cover_zh": "不重建也能分解世界？SplitJEPA直接学不变与变化结构",
+      "abstract_zh": "理解一个动态世界需要的不仅仅是一个概括其观测的潜在状态：该状态还应被组织为在相关观测间保持共享的因子和它们之间变化的因子。例如，当相机移动或灯光变暗时，一个将立方体推向目标的机器人应采取相同的动作，因为场景中没有任何东西移动。现有的这种分解方法通常通过重建来获得，因此潜在变量必须首先解释整个观测世界，然后才能信任它们的组织。联合嵌入预测架构（JEPA）直接对潜在状态建模且从不重建，然而现有结果均无法恢复它们所学状态中的不变和变化部分。因此，如何在不付出重建代价的情况下学习潜在世界的不变-变化结构仍然是一个开放问题。为了弥补这一空白，我们提出了SplitJEPA，一种直接在表示空间中联合恢复潜在状态及其不变和变化组织的JEPA，无需任何重建。我们证明，在平稳高斯预测动力学和满秩变化条件下，SplitJEPA能够识别不变和变化子空间，直至独立的块状等距变换，且无需引入观测解码器。由于该保证不需要解码器，该结果将无重建潜在恢复扩展到不变-变化块识别。在合成非线性系统和机器人操作任务上的实验支持了理论结果，并展示了它们在鲁棒性和效率方面的实用价值。",
+      "authors": [
+        "Ruijin Hua",
+        "Zichuan Liu",
+        "Zhuokai Zhao"
+      ],
+      "authors_all": [
+        "Ruijin Hua",
+        "Zichuan Liu",
+        "Zhuokai Zhao",
+        "Yujia Zheng"
+      ],
+      "primary_category": "cs.LG",
+      "published": "2026-10-08",
+      "channels": [
+        "world-model",
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ CMU RI"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-12349.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-12349-p2.jpg"
+      ],
+      "arxiv_id": "2610.12349",
+      "abs_url": "http://arxiv.org/abs/2610.12349v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.12349v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 52,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "JEPA 世界模型新方法，无重建学习不变/变化子空间，理论+机器人操作实验，价值高。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "University of Illinois Urbana-Champaign",
+        "Carnegie Mellon University",
+        "University of Chicago"
+      ],
+      "method_tags": [
+        "JEPA",
+        "invariant-variant representation learning",
+        "representation learning"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -1528,6 +1916,110 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2610-12126",
+      "source": "arxiv",
+      "title": "SuperNav: An Agentic Navigation System for Any Task in Any Scene",
+      "title_zh": "SuperNav：面向任意场景中任意任务的智能体导航系统",
+      "tldr_zh": "SuperNav让预训练MLLM无需微调即可通用导航，在多种任务上超越基线。",
+      "cover_zh": "不微调MLLM也能通用导航？SuperNav让机器人自己找路！",
+      "abstract_zh": "通用服务机器人需要能在陌生环境中处理多样化人类请求的导航系统，兼具任务通用性和场景通用性。现有方法通过微调多模态大语言模型（MLLM）来预测导航动作，使其行为依赖于导航训练数据的覆盖范围，可能限制对新请求和新环境的泛化能力。我们的核心洞见是让MLLM专注于解释请求、理解场景和做出决策，同时保持其通用能力，并将运动执行委托给导航工具。为实现这一想法，我们提出了SuperNav，它为预训练的MLLM配备了一个专门的智能体框架，而无需对MLLM进行导航特定的微调。该框架通过导航技能、面向智能体的物理交互工具以及任务进度和上下文管理来支持这些决策。统一的视觉点接口通过允许模型直接在图像中指定目的地并根据执行反馈修正决策，将决策与运动连接起来。这些组件共同支持在不同任务需求和环境中持续导航。SuperNav在实例级、多物体和需求驱动任务上优于四个评估基线。在HM3D上的类别级评估以及在真实四足机器人上的部署进一步证明了其跨环境的适用性。项目页面：https://zju3dv.github.io/SuperNav/",
+      "authors": [
+        "Jinkai Zhang",
+        "Jingyi Xu",
+        "Yuanhong Yu"
+      ],
+      "authors_all": [
+        "Jinkai Zhang",
+        "Jingyi Xu",
+        "Yuanhong Yu",
+        "Jiarui Guo",
+        "Ruizhen Hu",
+        "Hujun Bao",
+        "Xiaowei Zhou",
+        "Sida Peng"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-08",
+      "channels": [
+        "locomotion",
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ ZJU"
+        },
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-12126.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-12126-p2.jpg"
+      ],
+      "arxiv_id": "2610.12126",
+      "abs_url": "http://arxiv.org/abs/2610.12126v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.12126v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 49,
+      "judge": {
+        "relevant": true,
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "MLLM智能体导航系统，真机四足部署，属具身导航与操作范畴，有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Zhejiang University",
+        "Shenzhen University",
+        "Causa Robotics"
+      ],
+      "method_tags": [
+        "MLLM agent",
+        "navigation skills",
+        "visual-point interface"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [
+        {
+          "embed_url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/overview/overview-960.mp4",
+          "kind": "mp4",
+          "source": "project_page",
+          "title": "SuperNav — An Agentic Navigation System",
+          "url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/overview/overview-960.mp4"
+        },
+        {
+          "embed_url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/overview/overview.mp4",
+          "kind": "mp4",
+          "source": "project_page",
+          "title": "SuperNav — An Agentic Navigation System",
+          "url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/overview/overview.mp4"
+        },
+        {
+          "embed_url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/gallery/real-find-printer-then-trashbin.mp4",
+          "kind": "mp4",
+          "source": "project_page",
+          "title": "SuperNav — An Agentic Navigation System",
+          "url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/gallery/real-find-printer-then-trashbin.mp4"
+        },
+        {
+          "embed_url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/gallery/real-go-to-basketball.mp4",
+          "kind": "mp4",
+          "source": "project_page",
+          "title": "SuperNav — An Agentic Navigation System",
+          "url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/gallery/real-go-to-basketball.mp4"
+        }
+      ],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2610-12386",
       "source": "arxiv",
       "title": "ARC: A Reasoning Recipe for Robot Foundation Models",
@@ -1608,78 +2100,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2610-12299",
-      "source": "arxiv",
-      "title": "Multi-Agent Egocentric World Model with Fine-Grained Embodied Interaction",
-      "title_zh": "多智能体自我中心世界模型与细粒度具身交互",
-      "tldr_zh": "提出ME-World，实现多智能体细粒度交互的自我中心世界建模。",
-      "cover_zh": "多智能体也能共享世界？ME-World让细粒度交互不再难",
-      "abstract_zh": "自我中心世界模型根据智能体的动作预测第一人称观察，但大多数只关注单个智能体。真实的具身环境通常涉及多个智能体在共享环境中行动和交互。现有的多智能体世界模型依赖于粗粒度动作，如运动、相机控制或离散命令，导致细粒度具身交互未被充分探索。我们将多智能体自我中心世界建模定义为多个智能体通过细粒度动作在共享世界中交互的同步自我流生成。这需要跨视角动作一致性、共享环境一致性以及交互诱导状态更新的一致性传播。我们提出了多智能体自我中心世界模型（ME-World），它在共享令牌序列中联合去噪多个自我流，以所有智能体的目标视角姿态为条件，并利用共享环境记忆来支撑生成。我们在真实和合成多智能体数据上进行训练和评估，并引入了共享世界一致性指标，用于环境、更新和身份一致性。实验表明，ME-World在共享世界一致性、动作控制、身份保持和视频质量方面优于现有方法。",
-      "authors": [
-        "Dahyun Chung",
-        "Siyoon Jin",
-        "Hyunwook Choi"
-      ],
-      "authors_all": [
-        "Dahyun Chung",
-        "Siyoon Jin",
-        "Hyunwook Choi",
-        "Honggyu An",
-        "Junyoung Seo",
-        "Hyunsung Kim",
-        "Seung Wook Kim",
-        "Seungryong Kim"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-10-08",
-      "channels": [
-        "world-model"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ KAIST"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2610-12299.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-12299-p2.jpg"
-      ],
-      "arxiv_id": "2610.12299",
-      "abs_url": "http://arxiv.org/abs/2610.12299v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.12299v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 47,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "多智能体自我中心世界模型，细粒度具身交互，属world-model方向，科研价值高。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "KAIST AI"
-      ],
-      "method_tags": [
-        "World Model",
-        "multi-agent egocentric world modeling",
-        "fine-grained embodied interaction"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2610-12407",
       "source": "arxiv",
       "title": "LeWAM: A JEPA World Action Model with Diffusion-Steering-Based MPC",
@@ -1737,335 +2157,6 @@
         "JEPA",
         "World Action Model",
         "MPC"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2610-12026",
-      "source": "arxiv",
-      "title": "Humanoid World Action Model With Joint State--Action Generation",
-      "title_zh": "人形世界动作模型：联合状态-动作生成",
-      "tldr_zh": "HWAM 联合生成动作与执行后状态，缩小人形机器人动作-执行差距。",
-      "cover_zh": "人形机器人动作总跑偏？HWAM 让参考动作和实际执行对齐了",
-      "abstract_zh": "人形机器人是实现通用操作的有前景的平台。近期，视觉-语言-动作（VLA）策略直接从多模态观测中学习动作，而世界动作模型（WAM）进一步引入未来视觉预测来改进动作生成。然而，在分层人形系统中，VLA 和 WAM 策略输出参考动作，这些动作随后通过全身控制、机器人动力学、平衡和接触来实现。这种分层结构造成了动作-执行差距：策略产生的参考动作可能与机器人实际实现的运动不同。若不对实际身体状态进行显式建模，未来视觉预测必须同时解释场景演变以及参考动作与执行运动之间的差异，这使得动作与其物理结果难以关联。我们提出了 HWAM，一种联合状态-动作生成的人形世界动作模型，它将机器人执行后的本体感受状态作为显式预测目标。通过联合生成参考动作及其实际身体状态，HWAM 将执行运动的监督直接融入动作学习。HWAM 通过三个互补的条件路径进行训练。策略路径仅以当前观测为条件，联合去噪状态-动作轨迹，匹配部署条件。前向动力学建模（FDM）以动作和执行后状态为条件预测未来视觉观测，而逆向动力学建模（IDM）从视觉转换中重建联合轨迹。这些路径共同连接了策略参考、实际身体运动和视觉结果。在 LimX OLI 人形机器人上的三个真实机器人任务中，HWAM 在评估基线中取得了最高成功率。在 Candy Picking 任务上，HWAM 的成功率为 70.6%，而 Fast-WAM 为 43.3%。",
-      "authors": [
-        "Yan Yang",
-        "Jikun Rong",
-        "Minzhao Zhu"
-      ],
-      "authors_all": [
-        "Yan Yang",
-        "Jikun Rong",
-        "Minzhao Zhu",
-        "Zheyi Zhao",
-        "Qirui Hu",
-        "Zihan Lan",
-        "Weixin Mao",
-        "Yinhao Li",
-        "Zhen Fu",
-        "Hua Chen"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-10-08",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ Limx Dynamics"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2610-12026.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-12026-p2.jpg"
-      ],
-      "arxiv_id": "2610.12026",
-      "abs_url": "http://arxiv.org/abs/2610.12026v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.12026v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 44,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "人形全身世界动作模型，联合状态-动作生成，真机验证，属loco-manip-wbc。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "LimX Dynamics",
-        "Southern University of Science and Technology"
-      ],
-      "method_tags": [
-        "World Action Model",
-        "VLA",
-        "state-action generation"
-      ],
-      "platform": [
-        "LimX OLI"
-      ],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2610-12089",
-      "source": "arxiv",
-      "title": "ManiUnit: A Manipulation Skill Dataset and Benchmark for Long-Horizon Tasks",
-      "title_zh": "ManiUnit：面向长时程任务的操控技能数据集与基准",
-      "tldr_zh": "提出ManiUnit数据集与基准，评估长时程操控技能，揭示技能间差异与扰动影响。",
-      "cover_zh": "长时程任务总失败？ManiUnit用技能数据集让机器人成功率翻倍",
-      "abstract_zh": "长时程移动操控要求机器人根据单一自然语言指令，在多房间环境中导航并执行一系列操控技能。学习和评估这些技能面临三个挑战：在固定任务指令下，相似的观测可能导致技能选择模糊；即使前序技能成功，下一个技能继承的机器人状态也可能偏离其演示的起始状态，从而影响执行；任务级指标阻碍了技能特定的诊断，而早期失败会导致后续技能无法被测试。因此，我们提出了 ManiUnit，一个基于 50 个 BEHAVIOR-1K 活动构建的操控技能数据集与基准。其数据集包含 21 种技能类型、417 个子任务中的 137,899 个片段，基准包含 1,260 个测试实例。相应地，ManiUnit 为每个片段配以明确的子任务指令；测量对机器人起始基座位置或关节配置扰动的敏感性；并恢复中间模拟器状态并定义局部成功条件，使得每个技能无需执行前序阶段即可被评估。对代表性视觉-语言-动作（VLA）策略的评估表明，相似的总体得分可能掩盖了显著的技能间差异。测试的起始状态扰动也会降低执行效果：在完整基准上，关节扰动使成功率相对于演示起始状态降低约 56%。在两个长时程活动上，在 ManiUnit 片段上训练的技能策略实现了 78.7% 的局部操控成功率，而在完整演示上训练的任务策略为 49.3%。训练的技能进一步支持这些活动上的完整任务执行，通过规划器协调任务和技能策略，将全任务成功率从 4.0% 提升至 18.0%。",
-      "authors": [
-        "Guoting Wei",
-        "Dawei Yan",
-        "Xia Yuan"
-      ],
-      "authors_all": [
-        "Guoting Wei",
-        "Dawei Yan",
-        "Xia Yuan",
-        "Gengming Zhang",
-        "Yelin He",
-        "Guodong Du",
-        "Jiaquan Ye",
-        "Heng Zhang",
-        "Xinming Wei",
-        "Xianbiao Qi",
-        "Chunxia Zhao",
-        "Haokui Zhang",
-        "Rong Xiao"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-10-08",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ NWPU"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2610-12089.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-12089-p2.jpg"
-      ],
-      "arxiv_id": "2610.12089",
-      "abs_url": "http://arxiv.org/abs/2610.12089v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.12089v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 44,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "长时程移动操作技能数据集与基准，含VLA评估，对操作研究有高参考价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Nanjing University of Science and Technology",
-        "Northwestern Polytechnical University",
-        "Intellifusion"
-      ],
-      "method_tags": [
-        "VLA",
-        "long-horizon",
-        "manipulation skill"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2610-12126",
-      "source": "arxiv",
-      "title": "SuperNav: An Agentic Navigation System for Any Task in Any Scene",
-      "title_zh": "SuperNav：面向任意场景中任意任务的智能体导航系统",
-      "tldr_zh": "SuperNav让预训练MLLM无需微调即可通用导航，在多种任务上超越基线。",
-      "cover_zh": "不微调MLLM也能通用导航？SuperNav让机器人自己找路！",
-      "abstract_zh": "通用服务机器人需要能在陌生环境中处理多样化人类请求的导航系统，兼具任务通用性和场景通用性。现有方法通过微调多模态大语言模型（MLLM）来预测导航动作，使其行为依赖于导航训练数据的覆盖范围，可能限制对新请求和新环境的泛化能力。我们的核心洞见是让MLLM专注于解释请求、理解场景和做出决策，同时保持其通用能力，并将运动执行委托给导航工具。为实现这一想法，我们提出了SuperNav，它为预训练的MLLM配备了一个专门的智能体框架，而无需对MLLM进行导航特定的微调。该框架通过导航技能、面向智能体的物理交互工具以及任务进度和上下文管理来支持这些决策。统一的视觉点接口通过允许模型直接在图像中指定目的地并根据执行反馈修正决策，将决策与运动连接起来。这些组件共同支持在不同任务需求和环境中持续导航。SuperNav在实例级、多物体和需求驱动任务上优于四个评估基线。在HM3D上的类别级评估以及在真实四足机器人上的部署进一步证明了其跨环境的适用性。项目页面：https://zju3dv.github.io/SuperNav/",
-      "authors": [
-        "Jinkai Zhang",
-        "Jingyi Xu",
-        "Yuanhong Yu"
-      ],
-      "authors_all": [
-        "Jinkai Zhang",
-        "Jingyi Xu",
-        "Yuanhong Yu",
-        "Jiarui Guo",
-        "Ruizhen Hu",
-        "Hujun Bao",
-        "Xiaowei Zhou",
-        "Sida Peng"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-10-08",
-      "channels": [
-        "locomotion"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ ZJU"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2610-12126.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-12126-p2.jpg"
-      ],
-      "arxiv_id": "2610.12126",
-      "abs_url": "http://arxiv.org/abs/2610.12126v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.12126v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 44,
-      "judge": {
-        "relevant": true,
-        "research_value": "medium",
-        "primary_channel": "manipulation",
-        "reason": "MLLM智能体导航系统，真机四足部署，属具身导航与操作范畴，有参考价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Zhejiang University",
-        "Shenzhen University",
-        "Causa Robotics"
-      ],
-      "method_tags": [
-        "MLLM agent",
-        "navigation skills",
-        "visual-point interface"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [
-        {
-          "kind": "mp4",
-          "url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/overview/overview-960.mp4",
-          "embed_url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/overview/overview-960.mp4",
-          "title": "SuperNav — An Agentic Navigation System",
-          "source": "project_page"
-        },
-        {
-          "kind": "mp4",
-          "url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/overview/overview.mp4",
-          "embed_url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/overview/overview.mp4",
-          "title": "SuperNav — An Agentic Navigation System",
-          "source": "project_page"
-        },
-        {
-          "kind": "mp4",
-          "url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/gallery/real-find-printer-then-trashbin.mp4",
-          "embed_url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/gallery/real-find-printer-then-trashbin.mp4",
-          "title": "SuperNav — An Agentic Navigation System",
-          "source": "project_page"
-        },
-        {
-          "kind": "mp4",
-          "url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/gallery/real-go-to-basketball.mp4",
-          "embed_url": "https://raw.githubusercontent.com/The0xKa1/SuperNav-assets/37b75f203b75ed2f750f837547d33f80cae9163f/assets/videos/gallery/real-go-to-basketball.mp4",
-          "title": "SuperNav — An Agentic Navigation System",
-          "source": "project_page"
-        }
-      ],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2610-12349",
-      "source": "arxiv",
-      "title": "SplitJEPA: Learning Invariant and Variant Latent Worlds without Reconstruction",
-      "title_zh": "SplitJEPA：无需重建学习不变与变化的潜在世界",
-      "tldr_zh": "SplitJEPA无需重建即可学习潜在状态的不变与变化结构。",
-      "cover_zh": "不重建也能分解世界？SplitJEPA直接学不变与变化结构",
-      "abstract_zh": "理解一个动态世界需要的不仅仅是一个概括其观测的潜在状态：该状态还应被组织为在相关观测间保持共享的因子和它们之间变化的因子。例如，当相机移动或灯光变暗时，一个将立方体推向目标的机器人应采取相同的动作，因为场景中没有任何东西移动。现有的这种分解方法通常通过重建来获得，因此潜在变量必须首先解释整个观测世界，然后才能信任它们的组织。联合嵌入预测架构（JEPA）直接对潜在状态建模且从不重建，然而现有结果均无法恢复它们所学状态中的不变和变化部分。因此，如何在不付出重建代价的情况下学习潜在世界的不变-变化结构仍然是一个开放问题。为了弥补这一空白，我们提出了SplitJEPA，一种直接在表示空间中联合恢复潜在状态及其不变和变化组织的JEPA，无需任何重建。我们证明，在平稳高斯预测动力学和满秩变化条件下，SplitJEPA能够识别不变和变化子空间，直至独立的块状等距变换，且无需引入观测解码器。由于该保证不需要解码器，该结果将无重建潜在恢复扩展到不变-变化块识别。在合成非线性系统和机器人操作任务上的实验支持了理论结果，并展示了它们在鲁棒性和效率方面的实用价值。",
-      "authors": [
-        "Ruijin Hua",
-        "Zichuan Liu",
-        "Zhuokai Zhao"
-      ],
-      "authors_all": [
-        "Ruijin Hua",
-        "Zichuan Liu",
-        "Zhuokai Zhao",
-        "Yujia Zheng"
-      ],
-      "primary_category": "cs.LG",
-      "published": "2026-10-08",
-      "channels": [
-        "world-model"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ CMU RI"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2610-12349.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-12349-p2.jpg"
-      ],
-      "arxiv_id": "2610.12349",
-      "abs_url": "http://arxiv.org/abs/2610.12349v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.12349v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 44,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "JEPA 世界模型新方法，无重建学习不变/变化子空间，理论+机器人操作实验，价值高。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "University of Illinois Urbana-Champaign",
-        "Carnegie Mellon University",
-        "University of Chicago"
-      ],
-      "method_tags": [
-        "JEPA",
-        "invariant-variant representation learning",
-        "representation learning"
       ],
       "platform": [],
       "sim_stack": [],
@@ -2316,87 +2407,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2610-12069",
-      "source": "arxiv",
-      "title": "LIVIN: Benchmarking Spatial and Embodied Intelligence in Digital Twins of Lived-In Homes",
-      "title_zh": "LIVIN：在有人居住的住宅数字孪生中基准测试空间与具身智能",
-      "tldr_zh": "LIVIN基准基于30个真实住宅数字孪生，评估空间与具身智能任务。",
-      "cover_zh": "真实家庭数字孪生｜LIVIN让机器人挑战有人居住的杂乱空间",
-      "abstract_zh": "真实的家庭模拟不仅需要捕捉多样化的环境，还需要捕捉影响机器人运动和交互的有人居住的物体布局和空间约束。现有资源往往在规模、真实世界对应性和交互就绪性之间权衡，导致在真实家庭实际布置的忠实、交互式复制品方面存在空白。为此，我们推出了LIVIN，一个基于30个多样化有人居住住宅的数字孪生的空间与具身智能基准。这些复制品保留了观察到的房间布局、家具配置和日常物品。为了构建它们，我们设计了一个人在回路的工作流程，包括实例识别、建筑重建以及物体生成与放置，每个阶段的中间结果都由人类对照源观察进行审查和修正。我们在LIVIN中评估了四项任务：3D检测、3D重建、导航和移动操作。我们的评估表明，当前方法仍然受到现实有人居住家庭中密集物体布置、遮挡、有限自由空间和受限交互区域的挑战。我们希望LIVIN能够帮助推进现实世界家庭中的具身AI，从空间理解到机器人交互，最终将具身智能带入日常家庭环境。",
-      "authors": [
-        "Peijun Xu",
-        "Chuansen Nie",
-        "Yiyang He"
-      ],
-      "authors_all": [
-        "Peijun Xu",
-        "Chuansen Nie",
-        "Yiyang He",
-        "Yinuo Bai",
-        "Jingyang Liu",
-        "Kuixiang Shao",
-        "Yuyang Jiao",
-        "Kuanhao Xia",
-        "Jiayi Zhu",
-        "Zitian Yang",
-        "Yanqi Zhang",
-        "Tianye Tan",
-        "Shuwei Di",
-        "Junyi Xu",
-        "Jingyi Yu",
-        "Jiayuan Gu"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-10-08",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ ShanghaiTech"
-        },
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2610-12069.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-12069-p2.jpg"
-      ],
-      "arxiv_id": "2610.12069",
-      "abs_url": "http://arxiv.org/abs/2610.12069v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.12069v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 41,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "真实家居数字孪生基准，含loco-manipulation任务，对具身智能研究价值高。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "ShanghaiTech University",
-        "Deemos Technology"
-      ],
-      "method_tags": [
-        "loco-manipulation",
-        "navigation",
-        "3D reconstruction"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2610-12113",
       "source": "arxiv",
       "title": "A Geometric Approach to Soft Actor-Critic with Zonotopes for Locomotion Learning",
@@ -2612,6 +2622,73 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2610-11952",
+      "source": "arxiv",
+      "title": "Tell Robot What Not to Do: A Negation Understanding Perspective",
+      "title_zh": "告诉机器人不要做什么：否定理解视角",
+      "tldr_zh": "NegaAlign框架让机器人仅通过图像-语言监督就能理解否定指令，显著提升任务成功率。",
+      "cover_zh": "机器人终于听懂“不要碰”！否定指令成功率飙升",
+      "abstract_zh": "指令跟随使机器人能够执行自然语言指定的多样化任务，是人机交互的一项基本能力。除了传达期望的结果，用户还需要指定不应做什么的约束。我们研究了如何使视觉-语言-动作模型（VLA）遵循否定指令，即机器人必须在完成任务目标的同时遵守明确的排除条件。为此，我们提出了NegaAlign，一个参数高效、即插即用的框架，仅通过图像-语言监督即可扩展预训练VLA以遵循否定指令。具体而言，我们在视觉-语言骨干网络的选定层中引入否定变换层，以重塑中间指令表示。同时，设计了一种教师引导的对齐机制来对齐与指令相关的视觉标记，从满足否定约束的指令中迁移与动作相关的定位信息。训练阶段使用现有演示构建的监督信号，仅更新插入的层，保持所有预训练参数冻结，包括动作生成器。我们进一步引入了NegaBench，一个涵盖五个领域10个场景的仿真基准，用于系统评估否定约束下的操作任务。在GR00T、$π_0$和$π_{0.5}$上的实验表明，否定指令跟随能力得到一致提升。NegaAlign仅有11.6M可训练参数，在NegaBench上将$π_{0.5}$的否定指令成功率从2.60%提升至88.45%，在真实世界任务中从12.4%提升至88.8%，同时保持了对肯定指令的性能。",
+      "authors": [
+        "Fazeng Li",
+        "Gan Sun",
+        "Hao Cheng"
+      ],
+      "authors_all": [
+        "Fazeng Li",
+        "Gan Sun",
+        "Hao Cheng",
+        "Weihong Ren",
+        "Yang Cong"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-08",
+      "channels": [
+        "manipulation",
+        "loco-manip-wbc"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-11952.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-11952-p2.jpg"
+      ],
+      "arxiv_id": "2610.11952",
+      "abs_url": "http://arxiv.org/abs/2610.11952v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.11952v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 30,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "manipulation",
+        "reason": "VLA否定指令理解，参数高效微调，含仿真基准与真机实验，对操作策略研究有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "South China University of Technology",
+        "Harbin Institute of Technology"
+      ],
+      "method_tags": [
+        "VLA",
+        "negated instruction following",
+        "parameter-efficient fine-tuning"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2610-12424",
       "source": "arxiv",
       "title": "RoboRSI: Stable, efficient, and reusable robot self-evolution in complex real-world environments",
@@ -2734,72 +2811,6 @@
       "platform": [
         "Unitree Go2"
       ],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2610-11952",
-      "source": "arxiv",
-      "title": "Tell Robot What Not to Do: A Negation Understanding Perspective",
-      "title_zh": "告诉机器人不要做什么：否定理解视角",
-      "tldr_zh": "NegaAlign框架让机器人仅通过图像-语言监督就能理解否定指令，显著提升任务成功率。",
-      "cover_zh": "机器人终于听懂“不要碰”！否定指令成功率飙升",
-      "abstract_zh": "指令跟随使机器人能够执行自然语言指定的多样化任务，是人机交互的一项基本能力。除了传达期望的结果，用户还需要指定不应做什么的约束。我们研究了如何使视觉-语言-动作模型（VLA）遵循否定指令，即机器人必须在完成任务目标的同时遵守明确的排除条件。为此，我们提出了NegaAlign，一个参数高效、即插即用的框架，仅通过图像-语言监督即可扩展预训练VLA以遵循否定指令。具体而言，我们在视觉-语言骨干网络的选定层中引入否定变换层，以重塑中间指令表示。同时，设计了一种教师引导的对齐机制来对齐与指令相关的视觉标记，从满足否定约束的指令中迁移与动作相关的定位信息。训练阶段使用现有演示构建的监督信号，仅更新插入的层，保持所有预训练参数冻结，包括动作生成器。我们进一步引入了NegaBench，一个涵盖五个领域10个场景的仿真基准，用于系统评估否定约束下的操作任务。在GR00T、$π_0$和$π_{0.5}$上的实验表明，否定指令跟随能力得到一致提升。NegaAlign仅有11.6M可训练参数，在NegaBench上将$π_{0.5}$的否定指令成功率从2.60%提升至88.45%，在真实世界任务中从12.4%提升至88.8%，同时保持了对肯定指令的性能。",
-      "authors": [
-        "Fazeng Li",
-        "Gan Sun",
-        "Hao Cheng"
-      ],
-      "authors_all": [
-        "Fazeng Li",
-        "Gan Sun",
-        "Hao Cheng",
-        "Weihong Ren",
-        "Yang Cong"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-10-08",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2610-11952.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-11952-p2.jpg"
-      ],
-      "arxiv_id": "2610.11952",
-      "abs_url": "http://arxiv.org/abs/2610.11952v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.11952v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 22,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "manipulation",
-        "reason": "VLA否定指令理解，参数高效微调，含仿真基准与真机实验，对操作策略研究有参考价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "South China University of Technology",
-        "Harbin Institute of Technology"
-      ],
-      "method_tags": [
-        "VLA",
-        "negated instruction following",
-        "parameter-efficient fine-tuning"
-      ],
-      "platform": [],
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",

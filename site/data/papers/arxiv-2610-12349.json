@@ -41,7 +41,8 @@
     "assets/img/covers/arxiv-2610-12349-p2.jpg"
   ],
   "channels": [
-    "world-model"
+    "world-model",
+    "manipulation"
   ],
   "badges": [
     {
@@ -56,7 +57,7 @@
   "related_links": [],
   "page_count": 23,
   "source_tags": [],
-  "score": 44,
+  "score": 52,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -67,8 +68,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 6,
-      "hint": "频道关键词命中 2 个（jepa、joint embedding predictive）"
+      "points": 9,
+      "hint": "频道关键词命中 3 个（jepa、joint embedding predictive、manipulation）"
     },
     {
       "id": "freshness",
@@ -81,6 +82,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 23 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -107,5 +114,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/理论\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"SplitJEPA: Learning Invariant and Variant Latent Worlds without Reconstruction\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12349v1\n---\n>[!abstract] 一句话总结：提出 SplitJEPA：在表征空间内直接联合恢复隐状态及其不变子空间与变化子空间的划分，完全不做任何重构、也不需要观测解码器，并给出可辨识性证明。\n\n\n# 一、动机\n\n> 现有方法要得到隐状态的「不变/变化」分解几乎都依赖重构，隐变量必须先能重建整个观测世界；而 JEPA 类方法虽不重构、直接建模隐状态，却没有任何结果能恢复其隐状态中的不变与变化结构——如何在无重构代价下学到这种结构仍是开放问题。\n\n\n# 二、方法\n\n> 提出 SplitJEPA：在表征空间内直接联合恢复隐状态及其不变子空间与变化子空间的划分，完全不做任何重构、也不需要观测解码器，并给出可辨识性证明。\n\n\n# 三、核心实验结果\n\n> 在平稳高斯预测动力学与满秩变化条件下，作者证明 SplitJEPA 能将不变子空间与变化子空间识别到各自独立的块状等距变换（block-wise isometry）之内，且证明过程无需引入观测解码器，从而把「无重构隐状态恢复」拓展到「不变-变化分块的识别」。合成非线性系统与机器人操作任务上的实验定性地支持了理论结果，并显示该分解在鲁棒性与效率上具有实用价值（摘要未给出具体量化指标，需查阅正文）。\n\n\n# 四、对我的启发\n\n> 主要局限在于理论保证依赖较理想的假设（平稳高斯预测动力学、满秩变化条件），且实证部分只给出趋势性结论、缺少摘要级数值；启发是：面向机器人操作等场景，把「哪些因素应保持不变（如相机抖动、光照变化）哪些应随时间变化」显式结构化到隐空间，可能为策略的视角/光照鲁棒性与样本效率提供一条无需重构的通用思路，与具身智能的表征学习课题直接相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/理论\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"SplitJEPA: Learning Invariant and Variant Latent Worlds without Reconstruction\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12349v1\n---\n>[!abstract] 一句话总结：SplitJEPA 在表示空间中直接联合学习潜状态及其不变/变化子空间组织，无需任何重建；在平稳高斯预测动态与满秩变化条件下，证明可辨识到独立块等距意义下的不变与变化子空间。\n\n\n# 一、动机\n\n> 现有解耦不变与变化因素的方法多依赖重建，迫使潜变量先解释整个观测世界；JEPA 虽直接建模潜状态且不重建，但尚无工作恢复其学到的潜状态中的不变与变化部分。\n\n\n# 二、方法\n\n> SplitJEPA 在表示空间中直接联合学习潜状态及其不变/变化子空间组织，无需任何重建；在平稳高斯预测动态与满秩变化条件下，证明可辨识到独立块等距意义下的不变与变化子空间。\n\n\n# 三、核心实验结果\n\n> 理论证明：在平稳高斯预测动力学与满秩变化条件下，SplitJEPA 无需观测解码器即可将潜状态的不变与变化子空间辨识到独立分块等距；在合成非线性系统和机器人操作任务上验证理论，并展示在鲁棒性与效率方面的实用价值（摘要未提供具体数值指标）。\n\n\n# 四、对我的启发\n\n> 局限：理论依赖平稳高斯预测动态和满秩变化假设；摘要未报告定量实验指标与真实机器人验证规模。启发：无需重建即可学习不变/变化解耦表征，有望提升机器人在光照、视角变化下的策略鲁棒性与样本效率。\n"
 }

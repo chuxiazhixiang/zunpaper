@@ -77,7 +77,8 @@
     "assets/img/covers/arxiv-2610-12089-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [
     {
@@ -92,7 +93,7 @@
   "related_links": [],
   "page_count": 27,
   "source_tags": [],
-  "score": 44,
+  "score": 52,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -103,8 +104,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 6,
-      "hint": "频道关键词命中 2 个（vision-language-action、manipulation）"
+      "points": 9,
+      "hint": "频道关键词命中 3 个（vision-language-action、manipulation、mobile manipulation）"
     },
     {
       "id": "freshness",
@@ -117,6 +118,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 27 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -143,5 +150,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/数据\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"ManiUnit: A Manipulation Skill Dataset and Benchmark for Long-Horizon Tasks\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12089v1\n---\n>[!abstract] 一句话总结：作者基于 50 个 BEHAVIOR-1K 活动构建了 ManiUnit 操作技能数据集与基准：数据集包含 21 种技能类型、417 个子任务、共 137,899 个片段，基准含 1,260 个测试实例；每个片段配有显式子任务指令，并可测量对机器人起始基座位置/关节构型的扰动敏感性，同时恢复中间仿真状态并定义局部成功条件，使每个技能无需执行前序阶段即可独立评估。\n\n\n# 一、动机\n\n> 长时程移动操作中，固定任务指令下相似的观测使技能选择歧义、前序技能成功后的机器人状态偏离示范起始状态、以及任务级指标难以定位具体技能失败并导致后续技能无法被测试，现有数据集与基准无法支撑细粒度的技能级学习与诊断。\n\n\n# 二、方法\n\n> 作者基于 50 个 BEHAVIOR-1K 活动构建了 ManiUnit 操作技能数据集与基准：数据集包含 21 种技能类型、417 个子任务、共 137,899 个片段，基准含 1,260 个测试实例；每个片段配有显式子任务指令，并可测量对机器人起始基座位置/关节构型的扰动敏感性，同时恢复中间仿真状态并定义局部成功条件，使每个技能无需执行前序阶段即可独立评估。\n\n\n# 三、核心实验结果\n\n> 1) 代表性 VLA 策略在相似的总体分数下掩盖了显著的逐技能差异；2) 起始状态扰动会降低执行效果，在全基准上关节扰动使成功率相对示范起始状态下降约 56%；3) 在两个长时程活动上，用 ManiUnit 片段训练的技能策略达到 78.7% 的局部操作成功率，而用完整示范训练的任务策略仅 49.3%；4) 通过规划器协调任务策略与技能策略，可将完整任务成功率从 4.0% 提升到 18.0%。\n\n\n# 四、对我的启发\n\n> 局限在于完整任务执行仅在两个长时程活动上验证，且协调后的全任务成功率仍只有 18.0%，说明长时程组合与跨技能状态衔接仍是瓶颈；对具身智能/机器人操作课题有直接参考价值，尤其是技能级数据组织、局部成功判据与起始状态鲁棒性评估的设计思路。\n"
+  "note": "---\ntags:\n  - 论文/数据\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"ManiUnit: A Manipulation Skill Dataset and Benchmark for Long-Horizon Tasks\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12089v1\n---\n>[!abstract] 一句话总结：基于 BEHAVIOR-1K 的 50 个活动构建 ManiUnit 技能数据集与基准：数据集含 21 类技能、417 个子任务共 137,899 个片段，基准含 1,260 个测试实例；每个片段配显式子任务指令，并额外度量对机器人起始底盘位置/关节构型扰动的敏感性，同时恢复中间仿真状态并定义局部成功条件，使各技能无需执行前序阶段即可独立评测。\n\n\n# 一、动机\n\n> 长时程移动操作中，固定任务指令下相似观测使技能选择歧义、前序技能成功但继承的机器人状态偏离演示起始状态、以及任务级指标掩盖技能级诊断且早期失败使后续技能无法被评测，这三点阻碍了技能的学习与评估。\n\n\n# 二、方法\n\n> 基于 BEHAVIOR-1K 的 50 个活动构建 ManiUnit 技能数据集与基准：数据集含 21 类技能、417 个子任务共 137,899 个片段，基准含 1,260 个测试实例；每个片段配显式子任务指令，并额外度量对机器人起始底盘位置/关节构型扰动的敏感性，同时恢复中间仿真状态并定义局部成功条件，使各技能无需执行前序阶段即可独立评测。\n\n\n# 三、核心实验结果\n\n> 代表性 VLA 策略的相似聚合分数掩盖了显著的逐技能差异；在完整基准上，关节起始状态扰动使成功率相对演示起始状态下降约 56%；在两个长时程活动上，用 ManiUnit 片段训练的技能策略取得 78.7% 局部操作成功率，而用完整演示训练的任务策略仅 49.3%；通过 planner 协调任务与技能策略，可将全任务成功率从 4.0% 提升至 18.0%。\n\n\n# 四、对我的启发\n\n> 该工作揭示了两点启发：聚合指标会掩盖技能级差异，技能粒度的数据与局部成功判据对诊断和训练均更有效；局限在于评测仍在仿真环境、技能策略依赖 planner 协调，且全任务成功率仅 18.0%，与实用部署仍有较大差距。\n"
 }
