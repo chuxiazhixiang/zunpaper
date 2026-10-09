@@ -95,5 +95,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Accelerating Visual Policy Learning with Sampling-Based Model Predictive Control\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.20575v1\n---\n>[!abstract] 一句话总结：提出 Sampling-Guided Policy Search（SGPS），将基于采样的模型预测控制（MPC）与一阶策略优化交替耦合：先用行为克隆从采样动作初始化策略，再在扰动初始状态与随机动力学下交替进行采样式精修与短时域 FoPG 更新，并采用将渲染排除在计算图之外的解耦 FoPG 形式，从而可直接从深度观测学习而无需状态-策略教师。\n\n\n# 一、动机\n\n> 视觉策略学习（尤其是涉及接触的运动与操作任务）计算与显存开销巨大；一阶策略梯度虽借助可微仿真降低训练成本，但局部优化容易收敛到非预期的接触模式。\n\n\n# 二、方法\n\n> 提出 Sampling-Guided Policy Search（SGPS），将基于采样的模型预测控制（MPC）与一阶策略优化交替耦合：先用行为克隆从采样动作初始化策略，再在扰动初始状态与随机动力学下交替进行采样式精修与短时域 FoPG 更新，并采用将渲染排除在计算图之外的解耦 FoPG 形式，从而可直接从深度观测学习而无需状态-策略教师。\n\n\n# 三、核心实验结果\n\n> 在单张 GPU 上为仿真 Unitree Go2 与 G1 学会了运动、越障、推箱子和双臂搬运等策略；实验表明采样精修在初始化与单纯跟踪之外还能进一步提升策略学习效果；蒸馏后的策略零样本迁移到真实 Go2，仅用机载深度即可自主小跑、爬行、跨越栏架并在这些行为间切换。\n\n\n# 四、对我的启发\n\n> 摘要中未给出量化指标（成功率、训练时间/显存的具体数字），且真实机器人验证主要集中在 Go2 运动类任务上，操作与 G1 双手机型仍停留在仿真；其「采样精修 + 短时域一阶梯度」的交替框架对接触丰富的具身策略训练有参考价值，也可与可微渲染/世界模型结合以扩展到更通用的视觉操作任务。\n"
 }

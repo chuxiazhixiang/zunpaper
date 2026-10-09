@@ -1,0 +1,101 @@
+{
+  "id": "arxiv-2610-12123",
+  "source": "arxiv",
+  "title": "PIER: An Evidence-Gated Execution Interface for Robotic Manipulation",
+  "title_zh": "PIER：面向机器人操作的证据门控执行接口",
+  "abstract": "Generating a plausible robot action does not establish that current observations justify its execution. Motivated by exploratory observations of high-confidence visual outputs under severe occlusion, we present PIER, an execution-authorization interface that separates evidence checks, decision provenance, and stage-scoped re-observation from hardware control. The deterministic gate evaluates declared visual and tactile inputs, while its caller maintains a budget of at most one re-observation per stage. We evaluate the implementation using 1,600 threshold-grid cases and 1,200 paired synthetic traces spanning score noise, missing tactile inputs, stale observations, and falsely reassuring scores. The finite grid yields zero declared invariant violations, and a matched Boolean baseline reproduces all non-recovery decisions. Under synthetic score noise, re-observation reduces valid-state denials from 57/120 to 18/120 while increasing invalid-state proceeds from 5/120 to 7/120. Stale and falsely reassuring inputs expose limitations that threshold checks alone cannot resolve. Exploratory visual, tactile, and robot setup records provide context but do not establish physical task performance. These results characterize an inspectable authorization interface and its input-contract limitations, without claiming superiority over equivalent rule logic, calibrated tactile accuracy, or certified physical safety.",
+  "abstract_zh": "生成一个看似合理的机器人动作，并不能证明当前观测足以支持其执行。受严重遮挡下高置信度视觉输出的探索性观察启发，我们提出 PIER，一种执行授权接口，将证据检查、决策溯源和阶段范围的重新观察与硬件控制分离。确定性门控评估声明的视觉和触觉输入，而其调用者每个阶段最多维持一次重新观察的预算。我们使用 1600 个阈值网格案例和 1200 个配对合成轨迹评估该实现，涵盖分数噪声、缺失触觉输入、陈旧观测和虚假安慰性分数。有限网格产生零个声明的违反不变式，匹配的布尔基线重现所有非恢复决策。在合成分数噪声下，重新观察将有效状态拒绝从 57/120 减少到 18/120，同时将无效状态继续从 5/120 增加到 7/120。陈旧和虚假安慰性输入暴露了仅靠阈值检查无法解决的局限性。探索性视觉、触觉和机器人设置记录提供了背景，但未建立物理任务性能。这些结果描述了一个可检查的授权接口及其输入契约限制，并未声称优于等效规则逻辑、校准触觉准确性或认证的物理安全性。",
+  "tldr_zh": "PIER 通过证据门控和有限重观察授权机器人动作，揭示阈值检查的局限。",
+  "cover_zh": "机器人动作别乱执行｜这个接口让证据先说话",
+  "authors": [
+    {
+      "name": "Zoe Li",
+      "affiliation": ""
+    },
+    {
+      "name": "Anze Wang",
+      "affiliation": ""
+    },
+    {
+      "name": "Zhongyu Chen",
+      "affiliation": ""
+    },
+    {
+      "name": "Jingran Hu",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-10-08",
+  "updated": "2026-10-08",
+  "arxiv_id": "2610.12123",
+  "pdf_url": "https://arxiv.org/pdf/2610.12123v1",
+  "abs_url": "http://arxiv.org/abs/2610.12123v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-12123.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-12123-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（manipulation）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "机器人操作执行授权接口，含证据门控与再观测机制，属manipulation范畴，有算法设计参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University of Washington",
+    "Independent Researcher",
+    "ZJU-UIUC Institute"
+  ],
+  "method_tags": [
+    "execution authorization",
+    "evidence-gated",
+    "re-observation"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/系统\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"PIER: An Evidence-Gated Execution Interface for Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12123v1\n---\n>[!abstract] 一句话总结：提出 PIER——一种证据门控的执行授权接口，把证据检查、决策溯源与阶段作用域重观测从硬件控制中分离出来：确定性的门只评估被声明的视觉与触觉输入，其调用方在每个阶段最多保留一次重观测预算。\n\n\n# 一、动机\n\n> 生成一个看似合理的机器人动作，并不等于当前观测足以支持其执行：在高置信度视觉输出却处于严重遮挡的探索性观察下，作者发现缺乏对「证据是否支持执行」的显式授权环节，因此需要一个可检查的执行授权接口。\n\n\n# 二、方法\n\n> 提出 PIER——一种证据门控的执行授权接口，把证据检查、决策溯源与阶段作用域重观测从硬件控制中分离出来：确定性的门只评估被声明的视觉与触觉输入，其调用方在每个阶段最多保留一次重观测预算。\n\n\n# 三、核心实验结果\n\n> 在 1,600 个阈值网格用例与 1,200 条配对合成轨迹（覆盖分数噪声、触觉输入缺失、观测陈旧、虚假安抚分数）上评估：有限网格下声明的不变量违反为 0，匹配的布尔基线可复现全部非恢复决策；在合成分数噪声下，重观测把有效状态被拒从 57/120 降到 18/120，同时把无效状态放行从 5/120 升到 7/120；陈旧与虚假安抚输入暴露了仅靠阈值检查无法解决的局限。\n\n\n# 四、对我的启发\n\n> 该工作只刻画了一个可审查的授权接口及其输入契约边界，并未证明物理任务性能，也不声称优于等价规则逻辑、标定后的触觉精度或认证的物理安全；对具身操作而言，其价值在于把「证据—授权—重观测」与底层控制解耦的接口设计思路。\n"
+}

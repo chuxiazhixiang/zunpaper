@@ -1,0 +1,97 @@
+{
+  "id": "arxiv-2610-12404",
+  "source": "arxiv",
+  "title": "A Physics-Informed Collision Learning Framework for Collaborative Robot Motion Generation",
+  "title_zh": "面向协作机器人运动生成的物理信息碰撞学习框架",
+  "abstract": "Close-proximity multi-arm manipulation requires collision models that are both geometrically accurate and differentiable enough for real-time optimization. Classical geometry checkers provide reliable distances but are difficult to use inside gradient-based model predictive control, while conservative proxy models can restrict tightly coupled motion. We present PI-UDF, a physics-informed unified differentiable framework for body-to-body collision distance prediction between articulated robots. PI-UDF combines analytical forward kinematics with learnable link-geometry embeddings and a shared residual network to predict pairwise inter-arm distances directly from robot configurations. To improve safety-critical fidelity, we combine quota-driven boundary mining with an asymmetric boundary-crossing penalty that emphasizes false-safe sign errors near the collision boundary. The learned distance field is integrated into nonlinear MPC as a differentiable inter-arm clearance term. We validate the framework on a real dual-Franka platform through high-speed close-proximity 14-DoF dual-arm swapping, sustained single-arm dynamic evasion, and dynamic-evasion planning configurations with frozen, predicted, and target-switching treatments of the moving arm. Hardware experiments and offline Drake/FCL replay show that PI-UDF provides a differentiable inter-arm clearance estimate suitable for closed-loop collision-aware collaborative robot motion generation.",
+  "abstract_zh": "近距离多臂操作需要既几何精确又足够可微的碰撞模型，以支持实时优化。经典几何检查器能提供可靠的距离，但难以用于基于梯度的模型预测控制，而保守的代理模型可能限制紧耦合运动。我们提出 PI-UDF，一种物理信息统一可微框架，用于预测关节机器人之间的体对体碰撞距离。PI-UDF 将解析正运动学与可学习的连杆几何嵌入以及共享残差网络相结合，直接从机器人构型预测臂间成对距离。为了提高安全关键保真度，我们将配额驱动的边界挖掘与不对称的边界穿越惩罚相结合，强调碰撞边界附近的假安全符号错误。学习到的距离场作为可微的臂间间隙项集成到非线性 MPC 中。我们在真实的双 Franka 平台上通过高速近距离 14 自由度双臂交换、持续单臂动态规避以及动态规避规划配置（对移动臂采用冻结、预测和目标切换处理）验证了该框架。硬件实验和离线 Drake/FCL 回放表明，PI-UDF 提供了适合闭环碰撞感知协作机器人运动生成的可微臂间间隙估计。",
+  "tldr_zh": "提出物理信息可微框架 PI-UDF，预测机器人臂间碰撞距离并集成到 MPC 中。",
+  "cover_zh": "机器人避障还能可微？这个框架让双机械臂高速换位不撞车",
+  "authors": [
+    {
+      "name": "Chen Cai",
+      "affiliation": ""
+    },
+    {
+      "name": "Steven Liu",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "eess.SY"
+  ],
+  "published": "2026-10-08",
+  "updated": "2026-10-08",
+  "arxiv_id": "2610.12404",
+  "pdf_url": "https://arxiv.org/pdf/2610.12404v1",
+  "abs_url": "http://arxiv.org/abs/2610.12404v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-12404.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-12404-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 12,
+  "source_tags": [],
+  "score": 19,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 6,
+      "hint": "频道关键词命中 2 个（manipulation、dual-arm）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 12 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "双Franka平台的可微分碰撞学习框架，用于双臂运动生成，属manipulation方向，有算法创新。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University of Kaiserslautern Landau"
+  ],
+  "method_tags": [
+    "MPC",
+    "collision learning",
+    "differentiable collision detection"
+  ],
+  "platform": [
+    "Franka"
+  ],
+  "sim_stack": [
+    "Drake",
+    "FCL"
+  ],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"A Physics-Informed Collision Learning Framework for Collaborative Robot Motion Generation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12404v1\n---\n>[!abstract] 一句话总结：提出物理信息统一可微框架 PI-UDF：用解析正运动学、可学习连杆几何嵌入和共享残差网络预测臂间成对距离；训练上结合配额驱动边界挖掘与非对称越界惩罚，重点惩罚碰撞边界附近的假安全符号错误，并将学习到的距离场接入非线性 MPC 的可微臂间间隙项。\n\n\n# 一、动机\n\n> 近距离多臂操作需要既几何准确又可微的碰撞模型；传统几何检测难以嵌入梯度型模型预测控制，而保守代理模型会限制紧耦合运动。PI-UDF 旨在直接由关节构型预测臂间距离，并作为可微间隙项用于实时优化。\n\n\n# 二、方法\n\n> 提出物理信息统一可微框架 PI-UDF：用解析正运动学、可学习连杆几何嵌入和共享残差网络预测臂间成对距离；训练上结合配额驱动边界挖掘与非对称越界惩罚，重点惩罚碰撞边界附近的假安全符号错误，并将学习到的距离场接入非线性 MPC 的可微臂间间隙项。\n\n\n# 三、核心实验结果\n\n> 在真实 dual-Franka 平台上完成 14-DoF 双机械臂高速近距离交换、持续单臂动态规避，以及冻结/预测/目标切换三种移动臂处理下的动态规避规划。硬件实验与离线 Drake/FCL 回放表明 PI-UDF 能提供适用于闭环碰撞感知协作机器人运动生成的可微臂间间隙估计；摘要未给出距离误差、成功率或实时频率等定量指标。\n\n\n# 四、对我的启发\n\n> 与机器人/具身智能相关。启发：将可微 UDF 作为 MPC 中的安全间隙项，结合边界挖掘可缓解假安全错误；局限是摘要缺少精度、泛化到其他构型/本体、实时性与安全性保证的定量证据，跨本体迁移和更复杂场景仍需验证。\n"
+}
