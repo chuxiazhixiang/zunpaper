@@ -69,7 +69,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -107,5 +107,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\nTitle: \"Tell Robot What Not to Do: A Negation Understanding Perspective\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.11952v1\n---\n>[!abstract] 一句话总结：提出 NegaAlign：一种参数高效、即插即用的框架，在预训练 VLA 的视觉-语言主干中插入 Negation Transformation Layers 重塑中间指令表征，并用教师引导的对齐机制对齐指令相关视觉 token，仅用图像-语言监督（无需动作标签）把满足否定约束的指令所蕴含的动作 grounding 迁移过来，训练时冻结全部预训练参数与动作生成器，只更新插入层。\n\n\n# 一、动机\n\n> 现有视觉-语言-动作模型（VLA）只能理解「要做什么」的肯定指令，无法遵循「不要做什么」的否定约束，而人类在真实交互中经常需要显式排除某些行为，这成为人机协作的一大缺口。\n\n\n# 二、方法\n\n> 提出 NegaAlign：一种参数高效、即插即用的框架，在预训练 VLA 的视觉-语言主干中插入 Negation Transformation Layers 重塑中间指令表征，并用教师引导的对齐机制对齐指令相关视觉 token，仅用图像-语言监督（无需动作标签）把满足否定约束的指令所蕴含的动作 grounding 迁移过来，训练时冻结全部预训练参数与动作生成器，只更新插入层。\n\n\n# 三、核心实验结果\n\n> 1) 仅 11.6M 可训练参数即可让 π0.5 在自建 NegaBench（5 个领域、10 个场景的仿真基准）上的否定指令成功率从 2.60% 提升到 88.45%；2) 真实世界任务上成功率从 12.4% 提升到 88.8%；3) 在 GR00T、π0、π0.5 三类 VLA 上均取得一致的否定指令跟随提升，同时保持原有肯定指令性能。\n\n\n# 四、对我的启发\n\n> 局限在于监督信号需由已有 demonstration 构造，覆盖范围受数据分布限制，且对齐效果依赖教师模型质量；启发是「冻结动作生成器 + 只改指令表征」的参数高效范式可低成本迁移到其他 VLA，并提示否定/约束理解应作为指令跟随的独立能力来评测与建设。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\nTitle: \"Tell Robot What Not to Do: A Negation Understanding Perspective\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.11952v1\n---\n>[!abstract] 一句话总结：提出 NegaAlign：一种参数高效、即插即用的框架，在预训练 VLA 的视觉-语言主干若干层中插入 Negation Transformation Layers 以重塑指令中间表示，并设计教师引导对齐机制，将满足否定约束的肯定式指令所携带的动作相关视觉 grounding 迁移到否定指令的视觉 token 上；仅用图像-语言监督训练，冻结全部预训练参数（含动作生成器），只更新约 11.6M 可训练参数。同时发布 NegaBench 仿真基准（5 个领域、10 类场景）用于系统评测否定约束下的操作。\n\n\n# 一、动机\n\n> 现有视觉-语言-动作模型（VLA）只能遵循肯定式指令，当用户以否定形式给出「不要做什么」的约束时（如「不要碰花瓶」），模型几乎无法在达成目标的同时遵守排除条件，而这类约束在真实人机交互中十分常见。\n\n\n# 二、方法\n\n> 提出 NegaAlign：一种参数高效、即插即用的框架，在预训练 VLA 的视觉-语言主干若干层中插入 Negation Transformation Layers 以重塑指令中间表示，并设计教师引导对齐机制，将满足否定约束的肯定式指令所携带的动作相关视觉 grounding 迁移到否定指令的视觉 token 上；仅用图像-语言监督训练，冻结全部预训练参数（含动作生成器），只更新约 11.6M 可训练参数。同时发布 NegaBench 仿真基准（5 个领域、10 类场景）用于系统评测否定约束下的操作。\n\n\n# 三、核心实验结果\n\n> 1) 在 NegaBench 上，NegaAlign 将 π0.5 的否定指令成功率从 2.60% 提升到 88.45%；在真实世界任务上从 12.4% 提升到 88.8%。2) 在 GR00T、π0、π0.5 三种 VLA 上均取得一致的否定指令遵循提升。3) 仅需 11.6M 可训练参数即可实现上述增益，且保持肯定指令上的原有性能不退化。\n\n\n# 四、对我的启发\n\n> 方法依赖从现有示范中构造监督信号，并要求存在「满足约束的肯定式」对应指令来做教师对齐，对无对应正例或复合/嵌套否定的场景可能受限；同时结论主要在仿真基准与少量真机任务上验证，跨本体与开放词汇的泛化性仍待考察。启发是：把「约束/否定」作为独立于目标达成的一类指令语义显式建模，并用免微调主干的对齐层注入，是提升具身指令遵循安全性的一条低成本路径。\n"
 }

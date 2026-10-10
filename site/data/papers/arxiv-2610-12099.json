@@ -127,7 +127,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "github_repo",
@@ -173,5 +173,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"UNITAS: A 3D-Native World Action Model for Embodied Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12099v1\n---\n>[!abstract] 一句话总结：提出 UNITAS，首个 3D-native 世界动作模型：在每次交互内把观测、动作与场景动态统一到同一个度量 3D 坐标系中，并用跨具身（机器人夹爪与人类手）的共享表示——以 3D 点轨迹表示动作流（action flow），以条件于该轨迹的场景点位移表示场景流（scene flow）；同时引入世界对齐的 3D 位置编码为视觉 token 提供几何锚定（有无深度输入均可），并用物理时间轨迹分词器把每条点轨迹编码为锚定在其当前 3D 位置的单个 token，从而同时支持直接动作执行与动作条件下的场景预测。\n\n\n# 一、动机\n\n> 现有世界动作模型（WAM）大多基于预训练视频生成器，用图像或视觉 latent 表示世界演化；但机器人交互发生在度量三维空间中，图像是视角相关的投影，其像素距离并不直接对应物理距离，导致动作与世界动态的耦合建模存在表示层面的错配。\n\n\n# 二、方法\n\n> 提出 UNITAS，首个 3D-native 世界动作模型：在每次交互内把观测、动作与场景动态统一到同一个度量 3D 坐标系中，并用跨具身（机器人夹爪与人类手）的共享表示——以 3D 点轨迹表示动作流（action flow），以条件于该轨迹的场景点位移表示场景流（scene flow）；同时引入世界对齐的 3D 位置编码为视觉 token 提供几何锚定（有无深度输入均可），并用物理时间轨迹分词器把每条点轨迹编码为锚定在其当前 3D 位置的单个 token，从而同时支持直接动作执行与动作条件下的场景预测。\n\n\n# 三、核心实验结果\n\n> 模型规模 1.7B，在 RoboTwin 上的动作条件场景预测取得对比方法中最优，位移误差相比 PointWorld 最多降低 49%；操作成功率上，LIBERO 达 99.8%，真实世界多任务平均 85%。\n\n\n# 四、对我的启发\n\n> 核心启发是用度量 3D 点轨迹而非像素/视觉 latent 作为动作与动态的统一接口，使跨具身（人手—机器人夹爪）迁移和动作—场景联合预测在同一表示下自然成立，这对具身策略的几何一致性与数据复用很有参考价值；局限在于依赖可靠的 3D 几何/轨迹表示与深度或标定信息，长时程与遮挡下的场景流精度、以及真实场景泛化仍需验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"UNITAS: A 3D-Native World Action Model for Embodied Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12099v1\n---\n>[!abstract] 一句话总结：UNITAS 是首个 3D-native 世界动作模型，在每次交互中把观测、动作和场景动态统一到共享的度量三维坐标系内：用 action flow 将人手与机器人夹爪表示为 3D 点轨迹，用 scene flow 描述以这些轨迹为条件的场景点位移，并通过世界对齐的 3D 位置嵌入（有无深度输入均可）和物理时间轨迹 tokenizer（每条点轨迹编码为一个锚定于当前 3D 位置的 token）实现跨机器人与人手形态的统一表征，同时支持直接动作执行与动作条件场景预测。\n\n\n# 一、动机\n\n> 现有世界动作模型（WAM）多基于预训练视频生成器，用图像或视觉隐变量表示世界演化；但机器人交互发生在度量三维空间中，图像是视角相关的投影，像素距离并不直接对应物理距离，导致动作与环境动态的表征与物理空间脱节。\n\n\n# 二、方法\n\n> UNITAS 是首个 3D-native 世界动作模型，在每次交互中把观测、动作和场景动态统一到共享的度量三维坐标系内：用 action flow 将人手与机器人夹爪表示为 3D 点轨迹，用 scene flow 描述以这些轨迹为条件的场景点位移，并通过世界对齐的 3D 位置嵌入（有无深度输入均可）和物理时间轨迹 tokenizer（每条点轨迹编码为一个锚定于当前 3D 位置的 token）实现跨机器人与人手形态的统一表征，同时支持直接动作执行与动作条件场景预测。\n\n\n# 三、核心实验结果\n\n> 1.7B 参数下，UNITAS 在 RoboTwin 的动作条件场景预测上取得最优，位移误差比 PointWorld 最高降低 49%；操作成功率方面在 LIBERO 上达 99.8%，真实世界任务平均达 85%。\n\n\n# 四、对我的启发\n\n> 该工作说明以度量 3D 点轨迹为核心的表征比图像/视觉隐空间更契合机器人操作的物理本质，并天然支持人手与多种机器人本体间的统一迁移；局限在于依赖可靠的 3D 点跟踪与深度/位姿估计，且当前参数量与场景规模仍有限，向开放世界长时序任务的扩展有待验证。\n"
 }

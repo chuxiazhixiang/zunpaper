@@ -95,7 +95,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -134,5 +134,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"MiniWAM: Learning Compact Future Targets for Efficient World-Action Modeling\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12194v1\n---\n>[!abstract] 一句话总结：提出 MiniWAM：先用 PRISM（逆时空建模）结合逆动力学监督与特征重建，从特权当前-未来转移中学习紧凑的预测性未来表征，冻结该编码器后让策略从当前观测联合预测紧凑未来目标与机器人动作。\n\n\n# 一、动机\n\n> 现有 World Action Model（WAM）通常在预训练视觉骨干的原生表征空间中预测未来状态，导致目标维度极高、训练开销巨大，限制了世界模型作为机器人策略协同训练目标的可扩展性。\n\n\n# 二、方法\n\n> 提出 MiniWAM：先用 PRISM（逆时空建模）结合逆动力学监督与特征重建，从特权当前-未来转移中学习紧凑的预测性未来表征，冻结该编码器后让策略从当前观测联合预测紧凑未来目标与机器人动作。\n\n\n# 三、核心实验结果\n\n> 相比原生未来特征预测，未来特征 token 数减少 65 倍，世界-动作训练提速最高 8 倍，并在 DINOv3 与 WAN2.1 VAE 两种特征上均稳定更优；仅 0.25B 参数即在 LIBERO、LIBERO-Plus、RoboTwin 2.0 仿真基准上与更大规模 WAM 相当；表征分析表明 PRISM 带来了超越单纯特征重建的行为结构。\n\n\n# 四、对我的启发\n\n> 表明有效世界-动作建模不必预测原生视觉未来，紧凑预测表征是更高效的目标；局限在于仅在仿真基准上验证、依赖特权当前-未来转移数据来训练 PRISM，尚缺真机与真实多任务泛化验证。对具身策略的协同训练目标与训练效率优化有直接启发。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"MiniWAM: Learning Compact Future Targets for Efficient World-Action Modeling\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12194v1\n---\n>[!abstract] 一句话总结：提出 MiniWAM，通过 PRISM（Predictive Representations via Inverse Spatiotemporal Modeling）学习紧凑的未来预测表征，融合逆动力学监督与特征重建以保留控制相关信息；冻结 PRISM 编码器后，从当前观测联合预测紧凑未来目标与机器人动作。\n\n\n# 一、动机\n\n> 现有 World Action Models（WAMs）通常在预训练视觉骨干的原生表征空间中预测未来状态，导致目标维度高、训练成本大，限制了世界-动作联合建模的效率与可扩展性。\n\n\n# 二、方法\n\n> 提出 MiniWAM，通过 PRISM（Predictive Representations via Inverse Spatiotemporal Modeling）学习紧凑的未来预测表征，融合逆动力学监督与特征重建以保留控制相关信息；冻结 PRISM 编码器后，从当前观测联合预测紧凑未来目标与机器人动作。\n\n\n# 三、核心实验结果\n\n> MiniWAM 相比原生未来特征预测减少 65× 的未来特征 token，并在 DINOv3 与 WAN2.1 VAE 特征上均持续更优；世界-动作训练最高获得 8× 加速；仅 0.25B 参数即可在 LIBERO、LIBERO-Plus 和 RoboTwin 2.0 仿真基准上与大得多的 WAM 竞争，且 PRISM 表征分析显示其贡献了超出单纯特征重建的行为结构。\n\n\n# 四、对我的启发\n\n> 结果表明有效世界-动作建模不必预测原生视觉未来，紧凑预测表征是更强且更高效的策略学习目标；当前验证主要在仿真基准，真实机器人泛化、跨具身迁移与长期任务稳定性仍值得进一步研究。\n"
 }

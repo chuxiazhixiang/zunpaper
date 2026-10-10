@@ -73,7 +73,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -105,5 +105,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"OuroWorld: Bringing Any 3D World Alive as Diverse, Endlessly Looping 3D Cinemagraphs\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12461v1\n---\n>[!abstract] 一句话总结：一个免掩码框架：用视觉语言模型推断合理动态并引导视频模型合成参考视频，再提升补全为多视角视频；提出 Inconsistency-Robust Periodic 4DGS，用傅里叶级数形变场从构造上保证无缝循环，并以锚定在参考视角的 Grounded Drift Field 吸收跨视角不一致性。\n\n\n# 一、动机\n\n> 现有 3D 世界模型虽能生成可探索的逼真场景，但场景被冻结在静态时刻、缺乏运动；而此前基于欧拉场的动态化方法只能处理流体式运动，无法建模一般形变、物体运动与光照变化。\n\n\n# 二、方法\n\n> 一个免掩码框架：用视觉语言模型推断合理动态并引导视频模型合成参考视频，再提升补全为多视角视频；提出 Inconsistency-Robust Periodic 4DGS，用傅里叶级数形变场从构造上保证无缝循环，并以锚定在参考视角的 Grounded Drift Field 吸收跨视角不一致性。\n\n\n# 三、核心实验结果\n\n> 在 39 个重建与生成场景上，OuroWorld 全面优于所有基线，在用户研究中赢得 70.8%–99.0% 的对比偏好；其无真值评估覆盖生动性、自然度、循环接缝一致性与场景质量；可同时捕捉一般形变、物体运动与光照变化，并支持任意视角下的无缝循环播放。\n\n\n# 四、对我的启发\n\n> 与课题不相关（该工作面向 3D 场景动态化与 3D cinemagraph 生成，不涉及机器人或具身智能）。可借鉴之处在于：用傅里叶级数参数化从结构上保证周期性约束、用锚定参考视角的漂移场吸收不完美监督带来的跨视角不一致，这一「先验建模 + 鲁棒吸收监督噪声」的思路对其他需从生成数据中学习的任务亦有启发。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Multimodal\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"OuroWorld: Bringing Any 3D World Alive as Diverse, Endlessly Looping 3D Cinemagraphs\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12461v1\n---\n>[!abstract] 一句话总结：OuroWorld 是一个免掩码框架：用视觉语言模型推断静态 3DGS 场景中合理的动态，引导视频模型合成参考视频，再将其提升补全为多视角视频；为从这些不完美监督中学习，提出 Inconsistency-Robust Periodic 4DGS——用傅里叶级数形变场从构造上保证循环无缝，并用锚定在参考视角的 Grounded Drift Field 吸收跨视角不一致。\n\n\n# 一、动机\n\n> 现有 3D 世界模型虽能生成可漫游的写实场景，但场景被冻结在静止时刻，缺乏动态；而已有的动态化方法多为欧拉式，只能模拟流体类运动，无法刻画一般形变、物体运动与光照变化。\n\n\n# 二、方法\n\n> OuroWorld 是一个免掩码框架：用视觉语言模型推断静态 3DGS 场景中合理的动态，引导视频模型合成参考视频，再将其提升补全为多视角视频；为从这些不完美监督中学习，提出 Inconsistency-Robust Periodic 4DGS——用傅里叶级数形变场从构造上保证循环无缝，并用锚定在参考视角的 Grounded Drift Field 吸收跨视角不一致。\n\n\n# 三、核心实验结果\n\n> 在 39 个重建与生成的场景上，OuroWorld 全面优于所有基线，在用户研究中赢得 70.8%–99.0% 的对比偏好；同时提出无需真值的评估体系，覆盖生动性、自然度、循环接缝一致性与场景质量四个维度。\n\n\n# 四、对我的启发\n\n> 局限在于动态先验依赖 VLM 与视频模型的生成质量，监督信号本身不完美，且评估以无真值指标和主观用户研究为主；其「从静态 3D 资产自动生成循环动态场景」的思路对具身智能的仿真环境与动态场景数据合成有参考价值，但论文本身不涉及机器人或具身任务。\n"
 }

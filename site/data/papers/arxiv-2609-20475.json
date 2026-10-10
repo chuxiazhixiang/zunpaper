@@ -100,5 +100,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/PointCloud\nTitle: \"SenseFuse: Label-Free Fusion of Image and Shape Encoders for Open-Vocabulary 3D Instance Segmentation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.20475v1\n---\n>[!abstract] 一句话总结：SenseFuse 是一种无需标签的融合方法：仅改造现有流水线的掩码标注阶段，利用 2D 图像编码器与 3D 形状编码器失败模式几乎不重叠的特性，从单个场景的无标注候选掩码中在毫秒级估计出一个无标签敏感度指标，用自适应机制选取场景级融合权重来平衡两类编码器。\n\n\n# 一、动机\n\n> 现有开放词汇 3D 实例分割在掩码标注阶段几乎只依赖 2D 图像特征或图像蒸馏表示，3D 形状信息被浪费，导致标签错误率偏高。\n\n\n# 二、方法\n\n> SenseFuse 是一种无需标签的融合方法：仅改造现有流水线的掩码标注阶段，利用 2D 图像编码器与 3D 形状编码器失败模式几乎不重叠的特性，从单个场景的无标注候选掩码中在毫秒级估计出一个无标签敏感度指标，用自适应机制选取场景级融合权重来平衡两类编码器。\n\n\n# 三、核心实验结果\n\n> 在 ScanNet200、Replica、ScanNet++ 上全部评测设置中标注精度均有提升；相比 oracle 权重可恢复 67–100%（中位数 93%）的增益；在 22 个报告的设置中有 21 个实例 AP 得到提升。\n\n\n# 四、对我的启发\n\n> 核心启发是「2D 与 3D 编码器错误互补、而两个 2D 编码器错误高度相关」，因此异质模态融合比同质集成更有价值；方法只需改标注阶段、无需训练与标注，易于插入现有流水线，但融合权重是场景级而非实例级，且依赖候选掩码质量。对具身智能/机器人场景理解直接相关。\n"
 }

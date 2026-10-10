@@ -83,7 +83,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -122,5 +122,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/CameraControl\n  - 状态/待读\nTitle: \"VersaCamVLA: Camera-Configurable VLA Policies for Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12451v1\n---\n>[!abstract] 一句话总结：VersaCamVLA 将相机集合表示与动作学习解耦：通过多信号目标视角预测和 Wrist-Augmented Pose Sampling（WAPS，利用腕部相机自然运动免费获取位姿多样性）学习统一的场景 token 接口，把任意数量、带位姿的 RGB 视图映射为固定长度的隐场景 token，部署时用轻量空间编码器作为额外视觉条件注入预训练 VLA，无需显式 3D 传感或新视角渲染。\n\n\n# 一、动机\n\n> 现有 VLA 策略在训练时固定相机配置（数量与位姿），一旦部署时相机数量或位姿发生变化性能就会显著退化，缺乏对相机配置的泛化能力。\n\n\n# 二、方法\n\n> VersaCamVLA 将相机集合表示与动作学习解耦：通过多信号目标视角预测和 Wrist-Augmented Pose Sampling（WAPS，利用腕部相机自然运动免费获取位姿多样性）学习统一的场景 token 接口，把任意数量、带位姿的 RGB 视图映射为固定长度的隐场景 token，部署时用轻量空间编码器作为额外视觉条件注入预训练 VLA，无需显式 3D 传感或新视角渲染。\n\n\n# 三、核心实验结果\n\n> 摘要声称在 RoboTwin、LIBERO 和真实机器人平台上一致优于已有 VLA 方法与直接多视角基线，并在不同相机数量与未见相机位姿下保持稳健性能；但摘要未给出具体数值指标（如成功率提升百分比），需查阅正文表格确认。\n\n\n# 四、对我的启发\n\n> 思路上的启发是把「视角集合」抽象为固定长度的场景 token，从而让相机配置成为可插拔条件而非模型架构的一部分；局限在于 WAPS 依赖腕部相机的自然运动提供位姿多样性，若平台无腕部相机或场景中运动幅度小，位姿覆盖可能不足，且缺乏显式几何约束时对极端新位姿的泛化上限仍有待验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"VersaCamVLA: Camera-Configurable VLA Policies for Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12451v1\n---\n>[!abstract] 一句话总结：提出 VersaCamVLA：用多信号目标视角预测和腕部增强位姿采样（WAPS，借助腕部相机自然运动获得免费位姿多样性）训练一个统一的场景 token 接口，把任意数量、任意位姿的 RGB 视图编码为定长隐场景 token，部署时仅用一个轻量空间编码器将其作为附加视觉条件注入预训练基础 VLA，无需显式 3D 传感或新视角渲染。\n\n\n# 一、动机\n\n> 现有 VLA 模型在训练时固定相机配置（数量与位姿），部署时一旦相机数量或视角发生变化性能就会急剧下降，而显式 3D 感知或新视角渲染又会带来额外硬件与计算开销。\n\n\n# 二、方法\n\n> 提出 VersaCamVLA：用多信号目标视角预测和腕部增强位姿采样（WAPS，借助腕部相机自然运动获得免费位姿多样性）训练一个统一的场景 token 接口，把任意数量、任意位姿的 RGB 视图编码为定长隐场景 token，部署时仅用一个轻量空间编码器将其作为附加视觉条件注入预训练基础 VLA，无需显式 3D 传感或新视角渲染。\n\n\n# 三、核心实验结果\n\n> 在 RoboTwin、LIBERO 以及真实机器人平台上，VersaCamVLA 一致优于已有 VLA 方法和直接多视角基线；在相机数量变化与未见相机位姿下仍保持稳健性能（摘要未给出具体提升数值，各基准上的量化指标需查阅正文）。\n\n\n# 四、对我的启发\n\n> 局限：摘要未披露具体数值与失败案例，且方法依赖腕部相机的自然运动来提供位姿多样性，无腕部相机或手腕运动极少的场景下效果可能受限；启发是将“相机配置”与“动作学习”解耦、用场景 token 作为可插拔视觉条件的思路，可迁移到需要适配可变传感器配置的具身策略中。\n"
 }

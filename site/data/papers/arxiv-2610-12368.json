@@ -80,7 +80,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -114,5 +114,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/CV\n  - Task/EmbodiedAI\n  - Task/VisualNavigation\n  - 状态/待读\nTitle: \"LiteNWM: Efficient Latent World Models for Onboard Visual Navigation in the Wild\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12368v1\n---\n>[!abstract] 一句话总结：LiteNWM 是一种隐空间导航世界模型：在隐空间共享多个候选轨迹的视觉编码，联合预测不同时间步长下动作条件化的未来表征，再用学习到的打分器基于这些预测选择最优轨迹，从而以极低开销实现未来感知规划。\n\n\n# 一、动机\n\n> 直接视觉导航策略虽能高效生成轨迹，却无法显式评估未来后果；而生成式导航世界模型通过视觉 rollout 提供前瞻能力，但多候选逐一渲染的代价过高，难以在机载设备上实时部署。\n\n\n# 二、方法\n\n> LiteNWM 是一种隐空间导航世界模型：在隐空间共享多个候选轨迹的视觉编码，联合预测不同时间步长下动作条件化的未来表征，再用学习到的打分器基于这些预测选择最优轨迹，从而以极低开销实现未来感知规划。\n\n\n# 三、核心实验结果\n\n> 在 RECON、SCAND、SACSoN 离线评测中，相比 NoMaD+NWM-XL 宏平均轨迹误差降低 17.56%，在 RTX 5090 上实现 128.00 倍端到端加速；同一评估器可从 NoMaD 迁移到 MBRA 而无需针对候选生成器重训练，使 MBRA 宏平均轨迹误差降低 16.2%；在未见过的室内外真实机器人实验中，导航成功率相对 NoMaD 从 43.3% 提升到 83.3%。\n\n\n# 四、对我的启发\n\n> 工作表明隐空间 rollout 足以支撑未来感知的候选打分，并可在真实机器人上闭环运行，但其有效性依赖候选提议器与离线数据的分布覆盖，隐空间预测相较像素级 rollout 丢失了部分视觉细节，跨场景泛化与更长期预测的可靠性仍待验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/CV\n  - Task/EmbodiedAI\n  - Task/VisualNavigation\n  - 状态/待读\nTitle: \"LiteNWM: Efficient Latent World Models for Onboard Visual Navigation in the Wild\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12368v1\n---\n>[!abstract] 一句话总结：LiteNWM 是一种潜在导航世界模型，在候选间共享视觉编码，联合预测多时间范围的动作条件未来表示，并用学习到的打分器选择轨迹。\n\n\n# 一、动机\n\n> 直接视觉导航策略虽高效但缺乏对未来后果的显式评估；生成式导航世界模型通过视觉 rollout 提供预见性，但评估多个候选轨迹的代价高昂。\n\n\n# 二、方法\n\n> LiteNWM 是一种潜在导航世界模型，在候选间共享视觉编码，联合预测多时间范围的动作条件未来表示，并用学习到的打分器选择轨迹。\n\n\n# 三、核心实验结果\n\n> 在 RECON、SCAND、SACSoN 离线评估中，相比 NoMaD+NWM-XL 宏平均轨迹误差降低 17.56%，在 RTX 5090 上实现 128.00 倍端到端加速；同一评估器从 NoMaD 迁移到 MBRA 无需重训练，使 MBRA 宏平均轨迹误差降低 16.2%；真实机器人未见室内外环境中导航成功率从 43.3% 提升至 83.3%。\n\n\n# 四、对我的启发\n\n> 局限：潜在世界模型可能仍受训练数据分布限制，真实世界复杂动态下的长期预测可靠性有待验证；启发：共享编码与多候选联合预测可大幅降低世界模型推理成本，为机上实时未来感知规划提供可行路径。\n"
 }

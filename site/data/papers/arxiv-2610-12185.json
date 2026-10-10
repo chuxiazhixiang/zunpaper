@@ -99,7 +99,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "github_repo",
@@ -145,5 +145,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"RESETTLE: Robotic Recovery through Disagreement-Triggered Retrieval and Efficient Corrective Control\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12185v1\n---\n>[!abstract] 一句话总结：RESETTLE 是一个模型无关的恢复框架，挂在冻结策略的动作执行接口上：当同一条件下独立采样的两个动作提案持续不一致时触发恢复，用适配的 V-JEPA 编码器检索同任务演示作为参考，将状态伺服先验与受保护的视觉残差结合，直接输出一次纠正动作（不做在线轨迹优化、不额外调用视觉-语言推理），随后把控制权交还基础策略。\n\n\n# 一、动机\n\n> 现有机器人操作恢复方法依赖重复的视觉-语言推理或在线迭代优化，计算开销大、延迟高，导致干预不及时，难以在执行错误刚出现时纠正偏差并恢复任务进度。\n\n\n# 二、方法\n\n> RESETTLE 是一个模型无关的恢复框架，挂在冻结策略的动作执行接口上：当同一条件下独立采样的两个动作提案持续不一致时触发恢复，用适配的 V-JEPA 编码器检索同任务演示作为参考，将状态伺服先验与受保护的视觉残差结合，直接输出一次纠正动作（不做在线轨迹优化、不额外调用视觉-语言推理），随后把控制权交还基础策略。\n\n\n# 三、核心实验结果\n\n> 在仿真中跨六种基础策略取得最高 8.70%（LIBERO-Plus）、6.28%（Meta-World）、6.83%（RoboCasa Tabletop）的绝对成功率提升，并在两个策略、四个真实任务上进一步提升；基于 QwenPI 的对比中，其监控+恢复计算延迟比 VoLoAgent 的监控+规划延迟低 74.04%–93.57%；同时把 Harness VLA 在 LIBERO-Pro Swap 上的成功率从 42% 提升到 50%，证明与高层智能体规划兼容。\n\n\n# 四、对我的启发\n\n> 主要局限在于触发条件依赖双动作提案的分歧，若错误提案彼此一致（如共享的偏差模式）可能无法及时触发，且恢复质量受限于检索到的同任务演示库覆盖度；启发是可以把「分歧即不确定」当作廉价、无需额外模型的故障信号，为 VLA/具身策略提供低延迟的运行时纠错与安全保障层，与具身智能和机器人操作课题高度相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"RESETTLE: Robotic Recovery through Disagreement-Triggered Retrieval and Efficient Corrective Control\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12185v1\n---\n>[!abstract] 一句话总结：RESETTLE 是一个模型无关的即插即用框架：当同一条件下独立采样的两个动作提案持续不一致时触发恢复，用适配的 V-JEPA 编码器检索同任务示教参考，结合状态伺服先验与带门控的视觉残差直接生成一个纠正动作，随后把控制权交还冻结的基座策略。\n\n\n# 一、动机\n\n> 现有机器人操作恢复方法依赖反复的视觉-语言推理或迭代在线优化，延迟高、干预不及时，难以在偏差刚出现时快速纠错。\n\n\n# 二、方法\n\n> RESETTLE 是一个模型无关的即插即用框架：当同一条件下独立采样的两个动作提案持续不一致时触发恢复，用适配的 V-JEPA 编码器检索同任务示教参考，结合状态伺服先验与带门控的视觉残差直接生成一个纠正动作，随后把控制权交还冻结的基座策略。\n\n\n# 三、核心实验结果\n\n> 在六种基座策略的仿真实验中，LIBERO-Plus、Meta-World、RoboCasa Tabletop 上的绝对成功率分别最高提升 8.70%、6.28%、6.83%，并在两个策略、四个真实任务上进一步提升；与 VoLoAgent 相比，其监控-恢复计算延迟低 74.04%–93.57%；在高层次智能体规划下将 Harness VLA 的 LIBERO-Pro Swap 成功率从 42% 提升到 50%。\n\n\n# 四、对我的启发\n\n> 优势在于无需在线轨迹优化或额外 VLM 推理即可低延迟纠错，且可与冻结策略和智能体规划器解耦组合；局限是恢复质量依赖同任务示教检索的覆盖度，且分歧触发机制假设多模态动作分布，对确定性或过度自信的错误策略可能失效。对具身智能中的鲁棒操作与恢复研究有直接启发。\n"
 }

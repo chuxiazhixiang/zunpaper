@@ -100,7 +100,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -140,5 +140,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Humanoid World Action Model With Joint State--Action Generation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12026v1\n---\n>[!abstract] 一句话总结：提出 HWAM——联合生成参考动作与执行后本体状态的 Humanoid World Action Model，把机器人的后执行本体感知状态作为显式预测目标，通过三条互补的条件路径训练：Policy 路径仅以当前观测为条件联合去噪状态—动作轨迹（对齐部署条件），Forward Dynamics Modeling 以动作与后执行状态为条件预测未来视觉观测，Inverse Dynamics Modeling 从视觉转移重建关节轨迹，从而把策略参考、真实身体运动与视觉结果连接起来。\n\n\n# 一、动机\n\n> 分层人形系统中，VLA/WAM 策略只输出参考动作，需经全身控制器、动力学与平衡接触才被真正执行，导致「动作—执行」鸿沟：参考动作与机器人实际完成的运动不一致，而未来视觉预测又必须同时解释场景演化与这一偏差，使动作难以与其物理结果对应。\n\n\n# 二、方法\n\n> 提出 HWAM——联合生成参考动作与执行后本体状态的 Humanoid World Action Model，把机器人的后执行本体感知状态作为显式预测目标，通过三条互补的条件路径训练：Policy 路径仅以当前观测为条件联合去噪状态—动作轨迹（对齐部署条件），Forward Dynamics Modeling 以动作与后执行状态为条件预测未来视觉观测，Inverse Dynamics Modeling 从视觉转移重建关节轨迹，从而把策略参考、真实身体运动与视觉结果连接起来。\n\n\n# 三、核心实验结果\n\n> 在 LimX OLI 人形真机的三个任务上取得所评估基线中最高的成功率；在 Candy Picking 任务上成功率达 70.6%，显著高于 Fast-WAM 的 43.3%（提升约 27 个百分点）。\n\n\n# 四、对我的启发\n\n> 核心启发是「把执行结果（本体状态）纳入生成与监督目标」可有效缓解分层控制带来的动作—执行不一致问题，这一思路可迁移到其他存在底层控制器的具身系统；局限在于实验仅在单一 LimX OLI 平台上验证三个任务，泛化到多形态、多控制器的能力以及状态监督的获取成本仍待考察。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Humanoid World Action Model With Joint State--Action Generation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12026v1\n---\n>[!abstract] 一句话总结：提出 HWAM（Humanoid World Action Model），把机器人执行后的本体感知状态作为显式预测目标，与参考动作联合生成，并通过三条互补条件路径训练：Policy 路径仅以当前观测为条件联合去噪状态—动作轨迹（匹配部署条件）、FDM 以动作与执行后状态为条件预测未来视觉观测、IDM 从视觉转移反推关节轨迹，从而把策略参考、真实执行运动与视觉结果连接起来。\n\n\n# 一、动机\n\n> 分层人形系统中，VLA/WAM 策略输出的只是参考动作，需经全身控制、动力学、平衡与接触后才能落地，形成「动作—执行鸿沟」：若不对机器人执行后的本体状态显式建模，未来视觉预测就必须同时解释场景演化与参考动作和执行动作之间的偏差，导致动作难以与其物理结果建立稳定关联。\n\n\n# 二、方法\n\n> 提出 HWAM（Humanoid World Action Model），把机器人执行后的本体感知状态作为显式预测目标，与参考动作联合生成，并通过三条互补条件路径训练：Policy 路径仅以当前观测为条件联合去噪状态—动作轨迹（匹配部署条件）、FDM 以动作与执行后状态为条件预测未来视觉观测、IDM 从视觉转移反推关节轨迹，从而把策略参考、真实执行运动与视觉结果连接起来。\n\n\n# 三、核心实验结果\n\n> 在 LimX OLI 人形真机三项任务上取得所评估基线中最高的成功率；其中 Candy Picking 任务成功率达 70.6%，相比 Fast-WAM 的 43.3% 提升约 27 个百分点。方法验证了联合生成「参考动作 + 执行后本体状态」这一监督形式对缩小动作—执行鸿沟的有效性。\n\n\n# 四、对我的启发\n\n> 局限在于实验规模较小（仅单一 LimX OLI 平台上三项真机任务），跨本体与跨硬件泛化性、以及状态—动作联合建模带来的推理开销尚未充分讨论；启发是：在分层控制的人形/具身系统中，将「执行后真实状态」而非仅参考动作作为预测与监督目标，是缓解策略—执行不一致、并把世界模型视觉预测与物理结果对齐的一个可复用思路。\n"
 }

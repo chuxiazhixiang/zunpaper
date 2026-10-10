@@ -94,7 +94,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -129,5 +129,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"RoboRSI: Stable, efficient, and reusable robot self-evolution in complex real-world environments\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12424v1\n---\n>[!abstract] 一句话总结：提出 RoboRSI 机器人自进化系统，核心是自顶向下技能精化（TSR）：将任务分解为复合、原子、基础三层技能，赋予各自职责范围与显式输入输出契约，把每次执行结果归因到对应分支并将修改限制在该分支内，再由 Manager、Planner、Engineer、Reviewer 四个角色协同完成规划、执行、诊断与验证后发布新技能，人类通过目标与纠正进行引导，稳定的技能序列被固化为可复用的复合技能。\n\n\n# 一、动机\n\n> 现有代码驱动的机器人智能体能根据执行反馈修复程序，但缺乏围绕任务结构来组织经验：无法把每次修复归因到真正负责的能力分支、缺少执行证据支撑、也没有在复用的验证环节，导致自我进化不稳定、经验难以沉淀复用。\n\n\n# 二、方法\n\n> 提出 RoboRSI 机器人自进化系统，核心是自顶向下技能精化（TSR）：将任务分解为复合、原子、基础三层技能，赋予各自职责范围与显式输入输出契约，把每次执行结果归因到对应分支并将修改限制在该分支内，再由 Manager、Planner、Engineer、Reviewer 四个角色协同完成规划、执行、诊断与验证后发布新技能，人类通过目标与纠正进行引导，稳定的技能序列被固化为可复用的复合技能。\n\n\n# 三、核心实验结果\n\n> 1) 在移动操作机器人上通过 104 轮迭代自主发展出多物体家庭清理能力；2) 在 LIBERO、LIBERO-PRO、LIBERO-Plus 和 RoboTwin 四个仿真基准上均取得最高成功率，超越最强基线 2.7 至 11.0 个百分点；3) 验证了经验按技能分支归因与验证发布带来的稳定性和可复用性提升。\n\n\n# 四、对我的启发\n\n> 局限在于定量结果主要来自仿真，真实世界仅在移动操作平台上做了单一家庭清理任务的 104 轮验证，且依赖人类提供目标与纠正、缺少与传统 RSI/自进化方法的更大规模对比；启发是「以任务结构组织经验 + 按分支归因修复 + 验证后发布」的范式可迁移到其他具身智能体的长期技能积累与跨任务复用。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"RoboRSI: Stable, efficient, and reusable robot self-evolution in complex real-world environments\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12424v1\n---\n>[!abstract] 一句话总结：RoboRSI 提出自顶向下技能精炼（Top-Down Skill Refinement, TSR），把任务分解为复合技能、原子技能和基础技能三层，为每层设定明确职责边界与输入—输出契约，将执行结果归因到对应分支并只在该分支内做修订；再由 Manager、Planner、Engineer、Reviewer 四个角色分别负责规划、执行、诊断与新技能的验证发布，人类通过目标设定与纠错进行引导，稳定的技能序列进一步固化为可复用的复合技能。\n\n\n# 一、动机\n\n> 以代码为动作的机器人智能体虽能依据执行反馈修复程序，但难以把经验组织到任务结构上：无法将每次修复归因到真正负责的能力分支，缺少执行证据支撑，也缺乏复用前的验证机制，导致自我进化不稳定、不可复用。\n\n\n# 二、方法\n\n> RoboRSI 提出自顶向下技能精炼（Top-Down Skill Refinement, TSR），把任务分解为复合技能、原子技能和基础技能三层，为每层设定明确职责边界与输入—输出契约，将执行结果归因到对应分支并只在该分支内做修订；再由 Manager、Planner、Engineer、Reviewer 四个角色分别负责规划、执行、诊断与新技能的验证发布，人类通过目标设定与纠错进行引导，稳定的技能序列进一步固化为可复用的复合技能。\n\n\n# 三、核心实验结果\n\n> 在移动操作机器人上，RoboRSI 经过 104 轮迭代学会了多物体家庭清理任务；在仿真中于 LIBERO、LIBERO-PRO、LIBERO-Plus 和 RoboTwin 四个基准上均取得最高成功率，比最强基线高出 2.7 至 11.0 个百分点。\n\n\n# 四、对我的启发\n\n> 方法依赖人工通过目标和纠正来引导流程，自动化程度与人力成本仍是瓶颈；评测主要在仿真基准与单一真实移动操作平台（104 轮清理任务）上完成，向更多真实长时程任务、多机器人跨具身迁移的可扩展性有待验证。对具身智能中「经验可归因、可验证、可复用」的自我进化范式有直接借鉴意义。\n"
 }

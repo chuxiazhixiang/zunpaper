@@ -101,7 +101,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -137,5 +137,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"PathTime-VLA: Path-Time Decoupling for Factorized Post-Training of Vision-Language-Action Policies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.11771v1\n---\n>[!abstract] 一句话总结：PathTime-VLA 把经典运动规划的「路径-时间」参数化引入 VLA 动作表示：用进度索引的交互路径 X(s) 加一个正的时间区间剖面（单调时间律 t(s)），使动作 chunk 可在不改动几何预测目标的前提下选择速度倍率，并配套分阶段的训练流程——示范+DAgger 建立目标域先验、Speed-DQN 从机器人交互中学执行倍率、Path-AWR 用 rollout 结果精修扩散路径生成器，最终由路径条件的动作专家生成动作。\n\n\n# 一、动机\n\n> 现有 VLA 策略在固定时间间隔上预测动作，把机器人行走的几何路径与执行节奏耦合在一起，导致从遥操作数据（其时间信息受接口延迟和操作者习惯影响）中迁移时，有用的几何引导总是被不可靠的时序信息污染。\n\n\n# 二、方法\n\n> PathTime-VLA 把经典运动规划的「路径-时间」参数化引入 VLA 动作表示：用进度索引的交互路径 X(s) 加一个正的时间区间剖面（单调时间律 t(s)），使动作 chunk 可在不改动几何预测目标的前提下选择速度倍率，并配套分阶段的训练流程——示范+DAgger 建立目标域先验、Speed-DQN 从机器人交互中学执行倍率、Path-AWR 用 rollout 结果精修扩散路径生成器，最终由路径条件的动作专家生成动作。\n\n\n# 三、核心实验结果\n\n> 在三个任务上，完整方法达到 58/60 成功率，而固定 1× 速度下的 BC + DAgger 基线为 57/60；在成功试验上平均完成时间缩短约 39%–52%。\n\n\n# 四、对我的启发\n\n> 核心启发是「解耦几何与节奏」这一思路：把速度/时序从几何预测目标中剥离，用独立的执行策略（DQN）和偏好式优化（AWR）分别学习，可以复用遥操作中的几何信息而规避其噪声时序；局限在于时序剖面被限制为单调时间律，可能难以表达需要停顿、回退或非单调节奏的接触密集型操作，且需要额外在线交互来训练 Speed-DQN。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\nTitle: \"PathTime-VLA: Path-Time Decoupling for Factorized Post-Training of Vision-Language-Action Policies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.11771v1\n---\n>[!abstract] 一句话总结：把经典运动规划的「路径-时间」参数化引入 VLA 动作表示：用进度索引的交互路径 X(s) 加一个正向的区间时间剖面（单调时间律 t(s)）表示运动，控制器执行 X(s(t))，从而在不改变几何预测目标的前提下用时间剖面对同一路径做块级速度选择，并据此设计分阶段后训练流程——BC+DAgger 建立目标域先验、Speed-DQN 从机器人交互中学执行倍率、Path-AWR 用 rollout 结果精修扩散路径生成器，最终由路径条件化动作专家实现动作。\n\n\n# 一、动机\n\n> 现有 VLA 策略在固定时间间隔上预测动作，把机器人走的几何路径与执行节奏耦合在一起，导致从遥操作数据中学习时，有用的几何示范被界面延迟和操作者习惯带来的时间分布污染，难以解耦利用。\n\n\n# 二、方法\n\n> 把经典运动规划的「路径-时间」参数化引入 VLA 动作表示：用进度索引的交互路径 X(s) 加一个正向的区间时间剖面（单调时间律 t(s)）表示运动，控制器执行 X(s(t))，从而在不改变几何预测目标的前提下用时间剖面对同一路径做块级速度选择，并据此设计分阶段后训练流程——BC+DAgger 建立目标域先验、Speed-DQN 从机器人交互中学执行倍率、Path-AWR 用 rollout 结果精修扩散路径生成器，最终由路径条件化动作专家实现动作。\n\n\n# 三、核心实验结果\n\n> 在三个任务上，完整方法取得 58/60 成功率，对比仅用 BC + DAgger 且固定 1× 速度的 PathTime-VLA 的 57/60，成功率基本持平；同时成功试验的平均完成时间缩短约 39%–52%，说明主要收益在于执行节奏的加速而非成功率提升。\n\n\n# 四、对我的启发\n\n> 把「走哪条路」与「走多快」显式解耦是一个简洁且可迁移的思路，可缓解遥操作数据中时间噪声对几何学习的污染；局限在于增益主要体现在速度而非成功率（57/60→58/60），且需要额外采集交互 rollout 并训练 Speed-DQN/AWR，奖励与倍率空间的设定可能影响泛化，时间剖面的正向/单调约束在高动态或接触密集任务中是否仍成立值得验证。\n"
 }
