@@ -52,16 +52,12 @@
     {
       "kind": "lab",
       "label": "⭐ NTU"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 31,
   "source_tags": [],
-  "score": 41,
+  "score": 31,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -74,12 +70,6 @@
       "label": "关键词命中密集",
       "points": 3,
       "hint": "频道关键词命中 1 个（bimanual）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -111,5 +101,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Embodied Turing Machines: Stateful Code for Robot Recursive Self-Improvement\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12369v1\n---\n>[!abstract] 一句话总结：提出 Code-Only-as-Policy (COAP)：将具身世界视为「具身图灵机」，机器人与环境状态即纸带、策略即规则，用纯代码从相机图像和本体感受中测量并跟踪机器人、环境与任务状态，完全由代码做决策，测试时不需 VLM/VLA 在回路中，同一套代码跨 episode 复用、多任务共享一个代码库。\n\n\n# 一、动机\n\n> 现有机器人策略普遍把 VLA 或 VLM 放在控制回路中（如 Agent-as-Policy、Harness VLA 在运行时查询 VLM 做决策），导致在线推理慢、成本高、决策不可控且难以复用积累。\n\n\n# 二、方法\n\n> 提出 Code-Only-as-Policy (COAP)：将具身世界视为「具身图灵机」，机器人与环境状态即纸带、策略即规则，用纯代码从相机图像和本体感受中测量并跟踪机器人、环境与任务状态，完全由代码做决策，测试时不需 VLM/VLA 在回路中，同一套代码跨 episode 复用、多任务共享一个代码库。\n\n\n# 三、核心实验结果\n\n> 在 RoboDojo 的 42 个双臂任务上，所构建的代码库在测试时无模型参与的情况下达到 70.24% 成功率；作者论证 COAP 具备显式状态、可执行（可控、易恢复失败、在线快且便宜）、可扩展（新任务复用/继承/扩展共享库，能力可跨任务累积）三大优势，并适合作为递归自我改进（RSI）的载体——由编码智能体闭式循环开发代码库，每次修改都显式可控。\n\n\n# 四、对我的启发\n\n> COAP 的性能上界取决于状态表示的精确度与代码逻辑的鲁棒性，如何从图像稳健地估计状态、以及代码在长尾扰动下的泛化仍是瓶颈；由于代码跨 episode 复用，它也可作为 VLA 与 Agent Harness 的高效数据引擎。与具身智能/机器人操作课题直接相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Embodied Turing Machines: Stateful Code for Robot Recursive Self-Improvement\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12369v1\n---\n>[!abstract] 一句话总结：提出 Code-Only-as-Policy（COAP）：把具身世界视作图灵机，用代码从相机图像与本体感知中测量并跟踪机器人、环境、任务状态，所有决策均由代码给出，同一套代码跨 episode 复用、多任务共享同一库，回路中不含 VLM/VLA。\n\n\n# 一、动机\n\n> 现有机器人策略（VLA、Agent Harness 如 Agent-as-Policy、Harness VLA）始终把模型留在控制回路中，运行时需查询 VLM/VLA 做决策，导致状态不显式、推理慢且贵、跨任务能力难以累积。\n\n\n# 二、方法\n\n> 提出 Code-Only-as-Policy（COAP）：把具身世界视作图灵机，用代码从相机图像与本体感知中测量并跟踪机器人、环境、任务状态，所有决策均由代码给出，同一套代码跨 episode 复用、多任务共享同一库，回路中不含 VLM/VLA。\n\n\n# 三、核心实验结果\n\n> 在 RoboDojo 的 42 个双臂任务上，测试时无任何模型参与，共享代码库达到 70.24% 成功率；作者论证 COAP 具备显式状态、可控可复现的执行（快、便宜、易从失败恢复）与可扩展性（新任务复用/继承/扩展库）三大优势，可作为递归自我改进（RSI）的载体，并能充当 VLA 与 Agent Harness 的高效数据引擎。\n\n\n# 四、对我的启发\n\n> 方法上限取决于状态表示的准确性与代码逻辑的鲁棒性——纯代码策略对状态估计误差和未建模扰动较脆弱，缺乏 VLA 的泛化直觉；但「把状态显式写进代码、让编码智能体闭环迭代」这一范式对具身智能的可控自进化与数据生成有启发，值得关注其状态估计模块如何与学习式方法结合。\n"
 }

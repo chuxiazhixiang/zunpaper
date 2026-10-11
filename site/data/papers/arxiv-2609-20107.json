@@ -98,5 +98,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"AnyViewDex: View-Invariant Dexterous Manipulation from RGB Observations\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.20107v1\n---\n>[!abstract] 一句话总结：提出 AnyViewDex：非对称训练流水线，在多视角对比学习对齐的基础上加入特权 3D 几何监督（回归物体绝对 3D 坐标），把几何知识在仿真中编码进视觉表征，缓解全局池化对比嵌入的空间坍缩；部署时仅用未标定的单目 RGB 与本体感知做零样本控制。\n\n\n# 一、动机\n\n> 多指灵巧操作的视觉运动策略对相机视角变化高度敏感，现有实现视角不变性的方法依赖 RGB-D 或点云等显式 3D 模态，带来硬件依赖、标定需求与传感器噪声脆弱性。\n\n\n# 二、方法\n\n> 提出 AnyViewDex：非对称训练流水线，在多视角对比学习对齐的基础上加入特权 3D 几何监督（回归物体绝对 3D 坐标），把几何知识在仿真中编码进视觉表征，缓解全局池化对比嵌入的空间坍缩；部署时仅用未标定的单目 RGB 与本体感知做零样本控制。\n\n\n# 三、核心实验结果\n\n> 在 xArm7 + 16-DoF LEAP Hand 真机上，对 8 个未见物体、6 个未标定视角共 480 次试验（含全部消融条件共 2,400 次）达到 76.7% 抓取成功率；方法在强化学习与 student-teacher 蒸馏两种训练范式下均有效；表明几何锚定的单目策略可零样本迁移，无需测试时深度。\n\n\n# 四、对我的启发\n\n> 局限在于几何监督仅在仿真中可获得，依赖仿真到现实的几何一致性；启发是无需测试时 3D 传感器也能获得视角不变性，为低成本、免标定的灵巧操作部署提供思路，并提示对比表征易发生空间信息坍缩，可用辅助几何回归缓解。\n"
 }

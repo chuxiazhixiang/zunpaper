@@ -47,28 +47,17 @@
   "channels": [
     "world-model"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 34,
   "source_tags": [],
-  "score": 22,
+  "score": 12,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 9,
       "hint": "频道关键词命中 3 个（world model、world models、video world model）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -99,5 +88,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/CV\n  - Domain/Multimodal\n  - Task/VideoGen\n  - Task/I2V\n  - 状态/待读\nTitle: \"WorldGuide: Goal-Directed Video World Model for Procedural Task Execution\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12459v1\n---\n>[!abstract] 一句话总结：将程序性视频生成建模为视觉世界空间中的闭环任务执行，提出 WorldGuide：仅给初始图像与任务目标，Planner 依据视觉进展预测下一个原子动作或判定完成，Executor 生成对应视频片段并回馈给 Planner 闭环推进，二者在同一套 step 级演示上联合训练，并用分层视觉记忆以有界 token 开销维护长时程状态。\n\n\n# 一、动机\n\n> 现有视频世界模型多为开环生成，无法根据已生成的状态自适应调整后续动作；而已有的闭环系统又常依赖预训练执行器或间接验证，导致「决定动作」与「真正实现动作」之间存在鸿沟，长时程程序性任务尤其明显。\n\n\n# 二、方法\n\n> 将程序性视频生成建模为视觉世界空间中的闭环任务执行，提出 WorldGuide：仅给初始图像与任务目标，Planner 依据视觉进展预测下一个原子动作或判定完成，Executor 生成对应视频片段并回馈给 Planner 闭环推进，二者在同一套 step 级演示上联合训练，并用分层视觉记忆以有界 token 开销维护长时程状态。\n\n\n# 三、核心实验结果\n\n> 在自建的 WorldGuide-Bench（约 59K 带 step 标注视频、245 个任务、27 类程序性流程）上取得 33.33% 任务成功率，超过即使额外获得参考动作计划的 MiniMax-H3（29.90%）；在 VideoCraft-Bench 上仅用目标条件即达 47.69%，对比 MiniMax-H3 的 32.73%。\n\n\n# 四、对我的启发\n\n> 结论表明「规划与学习式执行耦合」对目标导向的程序性视频生成至关重要，但其闭环仍发生在像素/视频空间，成功判定依赖视觉验证而非物理反馈，缺少真实机器人实验；对具身智能的启发是把世界模型当作可闭环规划-执行的策略载体，可作为机器人长时程任务视觉世界模型的参考范式。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - 论文/训练\n  - Domain/CV\n  - Domain/Multimodal\n  - Task/VideoGen\n  - Task/I2V\n  - 状态/待读\nTitle: \"WorldGuide: Goal-Directed Video World Model for Procedural Task Execution\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12459v1\n---\n>[!abstract] 一句话总结：将过程性视频生成形式化为视觉世界空间中的闭环任务执行：给定初始图像与任务目标，WorldGuide 预测原子动作、生成对应视频片段，再依据生成结果选择下一步动作或终止；Planner 与 Executor 用同一套步骤级过程演示联合训练，并用分层视觉记忆以有界历史 token 成本维持长程状态。\n\n\n# 一、动机\n\n> 视频生成/世界模型能合成看似合理的视觉轨迹，但长程过程性任务要求生成随实际产出动态调整：开环生成无法适应执行结果，现有闭环系统又依赖预训练执行器或间接验证，导致「决定动作」与「成功实现动作」之间存在鸿沟。\n\n\n# 二、方法\n\n> 将过程性视频生成形式化为视觉世界空间中的闭环任务执行：给定初始图像与任务目标，WorldGuide 预测原子动作、生成对应视频片段，再依据生成结果选择下一步动作或终止；Planner 与 Executor 用同一套步骤级过程演示联合训练，并用分层视觉记忆以有界历史 token 成本维持长程状态。\n\n\n# 三、核心实验结果\n\n> 1) 在自建的 WorldGuide-Bench（约 59K 步骤级标注视频、245 个任务、27 类流程）上取得 33.33% Task Success，高于近期强视频模型 MiniMax-H3 的 29.90%，而后者还额外获得了参考动作计划；2) 在 VideoCraft-Bench 仅给目标的条件下达到 47.69%，对比 MiniMax-H3 的 32.73%。\n\n\n# 四、对我的启发\n\n> 表明把规划与可学习的执行耦合起来对目标导向的过程性视频生成至关重要；局限在于依赖昂贵的步骤级动作-视频标注、仅在视频世界空间验证而未接入真实机器人执行，与具身智能中的长程任务规划/世界模型课题相关但非机器人实机工作。\n"
 }

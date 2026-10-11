@@ -81,5 +81,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/PointCloud\n  - 状态/待读\nTitle: \"FlipToSee: A Probabilistic Stable Placement Prior for Active Visual Exploration via Regrasping\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.20078v1\n---\n>[!abstract] 一句话总结：提出 FlipToSee：从单视角点云学习概率化稳定放置先验，将放置参数化为 S^2 上的单位支撑法向以消除表示歧义，用 von Mises–Fisher 混合密度网络建模其多模态条件分布，再从混合分量中确定性提取紧凑候选集，并用候选对齐监督训练的辅助头进行鲁棒性重排序，最终与抓取和运动规划结合实现探索式 regrasping。\n\n\n# 一、动机\n\n> 主动视觉探索需要把未知的桌面静止物体重新定向到另一个稳定支撑面上，以暴露被遮挡的表面，而穷举式物理试错代价高昂；同时稳定放置预测本身是多模态的，传统 6-DoF 回归（含平移与平面内偏航）进一步引入表示歧义，使预测不稳定。\n\n\n# 二、方法\n\n> 提出 FlipToSee：从单视角点云学习概率化稳定放置先验，将放置参数化为 S^2 上的单位支撑法向以消除表示歧义，用 von Mises–Fisher 混合密度网络建模其多模态条件分布，再从混合分量中确定性提取紧凑候选集，并用候选对齐监督训练的辅助头进行鲁棒性重排序，最终与抓取和运动规划结合实现探索式 regrasping。\n\n\n# 三、核心实验结果\n\n> 仿真中同分布物体首次提案成功率 98.4%，分布外形状 95.3%，零样本迁移到家庭 YCB 物体达 90.0%；并在真实机器人上将该放置先验与抓取、运动规划集成，成功演示了探索式重抓取。\n\n\n# 四、对我的启发\n\n> 局限在于仅依赖单视角点云且针对桌面场景，候选集质量受分割与点云噪声影响；启发是将多模态位姿预测从 6-DoF 回归改为流形（S^2）上的方向分布建模，并用「生成候选 + 鲁棒性重排序」解耦模式多样性与物理可行性，可迁移到抓取、放置等具身操作任务。\n"
 }

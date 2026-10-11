@@ -59,16 +59,12 @@
     {
       "kind": "lab",
       "label": "⭐ Yang Gao (清华)"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 30,
   "source_tags": [],
-  "score": 61,
+  "score": 51,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -87,12 +83,6 @@
       "label": "关键词命中密集",
       "points": 3,
       "hint": "频道关键词命中 1 个（vision-language-action）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -125,5 +115,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\nTitle: \"Residual Modeling Closes the Regression and Generative Policy Gap in Robot Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12231v1\n---\n>[!abstract] 一句话总结：提出异方差 Student-t 动作回归策略（HT-Policies）：显式学习与输入状态相关的残差尺度并对重尾建模，从而抑制大残差样本对梯度的过度影响，单次前馈即可预测一整个动作 chunk，并可直接复用预训练的 flow-matching 策略网络作为 backbone。\n\n\n# 一、动机\n\n> 扩散/流匹配策略（Flow-Policies）通常优于 MSE 直接回归策略，这一差距常被归因于演示的多模态性，但缺乏对训练目标本身（残差分布如何影响优化）的统计建模解释。\n\n\n# 二、方法\n\n> 提出异方差 Student-t 动作回归策略（HT-Policies）：显式学习与输入状态相关的残差尺度并对重尾建模，从而抑制大残差样本对梯度的过度影响，单次前馈即可预测一整个动作 chunk，并可直接复用预训练的 flow-matching 策略网络作为 backbone。\n\n\n# 三、核心实验结果\n\n> 在四个仿真基准与真机评测中，HT-Policies 的成功率与生成式策略基线相当，且在从零训练和基于预训练 VLA / world-action 模型微调两种设定下均成立，同时训练与推理速度更快（单次前馈、无需迭代采样）；摘要未给出具体成功率数字。\n\n\n# 四、对我的启发\n\n> 局限：结论依赖对残差分布的假设（Student-t、异方差尺度），需调自由度等超参，在极端多模态或长时序任务上的适用性待验证；启发：从残差统计角度诊断策略优化目标是一个通用视角，可推广到其他模仿学习目标，且能复用扩散/流策略网络作为 backbone，迁移成本低。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\nTitle: \"Residual Modeling Closes the Regression and Generative Policy Gap in Robot Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12231v1\n---\n>[!abstract] 一句话总结：从残差建模视角重新审视该差距，提出异方差 Student-t 动作回归策略（HT-Policies）：学习输入依赖的残差尺度并抑制重尾影响，单次前馈即可预测动作块，并可直接复用预训练的流匹配策略网络作为骨干。\n\n\n# 一、动机\n\n> 在机器人模仿学习中，扩散/流匹配等生成式策略（Flow-Policies）通常优于用 MSE 直接回归动作的策略（MSE-Policies），这一差距常被笼统归因于示范数据的多模态性，但缺乏对训练动力学层面的统计解释。\n\n\n# 二、方法\n\n> 从残差建模视角重新审视该差距，提出异方差 Student-t 动作回归策略（HT-Policies）：学习输入依赖的残差尺度并抑制重尾影响，单次前馈即可预测动作块，并可直接复用预训练的流匹配策略网络作为骨干。\n\n\n# 三、核心实验结果\n\n> 在四个仿真基准和真机评测中，HT-Policies 的成功率与生成式策略基线相当（包括从零训练、以及从预训练 VLA / world-action 模型微调两种设定），同时训练和推理速度更快；分析还发现真实机器人示范数据的残差尺度存在显著状态依赖变化且呈重尾分布，MSE 会把更大梯度幅值分配给大残差样本从而损害优化。\n\n\n# 四、对我的启发\n\n> 论文揭示了生成式目标相对直接回归的实际优势来源，并给出一种高效替代方案，但其收益依赖于动作残差的重尾/异方差假设，在残差接近高斯或数据规模极大时优势可能减弱；对做高效机器人策略部署、减少扩散采样开销的工作有参考价值。\n"
 }

@@ -72,28 +72,17 @@
   "channels": [
     "manipulation"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 16,
+  "score": 6,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 3,
       "hint": "频道关键词命中 1 个（manipulation）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -128,5 +117,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/VideoGen\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Reliability-Aware Future Conditioning for Temporally Robust Robot Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.11956v1\n---\n>[!abstract] 一句话总结：提出 Reliability-Aware Future Conditioning (RAFC)，将时间错位视为控制问题而非生成问题：每一步估计收到的视频片段的可靠程度并选择更合适的邻近时间假设，两者都不匹配时回退到静态分支，且仅用任务奖励学习，无需错位标签或对齐监督；RAFC 建立在 Future-Experience Conditioning (FEC) 之上，FEC 通过任务 grounding、无机器人数字孪生 rollout 和无掩码视频扩散一次性构建片段。\n\n\n# 一、动机\n\n> 生成式未来视频作为机器人操作引导时，只有当其描绘的阶段与机器人当前所处阶段一致才有用；论文指出时间错位会把任务一致的生成未来变成主动有害的引导，导致成功率大幅下降。\n\n\n# 二、方法\n\n> 提出 Reliability-Aware Future Conditioning (RAFC)，将时间错位视为控制问题而非生成问题：每一步估计收到的视频片段的可靠程度并选择更合适的邻近时间假设，两者都不匹配时回退到静态分支，且仅用任务奖励学习，无需错位标签或对齐监督；RAFC 建立在 Future-Experience Conditioning (FEC) 之上，FEC 通过任务 grounding、无机器人数字孪生 rollout 和无掩码视频扩散一次性构建片段。\n\n\n# 三、核心实验结果\n\n> 在 CALVIN 上，五帧提前偏移几乎抹除生成未来的收益，成功率从 81.3% 降至 54.8%（无未来基线为 54.0%），强制时间偏移进一步降至 34.2%（比无未来策略低 19.8 个百分点）；RAFC 在故意非网格相位偏移和速率不匹配下显著提升成功率，候选集成解释了接近对齐时的大部分恢复，而学习到的可靠性在非网格偏移下比相同候选库的均匀平均再提升 7.0 个百分点；在 Franka 上面对无人施加的自然时间错配，总体成功率从 26.7% 提升到 56.7%。\n\n\n# 四、对我的启发\n\n> 该工作表明未来条件引导的鲁棒性关键在于时间可靠性控制而非更强生成，局限在于仍依赖视频扩散质量与候选假设库的设计，且需在更多任务与真实平台上验证泛化性。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Reliability-Aware Future Conditioning for Temporally Robust Robot Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.11956v1\n---\n>[!abstract] 一句话总结：提出 Reliability-Aware Future Conditioning（RAFC），在每一步估计对收到的视频片段的信任程度并选择附近最合适的时间假设（候选集成 + 学习到的可靠性权重），当两者都不匹配时回退到静态分支，且完全靠任务奖励端到端学习，不需要错位标签或对齐监督；RAFC 构建在 Future-Experience Conditioning（FEC）之上，后者用任务 grounding、无机器人数字孪生 rollout 和无掩码视频扩散一次性生成片段。\n\n\n# 一、动机\n\n> 现有「生成未来视频作为机器人操作引导」的方法默认生成片段与机器人当前所处阶段对齐，但作者证明时间错位会把原本任务一致的生成未来变成有害引导（CALVIN 上仅提前五帧就让成功率从 81.3% 掉到 54.8%，甚至低于不用未来的 54.0%），而此前工作把这一问题当作生成质量问题而非控制问题来处理。\n\n\n# 二、方法\n\n> 提出 Reliability-Aware Future Conditioning（RAFC），在每一步估计对收到的视频片段的信任程度并选择附近最合适的时间假设（候选集成 + 学习到的可靠性权重），当两者都不匹配时回退到静态分支，且完全靠任务奖励端到端学习，不需要错位标签或对齐监督；RAFC 构建在 Future-Experience Conditioning（FEC）之上，后者用任务 grounding、无机器人数字孪生 rollout 和无掩码视频扩散一次性生成片段。\n\n\n# 三、核心实验结果\n\n> 1) CALVIN 上五帧提前偏移使成功率从 81.3% 降至 54.8%，人为施加的时序偏移进一步降到 34.2%（比无未来策略低 19.8 个点），说明时序错位是主要瓶颈；2) 在非网格化相位偏移与速率失配下，候选集成贡献了大部分接近对齐时的恢复，而学习到的可靠性在相同候选库上比均匀平均再提升 7.0 个百分点；3) 在 Franka 真机上面对自然发生的（非人为施加的）时序失配，总体成功率从 26.7% 提升到 56.7%。\n\n\n# 四、对我的启发\n\n> 核心启发是把「生成未来」的时间对齐问题重新定义为控制/信任度估计问题，仅用任务奖励即可学习，避免了对齐标注这一昂贵监督；局限在于仍依赖数字孪生 rollout 与视频扩散生成片段，候选库规模、推理开销以及对孪生保真度的敏感性未充分讨论，且评估集中在 CALVIN 与单一 Franka 平台，跨具身与更长时域任务的泛化仍需验证。\n"
 }

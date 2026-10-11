@@ -69,16 +69,12 @@
     {
       "kind": "lab",
       "label": "⭐ Stanford"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 43,
   "source_tags": [],
-  "score": 49,
+  "score": 39,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -91,12 +87,6 @@
       "label": "关键词命中密集",
       "points": 6,
       "hint": "频道关键词命中 2 个（robot foundation model、cosmos）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -136,5 +126,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"ARC: A Reasoning Recipe for Robot Foundation Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12386v1\n---\n>[!abstract] 一句话总结：ARC 是一个三要素推理配方：一是让推理轨迹锚定在机器人下一动作上并解释其因果结构（为何该动作合适、应产生什么效果）；二是设计可扩展的自动标注流水线，从已有示教数据中自动生成这种轨迹（如仅用 DROID 构造出 ARC-Trace-DROID，无需采集新机器人数据）；三是针对不同架构（如 VLA 的 π0.5、WAM 的 Cosmos3-Nano-Policy）定制微调与推理策略，使预训练 RFM 学会利用这些轨迹进行控制。\n\n\n# 一、动机\n\n> 当前提升机器人基础模型（RFM）的主流做法依赖更大模型、更多示教数据和昂贵的规模化训练，成本极高且难以持续；论文试图证明存在一种高效互补的途径——只需设计好「推理配方」，就能显著提升现有 SOTA RFM 的零样本任务表现。\n\n\n# 二、方法\n\n> ARC 是一个三要素推理配方：一是让推理轨迹锚定在机器人下一动作上并解释其因果结构（为何该动作合适、应产生什么效果）；二是设计可扩展的自动标注流水线，从已有示教数据中自动生成这种轨迹（如仅用 DROID 构造出 ARC-Trace-DROID，无需采集新机器人数据）；三是针对不同架构（如 VLA 的 π0.5、WAM 的 Cosmos3-Nano-Policy）定制微调与推理策略，使预训练 RFM 学会利用这些轨迹进行控制。\n\n\n# 三、核心实验结果\n\n> 在 RoboLab-120 与 MolmoSpaces 上刷新 SOTA，RoboLab-Reasoning-50 上零样本提升最高达 50 个百分点；真实机器人上使 π0.5 的任务成功率提升 82.2 个百分点；所有增益均未引入额外机器人示教数据或基础模型级别的规模化训练。\n\n\n# 四、对我的启发\n\n> 核心启发是「数据/模型规模之外，推理监督的配方设计本身可带来巨大收益」，且自动标注流水线使其具备低成本可扩展性；局限在于效果依赖预训练 RFM 的能力与逐模型的微调/推理适配，推理轨迹的因果结构设计尚未有理论保证，跨具身与更长时程任务的泛化性仍待验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"ARC: A Reasoning Recipe for Robot Foundation Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12386v1\n---\n>[!abstract] 一句话总结：提出 ARC 推理配方，包含三要素：一是 grounded 在机器人下一动作上的推理轨迹，解释动作合理性与预期效果；二是从现有演示中自动生成此类轨迹的可扩展标注流程（如从 DROID 构建 ARC-Trace-DROID）；三是针对 π0.5 等 VLA 与 Cosmos3-Nano-Policy 等 WAM 的架构特点，设计微调与推理适配策略，使其学会利用轨迹进行控制。\n\n\n# 一、动机\n\n> 现有机器人基础模型（RFMs）性能提升主要依赖更大模型、更多机器人演示和昂贵的规模化训练，成本高且效率低。本文提出一种高效互补思路：通过合适的推理配方，无需新机器人数据即可显著提升现有 SOTA RFMs 的零样本任务表现。\n\n\n# 二、方法\n\n> 提出 ARC 推理配方，包含三要素：一是 grounded 在机器人下一动作上的推理轨迹，解释动作合理性与预期效果；二是从现有演示中自动生成此类轨迹的可扩展标注流程（如从 DROID 构建 ARC-Trace-DROID）；三是针对 π0.5 等 VLA 与 Cosmos3-Nano-Policy 等 WAM 的架构特点，设计微调与推理适配策略，使其学会利用轨迹进行控制。\n\n\n# 三、核心实验结果\n\n> 无需额外机器人演示或基础模型级训练， adapted 模型在 RoboLab-120 与 MolmoSpaces 上取得新 SOTA；在 RoboLab-Reasoning-50 上零样本性能提升最高达 50 个百分点；在真机上，ARC 使 π0.5 的任务成功率提升 82.2 个百分点。\n\n\n# 四、对我的启发\n\n> ARC 表明推理轨迹可作为扩大模型与数据之外的高效互补路径；局限在于轨迹的自动生成质量、因果正确性及跨模型适配的通用性可能影响最终性能，且推理开销与实时控制的平衡仍需进一步验证。对具身智能与机器人操作策略学习有直接启发。\n"
 }

@@ -63,16 +63,12 @@
     {
       "kind": "lab",
       "label": "⭐ HKU"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 21,
   "source_tags": [],
-  "score": 52,
+  "score": 42,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -85,12 +81,6 @@
       "label": "关键词命中密集",
       "points": 9,
       "hint": "频道关键词命中 3 个（world model、world models、sim-to-real）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -130,5 +120,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/CV\n  - Domain/Robotics\n  - Task/PhysicsSimulation\n  - Task/EmbodiedAI\nTitle: \"RiCo: Neural Simulation of Rigid-Body Interactions via Local Contact Reasoning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12333v1\n---\n>[!abstract] 一句话总结：RiCo 将物体间交互表示为稀疏接触表面点邻域，融合各点状态与邻近表面的相对几何、运动和物理属性，通过跨物体局部推理与物体内接触信息传播，联合决定刚体运动。\n\n\n# 一、动机\n\n> 端到端世界模型通常对整个场景或物体做交互预测，难以刻画局部表面接触对刚体运动的决定性影响，且枚举所有点对代价高。RiCo 旨在以局部接触推理高效、准确地模拟刚体交互。\n\n\n# 二、方法\n\n> RiCo 将物体间交互表示为稀疏接触表面点邻域，融合各点状态与邻近表面的相对几何、运动和物理属性，通过跨物体局部推理与物体内接触信息传播，联合决定刚体运动。\n\n\n# 三、核心实验结果\n\n> 在 MOVi benchmark 上，100 帧位置与朝向误差相对基线分别降低 31–35% 和约 38%；接触保真度方面，穿透时间差 11.0%、平均穿透深度差 2.22 mm；可从少量物体训练零样本泛化到含 270 个物体的场景，并在真实多球碰撞中初步验证 sim-to-real 迁移。\n\n\n# 四、对我的启发\n\n> 该方法验证了局部接触归纳偏置对物理世界模型的精度与泛化价值，有望用于机器人接触丰富仿真与 sim-to-real；局限在于实验以刚体和多球碰撞为主，复杂形状、摩擦/柔顺接触及真实机器人任务中的泛化仍待验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/PointCloud\nTitle: \"RiCo: Neural Simulation of Rigid-Body Interactions via Local Contact Reasoning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12333v1\n---\n>[!abstract] 一句话总结：RiCo 用稀疏的接触表面点邻域来表示物体间交互：将每个点的状态与附近表面的相对几何、运动和物理属性结合，先在跨物体的近邻表面之间做局部接触推理，再在每个刚体内部传播接触信息，从而以更低的成对建模代价获得细粒度交互表征。\n\n\n# 一、动机\n\n> 现有端到端世界模型对整个场景或物体做交互预测，忽略了刚体接触本质上是局部的——只有邻近表面之间才会直接交换接触力，导致计算冗余且难以捕捉精细的接触细节与运动响应。\n\n\n# 二、方法\n\n> RiCo 用稀疏的接触表面点邻域来表示物体间交互：将每个点的状态与附近表面的相对几何、运动和物理属性结合，先在跨物体的近邻表面之间做局部接触推理，再在每个刚体内部传播接触信息，从而以更低的成对建模代价获得细粒度交互表征。\n\n\n# 三、核心实验结果\n\n> 在 MOVi 基准上，RiCo 相比基线将 100 帧的位置误差降低 31-35%、朝向误差降低约 38%；接触保真度上，与真值相比的穿透时刻差异为 11.0%、平均穿透深度差异为 2.22 mm；模型可从少量物体的训练场景零样本泛化到含 270 个物体的场景，并通过真实世界多球碰撞实验初步验证了 sim-to-real 迁移能力。\n\n\n# 四、对我的启发\n\n> 局限在于方法仍针对刚体、依赖表面点采样与近邻定义，真实世界验证仅为初步证据；启发是将『接触局部性』作为归纳偏置引入世界模型，可同时提升精度与效率，适合具身智能中需要长时预测与物理一致的场景。\n"
 }

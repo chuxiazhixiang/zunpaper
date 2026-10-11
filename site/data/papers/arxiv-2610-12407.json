@@ -49,16 +49,12 @@
     {
       "kind": "lab",
       "label": "⭐ NVIDIA"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 14,
   "source_tags": [],
-  "score": 47,
+  "score": 37,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -71,12 +67,6 @@
       "label": "关键词命中密集",
       "points": 9,
       "hint": "频道关键词命中 3 个（world model、jepa、lewm）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -107,5 +97,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"LeWAM: A JEPA World Action Model with Diffusion-Steering-Based MPC\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12407v1\n---\n>[!abstract] 一句话总结：提出 LeWAM：在无解码器的 JEPA 潜空间上端到端训练一个双向 Transformer，同时支持前向动力学、后向动力学、逆向动力学与策略预测四种模式，并配合在策略头噪声空间中进行扩散引导的 MPC 规划。\n\n\n# 一、动机\n\n> 现有 world action model（WAM）多在基于重建的表示上预测动作与未来观测，这种表示含噪声与冗余信息，会干扰下游预测；而纯前向的 JEPA 世界模型（LeWM）又不具备动作/逆向动力学能力，难以直接用于规划与控制。\n\n\n# 二、方法\n\n> 提出 LeWAM：在无解码器的 JEPA 潜空间上端到端训练一个双向 Transformer，同时支持前向动力学、后向动力学、逆向动力学与策略预测四种模式，并配合在策略头噪声空间中进行扩散引导的 MPC 规划。\n\n\n# 三、核心实验结果\n\n> 1) 对齐性：线性探针从 LeWAM 潜空间中读取机器人与物体状态的效果优于前向-only 的 LeWM，同时其对视觉干扰物的忽略程度与 LeWM 相当、远好于基于重建的 WAM；2) 执行：在同尺寸、同编码器条件下，LeWAM 的闭环评测性能与常规 flow-matching 策略持平，且额外提供世界模型能力；3) 规划：用 MPC 直接采样原始动作会让规划器利用动力学模型的误差，而在策略头的噪声空间内规划可提升这类 WAM 的闭环性能。摘要未给出具体数值指标。\n\n\n# 四、对我的启发\n\n> 局限在于摘要未报告量化指标与基准细节，四模式联合训练与噪声空间 MPC 的收益幅度有待正文验证；启发性在于「在策略头噪声空间而非原始动作空间做 MPC」这一思路，以及无解码器 JEPA 潜空间可同时服务状态对齐与控制，对具身世界模型与规划式策略设计有直接参考价值。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/CV\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"LeWAM: A JEPA World Action Model with Diffusion-Steering-Based MPC\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12407v1\n---\n>[!abstract] 一句话总结：提出 LeWAM：在无解码器的 JEPA 潜空间上端到端训练一个双向 Transformer，同时支持前向动力学、后向动力学、逆动力学与策略四种预测模式，并在 MPC 规划时于策略头的噪声空间（diffusion steering）而非原始动作空间进行采样。\n\n\n# 一、动机\n\n> 现有世界动作模型（WAM）多建立在基于重建的表示上，这类表示携带噪声与冗余信息，会干扰动作与未来观测的预测；同时需要一个既能当世界模型、又能与流匹配策略性能持平的潜在表示。\n\n\n# 二、方法\n\n> 提出 LeWAM：在无解码器的 JEPA 潜空间上端到端训练一个双向 Transformer，同时支持前向动力学、后向动力学、逆动力学与策略四种预测模式，并在 MPC 规划时于策略头的噪声空间（diffusion steering）而非原始动作空间进行采样。\n\n\n# 三、核心实验结果\n\n> 1) 对齐性：线性探针从 LeWAM 潜空间读取机器人与物体状态的效果优于前向-only 的 LeWM，且对视觉干扰物的忽略程度与 LeWM 相当、远好于重建式 WAM。2) 执行：在闭环评测中，LeWAM 与同编码器、同尺寸的常规 flow-matching 策略性能持平，同时还额外提供世界模型能力。3) 规划：在原始动作空间采样会让 MPC 利用动力学模型的误差，而在策略头噪声空间规划则能提升这类 WAM 的闭环表现。\n\n\n# 四、对我的启发\n\n> 关键启示是规划空间的选择比世界模型本身更重要——原始动作空间的 MPC 会被动力学模型不准确所利用，转而在策略头噪声空间搜索可显著改善闭环性能；局限在于尚未展示跨具身或大规模真机泛化，噪声空间规划的有效性也依赖策略头质量。\n"
 }

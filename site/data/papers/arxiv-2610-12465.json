@@ -66,16 +66,12 @@
     {
       "kind": "venue",
       "label": "🎓 CoRL 2026"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 21,
   "source_tags": [],
-  "score": 65,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -88,12 +84,6 @@
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 10 个（manipulation、dexterous、dexterous manipulation、contact-rich）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -137,5 +127,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"A Balanced Data Diet: Addressing the Exploration Bottleneck in Mega-Scale RL for Robot Control\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12465v1\n---\n>[!abstract] 一句话总结：提出 Success Guided Sampling (SGS)，一个简单的自适应采样器，依据策略在各任务配置上的成功率动态调整采样的分布权重，把训练集中到策略能力「前沿」附近的配置上，从而提升每个 batch 中经验的学习效率，使大规模并行 RL 具备更好的扩展性。\n\n\n# 一、动机\n\n> 现有 sim-to-real RL 依赖大量逐任务工程先验（奖励塑形、示教），而「多样化的模拟器重置 + 大规模并行仿真」这一范式在更精细或更动态的任务上直接扩展并不奏效：均匀采样重置分布会把越来越多学习经验浪费在策略已掌握或暂时无法完成的任务配置上，导致并行环境规模扩大带来的收益被稀释。\n\n\n# 二、方法\n\n> 提出 Success Guided Sampling (SGS)，一个简单的自适应采样器，依据策略在各任务配置上的成功率动态调整采样的分布权重，把训练集中到策略能力「前沿」附近的配置上，从而提升每个 batch 中经验的学习效率，使大规模并行 RL 具备更好的扩展性。\n\n\n# 三、核心实验结果\n\n> 在多达 2^20（超过一百万）个并行环境下，SGS 成功解决了此前方法无法求解的多地形四足运动任务和接触丰富的装配任务；同时将学到的操作策略蒸馏为基于 RGB 的策略，并在真实硬件上对多个高难度装配任务实现了零样本迁移。\n\n\n# 四、对我的启发\n\n> 核心启发是：在大规模并行 RL 中，采样/数据分布课程（把算力投在能力前沿）比单纯堆环境数量更关键，这与具身智能大规模训练中的课程与数据配比问题直接相关。局限在于 SGS 需要稳定的成功率估计，自适应采样可能引入额外开销，且成功率估计在稀疏奖励或高噪声下的可靠性未充分讨论。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/Locomotion\n  - 状态/待读\nTitle: \"A Balanced Data Diet: Addressing the Exploration Bottleneck in Mega-Scale RL for Robot Control\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12465v1\n---\n>[!abstract] 一句话总结：提出 Success Guided Sampling（SGS），一种根据策略成功率自适应采样的方法，将训练集中在策略能力前沿附近的任务配置上，从而更高效地利用大规模并行仿真经验。\n\n\n# 一、动机\n\n> 现有大规模并行仿真 RL 依赖每任务的结构先验，且在模拟重置分布上均匀采样会浪费大量经验在已掌握或暂时无法处理的任务配置上，导致扩展并行环境难以带来预期收益。\n\n\n# 二、方法\n\n> 提出 Success Guided Sampling（SGS），一种根据策略成功率自适应采样的方法，将训练集中在策略能力前沿附近的任务配置上，从而更高效地利用大规模并行仿真经验。\n\n\n# 三、核心实验结果\n\n> 在最多 2^20（超 100 万）个并行环境下，SGS 成功解决多地形四足运动和接触丰富装配任务，而此前方法失败；同时将学习到的操作策略蒸馏为 RGB 策略，并在真实硬件上零样本迁移完成多个挑战性装配任务。\n\n\n# 四、对我的启发\n\n> SGS 说明自适应课程采样能显著提升超大规模并行 RL 的样本效率，并有利于 sim-to-real；局限可能在于成功率估计与前沿维护成本，以及任务分布对模拟重置设计的依赖。\n"
 }

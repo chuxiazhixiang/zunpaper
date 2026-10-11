@@ -48,28 +48,17 @@
   "channels": [
     "manipulation"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 12,
   "source_tags": [],
-  "score": 16,
+  "score": 6,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 3,
       "hint": "频道关键词命中 1 个（imitation learning）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -102,5 +91,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Leveraging Human-In-The-Loop Demonstrations in Reinforcement Learning for Digital Twin-Driven Robot Flexibility\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12140v1\n---\n>[!abstract] 一句话总结：提出一个结合实时相机同步数字孪生、强化学习与人类演示的人机在环在线训练框架，通过双 actor 结构在不向 RL actor 添加直接模仿损失的前提下引入模仿学习，让演示引导策略适应而非人工重编程。\n\n\n# 一、动机\n\n> 现有数字孪生多用于任务执行前生成合成数据，难以应对物理工作空间的动态变化；而 RL 在协作机器人上适应新环境往往需要人工重编程或大量重新训练。\n\n\n# 二、方法\n\n> 提出一个结合实时相机同步数字孪生、强化学习与人类演示的人机在环在线训练框架，通过双 actor 结构在不向 RL actor 添加直接模仿损失的前提下引入模仿学习，让演示引导策略适应而非人工重编程。\n\n\n# 三、核心实验结果\n\n> 在 Ufactory Xarm5 协作机器人到达避障任务上，物理工作空间改变后框架可恢复训练；给定固定非最优演示时，双 actor 框架最终成功率远高于两种在 actor 上加模仿损失的方法；使用 VR 采集的、从未到达目标的真人演示时，双 actor 达到 83–100% 平均确定性评估成功率，而两种模仿损失方法仅 0–17%。\n\n\n# 四、对我的启发\n\n> 局限在于仅在单一 Xarm5 平台、相对简单的到达避障任务上验证，未涉及复杂接触操作或多任务泛化；启发是「演示作为引导而非直接损失」的设计可避免演示质量瓶颈，实时同步数字孪生为在线适应提供了可行路径，对具身智能中的人机协同训练有参考价值。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Leveraging Human-In-The-Loop Demonstrations in Reinforcement Learning for Digital Twin-Driven Robot Flexibility\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12140v1\n---\n>[!abstract] 一句话总结：提出人机在环在线训练框架，通过摄像头实时同步物理机器人与其数字孪生，让虚拟机器人在真实反馈中更新观测与策略；核心是双 Actor 结构，仅用一个独立 Actor 承载模仿学习（IL），不向 RL 主 Actor 添加直接模仿损失，从而让示范起引导适应作用而非被强制复制。\n\n\n# 一、动机\n\n> 传统数字孪生多用于任务执行前生成合成数据，训练完即与物理系统脱节；同时机器人部署环境变化频繁，人工重新编程成本高，亟需一种能在真实运行中持续在线适应、且能利用非最优人类示范的框架。\n\n\n# 二、方法\n\n> 提出人机在环在线训练框架，通过摄像头实时同步物理机器人与其数字孪生，让虚拟机器人在真实反馈中更新观测与策略；核心是双 Actor 结构，仅用一个独立 Actor 承载模仿学习（IL），不向 RL 主 Actor 添加直接模仿损失，从而让示范起引导适应作用而非被强制复制。\n\n\n# 三、核心实验结果\n\n> 在 Ufactory Xarm5 协作机械臂的到达-避障任务上：1) 物理工作空间发生改变后框架能恢复并继续训练；2) 固定一组非最优示范下，双 Actor 框架最终成功率显著高于两种把模仿损失加到 Actor 上的方法；3) 使用 VR 采集的、从未到达目标的真实人类示范时，双 Actor 框架平均确定性评估成功率为 83-100%，而两种加模仿损失的方法仅 0-17%。\n\n\n# 四、对我的启发\n\n> 局限在于实验仅限单臂到达-避障任务，且依赖摄像头实时同步的数字孪生精度，示范虽非最优但仍需人工采集，扩展性与多任务泛化尚未验证；启发是“把模仿与 RL 解耦到不同 Actor”可避免模仿损失对策略优化的干扰，这一设计思路对其他人在环机器人学习场景具有借鉴意义。\n"
 }

@@ -52,28 +52,17 @@
   "channels": [
     "world-model"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 28,
   "source_tags": [],
-  "score": 19,
+  "score": 9,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 6,
       "hint": "频道关键词命中 2 个（world model、world models）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -105,5 +94,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Multimodal\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"OuroWorld: Bringing Any 3D World Alive as Diverse, Endlessly Looping 3D Cinemagraphs\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12461v1\n---\n>[!abstract] 一句话总结：提出无掩码框架 OuroWorld：先用视觉语言模型推断合理动态并引导视频模型合成参考视频，再将其提升补全为多视角视频；为从不完美监督中学习，设计 Inconsistency-Robust Periodic 4DGS——用傅里叶级数变形场从构造上保证周期循环，并用锚定参考视角的 Grounded Drift Field 吸收跨视角不一致。\n\n\n# 一、动机\n\n> 现有 3D 世界模型生成的场景虽逼真可探索，却「凝固在时间里」静止不动；而此前的动态化方法多基于欧拉视角，只能模拟流体类运动，无法刻画一般形变、物体运动与光照变化，且通常依赖掩码。\n\n\n# 二、方法\n\n> 提出无掩码框架 OuroWorld：先用视觉语言模型推断合理动态并引导视频模型合成参考视频，再将其提升补全为多视角视频；为从不完美监督中学习，设计 Inconsistency-Robust Periodic 4DGS——用傅里叶级数变形场从构造上保证周期循环，并用锚定参考视角的 Grounded Drift Field 吸收跨视角不一致。\n\n\n# 三、核心实验结果\n\n> 在 39 个重建与生成场景上全面超越所有基线；用户研究中在 70.8%–99.0% 的对比中获胜；提出无需真值的评估协议，覆盖生动性、自然度、循环接缝连贯性与场景质量四个维度。\n\n\n# 四、对我的启发\n\n> 局限在于监督信号来自视频模型的不完美合成视频，运动合理性受其先验上限约束，且缺乏真值量化评估；与机器人/具身智能不直接相关，但该「静态 3D 场景动态化 + 无缝循环」能力可用于构建更生动的仿真环境与训练数据。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\n  - 状态/待读\nTitle: \"OuroWorld: Bringing Any 3D World Alive as Diverse, Endlessly Looping 3D Cinemagraphs\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12461v1\n---\n>[!abstract] 一句话总结：OuroWorld 是一个免掩码框架：先用视觉语言模型推断场景中合理的动态并引导视频模型合成参考视频，再将其提升补全为多视图视频作为监督，训练 Inconsistency-Robust Periodic 4DGS——用傅里叶级数形变场从构造上保证无缝循环，并用锚定在参考视图的 Grounded Drift Field 吸收跨视图不一致。\n\n\n# 一、动机\n\n> 现有 3D 世界模型生成的 3DGS 场景虽可自由探索却「冻结在时间里」，而此前的 3D cinemagraph 方法依赖掩码且只能处理流体类形变，无法让任意静态场景获得多样、可循环的一般动态。\n\n\n# 二、方法\n\n> OuroWorld 是一个免掩码框架：先用视觉语言模型推断场景中合理的动态并引导视频模型合成参考视频，再将其提升补全为多视图视频作为监督，训练 Inconsistency-Robust Periodic 4DGS——用傅里叶级数形变场从构造上保证无缝循环，并用锚定在参考视图的 Grounded Drift Field 吸收跨视图不一致。\n\n\n# 三、核心实验结果\n\n> 在 39 个重建与生成场景上，OuroWorld 在生动性、自然性、循环缝合一致性和场景质量四项无真值评估指标上全面超越所有基线；用户研究中胜率达 70.8%–99.0%；方法可同时捕捉一般形变、物体运动与光照变化，且不限于流体类运动、无需掩码。\n\n\n# 四、对我的启发\n\n> 与机器人/具身智能课题不直接相关，但其「VLM 推断动态 + 周期性形变场」的思路可为具身仿真中的场景动态化、数据增广提供参考；局限在于监督来自单目视频模型的合成结果，跨视图不一致只能被吸收而非消除，且循环假设天然排除非周期性事件。\n"
 }

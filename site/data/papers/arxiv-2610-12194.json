@@ -68,16 +68,12 @@
     {
       "kind": "lab",
       "label": "⭐ NTU"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 19,
   "source_tags": [],
-  "score": 55,
+  "score": 45,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -90,12 +86,6 @@
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 4 个（robotwin、libero、world model、world modeling）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -134,5 +124,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"MiniWAM: Learning Compact Future Targets for Efficient World-Action Modeling\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12194v1\n---\n>[!abstract] 一句话总结：提出 MiniWAM：先用逆时空建模（PRISM，逆动力学监督 + 特征重建）学习紧凑且控制相关的未来表示并冻结编码器，再让策略从当前观测联合预测该紧凑未来目标与机器人动作。\n\n\n# 一、动机\n\n> 现有世界动作模型（WAM）直接在预训练视觉骨干的原生表示空间预测未来状态，目标维度极高、训练开销大，制约了世界动作协同建模的效率。\n\n\n# 二、方法\n\n> 提出 MiniWAM：先用逆时空建模（PRISM，逆动力学监督 + 特征重建）学习紧凑且控制相关的未来表示并冻结编码器，再让策略从当前观测联合预测该紧凑未来目标与机器人动作。\n\n\n# 三、核心实验结果\n\n> 未来特征 token 数减少 65 倍，世界-动作训练提速最高达 8 倍；在 0.25B 参数下，用 DINOv3 与 WAN2.1 VAE 特征均一致优于原生未来特征预测，并在 LIBERO、LIBERO-Plus、RoboTwin 2.0 上可与更大规模 WAM 竞争；表示分析表明 PRISM 带来了超越单纯特征重建的行为结构。\n\n\n# 四、对我的启发\n\n> 说明有效的世界-动作建模不必预测原生视觉未来，紧凑预测表示是更强且更高效的目标；局限在于主要在仿真基准验证、依赖冻结的 PRISM 编码器与预训练视觉骨干，真实机器人泛化与跨具身迁移仍待验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"MiniWAM: Learning Compact Future Targets for Efficient World-Action Modeling\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12194v1\n---\n>[!abstract] 一句话总结：提出 MiniWAM：先用 PRISM（Predictive Representations via Inverse Spatiotemporal Modeling）结合逆动力学监督与特征重建，从特权当前-未来转移中学习紧凑且控制相关的预测表示；冻结 PRISM 编码器后，MiniWAM 仅从当前观测联合预测这些紧凑未来目标与机器人动作。\n\n\n# 一、动机\n\n> 现有 World Action Model（WAM）大多在预训练视觉骨干的原生表示空间中预测未来状态，导致目标维度极高、训练成本巨大，限制了世界建模作为机器人策略协同训练目标的实用性。\n\n\n# 二、方法\n\n> 提出 MiniWAM：先用 PRISM（Predictive Representations via Inverse Spatiotemporal Modeling）结合逆动力学监督与特征重建，从特权当前-未来转移中学习紧凑且控制相关的预测表示；冻结 PRISM 编码器后，MiniWAM 仅从当前观测联合预测这些紧凑未来目标与机器人动作。\n\n\n# 三、核心实验结果\n\n> 在 DINOv3 与 WAN2.1 VAE 特征上均一致优于原生未来特征预测；未来特征 token 减少 65×，世界-动作训练最高提速 8×；仅 0.25B 参数即在 LIBERO、LIBERO-Plus、RoboTwin 2.0 仿真基准上与更大规模 WAM 相当；表示分析显示 PRISM 在纯特征重建之外额外带来了行为结构信息。\n\n\n# 四、对我的启发\n\n> 结论表明有效世界-动作建模并不需要预测原生视觉未来，紧凑预测表示是更高效且更强的策略学习目标；局限在于目标表示依赖特权当前-未来转移数据来离线构造，且验证集中在仿真基准，真机与跨具身泛化仍待检验。\n"
 }

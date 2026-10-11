@@ -65,28 +65,17 @@
   "channels": [
     "manipulation"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 22,
+  "score": 12,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 9,
       "hint": "频道关键词命中 3 个（vision-language-action、residual policy、libero）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -123,5 +112,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"CAPABLE: Capability-Aware Policy Adaptation via Behavioral Latent Encoding\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.11971v1\n---\n>[!abstract] 一句话总结：CAPABLE 为冻结的 VLA 设计了一个统一的能力感知自适应框架：用跨关节共享的时序编码器、雅可比接地、跨关节注意力和自监督物理预测，从指令-响应历史与运动学中在线推断每个关节「实际实现了多少指令运动」以及该运动对末端执行器行为的贡献，并用该表征条件化一个残差强化学习策略，在不需故障标签或故障关节标识的前提下为 VLA 手臂动作叠加有界修正。\n\n\n# 一、动机\n\n> 现有 VLA 策略默认训练时的本体状态成立，一旦某个关节发生故障（执行动作与物理执行结果不一致）就会失效；而既有故障恢复方法往往依赖任务级重训练、故障标签、显式诊断或特权本体信息，难以在真实部署中落地。\n\n\n# 二、方法\n\n> CAPABLE 为冻结的 VLA 设计了一个统一的能力感知自适应框架：用跨关节共享的时序编码器、雅可比接地、跨关节注意力和自监督物理预测，从指令-响应历史与运动学中在线推断每个关节「实际实现了多少指令运动」以及该运动对末端执行器行为的贡献，并用该表征条件化一个残差强化学习策略，在不需故障标签或故障关节标识的前提下为 VLA 手臂动作叠加有界修正。\n\n\n# 三、核心实验结果\n\n> 在 28 个 LIBERO 任务上，对一个被排除在故障训练之外的执行器，成功率从 24.8% 提升到 59.3%，比参数量匹配的全局历史基线高 17.4 个点，同时保持健康状态下的性能；六个关节的 leave-one-actuator-out 实验表明该迁移并非只对某一执行器有效；额外评测还验证了对未见故障类型的迁移，并在真实 Franka Panda 上实现了恢复。\n\n\n# 四、对我的启发\n\n> 局限在于方法依赖在线可观测的指令-响应历史与运动学，修正量被约束为有界残差，因而对彻底失效或需改变任务策略的严重故障可能无力；启发是「能力隐变量 + 残差策略」这一组合为冻结大模型的在线具身自适应提供了廉价且无需标签的范式，可迁移到跨本体与硬件退化场景。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/CrossEmbodimentTransfer\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"CAPABLE: Capability-Aware Policy Adaptation via Behavioral Latent Encoding\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.11971v1\n---\n>[!abstract] 一句话总结：CAPABLE 为冻结 VLA 引入统一的能力感知适配框架：用跨关节共享的时序编码器、雅可比接地、跨关节注意力和自监督物理预测，从指令-响应历史与运动学中在线推断每个关节实际实现指令运动的比例及其对末端行为贡献，并以该表示条件化残差强化学习策略，在无故障标签和故障关节标识的情况下对 VLA 手臂动作施加有界修正。\n\n\n# 一、动机\n\n> VLA 策略默认训练时的本体状态，当某个关节发生故障、导致指令动作无法被物理正确执行时会严重失效；而现有故障恢复方法通常依赖任务特定重训练、故障标签、显式诊断或特权本体信息，难以在线、无标签地适配。\n\n\n# 二、方法\n\n> CAPABLE 为冻结 VLA 引入统一的能力感知适配框架：用跨关节共享的时序编码器、雅可比接地、跨关节注意力和自监督物理预测，从指令-响应历史与运动学中在线推断每个关节实际实现指令运动的比例及其对末端行为贡献，并以该表示条件化残差强化学习策略，在无故障标签和故障关节标识的情况下对 VLA 手臂动作施加有界修正。\n\n\n# 三、核心实验结果\n\n> 在 28 个 LIBERO 任务上，针对未参与故障训练的执行器，成功率从 24.8% 提升到 59.3%，比参数量匹配的全局历史基线高 17.4 个百分点，同时保持健康状态下的性能；六个关节的 leave-one-actuator-out 实验表明迁移不限于单一执行器，另有实验验证了对未见故障族的迁移，并在真实 Franka Panda 上实现恢复。\n\n\n# 四、对我的启发\n\n> 局限在于方法依赖有界残差修正，可能难以应对幅度极大或突发性故障，且不进行显式故障诊断、可解释性有限；启发是可把「能力」作为可在线推断的隐变量，与残差策略解耦，为跨本体、跨故障的鲁棒 VLA 部署提供无标签适配范式，对具身智能中的容错控制与跨本体迁移有参考价值。\n"
 }
