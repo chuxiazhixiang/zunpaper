@@ -112,5 +112,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"VersaCamVLA: Camera-Configurable VLA Policies for Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.12451v1\n---\n>[!abstract] 一句话总结：VersaCamVLA 将相机集合的表示与动作学习解耦：用一个统一场景 token 接口把任意数量、带位姿的 RGB 视图映射成固定长度的隐场景 token，训练时借助多信号目标视角预测与 Wrist-Augmented Pose Sampling（WAPS，利用自然的手腕相机运动免费获得大量位姿多样性）学习该接口，部署时只需一个轻量空间编码器把场景 token 作为额外视觉条件注入预训练基础 VLA，无需显式 3D 传感或新视角渲染。\n\n\n# 一、动机\n\n> 现有 VLA 模型在训练时依赖固定的相机配置，一旦部署时相机数量或位姿发生变化（增删相机、挪动视角）性能就会明显退化，缺乏对相机配置的泛化能力。\n\n\n# 二、方法\n\n> VersaCamVLA 将相机集合的表示与动作学习解耦：用一个统一场景 token 接口把任意数量、带位姿的 RGB 视图映射成固定长度的隐场景 token，训练时借助多信号目标视角预测与 Wrist-Augmented Pose Sampling（WAPS，利用自然的手腕相机运动免费获得大量位姿多样性）学习该接口，部署时只需一个轻量空间编码器把场景 token 作为额外视觉条件注入预训练基础 VLA，无需显式 3D 传感或新视角渲染。\n\n\n# 三、核心实验结果\n\n> 在 RoboTwin、LIBERO 仿真基准与真实机器人平台上，VersaCamVLA 一致优于此前的 VLA 方法和直接多视角拼接基线，并在相机数量变化和未见相机位姿下保持稳定性能（摘要仅给出定性结论，未披露具体数值指标）。\n\n\n# 四、对我的启发\n\n> 启发在于把“相机配置”当作可变的输入条件而非固定超参，用隐场景 token + 预训练 VLA 的轻量条件注入即可获得相机泛化，避免重训与 3D 重建开销；局限是仍要求提供带位姿的 RGB 视图（依赖相机标定），位姿多样性训练信号依赖手腕相机的自然运动，若相机配置差异极端或手腕相机缺失时泛化性可能下降，且具体提升幅度需查阅正文实验表。\n"
+  "note": ""
 }
