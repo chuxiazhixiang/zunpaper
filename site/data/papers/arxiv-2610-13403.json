@@ -1,0 +1,98 @@
+{
+  "id": "arxiv-2610-13403",
+  "source": "arxiv",
+  "title": "Robot-WATCHDOG : failure detection through object-centric graph representation",
+  "title_zh": "Robot-WATCHDOG：通过以对象为中心的图表示进行故障检测",
+  "abstract": "Reliable real-time failure detection is critical for deploying learned robotic policies, yet defining failures explicitly is infeasible in open-world settings. This motivates failure detection from nominal demonstrations alone. Existing methods, however, struggle to balance robustness to benign variations with the ability to capture semantic and interaction-level errors. We introduce Robot-WATCHDOG, a self-supervised framework that models manipulation scenes as object-centric spatio-temporal graphs. Building on this representation, we investigate two complementary failure scores: Trajectory Projection and Correlation (TPC), a non-parametric measure of geometric deviation and relational consistency, and GnnT, a Graph Attention Network with a Transformer that predicts future object states. We evaluate both on a public benchmark and on a new dataset of semantically complex manipulation tasks, across six tasks and ten random seeds. Both scores outperform image-based failure detectors, particularly on semantic and interaction-level failures. TPC provides the strongest performance in AUPR and MCC on both dataset averages, with low variance across seeds. Qualitative results are made available at https://cea-list.github.io/Robot-WATCHDOG/.",
+  "abstract_zh": "可靠的实时故障检测对于部署学习到的机器人策略至关重要，但在开放世界环境中明确界定故障是不可行的。这促使仅从正常演示中进行故障检测。然而，现有方法难以在容忍良性变化与捕捉语义和交互级错误之间取得平衡。我们提出了 Robot-WATCHDOG，一个自监督框架，将操作场景建模为以对象为中心的时空图。基于此表示，我们研究了两种互补的故障评分：轨迹投影与相关性（TPC），一种非参数的几何偏差和关系一致性度量；以及 GnnT，一种结合图注意力网络和 Transformer 来预测未来对象状态的模型。我们在一个公开基准和一个新的语义复杂操作任务数据集上评估了这两种方法，涵盖六个任务和十个随机种子。两种评分均优于基于图像的故障检测器，特别是在语义和交互级故障上。TPC 在两个数据集的平均值上在 AUPR 和 MCC 上提供了最强的性能，且在不同种子间方差较低。定性结果可在 https://cea-list.github.io/Robot-WATCHDOG/ 获取。",
+  "tldr_zh": "Robot-WATCHDOG 用对象中心图自监督检测机器人故障，优于图像方法。",
+  "cover_zh": "机器人故障检测新突破｜不用定义故障，只看正常演示就能抓错",
+  "authors": [
+    {
+      "name": "Quentin Rolland",
+      "affiliation": ""
+    },
+    {
+      "name": "Fabrice Mayran de Chamisso",
+      "affiliation": ""
+    },
+    {
+      "name": "Jean-Baptiste Mouret",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-10-09",
+  "updated": "2026-10-09",
+  "arxiv_id": "2610.13403",
+  "pdf_url": "https://arxiv.org/pdf/2610.13403v1",
+  "abs_url": "http://arxiv.org/abs/2610.13403v1",
+  "venue": "CoRL 2026",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-13403.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-13403-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "venue",
+      "label": "🎓 CoRL 2026"
+    }
+  ],
+  "related_links": [],
+  "page_count": 33,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（manipulation）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 33 页"
+    },
+    {
+      "id": "conf_venue",
+      "label": "机器人顶会 / 顶刊出品",
+      "points": 10,
+      "hint": "被「CoRL 2026」收录"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "面向操作策略的失败检测，图表示与自监督方法，对操作可靠性有参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Université Paris-Saclay",
+    "CEA, List",
+    "Inria",
+    "CNRS"
+  ],
+  "method_tags": [
+    "self-supervised",
+    "object-centric spatio-temporal graphs",
+    "Graph Attention Network"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Robot-WATCHDOG : failure detection through object-centric graph representation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.13403v1\n---\n>[!abstract] 一句话总结：提出自监督框架 Robot-WATCHDOG，把操作场景建模为以物体为中心的时空图，并比较两种失败分数：非参数的轨迹投影与相关性（TPC，度量几何偏差与关系一致性），以及用图注意力网络加 Transformer 预测未来物体状态的 GnnT。\n\n\n# 一、动机\n\n> 学习型机器人策略在开放世界部署时需要可靠的实时失败检测，但显式定义失败不可行，只能从正常演示中学习；现有方法难以同时兼顾对良性场景变化的鲁棒性与对语义级、交互级错误的敏感性。\n\n\n# 二、方法\n\n> 提出自监督框架 Robot-WATCHDOG，把操作场景建模为以物体为中心的时空图，并比较两种失败分数：非参数的轨迹投影与相关性（TPC，度量几何偏差与关系一致性），以及用图注意力网络加 Transformer 预测未来物体状态的 GnnT。\n\n\n# 三、核心实验结果\n\n> 在公开基准与一个语义复杂操作新数据集上、共 6 个任务 × 10 个随机种子进行评估：两种分数均优于基于图像的失败检测器，在语义与交互级失败上提升尤为明显；TPC 在两个数据集的平均 AUPR 和 MCC 上均为最优，且跨种子方差低。\n\n\n# 四、对我的启发\n\n> 局限在于依赖以物体为中心的图与物体状态提取，对感知噪声、遮挡或不可分解为物体的场景可能受限；启发是'正常演示 + 物体级时空图'可作为通用策略失败监控与干预信号，且非参数几何一致性分数往往足以匹敌甚至超过学习式预测器。\n"
+}

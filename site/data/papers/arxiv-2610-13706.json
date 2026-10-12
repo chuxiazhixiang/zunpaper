@@ -1,0 +1,107 @@
+{
+  "id": "arxiv-2610-13706",
+  "source": "arxiv",
+  "title": "GLIMPSE: Global-Local Indexing with Multi-Precision Spectral Encoding for Explorable Video World Models",
+  "title_zh": "GLIMPSE：面向可探索视频世界模型的全局-局部索引与多精度谱编码",
+  "abstract": "A camera-controlled video world model must keep a scene consistent when the camera returns to it. Memories that render stored features into the target frame can turn depth and pose errors into ghosting or duplicated structure. Positional transport avoids that resampling by relocating a historical patch's address rather than its content, but assigns full positional precision even to inaccurate projections. We present GLIMPSE, a global-local memory interface with band-wise multi-precision coordinates and geometry-conditioned spectral attenuation to reduce sensitivity to inaccurate projected addresses. Local patch memory supplies view-specific appearance, while recurrent global memory provides scene context. Footprint-guided retrieval selects historical patches under a fixed local read budget. Under matched retrieval and read budgets, GLIMPSE improves geometric correspondence and photometric consistency over deterministic positional transport.",
+  "abstract_zh": "相机控制的视频世界模型在相机返回某场景时必须保持场景一致性。将存储特征渲染到目标帧的记忆方式会把深度和姿态误差转化为重影或重复结构。位置传输通过重新定位历史块地址而非内容来避免这种重采样，但即使投影不准确也赋予完整的位置精度。我们提出 GLIMPSE，一种全局-局部记忆接口，采用分带多精度坐标和几何条件谱衰减，以降低对不准确投影地址的敏感性。局部块记忆提供视角特定的外观，而循环全局记忆提供场景上下文。足迹引导的检索在固定的局部读取预算下选择历史块。在匹配的检索和读取预算下，GLIMPSE 在几何对应和光度一致性上优于确定性位置传输。",
+  "tldr_zh": "GLIMPSE用多精度坐标和谱衰减提升视频世界模型对投影误差的鲁棒性。",
+  "cover_zh": "相机转回来就穿帮？这个记忆接口让视频世界模型不再重影",
+  "authors": [
+    {
+      "name": "Zhufeng Xu",
+      "affiliation": ""
+    },
+    {
+      "name": "Henglei Lv",
+      "affiliation": ""
+    },
+    {
+      "name": "Bailin Deng",
+      "affiliation": ""
+    },
+    {
+      "name": "Yikang Ding",
+      "affiliation": ""
+    },
+    {
+      "name": "Xiaoqiang Liu",
+      "affiliation": ""
+    },
+    {
+      "name": "Guoxin Zhang",
+      "affiliation": ""
+    },
+    {
+      "name": "Hongbo Fu",
+      "affiliation": ""
+    },
+    {
+      "name": "Lin Gao",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.CV",
+  "categories": [
+    "cs.CV"
+  ],
+  "published": "2026-10-09",
+  "updated": "2026-10-09",
+  "arxiv_id": "2610.13706",
+  "pdf_url": "https://arxiv.org/pdf/2610.13706v1",
+  "abs_url": "http://arxiv.org/abs/2610.13706v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-13706.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-13706-p2.jpg"
+  ],
+  "channels": [
+    "world-model"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 21,
+  "source_tags": [],
+  "score": 12,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（world model、world models、video world model）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 21 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "world-model",
+    "reason": "视频世界模型记忆接口，提升相机回访一致性，属world-model方向。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Institute of Computing Technology, Chinese Academy of Sciences",
+    "University of Chinese Academy of Sciences",
+    "Cardiff University",
+    "Kling AI"
+  ],
+  "method_tags": [
+    "World Model",
+    "Positional Encoding",
+    "Memory Retrieval"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\n  - Task/CameraControl\n  - 状态/待读\nTitle: \"GLIMPSE: Global-Local Indexing with Multi-Precision Spectral Encoding for Explorable Video World Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.13706v1\n---\n>[!abstract] 一句话总结：GLIMPSE 提出一种全局-局部的记忆接口：局部 patch 记忆提供视角相关的外观，循环全局记忆提供场景上下文，并用分频段多精度坐标（band-wise multi-precision coordinates）与几何条件化的频谱衰减（geometry-conditioned spectral attenuation）来降低对不准确投影地址的敏感度，同时以足迹引导的检索（footprint-guided retrieval）在固定局部读取预算下选取历史 patch。\n\n\n# 一、动机\n\n> 相机可控视频世界模型在相机回到曾经访问过的场景时需保持一致性，而把历史特征渲染/重采样到目标帧的做法会把深度与位姿误差变成鬼影或结构重复；位置传输（positional transport）通过迁移历史 patch 的地址而非内容来避免重采样，但它对所有投影地址都赋予满精度位置编码，即使该投影本身并不准确。\n\n\n# 二、方法\n\n> GLIMPSE 提出一种全局-局部的记忆接口：局部 patch 记忆提供视角相关的外观，循环全局记忆提供场景上下文，并用分频段多精度坐标（band-wise multi-precision coordinates）与几何条件化的频谱衰减（geometry-conditioned spectral attenuation）来降低对不准确投影地址的敏感度，同时以足迹引导的检索（footprint-guided retrieval）在固定局部读取预算下选取历史 patch。\n\n\n# 三、核心实验结果\n\n> 摘要给出的是定性结论：在检索与读取预算匹配的条件下，GLIMPSE 相比确定性的位置传输在几何对应性和光度一致性上均有提升；摘要未给出具体数值指标，需查阅正文获取 PSNR/LPIPS 等量化结果。\n\n\n# 四、对我的启发\n\n> 核心启发是「地址精度应按投影可靠性分配」——把位置编码从均匀满精度改为频段化、几何条件化的精度分配，这与具身智能中长时序空间记忆、SLAM/重定位的误差鲁棒性问题思路相通；局限在于依赖投影几何与检索预算，且摘要缺少定量证据与失败案例分析。\n"
+}

@@ -111,5 +111,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/LeggedLocomotion\n  - 状态/待读\nTitle: \"DR-MPC: Fast and Feasible Dynamics-Relaxed Model-Predictive Control for Legged Locomotion\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2609.20035v1\n---\n>[!abstract] 一句话总结：提出dynamics-relaxed MPC（DR-MPC）建模：将动力学等式约束与仿射输入约束转化为二次惩罚项，仅保留非空的盒约束，得到具有block-arrow Hessian的盒约束QP，并利用Schur补消去状态与仿射输出方向，再结合摆动腿接触力消元和接触对齐的move blocking，设计专用内点法求解器只对约简后的控制子系统做分解。\n\n\n# 一、动机\n\n> 腿足机器人MPC通常在机载实时性上受限：等式动力学与仿射输入约束以硬约束形式写入，易导致在线优化不可行，且通用QP求解器（HPIPM/OSQP）求解耗时偏高，难以满足高频控制需求。\n\n\n# 二、方法\n\n> 提出dynamics-relaxed MPC（DR-MPC）建模：将动力学等式约束与仿射输入约束转化为二次惩罚项，仅保留非空的盒约束，得到具有block-arrow Hessian的盒约束QP，并利用Schur补消去状态与仿射输出方向，再结合摆动腿接触力消元和接触对齐的move blocking，设计专用内点法求解器只对约简后的控制子系统做分解。\n\n\n# 三、核心实验结果\n\n> 在相同DR-MPC建模下，端到端中位加速达HPIPM的16.0×、OSQP的4.4×，仿真中运动性能相当；机载MPC端到端中位耗时4.4 ms，并在Unitree Go1四足机器人上完成验证；开源代码将在发表后放出。\n\n\n# 四、对我的启发\n\n> 用二次惩罚替代硬约束换取了构造性可行性与速度，但动力学满足度变为软性，需权衡惩罚权重与跟踪精度；验证以仿真对比为主，实物仅单一平台（Go1）示范。其“放松约束+结构消元+专用IPM”的思路对其它高频率机载MPC（如机械臂、无人机）具迁移价值。\n"
 }

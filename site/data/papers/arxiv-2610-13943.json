@@ -1,0 +1,118 @@
+{
+  "id": "arxiv-2610-13943",
+  "source": "arxiv",
+  "title": "Noise Space Learning for VLA Adaptation",
+  "title_zh": "面向VLA适应的噪声空间学习",
+  "abstract": "Pretrained vision-language-action (VLA) models encode broad manipulation priors, yet adapting them to specific tasks requires balancing limited robot interaction, computational resources, and safety constraints. Noise space learning (NSL) adapts flow-matching-based VLAs by learning a context-conditioned distribution over noise while keeping the pretrained VLA fixed. Building on prior noise-steering methods, we formulate NSL as an interface for VLA adaptation that accommodates different learning algorithms and instantiate it with PPO, SAC, and AWR. Theoretically, we provide an information-theoretic analysis of how NSL enables efficient adaptation. Empirically, we study these NSL algorithms on LIBERO, RoboTwin, and four real-robot manipulation tasks under interaction, computation, and execution constraints. Across these settings, we develop a suite of effective NSL variants and derive practical recommendations for choosing among them under different resource and deployment regimes.",
+  "abstract_zh": "预训练的视觉-语言-动作（VLA）模型编码了广泛的操控先验，但将其适应到特定任务需要在有限的机器人交互、计算资源和安全约束之间取得平衡。噪声空间学习（NSL）通过在学习一个以上下文为条件的噪声分布的同时保持预训练VLA固定，来适应基于流匹配的VLA。在先前噪声引导方法的基础上，我们将NSL形式化为VLA适应的接口，该接口可容纳不同的学习算法，并用PPO、SAC和AWR实例化。理论上，我们提供了信息论分析，说明NSL如何实现高效适应。实证上，我们在LIBERO、RoboTwin和四个真实机器人操控任务上，在交互、计算和执行约束下研究了这些NSL算法。在这些设置中，我们开发了一套有效的NSL变体，并得出了在不同资源和部署机制下选择它们的实用建议。",
+  "tldr_zh": "提出噪声空间学习，固定VLA仅学噪声分布，实现高效适应。",
+  "cover_zh": "固定VLA只学噪声？这个新接口让机器人适应效率飙升",
+  "authors": [
+    {
+      "name": "Junjie Lu",
+      "affiliation": ""
+    },
+    {
+      "name": "Chuheng Zhang",
+      "affiliation": ""
+    },
+    {
+      "name": "Yucen Wang",
+      "affiliation": ""
+    },
+    {
+      "name": "Yuhua Jiang",
+      "affiliation": ""
+    },
+    {
+      "name": "Xinyao Qin",
+      "affiliation": ""
+    },
+    {
+      "name": "Min Xu",
+      "affiliation": ""
+    },
+    {
+      "name": "Li Zhao",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-10-09",
+  "updated": "2026-10-09",
+  "arxiv_id": "2610.13943",
+  "pdf_url": "https://arxiv.org/pdf/2610.13943v1",
+  "abs_url": "http://arxiv.org/abs/2610.13943v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-13943.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-13943-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ Microsoft"
+    },
+    {
+      "kind": "lab",
+      "label": "⭐ 清华"
+    }
+  ],
+  "related_links": [],
+  "page_count": 26,
+  "source_tags": [],
+  "score": 40,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “Microsoft” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 12,
+      "hint": "频道关键词命中 4 个（vision-language-action、manipulation、robotwin、libero）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 26 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "manipulation",
+    "reason": "VLA适配新方法，噪声空间学习结合RL，多基准与真机验证，对操作研究有参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "University of Technology Sydney",
+    "Microsoft Research",
+    "Nanjing University",
+    "Tsinghua University"
+  ],
+  "method_tags": [
+    "Noise Space Learning",
+    "VLA Adaptation",
+    "PPO/SAC/AWR"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Noise Space Learning for VLA Adaptation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.13943v1\n---\n>[!abstract] 一句话总结：提出噪声空间学习（NSL）：冻结预训练 flow-matching VLA，仅学习一个上下文条件化的噪声分布（即在去噪采样噪声上做强化学习/模仿学习），将 NSL 形式化为 VLA 适配的统一接口，并用 PPO、SAC、AWR 三种算法实例化。\n\n\n# 一、动机\n\n> 预训练 VLA 模型虽具备通用操作先验，但适配到具体任务时需在有限的机器人交互次数、计算资源和安全约束之间权衡；全量微调代价高、易灾难性遗忘，且样本效率低。\n\n\n# 二、方法\n\n> 提出噪声空间学习（NSL）：冻结预训练 flow-matching VLA，仅学习一个上下文条件化的噪声分布（即在去噪采样噪声上做强化学习/模仿学习），将 NSL 形式化为 VLA 适配的统一接口，并用 PPO、SAC、AWR 三种算法实例化。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO、RoboTwin 以及四个真实机器人操作任务上，于交互预算、计算开销与执行约束三类设定下系统评测了各 NSL 变体；理论侧给出信息论分析，说明 NSL 为何能实现高效适配。具体数值指标摘要中未给出，需查阅正文。\n\n\n# 四、对我的启发\n\n> 仅在噪声空间适配，行为多样性受限于基座 VLA 的先验分布，若先验覆盖不到目标行为则性能上限受限；但其免微调、低交互、低算力、易回滚的特性对真实机器人安全部署很有价值，可与参数高效微调方法做对比实验。与课题（VLA 适配、机器人操作）高度相关。\n"
+}
