@@ -85,6 +85,157 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2610-13164",
+      "source": "arxiv",
+      "title": "Grounded-Dreamer: Robot Learning from World Model Synthetic Data with Physical Grounding",
+      "title_zh": "Grounded-Dreamer：基于世界模型合成数据与物理锚定的机器人学习",
+      "tldr_zh": "Grounded-Dreamer 用世界模型合成物理锚定数据，无需人类演示即可训练机器人策略。",
+      "cover_zh": "不用人类遥操作｜世界模型+物理引擎合成数据，机器人策略直接起飞",
+      "abstract_zh": "扩展机器人操作策略需要大量多样且带有动作标签的数据，然而在真实世界中采集此类数据仍然昂贵且难以规模化。现有方法要么依赖人类遥操作，要么依赖视觉真实感有限的仿真，要么使用缺乏具身特定标注的人类视频。本文提出 Grounded-Dreamer，一个利用视频世界模型合成物理锚定的机器人操作数据、同时避免人类遥操作演示的框架。Grounded-Dreamer 将生成式视频模型的视觉真实感与仿真器物理引擎相结合。从少量描绘机器人任务初始状态的真实图像出发，我们的方法自动重建任务相关物体和相机几何，在仿真中对齐它们，并采集物理有效的轨迹。这些轨迹被用于后训练视频世界模型和逆动力学模型，从而能够从真实图像生成视觉逼真的机器人操作视频及相应的机器人动作。为了过滤物理上不可行的 rollout，Grounded-Dreamer 在重建的仿真中重放生成的轨迹，仅保留成功完成任务的轨迹。真实世界机器人策略仅基于锚定的合成轨迹训练，无需任何人类演示。真实世界任务上的实证结果表明，Grounded-Dreamer 能够合成物理锚定的数据，并在无需人类遥操作的情况下显著促进策略学习。",
+      "authors": [
+        "Feng Jiang",
+        "Shu Chen",
+        "Yuanfei Wang"
+      ],
+      "authors_all": [
+        "Feng Jiang",
+        "Shu Chen",
+        "Yuanfei Wang",
+        "Yuan Li",
+        "Zhenhao Shen",
+        "Jiaqi Liang",
+        "Yang Chen",
+        "Lei Wei",
+        "Chen Xie",
+        "Ruihai Wu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-09",
+      "channels": [
+        "manipulation",
+        "teleop",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 北大"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKUST"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-13164.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-13164-p2.jpg"
+      ],
+      "arxiv_id": "2610.13164",
+      "abs_url": "http://arxiv.org/abs/2610.13164v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.13164v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 45,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "视频世界模型合成物理接地数据，免遥操作训练操作策略，属world-model与manipulation交叉。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Peking University",
+        "Hong Kong University of Science and Technology (Guangzhou)",
+        "Lightwheel"
+      ],
+      "method_tags": [
+        "World Model",
+        "Inverse Dynamics Model",
+        "Synthetic Data"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2610-13522",
+      "source": "arxiv",
+      "title": "Beyond Successful Robot Demonstrations: Learning from Human Interactions and Modeling Failure Dynamics",
+      "title_zh": "超越成功的机器人演示：从人类交互中学习并建模失败动力学",
+      "tldr_zh": "HF-WM结合人类交互与失败感知后训练，提升机器人世界模型。",
+      "cover_zh": "机器人只看成功案例？这个模型偏要学失败动力学",
+      "abstract_zh": "动作条件世界模型通过预测动作的后果，为通用机器人智能提供了有前景的基础。然而，现有的机器人数据集对可泛化世界建模所需的多样化交互动态覆盖有限。大规模第一人称人类视频提供了互补的交互经验，但人手与机器人机械臂之间的具身差异阻碍了有效的跨具身学习。同时，成功演示的主导地位使得失败动力学严重不足，限制了世界模型预测不成功执行的能力。为了解决这些局限，我们提出了HF-WM，一种动作条件世界模型，结合了人类交互学习与失败感知后训练。为了弥合具身差异，我们开发了一个双分支框架，将视频生成与辅助点流预测耦合，使用稳定的点流作为人类和机器人交互的统一运动表示，同时抑制第一人称相机运动。为了改进失败建模，我们进一步对从成功演示中衍生的扰动动作进行组相对策略优化（GRPO）后训练，以动作对齐和物理合理性奖励为指导，使模型能够在没有配对真实视频的情况下学习合理的失败动力学。大量实验表明，HF-WM在动作条件视频生成中达到了最先进的性能，并在下游机器人任务中展现出强大的策略评估实用性。",
+      "authors": [
+        "Peiyan Tu",
+        "Cong Wang",
+        "Hanxin Zhu"
+      ],
+      "authors_all": [
+        "Peiyan Tu",
+        "Cong Wang",
+        "Hanxin Zhu",
+        "Xin Jin",
+        "Zhibo Chen"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-09",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ ZJU"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ USTC"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2610-13522.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-13522-p2.jpg"
+      ],
+      "arxiv_id": "2610.13522",
+      "abs_url": "http://arxiv.org/abs/2610.13522v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.13522v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 45,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "world-model",
+        "reason": "动作条件世界模型，结合人类交互与失败动态，用于策略评估，属world-model方向。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Zhejiang University",
+        "Beijing Zhongguancun Academy",
+        "University of Science and Technology of China",
+        "Eastern Institute of Technology"
+      ],
+      "method_tags": [
+        "World Model",
+        "GRPO",
+        "cross-embodiment"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2610-13643",
       "source": "arxiv",
       "title": "AutoBio+: Benchmarking Dexterous Manipulation with Dynamic Experimental Phenomena in Realistic Laboratories",
@@ -531,74 +682,75 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2610-13164",
+      "id": "arxiv-2610-13862",
       "source": "arxiv",
-      "title": "Grounded-Dreamer: Robot Learning from World Model Synthetic Data with Physical Grounding",
-      "title_zh": "Grounded-Dreamer：基于世界模型合成数据与物理锚定的机器人学习",
-      "tldr_zh": "Grounded-Dreamer 用世界模型合成物理锚定数据，无需人类演示即可训练机器人策略。",
-      "cover_zh": "不用人类遥操作｜世界模型+物理引擎合成数据，机器人策略直接起飞",
-      "abstract_zh": "扩展机器人操作策略需要大量多样且带有动作标签的数据，然而在真实世界中采集此类数据仍然昂贵且难以规模化。现有方法要么依赖人类遥操作，要么依赖视觉真实感有限的仿真，要么使用缺乏具身特定标注的人类视频。本文提出 Grounded-Dreamer，一个利用视频世界模型合成物理锚定的机器人操作数据、同时避免人类遥操作演示的框架。Grounded-Dreamer 将生成式视频模型的视觉真实感与仿真器物理引擎相结合。从少量描绘机器人任务初始状态的真实图像出发，我们的方法自动重建任务相关物体和相机几何，在仿真中对齐它们，并采集物理有效的轨迹。这些轨迹被用于后训练视频世界模型和逆动力学模型，从而能够从真实图像生成视觉逼真的机器人操作视频及相应的机器人动作。为了过滤物理上不可行的 rollout，Grounded-Dreamer 在重建的仿真中重放生成的轨迹，仅保留成功完成任务的轨迹。真实世界机器人策略仅基于锚定的合成轨迹训练，无需任何人类演示。真实世界任务上的实证结果表明，Grounded-Dreamer 能够合成物理锚定的数据，并在无需人类遥操作的情况下显著促进策略学习。",
+      "title": "BT-Agent: Deploying Onboard Robot Agents with Behavior Trees and Multi-Fidelity Evaluation",
+      "title_zh": "BT-Agent：使用行为树与多保真度评估部署机载机器人代理",
+      "tldr_zh": "BT-Agent结合LLM与行为树，实现机载机器人代理，并引入多保真度基准。",
+      "cover_zh": "机器人也能跑大模型？9B模型机载运行，行为树让导航急停不等待",
+      "abstract_zh": "在移动机器人上部署语言模型代理需要在有限的计算和内存下进行任务推理和响应式执行。我们提出BT-Agent，一种结合LLM驱动的任务决策与预定义行为树（BT）技能的机载架构。这些技能强制执行执行条件并返回结构化失败反馈。我们展示了在四足机器人上使用9B模型完全机载运行，涵盖五个任务类别。干预测试表明，本地检查无需等待另一个模型决策即可停止正在进行的导航，同时代理保持活跃以重试或报告约束。为了高效比较代理设计，我们引入了一个161任务的多保真度基准，在文本上评估所有任务，并在Habitat上评估39个任务。文本支持10.9倍的评估吞吐量，而模拟揭示了感知和运动失败如何改变任务结果。BT-Agent相对于最强的Act/ReAct基线的最大成功增益出现在4B和9B上：分别约为10和5个百分点。消融实验确定结构化工具调用和信息性失败反馈是最有用的组件。",
       "authors": [
-        "Feng Jiang",
-        "Shu Chen",
-        "Yuanfei Wang"
+        "Fabio Hübel",
+        "Adam Lilja",
+        "Yue Yin"
       ],
       "authors_all": [
-        "Feng Jiang",
-        "Shu Chen",
-        "Yuanfei Wang",
-        "Yuan Li",
-        "Zhenhao Shen",
-        "Jiaqi Liang",
-        "Yang Chen",
-        "Lei Wei",
-        "Chen Xie",
-        "Ruihai Wu"
+        "Fabio Hübel",
+        "Adam Lilja",
+        "Yue Yin",
+        "Siming He",
+        "Claire Tomlin",
+        "Shankar Sastry",
+        "Jonas Frey",
+        "Marco Pavone"
       ],
       "primary_category": "cs.RO",
       "published": "2026-10-09",
       "channels": [
+        "locomotion",
         "manipulation"
       ],
       "badges": [
         {
           "kind": "lab",
-          "label": "⭐ 北大"
+          "label": "⭐ NVIDIA"
         },
         {
           "kind": "lab",
-          "label": "⭐ HKUST"
+          "label": "⭐ Stanford"
         }
       ],
-      "cover_image": "assets/img/covers/arxiv-2610-13164.jpg",
+      "cover_image": "assets/img/covers/arxiv-2610-13862.jpg",
       "preview_pages": [
-        "assets/img/covers/arxiv-2610-13164-p2.jpg"
+        "assets/img/covers/arxiv-2610-13862-p2.jpg"
       ],
-      "arxiv_id": "2610.13164",
-      "abs_url": "http://arxiv.org/abs/2610.13164v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.13164v1",
+      "arxiv_id": "2610.13862",
+      "abs_url": "http://arxiv.org/abs/2610.13862v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.13862v1",
       "venue": "",
       "venue_announced": "",
-      "score": 31,
+      "score": 36,
       "judge": {
         "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "视频世界模型合成物理接地数据，免遥操作训练操作策略，属world-model与manipulation交叉。",
+        "research_value": "medium",
+        "primary_channel": "manipulation",
+        "reason": "LLM agent+行为树在四足机器人上部署，含多保真基准，属具身智能但偏系统集成，参考价值中等。",
         "model": "deepseek-v4-flash"
       },
       "institutions": [
-        "Peking University",
-        "Hong Kong University of Science and Technology (Guangzhou)",
-        "Lightwheel"
+        "Stanford University",
+        "University of California, Berkeley",
+        "NVIDIA"
       ],
       "method_tags": [
-        "World Model",
-        "Inverse Dynamics Model",
-        "Synthetic Data"
+        "LLM Agent",
+        "Behavior Trees",
+        "ReAct"
       ],
       "platform": [],
-      "sim_stack": [],
+      "sim_stack": [
+        "Habitat"
+      ],
       "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
@@ -672,154 +824,6 @@
       ],
       "platform": [],
       "sim_stack": [],
-      "method_family": "",
-      "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2610-13522",
-      "source": "arxiv",
-      "title": "Beyond Successful Robot Demonstrations: Learning from Human Interactions and Modeling Failure Dynamics",
-      "title_zh": "超越成功的机器人演示：从人类交互中学习并建模失败动力学",
-      "tldr_zh": "HF-WM结合人类交互与失败感知后训练，提升机器人世界模型。",
-      "cover_zh": "机器人只看成功案例？这个模型偏要学失败动力学",
-      "abstract_zh": "动作条件世界模型通过预测动作的后果，为通用机器人智能提供了有前景的基础。然而，现有的机器人数据集对可泛化世界建模所需的多样化交互动态覆盖有限。大规模第一人称人类视频提供了互补的交互经验，但人手与机器人机械臂之间的具身差异阻碍了有效的跨具身学习。同时，成功演示的主导地位使得失败动力学严重不足，限制了世界模型预测不成功执行的能力。为了解决这些局限，我们提出了HF-WM，一种动作条件世界模型，结合了人类交互学习与失败感知后训练。为了弥合具身差异，我们开发了一个双分支框架，将视频生成与辅助点流预测耦合，使用稳定的点流作为人类和机器人交互的统一运动表示，同时抑制第一人称相机运动。为了改进失败建模，我们进一步对从成功演示中衍生的扰动动作进行组相对策略优化（GRPO）后训练，以动作对齐和物理合理性奖励为指导，使模型能够在没有配对真实视频的情况下学习合理的失败动力学。大量实验表明，HF-WM在动作条件视频生成中达到了最先进的性能，并在下游机器人任务中展现出强大的策略评估实用性。",
-      "authors": [
-        "Peiyan Tu",
-        "Cong Wang",
-        "Hanxin Zhu"
-      ],
-      "authors_all": [
-        "Peiyan Tu",
-        "Cong Wang",
-        "Hanxin Zhu",
-        "Xin Jin",
-        "Zhibo Chen"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-10-09",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ ZJU"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ USTC"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2610-13522.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-13522-p2.jpg"
-      ],
-      "arxiv_id": "2610.13522",
-      "abs_url": "http://arxiv.org/abs/2610.13522v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.13522v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 31,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "world-model",
-        "reason": "动作条件世界模型，结合人类交互与失败动态，用于策略评估，属world-model方向。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Zhejiang University",
-        "Beijing Zhongguancun Academy",
-        "University of Science and Technology of China",
-        "Eastern Institute of Technology"
-      ],
-      "method_tags": [
-        "World Model",
-        "GRPO",
-        "cross-embodiment"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2610-13862",
-      "source": "arxiv",
-      "title": "BT-Agent: Deploying Onboard Robot Agents with Behavior Trees and Multi-Fidelity Evaluation",
-      "title_zh": "BT-Agent：使用行为树与多保真度评估部署机载机器人代理",
-      "tldr_zh": "BT-Agent结合LLM与行为树，实现机载机器人代理，并引入多保真度基准。",
-      "cover_zh": "机器人也能跑大模型？9B模型机载运行，行为树让导航急停不等待",
-      "abstract_zh": "在移动机器人上部署语言模型代理需要在有限的计算和内存下进行任务推理和响应式执行。我们提出BT-Agent，一种结合LLM驱动的任务决策与预定义行为树（BT）技能的机载架构。这些技能强制执行执行条件并返回结构化失败反馈。我们展示了在四足机器人上使用9B模型完全机载运行，涵盖五个任务类别。干预测试表明，本地检查无需等待另一个模型决策即可停止正在进行的导航，同时代理保持活跃以重试或报告约束。为了高效比较代理设计，我们引入了一个161任务的多保真度基准，在文本上评估所有任务，并在Habitat上评估39个任务。文本支持10.9倍的评估吞吐量，而模拟揭示了感知和运动失败如何改变任务结果。BT-Agent相对于最强的Act/ReAct基线的最大成功增益出现在4B和9B上：分别约为10和5个百分点。消融实验确定结构化工具调用和信息性失败反馈是最有用的组件。",
-      "authors": [
-        "Fabio Hübel",
-        "Adam Lilja",
-        "Yue Yin"
-      ],
-      "authors_all": [
-        "Fabio Hübel",
-        "Adam Lilja",
-        "Yue Yin",
-        "Siming He",
-        "Claire Tomlin",
-        "Shankar Sastry",
-        "Jonas Frey",
-        "Marco Pavone"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-10-09",
-      "channels": [
-        "locomotion"
-      ],
-      "badges": [
-        {
-          "kind": "lab",
-          "label": "⭐ NVIDIA"
-        },
-        {
-          "kind": "lab",
-          "label": "⭐ Stanford"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2610-13862.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-13862-p2.jpg"
-      ],
-      "arxiv_id": "2610.13862",
-      "abs_url": "http://arxiv.org/abs/2610.13862v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.13862v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 31,
-      "judge": {
-        "relevant": true,
-        "research_value": "medium",
-        "primary_channel": "manipulation",
-        "reason": "LLM agent+行为树在四足机器人上部署，含多保真基准，属具身智能但偏系统集成，参考价值中等。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Stanford University",
-        "University of California, Berkeley",
-        "NVIDIA"
-      ],
-      "method_tags": [
-        "LLM Agent",
-        "Behavior Trees",
-        "ReAct"
-      ],
-      "platform": [],
-      "sim_stack": [
-        "Habitat"
-      ],
       "method_family": "",
       "real_robot": "yes",
       "training_summary": "",
@@ -936,6 +940,67 @@
       "source_tags": [
         "qbitai"
       ]
+    },
+    {
+      "id": "arxiv-2610-13195",
+      "source": "arxiv",
+      "title": "PATACON: GPU-Parallel Tangent-Bundle RRT-Connect for Constrained Motion Planning",
+      "title_zh": "PATACON：用于约束运动规划的GPU并行切丛RRT-Connect",
+      "tldr_zh": "GPU并行切空间规划器PATACON加速约束运动规划，最高11.25倍。",
+      "cover_zh": "切空间探索让约束规划提速11倍｜GPU并行新范式",
+      "abstract_zh": "快速全身运动规划使仿人机器人能够在动态环境中持续重规划，同时满足避碰和运动学约束。然而，约束运动规划由于在碰撞检测和最近邻搜索之外还需要反复进行约束投影，导致计算成本高昂。最近，基于GPU的大规模并行规划器被提出以降低计算成本。然而，这些规划器仍在环境配置空间中进行引导，因此对偏离流形的候选点进行投影仍然是显著的开销来源，尤其是在高度约束、高维问题中。在本工作中，我们提出了PATACON，一种GPU并行的双向规划器，它探索切空间以利用由已知约束函数诱导的局部流形几何。在双臂闭链和仿人全身约束规划任务上的实验表明，随着配置空间维度和约束余维数的增长，PATACON优于先前的工作，实现了高达11.25倍的加速。这些结果表明，GPU并行的切空间探索使约束全身运动规划更接近实时性能。",
+      "authors": [
+        "Gahyun Oh",
+        "Junho An",
+        "Suhyun Jeon"
+      ],
+      "authors_all": [
+        "Gahyun Oh",
+        "Junho An",
+        "Suhyun Jeon",
+        "Suhan Park"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-10-09",
+      "channels": [
+        "manipulation",
+        "loco-manip-wbc"
+      ],
+      "badges": [],
+      "cover_image": "assets/img/covers/arxiv-2610-13195.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2610-13195-p2.jpg"
+      ],
+      "arxiv_id": "2610.13195",
+      "abs_url": "http://arxiv.org/abs/2610.13195v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.13195v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 20,
+      "judge": {
+        "relevant": true,
+        "research_value": "high",
+        "primary_channel": "loco-manip-wbc",
+        "reason": "GPU并行切空间RRT-Connect用于人形全身约束运动规划，算法创新且实验验证，对WBC有参考价值。",
+        "model": "deepseek-v4-flash"
+      },
+      "institutions": [
+        "Kwangwoon University",
+        "Seoul National University"
+      ],
+      "method_tags": [
+        "RRT-Connect",
+        "GPU-parallel planning",
+        "constrained motion planning"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
     },
     {
       "id": "arxiv-2610-13578",
@@ -1379,66 +1444,6 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "yes",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2610-13195",
-      "source": "arxiv",
-      "title": "PATACON: GPU-Parallel Tangent-Bundle RRT-Connect for Constrained Motion Planning",
-      "title_zh": "PATACON：用于约束运动规划的GPU并行切丛RRT-Connect",
-      "tldr_zh": "GPU并行切空间规划器PATACON加速约束运动规划，最高11.25倍。",
-      "cover_zh": "切空间探索让约束规划提速11倍｜GPU并行新范式",
-      "abstract_zh": "快速全身运动规划使仿人机器人能够在动态环境中持续重规划，同时满足避碰和运动学约束。然而，约束运动规划由于在碰撞检测和最近邻搜索之外还需要反复进行约束投影，导致计算成本高昂。最近，基于GPU的大规模并行规划器被提出以降低计算成本。然而，这些规划器仍在环境配置空间中进行引导，因此对偏离流形的候选点进行投影仍然是显著的开销来源，尤其是在高度约束、高维问题中。在本工作中，我们提出了PATACON，一种GPU并行的双向规划器，它探索切空间以利用由已知约束函数诱导的局部流形几何。在双臂闭链和仿人全身约束规划任务上的实验表明，随着配置空间维度和约束余维数的增长，PATACON优于先前的工作，实现了高达11.25倍的加速。这些结果表明，GPU并行的切空间探索使约束全身运动规划更接近实时性能。",
-      "authors": [
-        "Gahyun Oh",
-        "Junho An",
-        "Suhyun Jeon"
-      ],
-      "authors_all": [
-        "Gahyun Oh",
-        "Junho An",
-        "Suhyun Jeon",
-        "Suhan Park"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-10-09",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2610-13195.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2610-13195-p2.jpg"
-      ],
-      "arxiv_id": "2610.13195",
-      "abs_url": "http://arxiv.org/abs/2610.13195v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.13195v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 6,
-      "judge": {
-        "relevant": true,
-        "research_value": "high",
-        "primary_channel": "loco-manip-wbc",
-        "reason": "GPU并行切空间RRT-Connect用于人形全身约束运动规划，算法创新且实验验证，对WBC有参考价值。",
-        "model": "deepseek-v4-flash"
-      },
-      "institutions": [
-        "Kwangwoon University",
-        "Seoul National University"
-      ],
-      "method_tags": [
-        "RRT-Connect",
-        "GPU-parallel planning",
-        "constrained motion planning"
-      ],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
       "training_summary": "",
       "demo_videos": [],
       "github": {},

@@ -65,7 +65,9 @@
     "assets/img/covers/arxiv-2610-13164-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "teleop",
+    "world-model"
   ],
   "badges": [
     {
@@ -80,7 +82,7 @@
   "related_links": [],
   "page_count": 17,
   "source_tags": [],
-  "score": 31,
+  "score": 45,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -91,14 +93,20 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（manipulation）"
+      "points": 12,
+      "hint": "频道关键词命中 7 个（manipulation、teleoperation、teleop、world model）"
     },
     {
       "id": "longer_paper",
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 17 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 3 个频道"
     }
   ],
   "judge": {
@@ -125,5 +133,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - Task/ImageGen\n  - 状态/待读\nTitle: \"Grounded-Dreamer: Robot Learning from World Model Synthetic Data with Physical Grounding\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.13164v1\n---\n>[!abstract] 一句话总结：Grounded-Dreamer 把生成式视频世界模型的视觉真实感和仿真器物理引擎结合：从少量真实任务初始帧图像出发，自动重建任务相关物体与相机几何并在仿真中对齐、采集物理合法轨迹，用这些轨迹后训练视频世界模型与逆动力学模型，从而由真实图像生成视觉逼真的操作视频及对应动作，再把生成轨迹回放到重建仿真中做物理可行性筛选，仅保留成功完成任务的样本用于训练真机策略。\n\n\n# 一、动机\n\n> 机器人操作策略的规模化依赖大量带动作标注的多样化数据，但真实世界采集昂贵难扩展，人类遥操作、视觉真实性有限的仿真、缺少具身标注的人类视频三条现成路径各有硬伤。本文希望在没有人类遥操作示教的前提下，低成本合成物理可信的操作数据。\n\n\n# 二、方法\n\n> Grounded-Dreamer 把生成式视频世界模型的视觉真实感和仿真器物理引擎结合：从少量真实任务初始帧图像出发，自动重建任务相关物体与相机几何并在仿真中对齐、采集物理合法轨迹，用这些轨迹后训练视频世界模型与逆动力学模型，从而由真实图像生成视觉逼真的操作视频及对应动作，再把生成轨迹回放到重建仿真中做物理可行性筛选，仅保留成功完成任务的样本用于训练真机策略。\n\n\n# 三、核心实验结果\n\n> 在真实世界任务上验证了该框架可合成物理落地的操作数据，并仅用筛选后的合成轨迹（零人类示教）训练真机策略即可有效促进策略学习；相比依赖人类遥操作的方案省去了遥操作成本，相比纯仿真提升了视觉真实感、相比人类视频补齐了具身相关的动作标注。摘要未给出成功率、数据量等具体数值，需查阅正文获取。\n\n\n# 四、对我的启发\n\n> 局限在于流程依赖少量真实初始帧与逐场景的仿真重建和几何对齐，物体/相机重建精度会成为瓶颈，且「回放筛物理合法性」只能剔除明显不可行样本，无法保证接触动力学细节完全正确；启发是把生成模型当作数据增广器、用仿真做物理裁判（生成—筛选—训练）的范式，可迁移到其他具身数据稀缺场景，与具身智能/机器人操作课题高度相关。\n"
+  "note": "---\ntags:\n  - 论文/数据\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Grounded-Dreamer: Robot Learning from World Model Synthetic Data with Physical Grounding\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.13164v1\n---\n>[!abstract] 一句话总结：Grounded-Dreamer 从少量真实任务初始状态图像出发，自动重建任务相关物体与相机几何并在仿真中对齐、采集物理合法轨迹，用这些轨迹后训练视频世界模型与逆动力学模型，从而由真实图像生成视觉逼真的操作视频及对应动作，并通过在重建仿真中回放过滤物理不合理的 rollout，仅用接地后的合成轨迹训练真实机器人策略。\n\n\n# 一、动机\n\n> 机器人操作策略的规模化训练需要大量带动作标注的多样化数据，而真实世界采集昂贵难扩展；现有方案要么依赖人类遥操作，要么依赖视觉真实感有限的仿真，要么使用缺乏具身标注的人类视频。\n\n\n# 二、方法\n\n> Grounded-Dreamer 从少量真实任务初始状态图像出发，自动重建任务相关物体与相机几何并在仿真中对齐、采集物理合法轨迹，用这些轨迹后训练视频世界模型与逆动力学模型，从而由真实图像生成视觉逼真的操作视频及对应动作，并通过在重建仿真中回放过滤物理不合理的 rollout，仅用接地后的合成轨迹训练真实机器人策略。\n\n\n# 三、核心实验结果\n\n> 摘要仅给出定性结论：在真实世界任务上，Grounded-Dreamer 能够合成具有物理接地性的数据，并在完全不需要人类遥操作示范的条件下显著促进策略学习；但摘要未报告成功率、数据量、相对基线的具体数值提升，需查阅正文表格获取。\n\n\n# 四、对我的启发\n\n> 局限在于方法强依赖从少量图像重建的仿真场景保真度与相机对齐精度，物理过滤也受仿真器建模能力限制；启发是\"生成模型负责视觉、仿真器负责物理\"的混合式数据合成范式，可作为无遥操作数据扩增的可复用思路，但需验证重建误差与 sim-to-real 差距带来的偏差。与课题（机器人/具身智能）直接相关。\n"
 }

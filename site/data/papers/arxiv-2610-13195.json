@@ -41,25 +41,32 @@
     "assets/img/covers/arxiv-2610-13195-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "loco-manip-wbc"
   ],
   "badges": [],
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 6,
+  "score": 20,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（dual-arm）"
+      "points": 12,
+      "hint": "频道关键词命中 4 个（dual-arm、whole-body、humanoid whole-body、humanoid robot）"
     },
     {
       "id": "longer_paper",
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 9 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -85,5 +92,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - Task/MotionPlanning\n  - 状态/待读\nTitle: \"PATACON: GPU-Parallel Tangent-Bundle RRT-Connect for Constrained Motion Planning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.13195v1\n---\n>[!abstract] 一句话总结：PATACON 提出一种 GPU 并行双向 RRT-Connect 规划器，不再在环境配置空间盲目探索，而是利用已知约束函数诱导的局部流形几何，直接在切空间（切丛）中采样与扩展，从源头上避免大量无效的约束投影。\n\n\n# 一、动机\n\n> 现有 GPU 并行运动规划器仍在环境配置空间中采样与引导，对偏离约束流形的候选点需要反复做约束投影，在高度约束、高维问题中该投影开销成为主要瓶颈，难以满足人形机器人动态环境下的实时重规划需求。\n\n\n# 二、方法\n\n> PATACON 提出一种 GPU 并行双向 RRT-Connect 规划器，不再在环境配置空间盲目探索，而是利用已知约束函数诱导的局部流形几何，直接在切空间（切丛）中采样与扩展，从源头上避免大量无效的约束投影。\n\n\n# 三、核心实验结果\n\n> 在双臂闭链与人形全身约束规划任务上，PATACON 相比已有 GPU 并行规划器取得最高 11.25 倍加速；且随着配置空间维度与约束余维数的增长，其相对优势进一步扩大，使受限全身运动规划更接近实时性能。\n\n\n# 四、对我的启发\n\n> 方法依赖已知的约束函数与局部流形假设，对隐式或未知约束场景的泛化能力有限；但其“在切空间中并行探索”的思路对高维受限规划与实时全身控制具有借鉴意义，与机器人具身运动规划课题高度相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"PATACON: GPU-Parallel Tangent-Bundle RRT-Connect for Constrained Motion Planning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.13195v1\n---\n>[!abstract] 一句话总结：提出 PATACON：一种 GPU 并行双向（RRT-Connect 风格）约束运动规划器，直接在已知约束函数诱导的切丛（tangent bundle）空间中进行探索，利用局部流形几何生成天然满足约束的候选状态，从而避免在构型空间中反复做约束投影。\n\n\n# 一、动机\n\n> 现有 GPU 并行运动规划器仍在环境构型空间中采样与 steering，偏离约束流形的候选点需要反复投影回流形，在强约束、高维问题（如人形全身规划）中投影开销成为主要瓶颈，难以支撑动态环境下的连续重规划。\n\n\n# 二、方法\n\n> 提出 PATACON：一种 GPU 并行双向（RRT-Connect 风格）约束运动规划器，直接在已知约束函数诱导的切丛（tangent bundle）空间中进行探索，利用局部流形几何生成天然满足约束的候选状态，从而避免在构型空间中反复做约束投影。\n\n\n# 三、核心实验结果\n\n> 在双臂闭链与人形全身约束规划任务上，PATACON 随构型空间维度与约束余维数增大而相对先前 GPU 并行方法优势扩大，最高取得 11.25 倍加速，使受约束的全身运动规划更接近实时性能。\n\n\n# 四、对我的启发\n\n> 方法依赖已知且可微的约束函数，对非光滑、隐式或学习得到的约束适用性存疑；切空间参数化在奇异点附近的数值稳定性、以及与动态障碍/在线重规划的端到端闭环验证（真机实时性）仍是待考察问题。与具身智能中的全身约束规划课题高度相关。\n"
 }
