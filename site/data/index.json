@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12T13:52:15.614124+00:00",
+  "generated_at": "2026-10-13T10:13:19.848996+00:00",
   "count": 3096,
   "papers": [
     {
@@ -33794,10 +33794,10 @@
       "id": "arxiv-2605-15195",
       "source": "arxiv",
       "title": "VGGT-$Ω$",
-      "title_zh": "VGGT-$\\Omega$",
-      "tldr_zh": "VGGT-$\\Omega$ 通过架构简化与寄存器注意力，大幅提升重建精度与效率。",
-      "cover_zh": "仅用30%显存，重建精度却飙升77%｜这个模型有点东西",
-      "abstract_zh": "近期，诸如 VGGT 等前馈重建模型已被证明能与传统基于优化的重建器相媲美，同时还能提供对其他任务有用的几何感知特征。在此，我们表明这些模型的质量随模型和数据规模可预测地扩展。为此，我们引入了 VGGT-$\\Omega$，它在静态和动态场景下均显著提升了重建精度、效率和能力。为了能够以前所未有的规模训练该模型，我们引入了提升训练效率的架构改动、支持动态场景的高质量数据标注流程以及自监督学习协议。我们通过使用带有任务监督的单一密集预测头并移除昂贵的高分辨率卷积层，简化了 VGGT 的架构。我们还使用寄存器将场景信息聚合成紧凑表示，并引入了寄存器注意力，将帧间信息交换限制在这些寄存器上，部分替代了全局注意力。通过这种方式，在训练期间，VGGT-$\\Omega$ 仅使用其前身约 30% 的 GPU 内存，使我们能够使用比先前工作多 15 倍的监督数据进行训练，并利用大量未标注视频数据。VGGT-$\\Omega$ 在多个基准测试中对于静态和动态场景的重建均取得了强劲结果，例如，在 Sintel 上将先前最佳相机估计精度提升了 77%。我们还表明，学习到的寄存器可以改进视觉-语言-动作模型并支持与语言的对齐，这表明重建可以成为空间理解的一种强大且可扩展的代理任务。项目页面：http://vggt-omega.github.io/",
+      "title_zh": "VGGT-$Ω$",
+      "tldr_zh": "Recent feed-forward reconstruction models, such as VGGT, hav",
+      "cover_zh": "Recent feed-forward reconstruction models, such as VGGT, hav",
+      "abstract_zh": "Recent feed-forward reconstruction models, such as VGGT, have proven competitive with traditional optimization-based reconstructors while also providing geometry-aware features useful for other tasks. Here, we show that the quality of these models scales predictably with model and data size. We do so by introducing VGGT-$Ω$, which substantially improves reconstruction accuracy, efficiency, and capabilities for both static and dynamic scenes. To enable training this model at an unprecedented scale, we introduce architectural changes that improve training efficiency, a high-quality data annotation pipeline that supports dynamic scenes, and a self-supervised learning protocol. We simplify VGGT's architecture by using a single dense prediction head with multi-task supervision and removing the expensive high-resolution convolutional layers. We also use registers to aggregate scene information into a compact representation and introduce register attention, which restricts inter-frame information exchange to these registers, in part replacing global attention. In this way, during training, VGGT-$Ω$ uses only about 30% of the GPU memory of its predecessor, allowing us to train with 15x more supervised data than prior work and to leverage vast amounts of unlabeled video data. VGGT-$Ω$ achieves strong results for reconstruction of static and dynamic scenes across multiple benchmarks, for example, improving over the previous best camera estimation accuracy on Sintel by 77%. We also show that the learned registers can improve vision-language-action models and support alignment with language, suggesting that reconstruction can be a powerful and scalable proxy task for spatial understanding. Project Page: http://vggt-omega.github.io/",
       "authors": [
         "Jianyuan Wang",
         "Minghao Chen",
@@ -54657,9 +54657,9 @@
       "source": "video_youtube",
       "title": "Whirlybird | Atlas | Boston Dynamics",
       "title_zh": "Whirlybird | Atlas | Boston Dynamics",
-      "tldr_zh": "Atlas 展示旋转与新动作",
-      "cover_zh": "Atlas 又整新活！旋转跳跃不停歇",
-      "abstract_zh": "Atlas 旋转跳跃，尝试新动作",
+      "tldr_zh": "Atlas goes for a spin and tries some new moves",
+      "cover_zh": "Atlas goes for a spin and tries some new moves",
+      "abstract_zh": "Atlas goes for a spin and tries some new moves",
       "authors": [],
       "authors_all": [],
       "primary_category": "video",
@@ -59135,6 +59135,67 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2609-18651",
+      "source": "arxiv",
+      "title": "FIERCE: From Generalist Robot Policies to Fast Specialists via Progress-Failure Feedback",
+      "title_zh": "FIERCE：通过进展-失败反馈从通用机器人策略到快速专家",
+      "tldr_zh": "FIERCE框架通过进展-失败反馈精炼通用机器人策略为快速专家，无需模拟器或密集奖励。",
+      "cover_zh": "通用机器人策略秒变专家？这个框架用进展-失败反馈实现快速精炼！",
+      "abstract_zh": "通用机器人策略提供了有用的初始化，但通过有限的物理交互来精炼紧凑的专家策略需要信息丰富的学习反馈。我们提出了FIERCE，一个以统一、任务自适应的进展-失败评估器为中心的通用初始化强化学习框架。其架构在观察-语言表示之间共享，该表示连接了一个观察进展头和一个动作条件潜在预测器，其过去和当前的预测馈入一个因果序列头以进行任务失败估计。来自进展和偏好标签、同步命令和观察以及终端结果的联合监督训练评估器；目标任务的rollout支持适应和校准。固定的评估器快照提供进展塑形和失败风险惩罚，以及独立验证的终端奖励，而评估器和策略更新在收集新经验时交替进行。精炼既不需要持续的通用动作查询，也不需要专用的目标任务模拟器或手动标注的密集奖励。部署时仅保留紧凑的专家策略。评估在模拟和两个接触丰富的真实任务中分离了反馈质量、策略学习效率和部署成本。代码、模型权重和数据恢复工具发布在https://github.com/ar-mine/FIERCE。",
+      "authors": [
+        "Runjia Tan",
+        "Yuang Tu",
+        "Yujie Yan"
+      ],
+      "authors_all": [
+        "Runjia Tan",
+        "Yuang Tu",
+        "Yujie Yan",
+        "Lan Yu",
+        "Xuesong Tian",
+        "Chen Lv"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-09-16",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ NTU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2609-18651.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2609-18651-p2.jpg"
+      ],
+      "arxiv_id": "2609.18651",
+      "abs_url": "http://arxiv.org/abs/2609.18651v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.18651v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 42,
+      "judge": {},
+      "institutions": [
+        "Nanyang Technological University",
+        "Guangzhou Cloudbutterfly Technology Co., Ltd."
+      ],
+      "method_tags": [
+        "Reinforcement Learning",
+        "generalist-initialized refinement",
+        "progress-failure feedback"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -97876,10 +97937,10 @@
       "id": "vid-youtube-4whgw2gLBS8",
       "source": "video_youtube",
       "title": "New Hands for Atlas | Boston Dynamics",
-      "title_zh": "Atlas 的新手 | Boston Dynamics",
-      "tldr_zh": "Boston Dynamics 为 Atlas 打造 13 自由度直接驱动新手，支持 sim-to-real 强化学习。",
-      "cover_zh": "Atlas 换手了！13 自由度直接驱动，为灵巧操作而生",
-      "abstract_zh": "这一代新手是 Atlas 的完美搭档。拥有 13 个自由度，这些手直接驱动，专为高保真仿真而构建，以实现 sim-to-real 强化学习，并从零开始为灵巧的物理工作而设计。了解我们如何为现代 AI 和实际工作打造机器人手：https://bostondynamics.com/blog/robot-hands-for-modern-ai-and-real-work",
+      "title_zh": "New Hands for Atlas | Boston Dynamics",
+      "tldr_zh": "This new generation hand is the perfect companion for Atlas.",
+      "cover_zh": "This new generation hand is the perfect companion for Atlas.",
+      "abstract_zh": "This new generation hand is the perfect companion for Atlas. With 13 degrees of freedom, these hands are directly actuated, built for high fidelity simulation to enable sim-to-real RL, and designed from the ground up for dexterous physical work. Learn how we built robot hands for modern AI and real work: https://bostondynamics.com/blog/robot-hands-for-modern-ai-and-real-work",
       "authors": [],
       "authors_all": [],
       "primary_category": "video",
@@ -103684,6 +103745,86 @@
       "sim_stack": [],
       "method_family": "",
       "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2609-18650",
+      "source": "arxiv",
+      "title": "From Gameplay to Policy: Towards Scalable Robot Data Collection via Gamified Robot-Free Interaction",
+      "title_zh": "从游戏到策略：通过游戏化无机器人交互实现可扩展的机器人数据收集",
+      "tldr_zh": "游戏化VR平台收集数据，迁移到真实机器人，少样本下成功率提升。",
+      "cover_zh": "打游戏就能训练机器人？这个VR平台让数据收集不再难",
+      "abstract_zh": "学习可泛化的机器人操作策略需要大规模且多样化的交互数据，然而收集真实世界演示数据仍然成本高昂且难以扩展。现有的数据收集方法要么依赖特定的机器人硬件，限制了众包和可迁移性，要么存在标注不完整和行为多样性有限的问题。受游戏如何维持人类长期参与的启发，我们探索了一种替代范式，将数据收集转变为引人入胜的游戏体验，并将由此产生的人类操作经验迁移到真实机器人上。我们提出了Project Kitchen，一个基于VR的游戏化自我中心数据收集平台，能够激发多样化、目标导向的操作行为，同时独立于特定的机器人形态和硬件，使其适用于更广泛且可能大规模的部署。为了弥合游戏到现实的差距，我们进一步引入了Game2Policy，它从游戏轨迹中提取形态无关的示能线索，包括接触点和子目标状态。一个示能模型在游戏收集的数据上进行预训练，然后仅使用少量真实机器人演示与下游策略联合微调。实验表明，在少样本设置下，Game2Policy在仿真中平均成功率提高了10.0个百分点，在真实机器人上提高了18.3个百分点。用户研究和定量分析进一步表明，Project Kitchen促进了多样化的操作行为，并提供了引人入胜的数据收集体验。这些结果展示了游戏化虚拟环境作为可扩展操作知识来源的潜力。平台和代码将在接收后发布。",
+      "authors": [
+        "Zheng Li",
+        "Liang Zhu",
+        "Junzhe Wang"
+      ],
+      "authors_all": [
+        "Zheng Li",
+        "Liang Zhu",
+        "Junzhe Wang",
+        "Huayuan Chen",
+        "Ziyun Liu",
+        "Jiahang Cao",
+        "Xinyu Sheng",
+        "Pei Qu",
+        "Yufei Jia",
+        "Ximeng Zhang",
+        "Jiarui Xie",
+        "Zizhao Yuan",
+        "Haoang Li",
+        "Yi Cai",
+        "Jinni Zhou",
+        "Jun Ma"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-09-16",
+      "channels": [
+        "manipulation"
+      ],
+      "badges": [
+        {
+          "kind": "lab",
+          "label": "⭐ 清华"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKUST"
+        },
+        {
+          "kind": "lab",
+          "label": "⭐ HKU"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2609-18650.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2609-18650-p2.jpg"
+      ],
+      "arxiv_id": "2609.18650",
+      "abs_url": "http://arxiv.org/abs/2609.18650v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.18650v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 31,
+      "judge": {},
+      "institutions": [
+        "The Hong Kong University of Science and Technology (Guangzhou)",
+        "The University of Hong Kong",
+        "Tsinghua University"
+      ],
+      "method_tags": [
+        "Imitation Learning",
+        "Affordance",
+        "Few-Shot Policy Learning"
+      ],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "yes",
       "training_summary": "",
       "demo_videos": [],
       "github": {},
@@ -149677,55 +149818,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2609-18651",
-      "source": "arxiv",
-      "title": "FIERCE: From Generalist Robot Policies to Fast Specialists via Progress-Failure Feedback",
-      "title_zh": "FIERCE：通过进展-失败反馈从通用机器人策略到快速专家",
-      "tldr_zh": "FIERCE框架通过进展-失败反馈精炼通用机器人策略为快速专家，无需模拟器或密集奖励。",
-      "cover_zh": "通用机器人策略秒变专家？这个框架用进展-失败反馈实现快速精炼！",
-      "abstract_zh": "通用机器人策略提供了有用的初始化，但通过有限的物理交互来精炼紧凑的专家策略需要信息丰富的学习反馈。我们提出了FIERCE，一个以统一、任务自适应的进展-失败评估器为中心的通用初始化强化学习框架。其架构在观察-语言表示之间共享，该表示连接了一个观察进展头和一个动作条件潜在预测器，其过去和当前的预测馈入一个因果序列头以进行任务失败估计。来自进展和偏好标签、同步命令和观察以及终端结果的联合监督训练评估器；目标任务的rollout支持适应和校准。固定的评估器快照提供进展塑形和失败风险惩罚，以及独立验证的终端奖励，而评估器和策略更新在收集新经验时交替进行。精炼既不需要持续的通用动作查询，也不需要专用的目标任务模拟器或手动标注的密集奖励。部署时仅保留紧凑的专家策略。评估在模拟和两个接触丰富的真实任务中分离了反馈质量、策略学习效率和部署成本。代码、模型权重和数据恢复工具发布在https://github.com/ar-mine/FIERCE。",
-      "authors": [
-        "Runjia Tan",
-        "Yuang Tu",
-        "Yujie Yan"
-      ],
-      "authors_all": [
-        "Runjia Tan",
-        "Yuang Tu",
-        "Yujie Yan",
-        "Lan Yu",
-        "Xuesong Tian",
-        "Chen Lv"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-09-16",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2609-18651.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2609-18651-p2.jpg"
-      ],
-      "arxiv_id": "2609.18651",
-      "abs_url": "http://arxiv.org/abs/2609.18651v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.18651v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 17,
-      "judge": {},
-      "institutions": [],
-      "method_tags": [],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2609-20078",
       "source": "arxiv",
       "title": "FlipToSee: A Probabilistic Stable Placement Prior for Active Visual Exploration via Regrasping",
@@ -161463,10 +161555,10 @@
       "id": "vid-youtube-lJpM_2a1zrE",
       "source": "video_youtube",
       "title": "Helix 2.5 30-Home Generalization",
-      "title_zh": "Helix 2.5 30 家庭泛化",
-      "tldr_zh": "Helix 2.5 在 30 个家庭中零样本泛化完成有用工作。",
-      "cover_zh": "机器人零训练直接上岗｜30 个家庭实测泛化能力",
-      "abstract_zh": "今天我们发布 Helix 2.5。我们在湾区租了 30 个家庭。机器人到达时没有进行额外训练，就开始做有用的工作。",
+      "title_zh": "Helix 2.5 30-Home Generalization",
+      "tldr_zh": "Today we’re releasing Helix 2.5 We rented 30 homes in the Ba",
+      "cover_zh": "Today we’re releasing Helix 2.5 We rented 30 homes in the Ba",
+      "abstract_zh": "Today we’re releasing Helix 2.5 We rented 30 homes in the Bay Area. The robots arrived with no additional training and started doing useful work",
       "authors": [],
       "authors_all": [],
       "primary_category": "video",
@@ -161722,10 +161814,10 @@
       "id": "vid-youtube-HuYXf_3TNW8",
       "source": "video_youtube",
       "title": "30 Home Generalization",
-      "title_zh": "30 个家庭泛化",
-      "tldr_zh": "Helix 2.5 机器人零样本泛化到 30 个家庭并连续工作 4 小时。",
-      "cover_zh": "机器人没训练就进 30 个家干活？连续 4 小时零样本泛化",
-      "abstract_zh": "昨天我们发布了 Helix 2.5。我们在湾区租了 30 个家庭。机器人无需额外训练即可到达并开始执行有用的工作。以下是连续工作 4 小时的记录，更多内容请阅读我们的博客：https://www.figure.ai/news/helix-2-5-zero-shot-30-home-generalization",
+      "title_zh": "30 Home Generalization",
+      "tldr_zh": "Yesterday we announced Helix 2.5 We rented 30 homes in the B",
+      "cover_zh": "Yesterday we announced Helix 2.5 We rented 30 homes in the B",
+      "abstract_zh": "Yesterday we announced Helix 2.5 We rented 30 homes in the Bay Area. The robots arrived with no additional training and started doing useful work Here's 4 hours of continuous work read more in our blog at:\nhttps://www.figure.ai/news/helix-2-5-zero-shot-30-home-generalization",
       "authors": [],
       "authors_all": [],
       "primary_category": "video",
@@ -174119,7 +174211,7 @@
       "id": "s2-087afc3cada3f353a0614c7ad9297d70b4883392",
       "source": "conf",
       "title": "Dexterous Planar Pushing under Uncertain Object Properties: A Contact-Aware Goal-Oriented Approach",
-      "title_zh": "不确定物体属性下的灵巧平面推动：一种接触感知的目标导向方法",
+      "title_zh": "Dexterous Planar Pushing under Uncertain Object Properties: A Contact-Aware Goal-Oriented Approach",
       "tldr_zh": "提出接触感知目标导向方法，实现不确定物体属性下的灵巧平面推动。",
       "cover_zh": "物体属性未知也能推？接触感知让平面推动更灵巧",
       "abstract_zh": "",
@@ -199464,7 +199556,11 @@
       "score": 6,
       "judge": {},
       "institutions": [],
-      "method_tags": [],
+      "method_tags": [
+        "ridge regression",
+        "geometric reconstruction",
+        "static tipping model"
+      ],
       "platform": [],
       "sim_stack": [],
       "method_family": "",
@@ -199934,65 +200030,6 @@
       "arxiv_id": "2609.18623",
       "abs_url": "http://arxiv.org/abs/2609.18623v1",
       "pdf_url": "https://arxiv.org/pdf/2609.18623v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 6,
-      "judge": {},
-      "institutions": [],
-      "method_tags": [],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2609-18650",
-      "source": "arxiv",
-      "title": "From Gameplay to Policy: Towards Scalable Robot Data Collection via Gamified Robot-Free Interaction",
-      "title_zh": "从游戏到策略：通过游戏化无机器人交互实现可扩展的机器人数据收集",
-      "tldr_zh": "游戏化VR平台收集数据，迁移到真实机器人，少样本下成功率提升。",
-      "cover_zh": "打游戏就能训练机器人？这个VR平台让数据收集不再难",
-      "abstract_zh": "学习可泛化的机器人操作策略需要大规模且多样化的交互数据，然而收集真实世界演示数据仍然成本高昂且难以扩展。现有的数据收集方法要么依赖特定的机器人硬件，限制了众包和可迁移性，要么存在标注不完整和行为多样性有限的问题。受游戏如何维持人类长期参与的启发，我们探索了一种替代范式，将数据收集转变为引人入胜的游戏体验，并将由此产生的人类操作经验迁移到真实机器人上。我们提出了Project Kitchen，一个基于VR的游戏化自我中心数据收集平台，能够激发多样化、目标导向的操作行为，同时独立于特定的机器人形态和硬件，使其适用于更广泛且可能大规模的部署。为了弥合游戏到现实的差距，我们进一步引入了Game2Policy，它从游戏轨迹中提取形态无关的示能线索，包括接触点和子目标状态。一个示能模型在游戏收集的数据上进行预训练，然后仅使用少量真实机器人演示与下游策略联合微调。实验表明，在少样本设置下，Game2Policy在仿真中平均成功率提高了10.0个百分点，在真实机器人上提高了18.3个百分点。用户研究和定量分析进一步表明，Project Kitchen促进了多样化的操作行为，并提供了引人入胜的数据收集体验。这些结果展示了游戏化虚拟环境作为可扩展操作知识来源的潜力。平台和代码将在接收后发布。",
-      "authors": [
-        "Zheng Li",
-        "Liang Zhu",
-        "Junzhe Wang"
-      ],
-      "authors_all": [
-        "Zheng Li",
-        "Liang Zhu",
-        "Junzhe Wang",
-        "Huayuan Chen",
-        "Ziyun Liu",
-        "Jiahang Cao",
-        "Xinyu Sheng",
-        "Pei Qu",
-        "Yufei Jia",
-        "Ximeng Zhang",
-        "Jiarui Xie",
-        "Zizhao Yuan",
-        "Haoang Li",
-        "Yi Cai",
-        "Jinni Zhou",
-        "Jun Ma"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-09-16",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [],
-      "cover_image": "assets/img/covers/arxiv-2609-18650.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2609-18650-p2.jpg"
-      ],
-      "arxiv_id": "2609.18650",
-      "abs_url": "http://arxiv.org/abs/2609.18650v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.18650v1",
       "venue": "",
       "venue_announced": "",
       "score": 6,
