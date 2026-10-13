@@ -130,5 +130,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/CV\n  - Task/VideoGen\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Generative World Modelling for Humanoids: 1X World Model Challenge Technical Report\"\nYear: \"2025\"\nURL: http://arxiv.org/abs/2510.07092v1\n---\n>[!abstract] 一句话总结：在 1X World Model Challenge 的两个赛道上分别建模：采样赛道把视频生成基础模型 Wan-2.2 TI2V-5B 改造成以机器人状态为条件的未来帧预测器（用 AdaLN-Zero 注入状态条件，并用 LoRA 后训练）；压缩赛道则从零训练一个时空 Transformer 来预测未来离散 latent code。\n\n\n# 一、动机\n\n> 人形机器人在真实世界中的未来观测预测缺乏统一的开源基准与强基线：既有视频世界模型多面向通用场景或低维仿真，缺少以真机人形交互数据为对象、同时覆盖像素级预测与离散隐码预测的系统性评测。\n\n\n# 二、方法\n\n> 在 1X World Model Challenge 的两个赛道上分别建模：采样赛道把视频生成基础模型 Wan-2.2 TI2V-5B 改造成以机器人状态为条件的未来帧预测器（用 AdaLN-Zero 注入状态条件，并用 LoRA 后训练）；压缩赛道则从零训练一个时空 Transformer 来预测未来离散 latent code。\n\n\n# 三、核心实验结果\n\n> 采样赛道取得 23.0 dB PSNR；压缩赛道取得 Top-500 CE 6.6386；两个赛道均获得第 1 名。方法验证了「视频生成基座 + 机器人状态条件」与「时空 Transformer 隐空间预测」两条路线在人形世界模型上的可行性。\n\n\n# 四、对我的启发\n\n> 局限在于压缩赛道 Top-500 CE 仍偏高、像素指标 PSNR 对长时程物理一致性刻画有限，且方案依赖大规模视频生成基座与特定人形数据，跨本体泛化与闭环控制效果尚未验证。启发是可把状态条件视频世界模型作为具身智能的想象/规划模块，但需进一步评估其在策略学习与长时程误差累积下的实用价值。\n"
+  "note": ""
 }
