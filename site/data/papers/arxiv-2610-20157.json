@@ -57,7 +57,8 @@
     "assets/img/covers/arxiv-2610-20157-p2.jpg"
   ],
   "channels": [
-    "sim2real"
+    "sim2real",
+    "manipulation"
   ],
   "badges": [
     {
@@ -76,7 +77,7 @@
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 41,
+  "score": 46,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -101,6 +102,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 8 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -127,5 +134,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Atomic-WAM: Execution-Grounded Atomic-Motion Reasoning for World Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.20157v1\n---\n>[!abstract] 一句话总结：提出理解—再执行的 Atomic-WAM 框架：视觉语言推理器根据任务指令与视觉上下文生成原子运动描述，引导固定的 WAM 预测未来视频与动作块；并用多视角 DROID 演示构建时序对齐、富含接触信息的自动标注监督，再以 Execution-Grounded GRPO（EG-GRPO）按运动合理性与执行成功率奖励对推理器做后训练。\n\n\n# 一、动机\n\n> 世界动作模型（WAM）直接从任务级指令预测视频与动作，但任务指令往往无法明确下一步的物理交互，导致语义落地不足、缺乏依赖当前状态的运动选择能力。\n\n\n# 二、方法\n\n> 提出理解—再执行的 Atomic-WAM 框架：视觉语言推理器根据任务指令与视觉上下文生成原子运动描述，引导固定的 WAM 预测未来视频与动作块；并用多视角 DROID 演示构建时序对齐、富含接触信息的自动标注监督，再以 Execution-Grounded GRPO（EG-GRPO）按运动合理性与执行成功率奖励对推理器做后训练。\n\n\n# 三、核心实验结果\n\n> 在 RoboLab 的 real-to-sim 评测中，默认指令下任务成功率达 39.6%，模糊指令下仍达 31.6%；表明原子运动级语义接地能显著提升模糊指令下的可执行性。\n\n\n# 四、对我的启发\n\n> 方法偏重系统级衔接，依赖自动标注管线与仿真评测，真实机器人上的泛化与原子运动粒度定义尚待验证；对具身操作与指令接地课题有直接参考价值。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Atomic-WAM: Execution-Grounded Atomic-Motion Reasoning for World Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.20157v1\n---\n>[!abstract] 一句话总结：提出Atomic-WAM，用视觉语言推理器生成原子动作描述来桥接任务推理与动作生成，引导WAM联合预测未来视频和动作块，并用多视角DROID演示构建接触丰富监督，通过Execution-Grounded GRPO以运动合理性和执行成功奖励后训练推理器。\n\n\n# 一、动机\n\n> 任务级指令往往无法明确下一步物理交互，导致世界动作模型（WAM）缺乏语义落地和状态依赖的运动选择，难以直接生成可执行动作。\n\n\n# 二、方法\n\n> 提出Atomic-WAM，用视觉语言推理器生成原子动作描述来桥接任务推理与动作生成，引导WAM联合预测未来视频和动作块，并用多视角DROID演示构建接触丰富监督，通过Execution-Grounded GRPO以运动合理性和执行成功奖励后训练推理器。\n\n\n# 三、核心实验结果\n\n> 在RoboLab真实到仿真评测中，Atomic-WAM在默认指令下达到39.6%任务成功率，在模糊指令下达到31.6%任务成功率。\n\n\n# 四、对我的启发\n\n> 该方法依赖自动标注的DROID演示和real-to-sim评测，真实机器人上的泛化与鲁棒性仍需验证；原子动作描述作为可解释中间接口，对具身控制与多模态推理结合有启发。\n"
 }

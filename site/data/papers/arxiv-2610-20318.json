@@ -46,7 +46,8 @@
     "assets/img/covers/arxiv-2610-20318-p2.jpg"
   ],
   "channels": [
-    "locomotion"
+    "locomotion",
+    "sim2real"
   ],
   "badges": [
     {
@@ -61,7 +62,7 @@
   "related_links": [],
   "page_count": 17,
   "source_tags": [],
-  "score": 29,
+  "score": 34,
   "score_breakdown": [
     {
       "id": "keyword_density",
@@ -86,6 +87,12 @@
       "label": "机器人顶会 / 顶刊出品",
       "points": 10,
       "hint": "被「NeurIPS 2026」收录"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -116,5 +123,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Efficient Test-Time Adaptation For Robot Policies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.20318v1\n---\n>[!abstract] 一句话总结：提出 TEMPO：以冻结的预训练 critic 作为部署期性能代理、仅更新 actor 的轻量基线为出发点，加入两项机制——对 critic 预测分布施加熵正则以抑制过度自信的外推，以及受优先回放启发的基于分数的记忆库，优先保留低价值（困难）观测并配合重要性采样把有限算力集中在最有信息量的部署条件上。\n\n\n# 一、动机\n\n> 强化学习的机器人运动策略在部署时遇到地形变化、负载改变、传感退化等分布偏移就会失效，而重新训练或人工标定在设备端延迟和内存约束下不可行，因此需要无需奖励信号的在线测试时自适应（TTA）方法。\n\n\n# 二、方法\n\n> 提出 TEMPO：以冻结的预训练 critic 作为部署期性能代理、仅更新 actor 的轻量基线为出发点，加入两项机制——对 critic 预测分布施加熵正则以抑制过度自信的外推，以及受优先回放启发的基于分数的记忆库，优先保留低价值（困难）观测并配合重要性采样把有限算力集中在最有信息量的部署条件上。\n\n\n# 三、核心实验结果\n\n> 在 MuJoCo Playground 的 Go1、Go2、G1 上，针对四种代表性偏移和多种网络架构，TEMPO 均取得一致提升，单设备设置下最高提升约 80%；在真实的 Unitree Go2 上增加小腿负载后，完全端上自适应在真实 episode 中优于未自适应基线。\n\n\n# 四、对我的启发\n\n> 方法依赖预训练 critic 作为代理信号，当偏移极端到 critic 本身失效时可能退化；熵正则与优先记忆的额外开销小、可端上运行，为具身策略的在线部署自适应提供了实用范式。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Efficient Test-Time Adaptation For Robot Policies\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.20318v1\n---\n>[!abstract] 一句话总结：提出 TEMPO：在冻结预训练 critic 作为部署期性能代理、仅更新 actor 的轻量基线之上，加入对 critic 预测分布熵正则化以缓解过度自信外推，并用受优先回放启发的分数记忆优先采样低价值（困难）观测，实现无需奖励的自监督测试时策略优化。\n\n\n# 一、动机\n\n> 强化学习训练的机器人运动策略在部署时遇到地形粗糙、打滑、负载变化、传感退化等条件偏移会失效，而重新训练或手动校准在端侧延迟和内存约束下往往不可行。\n\n\n# 二、方法\n\n> 提出 TEMPO：在冻结预训练 critic 作为部署期性能代理、仅更新 actor 的轻量基线之上，加入对 critic 预测分布熵正则化以缓解过度自信外推，并用受优先回放启发的分数记忆优先采样低价值（困难）观测，实现无需奖励的自监督测试时策略优化。\n\n\n# 三、核心实验结果\n\n> 在 MuJoCo Playground 的 Go1、Go2、G1 上，针对四种典型条件偏移和多种网络架构，TEMPO 均取得一致提升，单设备设置下最高提升约 80%；在加装小腿负载的实体 Unitree Go2 上，完全端侧的自适应在真实 episodes 中优于未自适应基线。\n\n\n# 四、对我的启发\n\n> 局限在于仍依赖预训练 critic 作为代理信号，其质量直接决定适应上限，且主要在运动类任务与四足/人形平台验证；启发是端侧无奖励 TTA 结合熵正则与困难样本优先采样，可作为具身策略部署时低成本鲁棒化的通用组件。\n"
 }

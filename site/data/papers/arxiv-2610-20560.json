@@ -50,7 +50,8 @@
     "assets/img/covers/arxiv-2610-20560-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "sim2real"
   ],
   "badges": [
     {
@@ -69,7 +70,7 @@
   "related_links": [],
   "page_count": 11,
   "source_tags": [],
-  "score": 41,
+  "score": 49,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -80,8 +81,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 3,
-      "hint": "频道关键词命中 1 个（assembly）"
+      "points": 6,
+      "hint": "频道关键词命中 2 个（assembly、isaac sim）"
     },
     {
       "id": "freshness",
@@ -94,6 +95,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 11 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -121,5 +128,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/CV\n  - Domain/Multimodal\n  - Task/3DComposition\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"PhySGA: A Physics-Space Grounded Agentic Framework for Generalizable and Interactive 3D Composition\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.20560v1\n---\n>[!abstract] 一句话总结：提出 PhySGA——一个把智能体探索与物理仿真结合、在物理空间中落地的 3D 组合框架：由负责全局规划与粗调的 Assembly Agent 和基于接触动力学做状态诊断与闭环微调的 Critic Agent 构成前馈-反馈协作架构，再用 Action Router 把语义规划映射为仿真器可执行的物理基元，并通过自演化技能库把历史试错蒸馏成可复用经验，支持刚体、铰接体和可变形体的通用交互式装配。\n\n\n# 一、动机\n\n> 现有 3D 物体组合方法要么让 LLM 直接回归物体坐标，要么借助生成式扩散先验合成图像做视觉对齐，二者都只在数字空间依赖静态先验，因而无法处理精确悬挂、重力驱动沉降、隐藏包含等需要交互构建过程的复杂组合任务。\n\n\n# 二、方法\n\n> 提出 PhySGA——一个把智能体探索与物理仿真结合、在物理空间中落地的 3D 组合框架：由负责全局规划与粗调的 Assembly Agent 和基于接触动力学做状态诊断与闭环微调的 Critic Agent 构成前馈-反馈协作架构，再用 Action Router 把语义规划映射为仿真器可执行的物理基元，并通过自演化技能库把历史试错蒸馏成可复用经验，支持刚体、铰接体和可变形体的通用交互式装配。\n\n\n# 三、核心实验结果\n\n> 在 Isaac Sim 上的大量实验表明，PhySGA 在关系保真度、物理合理性和视觉质量三项指标上均显著优于现有方法；自演化技能库可提升成功率并减少探索尝试次数。需要注意的是，摘要层面未给出上述指标的具体数值，需查阅正文获取定量对比。\n\n\n# 四、对我的启发\n\n> 局限在于整套流程强依赖 Isaac Sim 等物理仿真器提供的接触动力学与基元接口，仿真保真度和仿真到现实的迁移尚未验证，技能库的跨任务泛化边界也不清晰；启发是「仿真器内闭环 + 智能体分工 + 经验自演化」这一范式可迁移到机器人装配与具身操作中的精细接触类任务。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/CV\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/3DComposition\n  - 状态/待读\nTitle: \"PhySGA: A Physics-Space Grounded Agentic Framework for Generalizable and Interactive 3D Composition\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.20560v1\n---\n>[!abstract] 一句话总结：提出 PhySGA——一个将智能体探索与物理仿真结合、在物理空间中落地的 3D 组合智能体框架：通过前馈-反馈协同架构，由 Assembly Agent 做几何/运动学推理与全局步骤规划和粗调，Critic Agent 基于接触动力学诊断仿真器状态并做闭环精修，Action Router 将语义规划映射为仿真器中可执行的物理原语，并配合任务自演化技能库把历史试错经验蒸馏为可复用技能，从而支持刚体、铰接体和柔性体的通用交互式装配。\n\n\n# 一、动机\n\n> 现有 3D 物体组合方法要么用 LLM 直接预测物体坐标，要么用扩散先验合成图像做视觉对齐，二者都只依赖数字空间中的静态先验，因此难以处理精确悬挂、重力驱动沉降、隐藏包含等需要全局规划、细粒度对齐与物理仿真的复杂组合任务。\n\n\n# 二、方法\n\n> 提出 PhySGA——一个将智能体探索与物理仿真结合、在物理空间中落地的 3D 组合智能体框架：通过前馈-反馈协同架构，由 Assembly Agent 做几何/运动学推理与全局步骤规划和粗调，Critic Agent 基于接触动力学诊断仿真器状态并做闭环精修，Action Router 将语义规划映射为仿真器中可执行的物理原语，并配合任务自演化技能库把历史试错经验蒸馏为可复用技能，从而支持刚体、铰接体和柔性体的通用交互式装配。\n\n\n# 三、核心实验结果\n\n> 在 Isaac Sim 中的大量实验表明，PhySGA 在关系保真度（relation fidelity）、物理合理性（physical plausibility）和视觉质量三个维度上均显著优于现有方法；自演化技能库可提升成功率并减少探索尝试次数。但摘要未给出具体数值，需查阅正文获取定量结果（成功率、尝试次数、各项指标提升幅度）。此外作者指出，直接套用原始 LLM/VLM 完成该任务是不够的，因为现有模型缺乏落地的物理理解与交互式构建经验。\n\n\n# 四、对我的启发\n\n> 局限：方法强依赖 Isaac Sim 的物理仿真与可执行原语，sim-to-real 迁移与真实机器人上的接触动力学误差未验证；摘要缺少量化指标，且技能库跨任务/跨具身的泛化能力有待检验。启发：把「生成式先验」替换为「仿真器中的交互式试错 + 双智能体（规划者/批评者）闭环」是提升物理常识落地的一种可行范式，这种前馈-反馈 + 自演化技能库的结构对具身操作、装配与场景构建任务有直接借鉴价值。\n"
 }
