@@ -16,7 +16,7 @@
   "primary_category": "",
   "categories": [],
   "published": "",
-  "updated": "2026-10-01",
+  "updated": "2026-10-11",
   "arxiv_id": "",
   "pdf_url": "",
   "abs_url": "https://github.com/manumerous/wb_humanoid_mpc",
@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 52,
-      "hint": "⭐ 381"
+      "hint": "⭐ 383"
     }
   ],
   "judge": {
@@ -62,9 +62,9 @@
   "github": {
     "owner": "manumerous",
     "repo": "wb_humanoid_mpc",
-    "stars": 381,
+    "stars": 383,
     "language": "C++",
-    "pushed_at": "2026-10-01",
+    "pushed_at": "2026-10-11",
     "created_at": "2024-12-24",
     "topics": [
       "ai",
@@ -82,5 +82,5 @@
     ],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"manumerous/wb_humanoid_mpc\"\nYear: \"\"\nURL: https://github.com/manumerous/wb_humanoid_mpc\n---\n>[!abstract] 一句话总结：基于扩展版 ocs2 构建全身非线性 MPC（NMPC），提供两套硬件无关的建模方式：优化全身运动学与质心动力学的质心动力学 MPC（可选单刚体或完整质心动力学模型，并将代价与约束推广到 6 DoF 接触），以及在接触力与关节加速度上优化、可沿预测时域逐步计算关节力矩的全身动力学 MPC，从而在实时闭环中直接优化全阶力矩级动力学。\n\n\n# 一、动机\n\n> 现有人形机器人 loco-manipulation 控制多依赖简化模型（如单刚体、预设步态或分层解耦），难以在实时条件下直接优化全阶动力学，导致移动与操作行为受限、泛化性不足。\n\n\n# 二、方法\n\n> 基于扩展版 ocs2 构建全身非线性 MPC（NMPC），提供两套硬件无关的建模方式：优化全身运动学与质心动力学的质心动力学 MPC（可选单刚体或完整质心动力学模型，并将代价与约束推广到 6 DoF 接触），以及在接触力与关节加速度上优化、可沿预测时域逐步计算关节力矩的全身动力学 MPC，从而在实时闭环中直接优化全阶力矩级动力学。\n\n\n# 三、核心实验结果\n\n> 以仓库形式开源，宣称可在实时条件下直接优化全阶力矩级动力学并生成多样的人形 loco-manipulation 行为；支持摇杆交互式速度与基座高度控制；已提供 Unitree G1 机器人示例，1X Neo 示例标注为即将推出。摘要未给出任何量化指标（如跟踪误差、求解时间、成功率），仅有平台列表与定性描述。\n\n\n# 四、对我的启发\n\n> 该工作目前是代码仓库而非完整论文，质心 MPC 与全身动力学 MPC 的文档均自称仍在撰写中，缺乏定量实验与基线对比，复现与可信度评估受限；其价值主要在于提供基于 ocs2 的全身 NMPC 开源实现与 G1 平台适配，可作为人形 loco-manipulation 全身 MPC 的工程起点，并与 Sleiman 等、Galliker 等的质心/全身动力学 MPC 工作对照阅读。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"manumerous/wb_humanoid_mpc\"\nYear: \"\"\nURL: https://github.com/manumerous/wb_humanoid_mpc\n---\n>[!abstract] 一句话总结：基于扩展的 ocs2 实现全身非线性 MPC，包含质心动力学 MPC 和全身动力学 MPC，直接优化全阶力矩级动力学，实时生成人形行为。\n\n\n# 一、动机\n\n> 解决人形机器人 loco-manipulation 实时规划与控制中，需要直接优化全阶力矩级动力学并适应不同硬件平台的问题。\n\n\n# 二、方法\n\n> 基于扩展的 ocs2 实现全身非线性 MPC，包含质心动力学 MPC 和全身动力学 MPC，直接优化全阶力矩级动力学，实时生成人形行为。\n\n\n# 三、核心实验结果\n\n> 支持实时全身 NMPC；质心 MPC 将接触建模推广到 6 DoF；全身动力学 MPC 优化接触力和关节加速度并计算关节力矩；支持 Unitree G1 和 1X Neo（即将推出）。未提供量化实验数据。\n\n\n# 四、对我的启发\n\n> 与课题相关，为人形 loco-manipulation 提供硬件平台无关的 MPC 方案；局限在于文档和实验验证尚不完整，1X Neo 支持仍在开发中。\n"
 }

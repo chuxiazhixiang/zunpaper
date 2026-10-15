@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 66,
-      "hint": "⭐ 2097"
+      "hint": "⭐ 2103"
     }
   ],
   "judge": {
@@ -62,7 +62,7 @@
   "github": {
     "owner": "roboterax",
     "repo": "humanoid-gym",
-    "stars": 2097,
+    "stars": 2103,
     "language": "Python",
     "pushed_at": "2025-01-26",
     "created_at": "2024-03-04",
@@ -77,5 +77,5 @@
     ],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/系统\n  - 论文/训练\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"roboterax/humanoid-gym\"\nYear: \"\"\nURL: https://github.com/roboterax/humanoid-gym\n---\n>[!abstract] 一句话总结：基于 Nvidia Isaac Gym 构建的人形机器人运动技能强化学习框架，设计面向人形机器人的专用奖励函数以简化 sim2real 难度，并集成从 Isaac Gym 到 MuJoCo 的 sim2sim 验证流程，在部署前检查策略的鲁棒性与泛化性。\n\n\n# 一、动机\n\n> 人形机器人强化学习策略从仿真迁移到真机通常存在严重的 sim2real gap，需要大量域随机化调参甚至真机微调，缺乏易用且可复现的零样本迁移训练框架。\n\n\n# 二、方法\n\n> 基于 Nvidia Isaac Gym 构建的人形机器人运动技能强化学习框架，设计面向人形机器人的专用奖励函数以简化 sim2real 难度，并集成从 Isaac Gym 到 MuJoCo 的 sim2sim 验证流程，在部署前检查策略的鲁棒性与泛化性。\n\n\n# 三、核心实验结果\n\n> 该代码库已在 RobotEra 的 XBot-S（身高 1.2 米）和 XBot-L（身高 1.65 米）两款人形机器人上完成真机验证，实现了零样本 sim2real 迁移；同时通过 Isaac Gym→MuJoCo 的 sim2sim 流程在另一种物理仿真器中复现策略行为，验证了策略的鲁棒性；框架以 XBot-L 为主要示例，稍作调整即可迁移到其他机器人。\n\n\n# 四、对我的启发\n\n> 工作侧重工程系统与训练流程的可用性，未给出与基线方法的定量对比或消融数字，奖励设计与域随机化的具体细节需查阅论文与代码；其 sim2sim 先验证再上真机的思路对有真机风险顾虑的具身智能课题有直接借鉴价值。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/Locomotion\n  - Task/Sim2Real\n  - 状态/待读\nTitle: \"roboterax/humanoid-gym\"\nYear: \"\"\nURL: https://github.com/roboterax/humanoid-gym\n---\n>[!abstract] 一句话总结：基于 Nvidia Isaac Gym 构建的人形机器人运动技能强化学习框架，内置针对人形结构专门设计的奖励函数以降低 sim2real 难度，并提供 Isaac Gym→MuJoCo 的 sim2sim 验证管线，在真机部署前先在不同物理仿真器中检验策略的鲁棒性与泛化性。\n\n\n# 一、动机\n\n> 人形机器人的强化学习策略从仿真迁移到真机时普遍存在严重的 sim2real 差距，往往需要真机微调或复杂的域随机化调参；同时社区缺少一套面向人形机器人、开箱即用且能保证零样本迁移的训练框架。\n\n\n# 二、方法\n\n> 基于 Nvidia Isaac Gym 构建的人形机器人运动技能强化学习框架，内置针对人形结构专门设计的奖励函数以降低 sim2real 难度，并提供 Isaac Gym→MuJoCo 的 sim2sim 验证管线，在真机部署前先在不同物理仿真器中检验策略的鲁棒性与泛化性。\n\n\n# 三、核心实验结果\n\n> 1) 该代码库已在 RobotEra 的 XBot-S（1.2 米高）与 XBot-L（1.65 米高）两款人形机器人上完成真机验证，实现了零样本 sim2real 迁移下的运动能力；2) 框架以 XBot-L 为主要示例，经少量调整即可迁移到其他人形平台；3) 配套了完整的训练指南、分步配置说明与部署脚本，形成从训练到 sim2sim 再到真机的完整流程。\n\n\n# 四、对我的启发\n\n> sim2sim（Isaac Gym→MuJoCo）作为部署前的低成本“预筛”环节，能有效降低真机试错风险，这一思路对任何 sim2real 工作都有借鉴价值；局限在于工作聚焦于人形机器人行走/运动这一单一任务，未涉及操作、复杂地形与感知闭环，且奖励设计仍依赖人工调参，跨机器人泛化的自动化程度有限。\n"
 }

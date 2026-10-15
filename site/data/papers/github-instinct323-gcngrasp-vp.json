@@ -1,0 +1,76 @@
+{
+  "id": "github-instinct323-gcngrasp-vp",
+  "source": "github",
+  "title": "Instinct323/GCNGrasp-VP",
+  "title_zh": "Instinct323/GCNGrasp-VP",
+  "abstract": "Affordance-Guided View Planning for Efficient Task-Oriented Grasping\n\n# GCNGrasp-VP: Affordance-Guided View Planning for Efficient Task-Oriented Grasping [ ](https://arxiv.org/abs/2606.19091) [ ](https://huggingface.co/TongZJ/GCNGrasp-v2) [ ](https://www.bilibili.com/video/BV1ewjw6qEbY) 🎉 **Congratulations! This paper has been accepted by IROS 2026!** > Task-oriented grasping performance degrades significantly when object views suffer from occlusions. Existing task-oriented grasping methods typically assume task-relevant regions are visible in the initial frame, while view planning approaches enable active perception but often ignore task semantics and rely on time-consuming scene reconstruction. To address these limitations, we present GCNGrasp-VP, an efficient framework integrating affordance field prediction with active view planning. Central to this framework is GCNGrasp-v2, a task-oriented grasp model that simultaneously supports grasp evaluation and affordance field prediction, achieving constant-time inference complexity. Leveraging this capability, our Affordance-guided View Planner (Affordance-VP) utilizes the affordance field as an information gain metric to guide camera observation of task-relevant regions without requiring scene reconstruction. View planning results show that our method significantly outperforms scene-uncertainty-driven baselines with only one view adjustment. Real-world validation further confirms substantial improvements in grasp success rates for single-object scenarios while maintaining millisecond-level computational latency. ## 🔧 Environment Setup **Parameters:** - `--train`: Model version (`1`, `2`, `2aff`, `gpt`) - `--fold`: Data fold (`o0`, `o1`, `t0`, `t1`) - `--resume`/`--test`: Checkpoint path --- ### 🎮 Demo (`demo.py`) Modify the function call at the bottom of the file: > **Note:** The best model has been uploaded to HuggingFace ([TongZJ/GCNGrasp-v2](https://huggingface.co/TongZJ/GCNGrasp-v2)). When running the demo, it will be automatically downloaded. > > **Tip:** If you don't want to manual",
+  "abstract_zh": "当物体视角受到遮挡时，任务导向抓取的性能会显著下降。现有的任务导向抓取方法通常假设任务相关区域在初始帧中可见，而视角规划方法虽然能实现主动感知，但往往忽略任务语义，且依赖耗时的场景重建。为解决这些局限，我们提出 GCNGrasp-VP，一个将可供性场预测与主动视角规划相结合的高效框架。该框架的核心是 GCNGrasp-v2，一个同时支持抓取评估和可供性场预测的任务导向抓取模型，具有常数时间的推理复杂度。基于这一能力，我们的可供性引导视角规划器（Affordance-VP）将可供性场作为信息增益度量，引导相机观测任务相关区域，无需场景重建。视角规划结果表明，我们的方法仅需一次视角调整即可显著优于场景不确定性驱动的基线方法。真实世界验证进一步证实，在单物体场景中抓取成功率获得大幅提升，同时保持毫秒级计算延迟。",
+  "tldr_zh": "GCNGrasp-VP 用可供性场引导视角规划，无需重建即可提升抓取成功率。",
+  "cover_zh": "遮挡也不怕！这个抓取框架仅调一次视角就反超基线",
+  "authors": [
+    {
+      "name": "Instinct323",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "",
+  "categories": [],
+  "published": "",
+  "updated": "2026-07-15",
+  "arxiv_id": "",
+  "pdf_url": "",
+  "abs_url": "https://github.com/Instinct323/GCNGrasp-VP",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "",
+  "preview_pages": [],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 0,
+  "source_tags": [
+    "github",
+    "paper_companion"
+  ],
+  "score": 17,
+  "score_breakdown": [
+    {
+      "id": "github_stars",
+      "label": "GitHub 热度",
+      "points": 17,
+      "hint": "⭐ 7"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "IROS 2026 官方工作，affordance 引导视角规划做任务导向抓取，含模型与真机验证，属操作方向可落地算法。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [],
+  "method_tags": [
+    "操作"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {
+    "owner": "Instinct323",
+    "repo": "GCNGrasp-VP",
+    "stars": 7,
+    "language": "Python",
+    "pushed_at": "2026-07-15",
+    "created_at": "2026-02-27",
+    "topics": [
+      "task-oriented-grasp"
+    ],
+    "archived": false
+  },
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CameraControl\n  - 状态/待读\nTitle: \"Instinct323/GCNGrasp-VP\"\nYear: \"\"\nURL: https://github.com/Instinct323/GCNGrasp-VP\n---\n>[!abstract] 一句话总结：提出 GCNGrasp-VP 框架，其核心 GCNGrasp-v2 同时支持抓取评估与 affordance 场预测且推理复杂度恒定，并利用该 affordance 场作为信息增益度量驱动 Affordance-VP 相机视角规划，无需场景重建。\n\n\n# 一、动机\n\n> 任务导向抓取在物体被遮挡时性能显著下降：现有方法假设任务相关区域在初始帧可见，而主动视角规划方法又忽略任务语义，且依赖耗时的场景重建。\n\n\n# 二、方法\n\n> 提出 GCNGrasp-VP 框架，其核心 GCNGrasp-v2 同时支持抓取评估与 affordance 场预测且推理复杂度恒定，并利用该 affordance 场作为信息增益度量驱动 Affordance-VP 相机视角规划，无需场景重建。\n\n\n# 三、核心实验结果\n\n> 仅需一次视角调整即显著优于基于场景不确定性的基线；真实场景中单物体抓取成功率明显提升，同时保持毫秒级计算延迟；论文已被 IROS 2026 接收。\n\n\n# 四、对我的启发\n\n> 目前仅在单物体场景完成真实验证，多物体杂乱场景与长时任务下的泛化性有待考察；将任务语义 affordance 作为主动感知的信息增益信号，是兼顾效率与任务相关性的视角规划可借鉴思路。\n"
+}

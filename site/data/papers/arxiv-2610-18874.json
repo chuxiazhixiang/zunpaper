@@ -2,11 +2,11 @@
   "id": "arxiv-2610-18874",
   "source": "arxiv",
   "title": "ChunkAct: Action Chunking for Agentic Robotics",
-  "title_zh": "ChunkAct: Action Chunking for Agentic Robotics",
+  "title_zh": "ChunkAct：面向智能体机器人的动作分块",
   "abstract": "Agentic robotics places a large language model (LLM) agent in the robot control loop, where it composes perception, motion, and vision-language-action (VLA) tools under the guidance of a memory and thereby generalizes to new tasks without retraining. This generality comes at a steep price in efficiency. Every primitive requires a round of LLM reasoning over the full interaction history, so the cost of an episode grows with the number of primitives. We find this reasoning largely redundant: once a sub-goal is chosen, its primitives follow a routine already prescribed by memory. We present ChunkAct, which introduces action chunking to agentic robotics. Online, a single call launches a chunk of chained primitives, which executes autonomously and returns control only upon failure. Offline, ChunkAct compiles the memory into these chunks, so execution is memory-free at test time and the planner is reserved for decisions that require reasoning. LLM computation therefore scales with the number of decisions rather than the number of primitives. On LIBERO-Pro, ChunkAct improves task success by 5.0 points over the state of the art in agentic robotics while requiring 2.9x fewer LLM calls, 4.4x fewer input tokens, and 2.3x fewer output tokens.",
-  "abstract_zh": "Agentic robotics places a large language model (LLM) agent in the robot control loop, where it composes perception, motion, and vision-language-action (VLA) tools under the guidance of a memory and thereby generalizes to new tasks without retraining. This generality comes at a steep price in efficiency. Every primitive requires a round of LLM reasoning over the full interaction history, so the cost of an episode grows with the number of primitives. We find this reasoning largely redundant: once a sub-goal is chosen, its primitives follow a routine already prescribed by memory. We present ChunkAct, which introduces action chunking to agentic robotics. Online, a single call launches a chunk of chained primitives, which executes autonomously and returns control only upon failure. Offline, ChunkAct compiles the memory into these chunks, so execution is memory-free at test time and the planner is reserved for decisions that require reasoning. LLM computation therefore scales with the number of decisions rather than the number of primitives. On LIBERO-Pro, ChunkAct improves task success by 5.0 points over the state of the art in agentic robotics while requiring 2.9x fewer LLM calls, 4.4x fewer input tokens, and 2.3x fewer output tokens.",
-  "tldr_zh": "Agentic robotics places a large language model (LLM) agent i",
-  "cover_zh": "Agentic robotics places a large language model (LLM) agent i",
+  "abstract_zh": "智能体机器人将大语言模型（LLM）智能体置于机器人控制回路中，在记忆的指导下组合感知、运动和视觉-语言-动作（VLA）工具，从而无需重新训练即可泛化到新任务。这种通用性在效率上代价高昂。每个基本动作都需要LLM对完整交互历史进行一轮推理，因此一个回合的成本随基本动作数量增长。我们发现这种推理在很大程度上是冗余的：一旦选定子目标，其基本动作就遵循记忆已经规定的例行程序。我们提出ChunkAct，将动作分块引入智能体机器人。在线时，单次调用启动一串链式基本动作，自主执行，仅在失败时返回控制。离线时，ChunkAct将记忆编译成这些块，因此测试时执行无需记忆，规划器仅保留给需要推理的决策。因此，LLM计算量随决策数量而非基本动作数量扩展。在LIBERO-Pro上，ChunkAct将任务成功率比智能体机器人领域的最先进水平提高了5.0个百分点，同时所需LLM调用减少2.9倍，输入token减少4.4倍，输出token减少2.3倍。",
+  "tldr_zh": "ChunkAct通过动作分块减少LLM调用，提升机器人任务成功率。",
+  "cover_zh": "机器人控制新突破｜LLM调用减少2.9倍，成功率反升5个点！",
   "authors": [
     {
       "name": "Bingxin Xu",
@@ -75,7 +75,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -85,8 +85,16 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "University of Southern California",
+    "University of Central Florida",
+    "Stony Brook University"
+  ],
+  "method_tags": [
+    "action chunking",
+    "LLM agent",
+    "VLA"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
@@ -94,5 +102,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"ChunkAct: Action Chunking for Agentic Robotics\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.18874v1\n---\n>[!abstract] 一句话总结：ChunkAct 把「动作分块（action chunking）」引入 agentic robotics：在线时仅用一次 LLM 调用启动一串链式 primitive，该 chunk 自主执行直到失败才交还控制权；离线时把 memory 编译成这些 chunk，使测试阶段的执行不再依赖 memory，从而让 LLM 计算量正比于「决策数」而非「primitive 数」。\n\n\n# 一、动机\n\n> LLM 智能体进入机器人控制回路后虽能零样本泛化到新任务，但每个原子动作（primitive）都要基于完整交互历史做一轮 LLM 推理，导致单次 episode 的开销随 primitive 数量线性增长；而作者发现这种推理大多是冗余的——子目标一旦确定，其后续 primitive 序列已被 memory 规定成固定套路。\n\n\n# 二、方法\n\n> ChunkAct 把「动作分块（action chunking）」引入 agentic robotics：在线时仅用一次 LLM 调用启动一串链式 primitive，该 chunk 自主执行直到失败才交还控制权；离线时把 memory 编译成这些 chunk，使测试阶段的执行不再依赖 memory，从而让 LLM 计算量正比于「决策数」而非「primitive 数」。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO-Pro 上，ChunkAct 相比 agentic robotics 的 SOTA 任务成功率提升 5.0 个百分点，同时 LLM 调用次数减少 2.9 倍、输入 token 减少 4.4 倍、输出 token 减少 2.3 倍。\n\n\n# 四、对我的启发\n\n> 核心启发是把「推理频率」当作与「策略能力」同等重要的系统级优化目标：将可预测的流程编译为离线 chunk、把 LLM 保留给真正需要推理的决策点。局限在于 chunk 的划分与编译在离线完成，在线仅在失败时重规划，因此对分布漂移、长尾失败恢复和 chunk 粒度的鲁棒性依赖较强，且泛化能力受限于 memory 覆盖的任务范围。\n"
 }

@@ -1,0 +1,109 @@
+{
+  "id": "arxiv-2610-20241",
+  "source": "arxiv",
+  "title": "Learning Navigation from Multimodal Demonstrations with Geometric Candidate Modes",
+  "title_zh": "从多模态演示中学习导航：基于几何候选模式的方法",
+  "abstract": "Offline navigation demonstrations are multimodal, because one observation often allows several valid actions, such as passing an obstacle on either side. Behavior cloning averages these actions, potentially leading to unsafe routes. Multimodal policies must discover the alternatives from the data, but similar states can lead to different routes whose current actions overlap. In navigation, the alternatives have a geometric cause and can be computed from one observation. We propose a hierarchical neural-network policy that computes candidate modes from local geometry and learns from demonstrations which mode to follow and how. A high-level policy selects a mode using the goal and its previous choice among a set of candidate modes, and a low-level policy turns it into an action. In simulation, the policy succeeds in over 95\\% of seen and unseen test cases, compared with at most 43\\% and 20\\% for four offline learning baselines and 79\\% and 67\\% for a heuristic that uses the same modes without learning. The simulation-trained policy also transfers to a LimX Tron 1 bipedal robot.",
+  "abstract_zh": "离线导航演示具有多模态性，因为一个观测往往允许多个有效动作，例如从障碍物的任一侧通过。行为克隆会平均这些动作，可能导致不安全的路线。多模态策略必须从数据中发现这些替代方案，但相似状态可能导致不同路线，而它们的当前动作却重叠。在导航中，这些替代方案具有几何原因，并且可以从一个观测中计算出来。我们提出了一种分层神经网络策略，它从局部几何中计算候选模式，并从演示中学习跟随哪种模式以及如何跟随。高层策略利用目标和其先前在候选模式集合中的选择来选择一个模式，低层策略将其转化为动作。在仿真中，该策略在超过95%的已见和未见测试案例中成功，而四个离线学习基线最多分别达到43%和20%，一个使用相同模式但不学习的启发式方法达到79%和67%。仿真训练的策略还能迁移到LimX Tron 1双足机器人上。",
+  "tldr_zh": "分层策略利用几何候选模式从多模态演示中学习导航，仿真成功率超95%并迁移至双足机器人。",
+  "cover_zh": "导航演示多模态？几何候选模式让策略成功率超95%！",
+  "authors": [
+    {
+      "name": "Chengyang Peng",
+      "affiliation": ""
+    },
+    {
+      "name": "Zhihao Zhang",
+      "affiliation": ""
+    },
+    {
+      "name": "Upama Pant",
+      "affiliation": ""
+    },
+    {
+      "name": "Yiming Wang",
+      "affiliation": ""
+    },
+    {
+      "name": "Keith A. Redmill",
+      "affiliation": ""
+    },
+    {
+      "name": "Ayonga Hereid",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO"
+  ],
+  "published": "2026-10-14",
+  "updated": "2026-10-14",
+  "arxiv_id": "2610.20241",
+  "pdf_url": "https://arxiv.org/pdf/2610.20241v1",
+  "abs_url": "http://arxiv.org/abs/2610.20241v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-20241.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-20241-p2.jpg"
+  ],
+  "channels": [
+    "locomotion"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（bipedal）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "locomotion",
+    "reason": "多模态导航策略，仿真训练并迁移到双足机器人，属locomotion范畴，有算法创新。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "The Ohio State University"
+  ],
+  "method_tags": [
+    "Behavior Cloning",
+    "Hierarchical Policy",
+    "Multimodal Policy"
+  ],
+  "platform": [
+    "LimX Tron 1"
+  ],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Learning Navigation from Multimodal Demonstrations with Geometric Candidate Modes\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.20241v1\n---\n>[!abstract] 一句话总结：提出分层神经网络策略：先从局部几何直接计算出一组候选模式（candidate modes），再由高层策略结合目标与上一时刻的模式选择结果挑出要跟随的模式，最后低层策略把该模式转换为具体动作，从而在给定几何先验的同时用演示数据学习「选哪个模式、怎么执行」。\n\n\n# 一、动机\n\n> 离线导航演示本质是多模态的（同一观测可对应绕障碍左右两侧等多个有效动作），而行为克隆会把它们平均化，导致不安全路径；同时相似状态下不同路线的当前动作可能重叠，使多模态策略难以从数据中区分这些备选方案。\n\n\n# 二、方法\n\n> 提出分层神经网络策略：先从局部几何直接计算出一组候选模式（candidate modes），再由高层策略结合目标与上一时刻的模式选择结果挑出要跟随的模式，最后低层策略把该模式转换为具体动作，从而在给定几何先验的同时用演示数据学习「选哪个模式、怎么执行」。\n\n\n# 三、核心实验结果\n\n> 在仿真中，该策略在已见与未见测试用例上的成功率均超过 95%；四个离线学习基线分别最多只有 43% 和 20%；使用相同候选模式但不学习的启发式方法为 79% 和 67%。仿真训练的策略还成功迁移到 LimX Tron 1 双足机器人上。\n\n\n# 四、对我的启发\n\n> 方法的有效性很大程度上依赖「多模态备选动作可由局部几何直接计算」这一假设，对于非几何成因的多模态（如语义歧义、交互意图）可能不适用；但其「几何生成候选 + 学习选择与执行」的分层思路，对具身导航与模仿学习中的多模态动作歧义问题有较好的借鉴价值。\n"
+}
