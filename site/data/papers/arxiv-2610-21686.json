@@ -45,7 +45,8 @@
     "assets/img/covers/arxiv-2610-21686-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -60,7 +61,7 @@
   "related_links": [],
   "page_count": 12,
   "source_tags": [],
-  "score": 44,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -71,8 +72,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 6,
-      "hint": "频道关键词命中 2 个（manipulation、contact-rich）"
+      "points": 12,
+      "hint": "频道关键词命中 4 个（manipulation、contact-rich、world model、world models）"
     },
     {
       "id": "freshness",
@@ -85,6 +86,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 12 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -109,5 +116,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\nTitle: \"MAIA: Anticipating Interaction Anomalies in Contact-Rich Manipulation via Multimodal World Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.21686v1\n---\n>[!abstract] 一句话总结：MAIA 构建了一个视觉-动作-力三模态的世界模型，先学习正常交互动力学并预测规划动作将带来的视觉与力响应，再由一个轻量异常头基于该预测提前判别即将发生的交互异常，同时配套发布了带帧级异常起始/演化标注的真实世界数据集 CRIA。\n\n\n# 一、动机\n\n> 接触密集型操作的监控方法大多是「事后反应式」的，只能在异常已经显现后才检测到；而视觉观测只能部分反映物理交互、规划动作又只描述意图运动而非真实物理后果，因此难以提前预判异常。\n\n\n# 二、方法\n\n> MAIA 构建了一个视觉-动作-力三模态的世界模型，先学习正常交互动力学并预测规划动作将带来的视觉与力响应，再由一个轻量异常头基于该预测提前判别即将发生的交互异常，同时配套发布了带帧级异常起始/演化标注的真实世界数据集 CRIA。\n\n\n# 三、核心实验结果\n\n> 在已见任务上异常判别 bACC 达 0.765、中位提前预警 28.0 步，在新任务上为 0.710 与 25.1 步，均优于代表性基线且预警更早；用这些预测做异常感知的动作选择，可在不重训底层操作策略的前提下把端到端任务成功率从 52.6% 提升到 61.5%；CRIA 数据集包含 18 类接触密集型任务、2,852 条真实轨迹。\n\n\n# 四、对我的启发\n\n> 核心启发是「建模未来物理后果」比监测当前观测更有利于主动异常预判，且异常预测可作为即插即用模块提升既有策略；局限在于力/视觉世界模型对未见任务的泛化仍有限（bACC 与预警时间均下降），且依赖接触力传感与帧级标注数据，跨本体与更复杂柔性接触场景的适用性有待验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"MAIA: Anticipating Interaction Anomalies in Contact-Rich Manipulation via Multimodal World Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.21686v1\n---\n>[!abstract] 一句话总结：提出 MAIA 多模态框架：视觉-动作-力世界模型学习正常交互动力学并预测计划动作的视觉与力响应，轻量异常头据此预测即将发生的交互异常。\n\n\n# 一、动机\n\n> 现有接触丰富操作异常监测多为反应式，通常在异常可观测后才检测；视觉只部分反映物理交互，规划动作描述的是意图而非实际物理后果，因此难以提前预警。\n\n\n# 二、方法\n\n> 提出 MAIA 多模态框架：视觉-动作-力世界模型学习正常交互动力学并预测计划动作的视觉与力响应，轻量异常头据此预测即将发生的交互异常。\n\n\n# 三、核心实验结果\n\n> 构建 CRIA 真实世界数据集，含 2,852 条轨迹、18 个接触丰富任务及帧级异常起始/演化标注；在已见/新任务上 bACC 达 0.765/0.710，中位提前预警 28.0/25.1 步；用预测做异常感知动作选择，端到端任务成功率从 52.6% 提升至 61.5%，且无需重训练操作策略。\n\n\n# 四、对我的启发\n\n> 启发是建模未来物理后果对主动异常预测很有价值；局限在于依赖真实多模态与力传感数据，新任务泛化仍有差距，提前预警步数可能受任务时序影响。\n"
 }

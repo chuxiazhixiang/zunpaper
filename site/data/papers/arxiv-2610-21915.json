@@ -65,7 +65,8 @@
     "assets/img/covers/arxiv-2610-21915-p2.jpg"
   ],
   "channels": [
-    "manipulation"
+    "manipulation",
+    "world-model"
   ],
   "badges": [
     {
@@ -80,7 +81,7 @@
   "related_links": [],
   "page_count": 26,
   "source_tags": [],
-  "score": 44,
+  "score": 55,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -91,8 +92,8 @@
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
-      "points": 6,
-      "hint": "频道关键词命中 2 个（vision-language-action、libero）"
+      "points": 12,
+      "hint": "频道关键词命中 4 个（vision-language-action、libero、jepa、v-jepa）"
     },
     {
       "id": "freshness",
@@ -105,6 +106,12 @@
       "label": "成型 paper (≥4 页)",
       "points": 3,
       "hint": "PDF 26 页"
+    },
+    {
+      "id": "cross_channel",
+      "label": "跨多个方向",
+      "points": 5,
+      "hint": "同时命中 2 个频道"
     }
   ],
   "judge": {
@@ -132,5 +139,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"What Should Robot Policies Learn to Predict? Rethinking Supervision Targets in Vision-Language-Action Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.21915v1\n---\n>[!abstract] 一句话总结：构建统一 VLA 框架，将双流多模态扩散 Transformer（MMDiT）与样本级 router 耦合，显式决定每个训练样本用于动作预测还是某个辅助目标；在此框架内实例化三种基于 LAPA 及其 DINO 特征变体的 LA 目标，以及三种基于 DINOv3、V-JEPA 2 和 Wan2.2 表示的 FV 目标，从而把监督分配变成可设计、可比较的变量。\n\n\n# 一、动机\n\n> 现有 VLA 策略默认以动作预测为主导监督信号，latent-action（LA）与 future-vision（FV）等辅助目标只是附带添加，却与动作预测争夺同一份固定训练预算；在预算固定的前提下，把相当比例的样本从动作预测转移给辅助目标是否反而更有利于策略学习，此前缺乏系统回答。\n\n\n# 二、方法\n\n> 构建统一 VLA 框架，将双流多模态扩散 Transformer（MMDiT）与样本级 router 耦合，显式决定每个训练样本用于动作预测还是某个辅助目标；在此框架内实例化三种基于 LAPA 及其 DINO 特征变体的 LA 目标，以及三种基于 DINOv3、V-JEPA 2 和 Wan2.2 表示的 FV 目标，从而把监督分配变成可设计、可比较的变量。\n\n\n# 三、核心实验结果\n\n> （1）在 LIBERO、CALVIN 与 4 个真机任务上，同等训练预算下合适的 LA/FV 监督均优于纯动作预测训练，即使动作预测只拿到不超过一半的训练样本；（2）总体上 FV 优于 LA，但最强的 LA 目标在 CALVIN 上仍具竞争力；（3）诊断分析表明，基于 DINO 的 LA 目标侧重相对运动信息，而 FV 目标侧重绝对位置与任务身份信息。\n\n\n# 四、对我的启发\n\n> 论文说明机器人策略“预测什么”以及训练预算在各监督目标间的分配，应当作为显式设计选择而非默认动作主导训练，这对减少动作标注依赖、提升数据效率有直接启发。局限在于：真机任务数量与多样性有限，辅助目标的具体表示（LA/FV 的编码器选择）高度敏感、需要逐任务调参，样本级 router 的分配策略本身也引入额外设计自由度与计算开销。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"What Should Robot Policies Learn to Predict? Rethinking Supervision Targets in Vision-Language-Action Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.21915v1\n---\n>[!abstract] 一句话总结：构建统一的 VLA 框架，将双流多模态扩散 Transformer（MMDiT）与样本级路由器耦合，把每个训练样本显式分配给动作预测或某个辅助目标；在此框架下实例化三种基于 LAPA 及其 DINO 特征变体的 LA 目标，以及基于 DINOv3、V-JEPA 2、Wan2.2 表征的三种 FV 目标。\n\n\n# 一、动机\n\n> 现有 VLA 策略默认以动作预测为主导监督信号，潜在动作（LA）与未来视觉（FV）等辅助目标虽能提升策略学习，却与动作预测争夺同一训练预算，此前无人系统研究在固定预算下如何显式分配监督样本这一问题。\n\n\n# 二、方法\n\n> 构建统一的 VLA 框架，将双流多模态扩散 Transformer（MMDiT）与样本级路由器耦合，把每个训练样本显式分配给动作预测或某个辅助目标；在此框架下实例化三种基于 LAPA 及其 DINO 特征变体的 LA 目标，以及基于 DINOv3、V-JEPA 2、Wan2.2 表征的三种 FV 目标。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO、CALVIN 和四个真实机器人任务上，同等训练预算下合适的 LA 与 FV 监督均优于纯动作训练，即使动作预测获得的样本不超过总样本的一半；FV 总体优于 LA，但最强的 LA 目标在 CALVIN 上仍具竞争力；诊断分析显示基于 DINO 的 LA 目标侧重相对运动，FV 目标侧重绝对位置与任务身份。\n\n\n# 四、对我的启发\n\n> 将「策略应该预测什么」以及训练预算在各监督目标间的分配视为显式设计选择，而非默认动作占主导；局限在于辅助目标的选择依赖具体任务与表征类型（LA 仅在 CALVIN 上可比），样本级路由器的引入也带来额外工程复杂度。\n"
 }
