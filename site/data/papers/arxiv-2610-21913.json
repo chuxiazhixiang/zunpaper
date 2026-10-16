@@ -1,0 +1,95 @@
+{
+  "id": "arxiv-2610-21913",
+  "source": "arxiv",
+  "title": "Sub-Millisecond Reflexes for Continuous Physical Human-Robot Interaction",
+  "title_zh": "面向连续物理人机交互的亚毫秒级反射",
+  "abstract": "Continuous physical human-robot interaction requires robots to rapidly adapt their control behaviour without interrupting task execution. However, existing ROS 2 control architectures rely on stop-to-switch mechanisms that introduce substantial delays and interrupt execution. We present an open-source, sub-millisecond reflex engine based on an enhanced ROS 2-compatible multimode controller that enables deterministic switching between control modalities and integrates reflex behaviours for mitigating contact hazards and kinematic limit violations. Experiments on a Franka Robotics manipulator demonstrate switching delays below 0.1 ms, more than four orders of magnitude faster than conventional ros2_control, while maintaining continuous operation during safety-critical events. In a multi-stage manipulation task, the proposed framework reduced execution time by 3.5% and peak trajectory jerk by more than threefold. By eliminating runtime middleware overhead, controller transitions are implemented as lock-free pointer operations, enabling reflex-level responsiveness within an open-source robotics framework.",
+  "abstract_zh": "连续物理人机交互要求机器人能够在不中断任务执行的情况下快速调整控制行为。然而，现有的 ROS 2 控制架构依赖停止-切换机制，这会引入显著延迟并中断执行。我们提出了一种开源的亚毫秒级反射引擎，基于增强的 ROS 2 兼容多模式控制器，能够实现控制模态之间的确定性切换，并集成反射行为以缓解接触危险和运动学极限违规。在 Franka Robotics 机械臂上的实验表明，切换延迟低于 0.1 毫秒，比传统的 ros2_control 快四个数量级以上，同时在安全关键事件期间保持连续运行。在多阶段操作任务中，所提出的框架将执行时间减少了 3.5%，并将峰值轨迹加加速度降低了三倍以上。通过消除运行时中间件开销，控制器转换实现为无锁指针操作，从而在开源机器人框架内实现了反射级响应能力。",
+  "tldr_zh": "开源亚毫秒反射引擎实现机器人控制模态无锁切换，延迟低于0.1毫秒。",
+  "cover_zh": "机器人反应比眨眼还快？这个开源引擎让控制切换进入亚毫秒时代",
+  "authors": [
+    {
+      "name": "Jon Škerlj",
+      "affiliation": ""
+    },
+    {
+      "name": "Sami Haddadin",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "eess.SY"
+  ],
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "arxiv_id": "2610.21913",
+  "pdf_url": "https://arxiv.org/pdf/2610.21913v1",
+  "abs_url": "http://arxiv.org/abs/2610.21913v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-21913.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-21913-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 8,
+  "source_tags": [],
+  "score": 16,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（manipulation）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 8 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "medium",
+    "primary_channel": "manipulation",
+    "reason": "开源亚毫秒反射控制框架，Franka机械臂验证，提升操作安全与效率，对操作控制有参考价值。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "Munich Institute of Robotics and Machine Intelligence (MIRMI), Technische Universität München (TUM), Germany",
+    "Mohamed Bin Zayed University of Artificial Intelligence, UAE"
+  ],
+  "method_tags": [
+    "multimode controller",
+    "reflex behaviours",
+    "pHRI"
+  ],
+  "platform": [
+    "Franka Robotics manipulator"
+  ],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "yes",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Sub-Millisecond Reflexes for Continuous Physical Human-Robot Interaction\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.21913v1\n---\n>[!abstract] 一句话总结：提出一个开源、亚毫秒级的反射引擎，基于增强的 ROS 2 兼容多模态控制器，将控制器切换实现为无锁指针操作以消除运行时中间件开销，并集成用于缓解接触危险与运动学极限越界的反射行为。\n\n\n# 一、动机\n\n> 现有 ROS 2 控制架构在切换控制模态时依赖 stop-to-switch 机制，会引入显著延迟并打断任务执行，无法满足连续物理人机交互对快速反射式响应的需求。\n\n\n# 二、方法\n\n> 提出一个开源、亚毫秒级的反射引擎，基于增强的 ROS 2 兼容多模态控制器，将控制器切换实现为无锁指针操作以消除运行时中间件开销，并集成用于缓解接触危险与运动学极限越界的反射行为。\n\n\n# 三、核心实验结果\n\n> 在 Franka 机械臂上切换延迟低于 0.1 ms，比传统 ros2_control 快四个数量级以上；多阶段操作任务中执行时间减少 3.5%，轨迹峰值加加速度（jerk）降低三倍以上，且安全关键事件期间仍保持连续运行。\n\n\n# 四、对我的启发\n\n> 局限在于实验仅在单一 Franka 机械臂和有限任务上验证，反射行为的通用性与多机/多模态场景的扩展性尚待检验；但其无锁切换思路表明，在开源框架内也能实现硬实时级别的反射响应，对安全关键的人机交互控制架构设计有直接启发。\n"
+}

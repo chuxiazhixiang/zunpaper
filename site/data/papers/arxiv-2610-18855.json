@@ -75,28 +75,17 @@
   "channels": [
     "manipulation"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 37,
   "source_tags": [],
-  "score": 22,
+  "score": 12,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 9,
       "hint": "频道关键词命中 3 个（vision-language-action、manipulation、contact-rich）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -106,14 +95,23 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "NUS",
+    "Anyverse Robotics",
+    "Open-Phoenix Team",
+    "BIT"
+  ],
+  "method_tags": [
+    "flow-matching",
+    "VLA",
+    "contact-rich manipulation"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Interaction Latents as Actions for Contact-Rich Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.18855v1\n---\n>[!abstract] 一句话总结：提出 ILA（Interaction Latents as Actions），用可解码的交互潜变量作为策略动作单元，联合刻画运动、接触与力的时序演化；通过视觉条件化的动作-触觉联合重建与时间条件隐式解码器学习该潜空间，作为 flow-matching 生成目标用于预训练 VLA/WAM 的后训练或从零训练策略，并由共享解码器把潜变量映射为可执行动作。\n\n\n# 一、动机\n\n> 接触丰富操作不仅需要决定「移向何处」，还要决定接触与力在交互过程中如何演化，但现有机器人策略大多把动作表示为运动轨迹，触觉仅作为输入或辅助预测目标，未在动作表示中显式编码接触动力学，导致策略难以真正生成与评估接触行为。\n\n\n# 二、方法\n\n> 提出 ILA（Interaction Latents as Actions），用可解码的交互潜变量作为策略动作单元，联合刻画运动、接触与力的时序演化；通过视觉条件化的动作-触觉联合重建与时间条件隐式解码器学习该潜空间，作为 flow-matching 生成目标用于预训练 VLA/WAM 的后训练或从零训练策略，并由共享解码器把潜变量映射为可执行动作。\n\n\n# 三、核心实验结果\n\n> 在四个真实世界接触丰富任务上，ILA 相对触觉条件化的直接动作基线把平均成功率提升 21.0–36.5 个百分点，且该增益在三种策略家族上一致；消融表明在动作目标中编码接触演化优于仅做触觉条件化；同一潜空间还支持基于触觉条件专家参考模型的离线改进（成功轨迹加权学习、失败轨迹低奖励预测修正）。\n\n\n# 四、对我的启发\n\n> 该方法依赖触觉传感硬件与专家示范来构建专家参考，潜空间的跨任务/跨本体可迁移性与可解释性仍待验证；但它提示「把接触与力演化放进动作表示本身」是一种可与 VLA/WAM 后训练、离线强化学习统一起来的通用接口，对具身操作策略设计有直接启发。\n"
 }

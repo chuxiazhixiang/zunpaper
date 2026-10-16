@@ -106,26 +106,26 @@
   ],
   "badges": [
     {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
+      "kind": "lab",
+      "label": "⭐ SJTU"
     }
   ],
   "related_links": [],
   "page_count": 15,
   "source_tags": [],
-  "score": 27,
+  "score": 42,
   "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “SJTU” 关键词"
+    },
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 9,
       "hint": "频道关键词命中 3 个（manipulation、contact-rich、world model）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -141,14 +141,23 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "Fudan University",
+    "Shanghai Jiao Tong University",
+    "Southeast University",
+    "Shanghai Innovation Institute"
+  ],
+  "method_tags": [
+    "World Model",
+    "Inverse Dynamics Model",
+    "Contact-Rich Manipulation"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"ForceWAM: Decoupling Future and Response Learning from Demo and Play Data for Contact-Rich Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.18852v1\n---\n>[!abstract] 一句话总结：ForceWAM 是一个力世界-动作模型，把「任务兼容的交互结果」与「局部动作如何改变接触」两类知识解耦：世界模型仅从成功演示中学习，联合预测未来视频与六轴力/力矩轨迹，描述任务中运动与接触的预期演化；另一个逆动力学模型（IDM）同时从演示与 play 数据学习，将当前观测和记录的视觉-力旋量未来映射为机器人动作。部署时 IDM 反应式地把生成的未来转成动作，并在两次世界模型更新之间复用这些未来、配合最新的力反馈。\n\n\n# 一、动机\n\n> 专家演示只展示了任务如何完成，对「不同动作会引起怎样的接触力响应」覆盖不足；而无目标任务的自监督 play 数据虽包含丰富的接触动力学经验，却不指明任务目标。现有方法难以同时利用这两类数据来学习接触丰富的操作。\n\n\n# 二、方法\n\n> ForceWAM 是一个力世界-动作模型，把「任务兼容的交互结果」与「局部动作如何改变接触」两类知识解耦：世界模型仅从成功演示中学习，联合预测未来视频与六轴力/力矩轨迹，描述任务中运动与接触的预期演化；另一个逆动力学模型（IDM）同时从演示与 play 数据学习，将当前观测和记录的视觉-力旋量未来映射为机器人动作。部署时 IDM 反应式地把生成的未来转成动作，并在两次世界模型更新之间复用这些未来、配合最新的力反馈。\n\n\n# 三、核心实验结果\n\n> 在真机力调节滑动、有/无扰动的盒子翻转、圆环放置等任务上，ForceWAM 取得 85%–95% 的平均成功率，超过世界模型类与反应式基线；加入 task-agnostic play 数据可使成功率提升 15–45 个百分点，证明其对学习接触丰富执行的价值。\n\n\n# 四、对我的启发\n\n> 该方法仍依赖演示来提供任务级的未来（世界模型只用成功演示训练），play 数据必须与视觉-力旋量未来配对才能被 IDM 利用；解耦「未来预测」与「反应式动作生成」的思路，为接触丰富操作中复用大规模无目标任务数据提供了可迁移的范式。\n"
 }

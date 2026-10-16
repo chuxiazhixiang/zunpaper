@@ -41,28 +41,17 @@
   "channels": [
     "manipulation"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 31,
   "source_tags": [],
-  "score": 19,
+  "score": 9,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 6,
       "hint": "频道关键词命中 2 个（grasp、grasping）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -72,14 +61,25 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
-  "platform": [],
-  "sim_stack": [],
+  "institutions": [
+    "National Yang Ming Chiao Tung University",
+    "Department of Computer Science and Information Engineering, National Taiwan University"
+  ],
+  "method_tags": [
+    "harmonic extension",
+    "residual prior",
+    "cross-family motion completion"
+  ],
+  "platform": [
+    "Franka"
+  ],
+  "sim_stack": [
+    "Isaac Lab"
+  ],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Domain/Robotics\n  - Task/PointCloud\n  - Task/MotionCompletion\n  - 状态/待读\nTitle: \"Cepheid: Decoupling Scale from Structure for Cross-Family Motion Completion\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.18871v1\n---\n>[!abstract] 一句话总结：把残差的结构与物理尺度解耦：学习一个无量纲（dimensionless）的残差先验来建模结构，用可观测量估计振幅，并仅基于训练源拟合一个轻量校正项来修正尺度。\n\n\n# 一、动机\n\n> 稀疏到稠密的运动补全中，在某一几何族（geometry family）上训练的残差先验迁移到其他族时常常打不过无需参数的调和延拓（harmonic extension）；同时跨族训练存在尺度壁垒——残差幅度在不同几何族间相差超过一个数量级，并随观测变稠密而塌缩，而该尺度依赖未知的目标运动，测试时无法直接测量。\n\n\n# 二、方法\n\n> 把残差的结构与物理尺度解耦：学习一个无量纲（dimensionless）的残差先验来建模结构，用可观测量估计振幅，并仅基于训练源拟合一个轻量校正项来修正尺度。\n\n\n# 三、核心实验结果\n\n> 统一的单一模型在所有评测的几何族上都超过了调和延拓，包括未见过的布料（cloth）和足式身体（legged bodies）；无需骨架、配准或跨网格对应关系即可工作；同一先验无需重训练即可直接用于点跟踪的动物视频以及机器人抓取软体（soft body）的场景。残差幅度跨族差异超过 10 倍，且随观测稠密化而塌缩，这正是需要显式解耦尺度的量化证据。\n\n\n# 四、对我的启发\n\n> 与课题部分相关：它面向的是通用网格/点跟踪运动补全而非机器人策略，但结论对具身智能有启发——跨形态（cross-embodiment）的残差先验若不显式解耦尺度，泛化会被一个数量级以上的幅度差异掩盖，这对跨本体迁移与稀疏观测下的动作/形变补全有参考价值；局限是没有骨架/配准依赖意味着对拓扑变化大的场景仍需验证，且振幅估计依赖可观测量，观测极稀疏时可能退化。\n"
 }

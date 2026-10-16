@@ -1,0 +1,105 @@
+{
+  "id": "arxiv-2610-22311",
+  "source": "arxiv",
+  "title": "Velox: Spatial Memory Makes World Models Efficient",
+  "title_zh": "Velox：空间记忆让世界模型更高效",
+  "abstract": "Video world models turn actions and camera motion into long visual rollouts, making video a natural interface for interactive simulation. Such interaction requires responsive generation, yet coherent rollouts must retain visual memory of what has already been generated. Chunked video diffusion models usually keep this context in growing KV caches, so later chunks become progressively slower. To address this bottleneck, we introduce Velox, a training-free attention router for region-level context selection using frustum slab correspondences from streaming geometry. Velox represents historical blocks as camera frustum slabs with depth intervals and obtains current-block depth through recency-priority multiwarp. For well-covered regions, frustum slab overlap softly modulates each layer's model-derived block importance. Uncovered regions retain the model-derived route without geometric bias. The fixed token-block granularity matches FlashAttention-style tiled execution and reduces the attention term that grows with rollout length. Frustum slab construction runs asynchronously with denoising on the same H200. At chunk 48, Velox accelerates attention by $4.36\\times$ and denoising by $2.43\\times$. On the full 158-case WBench navigation split, it remains within 0.15 API-free average points of dense LingBot-Fast-Cam. Please see our project page at https://velox-world.com/velox/ for more details.",
+  "abstract_zh": "视频世界模型将动作和相机运动转化为长视觉推演，使视频成为交互式仿真的自然界面。这种交互需要响应式生成，但连贯的推演必须保留已生成内容的视觉记忆。分块视频扩散模型通常将上下文保存在不断增长的 KV 缓存中，导致后续块逐渐变慢。为解决这一瓶颈，我们提出 Velox，一种无需训练的注意力路由器，利用流式几何中的视锥平板对应关系进行区域级上下文选择。Velox 将历史块表示为带有深度区间的相机视锥平板，并通过最近优先的多重变换获得当前块深度。对于覆盖良好的区域，视锥平板重叠会软调制每层模型导出的块重要性。未覆盖区域则保留模型导出的路由，不引入几何偏差。固定的令牌块粒度与 FlashAttention 风格的平铺执行相匹配，并减少了随推演长度增长的注意力项。视锥平板构建与去噪在同一 H200 上异步运行。在第 48 块时，Velox 将注意力加速 4.36 倍，去噪加速 2.43 倍。在完整的 158 个案例的 WBench 导航分割上，其与密集 LingBot-Fast-Cam 的平均 API-free 分数差距在 0.15 以内。更多详情请见项目页面 https://velox-world.com/velox/。",
+  "tldr_zh": "Velox 用空间记忆路由注意力，加速视频世界模型且保持质量。",
+  "cover_zh": "世界模型也能加速？Velox 用空间记忆让推演快如闪电",
+  "authors": [
+    {
+      "name": "Qiuhong Shen",
+      "affiliation": ""
+    },
+    {
+      "name": "Shizun Wang",
+      "affiliation": ""
+    },
+    {
+      "name": "Xinchao Wang",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.CV",
+  "categories": [
+    "cs.CV"
+  ],
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "arxiv_id": "2610.22311",
+  "pdf_url": "https://arxiv.org/pdf/2610.22311v1",
+  "abs_url": "http://arxiv.org/abs/2610.22311v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-22311.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-22311-p2.jpg"
+  ],
+  "channels": [
+    "world-model"
+  ],
+  "badges": [
+    {
+      "kind": "lab",
+      "label": "⭐ NUS"
+    },
+    {
+      "kind": "fresh",
+      "label": "⚡ 新鲜出炉"
+    }
+  ],
+  "related_links": [],
+  "page_count": 22,
+  "source_tags": [],
+  "score": 47,
+  "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “NUS” 关键词"
+    },
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 9,
+      "hint": "频道关键词命中 3 个（world model、world models、video world model）"
+    },
+    {
+      "id": "freshness",
+      "label": "刚出锅 (≤2 天)",
+      "points": 10,
+      "hint": "投递于 1 天前"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 22 页"
+    }
+  ],
+  "judge": {
+    "relevant": true,
+    "research_value": "high",
+    "primary_channel": "world-model",
+    "reason": "视频世界模型高效注意力路由，保持空间记忆，属world-model方向。",
+    "model": "deepseek-v4-flash"
+  },
+  "institutions": [
+    "National University of Singapore"
+  ],
+  "method_tags": [
+    "World Model",
+    "Video Diffusion",
+    "Attention Routing"
+  ],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/CV\n  - Task/VideoGen\n  - Task/CameraControl\n  - 状态/待读\nTitle: \"Velox: Spatial Memory Makes World Models Efficient\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22311v1\n---\n>[!abstract] 一句话总结：Velox 是一个免训练的注意力路由方法：把历史 token 块表示为带深度区间的相机视锥切片（frustum slab），通过 recency-priority multiwarp 得到当前块深度，用切片重叠度对每层模型自带的块重要性做软调制，未覆盖区域保持原始路由；固定 token-block 粒度契合 FlashAttention 分块执行。\n\n\n# 一、动机\n\n> 分块视频扩散世界模型为了保持视觉记忆而不断增长 KV cache，导致 rollout 越往后越慢，交互式仿真难以实时响应。\n\n\n# 二、方法\n\n> Velox 是一个免训练的注意力路由方法：把历史 token 块表示为带深度区间的相机视锥切片（frustum slab），通过 recency-priority multiwarp 得到当前块深度，用切片重叠度对每层模型自带的块重要性做软调制，未覆盖区域保持原始路由；固定 token-block 粒度契合 FlashAttention 分块执行。\n\n\n# 三、核心实验结果\n\n> 在第 48 个 chunk 时注意力加速 4.36×、去噪加速 2.43×；在 158 个案例的 WBench navigation 划分上，相较 dense 的 LingBot-Fast-Cam 平均分差距在 0.15 API-free points 以内；视锥切片构建与去噪在同一张 H200 上异步并行。\n\n\n# 四、对我的启发\n\n> 局限在于依赖流式深度与几何覆盖估计，新暴露/未覆盖区域仍走密集路由，加速比随场景几何结构变化。启发：几何感知的稀疏注意力路由对任意长上下文视频生成（含机器人世界模型、长时程具身仿真）都有迁移价值，且免训练、可直接套用到已有 chunked 扩散模型上。\n"
+}

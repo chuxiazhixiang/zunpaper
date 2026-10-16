@@ -119,26 +119,26 @@
   ],
   "badges": [
     {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
+      "kind": "lab",
+      "label": "⭐ CMU RI"
     }
   ],
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 19,
+  "score": 34,
   "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “CMU RI” 关键词"
+    },
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 6,
       "hint": "频道关键词命中 2 个（vision-language-action、vla pretraining）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -148,14 +148,25 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "Georgia Institute of Technology",
+    "Axis Robotics",
+    "University of California, Riverside",
+    "Carnegie Mellon University"
+  ],
+  "method_tags": [
+    "VLA pretraining",
+    "behavioral cloning",
+    "quality-aware conditioning"
+  ],
   "platform": [],
-  "sim_stack": [],
+  "sim_stack": [
+    "MuJoCo"
+  ],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/数据\n  - 论文/训练\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"What Matters in Quality-Aware VLA Pretraining: A Benchmark and Empirical Study\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.18869v1\n---\n>[!abstract] 一句话总结：论文构建了 AXIS-Bench——基于众包仿真示范、记录物体与接触状态并可重放、支持工作区对齐渲染与自定义真实目标任务的基准，在 5,000 条天然次优人类示范和 24 个目标任务上，对加权／过滤／条件化三类质量利用方式在不同奖励定义与标签粒度下做匹配预算的受控对比。\n\n\n# 一、动机\n\n> 现有 VLA 预训练普遍把人类示范视为同等质量数据，缺乏对「示范质量该如何使用」（加权、过滤还是条件化）的系统性对照研究，也没有可复现的评测基准来支撑这类比较。\n\n\n# 二、方法\n\n> 论文构建了 AXIS-Bench——基于众包仿真示范、记录物体与接触状态并可重放、支持工作区对齐渲染与自定义真实目标任务的基准，在 5,000 条天然次优人类示范和 24 个目标任务上，对加权／过滤／条件化三类质量利用方式在不同奖励定义与标签粒度下做匹配预算的受控对比。\n\n\n# 三、核心实验结果\n\n> 跨三个 VLA 的结论是：approach-aware 的 episode 级条件化比朴素行为克隆取得更高的平均成功率；条件化平均更偏好 episode 标签、过滤更偏好 chunk 标签，但存在依赖模型的反转；在条件化预训练后，使用 constant-tag 微调可提升平均成功率（无论推理时是否带 tag）。真实世界实验中，仿真预训练把成功率从 9.6% 提升到 31.7%。\n\n\n# 四、对我的启发\n\n> 论文揭示了质量信号的使用方式与标签粒度、模型结构强耦合，不存在普适的最优策略，实际应用需按模型与任务重新验证；局限在于示范全部来自众包仿真且质量标签依赖可记录的接触状态，真实场景下的质量刻画与迁移仍需进一步验证。对做 VLA／机器人操作预训练数据治理的工作有直接参考价值。\n"
 }
