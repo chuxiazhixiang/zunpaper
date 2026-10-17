@@ -66,7 +66,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -104,5 +104,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/Teleoperation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Inertially Significant Humanoid Teleoperation via Whole Body Model Predictive Control and Online Parameter Estimation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22176v1\n---\n>[!abstract] 一句话总结：将全身模型预测控制（WB-MPC）与扩展卡尔曼滤波（EKF）紧耦合：EKF 在线估计随时间变化且物理一致的全身惯性参数（含负载），估计值直接送入 WB-MPC 的完整刚体动力学模型以生成更准确的前馈力矩，同时提供 VR 遥操作接口，让操作者只关注任务参考而把动态平衡交给控制器。\n\n\n# 一、动机\n\n> 人形机器人在使用重型工具或搬运大负载时，自身与负载构成的组合系统惯性参数会发生显著变化，一旦该类参数在总质量中占比很大，仅靠反馈控制无法补偿，会导致前馈力矩不准、动态平衡难以维持。\n\n\n# 二、方法\n\n> 将全身模型预测控制（WB-MPC）与扩展卡尔曼滤波（EKF）紧耦合：EKF 在线估计随时间变化且物理一致的全身惯性参数（含负载），估计值直接送入 WB-MPC 的完整刚体动力学模型以生成更准确的前馈力矩，同时提供 VR 遥操作接口，让操作者只关注任务参考而把动态平衡交给控制器。\n\n\n# 三、核心实验结果\n\n> 论文在仿真和真实人形机器人硬件上完成了验证，声称相比不使用在线惯性参数估计的基线能更准确补偿外部负载下的前馈力矩；但摘要未给出具体的量化指标（如负载质量上限、跟踪误差下降百分比、估计收敛时间等），需查阅正文获取。\n\n\n# 四、对我的启发\n\n> 局限在于 EKF 的收敛依赖参数可观测性与激励充分性，负载突变或接触切换时估计可能滞后，且实验仅在单一/少量人形平台上验证，泛化到不同机型与多接触任务尚待评估；启发是把在线惯性辨识嵌入 MPC 前馈的思路可迁移到带负载的机械臂操作、外骨骼与人机协作场景，也是遥操作与具身智能中「感知自身动力学」的重要方向。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/Teleoperation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Inertially Significant Humanoid Teleoperation via Whole Body Model Predictive Control and Online Parameter Estimation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22176v1\n---\n>[!abstract] 一句话总结：将全身模型预测控制（WB-MPC）与扩展卡尔曼滤波（EKF）结合，在线估计物理一致的时变惯性参数并送入WB-MPC的完整刚体动力学模型，以生成更准确的前馈力矩；同时提供VR接口供操作员给出任务参考。\n\n\n# 一、动机\n\n> 解决人形机器人在使用重型工具或携带大载荷时，负载导致系统惯性参数显著变化、仅靠反馈控制难以补偿的问题，使操作员无需关注负载即可遥操作。\n\n\n# 二、方法\n\n> 将全身模型预测控制（WB-MPC）与扩展卡尔曼滤波（EKF）结合，在线估计物理一致的时变惯性参数并送入WB-MPC的完整刚体动力学模型，以生成更准确的前馈力矩；同时提供VR接口供操作员给出任务参考。\n\n\n# 三、核心实验结果\n\n> 摘要未给出具体数值；实验覆盖仿真与硬件两类验证，表明在线惯性参数估计可让WB-MPC在外部负载下产生更准确的前馈力矩，并支持操作员在不关注负载的情况下通过VR指定任务参考、由控制器负责动态平衡。\n\n\n# 四、对我的启发\n\n> 局限：摘要缺少与基线方法的量化对比，以及负载范围、估计误差和鲁棒性细节；在线估计对接触、噪声和快速时变负载的影响仍需看正文。启发：将惯性参数在线估计嵌入全身MPC的前馈通道，是处理人形机器人重载遥操作的一种可迁移思路。\n"
 }

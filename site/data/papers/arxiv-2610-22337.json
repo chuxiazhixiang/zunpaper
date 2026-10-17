@@ -77,7 +77,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -119,5 +119,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/Sim2Real\n  - 状态/待读\nTitle: \"Sim-to-Real Reinforcement Learning for Path-Safe Target Reaching in Robotic Harvesting of Hydroponic Lettuce\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22337v1\n---\n>[!abstract] 一句话总结：提出PSA-PPO（Path-Safe Approach PPO）：在标准裁剪PPO目标上引入目标条件观测、走廊感知空间约束、基于轨迹历史的安全性编码以及采收专用成功判据，形成面向受限操作的局部到达策略；全部在Isaac Lab中训练，无需真实世界微调即可迁移到UR10e机械臂。\n\n\n# 一、动机\n\n> 温室NFT水培生菜采收的末端执行器需在狭窄、受限的作物近端空间中安全到达目标，但经典规划器到达率有限且轨迹抖动大，而仅以终点精度为目标的强化学习策略无法保证采收所要求的过程路径安全。\n\n\n# 二、方法\n\n> 提出PSA-PPO（Path-Safe Approach PPO）：在标准裁剪PPO目标上引入目标条件观测、走廊感知空间约束、基于轨迹历史的安全性编码以及采收专用成功判据，形成面向受限操作的局部到达策略；全部在Isaac Lab中训练，无需真实世界微调即可迁移到UR10e机械臂。\n\n\n# 三、核心实验结果\n\n> 在150个物理调度目标的对照基准中，PSA-PPO到达率最高达94.7%，优于Cartesian+TOTG（86.0%）、RRTConnect（88.0%）和RRT*（80.0%），并在最后接近段将中位RMS jerk相对经典规划器降低39.8%–73.0%；200个仿真目标的公式消融表明，路径安全和侧走廊塑形是采收兼容性能的主要驱动因素，去除任一项都会在终点精度保持甚至提升的情况下显著降低严格成功率；集成RGB-D视觉模块与末端执行器后，在144次生菜采收尝试中实现94.4%的视觉引导目标到达率和86.1%的完整采收成功率。\n\n\n# 四、对我的启发\n\n> 局限在于仅验证单一作物与温室场景，且依赖Isaac Lab仿真训练和外部视觉模块，真机部署仍需相机标定与场景适配。启发是：在作物近端的受限操作中，仅优化终点精度并不充分，应将过程安全性与通道约束显式编码进策略目标和成功判据，才能获得可迁移、低抖动的操作行为。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/HardwareCoDesign\n  - 状态/待读\nTitle: \"Sim-to-Real Reinforcement Learning for Path-Safe Target Reaching in Robotic Harvesting of Hydroponic Lettuce\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22337v1\n---\n>[!abstract] 一句话总结：提出 PSA-PPO：在标准 clipped PPO 目标上引入目标条件观测、侧向走廊空间约束、基于轨迹历史的安全编码和面向采收的任务成功判据，在 Isaac Lab 中纯仿真训练后零微调直接部署到 UR10e 真机。\n\n\n# 一、动机\n\n> 在温室 NFT 水培生菜的狭小受限工作空间中，机械臂末端接近目标时容易与作物、栽培槽发生碰撞，而经典规划器与标准 PPO 只追求末端精度，难以兼顾路径安全与平滑性，且真机部署通常依赖额外微调。\n\n\n# 二、方法\n\n> 提出 PSA-PPO：在标准 clipped PPO 目标上引入目标条件观测、侧向走廊空间约束、基于轨迹历史的安全编码和面向采收的任务成功判据，在 Isaac Lab 中纯仿真训练后零微调直接部署到 UR10e 真机。\n\n\n# 三、核心实验结果\n\n> 在 150 个真机调度目标上达到 94.7% 到达率，优于 Cartesian+TOTG（86.0%）、RRTConnect（88.0%）和 RRT*（80.0%），最终接近段中位 RMS jerk 降低 39.8%–73.0%；200 个仿真目标的消融显示去掉路径安全或侧向走廊项会显著降低严格成功率，即使末端精度不变甚至更高；与 RGB-D 视觉和末端执行器集成的完整系统在 144 次采收中实现 94.4% 视觉引导到达率和 86.1% 全流程采收成功率。\n\n\n# 四、对我的启发\n\n> 结果表明受限近作物操作中“只优化末端位姿”是不够的，安全与走廊形状项才是泛化到真机的关键，且 sim-to-real 零微调可行；局限在于任务与场景高度特化（单一作物、单一机械臂、固定走廊几何），泛化到其他作物形态、多臂或动态障碍尚待验证，对具身智能领域的通用操作策略迁移有借鉴价值。\n"
 }

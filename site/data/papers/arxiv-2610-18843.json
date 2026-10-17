@@ -84,8 +84,14 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "Luma AI"
+  ],
+  "method_tags": [
+    "VLA",
+    "鲁棒性基准",
+    "硬件扰动"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
@@ -93,5 +99,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/数据\n  - 论文/系统\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"LIBERO-RIG: A Hardware-Setup Robustness Benchmark for Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.18843v1\n---\n>[!abstract] 一句话总结：提出 LIBERO-RIG 基准：在保持 LIBERO 任务完全不变的前提下，仅对机器人硬件与搭建施加 11 类扰动（相机安装与光学、相机-机械臂标定、驱动增益、控制频率、本体感知噪声、基座位姿、桌面高度、夹爪垫等），每类 5 个严重等级，共 210 种条件，并用 500 条 episode/条件评测 9 个近期 VLA 模型并做统计检验。\n\n\n# 一、动机\n\n> 现有 VLA 评测默认机器人硬件与标定固定不变，忽略了真实部署中相机碰撞重装、标定漂移、控制频率差异、夹爪垫磨损等硬件层面的扰动，缺少系统性衡量这类鲁棒性的标准基准。\n\n\n# 二、方法\n\n> 提出 LIBERO-RIG 基准：在保持 LIBERO 任务完全不变的前提下，仅对机器人硬件与搭建施加 11 类扰动（相机安装与光学、相机-机械臂标定、驱动增益、控制频率、本体感知噪声、基座位姿、桌面高度、夹爪垫等），每类 5 个严重等级，共 210 种条件，并用 500 条 episode/条件评测 9 个近期 VLA 模型并做统计检验。\n\n\n# 三、核心实验结果\n\n> 汇总成功率从 0.932 降至中等严重度的 0.767、最高严重度的 0.509；不同扰动轴与动作接口之间的性能退化差异显著；仅用视觉扰动训练无法缓解不改变相机图像的故障（如控制频率、驱动增益）。\n\n\n# 四、对我的启发\n\n> 揭示了 VLA 鲁棒性评测长期缺失的硬件维度，说明视觉域随机化不足以覆盖非视觉类硬件故障；局限在于仅基于 LIBERO 仿真扰动、未在真机上验证，且扰动参数为固定清单而非自适应。对具身智能策略的真实部署可靠性评估有直接参考价值。\n"
 }

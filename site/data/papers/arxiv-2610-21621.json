@@ -82,7 +82,7 @@
       "id": "freshness",
       "label": "刚出锅 (≤2 天)",
       "points": 10,
-      "hint": "投递于 1 天前"
+      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -122,5 +122,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"SPEAR: Selective Preference Elicitation with Adaptive Rewards for VLM-Guided Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.21621v1\n---\n>[!abstract] 一句话总结：SPEAR 通过可区分性感知查询选择减少弃权，并采用自适应奖励过渡：先用 VLM 合成引导自举探索，再用偏好奖励精修，从而将 VLM 转化为高效偏好 oracle。\n\n\n# 一、动机\n\n> VLM 可为机器人操作自动生成偏好标签，但每次查询推理成本高，且面对视觉困难比较时常弃权，导致其作为偏好 oracle 不实用。\n\n\n# 二、方法\n\n> SPEAR 通过可区分性感知查询选择减少弃权，并采用自适应奖励过渡：先用 VLM 合成引导自举探索，再用偏好奖励精修，从而将 VLM 转化为高效偏好 oracle。\n\n\n# 三、核心实验结果\n\n> 在操作基准上平均成功率达 88.9%，比基线高 23.3 个百分点；在接触丰富任务中显著降低弃权率和训练墙钟时间；在真实 Mobile ALOHA 上完全在线学习 3 个操作任务，验证了端到端真机可用性。\n\n\n# 四、对我的启发\n\n> 方法仍依赖 VLM 质量与推理预算，弃权和成本被缓解但未根除；启发是查询选择结合奖励课程可减少人工奖励工程，推动可扩展的机器人偏好学习。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"SPEAR: Selective Preference Elicitation with Adaptive Rewards for VLM-Guided Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.21621v1\n---\n>[!abstract] 一句话总结：SPEAR 通过可区分性感知的查询选择降低 VLM 弃答率，并采用自适应奖励过渡，先用 VLM 合成引导进行探索，再通过偏好优化精炼策略。\n\n\n# 一、动机\n\n> VLM 可为机器人操作自动生成偏好标签，但每次查询推理成本高，且在视觉困难比较中频繁弃答，导致偏好学习效率低、难以实际部署。\n\n\n# 二、方法\n\n> SPEAR 通过可区分性感知的查询选择降低 VLM 弃答率，并采用自适应奖励过渡，先用 VLM 合成引导进行探索，再通过偏好优化精炼策略。\n\n\n# 三、核心实验结果\n\n> 在操作基准上平均成功率达 88.9%，比基线高 23.3 个百分点；在接触丰富任务中显著降低弃答率和实际训练时间；在真实硬件上完全在线学习三个 Mobile ALOHA 操作任务，验证端到端真实场景可用性。\n\n\n# 四、对我的启发\n\n> 方法将 VLM 转化为实用偏好 oracle，减少人工奖励工程，但仍依赖 VLM 判断质量，真实世界验证任务数量有限；对 VLM 引导的机器人偏好学习课题有直接启发。\n"
 }
