@@ -71,14 +71,20 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "University of Wisconsin–Madison"
+  ],
+  "method_tags": [
+    "Off-Policy Evaluation",
+    "Fitted Q-Evaluation",
+    "Vision Foundation Model"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - Task/PolicyEvaluation\n  - 状态/待读\nTitle: \"RoboFQE: Rollout-Free Evaluation of Visual Robot Policies from Offline Trajectories\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.18699v1\n---\n>[!abstract] 一句话总结：RoboFQE 将 fitted Q-evaluation（FQE）与预训练视觉基础模型、可学习的终止成功标注相结合，无需估计行为策略密度，即可从离线视觉操作轨迹估计目标策略的折扣期望回报。\n\n\n# 一、动机\n\n> 现有的机器人策略评估通常依赖真实执行、仿真器或学到的世界模型来 rollout，对基础设施要求高，而且仿真器／世界模型的预测误差会随评估时域累积放大；因此论文希望用 off-policy evaluation（OPE）从离线轨迹直接估计策略性能，作为替代方案。\n\n\n# 二、方法\n\n> RoboFQE 将 fitted Q-evaluation（FQE）与预训练视觉基础模型、可学习的终止成功标注相结合，无需估计行为策略密度，即可从离线视觉操作轨迹估计目标策略的折扣期望回报。\n\n\n# 三、核心实验结果\n\n> 在仿真与真实操作任务的受控实验中，RoboFQE 给出较准确的折扣回报估计，并保持策略排序；在长时域任务上，其表现优于受自回归预测误差影响而明显退化的视频世界模型评估器。消融实验显示，预训练视觉编码器显著优于从头训练版本，该优势在长时域任务上尤为明显；使用学习到的终止成功标注替代真值奖励标签后，评估仍可行，但精度仅有轻微下降（摘要未报告具体数值）。\n\n\n# 四、对我的启发\n\n> 该方法把策略评估从「必须 rollout」转为「离线 OPE」，对真实机器人部署前的低成本筛选很有价值；局限在于其精度依赖离线数据覆盖与折扣回报设定，而且终止成功标注仍需人工或弱监督信息。这与具身智能中策略评估与模型选择的方向直接相关，值得跟进。\n"
 }

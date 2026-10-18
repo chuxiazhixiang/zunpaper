@@ -46,16 +46,12 @@
     {
       "kind": "lab",
       "label": "⭐ NVIDIA"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 52,
+  "score": 42,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -68,12 +64,6 @@
       "label": "关键词命中密集",
       "points": 9,
       "hint": "频道关键词命中 3 个（manipulation、teleoperation、teleop）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -111,5 +101,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"DemoStream: Batched Task-and-Motion-Plan Optimization for Automated Learning from Demonstration\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22020v1\n---\n>[!abstract] 一句话总结：DemoStream 在 GPU 加速 TAMP 的基础上引入批量采样算子与配套的批量约束满足算法，并行探索大量解并对演示质量（动作空间、代价函数、批大小）进行优化，从而产出更适合行为克隆的高质量演示。\n\n\n# 一、动机\n\n> 机器人操作的行为克隆需要海量演示数据，现有采集方式要么依赖持续人工遥操作，要么只针对单一任务；TAMP 虽能自主求解生成演示，但其解的多模态性使下游策略学习困难，演示质量不高。\n\n\n# 二、方法\n\n> DemoStream 在 GPU 加速 TAMP 的基础上引入批量采样算子与配套的批量约束满足算法，并行探索大量解并对演示质量（动作空间、代价函数、批大小）进行优化，从而产出更适合行为克隆的高质量演示。\n\n\n# 三、核心实验结果\n\n> 通过仿真实验消融了不同动作空间、代价函数与批大小对下游策略成功率的影响，表明这些设计选择显著影响最终策略表现；借助 TAMP 的安全性保证，可直接在真实世界采集演示，平均速率达每小时 66 条。\n\n\n# 四、对我的启发\n\n> 工作主要验证了演示采集端的质量优化，策略评估仍以仿真为主，真实世界仅展示了采集速率；同时 TAMP 解的多模态问题被缓解但未根本解决，如何与更强的多模态策略学习结合仍是后续方向。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"DemoStream: Batched Task-and-Motion-Plan Optimization for Automated Learning from Demonstration\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22020v1\n---\n>[!abstract] 一句话总结：提出 DemoStream：在 GPU 加速 TAMP 上引入批处理采样与批处理约束满足的新 TAMP 算法，并行探索大量解并筛选高质量演示用于行为克隆。\n\n\n# 一、动机\n\n> 现有学习 from demonstration 需要海量演示，遥操作依赖持续人力，而 TAMP 虽能自主生成演示却因解多模态导致行为克隆困难。DemoStream 旨在通过批处理 TAMP 优化演示质量，降低演示采集成本并提升下游策略学习效果。\n\n\n# 二、方法\n\n> 提出 DemoStream：在 GPU 加速 TAMP 上引入批处理采样与批处理约束满足的新 TAMP 算法，并行探索大量解并筛选高质量演示用于行为克隆。\n\n\n# 三、核心实验结果\n\n> 在仿真中消融动作空间、代价函数和批大小对下游策略成功率的影响；真实世界利用 TAMP 安全保证直接采集演示，平均达到 66 条演示/小时。结果表明批处理 TAMP 可自动化生成较大规模演示并用于真实机器人学习。\n\n\n# 四、对我的启发\n\n> 启发：批处理 TAMP 可作为低成本演示生成器，缓解 LfD 数据瓶颈；局限是仍受 TAMP 任务建模与解多模态影响，摘要未给出行为克隆成功率的具体提升幅度，真实部署泛化性仍需验证。\n"
 }

@@ -43,16 +43,12 @@
     {
       "kind": "lab",
       "label": "⭐ NUS"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 22,
   "source_tags": [],
-  "score": 47,
+  "score": 37,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -65,12 +61,6 @@
       "label": "关键词命中密集",
       "points": 9,
       "hint": "频道关键词命中 3 个（world model、world models、video world model）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -101,5 +91,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/CV\n  - Task/VideoGen\n  - Task/CameraControl\n  - 状态/待读\nTitle: \"Velox: Spatial Memory Makes World Models Efficient\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22311v1\n---\n>[!abstract] 一句话总结：Velox 是一个免训练的注意力路由方法：它把历史 token 块表示为带深度区间的相机视锥厚片（frustum slab），并用按新近程度优先的多视点 warping（multiwarp）得到当前块的深度；对覆盖良好的区域，用视锥厚片的重叠程度调制模型自身给出的块重要性，对未覆盖区域则保持纯模型的注意力路由，从而在固定的 token-block 粒度上进行区域级上下文选择，以兼容 FlashAttention 的分块执行。\n\n\n# 一、动机\n\n> 分块式视频扩散世界模型需要保留已生成内容的历史上下文，通常把所有历史 token 都存在不断增长的 KV cache 中，使得后续 chunk 的注意力开销随 rollout 长度线性增长，生成长序列时越来越慢，无法做到交互式实时响应。\n\n\n# 二、方法\n\n> Velox 是一个免训练的注意力路由方法：它把历史 token 块表示为带深度区间的相机视锥厚片（frustum slab），并用按新近程度优先的多视点 warping（multiwarp）得到当前块的深度；对覆盖良好的区域，用视锥厚片的重叠程度调制模型自身给出的块重要性，对未覆盖区域则保持纯模型的注意力路由，从而在固定的 token-block 粒度上进行区域级上下文选择，以兼容 FlashAttention 的分块执行。\n\n\n# 三、核心实验结果\n\n> 在 chunk 48 时，Velox 把注意力计算加速 4.36 倍，把去噪加速 2.43 倍；在包含 158 个案例的 WBench 导航划分上，与稠密基线 LingBot-Fast-Cam 的差距在 0.15 分以内，且不使用 API；视锥厚片的构建与去噪在同一块 H200 上异步并行执行。\n\n\n# 四、对我的启发\n\n> 这篇论文把几何空间记忆引入视频世界模型的注意力路由：只选择真正可见的历史区域，就能在不牺牲生成质量的前提下大幅降低长 rollout 的计算量，为交互式仿真和机器人场景的视频世界模型提供了轻量加速思路。局限在于该方法依赖较可靠的深度与相机位姿（streaming geometry），在遮挡和严重新视角区域会退回无几何先验的路由；此外它只是免训练路由，不能改善模型本身的物理一致性，与具体机器人策略学习并不直接相关。\n"
+  "note": "---\ntags:\n  - 论文/系统\n  - 论文/方法\n  - Domain/CV\n  - Task/VideoGen\n  - Task/CameraControl\n  - 状态/待读\nTitle: \"Velox: Spatial Memory Makes World Models Efficient\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22311v1\n---\n>[!abstract] 一句话总结：Velox 是一种免训练的注意力路由方法：用流式几何把历史块表示为带深度区间的相机视锥板（frustum slab），通过 recency-priority multiwarp 得到当前块深度，再用视锥板重叠度软调制各层的块重要性，仅在覆盖良好的区域引入几何偏置，并按固定 token-block 粒度对齐 FlashAttention 的分块执行以削减随 rollout 长度增长的注意力开销。\n\n\n# 一、动机\n\n> 分块视频扩散世界模型要用不断增长的 KV cache 保留历史视觉上下文，导致越往后的 chunk 生成越慢，难以支撑交互式仿真的实时响应需求。\n\n\n# 二、方法\n\n> Velox 是一种免训练的注意力路由方法：用流式几何把历史块表示为带深度区间的相机视锥板（frustum slab），通过 recency-priority multiwarp 得到当前块深度，再用视锥板重叠度软调制各层的块重要性，仅在覆盖良好的区域引入几何偏置，并按固定 token-block 粒度对齐 FlashAttention 的分块执行以削减随 rollout 长度增长的注意力开销。\n\n\n# 三、核心实验结果\n\n> 在第 48 个 chunk 上，注意力计算加速 4.36×、去噪加速 2.43×；在完整的 158 例 WBench 导航划分上，与稠密 LingBot-Fast-Cam 的平均分差在 0.15 分以内（API-free）；视锥板构建与去噪在同一块 H200 上异步并行执行。\n\n\n# 四、对我的启发\n\n> 该工作面向导航式交互世界模型，属于具身仿真基础设施而非机器人策略本身，与课题仅有间接关联：其“几何稀疏化注意力”思路可迁移到长时序视频生成与机器人想象式规划；局限在于依赖流式深度估计质量，未覆盖区域退化为原路由，且加速收益随几何覆盖度波动、缺少与真实闭环控制的联合评估。\n"
 }

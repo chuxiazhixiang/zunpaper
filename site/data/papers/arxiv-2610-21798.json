@@ -52,28 +52,17 @@
   "channels": [
     "manipulation"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 27,
   "source_tags": [],
-  "score": 16,
+  "score": 6,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 3,
       "hint": "频道关键词命中 1 个（manipulation）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -106,5 +95,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Cross-Embodiment Causal Transfer from Human Videos to Robot Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.21798v1\n---\n>[!abstract] 一句话总结：提出 Causal-Beam-Guided Subtask Transfer（CBST）：从人类视频学习操作相关表示，并用机器人示范将其锚定到任务级语义变量；在预定义操作模型中以因果束约束筛选上下文信息，要求保留分配维持局部机制输出且对保留输入保持非平凡响应，进而条件化 world-action model，使机器人仅凭自身观察生成动作而无需人机动作对应。\n\n\n# 一、动机\n\n> 人类操作视频数据丰富多样，但形态、动作空间和控制机制差异使其无法直接作为机器人动作监督；核心问题是跨具身迁移时人类视频中哪些知识应被保留。\n\n\n# 二、方法\n\n> 提出 Causal-Beam-Guided Subtask Transfer（CBST）：从人类视频学习操作相关表示，并用机器人示范将其锚定到任务级语义变量；在预定义操作模型中以因果束约束筛选上下文信息，要求保留分配维持局部机制输出且对保留输入保持非平凡响应，进而条件化 world-action model，使机器人仅凭自身观察生成动作而无需人机动作对应。\n\n\n# 三、核心实验结果\n\n> 在机器人操作基准上，CBST 相对对应的 world-action model 基线提升了任务成功率；摘要未给出具体成功率数值或提升幅度，需阅读全文确认。\n\n\n# 四、对我的启发\n\n> 该方法将跨具身迁移从动作对齐转为因果子任务/语义条件选择，降低对人机运动对应关系的依赖；局限在于需要机器人示范进行语义锚定，因果束与预定义操作模型的有效性可能影响迁移范围，且摘要缺少量化结果。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/CV\n  - Task/CrossEmbodimentTransfer\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Cross-Embodiment Causal Transfer from Human Videos to Robot Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.21798v1\n---\n>[!abstract] 一句话总结：提出因果束引导的子任务迁移（CBST）：先从人类视频学习与操作相关的表征，再用机器人演示将其锚定到任务级语义变量，在预定义操作模型下用因果束约束筛选上下文信息（要求保留的赋值既能维持局部机制输出，又对保留输入保持非平凡响应），筛选出的语义信息用于条件化 world-action 模型，使机器人仅凭自身观测生成动作，无需人-机动作对应。\n\n\n# 一、动机\n\n> 机器人操作模型规模扩展依赖大量真实交互数据，采集成本高；人类操作视频数据丰富多样，但存在形态、动作空间与控制机制的差异，人动作不能直接作为机器人动作的监督信号，因此需要回答：人类视频中究竟什么知识应当跨具身迁移。\n\n\n# 二、方法\n\n> 提出因果束引导的子任务迁移（CBST）：先从人类视频学习与操作相关的表征，再用机器人演示将其锚定到任务级语义变量，在预定义操作模型下用因果束约束筛选上下文信息（要求保留的赋值既能维持局部机制输出，又对保留输入保持非平凡响应），筛选出的语义信息用于条件化 world-action 模型，使机器人仅凭自身观测生成动作，无需人-机动作对应。\n\n\n# 三、核心实验结果\n\n> 论文以「因果束」视角分析子任务迁移中应保留的上下文条件与交互依赖；CBST 不依赖人-机运动对应即可从人类视频获益；在机器人操作基准上相对对应的 world-action 模型基线取得任务成功率提升（摘要未给出具体数值，需查正文表格）。\n\n\n# 四、对我的启发\n\n> 将跨具身迁移问题重构为「迁移哪些因果条件」而非「对齐哪些动作」，为避免形态/动作空间对齐提供了清晰思路，且与 world-action 模型天然兼容；局限在于摘要未报告具体增益与基准名称，因果束约束依赖预定义操作模型与子任务切分，迁移效果可能受人类视频与目标任务语义粒度匹配程度影响。\n"
 }

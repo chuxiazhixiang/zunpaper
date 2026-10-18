@@ -75,14 +75,20 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "Sber Robotics Center"
+  ],
+  "method_tags": [
+    "World Model",
+    "Policy Distillation",
+    "Cross-embodiment"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"GreenWAM: A World Foundation Model for Robotics\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.18774v1\n---\n>[!abstract] 一句话总结：提出 GreenWAM：设计覆盖双机械臂到灵巧人形共 20 种机器人本体的共享解剖学动作空间（统一关节坐标），在该空间上以视觉、动作条件、世界-动作三种模式联合训练，并在适配阶段从生成器中拆分出动作专家（action expert）得到策略，同时蒸馏为单步策略用于实时控制。\n\n\n# 一、动机\n\n> 机器人既需要预测动作如何改变场景的世界模型，又需要选择动作的策略，但现有模型通常只针对其中一种角色构建和评测，且各机器人动作格式互不兼容，难以跨本体复用。论文试图用单一世界基础模型同时承担这两种角色，并探索实现这一目标的关键要素。\n\n\n# 二、方法\n\n> 提出 GreenWAM：设计覆盖双机械臂到灵巧人形共 20 种机器人本体的共享解剖学动作空间（统一关节坐标），在该空间上以视觉、动作条件、世界-动作三种模式联合训练，并在适配阶段从生成器中拆分出动作专家（action expert）得到策略，同时蒸馏为单步策略用于实时控制。\n\n\n# 三、核心实验结果\n\n> 在 WorldArena 1.0 上取得顶级轨迹、深度与 3D 精度，优于所有对比的世界-动作模型与视频生成器；作为策略进入 RoboTwin 2.0 排行榜前列，在 LIBERO-plus 上取得对比方法中最高的零样本成功率，并在 CALVIN 与 LIBERO 上与专用 VLA / 世界-动作策略相当；迁移到真实人形机器人后成功率高于从 π_{0.5} 与 Cosmos 3 Edge 适配的策略。控制实验得出三点：机器人特化同时提升世界预测与控制；在适配初期拆分动作专家更有效；策略适配时保留世界模型模式可维持对场景变化的鲁棒性。\n\n\n# 四、对我的启发\n\n> 论文表明世界模型与策略可以在统一动作空间下相互增益，且“保留世界建模目标”是维持鲁棒性的关键，这对具身基础模型的跨本体训练与微调流程有直接参考价值。局限在于共享动作空间依赖 20 种本体的关节定义与人工映射，扩展到新本体仍需适配；真实机器人实验规模有限，单步蒸馏后的实时控制性能损失未充分量化。\n"
 }

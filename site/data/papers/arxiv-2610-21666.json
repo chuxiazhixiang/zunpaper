@@ -31,28 +31,17 @@
   "channels": [
     "manipulation"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 9,
   "source_tags": [],
-  "score": 19,
+  "score": 9,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 6,
       "hint": "频道关键词命中 2 个（manipulation、imitation learning）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -81,5 +70,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Diffeomorphic Hidden-State Steering: Improving Imitation Learning Policy Robustness through Expert Hidden-State Geometry\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.21666v1\n---\n>[!abstract] 一句话总结：DHS 先让冻结策略回放专家演示，以获得专家隐藏状态，再学习一个可逆非线性坐标映射；在该空间中，对专家方差低的坐标施加更强衰减，对高方差坐标衰减较弱，最后映射回隐藏状态空间，实现随当前隐藏状态变化的 steering。\n\n\n# 一、动机\n\n> 闭环执行中，微小的观测或动作误差会逐步累积，导致已训练的模仿学习策略失效；作者希望在不增加演示数据、不重新训练策略的前提下，利用原始专家演示提升测试时鲁棒性。\n\n\n# 二、方法\n\n> DHS 先让冻结策略回放专家演示，以获得专家隐藏状态，再学习一个可逆非线性坐标映射；在该空间中，对专家方差低的坐标施加更强衰减，对高方差坐标衰减较弱，最后映射回隐藏状态空间，实现随当前隐藏状态变化的 steering。\n\n\n# 三、核心实验结果\n\n> 在 4 个仿真操作任务中，DHS 在观测噪声下提升了未修改 Transformer 策略的平均成功率；受控比较显示，在 hard projection 和 full-rank rescaling 两种设置下，学习非线性坐标均比线性坐标获得更高平均成功率；DHS 与 action smoothing 结合后，在某些任务上比单独使用 action smoothing 有更高平均成功率。\n\n\n# 四、对我的启发\n\n> 局限是仅在 4 个仿真操作任务和观测噪声下验证，尚未证明真实机器人部署效果，且摘要未给出成功率提升的绝对数值；启发是利用专家隐藏状态的几何结构做测试时校正，可与动作平滑等后处理互补，但需补充更多任务、真实平台和定量消融。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"Diffeomorphic Hidden-State Steering: Improving Imitation Learning Policy Robustness through Expert Hidden-State Geometry\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.21666v1\n---\n>[!abstract] 一句话总结：DHS通过将专家演示回放给冻结策略，收集专家隐藏状态并学习可逆非线性坐标映射；在隐空间中更强地衰减低专家方差坐标、保留高方差坐标，再映射回隐藏状态空间以实现随当前状态变化的测试时引导。\n\n\n# 一、动机\n\n> 闭环执行中的小观测或动作误差会累积，导致已训练的模仿学习策略失效；论文希望在不增加演示、不重新训练策略的情况下，利用原始专家演示提升测试时鲁棒性。\n\n\n# 二、方法\n\n> DHS通过将专家演示回放给冻结策略，收集专家隐藏状态并学习可逆非线性坐标映射；在隐空间中更强地衰减低专家方差坐标、保留高方差坐标，再映射回隐藏状态空间以实现随当前状态变化的测试时引导。\n\n\n# 三、核心实验结果\n\n> 在4个仿真操作任务上，DHS在观测噪声下相比未修改的Transformer策略提升平均成功率；受控比较中，非线性坐标在hard projection和full-rank rescaling下均优于线性坐标；与action smoothing结合后，在部分任务上优于单独action smoothing。摘要未给出具体成功率数值。\n\n\n# 四、对我的启发\n\n> 方法依赖专家隐藏状态几何与冻结策略，属于测试时干预而非重训练；实验限于仿真操作任务，缺少真实机器人验证和详细数值，但与鲁棒模仿学习/具身操作课题相关。\n"
 }

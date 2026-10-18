@@ -56,28 +56,17 @@
     "manipulation",
     "sim2real"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 28,
   "source_tags": [],
-  "score": 27,
+  "score": 17,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 9,
       "hint": "频道关键词命中 3 个（manipulation、sim-to-real、isaac lab）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -119,5 +108,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/Sim2Real\n  - 状态/待读\nTitle: \"Sim-to-Real Reinforcement Learning for Path-Safe Target Reaching in Robotic Harvesting of Hydroponic Lettuce\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22337v1\n---\n>[!abstract] 一句话总结：提出 PSA-PPO：在标准 clip PPO 目标上引入目标条件观测、侧向走廊空间约束、基于轨迹历史的安全编码与采收专用成功判据，全部在 Isaac Lab 中训练后零微调直接部署到实体 UR10e。\n\n\n# 一、动机\n\n> 在温室水培生菜采收这类狭窄受限工作空间中，经典规划器（笛卡尔+TOTG、RRTConnect、RRT*）只以到达端点为目标，容易产生抖动大、贴近作物易碰撞的轨迹，且难以零微调地从仿真迁移到真实机械臂。\n\n\n# 二、方法\n\n> 提出 PSA-PPO：在标准 clip PPO 目标上引入目标条件观测、侧向走廊空间约束、基于轨迹历史的安全编码与采收专用成功判据，全部在 Isaac Lab 中训练后零微调直接部署到实体 UR10e。\n\n\n# 三、核心实验结果\n\n> 在 150 个真机目标基准上到达率 94.7%，优于 Cartesian+TOTG(86.0%)、RRTConnect(88.0%)、RRT*(80.0%)；末端接近段中位 RMS jerk 相比经典规划器降低 39.8%–73.0%；200 个仿真目标的公式消融显示移除路径安全项或侧向走廊塑形项后严格成功率显著下降（即使端点精度不变或更高），说明仅优化端点不足；与 RGB-D 视觉模块和执行末端集成的整机系统在 144 次采收中视觉引导到达率 94.4%、完整采收成功率 86.1%。\n\n\n# 四、对我的启发\n\n> 启发：受限作物近端操作中“安全塑形”比端点精度更关键，可通过约束编码+历史信息在 RL 中显式建模；局限：场景与作物单一（NFT 水培生菜）、超参/约束需按任务定制，且完整系统仍依赖外部视觉模块，泛化到其他作物与夹爪未验证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Sim-to-Real Reinforcement Learning for Path-Safe Target Reaching in Robotic Harvesting of Hydroponic Lettuce\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22337v1\n---\n>[!abstract] 一句话总结：提出PSA-PPO：在标准clipped PPO目标上引入目标条件观测、走廊感知空间约束、基于轨迹历史的安全编码和采收专用成功判据，完全在Isaac Lab仿真中训练后零微调迁移到实机UR10e机械臂。\n\n\n# 一、动机\n\n> 温室NFT水培生菜的采收场景中，末端执行器需要在植株附近狭窄受限空间内精确移动；经典运动规划方法（如TOTG、RRT系列）只优化终点可达性，而缺少对路径安全和侧向走廊避让的约束，容易碰到叶片或茎部。\n\n\n# 二、方法\n\n> 提出PSA-PPO：在标准clipped PPO目标上引入目标条件观测、走廊感知空间约束、基于轨迹历史的安全编码和采收专用成功判据，完全在Isaac Lab仿真中训练后零微调迁移到实机UR10e机械臂。\n\n\n# 三、核心实验结果\n\n> 在150个调度目标的实物基准中，PSA-PPO到达率94.7%，优于Cartesian+TOTG（86.0%）、RRTConnect（88.0%）与RRT*（80.0%），并将末端接近段的中位RMS jerk降低39.8%–73.0%；200个仿真目标的消融显示，去掉path-safety或side-corridor shaping任一项后，即使终点精度保持不变甚至提升，严格成功率仍显著下降；与RGB-D视觉模块和末端执行器集成后，144次生菜采收试验取得94.4%视觉引导到达率和86.1%完整采收成功率。\n\n\n# 四、对我的启发\n\n> 该工作说明，在作物附近的受限操作中，仅以终点误差为优化目标并不充分；路径安全约束是性能主要来源。局限在于它面向特定作物与温室布局的单一任务，泛化到其他植株形态和作物仍需重新训练或进行域随机化；不过“仿真训练+零微调迁移”的流程与安全编码思路，对具身操作中的约束空间规划具有借鉴意义。\n"
 }

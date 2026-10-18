@@ -62,28 +62,17 @@
   "channels": [
     "world-model"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 24,
   "source_tags": [],
-  "score": 25,
+  "score": 15,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 4 个（world model、world models、world modeling、autoregressive world model）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -117,5 +106,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/WorldModel\n  - Task/CameraControl\n  - 状态/待读\nTitle: \"GeoState: Learning View-Decoupled Geometry States for 3D World Modeling\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22343v1\n---\n>[!abstract] 一句话总结：GeoState 提出视角解耦的几何表示：场景 tokenizer 将多视角 GFM 特征聚合成与视角无关的场景状态，几何 decoder 通过相机射线查询该状态进行解码；随后用自回归世界模型预测未来场景状态，并把相机运动单独建模，因此预测状态可在预测相机或外部指定相机下解码。\n\n\n# 一、动机\n\n> 现有 3D 世界模型直接使用几何基础模型（GFM）的特征作为预测性的世界状态，但这些特征带有视角依赖性，会把相机运动引起的表观变化与真实场景动态混在一起，使状态演化难以预测，并且逐帧尺度不一致的问题需要额外对齐。\n\n\n# 二、方法\n\n> GeoState 提出视角解耦的几何表示：场景 tokenizer 将多视角 GFM 特征聚合成与视角无关的场景状态，几何 decoder 通过相机射线查询该状态进行解码；随后用自回归世界模型预测未来场景状态，并把相机运动单独建模，因此预测状态可在预测相机或外部指定相机下解码。\n\n\n# 三、核心实验结果\n\n> 在 Waymo 上优于此前的 3D 世界模型（摘要未给出具体指标数值）；支持几何一致的跨视角查询；无需逐帧尺度对齐即可在整个 rollout 中保持单一由上下文推导的尺度；可零样本泛化到 KITTI 和 nuScenes 两个数据集。\n\n\n# 四、对我的启发\n\n> 该工作把“场景演化”与“相机观测”分离的思路，对具身世界模型同样有启发：可用类似的状态解耦减少本体与视角变化对预测的干扰；但论文面向自动驾驶街景，只建模相机运动而非动作条件，也缺少机器人操作/具身任务验证，因此与机器人操作课题仅间接相关。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/CV\n  - Task/WorldModel\n  - Task/CameraControl\n  - 状态/待读\nTitle: \"GeoState: Learning View-Decoupled Geometry States for 3D World Modeling\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22343v1\n---\n>[!abstract] 一句话总结：GeoState 用一个场景 tokenizer 把多视角 GFM 特征聚合成与视角无关的场景状态，几何解码器再通过相机射线查询该状态；自回归世界模型只预测未来的场景状态，相机运动被单独建模，因此预测状态既能用预测相机、也能用外部指定相机解码，并在整段 rollout 中保持由单一上下文导出的尺度。\n\n\n# 一、动机\n\n> 现有 3D 世界模型直接使用几何基础模型（GFM）特征作为预测性世界状态，但这些特征与视角高度耦合，把场景动力学和相机运动引起的观测变化纠缠在一起，导致状态演化难以预测，而且 rollout 过程中还需要逐帧对齐尺度。\n\n\n# 二、方法\n\n> GeoState 用一个场景 tokenizer 把多视角 GFM 特征聚合成与视角无关的场景状态，几何解码器再通过相机射线查询该状态；自回归世界模型只预测未来的场景状态，相机运动被单独建模，因此预测状态既能用预测相机、也能用外部指定相机解码，并在整段 rollout 中保持由单一上下文导出的尺度。\n\n\n# 三、核心实验结果\n\n> 在 Waymo 上优于已有 3D 世界模型；支持几何一致的跨视角查询，即在预测或外部给定相机下解码都保持几何一致；可零样本泛化到 KITTI 和 nuScenes；无需逐帧尺度对齐。摘要未给出具体量化指标，需查阅正文中的指标表格。\n\n\n# 四、对我的启发\n\n> 该工作把“场景状态演化”与“相机观测变化”解耦，这对具身智能中区分自身运动与环境变化有借鉴意义；不过它主要面向自动驾驶场景的预测式 3D 世界建模，与机器人操作、跨本体迁移等课题不直接相关。\n"
 }

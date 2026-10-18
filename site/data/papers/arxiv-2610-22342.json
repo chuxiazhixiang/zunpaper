@@ -124,16 +124,12 @@
     {
       "kind": "lab",
       "label": "⭐ Ping Luo"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 23,
   "source_tags": [],
-  "score": 75,
+  "score": 65,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -152,12 +148,6 @@
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 6 个（humanoid manipulation、generalist robot、manipulation、dexterous）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -229,5 +219,5 @@
     }
   ],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - Task/EmbodiedAI\nTitle: \"Spark-0: Scaling Spatially Aligned Tactile Pretraining for Robot Dexterous Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22342v1\n---\n>[!abstract] 一句话总结：提出空间对齐的视-触-语言-动作模型 Spark-0：预训练时用以触觉手套导出的图像空间接触图，以及冻结 3D 几何教师模型的特征来监督视觉 token（推理时移除），同时并行触觉通路编码区域力历史与 3D taxel 状态来调节动作专家，单一 checkpoint 同时支持纯视觉与触觉条件部署；并在 1000 小时全手触觉人类操作数据集 HumanTouch 上，结合自我中心视频、机器人数据和仿真进行预训练。\n\n\n# 一、动机\n\n> 通用机器人策略能从大规模视觉预训练中受益，但在接触密集的灵巧操作中表现不佳，因为力、柔顺性和早期滑移很难从图像中观测到；现有视觉预训练缺乏可扩展的触觉监督信号。\n\n\n# 二、方法\n\n> 提出空间对齐的视-触-语言-动作模型 Spark-0：预训练时用以触觉手套导出的图像空间接触图，以及冻结 3D 几何教师模型的特征来监督视觉 token（推理时移除），同时并行触觉通路编码区域力历史与 3D taxel 状态来调节动作专家，单一 checkpoint 同时支持纯视觉与触觉条件部署；并在 1000 小时全手触觉人类操作数据集 HumanTouch 上，结合自我中心视频、机器人数据和仿真进行预训练。\n\n\n# 三、核心实验结果\n\n> 在保留 1000 小时 HumanTouch 触觉信号、数据和算力相同的条件下，仅采用纯视觉方案时 Ego Humanoid 成功率从 52.5% 提升到 71.7%，SparkArena-Real 从 44.0% 提升到 52.0%；Spark-0 在 SparkArena 两条赛道均取得最高平均成功率，并在 Ego Humanoid Manipulation Benchmark 的全部八项聚合指标上排名第一。\n\n\n# 四、对我的启发\n\n> 触觉不仅可作为策略输入，还能作为灵巧视觉运动预训练的可扩展监督；局限在于依赖触觉手套采集数据、人类与机器人本体存在差异，且触觉监督在推理阶段被移除后视觉表征的增益机制仍待进一步分析。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Spark-0: Scaling Spatially Aligned Tactile Pretraining for Robot Dexterous Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22342v1\n---\n>[!abstract] 一句话总结：提出 Spark-0 空间对齐的视-触-语言-动作（VTLA）模型：预训练阶段用触觉手套派生的图像空间接触图与冻结 3D 几何教师特征监督视觉 token（推理时移除），并行的触觉通路编码区域力历史与 3D taxel 状态以条件化动作专家，单一 checkpoint 同时支持纯视觉与触觉条件部署；同时构建 1000 小时全手触觉人类操作数据集 HumanTouch 用于规模化预训练。\n\n\n# 一、动机\n\n> 通用机器人策略从大规模视觉预训练中获益，但在接触丰富的灵巧操作中表现不佳：力、柔顺性和初始滑移等关键信息难以从图像中观测，缺乏可扩展的触觉监督信号。\n\n\n# 二、方法\n\n> 提出 Spark-0 空间对齐的视-触-语言-动作（VTLA）模型：预训练阶段用触觉手套派生的图像空间接触图与冻结 3D 几何教师特征监督视觉 token（推理时移除），并行的触觉通路编码区域力历史与 3D taxel 状态以条件化动作专家，单一 checkpoint 同时支持纯视觉与触觉条件部署；同时构建 1000 小时全手触觉人类操作数据集 HumanTouch 用于规模化预训练。\n\n\n# 三、核心实验结果\n\n> 在 SparkArena 两条赛道（仿真纯视觉 + 真机触觉条件）上取得最高平均成功率，并在 Ego Humanoid Manipulation Benchmark 全部 8 项聚合指标中排名第一；相同数据与算力下保留 1000 小时 HumanTouch 触觉监督，使 Ego Humanoid 纯视觉成功率从 52.5% 提升到 71.7%，SparkArena-Real（部署时也用触觉）成功率从 44.0% 提升到 52.0%。\n\n\n# 四、对我的启发\n\n> 核心启发是触觉不仅可作为策略输入，更能作为灵巧视运动预训练的可扩展监督信号，且预训练监督与推理输入可解耦（单权重双模式部署）；局限在于数据采集依赖触觉手套与人工示教，真机触觉条件仍受硬件与标定限制，跨本体迁移的鲁棒性有待验证。与灵巧操作/具身智能课题高度相关。\n"
 }

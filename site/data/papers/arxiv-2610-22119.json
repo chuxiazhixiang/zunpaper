@@ -47,16 +47,12 @@
     {
       "kind": "lab",
       "label": "⭐ Pulkit Agrawal"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 10,
   "source_tags": [],
-  "score": 45,
+  "score": 35,
   "score_breakdown": [
     {
       "id": "key_author",
@@ -69,12 +65,6 @@
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 5 个（whole-body、humanoid control、full-body、motion tracking）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -105,5 +95,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/EmbodiedAI\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Compliant GMT: Making General Motion Tracking Compliant via Residual Reference Adaptation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22119v1\n---\n>[!abstract] 一句话总结：提出模块化框架 C-GMT：冻结预训练的通用运动跟踪器（GMT）作为基础策略，在其上叠加一个以本体感知历史为条件、输出残差参考（residual reference adaptation）的适配器，让同一策略在保持跟踪通用性的同时产生全身柔顺响应。\n\n\n# 一、动机\n\n> 现有通用运动跟踪（GMT）策略虽然能模仿大规模动捕数据中的多样动作，但被训练得过于刚硬，受到外力扰动时会产生不安全、意外的行为；已有的全身柔顺控制工作则多为单一参考轨迹定制的策略，牺牲了泛化性。作者希望同时获得通用运动跟踪能力与全身柔顺响应。\n\n\n# 二、方法\n\n> 提出模块化框架 C-GMT：冻结预训练的通用运动跟踪器（GMT）作为基础策略，在其上叠加一个以本体感知历史为条件、输出残差参考（residual reference adaptation）的适配器，让同一策略在保持跟踪通用性的同时产生全身柔顺响应。\n\n\n# 三、核心实验结果\n\n> 在与 SOTA 通用运动跟踪器和单动作柔顺策略的对比中，C-GMT 在跟踪精度与柔顺性上均取得有竞争力的表现；在仿真与真实 Unitree G1 实验中都验证了更高的安全性、鲁棒性与误差容忍度（摘要未给出具体量化数值）。\n\n\n# 四、对我的启发\n\n> 核心启发是把「柔顺性」与「通用跟踪」解耦：用残差适配器在推理侧改造参考轨迹，而非重新训练大模型，可低成本复用现有 GMT 资产并推广到其他技能；局限在于依赖基础 GMT 的质量、适配器需要本体感知历史因而对状态估计延迟敏感，且论文摘要未报告定量指标与力-位混合控制的稳定性保证。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Task/MotionTracking\n  - 状态/待读\nTitle: \"Compliant GMT: Making General Motion Tracking Compliant via Residual Reference Adaptation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22119v1\n---\n>[!abstract] 一句话总结：在预训练通用运动跟踪器上增加以本体感觉历史为条件的残差适配器，模块化实现全身顺从响应。\n\n\n# 一、动机\n\n> 现有通用运动跟踪策略虽能模仿多样动作，但训练得僵硬，受扰动时易产生不安全行为；单参考顺从策略又牺牲通用性。\n\n\n# 二、方法\n\n> 在预训练通用运动跟踪器上增加以本体感觉历史为条件的残差适配器，模块化实现全身顺从响应。\n\n\n# 三、核心实验结果\n\n> 在真实 Unitree G1 上验证；摘要未报告跟踪误差、顺从性等具体数值，仅称相较 SOTA 通用跟踪器和单动作顺从策略在跟踪精度与顺从性上具竞争力，并展示更好的安全性、鲁棒性和容错性。\n\n\n# 四、对我的启发\n\n> 局限是摘要缺少定量结果与极端扰动分析；启发是用预训练通用策略加残差适配器可把顺从性作为模块叠加，避免重训大规模运动数据。\n"
 }

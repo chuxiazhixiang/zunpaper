@@ -36,28 +36,17 @@
   "channels": [
     "manipulation"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 16,
+  "score": 6,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 3,
       "hint": "频道关键词命中 1 个（manipulation）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -91,5 +80,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/系统\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/HardwareCoDesign\n  - 状态/待读\nTitle: \"Sub-Millisecond Reflexes for Continuous Physical Human-Robot Interaction\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.21913v1\n---\n>[!abstract] 一句话总结：提出一个开源的亚毫秒反射引擎：基于增强的 ROS 2 兼容多模态控制器，将控制器切换实现为无锁指针操作以消除运行时中间件开销，并在其中集成针对接触危险与运动学极限违反的反射行为，实现确定性模态切换。\n\n\n# 一、动机\n\n> 现有 ROS 2 控制架构采用「停止-切换」（stop-to-switch）机制来切换控制模态，会引入毫秒级甚至更大的延迟，并中断任务执行，无法满足连续物理人机交互对快速反射式响应的需求。\n\n\n# 二、方法\n\n> 提出一个开源的亚毫秒反射引擎：基于增强的 ROS 2 兼容多模态控制器，将控制器切换实现为无锁指针操作以消除运行时中间件开销，并在其中集成针对接触危险与运动学极限违反的反射行为，实现确定性模态切换。\n\n\n# 三、核心实验结果\n\n> 在 Franka 机械臂上切换延迟低于 0.1 ms，比常规 ros2_control 快四个数量级以上；在多阶段操作任务中执行时间减少 3.5%，峰值轨迹加加速度（jerk）降低三倍以上；安全关键事件期间仍保持连续运行不中断。\n\n\n# 四、对我的启发\n\n> 把控制模态切换从中间件层下沉到无锁指针级操作，是获得反射级实时性的关键工程洞见，可推广到需要高频安全干预的交互式机器人系统；局限是仅在单臂 Franka 上验证，缺乏多臂/移动平台与真实人机接触场景的量化评估。\n"
+  "note": "---\ntags:\n  - 论文/系统\n  - 论文/方法\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/HardwareCoDesign\n  - 状态/待读\nTitle: \"Sub-Millisecond Reflexes for Continuous Physical Human-Robot Interaction\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.21913v1\n---\n>[!abstract] 一句话总结：作者实现了一个开源的、亚毫秒级反射引擎：基于增强的 ROS 2 兼容多模态控制器，把控制模态切换实现为无锁指针操作以消除运行时中间件开销，并集成反射行为来缓解碰撞危险与运动学限位违规。\n\n\n# 一、动机\n\n> 现有 ros2_control 架构依赖“停止-切换”（stop-to-switch）机制来更换控制模式，切换延迟大且会打断任务执行，难以支撑连续、安全的物理人机交互。\n\n\n# 二、方法\n\n> 作者实现了一个开源的、亚毫秒级反射引擎：基于增强的 ROS 2 兼容多模态控制器，把控制模态切换实现为无锁指针操作以消除运行时中间件开销，并集成反射行为来缓解碰撞危险与运动学限位违规。\n\n\n# 三、核心实验结果\n\n> 在 Franka 机械臂上，切换延迟低于 0.1 ms，比常规 ros2_control 快四个数量级以上；在多阶段操作任务中，执行时间缩短 3.5%，轨迹峰值加加速度（jerk）降低三倍以上，且在安全关键事件中保持连续运行。\n\n\n# 四、对我的启发\n\n> 该方法把“反射式”安全响应下沉到控制器框架层，证明无需更换硬件即可获得接近底层的响应速度；其局限在于实验仅限单台 Franka 机械臂和有限任务，尚未验证多臂、多传感器负载及真实人机接触场景下的确定性与最坏时延。\n"
 }

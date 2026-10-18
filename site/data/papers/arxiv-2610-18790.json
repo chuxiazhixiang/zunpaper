@@ -70,14 +70,28 @@
   "badges": [
     {
       "kind": "lab",
+      "label": "⭐ Princeton"
+    },
+    {
+      "kind": "lab",
+      "label": "⭐ 清华"
+    },
+    {
+      "kind": "lab",
       "label": "⭐ Hang Zhao"
     }
   ],
   "related_links": [],
   "page_count": 45,
   "source_tags": [],
-  "score": 35,
+  "score": 60,
   "score_breakdown": [
+    {
+      "id": "famous_lab",
+      "label": "顶尖实验室出品",
+      "points": 25,
+      "hint": "命中 “Princeton” 关键词"
+    },
     {
       "id": "key_author",
       "label": "关键作者上榜",
@@ -98,14 +112,22 @@
     }
   ],
   "judge": {},
-  "institutions": [],
-  "method_tags": [],
+  "institutions": [
+    "Tsinghua University",
+    "Galaxea AI",
+    "Princeton University"
+  ],
+  "method_tags": [
+    "Energy-Gated DAgger",
+    "Diffusion Transformer policy",
+    "VLA"
+  ],
   "platform": [],
   "sim_stack": [],
   "method_family": "",
-  "real_robot": "",
+  "real_robot": "yes",
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": ""
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"EqC: Equilibrium Energy Control for Introspective Lifelong Robot Learning\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.18790v1\n---\n>[!abstract] 一句话总结：EqC 构建显式的条件能量景观，把生成式动作精炼转化为求平衡点的优化过程，并用精炼轨迹的几何性质（能量一致性）作为能力信号，驱动 Energy-Gated DAgger：当能量一致性持续违反时触发专家接管，再把恢复轨迹聚合回策略更新；该框架可自然嵌入 Diffusion Transformer 策略与流匹配 VLA 策略。\n\n\n# 一、动机\n\n> 长期自主的机器人不仅需要生成动作，还要能觉察自身行为何时不再可靠并主动寻求帮助。现有扩散/流匹配 VLA 策略缺乏这种内省能力，无法判断生成的动作是否落在已学分布支撑范围内，导致失败模式难以被及时发现与纠正。\n\n\n# 二、方法\n\n> EqC 构建显式的条件能量景观，把生成式动作精炼转化为求平衡点的优化过程，并用精炼轨迹的几何性质（能量一致性）作为能力信号，驱动 Energy-Gated DAgger：当能量一致性持续违反时触发专家接管，再把恢复轨迹聚合回策略更新；该框架可自然嵌入 Diffusion Transformer 策略与流匹配 VLA 策略。\n\n\n# 三、核心实验结果\n\n> 在仿真与真实双臂操作任务上，EqC 在控制性能与鲁棒性上匹配或优于基线，并能在策略能力边界附近及时触发干预；真实世界研究显示，这些干预使系统可自主处理的情境范围逐步扩大，形成从静态生成控制器到自我改进系统的实用路径（摘要未给出具体量化数值）。\n\n\n# 四、对我的启发\n\n> 启发在于把「不确定性/能力自评」从额外分类头转为生成过程本身的几何量，可与任意迭代式生成策略（扩散、流匹配）解耦复用；局限是能量阈值与接管时机需要标定，专家干预成本与长期运行下能量景观漂移、恢复数据分布偏移等问题尚未在摘要中讨论。\n"
 }

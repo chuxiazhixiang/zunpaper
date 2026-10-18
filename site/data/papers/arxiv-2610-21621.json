@@ -55,16 +55,12 @@
     {
       "kind": "venue",
       "label": "🎓 IROS 2026"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 60,
+  "score": 50,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -77,12 +73,6 @@
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 4 个（manipulation、aloha、mobile aloha、contact-rich）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -122,5 +112,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"SPEAR: Selective Preference Elicitation with Adaptive Rewards for VLM-Guided Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.21621v1\n---\n>[!abstract] 一句话总结：SPEAR 通过可区分性感知的查询选择减少弃答并只查询有信息量的比较，同时采用自适应奖励过渡，先用 VLM 合成引导启动探索，再用偏好进行细化。\n\n\n# 一、动机\n\n> VLM 可为机器人操作自动生成偏好标签，但每次查询推理成本高，且 VLM 在视觉困难比较中频繁弃答，导致难以实际部署。SPEAR 旨在解决查询效率低与探索困难的问题，使 VLM 成为实用的偏好预言机。\n\n\n# 二、方法\n\n> SPEAR 通过可区分性感知的查询选择减少弃答并只查询有信息量的比较，同时采用自适应奖励过渡，先用 VLM 合成引导启动探索，再用偏好进行细化。\n\n\n# 三、核心实验结果\n\n> 在操作基准上平均成功率达 88.9%，比基线高 23.3 个百分点；在接触丰富任务中显著降低弃答率和实际训练时间；在真实硬件上完全在线学习三个 Mobile ALOHA 操作任务，验证了端到端真实场景适用性。\n\n\n# 四、对我的启发\n\n> 启发是将 VLM 作为偏好预言机可减少人工奖励工程，关键是查询选择与奖励过渡策略。局限是仍依赖 VLM 在可区分查询上的可靠性，且主要在操作任务上验证，跨任务与跨具身泛化仍有待考察。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\nTitle: \"SPEAR: Selective Preference Elicitation with Adaptive Rewards for VLM-Guided Robotic Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.21621v1\n---\n>[!abstract] 一句话总结：SPEAR 通过两个协同机制把 VLM 变成高效的偏好预言机：一是可区分性感知的查询选择，只挑选有信息量且 VLM 能区分的比较以降低弃答率；二是自适应奖励过渡，先用 VLM 合成的引导信号启动探索，再过渡到基于偏好的细化，从而减少人工奖励工程。\n\n\n# 一、动机\n\n> 用 VLM 自动标注机器人操作偏好时，每次查询推理成本高，且 VLM 在视觉上难以区分的比较中经常弃答（abstain），导致偏好数据采集低效、训练慢，难以在真实硬件上规模化使用。\n\n\n# 二、方法\n\n> SPEAR 通过两个协同机制把 VLM 变成高效的偏好预言机：一是可区分性感知的查询选择，只挑选有信息量且 VLM 能区分的比较以降低弃答率；二是自适应奖励过渡，先用 VLM 合成的引导信号启动探索，再过渡到基于偏好的细化，从而减少人工奖励工程。\n\n\n# 三、核心实验结果\n\n> 在操作基准上平均成功率达 88.9%，比基线高出 23.3 个百分点；在接触丰富任务上显著降低了 VLM 弃答率与实际训练耗时；在真实 Mobile ALOHA 平台上完全在线学习三项操作任务，验证了端到端真机可用性。\n\n\n# 四、对我的启发\n\n> 方法仍依赖 VLM 本身的质量与查询预算，可区分性筛选和奖励过渡的超参可能需要按任务调；但「查询筛选 + 引导到偏好的课程式奖励过渡」思路可迁移到其他需要昂贵人类/VLM 反馈的机器人学习场景，是降低偏好学习成本的有益启发。\n"
 }

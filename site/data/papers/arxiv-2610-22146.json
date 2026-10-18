@@ -47,28 +47,17 @@
   "channels": [
     "manipulation"
   ],
-  "badges": [
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
-    }
-  ],
+  "badges": [],
   "related_links": [],
   "page_count": 10,
   "source_tags": [],
-  "score": 33,
+  "score": 23,
   "score_breakdown": [
     {
       "id": "keyword_density",
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 4 个（vision-language-action、openvla、manipulation、libero）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "github_repo",
@@ -112,5 +101,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"FastVLA: Task-Conditioned and Temporally Adaptive Visual Token Compression for Efficient Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22146v1\n---\n>[!abstract] 一句话总结：FastVLA 是一个免训练、任务感知且时间自适应的视觉 token 压缩框架：它用任务到视觉的注意力为 token 打分，并根据重要性分布的均匀程度（inverse-Simpson 指标 + 在线滑动窗口校准）自适应地确定每个时间步的压缩率。\n\n\n# 一、动机\n\n> VLA 模型在闭环部署时，每个时间步都要把高分辨率、多视角图像编码成数百个视觉 token，Transformer 计算和延迟主要花在这些 token 上；而基于注意力的通用 token 压缩在 VLA 控制中不可靠，因为关键 token 由任务而非视觉显著性决定，且不同步骤所需 token 预算差异很大，静态指标和固定预算会浪费算力或丢弃控制关键 token。\n\n\n# 二、方法\n\n> FastVLA 是一个免训练、任务感知且时间自适应的视觉 token 压缩框架：它用任务到视觉的注意力为 token 打分，并根据重要性分布的均匀程度（inverse-Simpson 指标 + 在线滑动窗口校准）自适应地确定每个时间步的压缩率。\n\n\n# 三、核心实验结果\n\n> 在 OpenVLA、OpenVLA-OFT、CogACT 上，于 LIBERO 和 SIMPLER 仿真中减少 LLM 主干 FLOPs 35-59%、动作延迟 9-32%（1.09×-1.46× 加速）且保持任务成功率，效率-性能权衡优于现有即插即用的 token 压缩、剪枝、复用基线；在真实 Franka Research 3 上端到端延迟降低 20%（1.25× 加速），成功率相当。\n\n\n# 四、对我的启发\n\n> 该方法的免训练即插即用特性使其易于迁移到现有 VLA 管线，但重要性打分依赖注意力质量，滑动窗口校准在任务切换或长尾场景下的稳定性仍需验证；对具身智能推理加速方向有直接参考价值。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/系统\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"FastVLA: Task-Conditioned and Temporally Adaptive Visual Token Compression for Efficient Vision-Language-Action Models\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22146v1\n---\n>[!abstract] 一句话总结：FastVLA 是一种免训练、任务感知且时间自适应的视觉 token 压缩框架：每步用任务到视觉注意力给 token 重要性打分，并基于逆 Simpson 指标衡量重要性分布均匀度，结合在线滑动窗口校准自适应设定压缩率。\n\n\n# 一、动机\n\n> VLA 模型闭环部署时，每个时间步需编码高分辨率、常为多视角的图像为数百个视觉 token，主导 Transformer 计算和延迟；现有基于注意力的 token 压缩未考虑控制任务决定关键 token，且不同步骤 token 预算变化大，静态压缩会浪费计算或丢弃控制关键 token。\n\n\n# 二、方法\n\n> FastVLA 是一种免训练、任务感知且时间自适应的视觉 token 压缩框架：每步用任务到视觉注意力给 token 重要性打分，并基于逆 Simpson 指标衡量重要性分布均匀度，结合在线滑动窗口校准自适应设定压缩率。\n\n\n# 三、核心实验结果\n\n> 在 OpenVLA、OpenVLA-OFT 和 CogACT 上，跨 LIBERO、SIMPLER 及真实 Franka Research 3 机器人评估；仿真中 LLM 主干 FLOPs 降低 35-59%，动作延迟降低 9-32%（1.09×-1.46× 加速）且保持任务成功率；真实机器人端到端延迟降低 20%（1.25× 加速），成功率相当。\n\n\n# 四、对我的启发\n\n> 该方法强调任务条件化和时间自适应压缩对 VLA 部署的价值，但免训练策略依赖注意力质量与在线校准，跨任务/跨机器人泛化和额外开销仍需验证；对高效具身智能部署有直接启发。\n"
 }

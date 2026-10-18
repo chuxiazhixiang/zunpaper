@@ -68,16 +68,12 @@
     {
       "kind": "lab",
       "label": "⭐ USTC"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 7,
   "source_tags": [],
-  "score": 55,
+  "score": 45,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -90,12 +86,6 @@
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 4 个（manipulation、imitation learning、teleoperation、teleop）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -136,5 +126,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Trajectory-based Diffusion from One-shot Human Video for Generalizable Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.21792v1\n---\n>[!abstract] 一句话总结：TDV 利用即插即用的 6D 位姿估计从单条人类视频中提取任务相关物体的轨迹，将其作为与视觉域和本体无关的模态无关中间表示，再用基于轨迹的扩散模型生成机器人可执行轨迹，实现数据生成驱动的可泛化操作。\n\n\n# 一、动机\n\n> 现有模仿学习依赖遥操作采集演示数据，费时费力且难以规模化；人类视频蕴含丰富的操作知识，但视觉域差异和缺乏显式动作标签导致难以直接迁移到机器人。\n\n\n# 二、方法\n\n> TDV 利用即插即用的 6D 位姿估计从单条人类视频中提取任务相关物体的轨迹，将其作为与视觉域和本体无关的模态无关中间表示，再用基于轨迹的扩散模型生成机器人可执行轨迹，实现数据生成驱动的可泛化操作。\n\n\n# 三、核心实验结果\n\n> 在 RLBench 仿真上，七个任务中均达到接近 100% 的成功率，优于此前方法；真实世界实验中，仅凭一次人类演示即可实现跨本体的泛化操作。\n\n\n# 四、对我的启发\n\n> 方法高度依赖 6D 位姿估计的精度与物体可被位姿估计覆盖的程度，对于形变物体或接触丰富、依赖力觉的任务可能受限；轨迹作为中间表示有效解耦了视觉域与本体差异，这一思路可迁移到其他跨本体数据生成场景。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"Trajectory-based Diffusion from One-shot Human Video for Generalizable Manipulation\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.21792v1\n---\n>[!abstract] 一句话总结：提出 TDV 轨迹框架：用即插即用 6D 位姿估计从单段人类视频中提取任务相关物体轨迹，以轨迹作为与视觉域和本体无关的中间表示，并通过扩散式轨迹生成实现可泛化机器人操作。\n\n\n# 一、动机\n\n> 现有模仿学习依赖遥操作采集演示，数据成本高、难以扩展；人类视频虽含操作知识，但存在视觉域差异且缺少显式动作标签，难以直接迁移到机器人。\n\n\n# 二、方法\n\n> 提出 TDV 轨迹框架：用即插即用 6D 位姿估计从单段人类视频中提取任务相关物体轨迹，以轨迹作为与视觉域和本体无关的中间表示，并通过扩散式轨迹生成实现可泛化机器人操作。\n\n\n# 三、核心实验结果\n\n> 在 RLBench 仿真中优于先前方法，7 个任务成功率接近 100%；真实实验中仅用单次人类演示即可实现跨本体泛化操作。\n\n\n# 四、对我的启发\n\n> 方法依赖任务相关物体的 6D 位姿估计与轨迹提取，对严重遮挡、可形变物体和长时序复杂任务可能受限；但其“轨迹中间表示+数据生成”思路对跨本体模仿学习有较强启发。\n"
 }

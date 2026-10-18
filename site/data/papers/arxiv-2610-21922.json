@@ -68,16 +68,12 @@
     {
       "kind": "lab",
       "label": "⭐ HKU"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 55,
+  "score": 45,
   "score_breakdown": [
     {
       "id": "famous_lab",
@@ -90,12 +86,6 @@
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 5 个（vision-language-action、manipulation、libero、jepa）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -135,5 +125,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - 状态/待读\nTitle: \"TS-WAM: Temporal Latent Actions and World-Action Coupling for Vision-Language Robot Control\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.21922v1\n---\n>[!abstract] 一句话总结：提出轻量级教师-学生世界-动作模型 TS-WAM：用 vlm-jepa 基于 EMA 目标分支从机器人演示与无动作人类视频中自监督学习时序表征，并与 delta-lwm 耦合，从当前观测和指令预测潜在动作及未来视觉特征以引导动作生成，端到端联合优化且推理时移除 EMA 目标分支。\n\n\n# 一、动机\n\n> 现有视觉-语言-动作策略通常依赖带动作标注的机器人演示，且缺乏对未来视觉状态的显式预测机制，因此难以利用无动作视频，并容易过拟合演示条件、削弱泛化与鲁棒性。\n\n\n# 二、方法\n\n> 提出轻量级教师-学生世界-动作模型 TS-WAM：用 vlm-jepa 基于 EMA 目标分支从机器人演示与无动作人类视频中自监督学习时序表征，并与 delta-lwm 耦合，从当前观测和指令预测潜在动作及未来视觉特征以引导动作生成，端到端联合优化且推理时移除 EMA 目标分支。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO、LIBERO-Plus、SimplerEnv 三个仿真基准以及 Franka Research 3、RevoTron 真机操作实验中均取得较强操作性能、泛化性和鲁棒性；但摘要未给出具体成功率或提升数值，需查阅正文获取定量结果。\n\n\n# 四、对我的启发\n\n> 该方法的关键启发是用无动作视频和未来视觉预测缓解动作标注依赖与演示过拟合，并通过推理时移除教师分支保持部署轻量；局限在于摘要缺少具体量化指标，且真机验证平台与任务范围仍有限，需进一步确认跨具身与复杂场景表现。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"TS-WAM: Temporal Latent Actions and World-Action Coupling for Vision-Language Robot Control\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.21922v1\n---\n>[!abstract] 一句话总结：提出轻量级 Teacher-Student World-Action Model（TS-WAM）：用 vlm-jepa 通过 EMA 目标分支做自监督时序学习，并从机器人示教与无动作人类视频中学习；再耦合 delta-lwm，由当前观测和指令预测潜动作及未来视觉特征，引导动作生成，整体端到端联合优化，推理时移除 EMA 目标分支。\n\n\n# 一、动机\n\n> 现有视觉-语言-动作策略依赖带动作标注的机器人示教，且缺少对未来视觉状态的显式预测机制，导致难以利用无动作视频，并容易过拟合示教条件、削弱泛化与鲁棒性。\n\n\n# 二、方法\n\n> 提出轻量级 Teacher-Student World-Action Model（TS-WAM）：用 vlm-jepa 通过 EMA 目标分支做自监督时序学习，并从机器人示教与无动作人类视频中学习；再耦合 delta-lwm，由当前观测和指令预测潜动作及未来视觉特征，引导动作生成，整体端到端联合优化，推理时移除 EMA 目标分支。\n\n\n# 三、核心实验结果\n\n> 在 LIBERO、LIBERO-Plus、SimplerEnv 三个仿真基准以及 Franka Research 3、RevoTron 两个真实平台上验证，取得较强的操作性能、泛化性与鲁棒性；摘要未给出具体成功率或提升数值，仅明确覆盖 3 个仿真基准和 2 个真实平台。\n\n\n# 四、对我的启发\n\n> 局限：摘要缺少量化结果和消融实验，难以判断 vlm-jepa、delta-lwm 与未来视觉预测各自的贡献；启发：利用无动作视频和未来视觉潜变量预测可降低对动作标注的依赖，训练期使用 EMA 教师、推理期移除则兼顾表征学习与部署轻量化。\n"
 }

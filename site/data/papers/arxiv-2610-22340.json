@@ -58,16 +58,12 @@
     {
       "kind": "lab",
       "label": "⭐ Jitendra Malik"
-    },
-    {
-      "kind": "fresh",
-      "label": "⚡ 新鲜出炉"
     }
   ],
   "related_links": [],
   "page_count": 8,
   "source_tags": [],
-  "score": 50,
+  "score": 40,
   "score_breakdown": [
     {
       "id": "key_author",
@@ -80,12 +76,6 @@
       "label": "关键词命中密集",
       "points": 12,
       "hint": "频道关键词命中 8 个（manipulation、dexterous、dexterous manipulation、in-hand）"
-    },
-    {
-      "id": "freshness",
-      "label": "刚出锅 (≤2 天)",
-      "points": 10,
-      "hint": "投递于 2 天前"
     },
     {
       "id": "longer_paper",
@@ -123,5 +113,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/训练\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Dexterity from Supervised Play\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22340v1\n---\n>[!abstract] 一句话总结：DSP 先用数分钟人类玩耍数据通过行为克隆学习一个 play policy，自主部署收集数小时交互数据训练世界模型；推理时用该策略为 MPC 提议候选动作序列，并可通过在世界模型内自博弈蒸馏出闭环目标条件策略。\n\n\n# 一、动机\n\n> 灵巧操作需要大量接触丰富的交互经验，但任务专用示教和强化学习的数据采集成本高、效率低，机器人难以自主获得这类经验。\n\n\n# 二、方法\n\n> DSP 先用数分钟人类玩耍数据通过行为克隆学习一个 play policy，自主部署收集数小时交互数据训练世界模型；推理时用该策略为 MPC 提议候选动作序列，并可通过在世界模型内自博弈蒸馏出闭环目标条件策略。\n\n\n# 三、核心实验结果\n\n> 在仿真和真实世界的欠驱动推动与多指手 any-to-any 手内姿态重定向任务上验证；真实实验中成功率比 hindsight behavior cloning 高 69.6%，并以少 490 倍的交互数据达到与强化学习相当的成功率。\n\n\n# 四、对我的启发\n\n> 该工作表明监督式玩耍可自主采集数据、引导基于模型的规划并学习策略，无需任务专用示教或 sim-to-real 迁移；局限可能在于依赖人类玩耍数据的质量、世界模型精度以及真实部署中的安全性，但对具身智能中的数据自主采集与模型规划结合很有启发。\n"
+  "note": "---\ntags:\n  - 论文/方法\n  - 论文/数据\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"Dexterity from Supervised Play\"\nYear: \"2026\"\nURL: http://arxiv.org/abs/2610.22340v1\n---\n>[!abstract] 一句话总结：先用数分钟人类玩耍数据行为克隆得到play policy，自主运行收集数小时交互数据训练世界模型，推理时由play policy为MPC提出候选动作并用世界模型评估，同时通过世界模型内自博弈蒸馏闭环目标条件策略。\n\n\n# 一、动机\n\n> 灵巧操作需要大量接触丰富交互经验，但人工示教昂贵、强化学习交互成本高，且难以零任务示教自主采集数据。\n\n\n# 二、方法\n\n> 先用数分钟人类玩耍数据行为克隆得到play policy，自主运行收集数小时交互数据训练世界模型，推理时由play policy为MPC提出候选动作并用世界模型评估，同时通过世界模型内自博弈蒸馏闭环目标条件策略。\n\n\n# 三、核心实验结果\n\n> 在真实世界欠驱动推动与多指手任意姿态重定向任务中，成功率比hindsight behavior cloning高69.6%；仅用约1/490的交互数据达到与强化学习相当的成功率；无需任务专用示教或sim-to-real迁移。\n\n\n# 四、对我的启发\n\n> 展示了“监督玩耍+自主数据采集+世界模型规划”的可行性，但依赖短时人类玩耍初始化，世界模型误差与MPC推理成本可能限制复杂接触任务泛化。\n"
 }
