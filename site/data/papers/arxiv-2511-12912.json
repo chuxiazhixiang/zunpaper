@@ -88,5 +88,5 @@
   "training_summary": "",
   "demo_videos": [],
   "github": {},
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"DiffuDepGrasp: Diffusion-based Depth Noise Modeling Empowers Sim2Real Robotic Grasping\"\nYear: \"2025\"\nURL: https://arxiv.org/abs/2511.12912\n---\n>[!abstract] 一句话总结：提出 DiffuDepGrasp——一个仅用仿真数据训练、部署时只输入原始深度图即可零样本迁移的 sim2real 框架，其核心 Diffusion Depth Generator 由两个协同模块组成：Diffusion Depth Module 利用时序几何先验，以样本高效的方式训练条件扩散模型来建模复杂传感器噪声分布；Noise Grafting Module 在注入感知伪影的同时保持深度的度量精度。\n\n\n# 一、动机\n\n> 仿真训练的深度端到端抓取策略迁移到真实机器人时，真实深度图中普遍存在的空洞与噪声造成严重的 sim2real 差距；现有的过程式噪声注入或学习式映射方法因噪声模拟不真实而数据效率低、依赖成对数据集，而借助基础模型提取中间表征的方案又无法完全消除域偏移并带来部署时的额外算力开销。\n\n\n# 二、方法\n\n> 提出 DiffuDepGrasp——一个仅用仿真数据训练、部署时只输入原始深度图即可零样本迁移的 sim2real 框架，其核心 Diffusion Depth Generator 由两个协同模块组成：Diffusion Depth Module 利用时序几何先验，以样本高效的方式训练条件扩散模型来建模复杂传感器噪声分布；Noise Grafting Module 在注入感知伪影的同时保持深度的度量精度。\n\n\n# 三、核心实验结果\n\n> 在 12 类物体抓取任务上取得 95.7% 的平均成功率，且为零样本迁移（未在真实数据上微调）；对未见物体表现出强泛化能力；由于部署阶段仅需原始深度输入，相比需要中间表征的方案消除了额外计算开销。\n\n\n# 四、对我的启发\n\n> 该工作把『噪声建模』而非『域自适应』作为打通 sim2real 的关键切入点，用扩散模型生成传感器真实噪声、同时保持几何与度量一致性，思路可迁移到其他依赖深度/点云的具身感知任务；局限在于评测对象为 12 类物体的平行夹爪抓取，对更复杂灵巧操作、强反光/透明物体以及跨不同深度相机型号的泛化性仍需验证，噪声分布学习也可能受限于采集时的传感器域。\n"
+  "note": ""
 }
