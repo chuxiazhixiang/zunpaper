@@ -69,5 +69,5 @@
     "topics": [],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/方法\n  - Domain/Robotics\n  - Domain/Multimodal\n  - Task/RoboticManipulation\n  - Task/EmbodiedAI\n  - 状态/待读\nTitle: \"sii-research/tau-0-vla\"\nYear: \"\"\nURL: https://github.com/sii-research/tau-0-vla\n---\n>[!abstract] 一句话总结：提出分层机器人基础模型：记忆增强的高层策略负责生成下一子任务，并在需要额外推理时借助世界模型引导的测试时计算（test-time computation）在多个候选方案中搜索；通用低层策略则由 Qwen3.5 视觉语言骨干加 Mixture-of-Transformers 动作专家组成，通过条件流匹配（conditional flow matching）训练，在统一 40 维状态/动作空间中跨本体执行选定子任务。\n\n\n# 一、动机\n\n> 长程操作任务中，单一端到端 VLA 策略缺乏显式的子任务分解与推理能力，面对需要多步规划或出现歧义时难以在测试阶段搜索更优解。τ0-VLA 试图用分层结构加世界模型引导的测试时计算来弥补这一不足。\n\n\n# 二、方法\n\n> 提出分层机器人基础模型：记忆增强的高层策略负责生成下一子任务，并在需要额外推理时借助世界模型引导的测试时计算（test-time computation）在多个候选方案中搜索；通用低层策略则由 Qwen3.5 视觉语言骨干加 Mixture-of-Transformers 动作专家组成，通过条件流匹配（conditional flow matching）训练，在统一 40 维状态/动作空间中跨本体执行选定子任务。\n\n\n# 三、核心实验结果\n\n> 低层策略在 40,115 小时异构真实机器人数据上结合多模态联合训练，并采用 40 维统一状态/动作空间以支持跨本体泛化；官方已放出预训练低层策略、LIBERO 微调检查点与评测结果，以及高层 Proposal 与世界模型权重、推理和微调代码。摘要与仓库页面未给出具体成功率数字，量化指标需查阅论文与 LIBERO 评测文档。\n\n\n# 四、对我的启发\n\n> 亮点在于把「测试时计算/搜索」引入 VLA 的层级规划，并用世界模型为候选子任务提供评估信号，为长程操作提供了可扩展的推理时算力换取性能的范式；局限是测试时搜索会带来额外推理延迟，且摘要中缺少定量对比，跨 40 维统一动作空间的实际本体覆盖范围与高层规划对世界模型精度的依赖程度仍需验证。\n"
+  "note": ""
 }

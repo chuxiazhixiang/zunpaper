@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 53,
-      "hint": "⭐ 466"
+      "hint": "⭐ 469"
     }
   ],
   "judge": {
@@ -62,7 +62,7 @@
   "github": {
     "owner": "danijar",
     "repo": "daydreamer",
-    "stars": 466,
+    "stars": 469,
     "language": "Jupyter Notebook",
     "pushed_at": "2022-12-19",
     "created_at": "2022-09-13",
@@ -73,5 +73,5 @@
     ],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/方法\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/CV\n  - Task/EmbodiedAI\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\n  - 状态/待读\nTitle: \"danijar/daydreamer\"\nYear: \"\"\nURL: https://github.com/danijar/daydreamer\n---\n>[!abstract] 一句话总结：DayDreamer 用「世界模型 + 想象中训练的行为」两进程框架：actor 进程与环境交互并把经验写入 replay buffer，learner 进程从 buffer 采样训练世界模型（把同一时刻的多模态观测融合成紧凑离散表示，用 RNN 在动作条件下预测表示序列，并重建输入、预测奖励与回合结束），再纯在世界模型的表征空间内用 on-policy 强化学习训练 actor-critic，从而完全不需要模拟器。\n\n\n# 一、动机\n\n> 真实机器人上直接学习策略样本效率极低，而主流方案依赖昂贵且存在仿真-现实差距的模拟器；论文希望仅用真实世界中少量在线经验，就同时从本体感知与视觉输入中学到可用的机器人行为。\n\n\n# 二、方法\n\n> DayDreamer 用「世界模型 + 想象中训练的行为」两进程框架：actor 进程与环境交互并把经验写入 replay buffer，learner 进程从 buffer 采样训练世界模型（把同一时刻的多模态观测融合成紧凑离散表示，用 RNN 在动作条件下预测表示序列，并重建输入、预测奖励与回合结束），再纯在世界模型的表征空间内用 on-policy 强化学习训练 actor-critic，从而完全不需要模拟器。\n\n\n# 三、核心实验结果\n\n> 1) 在 Unitree A1 四足机器人上仅用约 1 小时的真实交互数据即学会行走，并能从翻倒状态中自行恢复站立，同时对推挤等扰动具有鲁棒性；2) 同一算法无需调参即迁移到 XArm 与 UR5 两种机械臂，完成抓取（及放置）任务，展示了方法在不同本体上的通用性；3) 全部任务均在真实物理机器人上在线训练，未使用任何模拟器或预训练仿真策略，验证了世界模型想象式 RL 的样本效率优势。\n\n\n# 四、对我的启发\n\n> 局限在于每个任务需从头单独训练一个世界模型，任务间/本体间不共享知识，且主要验证的是相对短程的运动与抓取任务，长时序、高精度操作与视觉泛化仍待验证；其启发是世界模型加想象式策略学习为真实机器人高效学习提供了可行范式，与跨本体迁移和具身智能课题高度相关。\n"
+  "note": ""
 }

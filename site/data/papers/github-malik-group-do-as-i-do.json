@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 53,
-      "hint": "⭐ 436"
+      "hint": "⭐ 441"
     }
   ],
   "judge": {
@@ -62,12 +62,12 @@
   "github": {
     "owner": "malik-group",
     "repo": "do-as-i-do",
-    "stars": 436,
+    "stars": 441,
     "language": "Python",
     "pushed_at": "2026-08-02",
     "created_at": "2026-06-04",
     "topics": [],
     "archived": false
   },
-  "note": "---\ntags:\n  - 论文/数据\n  - 论文/系统\n  - 论文/应用\n  - Domain/Robotics\n  - Domain/CV\n  - Task/RoboticManipulation\n  - Task/CrossEmbodimentTransfer\nTitle: \"malik-group/do-as-i-do\"\nYear: \"\"\nURL: https://github.com/malik-group/do-as-i-do\n---\n>[!abstract] 一句话总结：构建了一条从人类视频到真机执行的完整流水线：先用手–物重建（SAM3 → SAM3D 网格 → MoGe 点图 → HaWoR → TAPIR → 引导扩散跟踪 → 可选投影）恢复物体与手的 6-DoF 位姿轨迹，再经凸分解、MJCF 场景生成、IK 与 MuJoCo Warp 中基于采样的 MPC 重定向到机器人手，最后通过 MuJoCo 回放/IK 生成双臂 UR3e 关节轨迹并流式下发到 UR3e 机械臂 + Sharpa Wave 灵巧手完成真机复现。\n\n\n# 一、动机\n\n> 灵巧操作策略训练严重缺乏真实机器人数据，而日常人类视频中蕴含大量手–物交互示范，难点在于如何把这些无标注、无标定的人类视频可靠地转成机器人可执行的数据。\n\n\n# 二、方法\n\n> 构建了一条从人类视频到真机执行的完整流水线：先用手–物重建（SAM3 → SAM3D 网格 → MoGe 点图 → HaWoR → TAPIR → 引导扩散跟踪 → 可选投影）恢复物体与手的 6-DoF 位姿轨迹，再经凸分解、MJCF 场景生成、IK 与 MuJoCo Warp 中基于采样的 MPC 重定向到机器人手，最后通过 MuJoCo 回放/IK 生成双臂 UR3e 关节轨迹并流式下发到 UR3e 机械臂 + Sharpa Wave 灵巧手完成真机复现。\n\n\n# 三、核心实验结果\n\n> 摘要与仓库说明未给出量化指标（成功率、任务数、数据规模等），因此无法列出具体数字；可确认的是流水线被拆为 reconstruction / retargeting / deployment 三个可独立运行的模块（外部依赖以 git submodule 形式集成），重定向阶段在 MuJoCo Warp 上完成了凸分解 + IK + 采样 MPC 的完整求解，部署阶段已验证可在双 UR3e 双臂加 Sharpa Wave 手上回放重定向后的示范轨迹。\n\n\n# 四、对我的启发\n\n> 启发在于把“人类视频 → 可执行机器人数据”做成端到端可复用的模块化工程，为跨具身数据规模化提供了可行路径；局限是重建（尤其遮挡与接触下的位姿跟踪）误差会沿流水线累积，且缺少公开的量化评测与失败案例分析，真实可用性仍取决于重定向阶段的接触一致性与 MPC 参数调优。\n"
+  "note": ""
 }

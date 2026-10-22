@@ -3,7 +3,7 @@
   "source": "github",
   "title": "Roboparty/UFO",
   "title_zh": "Roboparty/UFO",
-  "abstract": "An open-source unsupervised RL framework for humanoid control with FB/TeCH training, robot-aware motion import, and real-world teleoperation.\n\nUFO: A General U nsupervised Reinforcement Learning F ramework for Humanoid C O ntrol English | 中文 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --> ## Overview UFO is a source-available research framework for humanoid control. The `main` branch focuses on MJLab training, robot-aware motion-data import, tracking/goal/reward inference, and ONNX export. The most complete and best-tested path is currently Unitree G1. UFO is designed to separate the learning pipeline from robot-specific configuration where practical, but new robot bring-up is still experimental. A new robot requires a MuJoCo XML, optionally a matching URDF, and motion data that has already been adapted or retargeted to that robot in RobotState format. UFO does not automatically retarget human motion or another robot's motion to a new robot, and one checkpoint cannot be directly reused across robots with different bodies, actions, or observation dimensions. ## What is supported? | Capability | Status | | --- | --- | | Unitree G1 training | Supported and best tested | | Motion data: RobotState CSV / NPZ / `ufo_pkl` | Supported | | Multi-source data manifest | Supported | | Tracking inference | Robot-config aware | | Goal inference | Robot-config aware; non-G1 requires robot-specific goal JSON | | Reward inference | G1 full default tasks; non-G1 currently limited to root/locomotion tasks | | Deployment and teleoperation | Use the [`deploy` branch](https://github.com/Roboparty/UFO/tree/deploy) / UFO-Deploy runtime | | Automatic motion retargeting | Not supported | | Cross-robot shared-policy training | Not supported | > [!NOTE] > `main` branch = training / data import / inference / ONNX export. > `deploy` branch = G1 real-robot deployment / teleoperation runtime. ## Installation Clone UFO first: Install [`uv`](https://docs.astral.sh/uv/): Alternatively: Install the environment: ### Optional: W&B logging W&B logging is optional. To enable it, authenticate first, optionally set your own entity, then add `--use-wandb -",
+  "abstract": "An open-source unsupervised RL framework for humanoid control with FB/TeCH training, robot-aware motion import, and real-world teleoperation.\n\nUFO: A General U nsupervised Reinforcement Learning F ramework for Humanoid C O ntrol English | 中文 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UFO is an unsupervised reinforcement learning framework for humanoid control, built on **mjlab**. It supports **Unitree G1 / RoboParty RP1.3**, **FB-CPR-Aux / TeCH**, multi-GPU training, and tracking, reward and goal inference. **The RP1 TeCH policy has not been tested on the physical robot.** **[G1 / RP1 training data](https://huggingface.co/datasets/xuewang/UFO-MotionData) and the [G1 FB policy tested on hardware](https://huggingface.co/xuewang/ufo-g1-policy) are available.** ## News **2026-10-15 — Training performance and multi-robot update** **192M-step FB / mjlab training:** all runs below use **8 × NVIDIA H20**, **BF16 mixed precision**, and **1024-wide networks with shared critics**. | Experiment | Global training FPS | Last EMD ↓ | Time to 192M steps | | --- | ---: | ---: | ---: | | G1: original DR + original reward | **12,440** | **0.6655** | **4 h 45 min** | | G1: extended DR + original reward | **12,467** | **0.7406** | **≈4 h 51 min** | | G1: extended DR + updated reward | **12,217** | **0.7554** | **4 h 55 min** | | RP1: baseline | **12,485** | **0.7139** | **4 h 48 min** | Measurement settings and scope All runs use 1,024 environments and batch size 1,024 per GPU, six residual layers, and 16 agent updates per rollout step. FPS counts environment transitions across all eight GPUs and is the median of the last 20 logged intervals, not whole-job throughput. All three G1 runs use LaFAN-40 and 30% lying-down initialization. The original-DR run predates the reset-boundary fix; the extended-DR/original-reward run includes it. These historical runs span code changes and are not a controlled DR/reward ablation. The updated reward replaces the undesired-contact penalty with a body-impact penalty, sets the slip penalty weight to -4, and adds a foot-stumble penalty with weight -2. RP1 uses common LaFAN-40 and no lying-down initial",
   "abstract_zh": "一个开源的无监督强化学习框架，用于人形控制，支持FB/TeCH训练、机器人感知的运动导入以及真实世界遥操作。UFO：一个用于人形控制的通用无监督强化学习框架。英文 | 中文。概述：UFO是一个用于人形控制的源码可获取研究框架。`main`分支专注于MJLab训练、机器人感知的运动数据导入、跟踪/目标/奖励推理以及ONNX导出。目前最完整且测试最充分的路径是Unitree G1。UFO在设计上尽可能将学习流程与机器人特定配置分离，但新机器人的启动仍处于实验阶段。一个新机器人需要MuJoCo XML文件，可选配对的URDF，以及已经适配或重定向到该机器人的RobotState格式运动数据。UFO不会自动将人类运动或其他机器人的运动重定向到新机器人，且一个检查点不能直接在不同身体、动作或观测维度的机器人之间复用。支持的功能：Unitree G1训练（支持且测试最充分）、运动数据：RobotState CSV / NPZ / `ufo_pkl`（支持）、多源数据清单（支持）、跟踪推理（机器人配置感知）、目标推理（机器人配置感知；非G1需要机器人特定的目标JSON）、奖励推理（G1完整默认任务；非G1目前限于根/运动任务）、部署与遥操作（使用`deploy`分支 / UFO-Deploy运行时）、自动运动重定向（不支持）、跨机器人共享策略训练（不支持）。注意：`main`分支 = 训练/数据导入/推理/ONNX导出。`deploy`分支 = G1真实机器人部署/遥操作运行时。安装：首先克隆UFO：安装`uv`：或者：安装环境：可选：W&B日志记录。W&B日志记录是可选的。要启用它，请先进行身份验证，可选设置自己的实体，然后添加`--use-wandb -`。",
   "tldr_zh": "UFO是一个开源无监督强化学习框架，用于人形控制，支持Unitree G1训练与部署。",
   "cover_zh": "人形机器人控制新框架｜无监督学习直接搞定Unitree G1",
@@ -16,7 +16,7 @@
   "primary_category": "",
   "categories": [],
   "published": "",
-  "updated": "2026-10-15",
+  "updated": "2026-10-21",
   "arxiv_id": "",
   "pdf_url": "",
   "abs_url": "https://github.com/Roboparty/UFO",
@@ -39,7 +39,7 @@
       "id": "github_stars",
       "label": "GitHub 热度",
       "points": 50,
-      "hint": "⭐ 316"
+      "hint": "⭐ 331"
     }
   ],
   "judge": {
@@ -62,9 +62,9 @@
   "github": {
     "owner": "Roboparty",
     "repo": "UFO",
-    "stars": 316,
+    "stars": 331,
     "language": "Python",
-    "pushed_at": "2026-10-15",
+    "pushed_at": "2026-10-21",
     "created_at": "2026-07-13",
     "topics": [
       "humanoid-control",
