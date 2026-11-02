@@ -1,0 +1,69 @@
+{
+  "id": "arxiv-2610-41654",
+  "source": "arxiv",
+  "title": "$\\nabla$Mimic: Ultra-Efficient Humanoid Control with Differentiable Simulation",
+  "title_zh": "$nabla$Mimic: Ultra-Efficient Humanoid Control with Differentiable Simulation",
+  "abstract": "Robot policy learning is dominated by zeroth-order methods such as PPO, which treat the simulator as a black box and pay for it with enormous sample counts. First-order policy learning differentiates through the dynamics, but on contact-rich whole-body control it has rarely worked: its gradients explode. A recent world-model method showed that derivative information can make humanoid motion tracking far more efficient, using surrogate gradients of a learned model. We show that exact gradients of the simulator itself do better, once two obstacles are removed. Exact gradients contain rare unbounded samples, because contact dynamics is not differentiable everywhere and its derivative diverges near some events; and they are expensive, because the simulator's adjoint has to replay the contact solve.   $\\nabla$Mimic bounds these samples with median-relative per-sample gradient clipping at every step of the backward pass, and reuses each costly simulated window by multistep regression onto gradient-derived action targets, which bounds every action target independently of the gradient scale. NablaEngine, a differentiable GPU simulation engine for the Unitree G1, removes the cost: it computes MuJoCo's full contact dynamics with fused per-world kernels and the adjoint of a whole control step as a single megakernel, with analytic gradients that match float64 finite differences, $11.5\\times$ faster than the available MuJoCo Warp adjoint.   On whole-body tracking of all 40 LAFAN1 clips with one policy on one GPU, $\\nabla$Mimic reaches the score reported by the state-of-the-art world-model method, 0.82, in 20 minutes instead of 1.2 h, and 0.874 in 1.8 h. SHAC, the standard first-order baseline, stops on exploding gradients within minutes. We release NablaEngine and $\\nabla$Mimic as open-source infrastructure for first-order humanoid policy learning.",
+  "abstract_zh": "Robot policy learning is dominated by zeroth-order methods such as PPO, which treat the simulator as a black box and pay for it with enormous sample counts. First-order policy learning differentiates through the dynamics, but on contact-rich whole-body control it has rarely worked: its gradients explode. A recent world-model method showed that derivative information can make humanoid motion tracking far more efficient, using surrogate gradients of a learned model. We show that exact gradients of the simulator itself do better, once two obstacles are removed. Exact gradients contain rare unbounded samples, because contact dynamics is not differentiable everywhere and its derivative diverges near some events; and they are expensive, because the simulator's adjoint has to replay the contact solve. $nabla$Mimic bounds these samples with median-relative per-sample gradient clipping at every step of the backward pass, and reuses each costly simulated window by multistep regression onto gradient-derived action targets, which bounds every action target independently of the gradient scale. NablaEngine, a differentiable GPU simulation engine for the Unitree G1, removes the cost: it computes MuJoCo's full contact dynamics with fused per-world kernels and the adjoint of a whole control step as a single megakernel, with analytic gradients that match float64 finite differences, $11.5×$ faster than the available MuJoCo Warp adjoint. On whole-body tracking of all 40 LAFAN1 clips with one policy on one GPU, $nabla$Mimic reaches the score reported by the state-of-the-art world-model method, 0.82, in 20 minutes instead of 1.2 h, and 0.874 in 1.8 h. SHAC, the standard first-order baseline, stops on exploding gradients within minutes. We release NablaEngine and $nabla$Mimic as open-source infrastructure for first-order humanoid policy learning.",
+  "tldr_zh": "Robot policy learning is dominated by zeroth-order methods s",
+  "cover_zh": "Robot policy learning is dominated by zeroth-order methods s",
+  "authors": [
+    {
+      "name": "Weyl Lu",
+      "affiliation": ""
+    },
+    {
+      "name": "Yubei Chen",
+      "affiliation": ""
+    }
+  ],
+  "primary_category": "cs.RO",
+  "categories": [
+    "cs.RO",
+    "cs.LG"
+  ],
+  "published": "2026-10-30",
+  "updated": "2026-10-30",
+  "arxiv_id": "2610.41654",
+  "pdf_url": "https://arxiv.org/pdf/2610.41654v1",
+  "abs_url": "http://arxiv.org/abs/2610.41654v1",
+  "venue": "",
+  "venue_announced": "",
+  "cover_image": "assets/img/covers/arxiv-2610-41654.jpg",
+  "preview_pages": [
+    "assets/img/covers/arxiv-2610-41654-p2.jpg"
+  ],
+  "channels": [
+    "manipulation"
+  ],
+  "badges": [],
+  "related_links": [],
+  "page_count": 26,
+  "source_tags": [],
+  "score": 6,
+  "score_breakdown": [
+    {
+      "id": "keyword_density",
+      "label": "关键词命中密集",
+      "points": 3,
+      "hint": "频道关键词命中 1 个（contact-rich）"
+    },
+    {
+      "id": "longer_paper",
+      "label": "成型 paper (≥4 页)",
+      "points": 3,
+      "hint": "PDF 26 页"
+    }
+  ],
+  "judge": {},
+  "institutions": [],
+  "method_tags": [],
+  "platform": [],
+  "sim_stack": [],
+  "method_family": "",
+  "real_robot": "",
+  "training_summary": "",
+  "demo_videos": [],
+  "github": {},
+  "note": ""
+}
