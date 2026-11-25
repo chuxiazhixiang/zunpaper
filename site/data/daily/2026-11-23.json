@@ -220,6 +220,7 @@
       "published": "2026-11-23",
       "channels": [
         "loco-manip-wbc",
+        "manipulation",
         "locomotion"
       ],
       "badges": [
@@ -237,7 +238,7 @@
       "pdf_url": "https://arxiv.org/pdf/2611.30817v1",
       "venue": "",
       "venue_announced": "",
-      "score": 32,
+      "score": 38,
       "judge": {},
       "institutions": [],
       "method_tags": [],
@@ -276,6 +277,7 @@
       "primary_category": "cs.RO",
       "published": "2026-11-23",
       "channels": [
+        "loco-manip-wbc",
         "manipulation",
         "locomotion"
       ],
@@ -348,6 +350,117 @@
       "arxiv_id": "2611.30784",
       "abs_url": "http://arxiv.org/abs/2611.30784v1",
       "pdf_url": "https://arxiv.org/pdf/2611.30784v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 30,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2611-30898",
+      "source": "arxiv",
+      "title": "World Models as Native Latent Action Models",
+      "title_zh": "World Models as Native Latent Action Models",
+      "tldr_zh": "Large and diverse video sources, such as egocentric human vi",
+      "cover_zh": "Large and diverse video sources, such as egocentric human vi",
+      "abstract_zh": "Large and diverse video sources, such as egocentric human video and heterogeneous robot recordings, carry rich dynamics but come either without actions or without a shared action space. Latent action models (LAMs) can recover these dynamics, but they train their inverse- and forward-dynamics models (IDM, FDM) from scratch, trading off pixel reconstruction against latent capacity and accuracy. Pretrained video world models natively generate high-fidelity dynamics, yet represent them densely, entangled across all layers. Viewing the world model as a LAM, we show that these dynamics can be extracted with minimal changes to the model. Native LAM operates one pretrained video diffusion transformer as both IDM and FDM, with learnable dynamics registers as the only causal bridge between the two, and trains on counterfactual temporal pairs that differ in motion alone, so that the registers distill a video's dynamics into a compact native latent action. We further propose a pretraining paradigm for vision-language-action (VLA) policies, Pretraining Actions from World models (PAWlicy), in which Native LAM serves as a dynamics teacher on large-scale video; unlike world action models, it never generates video. Native latent actions outperform existing LAMs on the LARY benchmark in both action classification and control regression, and replay the same motion on new robots, in new scenes, and from human hands to robots, although no transfer objective is used in training. With a 3.8B model, PAWlicy reaches a 93.6% average success rate on RoboTwin 2.0 trained with domain-randomized demonstrations, the highest among VLAs. On RoboDojo, it is competitive on every dimension we evaluate, and its Precision, evaluated by us, is on par with the leading leaderboard entries. On real robots, it improves over the pi_0.5 baseline on both tasks. Both stages use only public data and a publicly released world model.",
+      "authors": [
+        "Qinyue Li",
+        "Weijie Qiao",
+        "Qingyi Tao"
+      ],
+      "authors_all": [
+        "Qinyue Li",
+        "Weijie Qiao",
+        "Qingyi Tao",
+        "Zerui Gong",
+        "Zhe Yang",
+        "Quanzhou Li",
+        "Taolin Zhang",
+        "Jinglin He",
+        "Zhonghua Wu",
+        "Chen Change Loy"
+      ],
+      "primary_category": "cs.CV",
+      "published": "2026-11-23",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2611-30898.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2611-30898-p2.jpg"
+      ],
+      "arxiv_id": "2611.30898",
+      "abs_url": "http://arxiv.org/abs/2611.30898v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.30898v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 30,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
+      "id": "arxiv-2611-30907",
+      "source": "arxiv",
+      "title": "DexLatentWorld: 3D Cross-Embodiment Latent Action World Models for Zero-Shot Robotic Manipulation",
+      "title_zh": "DexLatentWorld: 3D Cross-Embodiment Latent Action World Models for Zero-Shot Robotic Manipulation",
+      "tldr_zh": "World models facilitate planning and control in robotic mani",
+      "cover_zh": "World models facilitate planning and control in robotic mani",
+      "abstract_zh": "World models facilitate planning and control in robotic manipulation by enabling agents to anticipate the consequences of their actions. However, they typically rely on action-labelled interaction data that is costly to acquire and difficult to scale. These models are also often tied to the specific embodiment they were trained on, limiting transferability to previously unseen robot morphologies. We introduce a 3D latent-action world model that learns continuous action representations directly from point-cloud observations of retargeted human manipulation demonstrations. A contrastive objective is used to encourage consistent representations of motion across embodiments. The resulting unified latent action space serves directly as the search space for model-predictive control, where sampled latent actions condition particle-based future predictions. Executable robot commands are then recovered from the predicted geometric motion without requiring an embodiment-specific action decoder. Through extensive evaluations, we demonstrate that the learned latent actions exhibit controllable and compositional motion, transfer to unseen robot embodiments, and support zero-shot manipulation with unseen gripper geometries. Following task-agnostic adaptation, our model achieves 90%, 92%, and 60% success on reaching, grasping, and placing, respectively, compared with DexWM's reported 72%, 58%, and 28%. Finally, we demonstrate zero-shot real-world manipulation with an unseen dexterous hand, achieving an 86% success rate across 50 trials on five diverse tasks involving pushing, grasping, and lifting everyday objects. These results highlight the potential of geometry-grounded latent actions as a unified, transferable interface for world-model-based robotic manipulation. Project materials, including demonstration videos and source code, are available at https://vinaymohan0409.github.io/DexLatentWorld/.",
+      "authors": [
+        "Vinay Udit Mohan",
+        "Xuchuan Huang",
+        "Rolandos Alexandros Potamias"
+      ],
+      "authors_all": [
+        "Vinay Udit Mohan",
+        "Xuchuan Huang",
+        "Rolandos Alexandros Potamias"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-11-23",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2611-30907.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2611-30907-p2.jpg"
+      ],
+      "arxiv_id": "2611.30907",
+      "abs_url": "http://arxiv.org/abs/2611.30907v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.30907v1",
       "venue": "",
       "venue_announced": "",
       "score": 30,
@@ -483,6 +596,66 @@
       "source_tags": []
     },
     {
+      "id": "arxiv-2611-30572",
+      "source": "arxiv",
+      "title": "VeriTouch: Verified Visuo-Tactile World Models that Improve Robot Policy Learning",
+      "title_zh": "VeriTouch: Verified Visuo-Tactile World Models that Improve Robot Policy Learning",
+      "tldr_zh": "Scaling visuo-tactile policy learning is constrained by the",
+      "cover_zh": "Scaling visuo-tactile policy learning is constrained by the",
+      "abstract_zh": "Scaling visuo-tactile policy learning is constrained by the high cost of real-world data collection and the difficulty of building realistic simulations. Generative models offer a scalable source of training data, yet useful demonstrations require plausible tactile feedback, temporal alignment with visual contact, and accurate actions. To this end, we present VeriTouch, a framework for generating and verifying synthetic visuo-tactile trajectories for policy learning. Conditioned on initial images and task instructions, our world model, VeriGen, jointly generates high-fidelity dual-view videos and realistic tactile sequences over complete manipulation trajectories. By integrating a dedicated tactile expert with a pretrained video model, it captures realistic visual details and tactile deformation dynamics through joint visuo-tactile modeling. Our multimodal verifier VeriEval then checks visual quality while focusing on tactile reliability, assessing tactile realism, contact-force plausibility, and temporal alignment between visible contact and tactile signals, thereby directly filtering out unreliable sequences. Finally, our inverse dynamics model, VeriIDM, combines global scene information from both camera views with fine-grained gripper details and motion across neighboring frames to extract actions from verified videos. Experiments on five real-world tasks show that synthetic data improves all four evaluated policies, with further scaling synthetic trajectories substantially boosting policy performance without additional real-world data collection.",
+      "authors": [
+        "Shuxun Wang",
+        "Xiaonan Jiang",
+        "Zhaoyu Wang"
+      ],
+      "authors_all": [
+        "Shuxun Wang",
+        "Xiaonan Jiang",
+        "Zhaoyu Wang",
+        "Ziyuan Chu",
+        "Xihang Yue",
+        "Pengfei Liu",
+        "Haodong Zhu",
+        "Shiqi Liu",
+        "Mingzhi Zheng",
+        "Liang Su",
+        "Linchao Zhu"
+      ],
+      "primary_category": "cs.RO",
+      "published": "2026-11-23",
+      "channels": [
+        "manipulation",
+        "world-model"
+      ],
+      "badges": [
+        {
+          "kind": "fresh",
+          "label": "⚡ 新鲜出炉"
+        }
+      ],
+      "cover_image": "assets/img/covers/arxiv-2611-30572.jpg",
+      "preview_pages": [
+        "assets/img/covers/arxiv-2611-30572-p2.jpg"
+      ],
+      "arxiv_id": "2611.30572",
+      "abs_url": "http://arxiv.org/abs/2611.30572v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.30572v1",
+      "venue": "",
+      "venue_announced": "",
+      "score": 27,
+      "judge": {},
+      "institutions": [],
+      "method_tags": [],
+      "platform": [],
+      "sim_stack": [],
+      "method_family": "",
+      "real_robot": "",
+      "training_summary": "",
+      "demo_videos": [],
+      "github": {},
+      "source_tags": []
+    },
+    {
       "id": "arxiv-2611-30658",
       "source": "arxiv",
       "title": "Active Observation for Robust Visual Servoing in Robotic Manipulation",
@@ -520,57 +693,6 @@
       "arxiv_id": "2611.30658",
       "abs_url": "http://arxiv.org/abs/2611.30658v1",
       "pdf_url": "https://arxiv.org/pdf/2611.30658v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 25,
-      "judge": {},
-      "institutions": [],
-      "method_tags": [],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2611-30907",
-      "source": "arxiv",
-      "title": "DexLatentWorld: 3D Cross-Embodiment Latent Action World Models for Zero-Shot Robotic Manipulation",
-      "title_zh": "DexLatentWorld: 3D Cross-Embodiment Latent Action World Models for Zero-Shot Robotic Manipulation",
-      "tldr_zh": "World models facilitate planning and control in robotic mani",
-      "cover_zh": "World models facilitate planning and control in robotic mani",
-      "abstract_zh": "World models facilitate planning and control in robotic manipulation by enabling agents to anticipate the consequences of their actions. However, they typically rely on action-labelled interaction data that is costly to acquire and difficult to scale. These models are also often tied to the specific embodiment they were trained on, limiting transferability to previously unseen robot morphologies. We introduce a 3D latent-action world model that learns continuous action representations directly from point-cloud observations of retargeted human manipulation demonstrations. A contrastive objective is used to encourage consistent representations of motion across embodiments. The resulting unified latent action space serves directly as the search space for model-predictive control, where sampled latent actions condition particle-based future predictions. Executable robot commands are then recovered from the predicted geometric motion without requiring an embodiment-specific action decoder. Through extensive evaluations, we demonstrate that the learned latent actions exhibit controllable and compositional motion, transfer to unseen robot embodiments, and support zero-shot manipulation with unseen gripper geometries. Following task-agnostic adaptation, our model achieves 90%, 92%, and 60% success on reaching, grasping, and placing, respectively, compared with DexWM's reported 72%, 58%, and 28%. Finally, we demonstrate zero-shot real-world manipulation with an unseen dexterous hand, achieving an 86% success rate across 50 trials on five diverse tasks involving pushing, grasping, and lifting everyday objects. These results highlight the potential of geometry-grounded latent actions as a unified, transferable interface for world-model-based robotic manipulation. Project materials, including demonstration videos and source code, are available at https://vinaymohan0409.github.io/DexLatentWorld/.",
-      "authors": [
-        "Vinay Udit Mohan",
-        "Xuchuan Huang",
-        "Rolandos Alexandros Potamias"
-      ],
-      "authors_all": [
-        "Vinay Udit Mohan",
-        "Xuchuan Huang",
-        "Rolandos Alexandros Potamias"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-11-23",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2611-30907.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2611-30907-p2.jpg"
-      ],
-      "arxiv_id": "2611.30907",
-      "abs_url": "http://arxiv.org/abs/2611.30907v1",
-      "pdf_url": "https://arxiv.org/pdf/2611.30907v1",
       "venue": "",
       "venue_announced": "",
       "score": 25,
@@ -1048,64 +1170,6 @@
       "source_tags": []
     },
     {
-      "id": "arxiv-2611-30898",
-      "source": "arxiv",
-      "title": "World Models as Native Latent Action Models",
-      "title_zh": "World Models as Native Latent Action Models",
-      "tldr_zh": "Large and diverse video sources, such as egocentric human vi",
-      "cover_zh": "Large and diverse video sources, such as egocentric human vi",
-      "abstract_zh": "Large and diverse video sources, such as egocentric human video and heterogeneous robot recordings, carry rich dynamics but come either without actions or without a shared action space. Latent action models (LAMs) can recover these dynamics, but they train their inverse- and forward-dynamics models (IDM, FDM) from scratch, trading off pixel reconstruction against latent capacity and accuracy. Pretrained video world models natively generate high-fidelity dynamics, yet represent them densely, entangled across all layers. Viewing the world model as a LAM, we show that these dynamics can be extracted with minimal changes to the model. Native LAM operates one pretrained video diffusion transformer as both IDM and FDM, with learnable dynamics registers as the only causal bridge between the two, and trains on counterfactual temporal pairs that differ in motion alone, so that the registers distill a video's dynamics into a compact native latent action. We further propose a pretraining paradigm for vision-language-action (VLA) policies, Pretraining Actions from World models (PAWlicy), in which Native LAM serves as a dynamics teacher on large-scale video; unlike world action models, it never generates video. Native latent actions outperform existing LAMs on the LARY benchmark in both action classification and control regression, and replay the same motion on new robots, in new scenes, and from human hands to robots, although no transfer objective is used in training. With a 3.8B model, PAWlicy reaches a 93.6% average success rate on RoboTwin 2.0 trained with domain-randomized demonstrations, the highest among VLAs. On RoboDojo, it is competitive on every dimension we evaluate, and its Precision, evaluated by us, is on par with the leading leaderboard entries. On real robots, it improves over the pi_0.5 baseline on both tasks. Both stages use only public data and a publicly released world model.",
-      "authors": [
-        "Qinyue Li",
-        "Weijie Qiao",
-        "Qingyi Tao"
-      ],
-      "authors_all": [
-        "Qinyue Li",
-        "Weijie Qiao",
-        "Qingyi Tao",
-        "Zerui Gong",
-        "Zhe Yang",
-        "Quanzhou Li",
-        "Taolin Zhang",
-        "Jinglin He",
-        "Zhonghua Wu",
-        "Chen Change Loy"
-      ],
-      "primary_category": "cs.CV",
-      "published": "2026-11-23",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2611-30898.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2611-30898-p2.jpg"
-      ],
-      "arxiv_id": "2611.30898",
-      "abs_url": "http://arxiv.org/abs/2611.30898v1",
-      "pdf_url": "https://arxiv.org/pdf/2611.30898v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 19,
-      "judge": {},
-      "institutions": [],
-      "method_tags": [],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
       "id": "arxiv-2611-30997",
       "source": "arxiv",
       "title": "Generalizing Agentic Robotics via Multi-Teacher On-Policy Distillation",
@@ -1316,65 +1380,6 @@
       "venue": "",
       "venue_announced": "",
       "score": 19,
-      "judge": {},
-      "institutions": [],
-      "method_tags": [],
-      "platform": [],
-      "sim_stack": [],
-      "method_family": "",
-      "real_robot": "",
-      "training_summary": "",
-      "demo_videos": [],
-      "github": {},
-      "source_tags": []
-    },
-    {
-      "id": "arxiv-2611-30572",
-      "source": "arxiv",
-      "title": "VeriTouch: Verified Visuo-Tactile World Models that Improve Robot Policy Learning",
-      "title_zh": "VeriTouch: Verified Visuo-Tactile World Models that Improve Robot Policy Learning",
-      "tldr_zh": "Scaling visuo-tactile policy learning is constrained by the",
-      "cover_zh": "Scaling visuo-tactile policy learning is constrained by the",
-      "abstract_zh": "Scaling visuo-tactile policy learning is constrained by the high cost of real-world data collection and the difficulty of building realistic simulations. Generative models offer a scalable source of training data, yet useful demonstrations require plausible tactile feedback, temporal alignment with visual contact, and accurate actions. To this end, we present VeriTouch, a framework for generating and verifying synthetic visuo-tactile trajectories for policy learning. Conditioned on initial images and task instructions, our world model, VeriGen, jointly generates high-fidelity dual-view videos and realistic tactile sequences over complete manipulation trajectories. By integrating a dedicated tactile expert with a pretrained video model, it captures realistic visual details and tactile deformation dynamics through joint visuo-tactile modeling. Our multimodal verifier VeriEval then checks visual quality while focusing on tactile reliability, assessing tactile realism, contact-force plausibility, and temporal alignment between visible contact and tactile signals, thereby directly filtering out unreliable sequences. Finally, our inverse dynamics model, VeriIDM, combines global scene information from both camera views with fine-grained gripper details and motion across neighboring frames to extract actions from verified videos. Experiments on five real-world tasks show that synthetic data improves all four evaluated policies, with further scaling synthetic trajectories substantially boosting policy performance without additional real-world data collection.",
-      "authors": [
-        "Shuxun Wang",
-        "Xiaonan Jiang",
-        "Zhaoyu Wang"
-      ],
-      "authors_all": [
-        "Shuxun Wang",
-        "Xiaonan Jiang",
-        "Zhaoyu Wang",
-        "Ziyuan Chu",
-        "Xihang Yue",
-        "Pengfei Liu",
-        "Haodong Zhu",
-        "Shiqi Liu",
-        "Mingzhi Zheng",
-        "Liang Su",
-        "Linchao Zhu"
-      ],
-      "primary_category": "cs.RO",
-      "published": "2026-11-23",
-      "channels": [
-        "manipulation"
-      ],
-      "badges": [
-        {
-          "kind": "fresh",
-          "label": "⚡ 新鲜出炉"
-        }
-      ],
-      "cover_image": "assets/img/covers/arxiv-2611-30572.jpg",
-      "preview_pages": [
-        "assets/img/covers/arxiv-2611-30572-p2.jpg"
-      ],
-      "arxiv_id": "2611.30572",
-      "abs_url": "http://arxiv.org/abs/2611.30572v1",
-      "pdf_url": "https://arxiv.org/pdf/2611.30572v1",
-      "venue": "",
-      "venue_announced": "",
-      "score": 16,
       "judge": {},
       "institutions": [],
       "method_tags": [],
